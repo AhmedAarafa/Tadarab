@@ -1,0 +1,198 @@
+@import "../../../styles/mixins";
+
+.hero-section {
+    background-color: #EEEDEF;
+}
+
+.hero-section__container {
+    margin: 11.5rem -2.2rem 0 0;
+    display: inline-block;
+}
+
+.hero-section__title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.hero-section__para {
+    color: $dark-black;
+    font-size: 1.063rem;
+    margin-top: 1rem;
+    opacity: 80%;
+    // font-weight: 400;
+}
+
+.hero-section__search-bar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 1.625rem #0000001A;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    font-weight: 400; 
+    font-size: 1.063rem;
+    padding: 0.4rem 0rem 0.4rem 0rem;
+    letter-spacing: 0;
+    background-color: white;
+    margin-top: 2rem;
+    width: 27.188rem;
+
+}
+
+.hero-section__search-bar-container__icon-wrapper {
+    padding: 0 1rem; 
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &>svg {
+        width: 1.1rem;
+        height: 1.1rem;
+    }
+}
+
+.hero-section__search-bar-container__search-bar {
+    border: 0 !important;
+    padding: 0.625rem 2.7rem 0.5rem 0;
+    font-family: 'Almarai', sans-serif;
+    width: 70%;
+    font-size: 1.063rem;
+    color: rgba(34, 34, 34, 0.5);
+
+    &:active,
+    &:focus {
+        outline: 0 !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+    }
+
+}
+
+.hero-section__chips-box {
+    margin-top: 1rem;
+    width: 23rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hero-section__chip {
+    margin-top: 0.5rem;
+    width: fit-content;
+    height: 1.563rem;
+    border: 0.063rem solid rgba(14, 11, 29, 0.3);
+    border-radius: 0.938rem;
+    color: $dark-black;
+    font-size: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.063rem 0.663rem;
+    font-weight: 700;
+    background-color: inherit;
+    margin-left: 0.2rem;
+}
+
+.hero-section__search-bar__icon-wrapper {
+    &>img {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
+.hero-section__search-bar__btn {
+    @include contained-button;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    width: 6.25rem;
+    height: 2.75rem;
+    margin-right: 1.3rem;
+
+}
+
+.hero-section__hero-img {
+    width: 31.75rem;
+    height: 30rem;
+    // float: right;
+    margin-top: 8.8rem;
+    margin-right: -5.5rem;
+}
+
+.categories-cards-container {
+    position: absolute;
+    top: -2.5rem;
+    width: 100%;
+    @include flex(center,space-evenly);
+    padding: 0 2rem;
+
+    div:nth-of-type(1){
+        div:nth-of-type(1){
+            background-color: $primary-red;
+        }
+        div:nth-of-type(2){
+            color: $primary-red;
+        }
+    }
+
+    div:nth-of-type(2){
+         div:nth-of-type(1){
+            background-color: #FF7900;
+        }
+         div:nth-of-type(2){
+          color: #FF7900;
+        }
+    }
+    div:nth-of-type(3){
+        div:nth-of-type(1){
+            background-color: #1F7B24;
+        }
+        div:nth-of-type(2){
+           color: #1F7B24;
+        }
+    }
+    div:nth-of-type(4){
+        div:nth-of-type(1){
+            background-color: #813A8A;
+        }
+        div:nth-of-type(2){
+            color: #813A8A;
+        }
+    }
+    
+}
+
+.categories-cards-container__card {
+    width: 16.25rem;
+    height: 5rem;
+    box-shadow: 0 0 1.875rem #0000001A;
+    border-radius: 1.25rem;
+    @include flex(center,flex-start);
+    background-color: white;
+    // margin-left: 1.875rem;
+
+}
+
+.categories-cards-container__img-box {
+    margin: 0 0.625rem 0 1.25rem;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 0.813rem;
+    box-shadow: 0 0 1.875rem #0000001A;
+    @include flex(center, center);
+
+    svg {
+        width: 2.375rem;
+        height: 1.75rem;
+    }
+}
+
+.categories-cards-container__category {
+    font-size: 1.125rem;
+    font-weight: 800;
+    color: $primary-red;
+    margin-left: 0.8rem;
+}

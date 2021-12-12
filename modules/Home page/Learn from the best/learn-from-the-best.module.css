@@ -1,0 +1,154 @@
+.learn-from-the-best__title {
+  font-size: 2rem;
+  font-weight: 800;
+  padding: 6.25rem 3rem 0 3rem;
+  background-color: white;
+  border-radius: 5rem 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.learn-from-the-best__title > div span:nth-of-type(1) {
+  color: #222222;
+}
+
+.learn-from-the-best__title > div span:nth-of-type(2) {
+  color: #AF151F;
+  margin-right: 0.35rem;
+}
+
+.learn-from-the-best__see-more-btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  font-family: 'Almarai', sans-serif;
+  border-radius: 0.625rem;
+  border: 0 !important;
+  color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+  background-color: white !important;
+  font-size: 1.063rem;
+  color: #AF151F;
+  font-weight: 700;
+  width: 13.25rem;
+  height: 2.75rem;
+  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  border-radius: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.learn-from-the-best__see-more-btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.learn-from-the-best__see-more-btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.learn-from-the-best__see-more-btn:hover {
+  color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+}
+
+.learn-from-the-best__see-more-btn:active {
+  background-color: #AF151F !important;
+  color: white !important;
+  border: 0.125rem solid #AF151F !important;
+}
+
+.learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
+  background-color: white !important;
+  color: #AF151F !important;
+  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+}
+
+.learn-from-the-best__cards-carousel {
+  padding-top: 2.563rem;
+}
+
+.learn-from-the-best__cards-carousel > div {
+  padding: 0 2rem !important;
+}
+
+.learn-from-the-best__cards-carousel > div:before {
+  content: '';
+  display: block;
+  position: absolute;
+  -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+          box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.learn-from-the-best__cards-carousel > div > div:nth-child(1),
+.learn-from-the-best__cards-carousel > div > div:nth-child(2) {
+  top: 43% !important;
+}
+
+.learn-from-the-best__cards-carousel__card {
+  width: 18.75rem;
+  height: 21.875rem;
+  -webkit-box-shadow: 0 0.5rem 1.313rem #0000001A;
+          box-shadow: 0 0.5rem 1.313rem #0000001A;
+  border-radius: 0.75rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background: transparent url("/images/trainer img.png") no-repeat padding-box;
+  background-size: contain;
+}
+
+.learn-from-the-best__cards-carousel__card__card-body {
+  padding: 0;
+  background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(48%, #000000B3), to(#000000E6)) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #00000000 0%, #000000B3 48%, #000000E6 100%) 0% 0% no-repeat padding-box;
+  padding-bottom: 1.5rem;
+}
+
+.learn-from-the-best__cards-carousel__card__trainer {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+}
+
+.learn-from-the-best__cards-carousel__card__job-title,
+.learn-from-the-best__cards-carousel__card__job-history {
+  font-size: 0.813rem;
+  padding: 0;
+}
+/*# sourceMappingURL=learn-from-the-best.module.css.map */

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="21.577" viewBox="0 0 32 21.577">
+  <g id="tech" transform="translate(-633 -2789)">
+    <path id="laptop" d="M23.89,3.8a.9.9,0,0,1,.9.9V18.183H3.211V4.7a.9.9,0,0,1,.9-.9ZM4.11,2a2.7,2.7,0,0,0-2.7,2.7V19.981H26.587V4.7A2.7,2.7,0,0,0,23.89,2ZM-2,20.88H30a2.7,2.7,0,0,1-2.7,2.7H.7A2.7,2.7,0,0,1-2,20.88Z" transform="translate(635 2787)" fill="#fff"/>
+    <path id="Path_15180" data-name="Path 15180" d="M58.762,20.917,55.706,19.1a.357.357,0,0,0-.535.364l.565,3.51a.357.357,0,0,0,.274.292.37.37,0,0,0,.078.009.357.357,0,0,0,.294-.155l.4-.585.616.906a.715.715,0,0,0,1.182-.8l-.616-.906.692-.159a.357.357,0,0,0,.1-.655Z" transform="translate(594.293 2776.787)" fill="#fff"/>
+    <line id="Line_231" data-name="Line 231" x2="10" transform="translate(640.5 2793.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+    <line id="Line_232" data-name="Line 232" x2="7" transform="translate(640.5 2796.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+    <line id="Line_233" data-name="Line 233" x2="4" transform="translate(640.5 2799.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+  </g>
+</svg>

@@ -1,0 +1,41 @@
+@import "../../../styles/mixins";
+
+
+.join-as-a-trainer{
+text-align: center;
+}
+
+.join-as-a-trainer__title{
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 3.25rem 3rem 0 3rem;
+    background-color: white;
+    border-radius: 5rem 0 0 0;
+
+    // @include flex(center);
+
+        span:nth-of-type(1) {
+            color: $dark-black;
+        }
+
+        span:nth-of-type(2) {
+            color: $primary-red;
+            margin-right: 0.35rem;
+        }
+}
+
+.join-as-a-trainer__para{
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $grey;
+    margin: 0.4rem 0 0.9rem 0;
+}
+
+.join-as-a-trainer__btn{
+    @include contained-button;
+    width: 10rem;
+    height: 3.125rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+}

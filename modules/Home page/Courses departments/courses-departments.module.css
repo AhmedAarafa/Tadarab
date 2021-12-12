@@ -1,0 +1,180 @@
+.courses-departments__container {
+  padding: 3rem 3rem 0 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.courses-departments__container__title {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.courses-departments__container__title span:nth-of-type {
+  color: #222222;
+}
+
+.courses-departments__container__title span:nth-of-type(2) {
+  color: #AF151F;
+}
+
+.courses-departments__container__show-all-btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  font-family: 'Almarai', sans-serif;
+  border-radius: 0.625rem;
+  border: 0 !important;
+  color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+  background-color: white !important;
+  font-size: 1.063rem;
+  color: #AF151F;
+  font-weight: 700;
+  width: 13.125rem;
+  height: 2.75rem;
+  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  border-radius: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.courses-departments__container__show-all-btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.courses-departments__container__show-all-btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.courses-departments__container__show-all-btn:hover {
+  color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+}
+
+.courses-departments__container__show-all-btn:active {
+  background-color: #AF151F !important;
+  color: white !important;
+  border: 0.125rem solid #AF151F !important;
+}
+
+.courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active {
+  background-color: white !important;
+  color: #AF151F !important;
+  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+}
+
+.courses-departments__cards-carousel {
+  margin-top: 2.5rem;
+}
+
+.courses-departments__cards-carousel > div {
+  padding: 0 2rem !important;
+}
+
+.courses-departments__cards-carousel > div > div:nth-child(1),
+.courses-departments__cards-carousel > div > div:nth-child(2) {
+  top: 34% !important;
+}
+
+.courses-departments__cards-carousel__departments-card {
+  width: 10rem;
+  height: 10rem;
+  border: 0.063rem solid #00000026;
+  border-radius: 0.75rem;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.courses-departments__cards-carousel__departments-card:hover {
+  -webkit-box-shadow: 0 0 1.875rem #0000001A;
+          box-shadow: 0 0 1.875rem #0000001A;
+}
+
+.courses-departments__cards-carousel__departments-card__img-box {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  background-color: #AF151F;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.courses-departments__cards-carousel__departments-card__department {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222222;
+  margin-top: 0.3rem;
+}
+
+.courses-departments__cards-carousel__departments-card__learners-number {
+  font-size: 0.875rem;
+  color: #777777;
+  margin-top: 0.3rem;
+}
+
+.swiper {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 1.125rem;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+/*# sourceMappingURL=courses-departments.module.css.map */

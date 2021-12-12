@@ -1,0 +1,129 @@
+@import "../../../styles/mixins";
+
+
+.consultations__title {
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 5rem 3rem 0 3rem;
+    background-color: #0E0B1D;
+    border-radius: 5rem 0 0 0;
+    @include flex(center);
+
+    span:nth-of-type(1) {
+        color: white;
+    }
+
+    span:nth-of-type(2) {
+        color: $primary-red;
+        margin-right: 0.35rem;
+    }
+}
+
+
+.consultations__minor-title-container {
+    @include flex(center, space-between);
+    background-color: #0E0B1D;
+    padding: 1rem 3rem 0 3rem;
+
+}
+
+.consultations__minor-title-container__para {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+
+.consultations__minor-title-container__btn {
+    font-size: 1.063rem;
+    font-weight: 700;
+    color: white;
+    border: 0.063rem solid rgba(255, 255, 255, 0.2);
+    background-color: #0E0B1D;
+    border-radius: 0.75rem;
+    width: 15.188rem;
+    height: 2.75rem;
+    @include flex(center, space-around);
+
+    svg{
+        width: 0.5rem;
+        height: 0.875rem;
+    }
+    &:hover,&:active,&:focus{
+        background-color: #0E0B1D;
+    border: 0.063rem solid rgba(255, 255, 255, 0.2);
+    }
+
+}
+
+.consultations__cards-carousel{
+    background-color: #0E0B1D;
+    padding-top: 2.75rem;
+    padding-bottom: 6rem;
+
+    &>div {
+        padding: 0 2rem !important;
+        @include inset-box-shadow(black); 
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 42% !important
+        }
+        // &>div:nth-child(4) {
+        //     padding-bottom: 2.5rem !important;
+        // }
+    }
+}
+
+.consultations__cards-carousel__card{
+    width: 18.75rem;
+    height: 25.625rem;
+    // box-shadow: 0 0.5rem 20.063rem #0000001A;
+    border-radius: 0.75rem;
+    color: white;
+    position: relative;
+    // margin-right: -5rem;
+    // margin-left: -5rem;
+    overflow: hidden;
+    @include flex(unset,flex-end);
+    display: inline-flex;
+    background: transparent url('/images/trainer img.png') no-repeat padding-box;
+    background-size: contain;
+    
+}
+
+.consultations__cards-carousel__card__card-body{
+padding: 0;
+background: transparent linear-gradient(180deg, #00000000 0%, #000000B3 48%, #000000E6 100%) 0% 0% no-repeat padding-box;
+}
+
+.consultations__cards-carousel__card__trainer{
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+}
+
+.consultations__cards-carousel__card__job-title,
+.consultations__cards-carousel__card__job-history{
+font-size: 0.813rem;
+padding: 0;
+
+}
+
+.consultations__cards-carousel__card__btn{
+    @include contained-button;
+    width: 100%;
+    height: 3.75rem;
+    border-radius: 0 0 0.625rem 0.625rem;
+    // text-align: center;
+    margin-top: 0.8rem;
+    @include flex(center,center);
+
+    img{
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    span{
+        font-size: 1rem;
+        margin-right: 0.781rem;
+    }
+
+}

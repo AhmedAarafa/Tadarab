@@ -1,0 +1,66 @@
+@import "../../../styles/mixins";
+
+.educational-guide{
+    @include flex(unset,center);
+}
+.educational-guide__container{
+    background-color: #0E0B1D;
+    width: 73rem;
+    height: 26.25rem;
+    border-radius: 2.5rem;
+    margin-top: 6.25rem;
+    @include flex(center);
+    &>div{
+        display: inline-block;
+    }
+
+}
+
+.educational-guide__container__img{
+    img{
+        width: 16.25rem;
+        height: 16.25rem;
+        border-radius: 1.875rem;
+        margin-right: 5rem;
+    }
+}
+
+.educational-guide__container__details-box{
+    width: 34.5rem;
+    margin-right: 4.844rem;
+
+}
+
+.educational-guide__container__details-box__title{
+    font-size: 1.875rem;
+    font-weight: 800;
+    // background-color: white;
+    // border-radius: 5rem 0 0 0;
+
+    // @include flex(center);
+
+        span:nth-of-type(1) {
+            color: white;
+        }
+
+        span:nth-of-type(2) {
+            color: $primary-red;
+            // margin-right: 0.35rem;
+        }
+}
+
+.educational-guide__container__details-box__breif{
+    font-size: 1.063rem;
+    color: white;
+    padding: 1.5rem 0 2rem 0;
+
+}
+
+.educational-guide__container__details-box__btn{
+    @include contained-button;
+    width: 10rem;
+    height: 3.125rem;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+}

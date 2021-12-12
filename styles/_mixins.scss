@@ -1,0 +1,112 @@
+@import '../styles/colors-pallete.scss';
+
+@mixin flex($align-items: unset,$justify-content: unset) {
+    display: flex;
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+@mixin generic-button{
+    box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    font-family: 'Almarai', sans-serif;
+    border-radius: 0.625rem;
+    border:0 !important;
+    &:hover {
+        box-shadow: none;
+    };
+    &:active {
+        box-shadow: none;
+    };
+
+}
+
+@mixin contained-button {
+    @include generic-button;
+
+    background-color: $primary-red  !important;
+
+    &:hover {
+        background-color: $primary-red !important;
+    };
+
+    &:active {
+        background-color: #9d151e !important;
+    };
+}
+
+@mixin outlined-button {
+    @include generic-button;
+
+    color: $primary-red !important;
+    border: 0.125rem solid $primary-red !important;
+    background-color: white !important;
+
+    &:hover {
+        // background-color: $primary-red !important;
+        color: $primary-red !important;
+        border: 0.125rem solid $primary-red !important;
+    };
+
+    &:active {
+        background-color: $primary-red !important;
+        color: white !important;
+        border: 0.125rem solid $primary-red !important;
+    };
+
+}
+
+@mixin icon-button{
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.75rem;
+    background-color: rgba(0,0,0,0.05);
+    border: 0;
+    @include flex(center,center);
+    display: inline-flex;
+
+    &:hover , &:active , &:focus{
+    background-color: rgba(0,0,0,0.05);
+    }
+}
+
+@mixin popover {
+    box-shadow: 0 0 1.875rem #0000001A;
+    position: absolute;
+    background: #fff;
+    color: $dark-black;
+    font-weight: bold;
+    padding: 1.3rem 0.3rem;
+    font-size: 1rem;
+    border-radius: 1.25rem;
+    z-index: 5;
+
+}
+
+@mixin categories-chip{
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    border-radius: 0.75rem;
+    padding: 0.12rem 0.7rem;
+    color: white;
+}
+
+@mixin inset-box-shadow($box-shadow-color){
+    &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        box-shadow: -2.813rem 0 2.5rem -3.125rem $box-shadow-color inset,
+        2.813rem 0 2.5rem -3.125rem $box-shadow-color inset;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 200;
+        pointer-events: none;
+    }
+}

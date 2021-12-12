@@ -1,0 +1,100 @@
+@import "../../../styles/mixins";
+
+
+.learn-from-the-best__title{
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 6.25rem 3rem 0 3rem;
+    background-color: white;
+    border-radius: 5rem 0 0 0;
+
+    @include flex(center, space-between);
+
+    &>div {
+        span:nth-of-type(1) {
+            color: $dark-black;
+        }
+
+        span:nth-of-type(2) {
+            color: $primary-red;
+            margin-right: 0.35rem;
+        }
+    }
+
+}
+
+.learn-from-the-best__see-more-btn{
+    @include outlined-button;
+    font-size: 1.063rem;
+    color: $primary-red;
+    font-weight: 700;
+    width: 13.25rem;
+    height: 2.75rem;
+    border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    border-radius: 0.75rem;
+    @include flex(center, space-around);
+
+    &:hover,
+    &:active {
+        background-color: white !important;
+        color: $primary-red !important;
+        border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    }
+
+    // svg {
+    //     width: 0.5rem;
+    //     height: 0.875rem;
+    // }
+}
+
+.learn-from-the-best__cards-carousel{
+    padding-top: 2.563rem;
+
+    &>div {
+        padding: 0 2rem !important;
+        @include inset-box-shadow(white);
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 43% !important
+        }
+        &>div:nth-child(4) {
+            // padding-bottom: 2.5rem !important;
+        }
+    }
+    // &>a {
+    //     position: absolute !important;
+    //     top: 11.5rem !important;
+    // }
+}
+
+.learn-from-the-best__cards-carousel__card{
+    width: 18.75rem;
+    height: 21.875rem;
+    box-shadow: 0 0.5rem 1.313rem #0000001A;
+    border-radius: 0.75rem;
+    color: white;
+    position: relative;
+    // margin-right: 1.8rem;
+    overflow: hidden;
+    @include flex(unset,flex-end);
+    display: inline-flex;
+    background: transparent url('/images/trainer img.png') no-repeat padding-box;
+    background-size: contain;
+}
+
+.learn-from-the-best__cards-carousel__card__card-body{
+    padding: 0;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000B3 48%, #000000E6 100%) 0% 0% no-repeat padding-box;
+   padding-bottom: 1.5rem;
+}
+
+.learn-from-the-best__cards-carousel__card__trainer{
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+}
+.learn-from-the-best__cards-carousel__card__job-title,
+.learn-from-the-best__cards-carousel__card__job-history{
+    font-size: 0.813rem;
+    padding: 0;
+}

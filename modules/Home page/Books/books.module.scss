@@ -1,0 +1,139 @@
+@import "../../../styles/mixins";
+
+.books__row{
+    background-color: #0E0B1D;
+}
+
+.books__title {
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 6rem 3rem 0 3rem;
+    background-color: white;
+    border-radius: 5rem 0 0 0;
+
+    @include flex(center, space-between);
+
+    &>div {
+        span:nth-of-type(1) {
+            color: $dark-black;
+        }
+
+        span:nth-of-type(2) {
+            color: $primary-red;
+            margin-right: 0.35rem;
+        }
+    }
+
+}
+
+
+.books__see-more-btn {
+    @include outlined-button;
+    font-size: 1.063rem;
+    color: $primary-red;
+    font-weight: 700;
+    width: 18.75rem;
+    height: 2.75rem;
+    border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    border-radius: 0.75rem;
+    @include flex(center, space-around);
+
+    &:hover,
+    &:active {
+        background-color: white !important;
+        color: $primary-red !important;
+        border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    }
+
+    // svg {
+    //     width: 0.5rem;
+    //     height: 0.875rem;
+    // }
+}
+
+.books__cards-carousel {
+    background-color: white;   
+    padding-top: 3rem;
+   
+    &>div {
+        padding: 0 2rem !important;
+        @include inset-box-shadow(white);
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 29% !important
+        }
+        // &>div:nth-child(4) {
+          
+        // }
+    }
+    // &>a{
+    //     position: absolute !important;
+    //     top: 11rem !important;
+    // }
+}
+
+.books__cards-carousel__card {
+    width: 13.25rem;
+    height:27.875rem;
+    // box-shadow: 0 0 1.875rem #00000033;
+    border-radius: 0.5rem;
+    border: 0;
+    display: inline-block;
+
+    div:nth-of-type(1){
+        padding: 0.5rem 0;
+    }
+}
+
+.books__cards-carousel__card__book-img {
+    width: 100%;
+    border-radius: 0.5rem;
+    height: 18.75rem;
+    box-shadow: 0 0 0.5rem #00000033;
+}
+
+.books__cards-carousel__card__card-body__title {
+    font-size: 1.063rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.books__cards-carousel__card__card-body__category {
+    font-size: 1rem;
+    color: $grey;
+}
+
+.books__cards-carousel__card__download-btn {
+    @include outlined-button;
+    width: 100%;
+    height: 2.75rem;
+    border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    border-radius: 0.75rem;
+    @include flex(center, center);
+    margin-top: 1rem;
+
+    &:hover,
+    &:active {
+        background-color: $primary-red !important;
+        border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+        
+        span{
+
+            color: white !important;
+        }
+        svg {
+            
+            // width: 1.188rem;
+            // height: 1.25rem;
+                color: white !important;
+        }
+    }
+
+
+    span {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $primary-red;
+        margin-right: 0.5rem;
+    }
+}
