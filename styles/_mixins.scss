@@ -30,7 +30,7 @@
     background-color: $primary-red  !important;
 
     &:hover {
-        background-color: $primary-red !important;
+        background-color: #9d151e !important;
     };
 
     &:active {
@@ -69,7 +69,7 @@
     display: inline-flex;
 
     &:hover , &:active , &:focus{
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0,0,0,0.07);
     }
 }
 

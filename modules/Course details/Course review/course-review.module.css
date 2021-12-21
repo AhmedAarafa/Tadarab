@@ -1,0 +1,134 @@
+.course-review {
+  margin-top: 2.437rem;
+}
+
+.course-review__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.course-review__review-box {
+  margin: -0.4rem 0 0.875rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.course-review__review-box__number {
+  font-size: 3.75rem;
+  font-weight: 800;
+  color: #222222;
+  margin-left: 0.75rem;
+}
+
+.course-review__review-box__review__stars svg {
+  margin-left: 0.25rem;
+}
+
+.course-review__review-box__review__number-of-reviews span:nth-of-type(1) {
+  font-size: 1.063rem;
+  font-weight: 700;
+  color: #777777;
+}
+
+.course-review__review-box__review__number-of-reviews span:nth-of-type(2) {
+  font-size: 0.938rem;
+  color: #777777;
+}
+
+.course-review__cards-carousel {
+  margin: -1.8rem 0 0 0;
+}
+
+.course-review__cards-carousel > div {
+  padding: 1rem 0.6rem 1rem 0 !important;
+}
+
+.course-review__cards-carousel > div > div:nth-child(1),
+.course-review__cards-carousel > div > div:nth-child(2) {
+  top: 39% !important;
+}
+
+.course-review__cards-carousel > div > div:nth-child(1) {
+  right: 0.3rem !important;
+}
+
+.course-review__cards-carousel > div > div:nth-child(2) {
+  left: 0.8rem !important;
+}
+
+.course-review__cards-carousel > div > div:nth-child(3) > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.course-review__cards-carousel__card {
+  padding: 1.25rem 1.688rem 1.25rem 2.875rem;
+  width: 34rem;
+  -webkit-box-shadow: 0 0 1.25rem #0000001A;
+          box-shadow: 0 0 1.25rem #0000001A;
+  border-radius: 1.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.course-review__cards-carousel__card__review-box {
+  margin-right: 0.75rem;
+}
+
+.course-review__cards-carousel__card__review-box__name {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 0.2rem;
+}
+
+.course-review__cards-carousel__card__review-box__rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.course-review__cards-carousel__card__review-box__rating svg {
+  margin-left: 0.15rem;
+}
+
+.course-review__cards-carousel__card__review-box__rating span {
+  font-size: 0.813rem;
+  color: #999999;
+  margin-right: 0.375rem;
+}
+
+.course-review__cards-carousel__card__review-box__review {
+  font-size: 0.938rem;
+  color: #777777;
+  margin-top: 0.2rem;
+}
+/*# sourceMappingURL=course-review.module.css.map */

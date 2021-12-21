@@ -41,10 +41,6 @@
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
-    // svg {
-    //     width: 0.5rem;
-    //     height: 0.875rem;
-    // }
 }
 
 .learn-from-the-best__cards-carousel{
@@ -57,14 +53,8 @@
         &>div:nth-child(2) {
             top: 43% !important
         }
-        &>div:nth-child(4) {
-            // padding-bottom: 2.5rem !important;
-        }
     }
-    // &>a {
-    //     position: absolute !important;
-    //     top: 11.5rem !important;
-    // }
+    
 }
 
 .learn-from-the-best__cards-carousel__card{
@@ -74,7 +64,6 @@
     border-radius: 0.75rem;
     color: white;
     position: relative;
-    // margin-right: 1.8rem;
     overflow: hidden;
     @include flex(unset,flex-end);
     display: inline-flex;

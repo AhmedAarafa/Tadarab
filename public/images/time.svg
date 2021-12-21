@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="time" transform="translate(-444 -392)">
+    <path id="clock-solid" d="M22.231,21.528h0l-.887,1.109a.71.71,0,0,1-1,.111h0l-2.972-2.205a1.774,1.774,0,0,1-.665-1.385v-6.9a.71.71,0,0,1,.71-.71h1.419a.71.71,0,0,1,.71.71v6.387l2.573,1.885A.71.71,0,0,1,22.231,21.528Z" transform="translate(436.871 384.355)" fill="#c1121f"/>
+    <path id="clock-solid-2" data-name="clock-solid" d="M19,8A11,11,0,1,0,30,19,11,11,0,0,0,19,8Z" transform="translate(436 384)" fill="#c1121f" opacity="0.25"/>
+  </g>
+</svg>

@@ -104,11 +104,11 @@
 
     &>div {
 
-        // svg {
-        //     width: 1.5rem;
-        //     height: 1.5rem;
+        svg {
+            width: 1.5rem !important;
+            height: 1.5rem !important;
 
-        // }
+        }
     }
 }
 
@@ -167,11 +167,12 @@
 .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
     @include icon-button;
     margin-right: 0.3rem;
+    padding: 0 !important;
 
 
-    img {
+    svg {
         width: 1.188rem;
-        // height: 0.813rem;
+        height: 1.813rem;
     }
 }
 
@@ -205,3 +206,5 @@
         box-shadow: 0 0 0 0.625rem rgba(255, 0, 0, 0.1), 0 0 0 0.75rem rgba(255, 255, 255, 0), 0 0 0 1.313rem rgba(255, 0, 0, 0.1), 0 0 0 1.438rem rgba(255, 255, 255, 0), ;
     }
 }
+
+

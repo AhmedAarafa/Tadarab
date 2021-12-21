@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "./statistics.module.css";
-import { Row, Col, Button, Card, Carousel, Container } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 export default function Statistics() {
   return (
@@ -32,7 +32,6 @@ export default function Statistics() {
   </g>
 </svg>
 
-                            {/* <img src="/images/users.svg" alt="users" className={styles["statistics__details__img"]}/>  */}
                             </div>
                         <div className={styles["statistics__details__counter"]}>
                             <span>+2</span>
@@ -42,7 +41,7 @@ export default function Statistics() {
                     </div>
                     <div>
                         <div>
-                            {/* <img src="/images/courses-1.svg" alt="courses" className={styles["statistics__details__img"]}/>  */}
+                            
                             <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 50.4 50.4">
   <g id="courses" transform="translate(0.2 0.2)">
     <g id="Group_11359" data-name="Group 11359">
@@ -59,7 +58,7 @@ export default function Statistics() {
                     </div>
                     <div>
                         <div>
-                            {/* <img src="/images/trainers.svg" alt="trainers" className={styles["statistics__details__img"]}/>  */}
+                            
                             <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 53.654 50.4">
   <g id="trainers" transform="translate(0.2 0.2)">
     <path id="Path_13121" data-name="Path 13121" d="M177.8,339.838a3.525,3.525,0,1,0-3.525-3.525A3.525,3.525,0,0,0,177.8,339.838Zm0-5.528a2,2,0,1,1-2,2A2,2,0,0,1,177.8,334.31Z" transform="translate(-155.331 -298.281)" fill="#af151f" stroke="#af151f" />
@@ -85,7 +84,7 @@ export default function Statistics() {
                     </div>
                     <div>
                         <div>
-                            {/* <img src="/images/experience.svg" alt="experience" className={styles["statistics__details__img"]}/> */}
+                            
                             <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 44.178 50.4">
   <g id="experience" transform="translate(0.2 0.2)">
     <g id="Group_11353" data-name="Group 11353" transform="translate(0)">

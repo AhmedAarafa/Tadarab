@@ -48,10 +48,7 @@
     font-weight: 800;
     padding: 5.25rem 3rem 0.938rem 3rem;
     background-color: white;
-    // border-radius: 5rem 0 0 0;
     @include flex(center, center);
-
-    // @include flex(center);
 
     span:nth-of-type(1) {
         color: $dark-black;
@@ -70,16 +67,6 @@
     color: $grey;
 }
 
-.join-as-a-trainer__cards-carousel {
-    // padding-top: 3rem;
-    // height: 30rem;
-    // margin-bottom: 3rem;
-
-    // &>a {
-    //     position: absolute !important;
-    //     top: 12rem !important;
-    // }
-}
 
 .join-as-a-trainer__cards-carousel__item__container {
     width: 70.375rem;
@@ -152,10 +139,6 @@
     right: 22.5rem;
 }
 
-.join-as-a-trainer__cards-carousel__item__container__review-box__img {
-    // width: 2.5rem;
-    // height: 2rem;
-}
 
 .join-as-a-trainer__cards-carousel__item__container__review-box__review {
     font-size: 1.25rem;

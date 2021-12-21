@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React , { useEffect, useState } from "react";
+import React from "react";
 import styles from "./courses-departments.module.css";
-import { Row, Col, Button, Card, Carousel } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";

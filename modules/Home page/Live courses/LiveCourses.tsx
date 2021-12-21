@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import styles from "./live-courses.module.css";
-import { Row, Col, Button, Card, Carousel,Container } from "react-bootstrap";
+import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
@@ -28,7 +28,7 @@ export default function LiveCourses() {
         <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
             "751": {
-                "slidesPerView": 4,
+                "slidesPerView":4,
             },
         }} className="mySwiper">
             <SwiperSlide> 
@@ -50,21 +50,22 @@ export default function LiveCourses() {
                     }
                   >
                     <div>
-                    <svg xmlns="http://www.w3.org/2000/svg"  width="1.5rem" height="1.5rem" viewBox="0 0 26 26">
-                      <defs>
-                        <filter id="live_now" x="0" y="0" width="26" height="26" filterUnits="userSpaceOnUse">
-                          <feOffset dy="3" />
-                          <feGaussianBlur stdDeviation="3" result="blur"/>
-                          <feFlood />
-                          <feComposite operator="in" in2="blur"/>
-                          <feComposite in="SourceGraphic"/>
-                        </filter>
-                      </defs>
-                      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#live_now)">
-                        <circle id="live_now-2" data-name="live now" cx="4" cy="4" r="4" transform="translate(9 6)" fill="red"/>
-                      </g>
-                    </svg>
-                      {/* <img src="/images/live now.svg" alt="live icon" /> */}
+                    <svg xmlns="http://www.w3.org/2000/svg"   viewBox="0 0 26 26">
+  <defs>
+    <filter id="live_now" x="0" y="0"  filterUnits="userSpaceOnUse">
+      <feOffset dy="3" />
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood floodOpacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#live_now)">
+    <circle id="live_now-2" data-name="live now" cx="4" cy="4" r="4" transform="translate(9 6)" fill="red"/>
+  </g>
+</svg>
+
+                      
                     </div>
                     <div>
 
@@ -86,8 +87,8 @@ export default function LiveCourses() {
                           <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                               <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                               <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                              <img src="/images/cart.svg" alt="favourite icon" />
-                              {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                              
+                              <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -105,13 +106,12 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                               </Button>
                           </div>
                       </Card.Body>
                       <div className={styles["live-courses__cards-carousel__card__live-icon"]}>
-                          {/* <img src="/images/play circle.svg" alt="play icon" /> */}
                           <svg xmlns="http://www.w3.org/2000/svg" width="1.75rem" height="2rem" viewBox="0 0 31.996 34">
   <defs>
     <filter id="play_circle" x="0" y="0" width="31.996" height="34" filterUnits="userSpaceOnUse">
@@ -156,8 +156,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -175,7 +175,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -208,8 +208,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -227,7 +227,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -260,8 +260,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -279,7 +279,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -312,8 +312,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -331,7 +331,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -364,8 +364,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -383,7 +383,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -416,8 +416,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -435,7 +435,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -468,8 +468,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -487,7 +487,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -520,8 +520,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -539,7 +539,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -572,8 +572,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -591,7 +591,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -624,8 +624,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -643,7 +643,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>
@@ -676,8 +676,8 @@ export default function LiveCourses() {
                         <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
                             <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                            <img src="/images/cart.svg" alt="favourite icon" />
-                            {/* <svg xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.813rem" viewBox="0 0 33.02 30.22">
+                            
+                            <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 33.02 30.22">
   <g id="cart" transform="translate(0 -21.705)">
     <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
       <g id="Group_6" data-name="Group 6">
@@ -695,7 +695,7 @@ export default function LiveCourses() {
       </g>
     </g>
   </g>
-</svg> */}
+</svg>
 
                             </Button>
                         </div>

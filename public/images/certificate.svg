@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="17.962" viewBox="0 0 22 17.962">
+  <g id="certificate" transform="translate(-452.163 -226.188)">
+    <g id="Page-1" transform="translate(452.163 226.188)" opacity="0.25">
+      <g id="icon-138-certificate">
+        <path id="certificate-2" data-name="certificate" d="M460.413,241.771h11.913a1.833,1.833,0,0,0,1.838-1.828V228.022a1.835,1.835,0,0,0-1.838-1.834H454a1.833,1.833,0,0,0-1.838,1.828h0v11.922A1.835,1.835,0,0,0,454,241.771h6.412Z" transform="translate(-452.163 -226.188)" fill="#c2121e"/>
+      </g>
+    </g>
+    <rect id="Rectangle_4153" data-name="Rectangle 4153" width="15.97" height="1.198" transform="translate(455.678 230.181)" fill="#c2121e"/>
+    <rect id="Rectangle_4154" data-name="Rectangle 4154" width="8.484" height="1.198" transform="translate(463.164 233.175)" fill="#c2121e"/>
+    <rect id="Rectangle_4155" data-name="Rectangle 4155" width="6.488" height="1.198" transform="translate(465.16 236.169)" fill="#c2121e"/>
+    <g id="Page-1-2" transform="translate(456.642 239.848)">
+      <g id="icon-138-certificate-2">
+        <path id="Path_15435" data-name="Path 15435" d="M459.6,240.08v4.3l-1.477-1.477-1.477,1.477v-4.3a3,3,0,0,0,2.954,0Z" transform="translate(-456.65 -240.08)" fill="#c2121e"/>
+      </g>
+    </g>
+    <path id="certificate-3" d="M457.979,240.166a2.855,2.855,0,1,0-2.855-2.855h0A2.855,2.855,0,0,0,457.979,240.166Z" transform="translate(0.14 -0.68)" fill="#c2121e" opacity="0.4" style="mix-blend-mode: normal;isolation: isolate"/>
+  </g>
+</svg>

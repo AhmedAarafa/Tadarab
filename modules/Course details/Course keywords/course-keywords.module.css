@@ -1,0 +1,28 @@
+.course-keywords {
+  margin-top: 3.438rem;
+  padding: 3.438rem 0 0 0;
+  border-top: 0.05rem solid rgba(34, 34, 34, 0.1);
+}
+
+.course-keywords__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.course-keywords__tags {
+  margin-top: 1.25rem;
+}
+
+.course-keywords__tags span {
+  font-size: 0.75rem;
+  color: #777777;
+  border-radius: 0.938rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  margin-left: 0.5rem;
+}
+/*# sourceMappingURL=course-keywords.module.css.map */

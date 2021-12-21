@@ -83,7 +83,7 @@
         @include inset-box-shadow(white);
         &>div:nth-child(1),
         &>div:nth-child(2) {
-            top: 44% !important
+            top: 40% !important
         }
 
         &>div:nth-child(3) {
@@ -119,7 +119,6 @@
 .latest-courses__cards-carousel__course-card__course-img {
     width: 100%;
     height: 11.25rem;
-    // border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .latest-courses__cards-carousel__course-card__card-body {
@@ -205,18 +204,19 @@
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
     @include icon-button;
     margin-right: 0.3rem;
-
-    img{
-        width: 1.188rem;
-        height: 1rem;
-    }
-
+    padding: 0 !important;
 
 }
-.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__icon {
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
     
-        // width: 5.188rem;
-        // height: 1rem;
+    width: 1.45rem;
+    height: 1.6rem;
+
+}
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+    
+        width: 1.313rem;
+        height: 1.125rem;
 
 }
 
@@ -269,7 +269,6 @@
     color: $dark-black;
     margin-top: 0.2rem;
 
-    // margin-top: 0.2rem;
     svg {
         width: 1.625rem;
         height: 1.125rem;
@@ -320,14 +319,6 @@
     margin-top: 1.5rem;
 }
 
-// .latest-courses__popover-container____btnsdetails-btn,
-// .latest-courses__popover-container____btnsadd-to-cart-btn {
-//     font-size: 1rem;
-//     font-weight: 700;
-//     color: white;
-//     @include flex(center, center);
-//     display: inline-flex;
-// }
 
 .latest-courses__popover-container__btns__details-btn {
     @include contained-button;
@@ -349,7 +340,6 @@
 .latest-courses__popover-container__btns__add-to-cart-btn {
     @include contained-button;
     width: 11.875rem;
-    // height: 3.125rem;
 }
 
 .show {

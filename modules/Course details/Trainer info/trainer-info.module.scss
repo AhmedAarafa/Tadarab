@@ -1,0 +1,66 @@
+@import "../../../styles/mixins";
+
+
+.trainer-info-section {
+    margin-top: 4.063rem;
+    color: $grey;
+    width: 43.75rem;
+}
+
+.trainer-info-section__trainer-box{
+    @include flex(center,flex-start);
+}
+.trainer-info-section__trainer-img {
+    img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+}
+
+.trainer-info-section__trainer-info{
+    @include flex(flex-start,flex-start);
+    flex-direction: column;
+    margin-right: 1.063rem;
+}
+
+.trainer-info-section__trainer-info__name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.trainer-info-section__trainer-info__title {
+    font-size: 0.938rem;
+    color: $grey;
+}
+
+.trainer-info-section__trainer-info__courses-number-box{
+    margin-right: -0.3rem;
+    font-size: 0.938rem;
+    span{
+        font-weight: 700;
+    }
+    svg{
+        margin-left: 0.1rem;
+    }
+}
+
+.trainer-info-section__trainer-info__courses-number-box__separator{
+    margin: 0 0.2rem 0 0.2rem;
+}
+
+.trainer-info-section__para{
+    font-size: 1rem;
+    margin: 1.3rem 0 0.8rem 0;
+    
+}
+
+.trainer-info-section__view-trainer-account{
+    span{
+        font-size: 1rem;
+        color: $primary-red;
+        font-weight: 800;
+        margin-left: 0.5rem;
+    }
+}

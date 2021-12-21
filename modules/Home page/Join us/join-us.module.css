@@ -30,7 +30,6 @@
   border-radius: 0.75rem;
   overflow: hidden;
   font-weight: 400;
-  font-size: 1.063rem;
   padding: 0.4rem 0rem 0.4rem 0rem;
   letter-spacing: 0;
   background-color: white;
@@ -40,9 +39,9 @@
 
 .join-us__subscribe-bar-box__email-field {
   border: 0 !important;
-  padding: 0.625rem 1.5rem 0.5rem 0;
-  font-family: 'Almarai', sans-serif;
+  padding: 0 1.5rem 0 0;
   width: 65%;
+  height: 100%;
   font-size: 1.063rem;
   color: rgba(34, 34, 34, 0.5);
 }
@@ -84,7 +83,7 @@
 }
 
 .join-us__subscribe-bar-box__btn:hover {
-  background-color: #AF151F !important;
+  background-color: #9d151e !important;
 }
 
 .join-us__subscribe-bar-box__btn:active {

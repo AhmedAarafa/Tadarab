@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50" height="50.186" viewBox="0 0 50 50.186">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="NoPath_-_Copy_48_" data-name="NoPath - Copy (48)" width="50" height="50" rx="25" transform="translate(1161 5677)" fill="#f2f2f2"/>
+    </clipPath>
+  </defs>
+  <g id="MaleAvatar" transform="translate(-1161 -7558)">
+    <rect id="NoPath_-_Copy_48_2" data-name="NoPath - Copy (48)" width="50" height="50" rx="25" transform="translate(1161 7558)" fill="#f2f2f2"/>
+    <g id="Mask_Group_11" data-name="Mask Group 11" transform="translate(0 1881.186)" opacity="0.2" clip-path="url(#clip-path)">
+      <g id="_172625_male_user_icon" data-name="172625_male_user_icon" transform="translate(1161 5682)">
+        <rect id="Rectangle_3182" data-name="Rectangle 3182" width="50" height="50" fill="none"/>
+        <path id="Path_13162" data-name="Path 13162" d="M30.933,32.528a41.335,41.335,0,0,1-.09-4.21c.73-.383,2.038-2.825,2.259-4.888.574-.047,1.479-.607,1.744-2.818a2.064,2.064,0,0,0-.771-2.065c.934-2.809,2.874-11.5-3.588-12.4-.665-1.168-2.368-1.759-4.581-1.759-8.854.163-9.922,6.686-7.981,14.156a2.068,2.068,0,0,0-.771,2.065c.266,2.211,1.17,2.771,1.744,2.818.22,2.062,1.58,4.505,2.312,4.888a41.346,41.346,0,0,1-.091,4.21C19.367,37.238,7.546,35.916,7,45H45C44.455,35.916,32.685,37.238,30.933,32.528Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

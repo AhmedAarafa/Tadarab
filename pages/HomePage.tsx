@@ -13,7 +13,7 @@ import JoinAsATrainer from 'modules/Home page/Join as a trainer/JoinAsATrainer'
 import EducationalGuide from 'modules/Home page/Educational guide/EducationalGuide'
 import AboutTadarab from 'modules/Home page/About Tadarab/AboutTadarab'
 import JoinUs from 'modules/Home page/Join us/JoinUs'
-import Footer from 'modules/Home page/Footer/Footer'
+import Footer from 'common/components/Footer/Footer'
 
 export default function HomePage() {
     return (

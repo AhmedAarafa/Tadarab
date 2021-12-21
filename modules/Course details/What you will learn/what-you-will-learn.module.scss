@@ -1,0 +1,65 @@
+@import "../../../styles/mixins";
+ 
+.what-you-will-learn{
+    margin-top: 1.875rem;
+    width: 43rem;
+    height: 19rem;
+    border-radius: 1.25rem;
+    border: 0.063rem solid rgba(34, 34, 34, 0.1);
+    padding: 1.875rem;
+    padding-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+
+.what-you-will-learn__title{
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $dark-black;
+    margin-bottom: 1.5rem;
+}
+
+// .what-you-will-learn__list-box{
+//     margin-bottom: 1rem;
+// }
+.what-you-will-learn__list{
+    margin-bottom: 1rem;
+    span{
+        font-size: 1rem;
+        color: $grey;
+        margin-right: 0.8rem;
+    }
+}
+
+.what-you-will-learn__read-more{
+    font-size: 1.125rem;
+    font-weight: 800;
+    width: 100%;
+    flex-grow: 2;
+    background-color: white;
+    color: $primary-red;
+    position: absolute;
+    bottom: 0rem;
+    padding: 0.7rem 0 1.4rem 0;
+    cursor: pointer;
+    z-index: 4;
+
+
+    span{
+        margin-left: 0.5rem;
+    }
+}
+
+.what-you-will-learn--fadeout-effect{
+    position: absolute;
+    background-image: linear-gradient(
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    width: 100%;
+    bottom: 3.2rem;
+    height: 4rem; 
+    pointer-events: none;
+}

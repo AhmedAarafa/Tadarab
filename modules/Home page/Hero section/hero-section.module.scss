@@ -20,23 +20,20 @@
     font-size: 1.063rem;
     margin-top: 1rem;
     opacity: 80%;
-    // font-weight: 400;
 }
 
 .hero-section__search-bar-container {
     position: relative;
-    display: flex;
-    align-items: center;
     box-shadow: 0 0 1.625rem #0000001A;
     border-radius: 0.75rem;
     overflow: hidden;
     font-weight: 400; 
-    font-size: 1.063rem;
     padding: 0.4rem 0rem 0.4rem 0rem;
     letter-spacing: 0;
     background-color: white;
     margin-top: 2rem;
     width: 27.188rem;
+    @include flex(center);
 
 }
 
@@ -57,9 +54,10 @@
 
 .hero-section__search-bar-container__search-bar {
     border: 0 !important;
-    padding: 0.625rem 2.7rem 0.5rem 0;
+    padding: 0rem 2.7rem 0rem 0;
     font-family: 'Almarai', sans-serif;
     width: 70%;
+    height:fit-content;
     font-size: 1.063rem;
     color: rgba(34, 34, 34, 0.5);
 
@@ -117,7 +115,6 @@
 .hero-section__hero-img {
     width: 31.75rem;
     height: 30rem;
-    // float: right;
     margin-top: 8.8rem;
     margin-right: -5.5rem;
 }
@@ -172,7 +169,6 @@
     border-radius: 1.25rem;
     @include flex(center,flex-start);
     background-color: white;
-    // margin-left: 1.875rem;
 
 }
 

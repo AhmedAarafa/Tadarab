@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,eAAe;AACf,iCAAiC;AACjC,iCAAiC,CAAA;EAC7B,OAAO,EAAG,iBAAiB;CAC9B;;AAED,AAAA,+BAA+B;AAC/B,mCAAmC,CAAA;EAC/B,OAAO,EAAG,YAAY;CAEzB",
+    "sources": [
+        "course-details.module.scss"
+    ],
+    "names": [],
+    "file": "course-details.module.css"
+}

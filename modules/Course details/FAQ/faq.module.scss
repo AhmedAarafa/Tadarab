@@ -1,0 +1,72 @@
+@import "../../../styles/mixins";
+
+.faq {
+    margin-top: 6.875rem;
+    width: 43.75rem;
+
+}
+
+.faq__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.faq__accordion {
+    border-radius: 1.25rem !important;
+    margin-top: 1.563rem;
+}
+
+.faq__accordion__item {
+    border-radius: 1.063rem !important;
+    box-shadow: 0 0 1.25rem #00000014;
+    border: 0 !important;
+    margin-top: 1.25rem;
+    @include flex(flex-start);
+    flex-direction: column;
+
+}
+
+.faq__accordion__header {
+    @include flex(center);
+
+    svg {
+        margin-left: 1.3rem;
+    }
+
+    button {
+        font-size: 1.125rem;
+        font-weight: 800;
+        color: $dark-black !important;
+        background-color: white !important;
+        padding: 1.5rem !important;
+        border-radius: 1.25rem !important;
+        direction: ltr !important;
+        @include flex(center);
+
+
+        &::after {
+            background-image: url('/images/arrow1.svg') !important;
+            background-size: 1.25rem 1.1rem !important;
+            margin-left: 1rem !important;
+            margin-top: 0.3rem !important;
+        }
+    }
+
+    button:not(.collapsed) {
+        &::after {
+            background-image: url('/images/arrow1.svg') !important;
+            background-size: 1.25rem 1.1rem !important;
+            margin-left: 1rem !important;
+            margin-top: 0.3rem !important;
+
+        }
+    }
+}
+
+.faq__accordion__body {
+    font-size: 1rem;
+    color: $grey;
+    padding: 0 3.8rem 2rem 2rem !important;
+   
+}

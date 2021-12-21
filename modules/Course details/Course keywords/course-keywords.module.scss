@@ -1,0 +1,27 @@
+@import "../../../styles/mixins";
+
+.course-keywords {
+    margin-top: 3.438rem;
+    padding: 3.438rem 0 0 0;
+    border-top: 0.05rem solid rgba(34, 34, 34, 0.1);
+
+}
+
+.course-keywords__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.course-keywords__tags{
+    margin-top: 1.25rem;
+    span{
+        font-size: 0.75rem;
+        color: $grey;
+        border-radius: 0.938rem;
+        width: fit-content;
+        padding: 0.5rem 0.75rem;
+        background-color: rgba(0,0,0,0.05);
+        margin-left: 0.5rem;
+    }
+}

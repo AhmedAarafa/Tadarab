@@ -3,13 +3,11 @@ import React from "react";
 import styles from "./navbar.module.css";
 import {
   Navbar as NavBar,
-  Container,
   Nav,
   Form,
   Button,
   Badge,
   OverlayTrigger,
-  Popover,
 } from "react-bootstrap";
 import {popoverHandler} from "./utils";
 
@@ -21,7 +19,7 @@ export default function Navbar() {
 
   return (
     <>
-      <NavBar fixed="top" className={styles["navbar"]}>
+      <NavBar fixed="top" id="nav" className={styles["navbar"]}>
         <NavBar.Brand href="#home">
         <svg className={styles["navbar__img"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 92.658 31.401">
     <g id="logo" transform="translate(-0.393)">  
@@ -61,15 +59,15 @@ export default function Navbar() {
         <Nav>
             <Nav.Link className={styles["navbar__links"]} id="discover" >
               استكشف
-              {/* <svg xmlns="http://www.w3.org/2000/svg" width="0.625rem" height="0.375rem" viewBox="0 0 10 5.993">
-  <g id="dropdown" >
+              <svg id="dropdown" xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
+  <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
     <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#222"/>
   </g>
-</svg> */}
+</svg>
 
 
 
-              <img alt="dropdown icon" src="/images/dropdown.svg" id="dropdown"/>
+
             </Nav.Link>
             <div className={styles["navbar__discover-popover"]} id="discover-popover" >
                 <div className={styles["navbar__discover-popover__box"]}>
@@ -112,13 +110,11 @@ export default function Navbar() {
                   </ul>
                 </div>
               </div>
-          {/* </OverlayTrigger> */}
 
           <div className={styles["navbar__search-bar-container"]}>
             <div
               className={styles["navbar__search-bar-container__icon-wrapper"]}
             >
-              {/* <img src="/images/search.svg" alt="search icon" /> */}
               <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" viewBox="0 0 20 20">
   <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#777"/>
               </svg>

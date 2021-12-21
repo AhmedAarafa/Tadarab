@@ -197,14 +197,16 @@
 .books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active {
   background-color: #AF151F !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  color: white !important;
 }
 
 .books__cards-carousel__card__download-btn:hover span, .books__cards-carousel__card__download-btn:active span {
   color: white !important;
 }
 
-.books__cards-carousel__card__download-btn:hover svg, .books__cards-carousel__card__download-btn:active svg {
+.books__cards-carousel__card__download-btn:hover svg *, .books__cards-carousel__card__download-btn:active svg * {
   color: white !important;
+  fill: white !important;
 }
 
 .books__cards-carousel__card__download-btn span {

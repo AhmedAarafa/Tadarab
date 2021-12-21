@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from "./join-as-a-trainer.module.css";
-import { Row, Col, Button, Card, Carousel } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 
 export default function JoinAsATrainer() {
     return (

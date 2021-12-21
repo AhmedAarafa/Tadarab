@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,gBAAgB,CAAC;EACb,UAAU,EAAE,QAAQ;EACpB,OAAO,EAAE,cAAc;EACvB,UAAU,EAAE,OAAO,CAAC,KAAK,CAAC,qBAAqB;CAElD;;AAED,AAAA,uBAAuB,CAAC;EACpB,SAAS,EAAE,MAAM;EACjB,WAAW,EAAE,GAAG;EAChB,KAAK,EEXK,OAAO;CFYpB;;AAED,AAAA,sBAAsB,CAAA;EAClB,UAAU,EAAE,OAAO;CAUtB;;AAXD,AAEI,sBAFkB,CAElB,IAAI,CAAA;EACA,SAAS,EAAE,OAAO;EAClB,KAAK,EEjBL,OAAO;EFkBP,aAAa,EAAE,QAAQ;EACvB,KAAK,EAAE,WAAW;EAClB,OAAO,EAAE,cAAc;EACvB,gBAAgB,EAAE,mBAAgB;EAClC,WAAW,EAAE,MAAM;CACtB",
+    "sources": [
+        "course-keywords.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "course-keywords.module.css"
+}

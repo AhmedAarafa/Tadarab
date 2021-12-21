@@ -27,7 +27,6 @@ export default function HeroSection() {
   <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#777"/>
 </svg>
 
-                {/* <img src="/images/search.svg" alt="search icon" /> */}
               </div>
               <Form.Control
                 type="text"
@@ -64,7 +63,6 @@ export default function HeroSection() {
             className={styles["hero-section__hero-img"]}
           />
         </Col>
-        {/* <Col xs={1}></Col> */}
 
         <Col xs={12} className="bg-white position-relative">
           <div className={styles["categories-cards-container"]}>
@@ -78,7 +76,6 @@ export default function HeroSection() {
   </g>
 </svg>
 
-                {/* <img src="/images/book.svg" alt="training courses" /> */}
               </div>
               <div className={styles["categories-cards-container__category"]}>
                 الدورات التدريبية
@@ -96,7 +93,6 @@ export default function HeroSection() {
   </g>
               </svg>
 
-                {/* <img src="/images/live.svg" alt="training courses" /> */}
               </div>
               <div className={styles["categories-cards-container__category"]}>
               مباشر علي تدرب
@@ -112,7 +108,6 @@ export default function HeroSection() {
   </g>
 </svg>
 
-                {/* <img src="/images/consultations.svg" alt="training courses" /> */}
               </div>
               <div className={styles["categories-cards-container__category"]}>
               الاستشارات
@@ -130,7 +125,6 @@ export default function HeroSection() {
   </g>
 </svg>
 
-                {/* <img src="/images/offers.svg" alt="training courses" /> */}
               </div>
               <div className={styles["categories-cards-container__category"]}>
               العروض

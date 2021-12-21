@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,mBAAmB,CAAC;EAChB,UAAU,EAAE,QAAQ;EACpB,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,QAAQ;EACf,MAAM,EAAE,sBAAsB;EAC9B,aAAa,EAAE,OAAO;EACtB,OAAO,EAAE,QAAQ;CAqBpB;;AA3BD,AAQI,mBARe,CAQf,GAAG,AAAA,YAAa,CAAA,CAAC,EAAE;EACf,KAAK,EETL,OAAO;CFUV;;AAVL,AAYI,mBAZe,CAYf,GAAG,AAAA,YAAa,CAAA,CAAC,EAAE;EACf,KAAK,EEdC,OAAO;EFeb,WAAW,EAAE,GAAG;EAChB,UAAU,EAAE,OAAO;CACtB;;AAhBL,AAmBQ,mBAnBW,CAkBf,GAAG,AAAA,YAAa,CAAA,CAAC,EACb,GAAG,CAAC;EACA,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,QAAQ;EAChB,UAAU,EAAE,qBAAqB;EACjC,aAAa,EAAE,OAAO;EACtB,UAAU,EAAE,QAAQ;CACvB",
+    "sources": [
+        "course-certificate.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "course-certificate.module.css"
+}

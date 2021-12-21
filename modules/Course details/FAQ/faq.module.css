@@ -1,0 +1,92 @@
+.faq {
+  margin-top: 6.875rem;
+  width: 43.75rem;
+}
+
+.faq__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.faq__accordion {
+  border-radius: 1.25rem !important;
+  margin-top: 1.563rem;
+}
+
+.faq__accordion__item {
+  border-radius: 1.063rem !important;
+  -webkit-box-shadow: 0 0 1.25rem #00000014;
+          box-shadow: 0 0 1.25rem #00000014;
+  border: 0 !important;
+  margin-top: 1.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.faq__accordion__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.faq__accordion__header svg {
+  margin-left: 1.3rem;
+}
+
+.faq__accordion__header button {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #222222 !important;
+  background-color: white !important;
+  padding: 1.5rem !important;
+  border-radius: 1.25rem !important;
+  direction: ltr !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.faq__accordion__header button::after {
+  background-image: url("/images/arrow1.svg") !important;
+  background-size: 1.25rem 1.1rem !important;
+  margin-left: 1rem !important;
+  margin-top: 0.3rem !important;
+}
+
+.faq__accordion__header button:not(.collapsed)::after {
+  background-image: url("/images/arrow1.svg") !important;
+  background-size: 1.25rem 1.1rem !important;
+  margin-left: 1rem !important;
+  margin-top: 0.3rem !important;
+}
+
+.faq__accordion__body {
+  font-size: 1rem;
+  color: #777777;
+  padding: 0 3.8rem 2rem 2rem !important;
+}
+/*# sourceMappingURL=faq.module.css.map */

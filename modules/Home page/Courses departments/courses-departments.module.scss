@@ -37,10 +37,6 @@
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
-    svg {
-        // width: 0.5rem;
-        // height: 0.875rem;
-    }
 }
 
 .courses-departments__cards-carousel {
@@ -52,11 +48,7 @@
         &>div:nth-child(2) {
             top: 34% !important
         }
-        // &>div:nth-child(3) {
-        //  display: none;
-        // }
-
-
+     
     }
 }
 
@@ -67,8 +59,6 @@
     border: 0.063rem solid #00000026;
     border-radius: 0.75rem;
     text-align: center;
-    // margin-right: 2rem;
-    // margin-left: 2rem;
     @include flex(center, center);
     display: inline-flex;
 
@@ -85,10 +75,6 @@
     background-color: $primary-red;
     @include flex(center, center);
 
-    // svg {
-    //     width: 1.875rem;
-    //     height: 1.75rem;
-    // }
 }
 
 

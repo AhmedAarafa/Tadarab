@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import styles from "./about-tadarab.module.css";
-import { Row, Col, Button, Card, Carousel, Container } from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation,Pagination } from 'swiper';
 import "swiper/css";
@@ -59,8 +59,7 @@ export default function AboutTadarab() {
                 </div>
                 <div className={styles["join-as-a-trainer__cards-carousel__item__container__review-box"]}>
                     <div>
-                        {/* <img src="/images/quote.svg" alt="quote icon"
-                          className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]}/> */}
+                       
                           <svg className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]} xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2rem" viewBox="0 0 40.31 32">
   <g id="quote" transform="translate(0)">
     <g id="Group_10098" data-name="Group 10098" transform="translate(0 0)">
@@ -113,8 +112,7 @@ export default function AboutTadarab() {
                 </div>
                 <div className={styles["join-as-a-trainer__cards-carousel__item__container__review-box"]}>
                     <div>
-                        {/* <img src="/images/quote.svg" alt="quote icon"
-                          className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]}/> */}
+                        
                           <svg className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]} xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2rem" viewBox="0 0 40.31 32">
   <g id="quote" transform="translate(0)">
     <g id="Group_10098" data-name="Group 10098" transform="translate(0 0)">
@@ -167,8 +165,7 @@ export default function AboutTadarab() {
                 </div>
                 <div className={styles["join-as-a-trainer__cards-carousel__item__container__review-box"]}>
                     <div>
-                        {/* <img src="/images/quote.svg" alt="quote icon"
-                          className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]}/> */}
+                        
                           <svg className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]} xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2rem" viewBox="0 0 40.31 32">
   <g id="quote" transform="translate(0)">
     <g id="Group_10098" data-name="Group 10098" transform="translate(0 0)">
@@ -221,8 +218,7 @@ export default function AboutTadarab() {
                 </div>
                 <div className={styles["join-as-a-trainer__cards-carousel__item__container__review-box"]}>
                     <div>
-                        {/* <img src="/images/quote.svg" alt="quote icon"
-                          className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]}/> */}
+                        
                           <svg className={styles["join-as-a-trainer__cards-carousel__item__container__review-box__img"]} xmlns="http://www.w3.org/2000/svg" width="2.5rem" height="2rem" viewBox="0 0 40.31 32">
   <g id="quote" transform="translate(0)">
     <g id="Group_10098" data-name="Group 10098" transform="translate(0 0)">
