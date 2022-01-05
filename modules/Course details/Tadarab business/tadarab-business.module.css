@@ -46,8 +46,8 @@
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
-  font-family: 'Almarai', sans-serif;
   border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
   border: 0 !important;
   color: #AF151F !important;
   border: 0.125rem solid #AF151F !important;
@@ -99,5 +99,11 @@
   font-size: 1rem;
   font-weight: 700;
   margin-left: 0.5rem;
+}
+
+@media (max-width: 575px) {
+  .tadarab-business {
+    display: none;
+  }
 }
 /*# sourceMappingURL=tadarab-business.module.css.map */

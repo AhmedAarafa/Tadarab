@@ -11,19 +11,33 @@ export default function CourseDetailsSection() {
 
         setShowMore(!showMore);
         if(showMore == true){
-            showMoreIcon ? showMoreIcon.style.transform ="rotate(180deg)": null;
-            showMoreIcon ? showMoreIcon.style.transition = " all 0.4s ease" : null;
-            fadeOut ? fadeOut.style.display ="none": null;
-            courseDetails ? courseDetails.style.height = "fit-content": null ;
-            courseDetails ? courseDetails.style.overflow = "visible": null ;
+            showMoreIcon ? showMoreIcon.style.cssText=`transform:rotate(180deg) ; transition:all 0.4s ease`:null;
+            fadeOut ? fadeOut.style.cssText ="display:none": null;
+            courseDetails ? courseDetails.style.cssText=`height:fit-content ; overflow:visible `:null;
         } else{
-            showMoreIcon ? showMoreIcon.style.transform ="none": null;
-            showMoreIcon ? showMoreIcon.style.transition = " all 0.4s ease" : null;
-            fadeOut ? fadeOut.style.display ="block": null;
-            courseDetails ? courseDetails.style.height = "16rem": null ;
-            courseDetails ? courseDetails.style.overflow = "hidden": null ;
-
+            showMoreIcon ? showMoreIcon.style.cssText=`transform:none ; transition:all 0.4s ease`:null;
+            fadeOut ? fadeOut.style.cssText ="display:block": null;
+            if(screen.width <= 576){
+                courseDetails ? courseDetails.style.cssText=`height:37rem ; overflow:hidden `:null;
+            }else{
+                courseDetails ? courseDetails.style.cssText=`height:16rem ; overflow:hidden `:null;
+            }
         }
+       window.addEventListener("resize" , ()=>{
+        if(showMore == true){
+            showMoreIcon ? showMoreIcon.style.cssText=`transform:rotate(180deg) ; transition:all 0.4s ease`:null;
+            fadeOut ? fadeOut.style.cssText ="display:none": null;
+            courseDetails ? courseDetails.style.cssText=`height:fit-content ; overflow:visible `:null;
+        } else{
+            showMoreIcon ? showMoreIcon.style.cssText=`transform:none ; transition:all 0.4s ease`:null;
+            fadeOut ? fadeOut.style.cssText ="display:block": null;
+            if(screen.width < 576){
+                courseDetails ? courseDetails.style.cssText=`height:37rem ; overflow:hidden `:null;
+            }else{
+                courseDetails ? courseDetails.style.cssText=`height:16rem ; overflow:hidden `:null;
+            }
+        }
+       })
     }
   return (
     <>

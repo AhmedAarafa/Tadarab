@@ -10,7 +10,7 @@
 }
 
 .special-offer__title {
-    @include flex(center, center); 
+    @include flex(center, center);
     margin-bottom: 1.438rem;
 
     span {
@@ -33,11 +33,63 @@
 .special-offer__cards-outer-box__card {
     width: 100%;
     // height: 11.25rem;
-    box-shadow: 0.12rem 0 1.313rem #0000001A;
+    // box-shadow: 0.12rem 0 1.313rem #0000001A;
     border-radius: 0.75rem;
     margin: 1.25rem 0 1.25rem 0;
     @include flex;
     overflow: hidden;
+
+    // &+div {
+    //     svg {
+    //         width: 1.25rem;
+    //         height: 1.25rem;
+    //     }
+
+    // }
+}
+
+// .special-offer__cards-outer-box__plus {
+//     svg {
+//         width: 1.25rem;
+//         height: 1.25rem;
+//     }
+// }
+.special-offer__cards-outer-box__plus {
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+    @include flex(center, center);
+    margin: 1rem 0 1.2rem 0;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+        width: 38%;
+        transform: translateY(-50%);
+    }
+    &:after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+        width: 38%;
+        transform: translateY(-50%);
+    }
+
+    div {
+        background-color: rgba(175, 21, 31, 0.1);
+        padding: 0.8rem;
+        border-radius: 50%;
+         @include flex(center, center);
+
+        svg {
+            width: 1.125rem;
+            height: 1.125rem;
+        }
+    }
 }
 
 .special-offer__cards-outer-box__card__course-img {
@@ -51,14 +103,16 @@
         width: 100%;
         height: 4rem;
         display: inline-block;
-        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
-        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+        // background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+        // background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+        background: none;
     }
 
     img {
-        width: 17.75rem;
-        height: 100%;
-        border-radius: 0 0.75rem 0.75rem 0;
+        width: 12.5rem;
+        height: 7.5rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 0 1.25rem #0000001A;
     }
 }
 
@@ -71,11 +125,15 @@
     font-size: 0.75rem;
     padding: 0.11rem 0.8rem 0.14rem 0.8rem;
     z-index: 1;
+    display: none;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box-container {
-    padding: 1.5rem 1.5rem 0.8rem 1.5rem;
+    padding: 0 1.5rem 0.8rem 1.5rem;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box {
@@ -83,9 +141,15 @@
     padding-bottom: 0.8rem;
     @include flex;
     height: fit-content;
-    border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+    // border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+    border-bottom: none;
 }
 
+.special-offer__cards-outer-box__card__trainer-info-box__info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-img {
     margin-left: 0.75rem;
@@ -101,6 +165,9 @@
     font-size: 1rem;
     font-weight: 800;
     color: $dark-black;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-name {
@@ -109,7 +176,6 @@
 }
 
 .special-offer__cards-outer-box__card__rating-box {
-    margin-top: 0.8rem;
     @include flex(center);
 
     span:nth-of-type(1) {
@@ -147,9 +213,10 @@
 }
 
 .special-offer__cards-outer-box__card__old-price {
+    display: none;
     color: $grey;
     margin-top: -0.5rem;
-    text-decoration: line-through rgba(175, 21, 31,0.5);
+    text-decoration: line-through rgba(175, 21, 31, 0.5);
 
     span:nth-of-type(1) {
         font-size: 0.75rem;
@@ -162,13 +229,19 @@
     }
 }
 
-.special-offer__cards-outer-box__card__checkout-box{
-    @include flex(center,space-between);
+.special-offer__cards-outer-box__card__checkout-box {
+    @include flex(center, space-between);
     width: 100%;
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+    border-top: 0.125rem solid rgba(119, 119, 119,0.2);
+
 }
+
 .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
     color: $dark-black;
     @include flex(center);
+
     span:nth-of-type(1) {
         font-size: 2.5rem;
         font-weight: 800;
@@ -181,66 +254,73 @@
     }
 }
 
-.special-offer__cards-outer-box__card__checkout-box__prices-box__old-price{
+.special-offer__cards-outer-box__card__checkout-box__prices-box__old-price {
     font-size: 1.25rem;
     color: $grey;
     margin-top: -0.8rem;
-    text-decoration: line-through rgba(175, 21, 31,0.5);
+    text-decoration: line-through rgba(175, 21, 31, 0.5);
     @include flex(center);
 
     span:nth-of-type(1),
-    span:nth-of-type(3){
+    span:nth-of-type(3) {
         // margin-bottom: 0.15rem;
     }
-    span:nth-of-type(2){
+
+    span:nth-of-type(2) {
         font-size: 1.688rem;
         font-weight: 800;
         // margin-bottom: 0.1rem;
     }
 }
-.special-offer__cards-outer-box__card__checkout-box__prices-box__discount{
+
+.special-offer__cards-outer-box__card__checkout-box__prices-box__discount {
     font-size: 0.938rem;
     color: $grey;
     margin-top: -0.2rem;
 
-    span{
+    span {
         font-size: 1.125rem;
         font-weight: 800;
     }
-    
+
 }
 
-.special-offer__cards-outer-box__card__offer-duration-box{
-    background-color: rgba(175, 21, 31,0.08);
+.special-offer__cards-outer-box__card__offer-duration-box {
+    background-color: rgba(175, 21, 31, 0.08);
     box-shadow: 0 0.188rem 0.5rem #0000001A;
     padding: 0.563rem 1rem 0.7rem 1rem;
     border-radius: 0.625rem;
     color: $primary-red;
-    @include flex(center,space-between);
+    @include flex(center, space-between);
 }
 
-.special-offer__cards-outer-box__card__offer-duration-box__offer-available{
+.special-offer__cards-outer-box__card__offer-duration-box__offer-available {
     margin-left: 1.938rem;
-    div:nth-of-type(1){
+
+    div:nth-of-type(1) {
         font-size: 1rem;
         font-weight: 800;
     }
-    div:nth-of-type(2){
+
+    div:nth-of-type(2) {
         font-size: 0.938rem;
         margin-top: -0.2rem;
     }
 }
 
-.special-offer__cards-outer-box__card__offer-duration-box__countdown-box{
+.special-offer__cards-outer-box__card__offer-duration-box__countdown-box {
     @include flex(center);
 }
-.special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown{
-    @include flex(center,center);
+
+.special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
+    @include flex(center, center);
     flex-direction: column;
-    div:nth-of-type(1){
+
+    div:nth-of-type(1) {
         font-size: 0.813rem;
     }
-    div:nth-of-type(2){
+
+    div:nth-of-type(2) {
         font-size: 1.063rem;
         font-weight: 800;
         border-radius: 0.25rem;
@@ -250,22 +330,346 @@
     }
 }
 
-.special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator{
+.special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator {
     font-size: 1.063rem;
     font-weight: 800;
     color: $dark-black;
     margin: 0.8rem 0.2rem 0 0.2rem;
 }
 
-.special-offer__cards-outer-box__card__add-to-cart-btn{
-    @include flex(center,center);
+.special-offer__cards-outer-box__card__add-to-cart-btn {
+    @include flex(center, center);
     @include contained-button;
     width: 18.75rem;
     height: 3.125rem;
     margin-top: 0.75rem;
-    span{
+    box-shadow: 0 0.25rem 1.25rem #AF151F4D;
+
+    span {
         font-size: 1.063rem;
         font-weight: 700;
         margin-right: 1.25rem;
+    }
+
+    svg {
+        width: 1.375rem;
+        height: 1.25rem;
+    }
+}
+
+
+@media (max-width:575px) {
+    .special-offer {
+        margin-top: 8.25rem*1.24;
+        width: 100%;
+        // height: 7.5rem*1.24;
+        border-radius: 1.375rem*1.24;
+        padding: 1.438rem*1.24 0.313rem*1.24 0.313rem*1.24 0.313rem*1.24;
+    }
+
+    .special-offer__title {
+        @include flex(center, center);
+        margin-bottom: 1.438rem*1.24;
+
+        span {
+            font-size: 2.5rem;
+            margin-right: 1.25rem*1.24;
+        }
+
+        svg {
+            width: 2.5rem*1.24;
+            height: 2.5rem*1.24;
+        }
+
+    }
+
+    .special-offer__cards-outer-box {
+        border-radius: 1.375rem*1.24;
+        padding: 1.7rem*1.24 2.25rem*1.24 2.25rem*1.24 2.25rem*1.24;
+        flex-direction: column;
+        @include flex(center);
+    }
+
+    .special-offer__cards-outer-box__card {
+        width: 100%;
+        // height: 11.25rem*1.24;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 1.25rem*1.24 0 1.25rem*1.24 0;
+        @include flex;
+        overflow: hidden;
+
+        svg {
+            width: 1.25rem*1.24;
+            height: 1.25rem*1.24;
+        }
+
+        // &+div {
+        //     svg {
+        //         width: 3rem;
+        //         height: 3rem;
+        //     }
+
+        // }
+    }
+
+    .special-offer__cards-outer-box__plus {
+        position: relative;
+        width: 100%;
+        border-radius: 50%;
+        @include flex(center, center);
+        margin: 1.5rem 0;
+        &:before{
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+            width: 38%;
+            transform: translateY(-50%);
+        }
+        &:after{
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 0;
+            border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+            width: 38%;
+            transform: translateY(-50%);
+        }
+
+        div {
+            background-color: rgba(175, 21, 31, 0.1);
+            padding: 1.2rem;
+            border-radius: 50%;
+         @include flex(center, center);
+
+            svg {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+    }
+
+    .special-offer__cards-outer-box__card__course-img {
+
+        &:after {
+            background: none;
+        }
+
+        img {
+            width: 12.5rem;
+            height: 9.375rem;
+            border-radius: 0.75rem*1.24;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__category-chip {
+        display: none;
+    }
+
+    .special-offer__cards-outer-box__card__trainer-info-box-container {
+        padding: 0 1.86rem 0 0;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .special-offer__cards-outer-box__card__trainer-info-box {
+        padding-bottom: 0;
+        @include flex;
+        width: 100%;
+        height: fit-content;
+        border-bottom: none;
+    }
+
+
+    .special-offer__cards-outer-box__card__trainer-info-box__trainer-img {
+        display: none;
+    }
+
+
+
+    .special-offer__cards-outer-box__card__trainer-info-box__course-name {
+        font-size: 2.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .special-offer__cards-outer-box__card__trainer-info-box__trainer-name {
+        font-size: 2rem;
+    }
+
+    .special-offer__cards-outer-box__card__rating-box {
+        margin-top: 0;
+        @include flex(center);
+
+        span:nth-of-type(1) {
+            font-size: 2.5rem;
+            margin-left: 0.5rem;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        svg {
+            margin: 0 0.25rem 0.25rem 0;
+            width: 2.656rem;
+            height: 2.5rem;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__price {
+        margin-top: 0;
+        @include flex(center);
+
+        span:nth-of-type(1) {
+            font-size: 3.125rem;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 2rem;
+            margin: 0 0.5rem;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__old-price {
+        margin-top: -0.5rem*1.24;
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
+        display: none;
+
+        span:nth-of-type(1) {
+            // font-size: 0.75rem*1.24;
+        }
+
+        span:nth-of-type(2) {
+            // font-size: 0.625rem*1.24;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__checkout-box {
+        @include flex(center, space-between);
+        flex-direction: column;
+        width: 100%;
+        border-top: 0.063rem solid rgba(119, 119, 119,0.5);
+        margin-top: 2rem;
+        padding-top: 2rem;
+    }
+
+    .special-offer__cards-outer-box__card__checkout-box__prices-box {
+        @include flex(center, center);
+        flex-direction: column;
+    }
+
+    .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
+        @include flex(center);
+
+        span:nth-of-type(1) {
+            font-size: 4.688rem;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 3.438rem;
+            margin: 0.2rem*1.24 0.2rem*1.24 0 0;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__checkout-box__prices-box__old-price {
+        font-size: 2.656rem;
+        margin-top: -0.992rem;
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
+        @include flex(center);
+
+        span:nth-of-type(2) {
+            font-size: 3.438rem;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__checkout-box__prices-box__discount {
+        font-size: 1.875rem;
+        margin-top: -0.2rem*1.24;
+
+        span {
+            font-size: 2.344rem;
+        }
+
+    }
+
+    .special-offer__cards-outer-box__card__offer-duration-checkout-box {
+        width: 100%;
+        @include flex(center, center);
+        flex-direction: column;
+    }
+
+    .special-offer__cards-outer-box__card__offer-duration-box {
+        background-color: rgba(175, 21, 31, 0.08);
+        box-shadow: 0 0.23rem 0.62rem #0000001A;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-top: 3.5rem;
+        width: 100%;
+        @include flex(center, space-around);
+    }
+
+    .special-offer__cards-outer-box__card__offer-duration-box__offer-available {
+        margin-left: 2.4rem;
+
+        div:nth-of-type(1) {
+            font-size: 2.5rem;
+        }
+
+        div:nth-of-type(2) {
+            font-size: 2.344rem;
+            margin-top: -0.248rem;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__offer-duration-box__countdown-box {
+        @include flex(center);
+    }
+
+    .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
+        @include flex(center, center);
+        flex-direction: column;
+
+        div:nth-of-type(1) {
+            font-size: 2.031rem;
+        }
+
+        div:nth-of-type(2) {
+            font-size: 2.656rem;
+            border-radius: 0.31rem;
+            padding: 0.626rem 1rem;
+            margin-top: 0.2rem;
+        }
+    }
+
+    .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator {
+        font-size: 2.656rem;
+        margin: 2.6rem 1rem 0 1rem;
+    }
+
+    .special-offer__cards-outer-box__card__add-to-cart-btn {
+        @include flex(center, center);
+        @include contained-button;
+        width: 100%;
+        height: 7.813rem;
+        border-radius: 1.3rem;
+        margin-top: 1.875rem;
+        box-shadow: 0 0.625rem 3.125rem #AF151F4D;
+
+        span {
+            font-size: 2.656rem;
+            margin-right: 1.55rem;
+        }
+
+        svg {
+            width: 3.44rem;
+            height: 3.125rem;
+        }
     }
 }

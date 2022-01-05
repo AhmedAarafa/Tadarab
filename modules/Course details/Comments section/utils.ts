@@ -6,9 +6,9 @@ export const commentsBorderHandler = ()=>{
     allComments.forEach((element:any) => {
         replies.forEach((elem:any) => {
             if (elem.parentNode == element) {
-                console.log(element.id);
+                // console.log(element.id);
               const relatedReply:any= document.querySelector(`#${element.id}  div#comment-box  div#details`) ;
-              console.log('relatedReply',relatedReply);
+            //   console.log('relatedReply',relatedReply);
               
               relatedReply.style.cssText=`
               border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);

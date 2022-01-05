@@ -7,8 +7,8 @@ export default function Statistics() {
   return (
     <>
       <Row>
-        <Col xs={1}></Col>
-        <Col xs={10} className="d-flex justify-content-center">
+        <Col xs={0} sm={1}></Col>
+        <Col xs={12} sm={10} className="d-flex justify-content-center">
             <div className={styles["statistics"]}>
 
                 <div className={styles["statistics__title"]}>
@@ -22,7 +22,7 @@ export default function Statistics() {
                 </div>
 
                 <div className={styles["statistics__details"]}>
-                    <div>
+                    <div className={styles["statistics__details__card"]}>
                         <div>
                         <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 79.147 50.4">
   <g id="users" transform="translate(0.2 0.2)">
@@ -31,7 +31,6 @@ export default function Statistics() {
     </g>
   </g>
 </svg>
-
                             </div>
                         <div className={styles["statistics__details__counter"]}>
                             <span>+2</span>
@@ -39,7 +38,7 @@ export default function Statistics() {
                         </div>
                         <div className={styles["statistics__details__unit"]}>مستخدم</div>
                     </div>
-                    <div>
+                    <div className={styles["statistics__details__card"]}>
                         <div>
                             
                             <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 50.4 50.4">
@@ -56,7 +55,7 @@ export default function Statistics() {
                         </div>
                         <div className={styles["statistics__details__unit"]}>دورة تدريبية</div>
                     </div>
-                    <div>
+                    <div className={styles["statistics__details__card"]}>
                         <div>
                             
                             <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 53.654 50.4">
@@ -82,7 +81,7 @@ export default function Statistics() {
                         </div>
                         <div className={styles["statistics__details__unit"]}>خبير ومدرب</div>
                     </div>
-                    <div>
+                    <div className={styles["statistics__details__card"]}>
                         <div>
                             
                             <svg className={styles["statistics__details__img"]} xmlns="http://www.w3.org/2000/svg" width="4.938rem" height="3.125rem" viewBox="0 0 44.178 50.4">
@@ -111,7 +110,7 @@ export default function Statistics() {
             </div>
             
         </Col>
-        <Col xs={1}></Col>
+        <Col xs={0} sm={1}></Col>
       </Row>
     </>
   );

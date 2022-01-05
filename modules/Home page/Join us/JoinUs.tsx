@@ -15,7 +15,7 @@ export default function JoinUs() {
           <div className={styles["join-us__subscribe-bar-box"]}>
             <Form.Control
               type="text"
-              placeholder="ادخل البريد الإلكتروني"
+              placeholder="ادخل البريد الإلكتروني..."
               className={styles["join-us__subscribe-bar-box__email-field"]}
             />
             <Button className={styles["join-us__subscribe-bar-box__btn"]}>

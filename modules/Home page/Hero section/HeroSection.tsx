@@ -7,8 +7,8 @@ export default function HeroSection() {
   return (
     <>
       <Row className={styles["hero-section"]}>
-        <Col xs={2}></Col>
-        <Col xs={5}>
+        <Col xs={0} sm={{ span: 2, order: 'first' }}></Col>
+        <Col xs={12} sm={{ span: 5, order: 'first' }}>
           <div className={styles["hero-section__container"]}>
             <h4 className={styles["hero-section__title"]}>
               تدرب أون لاين من الأفضل
@@ -24,8 +24,8 @@ export default function HeroSection() {
                 }
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" viewBox="0 0 20 20">
-  <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#777"/>
-</svg>
+                  <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#707070c5"/>
+                </svg>
 
               </div>
               <Form.Control
@@ -56,7 +56,7 @@ export default function HeroSection() {
             </div>
           </div>
         </Col>
-        <Col xs={5}>
+        <Col xs={{ span: 12, order: 'first' }}  sm={5} className={styles["hero-section__col"]}>
           <img
             src="/images/hero.png"
             alt="hero trainer"
@@ -64,7 +64,7 @@ export default function HeroSection() {
           />
         </Col>
 
-        <Col xs={12} className="bg-white position-relative">
+        <Col xs={0} sm={12} className={styles["categories-cards-col"]}>
           <div className={styles["categories-cards-container"]}>
             <div className={styles["categories-cards-container__card"]}>
               <div className={styles["categories-cards-container__img-box"]}>

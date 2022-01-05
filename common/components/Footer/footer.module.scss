@@ -6,13 +6,20 @@
     background-color: #0E0B1D;
 }
 
-.footer__inquiries-box {
-    @include flex(center);
-    bottom: 2rem;
-    right: 2rem;
+.footer__logo {
+    img {
+        width: 7.25rem;
+        height: 2.438rem;
+    }
 }
 
-.footer__inquiries-box__trainer-img {   
+.footer__inquiries-box {
+    @include flex(center);
+    // bottom: 2rem;
+    // right: 2rem;
+}
+
+.footer__inquiries-box__trainer-img {
     display: inline-block;
 
     img {
@@ -66,7 +73,7 @@
     border: 0 !important;
     padding: 0 1.5rem 0 0;
     font-family: 'Almarai', sans-serif;
-    width: 41.6%;
+    width: 41.8%;
     height: 3.125rem;
     font-size: 1.063rem;
     border-radius: 0.75rem;
@@ -79,6 +86,7 @@
         -webkit-appearance: none;
         box-shadow: none !important;
     }
+
     &::placeholder {
         color: rgba(34, 34, 34, 0.5);
     }
@@ -89,7 +97,7 @@
     border: 0 !important;
     padding: 0 1.5rem 0 0;
     font-family: 'Almarai', sans-serif;
-    width: 41.6%;
+    width: 41.8%;
     height: 3.125rem;
     font-size: 1.063rem;
     border-radius: 0.75rem;
@@ -101,6 +109,7 @@
         -webkit-appearance: none;
         box-shadow: none !important;
     }
+
     &::placeholder {
         color: rgba(34, 34, 34, 0.5);
     }
@@ -117,79 +126,314 @@
 }
 
 .footer__training-courses-list,
-.footer__about-tadarab-list{
+.footer__about-tadarab-list {
     list-style-type: none;
     padding: 0;
 
-    li{
+    li {
         font-size: 1rem;
-        color: rgba(255,255,255,0.7);
+        color: rgba(255, 255, 255, 0.7);
         margin-bottom: 0.9rem;
+        cursor: pointer;
+        width: fit-content;
     }
-    li:nth-of-type(1){
+
+    li:nth-of-type(1) {
         font-size: 1.25rem;
         font-weight: 800;
         color: white;
+        cursor: auto;
     }
 }
 
-.footer__about-tadarab-list{
+.footer__about-tadarab-list {
     margin-right: 2rem;
 }
 
-.footer__communications-box{
+.footer__communications-box {
     margin-right: 3rem;
 }
 
+.footer__cross-platforms {
+    img {
+        cursor: pointer;
+    }
+}
+
 .footer__cross-platforms,
-.footer__pay-box{
+.footer__pay-box {
     font-size: 0.875rem;
     color: white;
     margin-top: 1.875rem;
 
-    div{
-        margin-bottom: 0.5rem;
+    div {
+        margin-bottom: 0.8rem;
     }
 
-    img{
+    img {
         width: 7.188rem;
         height: 2.5rem;
         margin-left: 0.4rem;
     }
 }
 
-.footer__pay-box{
-    img{
+.footer__pay-box {
+    img {
         margin-left: 1.1rem;
     }
-    img:nth-of-type(1){
+
+    img:nth-of-type(1) {
         width: 2.375rem;
         height: 1.5rem;
     }
-    img:nth-of-type(2){
+
+    img:nth-of-type(2) {
         width: 3.813rem;
         height: 1.5rem;
     }
-    img:nth-of-type(3){
+
+    img:nth-of-type(3) {
         width: 2.688rem;
         height: 1.5rem;
     }
 }
 
-.footer__contacts-box{
-text-align: center;
+.footer__contacts-box {
+    text-align: center;
 }
 
-.footer__contacts-box__contacts{
+.footer__contacts-box__contacts {
     margin-top: 5rem;
-svg{
-    margin-left: 1.5rem;
-}
+
+    svg {
+        margin-left: 1.5rem;
+    }
 
 }
 
-.footer__contacts-box__all-rights-reserved{
-font-size: 1rem;
-color: rgba(255,255,255,0.7);
-margin-top: 1.125rem;
+.footer__contacts-box__all-rights-reserved {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1.125rem;
+}
+
+
+
+@media (max-width:575px) {
+    .footer {
+        padding: 9rem 3rem 30rem 3rem;
+    }
+
+    .footer__logo {
+        img {
+            width: 18.125rem;
+            height: 6rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    .footer__inquiries-box {
+        @include flex(center);
+        margin: 5.438rem 0 2.5rem 0;
+    }
+
+    .footer__inquiries-box__trainer-img {
+        display: inline-block;
+
+        img {
+            border-radius: 50%;
+            width: 9.375rem;
+            height: 9.375rem;
+            margin: 0 0 0 2.75rem;
+        }
+    }
+
+    .footer__inquiries-box__inquiry {
+        display: inline-block;
+    }
+
+    .footer__inquiries-box__inquiry__title {
+        font-size: 3.3rem;
+    }
+
+    .footer__inquiries-box__inquiry__breif {
+        font-size: 2.2rem;
+    }
+
+    .footer__inquiry-field {
+        border: 0 !important;
+        padding: 0rem 3.438rem 2.3rem 0.5rem;
+        width: 100%;
+        height: 10rem;
+        font-size: 1.8rem;
+        border-radius: 1.5rem;
+        margin: 0 0 1.875rem 0;
+
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+        }
+
+    }
+
+    .footer__name-field {
+        @include flex(center);
+        border: 0 !important;
+        padding: 0 3.438rem 0 0;
+        width: 100%;
+        height: 5.5rem;
+        font-size: 1.8rem;
+        border-radius: 1.3rem;
+        margin: 0 0 1.875rem 0;
+
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+        }
+
+    }
+
+    .footer__email-field {
+        @include flex(center);
+        border: 0 !important;
+        padding: 0 3.438rem 0 0;
+        width: 100%;
+        height: 5.5rem;
+        font-size: 1.8rem;
+        border-radius: 1.3rem;
+        margin: 0 0 1.875rem 0;
+
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+        }
+    }
+
+    .footer__send-btn {
+        @include contained-button;
+        color: white;
+        font-weight: 700;
+        font-size: 1.8rem;
+        width: 100%;
+        height: 5.5rem;
+        border-radius: 1.3rem;
+        margin: 1.813rem 0 0 0;
+    }
+
+    .footer__training-courses-list,
+    .footer__about-tadarab-list {
+        list-style-type: none;
+        padding: 0 0 4.063rem 0;
+        border-bottom: 0.03rem solid rgba(119, 119, 119, 0.6);
+        margin: 6.5rem 0 0 0;
+
+        li {
+            font-size: 2.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3.125rem;
+            cursor: pointer;
+            width: fit-content;
+        }
+
+        li:nth-of-type(1) {
+            font-size: 3.75rem;
+            font-weight: 800;
+            color: white;
+            cursor: auto;
+        }
+    }
+
+    .footer__about-tadarab-list {
+        margin-right: 0rem;
+    }
+
+    .footer__communications-box {
+        margin-right: 0rem;
+        padding-bottom: 7rem;
+        border-bottom: 0.03rem solid rgba(119, 119, 119, 0.6);
+    }
+
+    .footer__cross-platforms {
+        width: fit-content;
+        margin-bottom: 4.063rem;
+
+        img {
+            cursor: pointer;
+            width: 24.5rem;
+            height: 8rem;
+            margin-left: 1.2rem;
+        }
+    }
+
+    .footer__cross-platforms,
+    .footer__pay-box {
+        font-size: 2rem;
+        color: white;
+        margin-top: 1.875rem;
+
+        div {
+            margin-bottom: 2.031rem;
+        }
+
+    }
+
+    .footer__pay-box {
+        img {
+            margin-left: 3.438rem;
+        }
+
+        img:nth-of-type(1) {
+            width: 5.9rem;
+            height: 3.75rem;
+        }
+
+        img:nth-of-type(2) {
+            width: 9.5rem;
+            height: 3.75rem;
+        }
+
+        img:nth-of-type(3) {
+            width: 6.72rem;
+            height: 3.75rem;
+        }
+    }
+
+    .footer__contacts-box {
+        text-align: center;
+    }
+
+    .footer__contacts-box__contacts {
+        @include flex(center, center);
+        margin-top: 10.938rem;
+
+        svg {
+            margin-left: 3.75rem;
+            width: 1.75rem*2.5;
+            height: 1.25rem*2.5;
+        }
+
+    }
+
+    .footer__contacts-box__all-rights-reserved {
+        font-size: 2.3rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 1.125rem;
+    }
+
+}
+
+
+@media (min-width:1960px) {
+
+    .footer {
+        position: static;
+        bottom: 0;
+        margin: 0 calc((1978px - 100vw)/2);
+    }
 }

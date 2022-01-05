@@ -14,10 +14,11 @@ import EducationalGuide from 'modules/Home page/Educational guide/EducationalGui
 import AboutTadarab from 'modules/Home page/About Tadarab/AboutTadarab'
 import JoinUs from 'modules/Home page/Join us/JoinUs'
 import Footer from 'common/components/Footer/Footer'
-
+import { Container } from "react-bootstrap";
 export default function HomePage() {
     return (
         <>
+        <Container fluid="xxl">
             <Navbar/>
             <HeroSection/>
             <LatestCourses/>
@@ -33,6 +34,7 @@ export default function HomePage() {
             <AboutTadarab/>
             <JoinUs/>
             <Footer/>
+        </Container>
             
         </>
     )

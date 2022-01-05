@@ -5,35 +5,47 @@ import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
+import Link from 'next/link';
 
 export default function CoursesDepartments() {
     SwiperCore.use([Navigation]);
   return (
     <>
       <Row>
-        <Col xs={12} className={styles["courses-departments__container"]}>
+        <Col xs={{span:12 , order:1}} sm={{span:9 , order:1}} className={styles["courses-departments__container"]}>
           <div className={styles["courses-departments__container__title"]}>
             <span> أقسام </span>
             <span> الدورات </span>
           </div>
+          </Col>
+
+          <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["courses-departments__see-more-btn-col"]}> 
 
           <Button className={styles["courses-departments__container__show-all-btn"]}>
             أعرض كل الأقسام
             <svg id="more" xmlns="http://www.w3.org/2000/svg" width="0.5rem" height="0.875rem" viewBox="0 0 8.39 14">
-  <path id="Path_12841" data-name="Path 12841" d="M11.567,6.006a1.346,1.346,0,0,1,.229-.183L17.222.4A1.356,1.356,0,0,1,19.14,2.315L14.467,6.988l4.7,4.7A1.356,1.356,0,1,1,17.247,13.6L11.8,8.153a1.407,1.407,0,0,1-.229-2.147Z" transform="translate(-11.172 -0.001)" fill="#af151f"/>
-</svg>
+                <path id="Path_12841" data-name="Path 12841" d="M11.567,6.006a1.346,1.346,0,0,1,.229-.183L17.222.4A1.356,1.356,0,0,1,19.14,2.315L14.467,6.988l4.7,4.7A1.356,1.356,0,1,1,17.247,13.6L11.8,8.153a1.407,1.407,0,0,1-.229-2.147Z" transform="translate(-11.172 -0.001)" fill="#af151f"/>
+            </svg>
 
           </Button>
-        </Col>
+          </Col>
 
-    <Col xs={12} className={styles['courses-departments__cards-carousel']}>
+    <Col xs={{span:12 , order:2}} sm={{span:12 , order:2}} className={styles['courses-departments__cards-carousel']}>
         <Swiper dir="rtl" slidesPerView={7} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
-            "751": {
-                "slidesPerView": 7,
+            "50": {
+                "slidesPerView": 2,
+            },
+            "576": {
+              slidesPerView: 5,
+            },
+            "981": {
+              slidesPerView: 7,
             },
         }} className="mySwiper">
-            <SwiperSlide> <div className={styles["courses-departments__cards-carousel__departments-card"]}>
+            <SwiperSlide>
+
+               <div className={styles["courses-departments__cards-carousel__departments-card"]}>
                             <div>
 
                                 <div className="d-flex justify-content-center">
@@ -59,6 +71,7 @@ export default function CoursesDepartments() {
                                 </div>
                             </div>
                         </div>
+
             </SwiperSlide>
             <SwiperSlide> <div className={styles["courses-departments__cards-carousel__departments-card"]}>
                             <div>

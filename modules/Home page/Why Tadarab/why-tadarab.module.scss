@@ -26,11 +26,28 @@
     background-color: rgba(0, 20, 37, 0.04);
     @include flex(center,space-around);
     padding-bottom: 5rem;
+    flex-wrap: wrap;
 }
 
 .why-tadarab__advantages-box {
     @include flex(center,space-between);
     width: fit-content;
+    div:nth-of-type(1){
+        svg{
+            width: 4.375rem;
+            height: 4.375rem;
+        }
+    }
+  
+}
+.why-tadarab__advantages-box:nth-child(2) {
+   
+    div:nth-of-type(1){
+        svg{
+            width: 5.5rem;
+            height: 5.5rem;
+        }
+    }
   
 }
 
@@ -49,19 +66,20 @@
     }
 
     div:nth-of-type(2) {
-        font-size: 0.938rem;
+        font-size: 1.3rem;
         color: $dark-black;
     }
 
     
 }
 
+
 .tadarab-for-companies{
     background-color: #0E0B1D;
     @include flex(center);
-    &>div{
-        display: inline-block;
-    }
+    // &>div{
+    //     display: inline-block;
+    // }
 
 }
 .tadarab-for-companies__img{
@@ -94,7 +112,7 @@
 .tadarab-for-companies__titles-box__breif{
     font-size: 1.063rem;
     color: rgba(255,255,255,0.8);
-    margin: 1.5rem 0 1.8rem 0;
+    margin: 1.375rem 0 2.4rem 0;
 }
 
 .tadarab-for-companies__titles-box__btn{
@@ -104,4 +122,158 @@
     color: white;
     font-size: 1rem;
     font-weight: 700;
+}
+
+// @media (max-width:1200px){
+//     .why-tadarab__advantages-box {
+//         @include flex(center,center);
+//         flex-direction: column;
+//         text-align: center;
+//         width: fit-content;
+//         div:nth-of-type(1){
+//             svg{
+//                 width: 4.375rem*1.5;
+//                 height: 4.375rem*1.5;
+//             }
+//         }
+//     }
+//     .why-tadarab__advantages-box__advantage {
+//         margin-right: 0;
+//     // width: 100%;
+//         div:nth-of-type(1) {
+//             font-size: 1.5rem*1.5;
+//         }
+    
+//         div:nth-of-type(2) {
+//             font-size: 0.938rem*1.5;
+//         }
+    
+        
+//     }
+// }
+
+
+@media (max-width:575px){
+
+    .why-tadarab {
+        margin-top: 0rem;
+    }
+    
+    .why-tadarab__title {
+        text-align: center;
+        font-size: 4.688rem;
+        padding: 12.656rem 3rem 9rem 3rem;
+    
+        // span:nth-of-type(1) {
+        // }
+    
+        // span:nth-of-type(2) {
+        // }
+    
+    }
+    
+    .why-tadarab__advantages-box-container{
+        @include flex(center,space-around);
+        padding-bottom: 4.687rem;
+    }
+    
+    .why-tadarab__advantages-box {
+        @include flex(center,center);
+        flex-direction: column;
+        text-align: center;
+        width: fit-content;
+        margin-bottom: 10.938rem;
+        div:nth-of-type(1){
+            svg{
+                width: 4.375rem*2.5;
+                height: 4.375rem*2.5;
+                margin-bottom: 3.438rem;
+            }
+        }
+    }
+
+    .why-tadarab__advantages-box:nth-child(2) {
+   
+        div:nth-of-type(1){
+            svg{
+                width: 5.5rem*2.5;
+                height: 5.5rem*2.5;
+                margin: 0rem;
+            }
+        }
+      
+    }
+    
+    .why-tadarab__advantages-box__img {
+        width: 4.375rem*2.5;
+        height: 4.375rem*2.5;
+    }
+    
+    .why-tadarab__advantages-box__advantage {
+        margin-right: 0;
+    // width: 100%;
+        div:nth-of-type(1) {
+            font-size: 1.5rem*2.5;
+        }
+    
+        div:nth-of-type(2) {
+            font-size: 0.938rem*2.5;
+        }
+    
+        
+    }
+
+
+    .tadarab-for-companies{
+        @include flex(center);
+        flex-direction: column;
+        &>div:nth-child(1){
+            order: 2;
+        }
+        &>div:nth-child(2){
+            order: 1;
+        }
+    }
+    .tadarab-for-companies__img{
+        width: 23.188rem*1.3;
+        height: 24.625rem*1.3;
+        margin: 9.063rem 6rem 0 0;
+        img{
+            margin: 0;
+        }
+    }
+    
+    .tadarab-for-companies__titles-box{
+        height: fit-content;
+        margin: 12.5rem 0 0 0;
+        @include flex(center,center);
+        flex-direction:column;
+    }
+    
+    .tadarab-for-companies__titles-box__title{
+        // text-align: center;
+        font-size: 4.688rem;
+        // padding: 1rem 0;
+    
+        span:nth-of-type(1) {
+        }
+    
+        span:nth-of-type(2) {
+            // margin-right: 0.35rem;
+        }
+    }
+    
+    .tadarab-for-companies__titles-box__breif{
+        font-size: 2rem;
+        margin: 3.438rem 12rem 5.625rem 12rem;
+        text-align: center;
+    }
+    
+    .tadarab-for-companies__titles-box__btn{
+        @include contained-button;
+        width: 28rem;
+        height: 5.74rem;
+        font-size: 2rem;
+        border-radius: 0.625rem*2.5;
+    }
 }

@@ -10,7 +10,7 @@ export default function CourseAdvertisement() {
                 <li>فنون</li>
                 <li>الرسم</li>
                 <li>تعليم الرسم والتلوين</li>
-            </ul>
+            </ul> 
             <div className={styles["course-ad__course-img"]}>
                 <img src="/images/course2cropped.png" alt="course image" />
                 <div className={styles["course-ad__course-img__watch-ad"]}>

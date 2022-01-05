@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./course-content.module.css";
-import { Accordion } from "react-bootstrap";
+import { Accordion , Button} from "react-bootstrap";
+import {scrollspyHandler} from "./utils"
 
 export default function CourseContent() {
+    useEffect(() => {
+        window.addEventListener("resize" , ()=>{
+          scrollspyHandler();
+         });
+       scrollspyHandler();
+      }, []);
   return (
     <>
-    <div className={styles["course-content"]}>
+    <div  className={styles["course-content"]}>
+    <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
 
         <div className={styles["course-content__title"]}>
         محتوي الدورة التدريبية
@@ -435,6 +443,10 @@ export default function CourseContent() {
         </Accordion.Item>
        
       </Accordion>
+
+      <Button className={styles["course-content__show-more-btn"]}>
+      أعرض المزيد من الدروس
+      </Button>
 
     </div>
     </>

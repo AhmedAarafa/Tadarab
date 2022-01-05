@@ -21,7 +21,7 @@
 
 .consultations__title span:nth-of-type(2) {
   color: #AF151F;
-  margin-right: 0.35rem;
+  margin-right: 0.45rem;
 }
 
 .consultations__minor-title-container {
@@ -42,6 +42,20 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: white;
+}
+
+.consultations__show-all-btn-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-left: 3rem;
+  background-color: #0E0B1D;
 }
 
 .consultations__minor-title-container__btn {
@@ -75,12 +89,12 @@
 
 .consultations__cards-carousel {
   background-color: #0E0B1D;
-  padding-top: 2.75rem;
-  padding-bottom: 6rem;
+  padding-top: 2.2rem;
+  padding-bottom: 4.8rem;
 }
 
 .consultations__cards-carousel > div {
-  padding: 0 2rem !important;
+  padding: 0 1.6rem !important;
 }
 
 .consultations__cards-carousel > div:before {
@@ -103,9 +117,9 @@
 }
 
 .consultations__cards-carousel__card {
-  width: 18.75rem;
-  height: 25.625rem;
-  border-radius: 0.75rem;
+  width: 15rem;
+  height: 20.5rem;
+  border-radius: 0.6rem;
   color: white;
   position: relative;
   overflow: hidden;
@@ -121,25 +135,25 @@
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  background: transparent url("/images/trainer img.png") no-repeat padding-box;
+  background: transparent url("/images/trainer img@2x.png") no-repeat padding-box;
   background-size: contain;
 }
 
 .consultations__cards-carousel__card__card-body {
   padding: 0;
-  background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(48%, #000000B3), to(#000000E6)) 0% 0% no-repeat padding-box;
-  background: transparent linear-gradient(180deg, #00000000 0%, #000000B3 48%, #000000E6 100%) 0% 0% no-repeat padding-box;
+  background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(20%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
 }
 
 .consultations__cards-carousel__card__trainer {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
-  margin-top: 2.5rem;
+  margin: 2rem 0 0.2352rem 0;
 }
 
 .consultations__cards-carousel__card__job-title,
 .consultations__cards-carousel__card__job-history {
-  font-size: 0.813rem;
+  font-size: 0.6504rem;
   padding: 0;
 }
 
@@ -150,14 +164,15 @@
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
-  font-family: 'Almarai', sans-serif;
   border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
   border: 0 !important;
   background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
   width: 100%;
-  height: 3.75rem;
-  border-radius: 0 0 0.625rem 0.625rem;
-  margin-top: 0.8rem;
+  height: 3rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  margin-top: 1.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -179,21 +194,580 @@
           box-shadow: none;
 }
 
-.consultations__cards-carousel__card__btn:hover {
+.consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
   background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
 }
 
-.consultations__cards-carousel__card__btn:active {
-  background-color: #9d151e !important;
-}
-
-.consultations__cards-carousel__card__btn img {
-  width: 1.5rem;
-  height: 1.5rem;
+.consultations__cards-carousel__card__btn svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .consultations__cards-carousel__card__btn span {
-  font-size: 1rem;
-  margin-right: 0.781rem;
+  font-size: 0.8rem;
+  margin-right: 0.6248rem;
+}
+
+@media (max-width: 1200px) {
+  .consultations__title {
+    font-size: 2.06rem;
+    padding: 5.15rem 3.09rem 0 3.09rem;
+    border-radius: 5.15rem 0 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .consultations__title span:nth-of-type(1) {
+    color: white;
+  }
+  .consultations__title span:nth-of-type(2) {
+    margin-right: 0.4635rem;
+  }
+  .consultations__minor-title-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 1.03rem 3.09rem 0 3.09rem;
+  }
+  .consultations__minor-title-container__para {
+    font-size: 1.2875rem;
+    font-weight: 700;
+    color: white;
+  }
+  .consultations__show-all-btn-col {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding-left: 3.09rem;
+  }
+  .consultations__minor-title-container__btn {
+    font-size: 1.09489rem;
+    border: 0.06489rem solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.7725rem;
+    width: 15.64364rem;
+    height: 2.8325rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .consultations__minor-title-container__btn svg {
+    width: 0.515rem;
+    height: 0.90125rem;
+  }
+  .consultations__minor-title-container__btn:hover, .consultations__minor-title-container__btn:active, .consultations__minor-title-container__btn:focus {
+    border: 0.06489rem solid rgba(255, 255, 255, 0.2);
+  }
+  .consultations__cards-carousel {
+    padding-top: 2.8325rem;
+    padding-bottom: 6.18rem;
+  }
+  .consultations__cards-carousel > div {
+    padding: 0 2.06rem !important;
+  }
+  .consultations__cards-carousel > div:before {
+    content: '';
+    display: block;
+    position: absolute;
+    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+            box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1),
+  .consultations__cards-carousel > div > div:nth-child(2) {
+    top: 42% !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1):after,
+  .consultations__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.03rem !important;
+    -webkit-box-shadow: 0 0 1.2875rem #00000033 !important;
+            box-shadow: 0 0 1.2875rem #00000033 !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1) {
+    right: 1.03rem !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1):after {
+    padding: 1.545rem 1.2154rem 1.545rem 1.3184rem !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(2) {
+    left: 1.03rem !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(2):after {
+    padding: 1.545rem 1.3184rem 1.545rem 1.2154rem !important;
+  }
+  .consultations__cards-carousel__card {
+    width: 19.3125rem;
+    height: 26.39375rem;
+    border-radius: 0.7725rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    background: transparent url("/images/trainer img@2x.png") no-repeat padding-box;
+    background-size: contain;
+  }
+  .consultations__cards-carousel__card__card-body {
+    padding: 0;
+    background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(20%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
+  }
+  .consultations__cards-carousel__card__trainer {
+    font-size: 1.2875rem;
+    font-weight: 700;
+    margin: 2.575rem 0 0.30282rem 0;
+  }
+  .consultations__cards-carousel__card__job-title,
+  .consultations__cards-carousel__card__job-history {
+    font-size: 0.83739rem;
+    padding: 0;
+  }
+  .consultations__cards-carousel__card__btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    width: 100%;
+    height: 3.8625rem;
+    border-radius: 0 0 0.64375rem 0.64375rem;
+    margin-top: 1.545rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .consultations__cards-carousel__card__btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .consultations__cards-carousel__card__btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .consultations__cards-carousel__card__btn svg {
+    width: 1.545rem;
+    height: 1.545rem;
+  }
+  .consultations__cards-carousel__card__btn span {
+    font-size: 1.03rem;
+    margin-right: 0.80443rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .consultations__title {
+    font-size: 2.68rem;
+    padding: 6.7rem 4.02rem 0 4.02rem;
+    border-radius: 6.7rem 0 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .consultations__title span:nth-of-type(1) {
+    color: white;
+  }
+  .consultations__title span:nth-of-type(2) {
+    margin-right: 0.603rem;
+  }
+  .consultations__minor-title-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    padding: 1.34rem 4.02rem 0 4.02rem;
+  }
+  .consultations__minor-title-container__para {
+    font-size: 1.675rem;
+    font-weight: 700;
+    color: white;
+  }
+  .consultations__show-all-btn-col {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding-left: 4.02rem;
+  }
+  .consultations__minor-title-container__btn {
+    font-size: 1.42442rem;
+    border: 0.08442rem solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.005rem;
+    width: 20.35192rem;
+    height: 3.685rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .consultations__minor-title-container__btn svg {
+    width: 0.67rem;
+    height: 1.1725rem;
+  }
+  .consultations__minor-title-container__btn:hover, .consultations__minor-title-container__btn:active, .consultations__minor-title-container__btn:focus {
+    border: 0.08442rem solid rgba(255, 255, 255, 0.2);
+  }
+  .consultations__cards-carousel {
+    padding-top: 3.685rem;
+    padding-bottom: 8.04rem;
+  }
+  .consultations__cards-carousel > div {
+    padding: 0 2.68rem !important;
+  }
+  .consultations__cards-carousel > div:before {
+    content: '';
+    display: block;
+    position: absolute;
+    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+            box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1),
+  .consultations__cards-carousel > div > div:nth-child(2) {
+    top: 42% !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1):after,
+  .consultations__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.34rem !important;
+    -webkit-box-shadow: 0 0 1.675rem #00000033 !important;
+            box-shadow: 0 0 1.675rem #00000033 !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1) {
+    right: 1.34rem !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1):after {
+    padding: 2.01rem 1.5812rem 2.01rem 1.7152rem !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(2) {
+    left: 1.34rem !important;
+  }
+  .consultations__cards-carousel > div > div:nth-child(2):after {
+    padding: 2.01rem 1.7152rem 2.01rem 1.5812rem !important;
+  }
+  .consultations__cards-carousel__card {
+    width: 25.125rem;
+    height: 34.3375rem;
+    border-radius: 1.005rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    background: transparent url("/images/trainer img@2x.png") no-repeat padding-box;
+    background-size: contain;
+  }
+  .consultations__cards-carousel__card__card-body {
+    padding: 0;
+    background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(20%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
+  }
+  .consultations__cards-carousel__card__trainer {
+    font-size: 1.675rem;
+    font-weight: 700;
+    margin: 3.35rem 0 0.39396rem 0;
+  }
+  .consultations__cards-carousel__card__job-title,
+  .consultations__cards-carousel__card__job-history {
+    font-size: 1.08942rem;
+    padding: 0;
+  }
+  .consultations__cards-carousel__card__btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    width: 100%;
+    height: 5.025rem;
+    border-radius: 0 0 0.8375rem 0.8375rem;
+    margin-top: 2.01rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .consultations__cards-carousel__card__btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .consultations__cards-carousel__card__btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .consultations__cards-carousel__card__btn svg {
+    width: 2.01rem;
+    height: 2.01rem;
+  }
+  .consultations__cards-carousel__card__btn span {
+    font-size: 1.34rem;
+    margin-right: 1.04654rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .consultations__title {
+    font-size: 4.688rem;
+    padding: 8.5rem 3rem 0 3rem;
+    margin-top: 16.688rem;
+    border-radius: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .consultations__title span:nth-of-type(2) {
+    margin-right: 0.45rem;
+  }
+  .consultations__minor-title-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 2.8rem 3rem 0 3rem;
+  }
+  .consultations__minor-title-container__para {
+    font-size: 2.2rem;
+    margin: 0 8rem 0 8rem;
+    text-align: center;
+  }
+  .consultations__show-all-btn-col {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding-left: 0;
+    background-color: #0E0B1D;
+  }
+  .consultations__minor-title-container__btn {
+    font-size: 2.58309rem;
+    border: 0.15309rem solid rgba(255, 255, 255, 0.2);
+    background-color: #0E0B1D;
+    border-radius: 1.8225rem;
+    width: 100%;
+    height: 6.6825rem;
+    margin: 8.75rem 3.438rem 17.031rem 3.438rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .consultations__minor-title-container__btn svg {
+    width: 1.25rem;
+    height: 2.1875rem;
+    margin-right: 2.063rem;
+  }
+  .consultations__minor-title-container__btn:hover, .consultations__minor-title-container__btn:active, .consultations__minor-title-container__btn:focus {
+    border: 0.15309rem solid rgba(255, 255, 255, 0.2);
+  }
+  .consultations__cards-carousel {
+    padding-top: 6.6825rem;
+    padding-bottom: 0;
+  }
+  .consultations__cards-carousel > div {
+    padding: 0 4.86rem !important;
+  }
+  .consultations__cards-carousel > div:before {
+    content: '';
+    display: block;
+    position: absolute;
+    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+            box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    pointer-events: none;
+  }
+  .consultations__cards-carousel > div > div:nth-child(1),
+  .consultations__cards-carousel > div > div:nth-child(2) {
+    top: 42% !important;
+  }
+  .consultations__cards-carousel__card {
+    width: 45.5625rem;
+    height: 62.26875rem;
+    border-radius: 1.8225rem;
+    color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+  .consultations__cards-carousel__card__card-body {
+    padding: 0;
+    background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(20%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
+  }
+  .consultations__cards-carousel__card__trainer {
+    font-size: 3.0375rem;
+    margin: 6.075rem 0 0.71442rem 0;
+  }
+  .consultations__cards-carousel__card__job-title,
+  .consultations__cards-carousel__card__job-history {
+    font-size: 1.97559rem;
+    padding: 0;
+  }
+  .consultations__cards-carousel__card__btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    width: 100%;
+    height: 9.1125rem;
+    border-radius: 0 0 1.51875rem 1.51875rem;
+    margin-top: 3.645rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .consultations__cards-carousel__card__btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .consultations__cards-carousel__card__btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .consultations__cards-carousel__card__btn svg {
+    width: 3.645rem;
+    height: 3.645rem;
+  }
+  .consultations__cards-carousel__card__btn span {
+    font-size: 2.43rem;
+    margin-right: 1.89783rem;
+  }
 }
 /*# sourceMappingURL=consultations.module.css.map */

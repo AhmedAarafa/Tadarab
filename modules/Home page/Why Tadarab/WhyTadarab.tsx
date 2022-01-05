@@ -15,6 +15,7 @@ export default function WhyTadarab() {
                 </div>
             </Col>
             <Col xs={12} className={styles["why-tadarab__advantages-box-container"]}>
+
                 <div className={styles["why-tadarab__advantages-box"]}>
                     <div >
                         <svg className={styles["why-tadarab__advantages-box__img"]} xmlns="http://www.w3.org/2000/svg" width="4.375rem" height="4.375rem" viewBox="0 0 70 70">
@@ -63,6 +64,7 @@ export default function WhyTadarab() {
             </Col>
             <Col xs={12}>
                 <div className={styles["tadarab-for-companies"]}>
+
                     <div>
                         <img src="/images/business.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
                     </div>
@@ -77,6 +79,7 @@ export default function WhyTadarab() {
                             </div>
                       <Button className={styles["tadarab-for-companies__titles-box__btn"]}>تواصل معانا</Button>
                     </div>
+                    
                 </div> 
             </Col>
         </Row>

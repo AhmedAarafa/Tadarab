@@ -12,11 +12,14 @@ export default function LearnFromTheBest() {
   return (
     <>
       <Row>
-        <Col xs={12} className={styles["learn-from-the-best__title"]}>
+        <Col xs={{span:12 ,order:1}} sm={{span:9 ,order:1}} className={styles["learn-from-the-best__title"]}> 
           <div>
             <span> تعلم من </span>
             <span> الأفضل </span>
           </div>
+        </Col>
+
+        <Col xs={{span:12 ,order:3}} sm={{span:3 ,order:1}} className={styles["learn-from-the-best__see-more-btn-col"]}>
           <Button className={styles["learn-from-the-best__see-more-btn"]}>
               اعرض كل المدربين 
             <svg id="more" xmlns="http://www.w3.org/2000/svg" width="0.5rem" height="0.875rem" viewBox="0 0 8.39 14">
@@ -25,12 +28,24 @@ export default function LearnFromTheBest() {
 
           </Button>
         </Col>
-        <Col xs={12} className={styles["learn-from-the-best__cards-carousel"]}>
+
+        <Col xs={{span:12 ,order:2}} sm={{span:12 ,order:3}} className={styles["learn-from-the-best__cards-carousel"]}>
         <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
-            "751": {
-                "slidesPerView": 4,
-            },
+          
+          "50": {
+            slidesPerView: 1,
+          },
+          "576": {
+            slidesPerView: 3,
+          },
+          "981": {
+            slidesPerView: 4,
+          },
+          "1201": {
+            slidesPerView: 5,
+          },
+
         }} className="mySwiper">
             <SwiperSlide> 
               <Card className={styles["learn-from-the-best__cards-carousel__card"]}

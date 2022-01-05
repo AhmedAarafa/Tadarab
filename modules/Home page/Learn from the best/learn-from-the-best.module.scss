@@ -5,10 +5,9 @@
     font-size: 2rem;
     font-weight: 800;
     padding: 6.25rem 3rem 0 3rem;
-    background-color: white;
-    border-radius: 5rem 0 0 0;
 
-    @include flex(center, space-between);
+
+    @include flex(center, flex-start);
 
     &>div {
         span:nth-of-type(1) {
@@ -23,6 +22,10 @@
 
 }
 
+.learn-from-the-best__see-more-btn-col{
+    @include flex(flex-end,flex-end);
+}
+
 .learn-from-the-best__see-more-btn{
     @include outlined-button;
     font-size: 1.063rem;
@@ -32,6 +35,7 @@
     height: 2.75rem;
     border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     border-radius: 0.75rem;
+    margin-left: 3rem;
     @include flex(center, space-around);
 
     &:hover,
@@ -41,7 +45,14 @@
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
+    svg{
+        width: 0.5rem;
+        height: 0.875rem;
+    }
+
 }
+
+
 
 .learn-from-the-best__cards-carousel{
     padding-top: 2.563rem;
@@ -51,39 +62,266 @@
         @include inset-box-shadow(white);
         &>div:nth-child(1),
         &>div:nth-child(2) {
-            top: 43% !important
+            top: 43% !important;
         }
     }
     
 }
 
 .learn-from-the-best__cards-carousel__card{
-    width: 18.75rem;
-    height: 21.875rem;
-    box-shadow: 0 0.5rem 1.313rem #0000001A;
-    border-radius: 0.75rem;
+    width: 18.75rem*0.8;
+    height: 21.875rem*0.8;
+    box-shadow: 0 0.5rem*0.8 1.313rem*0.8 #0000001A;
+    border-radius: 0.75rem*0.8;
     color: white;
     position: relative;
     overflow: hidden;
     @include flex(unset,flex-end);
     display: inline-flex;
     background: transparent url('/images/trainer img.png') no-repeat padding-box;
-    background-size: contain;
+    background-size: contain; 
 }
 
 .learn-from-the-best__cards-carousel__card__card-body{
     padding: 0;
-    background: transparent linear-gradient(180deg, #00000000 0%, #000000B3 48%, #000000E6 100%) 0% 0% no-repeat padding-box;
-   padding-bottom: 1.5rem;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+
+   padding-bottom: 1.5rem*0.8;
 }
 
 .learn-from-the-best__cards-carousel__card__trainer{
-    font-size: 1.25rem;
+    font-size: 1.25rem*0.8;
     font-weight: 700;
-    margin-top: 2.5rem;
+    margin: 2.5rem*0.8 0 0.313rem*0.8 0;
 }
 .learn-from-the-best__cards-carousel__card__job-title,
 .learn-from-the-best__cards-carousel__card__job-history{
-    font-size: 0.813rem;
+    font-size: 0.813rem*0.8;
     padding: 0;
+}
+
+@media (max-width:1200px){
+
+    
+    .learn-from-the-best__cards-carousel{
+        padding-top: 2.563rem*1.05;
+    
+        &>div {
+            padding: 0 2rem*1.05 !important;
+            @include inset-box-shadow(white);
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+                &:after{
+                    font-size: 1rem*1.3 !important;
+                    box-shadow: 0 0 1.25rem*1.3 #00000033 !important;
+                  }
+            }
+            &>div:nth-child(1){
+                right: 1rem*1.3 !important;
+                &:after{
+                  padding: 1.5rem*1.3 1.18rem*1.3 1.5rem*1.3 1.28rem*1.3 !important;
+                }
+    
+            }
+            &>div:nth-child(2){
+                left: 1rem*1.3 !important;
+                &:after{
+                  padding: 1.5rem*1.3 1.28rem*1.3 1.5rem*1.3 1.18rem*1.3 !important;
+                }
+            }
+        }
+        
+    }
+    
+    .learn-from-the-best__cards-carousel__card{
+        width: 18.75rem*1.05;
+        height: 21.875rem*1.05;
+        box-shadow: 0 0.5rem*1.05 1.313rem*1.05 #0000001A;
+        border-radius: 0.75rem*1.05;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        @include flex(unset,flex-end);
+        display: inline-flex;
+        background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        background-size: contain; 
+    }
+    
+    .learn-from-the-best__cards-carousel__card__card-body{
+        padding: 0;
+        background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    
+       padding-bottom: 1.5rem*1.05;
+    }
+    
+    .learn-from-the-best__cards-carousel__card__trainer{
+        font-size: 1.25rem*1.05;
+        font-weight: 700;
+        margin: 2.5rem*1.05 0 0.313rem*1.05 0;
+    }
+    .learn-from-the-best__cards-carousel__card__job-title,
+    .learn-from-the-best__cards-carousel__card__job-history{
+        font-size: 0.813rem*1.05;
+        padding: 0;
+    }
+
+}
+
+@media (max-width:980px){
+
+
+    .learn-from-the-best__cards-carousel{
+        padding-top: 2.563rem*1.335;
+    
+        &>div {
+            padding: 0 2rem*1.335 !important;
+            @include inset-box-shadow(white);
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+                &:after{
+                    font-size: 1rem*1.5 !important;
+                    box-shadow: 0 0 1.25rem*1.5 #00000033 !important;
+                  }
+            }
+            &>div:nth-child(1){
+                right: 1rem*1.5 !important;
+                &:after{
+                  padding: 1.5rem*1.5 1.18rem*1.5 1.5rem*1.5 1.28rem*1.5 !important;
+                }
+    
+            }
+            &>div:nth-child(2){
+                left: 1rem*1.5 !important;
+                &:after{
+                  padding: 1.5rem*1.5 1.28rem*1.5 1.5rem*1.5 1.18rem*1.5 !important;
+                }
+            }
+        }
+        
+    }
+    
+    .learn-from-the-best__cards-carousel__card{
+        width: 18.75rem*1.335;
+        height: 21.875rem*1.335;
+        box-shadow: 0 0.5rem*1.335 1.313rem*1.335 #0000001A;
+        border-radius: 0.75rem*1.335;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        @include flex(unset,flex-end);
+        display: inline-flex;
+        background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        background-size: contain; 
+    }
+    
+    .learn-from-the-best__cards-carousel__card__card-body{
+        padding: 0;
+        background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    
+       padding-bottom: 1.5rem*1.335;
+    }
+    
+    .learn-from-the-best__cards-carousel__card__trainer{
+        font-size: 1.25rem*1.335;
+        font-weight: 700;
+        margin: 2.5rem*1.335 0 0.313rem*1.335 0;
+    }
+    .learn-from-the-best__cards-carousel__card__job-title,
+    .learn-from-the-best__cards-carousel__card__job-history{
+        font-size: 0.813rem*1.335;
+        padding: 0;
+    }
+}
+
+@media (max-width:575px){
+
+    .learn-from-the-best__title{
+        font-size: 4.688rem;
+        padding: 9.375rem 3rem 0 3rem;
+        @include flex(center, center);
+    
+        &>div {
+            span:nth-of-type(2) {
+                margin-right: 0rem;
+            }
+        }
+    }
+
+    .learn-from-the-best__see-more-btn-col{
+        @include flex(center,center);
+    }
+    
+    .learn-from-the-best__see-more-btn{
+        @include outlined-button;
+        font-size: 1.063rem*2.4;
+        color: $primary-red;
+        font-weight: 700;
+        width: 13.25rem*2.4;
+        height: 2.75rem*2.4;
+        border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+        border-radius: 0.75rem*2.4;
+        margin: 6.25rem 7.3rem 0 7.3rem;
+        width: 100%;
+        @include flex(center, center);
+    
+        &:hover,
+        &:active {
+            background-color: white !important;
+            color: $primary-red !important;
+            border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+        }
+
+        svg{
+            width: 0.5rem*2.4;
+            height: 0.875rem*2.4;
+            margin: 0.5rem 2.063rem 0 0;
+        }
+    
+    }
+
+
+    
+.learn-from-the-best__cards-carousel{
+    padding-top: 6.406rem;
+
+    &>div {
+        padding: 0 2rem*2.4 !important;
+        &:before {
+            box-shadow: none ;
+        }
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 43% !important;
+        }
+    }
+    
+}
+
+.learn-from-the-best__cards-carousel__card{
+    width: 18.75rem*2.4;
+    height: 21.875rem*2.4;
+    box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
+    border-radius: 0.75rem*2.4;
+    @include flex(unset,flex-end);
+}
+
+.learn-from-the-best__cards-carousel__card__card-body{
+    padding: 0;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+
+   padding-bottom: 1.5rem*2.4;
+}
+
+.learn-from-the-best__cards-carousel__card__trainer{
+    font-size: 1.25rem*2.4;
+    font-weight: 700;
+    margin: 2.5rem*2.4 0 0.313rem*2.4 0;
+}
+.learn-from-the-best__cards-carousel__card__job-title,
+.learn-from-the-best__cards-carousel__card__job-history{
+    font-size: 0.813rem*2.4;
+    padding: 0;
+}
 }

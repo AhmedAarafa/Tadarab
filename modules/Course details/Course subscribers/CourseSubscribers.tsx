@@ -19,9 +19,18 @@ export default function CourseSubscribers() {
       <Col xs={12} className={styles["course-subscribers__cards-carousel"]}>
         <Swiper dir="rtl" slidesPerView={3.8} navigation={true} 
         breakpoints={{
-            "751": {
-                "slidesPerView": 3.8,
-            },
+            "50": {
+                slidesPerView: 1.1,
+              },
+              "576": {
+                slidesPerView: 2.8,
+              },
+              "981": {
+                slidesPerView: 3.8,
+              },
+              "1201": {
+                slidesPerView: 4.8,
+              },
         }} className="mySwiper">
             <SwiperSlide>
                 <Card

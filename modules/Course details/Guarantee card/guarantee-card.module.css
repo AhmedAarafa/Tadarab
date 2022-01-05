@@ -23,4 +23,10 @@
 .guarantee-card__brief div:nth-of-type(1) {
   font-weight: 800;
 }
+
+@media (max-width: 575px) {
+  .guarantee-card {
+    display: none;
+  }
+}
 /*# sourceMappingURL=guarantee-card.module.css.map */

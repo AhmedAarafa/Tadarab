@@ -35,7 +35,7 @@
     padding: 0.8rem 0rem 1rem 0;
     // margin-top: 0.8rem;
     cursor: pointer;
-    z-index: 4;
+    z-index: 3;
 
     span {
         margin-left: 0.5rem;
@@ -50,4 +50,55 @@
     bottom: 3rem;
     height: 4rem;
     pointer-events: none;
+}
+
+
+@media (max-width: 575px){
+
+    .course-details-section {
+        margin-top: 15.156rem;
+        width: 100%;
+        height: 14.5rem*2.5;
+        // padding: 1.875rem*2.5;
+        padding-bottom: 2.5rem*2.5;
+    }
+    
+    .course-details-section__title {
+        font-size: 1.5rem*2.5;
+        margin-bottom: 1rem*2.5;
+    }
+    
+    .course-details-section__para {
+        font-size: 1rem*2.5;
+    }
+    
+    .course-details-section__read-more {
+        font-size: 1.125rem*2.5;
+        font-weight: 800;
+        width: 100%;
+        bottom: -3rem;
+        right: 0;
+        padding: 0.8rem*2.5 0rem*2.5 1rem*2.5 0;
+        // margin-top: 0.8rem*2.5;
+        cursor: pointer;
+        z-index: 4;
+    
+        span {
+            margin-left: 0.5rem*2.5;
+        }
+        svg{
+            width: 0.625rem*2.5;
+            height: 0.375rem*2.5;
+        }
+    }
+    
+    .course-details-section--fadeout-effect {
+        position: absolute;
+        background-image: linear-gradient(rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 1) 100%);
+        width: 100%;
+        bottom: 2.5rem;
+        height: 4rem*2.5;
+        pointer-events: none;
+    }
 }

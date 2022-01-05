@@ -9,7 +9,8 @@ export default function FooterSection() {
    <footer>
 
    <Row className={styles["footer"]}>
-     <Col xs={5}>
+
+     <Col xs={{span:12,order:4}} sm={{span:5,order:1}}>
           <div  className={styles[ "footer__inquiries-box"]}>
             <div  className={ styles[ "footer__inquiries-box__trainer-img"]}>
               <img src="/images/trainer img.png" alt="trainer image" />
@@ -46,7 +47,7 @@ export default function FooterSection() {
            <Button className={styles["footer__send-btn"]}>أرسل الأن</Button>
           </div>
      </Col>
-     <Col xs={2}>
+     <Col xs={{span:12,order:2}} sm={{span:2,order:2}}>
        <ul className={styles["footer__training-courses-list"]}>
          <li>الدورات التدريبية</li>
          <li>الأكثر مبيعاً</li>
@@ -59,7 +60,7 @@ export default function FooterSection() {
          <li>المدربين</li>
        </ul>
      </Col>
-     <Col xs={2}>
+     <Col xs={{span:12,order:3}} sm={{span:2,order:3}}>
        <ul className={styles["footer__about-tadarab-list"]}>
          <li>عن تدرب</li>
          <li>من نحن؟</li>
@@ -72,7 +73,7 @@ export default function FooterSection() {
          <li>الأخبار</li>
        </ul>
      </Col>
-     <Col xs={3}>
+     <Col xs={{span:12,order:1}} sm={{span:3,order:4}}>
        <div className={styles["footer__communications-box"]}>
 
        <div className={styles["footer__logo"]}>
@@ -93,7 +94,7 @@ export default function FooterSection() {
      </Col>
 
 
-     <Col xs={12} className={styles["footer__contacts-box"]}>
+     <Col xs={{span:12,order:5}} className={styles["footer__contacts-box"]}>
        <div className={styles["footer__contacts-box__contacts"]}>
          <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 20.004 20">
   <path id="instagram" d="M9.929,36.7a5.128,5.128,0,1,0,5.128,5.128A5.12,5.12,0,0,0,9.929,36.7Zm0,8.461a3.334,3.334,0,1,1,3.334-3.334,3.34,3.34,0,0,1-3.334,3.334Zm6.534-8.671a1.2,1.2,0,1,1-1.2-1.2A1.193,1.193,0,0,1,16.463,36.487Zm3.4,1.214a5.919,5.919,0,0,0-1.616-4.191A5.958,5.958,0,0,0,14.053,31.9c-1.651-.094-6.6-.094-8.252,0a5.949,5.949,0,0,0-4.191,1.611A5.938,5.938,0,0,0,0,37.7C-.1,39.348-.1,44.3,0,45.949a5.919,5.919,0,0,0,1.616,4.191A5.965,5.965,0,0,0,5.8,51.755c1.651.094,6.6.094,8.252,0a5.919,5.919,0,0,0,4.191-1.616,5.958,5.958,0,0,0,1.616-4.191C19.953,44.3,19.953,39.353,19.859,37.7ZM17.726,47.72a3.375,3.375,0,0,1-1.9,1.9c-1.317.522-4.44.4-5.9.4s-4.583.116-5.9-.4a3.375,3.375,0,0,1-1.9-1.9c-.522-1.317-.4-4.44-.4-5.9s-.116-4.583.4-5.9a3.375,3.375,0,0,1,1.9-1.9c1.317-.522,4.44-.4,5.9-.4s4.583-.116,5.9.4a3.375,3.375,0,0,1,1.9,1.9c.522,1.317.4,4.44.4,5.9S18.248,46.408,17.726,47.72Z" transform="translate(0.075 -31.825)" fill="#fff"/>

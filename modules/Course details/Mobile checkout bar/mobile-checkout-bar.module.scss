@@ -1,0 +1,67 @@
+@import "../../../styles/mixins"; 
+
+.mobile-checkout-bar{
+    background-color: white;
+    height: 11.5rem;
+    box-shadow: 0 -0.781rem 3.281rem #00000014;
+    // @include flex(center, space-evenly);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 5;
+    display: none;
+}
+
+.mobile-checkout-bar__add-to-cart-btn{
+    @include flex(center, space-evenly);
+    @include contained-button;
+    padding: 0.9375rem 1.875rem;
+    border-radius: 1.5625rem;
+    width: 25rem;
+    height: 7.344rem;
+
+    svg{
+        width:3.281rem;
+        height:2.8rem;
+        margin-left: 0.3rem;
+    }
+    span{
+        font-size: 2.188rem;
+        font-weight: 700;
+    }
+
+}
+
+.mobile-checkout-bar__course-card__price-box {
+    color: $dark-black;
+}
+
+.mobile-checkout-bar__course-card__price-box__price {
+    font-size: 3.438rem;
+    font-weight: 800;
+}
+
+.mobile-checkout-bar__course-card__price-box__currency {
+    font-size: 2.188rem;
+    font-weight: 700;
+}
+
+.mobile-checkout-bar__course-card__old-price-box--line-through {
+    @include flex(center);
+    display: inline-flex;
+    text-decoration: line-through $primary-red;
+}
+
+.mobile-checkout-bar__course-card__old-price-box {
+    color: $grey;
+    margin-top: -0.4rem;
+}
+
+.mobile-checkout-bar__course-card__old-price-box__price {
+    font-size: 2.031rem;
+    font-weight: 800;
+}
+
+.mobile-checkout-bar__course-card__old-price-box__currency{
+    font-size: 1.719rem;
+}

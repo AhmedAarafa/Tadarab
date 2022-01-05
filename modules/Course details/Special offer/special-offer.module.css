@@ -47,8 +47,6 @@
 
 .special-offer__cards-outer-box__card {
   width: 100%;
-  -webkit-box-shadow: 0.12rem 0 1.313rem #0000001A;
-          box-shadow: 0.12rem 0 1.313rem #0000001A;
   border-radius: 0.75rem;
   margin: 1.25rem 0 1.25rem 0;
   display: -webkit-box;
@@ -63,6 +61,64 @@
   overflow: hidden;
 }
 
+.special-offer__cards-outer-box__plus {
+  position: relative;
+  width: 100%;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 1rem 0 1.2rem 0;
+}
+
+.special-offer__cards-outer-box__plus:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
+  width: 38%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.special-offer__cards-outer-box__plus:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
+  width: 38%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.special-offer__cards-outer-box__plus div {
+  background-color: rgba(175, 21, 31, 0.1);
+  padding: 0.8rem;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.special-offer__cards-outer-box__plus div svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
 .special-offer__cards-outer-box__card__course-img {
   position: relative;
 }
@@ -75,13 +131,15 @@
   width: 100%;
   height: 4rem;
   display: inline-block;
-  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+  background: none;
 }
 
 .special-offer__cards-outer-box__card__course-img img {
-  width: 17.75rem;
-  height: 100%;
-  border-radius: 0 0.75rem 0.75rem 0;
+  width: 12.5rem;
+  height: 7.5rem;
+  border-radius: 0.75rem;
+  -webkit-box-shadow: 0 0 1.25rem #0000001A;
+          box-shadow: 0 0 1.25rem #0000001A;
 }
 
 .special-offer__cards-outer-box__card__category-chip {
@@ -98,11 +156,15 @@
   font-size: 0.75rem;
   padding: 0.11rem 0.8rem 0.14rem 0.8rem;
   z-index: 1;
+  display: none;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box-container {
-  padding: 1.5rem 1.5rem 0.8rem 1.5rem;
+  padding: 0 1.5rem 0.8rem 1.5rem;
   width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box {
@@ -119,7 +181,13 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+  border-bottom: none;
+}
+
+.special-offer__cards-outer-box__card__trainer-info-box__info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-img {
@@ -136,6 +204,9 @@
   font-size: 1rem;
   font-weight: 800;
   color: #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-name {
@@ -144,7 +215,6 @@
 }
 
 .special-offer__cards-outer-box__card__rating-box {
-  margin-top: 0.8rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -198,6 +268,7 @@
 }
 
 .special-offer__cards-outer-box__card__old-price {
+  display: none;
   color: #777777;
   margin-top: -0.5rem;
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -224,6 +295,9 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+  border-top: 0.125rem solid rgba(119, 119, 119, 0.2);
 }
 
 .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
@@ -379,13 +453,16 @@
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
-  font-family: 'Almarai', sans-serif;
   border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
   border: 0 !important;
   background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
   width: 18.75rem;
   height: 3.125rem;
   margin-top: 0.75rem;
+  -webkit-box-shadow: 0 0.25rem 1.25rem #AF151F4D;
+          box-shadow: 0 0.25rem 1.25rem #AF151F4D;
 }
 
 .special-offer__cards-outer-box__card__add-to-cart-btn:hover {
@@ -398,17 +475,443 @@
           box-shadow: none;
 }
 
-.special-offer__cards-outer-box__card__add-to-cart-btn:hover {
+.special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active {
   background-color: #9d151e !important;
-}
-
-.special-offer__cards-outer-box__card__add-to-cart-btn:active {
-  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
 }
 
 .special-offer__cards-outer-box__card__add-to-cart-btn span {
   font-size: 1.063rem;
   font-weight: 700;
   margin-right: 1.25rem;
+}
+
+.special-offer__cards-outer-box__card__add-to-cart-btn svg {
+  width: 1.375rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 575px) {
+  .special-offer {
+    margin-top: 10.23rem;
+    width: 100%;
+    border-radius: 1.705rem;
+    padding: 1.78312rem 0.38812rem 0.38812rem 0.38812rem;
+  }
+  .special-offer__title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 1.78312rem;
+  }
+  .special-offer__title span {
+    font-size: 2.5rem;
+    margin-right: 1.55rem;
+  }
+  .special-offer__title svg {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+  .special-offer__cards-outer-box {
+    border-radius: 1.705rem;
+    padding: 2.108rem 2.79rem 2.79rem 2.79rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .special-offer__cards-outer-box__card {
+    width: 100%;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-radius: 0;
+    margin: 1.55rem 0 1.55rem 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    overflow: hidden;
+  }
+  .special-offer__cards-outer-box__card svg {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+  .special-offer__cards-outer-box__plus {
+    position: relative;
+    width: 100%;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 1.5rem 0;
+  }
+  .special-offer__cards-outer-box__plus:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
+    width: 38%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  .special-offer__cards-outer-box__plus:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
+    width: 38%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  .special-offer__cards-outer-box__plus div {
+    background-color: rgba(175, 21, 31, 0.1);
+    padding: 1.2rem;
+    border-radius: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .special-offer__cards-outer-box__plus div svg {
+    width: 3rem;
+    height: 3rem;
+  }
+  .special-offer__cards-outer-box__card__course-img:after {
+    background: none;
+  }
+  .special-offer__cards-outer-box__card__course-img img {
+    width: 12.5rem;
+    height: 9.375rem;
+    border-radius: 0.93rem;
+  }
+  .special-offer__cards-outer-box__card__category-chip {
+    display: none;
+  }
+  .special-offer__cards-outer-box__card__trainer-info-box-container {
+    padding: 0 1.86rem 0 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .special-offer__cards-outer-box__card__trainer-info-box {
+    padding-bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    width: 100%;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-bottom: none;
+  }
+  .special-offer__cards-outer-box__card__trainer-info-box__trainer-img {
+    display: none;
+  }
+  .special-offer__cards-outer-box__card__trainer-info-box__course-name {
+    font-size: 2.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .special-offer__cards-outer-box__card__trainer-info-box__trainer-name {
+    font-size: 2rem;
+  }
+  .special-offer__cards-outer-box__card__rating-box {
+    margin-top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .special-offer__cards-outer-box__card__rating-box span:nth-of-type(1) {
+    font-size: 2.5rem;
+    margin-left: 0.5rem;
+  }
+  .special-offer__cards-outer-box__card__rating-box span:nth-of-type(2) {
+    font-size: 2rem;
+    margin-right: 1rem;
+  }
+  .special-offer__cards-outer-box__card__rating-box svg {
+    margin: 0 0.25rem 0.25rem 0;
+    width: 2.656rem;
+    height: 2.5rem;
+  }
+  .special-offer__cards-outer-box__card__price {
+    margin-top: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .special-offer__cards-outer-box__card__price span:nth-of-type(1) {
+    font-size: 3.125rem;
+  }
+  .special-offer__cards-outer-box__card__price span:nth-of-type(2) {
+    font-size: 2rem;
+    margin: 0 0.5rem;
+  }
+  .special-offer__cards-outer-box__card__old-price {
+    margin-top: -0.62rem;
+    -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
+            text-decoration: line-through rgba(175, 21, 31, 0.5);
+    display: none;
+  }
+  .special-offer__cards-outer-box__card__checkout-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    border-top: 0.063rem solid rgba(119, 119, 119, 0.5);
+    margin-top: 2rem;
+    padding-top: 2rem;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__price span:nth-of-type(1) {
+    font-size: 4.688rem;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__price span:nth-of-type(2) {
+    font-size: 3.438rem;
+    margin: 0.248rem 0.248rem 0 0;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__old-price {
+    font-size: 2.656rem;
+    margin-top: -0.992rem;
+    -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
+            text-decoration: line-through rgba(175, 21, 31, 0.5);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__old-price span:nth-of-type(2) {
+    font-size: 3.438rem;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__discount {
+    font-size: 1.875rem;
+    margin-top: -0.248rem;
+  }
+  .special-offer__cards-outer-box__card__checkout-box__prices-box__discount span {
+    font-size: 2.344rem;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-checkout-box {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box {
+    background-color: rgba(175, 21, 31, 0.08);
+    -webkit-box-shadow: 0 0.23rem 0.62rem #0000001A;
+            box-shadow: 0 0.23rem 0.62rem #0000001A;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 3.5rem;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__offer-available {
+    margin-left: 2.4rem;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__offer-available div:nth-of-type(1) {
+    font-size: 2.5rem;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__offer-available div:nth-of-type(2) {
+    font-size: 2.344rem;
+    margin-top: -0.248rem;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__countdown-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(1) {
+    font-size: 2.031rem;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(2) {
+    font-size: 2.656rem;
+    border-radius: 0.31rem;
+    padding: 0.626rem 1rem;
+    margin-top: 0.2rem;
+  }
+  .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator {
+    font-size: 2.656rem;
+    margin: 2.6rem 1rem 0 1rem;
+  }
+  .special-offer__cards-outer-box__card__add-to-cart-btn {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    width: 100%;
+    height: 7.813rem;
+    border-radius: 1.3rem;
+    margin-top: 1.875rem;
+    -webkit-box-shadow: 0 0.625rem 3.125rem #AF151F4D;
+            box-shadow: 0 0.625rem 3.125rem #AF151F4D;
+  }
+  .special-offer__cards-outer-box__card__add-to-cart-btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .special-offer__cards-outer-box__card__add-to-cart-btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .special-offer__cards-outer-box__card__add-to-cart-btn span {
+    font-size: 2.656rem;
+    margin-right: 1.55rem;
+  }
+  .special-offer__cards-outer-box__card__add-to-cart-btn svg {
+    width: 3.44rem;
+    height: 3.125rem;
+  }
 }
 /*# sourceMappingURL=special-offer.module.css.map */

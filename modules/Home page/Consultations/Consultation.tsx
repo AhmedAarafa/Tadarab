@@ -12,14 +12,17 @@ export default function Consultation() {
   return (
     <>
       <Row>
-        <Col xs={12} className={styles["consultations__title"]}>
+        <Col xs={{span:12 , order:1}} sm={{span:12 , order:1}} className={styles["consultations__title"]}>
           <span> الاستشارات و </span>
           <span> المواعيد </span>
         </Col>
-        <Col xs={12} className={styles["consultations__minor-title-container"]}>
+        <Col xs={{span:12 , order:2}} sm={{span:9 , order:2}} className={styles["consultations__minor-title-container"]}>
           <span className={styles["consultations__minor-title-container__para"]}>
             احجز استشارة هاتفية أو نصية مع خبرائنا في كل المجالات
           </span>
+        </Col>
+      <Col xs={{span:12, order:4}} sm={{span:3 , order:3}} className={styles["consultations__show-all-btn-col"]}>
+
           <Button className={styles["consultations__minor-title-container__btn"]}>
             أعرض كل المستشارين
             <svg
@@ -38,13 +41,22 @@ export default function Consultation() {
               />
             </svg>
           </Button>
-        </Col>
-        <Col xs={12} className={styles["consultations__cards-carousel"]}>
+      </Col>
+        <Col xs={{span:12, order:3}} sm={{span:12 , order:4}} className={styles["consultations__cards-carousel"]}>
         <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
-            "751": {
-                "slidesPerView": 4,
-            },
+            "50": {
+            slidesPerView: 1,
+          },
+          "576": {
+            slidesPerView: 3,
+          },
+          "981": {
+            slidesPerView: 4,
+          },
+          "1201": {
+            slidesPerView: 5,
+          },
         }} className="mySwiper">
             <SwiperSlide> 
               <Card

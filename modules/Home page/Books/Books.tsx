@@ -13,11 +13,15 @@ export default function Books() {
   return (
     <>
       <Row className={styles["books__row"]}>
-        <Col xs={12} className={styles["books__title"]}>
+        <Col xs={{span:12 ,order:1}} sm={{span:8 ,order:1}} className={styles["books__title"]}>
           <div>
             <span> الكتب و </span>
             <span> الملخصات </span>
           </div>
+        </Col>
+
+        <Col xs={{span:12 ,order:3}} sm={{span:4 ,order:1}} className={styles["see-more-btn-col"]}>
+
           <Button className={styles["books__see-more-btn"]}>
             تصفح المزيد من الكتب المجانية
             <svg id="more" xmlns="http://www.w3.org/2000/svg" width="0.5rem" height="0.875rem" viewBox="0 0 8.39 14">
@@ -25,13 +29,25 @@ export default function Books() {
 </svg>
 
           </Button>
+
         </Col>
-        <Col xs={12} className={styles["books__cards-carousel"]}> 
+
+
+        <Col xs={{span:12 ,order:2}} sm={{span:12 ,order:2}} className={styles["books__cards-carousel"]}> 
         <Swiper dir="rtl" slidesPerView={5} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
-            "751": {
-                "slidesPerView": 5,
-            },
+          "50": {
+            slidesPerView: 1,
+          },
+          "576": {
+            slidesPerView: 4,
+          },
+          // "981": {
+          //   slidesPerView: 4,
+          // },
+          "1201": {
+            slidesPerView: 5,
+          },
         }} className="mySwiper">
             <SwiperSlide> 
                 <Card className={styles["books__cards-carousel__card"]}>

@@ -1,11 +1,27 @@
-.course-details,
+.course-details-row,
 .course-details__tadarab-business,
-.course-details__comments-section{
-    padding:  0 8.5rem 0 8.5rem;
+.course-details__comments-section {
+    padding: 0 8.5rem 0 8.5rem;
 }
 
 .course-details__course-reviews,
-.course-details__course-subscribers{
-    padding:  0 8.5rem 0 0;
+.course-details__course-subscribers {
+    padding: 0 8.5rem 0 0;
+}
 
+
+@media (max-width: 575px) {
+    .course-details-row {
+        padding: 0 3rem;
+    }
+
+    .course-details__course-reviews,
+    .course-details__course-subscribers {
+        padding: 0 3rem 0 0;
+    }
+
+    .course-details__comments-section{
+        padding: 0 3rem;
+
+    }
 }

@@ -32,7 +32,7 @@
   right: 0;
   padding: 0.8rem 0rem 1rem 0;
   cursor: pointer;
-  z-index: 4;
+  z-index: 3;
 }
 
 .course-details-section__read-more span {
@@ -47,5 +47,47 @@
   bottom: 3rem;
   height: 4rem;
   pointer-events: none;
+}
+
+@media (max-width: 575px) {
+  .course-details-section {
+    margin-top: 15.156rem;
+    width: 100%;
+    height: 36.25rem;
+    padding-bottom: 6.25rem;
+  }
+  .course-details-section__title {
+    font-size: 3.75rem;
+    margin-bottom: 2.5rem;
+  }
+  .course-details-section__para {
+    font-size: 2.5rem;
+  }
+  .course-details-section__read-more {
+    font-size: 2.8125rem;
+    font-weight: 800;
+    width: 100%;
+    bottom: -3rem;
+    right: 0;
+    padding: 2rem 0rem 2.5rem 0;
+    cursor: pointer;
+    z-index: 4;
+  }
+  .course-details-section__read-more span {
+    margin-left: 1.25rem;
+  }
+  .course-details-section__read-more svg {
+    width: 1.5625rem;
+    height: 0.9375rem;
+  }
+  .course-details-section--fadeout-effect {
+    position: absolute;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(white));
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, white 100%);
+    width: 100%;
+    bottom: 2.5rem;
+    height: 10rem;
+    pointer-events: none;
+  }
 }
 /*# sourceMappingURL=course-details-section.module.css.map */

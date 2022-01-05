@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React , { useState } from "react";
 import styles from "./navbar.module.css";
 import {
   Navbar as NavBar,
@@ -8,19 +8,62 @@ import {
   Button,
   Badge,
   OverlayTrigger,
+  Popover,
+  Offcanvas
 } from "react-bootstrap";
-import {popoverHandler} from "./utils";
+import {popoverHandler , closeBtnHandler} from "./utils";
 
 export default function Navbar() {
+  const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
+  const handleDiscoverSidebarShow = (status:boolean)=>{
+    setDiscoverSidebarShow(status);
+  }
+  // const showSettings = (event:any)=> {
+  //   event.preventDefault();
+   
+  // }
 
   React.useEffect(() => {
+    // MutationObserver = window.MutationObserver ;
+
+    // var observer = new MutationObserver(function(mutations, observer) {
+    //     // fired when a mutation occurs
+    //     // console.log("mutations",mutations);
+    //     mutations.forEach((element:any)=>{
+    //       // if(element.addedNodes != []){
+    //         element.addedNodes.forEach((elem:any)=>{
+    //           // console.log("element.addedNodes",elem);
+    //           if(elem.attributes.role?.nodeValue == "dialog"  && !("id" in elem.attributes)){
+    //             console.log("s");
+    //             elem.style.cssText=`
+    //             background-color:yellow;
+    //             z-index:9999 !important;
+    //             visibility:visible
+    //             `
+    //           }
+    //         })
+    //       // }
+          
+    //     })
+    //     // ...
+    // });
+
+    // // define what element should be observed by the observer
+    // // and what types of mutations trigger the callback
+    // observer.observe(document, {
+    //   childList: true,
+    //   subtree: true
+    // });
+  
     popoverHandler();
-  }, [])
+    closeBtnHandler();
+  }, []);
+  
 
   return (
     <>
-      <NavBar fixed="top" id="nav" className={styles["navbar"]}>
-        <NavBar.Brand href="#home">
+      <NavBar id="nav" fixed="top" className={styles["navbar"]} expand="sm" >
+        <NavBar.Brand href="#home" >
         <svg className={styles["navbar__img"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 92.658 31.401">
     <g id="logo" transform="translate(-0.393)">  
     <path id="Path_12775" data-name="Path 12775" d="M29.77,21.1q-.335.255-.828.61a6.036,6.036,0,0,1-.935.565,5.882,5.882,0,0,1-1.268.409,7.224,7.224,0,0,1-1.441.132,4.4,4.4,0,0,1-3.088-1.14,3.773,3.773,0,0,1-1.244-2.915,3.932,3.932,0,0,1,.633-2.316,4.241,4.241,0,0,1,1.8-1.417,10.16,10.16,0,0,1,2.856-.737q1.706-.219,3.537-.322V13.9a1.494,1.494,0,0,0-.876-1.482,6.3,6.3,0,0,0-2.58-.41,7.335,7.335,0,0,0-2.189.364c-.775.242-1.333.429-1.671.559H22.1V9.81c.439-.116,1.149-.252,2.137-.408A18.711,18.711,0,0,1,27.2,9.165q3.536,0,5.109,1.087a3.862,3.862,0,0,1,1.573,3.417v8.8H29.77Zm0-2.013V16.4q-.84.07-1.821.191a8.5,8.5,0,0,0-1.482.282,2.038,2.038,0,0,0-.949.568,1.421,1.421,0,0,0-.329.981,2.548,2.548,0,0,0,.069.656,1,1,0,0,0,.346.482,1.7,1.7,0,0,0,.633.338A4.363,4.363,0,0,0,27.388,20a3.428,3.428,0,0,0,1.263-.253A3.952,3.952,0,0,0,29.77,19.087Z" transform="translate(-8.613 -3.836)" fill="#be1622"/>
@@ -53,344 +96,420 @@ export default function Navbar() {
     <path id="Path_12802" data-name="Path 12802" d="M152.652,47.016a1.637,1.637,0,0,1-1.491-.732,1.775,1.775,0,0,1-1.7.732V45.878c1.061,0,1.03-.979,1.061-1.632a2.081,2.081,0,0,1,2.131-2.168c1.36,0,2.131.988,2.131,2.47S154.023,47.016,152.652,47.016Zm0-3.889c-.5,0-.841.356-.841,1.444,0,1.039.331,1.4.841,1.4s.851-.366.851-1.383C153.5,43.483,153.163,43.127,152.652,43.127Z" transform="translate(-62.401 -17.614)" fill="#6d6e71"/>
   </g>
         </svg>
-
         </NavBar.Brand>
-
-        <Nav>
-            <Nav.Link className={styles["navbar__links"]} id="discover" >
+        
+        <NavBar.Toggle aria-controls="offcanvasNavbar1" />
+        <NavBar.Offcanvas  onHide={()=>{handleDiscoverSidebarShow(false)}}
+          id="offcanvasNavbar1"
+          aria-labelledby="offcanvasNavbarLabel1"
+          placement="end"
+        >
+          <Offcanvas.Header closeButton >
+            <Offcanvas.Title id="offcanvasNavbarLabel1">القائمة الرئيسة</Offcanvas.Title>
+          </Offcanvas.Header>
+          <ul className={styles["sidebar-list"]}>
+            <li id="discover" className={styles["sidebar-list__item"]} onClick={()=>{handleDiscoverSidebarShow(true)}}>
               استكشف
-              <svg id="dropdown" xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
-  <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
-    <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#222"/>
-  </g>
-</svg>
-
-
-
-
-            </Nav.Link>
-            <div className={styles["navbar__discover-popover"]} id="discover-popover" >
-                <div className={styles["navbar__discover-popover__box"]}>
-                  <div className={styles["navbar__discover-popover__caption"]}>
-                    التخصصات
-                  </div>
-                  <ul className={styles["navbar__discover-popover__list"]}>
-                    <li>تنمية بشرية</li>
-                    <li>تربية الأطفال</li>
-                    <li>فنون</li>
-                    <li>حياة</li>
-                    <li>بيزنس</li>
-                    <li>تنمية بشرية</li>
-                    <li>تربية الأطفال</li>
-                    <li>فنون</li>
-                    <li>حياة</li>
-                  </ul>
-                </div>
-                <div className={styles["navbar__discover-popover__box"]}>
-                  <div className={styles["navbar__discover-popover__caption"]}>
-                  الأقسام
-                  </div>
-                  <ul className={styles["navbar__discover-popover__list"]}>
-                      <li>دورات تدريبية</li>
-                      <li>دورات مباشرة</li>
-                      <li>الاستشارات</li>
-                      <li>كتيبات وملخصات</li>
-                      <li>مقالات</li>
-                  </ul>
-                </div>
-                <div className={styles["navbar__discover-popover__box"]}>
-                  <div className={styles["navbar__discover-popover__caption"]}>
-                  أخري
-                  </div>
-                  <ul className={styles["navbar__discover-popover__list"]}>
-                      <li>عروض</li>
-                      <li>المدربين</li>
-                      <li>عن تدرب</li>
-                      <li>تواصل معنا</li>
-                  </ul>
-                </div>
-              </div>
-
-          <div className={styles["navbar__search-bar-container"]}>
-            <div
-              className={styles["navbar__search-bar-container__icon-wrapper"]}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" viewBox="0 0 20 20">
-  <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#777"/>
+              <svg id="next" xmlns="http://www.w3.org/2000/svg" width="0.7rem" height="0.875rem" viewBox="0 0 8.39 14">
+                <path id="Path_12841" data-name="Path 12841" d="M11.567,6.006a1.346,1.346,0,0,1,.229-.183L17.222.4A1.356,1.356,0,0,1,19.14,2.315L14.467,6.988l4.7,4.7A1.356,1.356,0,1,1,17.247,13.6L11.8,8.153a1.407,1.407,0,0,1-.229-2.147Z" transform="translate(-11.171 -0.001)" fill="#222"/>
               </svg>
-            </div>
-            <Form.Control
-              type="text"
-              placeholder="اكتشف هواياتك..."
-              className={styles["navbar__search-bar-container__search-bar"]}
-            />
-          </div>
-
-          <Nav.Link className={styles["navbar__links"]}>تدرب للشركات</Nav.Link>
-
-          <Nav.Link className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
-
-          <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
-
-          <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
-
-          <OverlayTrigger
-          trigger='click'
-          rootClose
-            placement="bottom-start"
-            overlay={
-              <div className={styles["navbar__cart-popover"]} id="cart-popover">
-                <div className={styles["navbar__cart-popover__outer-box"]}>
-                  <img
-                    src="/images/course img1.png"
-                    alt="course image"
-                    className={styles["navbar__cart-popover__img"]}
-                  />
-                  <div
-                    className={styles["navbar__cart-popover__course-details"]}
-                  >
-                    <div
-                      className={
-                        styles["navbar__cart-popover__course-details__title"]
-                      }
-                    >
-                      مفاتيح النجاح في الحياة
-                    </div>
-                    <div
-                      className={
-                        styles["navbar__cart-popover__course-details__author"]
-                      }
-                    >
-                      {" "}
-                      د. حسين عبدالكريم{" "}
-                    </div>
-                    <div
-                      className={
-                        styles[
-                          "navbar__cart-popover__course-details__price-container"
-                        ]
-                      }
-                    >
-                      <span
-                        className={
-                          styles["navbar__cart-popover__course-details__price"]
-                        }
-                      >
-                        850
-                      </span>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__currency"
-                          ]
-                        }
-                      >
-                        جنية مصري
-                      </span>
-                    </div>
-                    <div
-                      className={
-                        styles[
-                          "navbar__cart-popover__course-details__old-price-container"
-                        ]
-                      }
-                    >
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__old-price"
-                          ]
-                        }
-                      >
-                        950
-                      </span>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__old-price-currency"
-                          ]
-                        }
-                      >
-                        جنية مصري
-                      </span>
-                    </div>
+            </li>
+          
+            <Offcanvas id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2" backdrop={false} placement="end" show={discoverSidebarShow} onHide={()=>{handleDiscoverSidebarShow(false)}}> 
+              <Offcanvas.Header className={styles["sidebar-list__discover-sidebar"]}>
+                <Offcanvas.Title className={styles["sidebar-list__discover-sidebar__title"]}> 
+                  استكشف
+                  <div id="back-btn" className={styles["sidebar-list__discover-sidebar__title__back-btn"]}>
+                  <svg id="back" xmlns="http://www.w3.org/2000/svg" width="0.5rem" height="0.875rem" viewBox="0 0 8.39 14">
+                    <path id="Path_12841" data-name="Path 12841" d="M19.166,6.006a1.346,1.346,0,0,0-.229-.183L13.51.4a1.356,1.356,0,0,0-1.918,1.918l4.674,4.673-4.7,4.7A1.356,1.356,0,1,0,13.486,13.6l5.451-5.45a1.407,1.407,0,0,0,.229-2.147Z" transform="translate(-11.171 0)" fill="#0e0b1d"/>
+                  </svg>
+                  <span id="back-btn-text"> الرجوع </span>  
                   </div>
-                </div>
-                <div className={styles["navbar__cart-popover__outer-box"]}>
-                  <img
-                    src="/images/course img1.png"
-                    alt="course image"
-                    className={styles["navbar__cart-popover__img"]}
-                  />
-                  <div
-                    className={styles["navbar__cart-popover__course-details"]}
-                  >
-                    <div
-                      className={
-                        styles["navbar__cart-popover__course-details__title"]
-                      }
-                    >
-                      مفاتيح النجاح في الحياة
-                    </div>
-                    <div
-                      className={
-                        styles["navbar__cart-popover__course-details__author"]
-                      }
-                    >
-                      {" "}
-                      د. حسين عبدالكريم{" "}
-                    </div>
-                    <div
-                      className={
-                        styles[
-                          "navbar__cart-popover__course-details__price-container"
-                        ]
-                      }
-                    >
-                      <span
-                        className={
-                          styles["navbar__cart-popover__course-details__price"]
-                        }
-                      >
-                        850
-                      </span>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__currency"
-                          ]
-                        }
-                      >
-                        جنية مصري
-                      </span>
-                    </div>
-                    <div
-                      className={
-                        styles[
-                          "navbar__cart-popover__course-details__old-price-container"
-                        ]
-                      }
-                    >
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__old-price"
-                          ]
-                        }
-                      >
-                        950
-                      </span>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__old-price-currency"
-                          ]
-                        }
-                      >
-                        جنية مصري
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles["navbar__cart-popover__checkout-box"]}>
-                  <div
-                    className={
-                      styles[
-                        "navbar__cart-popover__checkout-box__total-price-box"
-                      ]
-                    }
-                  >
-                    <div
-                      className={
-                        styles["navbar__cart-popover__checkout-box__items"]
-                      }
-                    >
-                      الإجمالي (2 دورة)
-                    </div>
-                    <div>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__checkout-box__total-price"
-                          ]
-                        }
-                      >
-                        1450
-                      </span>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__checkout-box__total-price-currency"
-                          ]
-                        }
-                      >
-                        جنية مصري
-                      </span>
-                    </div>
-                    <div
-                      className={
-                        styles[
-                          "navbar__cart-popover__checkout-box__old-total-price-box"
-                        ]
-                      }
-                    >
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__checkout-box__old-total-price"
-                          ]
-                        }
-                      >
-                        1550
-                      </span>
-                      <span
-                        className={
-                          styles[
-                            "navbar__cart-popover__checkout-box__old-total-price-currency"
-                          ]
-                        }
-                      >
-                        جنية مصري
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className={
-                      styles["navbar__cart-popover__checkout-box__cart-btn"]
-                    }
-                  >
-                    <Button>إذهب للسلة</Button>
-                  </div>
-                </div>
-              </div>
-            }
-          >
-            <div className={styles["navbar__cart-icon-container"]}>
-            <svg className={styles["navbar__cart-icon"]} xmlns="http://www.w3.org/2000/svg" width="2.063rem" height="1.875rem" viewBox="0 0 33.02 30.22">
-  <g id="cart" transform="translate(0 -21.705)">
-    <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
-      <g id="Group_6" data-name="Group 6">
-        <path id="Path_12874" data-name="Path 12874" d="M345.664,362.612a4.117,4.117,0,1,0,4.117,4.117A4.122,4.122,0,0,0,345.664,362.612Zm0,5.764a1.647,1.647,0,1,1,1.647-1.647A1.649,1.649,0,0,1,345.664,368.376Z" transform="translate(-341.547 -362.612)" fill="#0e0b1d"/>
-      </g>
-    </g>
-    <g id="Group_9" data-name="Group 9" transform="translate(0 21.705)">
-      <g id="Group_8" data-name="Group 8" transform="translate(0 0)">
-        <path id="Path_12875" data-name="Path 12875" d="M32.758,27.778a1.234,1.234,0,0,0-.972-.474H7.624L6.513,22.653a1.236,1.236,0,0,0-1.2-.948H1.235a1.235,1.235,0,1,0,0,2.47h3.1l4.014,16.8a1.235,1.235,0,0,0,1.2.948H28.78a1.235,1.235,0,0,0,1.2-.938l3.006-12.146A1.237,1.237,0,0,0,32.758,27.778ZM27.813,39.45H10.527L8.215,29.775H30.207Z" transform="translate(0 -21.705)" fill="#0e0b1d"/>
-      </g>
-    </g>
-    <g id="Group_11" data-name="Group 11" transform="translate(7.082 43.691)">
-      <g id="Group_10" data-name="Group 10">
-        <path id="Path_12876" data-name="Path 12876" d="M113.923,362.612a4.117,4.117,0,1,0,4.117,4.117A4.122,4.122,0,0,0,113.923,362.612Zm0,5.764a1.647,1.647,0,1,1,1.647-1.647A1.649,1.649,0,0,1,113.923,368.376Z" transform="translate(-109.806 -362.612)" fill="#0e0b1d"/>
-      </g>
-    </g>
-  </g>
+                  </Offcanvas.Title>
+              </Offcanvas.Header>
+              <ul className={styles["sidebar-list__discover-sidebar__list"]}>
+                <div><div>التخصصات</div></div>
+                <li>تنمية بشرية</li>
+                <li>تربية الأطفال</li>
+                <li>فنون</li>
+                <li>حياة</li>
+                <li>بيزنس</li>
+                <li>تنمية بشرية</li>
+                <li>تربية الأطفال</li>
+                <li>فنون</li>
+                <li>حياة</li>
+              </ul>
+              <ul className={styles["sidebar-list__discover-sidebar__list"]}>
+                <div><div>الأقسام</div></div>
+                  <li>دورات تدريبية</li>
+                  <li>دورات مباشرة</li>
+                  <li>الاستشارات</li>
+                  <li>كتيبات وملخصات</li>
+                  <li>مقالات</li>
+              </ul>
+              <ul className={styles["sidebar-list__discover-sidebar__list"]}>
+                <div><div>أخري</div></div>
+                  <li>عروض</li>
+                  <li>المدربين</li>
+                  <li>عن تدرب</li>
+                  <li>تواصل معنا</li>
+              </ul>
+            </Offcanvas>
+            <li className={styles["sidebar-list__item"]}>تدرب للشركات</li>
+            <li className={styles["sidebar-list__item"]}>انضم كمدرب</li>
+          </ul>
+          <div className={styles["sidebar-list__dark-mode-box"]}>
+            <span>تغيير للوضع الداكن</span>
+            <div className={styles["sidebar-list__dark-mode-box__icon"]}>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.688rem" height="1.5rem" viewBox="0 0 26.848 24">
+              <g id="dark" transform="translate(-27.996 -18.17)">
+                <path id="Path_15039" data-name="Path 15039" d="M190.834,58.929h-1.952V56.976a.976.976,0,0,0-1.953,0v1.953h-1.952a.976.976,0,1,0,0,1.953h1.952v1.953a.976.976,0,0,0,1.953,0V60.881h1.952a.976.976,0,1,0,0-1.953Z" transform="translate(-136.967 -34.82)" fill="#fff" opacity="0.3"/>
+                <path id="Path_15040" data-name="Path 15040" d="M144.86,19.438h.86v.86a.86.86,0,0,0,1.719,0v-.86h.86a.86.86,0,0,0,0-1.719h-.86v-.86a.86.86,0,0,0-1.719,0v.86h-.86a.86.86,0,0,0,0,1.719Z" transform="translate(-102.157 2.17)" fill="#fff" opacity="0.3"/>
+                <path id="Path_15041" data-name="Path 15041" d="M50.994,45.165a.975.975,0,0,0-.263.043,10.254,10.254,0,0,1-12.6-12.614.976.976,0,0,0-1.216-1.216A12.2,12.2,0,1,0,51.956,46.416a.976.976,0,0,0-.962-1.251Z" transform="translate(0 -13.168)" fill="#fff"/>
+              </g>
             </svg>
-
-             
-              <Badge className={styles["navbar__cart-icon__badge"]}>2</Badge>
             </div>
-          </OverlayTrigger>
+
+          </div>
+          <Button className={styles["sidebar-list__register-btn"]}>حساب جديد</Button>
+          <Button className={styles["sidebar-list__sign-in-btn"]}>تسجيل دخول</Button>
+        </NavBar.Offcanvas>
+        <Nav>
+              <Nav.Link className={styles["navbar__links"]} id="discover" >
+                استكشف
+                <svg id="dropdown" xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
+    <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
+      <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#222"/>
+    </g>
+  </svg>
+              </Nav.Link>
+              <div className={styles["navbar__discover-popover"]} id="discover-popover" >
+                  <div className={styles["navbar__discover-popover__box"]}>
+                    <div className={styles["navbar__discover-popover__caption"]}>
+                      التخصصات
+                    </div>
+                    <ul className={styles["navbar__discover-popover__list"]}>
+                      <li>تنمية بشرية</li>
+                      <li>تربية الأطفال</li>
+                      <li>فنون</li>
+                      <li>حياة</li>
+                      <li>بيزنس</li>
+                      <li>تنمية بشرية</li>
+                      <li>تربية الأطفال</li>
+                      <li>فنون</li>
+                      <li>حياة</li>
+                    </ul>
+                  </div>
+                  <div className={styles["navbar__discover-popover__box"]}>
+                    <div className={styles["navbar__discover-popover__caption"]}>
+                    الأقسام
+                    </div>
+                    <ul className={styles["navbar__discover-popover__list"]}>
+                        <li>دورات تدريبية</li>
+                        <li>دورات مباشرة</li>
+                        <li>الاستشارات</li>
+                        <li>كتيبات وملخصات</li>
+                        <li>مقالات</li>
+                    </ul>
+                  </div>
+                  <div className={styles["navbar__discover-popover__box"]}>
+                    <div className={styles["navbar__discover-popover__caption"]}>
+                    أخري
+                    </div>
+                    <ul className={styles["navbar__discover-popover__list"]}>
+                        <li>عروض</li>
+                        <li>المدربين</li>
+                        <li>عن تدرب</li>
+                        <li>تواصل معنا</li>
+                    </ul>
+                  </div>
+                </div>
+
+            <div className={styles["navbar__search-bar-container"]}>
+              <div
+                className={styles["navbar__search-bar-container__icon-wrapper"]}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" viewBox="0 0 20 20">
+    <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#777"/>
+                </svg>
+              </div>
+              <Form.Control
+                type="text"
+                placeholder="اكتشف هواياتك..."
+                className={styles["navbar__search-bar-container__search-bar"]}
+              />
+            </div>
+
+            <Nav.Link className={styles["navbar__links"]}>تدرب للشركات</Nav.Link>
+
+            <Nav.Link className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
+
+            <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
+
+            <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
+            <svg className={styles["responsive-search-icon"]} xmlns="http:www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 20 20">
+                     <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#222"/>
+                 </svg>
+
+            <OverlayTrigger
+            trigger='click'
+            rootClose
+              placement="bottom-start"
+              overlay={
+                <div className={styles["navbar__cart-popover"]} id="cart-popover">
+                  <div className={styles["navbar__cart-popover__outer-box"]}>
+                    <img
+                      src="/images/course img1.png"
+                      alt="course image"
+                      className={styles["navbar__cart-popover__img"]}
+                    />
+                    <div
+                      className={styles["navbar__cart-popover__course-details"]}
+                    >
+                      <div
+                        className={
+                          styles["navbar__cart-popover__course-details__title"]
+                        }
+                      >
+                        مفاتيح النجاح في الحياة
+                      </div>
+                      <div
+                        className={
+                          styles["navbar__cart-popover__course-details__author"]
+                        }
+                      >
+                        {" "}
+                        د. حسين عبدالكريم{" "}
+                      </div>
+                      <div
+                        className={
+                          styles[
+                            "navbar__cart-popover__course-details__price-container"
+                          ]
+                        }
+                      >
+                        <span
+                          className={
+                            styles["navbar__cart-popover__course-details__price"]
+                          }
+                        >
+                          850
+                        </span>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__course-details__currency"
+                            ]
+                          }
+                        >
+                          جنية مصري
+                        </span>
+                      </div>
+                      <div
+                        className={
+                          styles[
+                            "navbar__cart-popover__course-details__old-price-container"
+                          ]
+                        }
+                      >
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__course-details__old-price"
+                            ]
+                          }
+                        >
+                          950
+                        </span>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__course-details__old-price-currency"
+                            ]
+                          }
+                        >
+                          جنية مصري
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles["navbar__cart-popover__outer-box"]}>
+                    <img
+                      src="/images/course img1.png"
+                      alt="course image"
+                      className={styles["navbar__cart-popover__img"]}
+                    />
+                    <div
+                      className={styles["navbar__cart-popover__course-details"]}
+                    >
+                      <div
+                        className={
+                          styles["navbar__cart-popover__course-details__title"]
+                        }
+                      >
+                        مفاتيح النجاح في الحياة
+                      </div>
+                      <div
+                        className={
+                          styles["navbar__cart-popover__course-details__author"]
+                        }
+                      >
+                        {" "}
+                        د. حسين عبدالكريم{" "}
+                      </div>
+                      <div
+                        className={
+                          styles[
+                            "navbar__cart-popover__course-details__price-container"
+                          ]
+                        }
+                      >
+                        <span
+                          className={
+                            styles["navbar__cart-popover__course-details__price"]
+                          }
+                        >
+                          850
+                        </span>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__course-details__currency"
+                            ]
+                          }
+                        >
+                          جنية مصري
+                        </span>
+                      </div>
+                      <div
+                        className={
+                          styles[
+                            "navbar__cart-popover__course-details__old-price-container"
+                          ]
+                        }
+                      >
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__course-details__old-price"
+                            ]
+                          }
+                        >
+                          950
+                        </span>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__course-details__old-price-currency"
+                            ]
+                          }
+                        >
+                          جنية مصري
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={styles["navbar__cart-popover__checkout-box"]}>
+                    <div
+                      className={
+                        styles[
+                          "navbar__cart-popover__checkout-box__total-price-box"
+                        ]
+                      }
+                    >
+                      <div
+                        className={
+                          styles["navbar__cart-popover__checkout-box__items"]
+                        }
+                      >
+                        الإجمالي (2 دورة)
+                      </div>
+                      <div>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__checkout-box__total-price"
+                            ]
+                          }
+                        >
+                          1450
+                        </span>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__checkout-box__total-price-currency"
+                            ]
+                          }
+                        >
+                          جنية مصري
+                        </span>
+                      </div>
+                      <div
+                        className={
+                          styles[
+                            "navbar__cart-popover__checkout-box__old-total-price-box"
+                          ]
+                        }
+                      >
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__checkout-box__old-total-price"
+                            ]
+                          }
+                        >
+                          1550
+                        </span>
+                        <span
+                          className={
+                            styles[
+                              "navbar__cart-popover__checkout-box__old-total-price-currency"
+                            ]
+                          }
+                        >
+                          جنية مصري
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      className={
+                        styles["navbar__cart-popover__checkout-box__cart-btn"]
+                      }
+                    >
+                      <Button>إذهب للسلة</Button>
+                    </div>
+                  </div>
+                </div>
+              }
+            >       
+           <div className={styles["navbar__cart-icon-container"]}>
+                <svg className={styles["navbar__cart-icon"]} xmlns="http://www.w3.org/2000/svg" width="2.063rem" height="1.875rem" viewBox="0 0 33.02 30.22">
+      <g id="cart" transform="translate(0 -21.705)">
+        <g id="Group_7" data-name="Group 7" transform="translate(22.027 43.691)">
+          <g id="Group_6" data-name="Group 6">
+            <path id="Path_12874" data-name="Path 12874" d="M345.664,362.612a4.117,4.117,0,1,0,4.117,4.117A4.122,4.122,0,0,0,345.664,362.612Zm0,5.764a1.647,1.647,0,1,1,1.647-1.647A1.649,1.649,0,0,1,345.664,368.376Z" transform="translate(-341.547 -362.612)" fill="#0e0b1d"/>
+          </g>
+        </g>
+        <g id="Group_9" data-name="Group 9" transform="translate(0 21.705)">
+          <g id="Group_8" data-name="Group 8" transform="translate(0 0)">
+            <path id="Path_12875" data-name="Path 12875" d="M32.758,27.778a1.234,1.234,0,0,0-.972-.474H7.624L6.513,22.653a1.236,1.236,0,0,0-1.2-.948H1.235a1.235,1.235,0,1,0,0,2.47h3.1l4.014,16.8a1.235,1.235,0,0,0,1.2.948H28.78a1.235,1.235,0,0,0,1.2-.938l3.006-12.146A1.237,1.237,0,0,0,32.758,27.778ZM27.813,39.45H10.527L8.215,29.775H30.207Z" transform="translate(0 -21.705)" fill="#0e0b1d"/>
+          </g>
+        </g>
+        <g id="Group_11" data-name="Group 11" transform="translate(7.082 43.691)">
+          <g id="Group_10" data-name="Group 10">
+            <path id="Path_12876" data-name="Path 12876" d="M113.923,362.612a4.117,4.117,0,1,0,4.117,4.117A4.122,4.122,0,0,0,113.923,362.612Zm0,5.764a1.647,1.647,0,1,1,1.647-1.647A1.649,1.649,0,0,1,113.923,368.376Z" transform="translate(-109.806 -362.612)" fill="#0e0b1d"/>
+          </g>
+        </g>
+      </g>
+                </svg>
+                <Badge className={styles["navbar__cart-icon__badge"]}>2</Badge>
+                
+              
+              </div>    
+            </OverlayTrigger>
         </Nav>
+       
       </NavBar>
     </>
   );

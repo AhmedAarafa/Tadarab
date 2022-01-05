@@ -4,52 +4,7 @@ import { Accordion } from "react-bootstrap";
 import './utils';
 
 export default function FAQ() {
-  // const [arrowsController, setArrowsDirection] = useState<any>({
-  //   "arrow-accordion-header1":true,
-  //   "arrow-accordion-header2":false,
-  //   "arrow-accordion-header3":false,
-  // });
-
-  useEffect(() => {
-    // const accordionHeaders = document.querySelectorAll('[id^="accordion-header"]');
-    // // console.log(arrowsController);
-
-    // accordionHeaders.forEach((element:any)=>{
-    //   const id:any = element.id;
-    //   const arrow:any = document.getElementById(`arrow-${id}`);
-    //   // console.log(element);
-      
-    //   // console.log("id",id);
-    //   if(arrowsController[`${arrow.id}`] == true){
-    //     arrow ? arrow.style.transform ="none" : null ;
-    //   }else{
-    //     arrow ? arrow.style.transform ="rotate(90deg)" : null ;
-    //   }
-      
-    //   element.addEventListener('click', ()=>{
-    //     // console.log("arrow", arrow);
-    //     if(arrow){
-    //       let newArrowsController:any = arrowsController;
-    //       Object.keys(newArrowsController).forEach((k)=>{
-    //         newArrowsController[k] = false;
-    //       });
-    //       console.log('ss',newArrowsController);
-    //       let newArrowController:any = newArrowsController[`${arrow.id}`];
-    //       newArrowController = !newArrowController;
-    //       newArrowsController[`${arrow.id}`] = newArrowController;
-
-    //       console.log("arrowsController",newArrowsController);
-    //       setArrowsDirection(newArrowsController);
-
-    //     }
-    //     if(arrowsController[`${arrow.id}`] == true){
-    //       arrow ? arrow.style.transform ="none" : null ;
-    //     }else{
-    //       arrow ? arrow.style.transform ="rotate(90deg)" : null ;
-    //     }
-    //   })
-    // })
-  }, [])
+ 
   return (
     <>
       <div className={styles["faq"]}>
@@ -114,6 +69,11 @@ export default function FAQ() {
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
+
+        <div className={styles["faq__contact-us"]}>
+          <span> هل لديك سؤال؟ </span>
+          <span> تواصل معنا </span>
+        </div>
       
       </div>
     </>

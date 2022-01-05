@@ -38,8 +38,8 @@ export default function SpecialOffer() {
                             <img src="/images/trainer img.png" alt="trainer image" />
                         </div>
                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
-                            <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
-                            تعليم الرسم بالقلم الرصاص
+                            <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
+                            تعليم الرسم بالقلم الرصاصصصصصص
                             </div>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                             أ/ مروة عبدالله
@@ -79,9 +79,12 @@ export default function SpecialOffer() {
                 </div>
             </div>
             <div className={styles["special-offer__cards-outer-box__plus"]}>
+                <div>
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 20 20">
                     <path id="plus-solid" d="M18.571,39.857H12.143V33.429A1.429,1.429,0,0,0,10.714,32H9.286a1.429,1.429,0,0,0-1.429,1.429v6.429H1.429A1.429,1.429,0,0,0,0,41.286v1.429a1.429,1.429,0,0,0,1.429,1.429H7.857v6.429A1.429,1.429,0,0,0,9.286,52h1.429a1.429,1.429,0,0,0,1.429-1.429V44.143h6.429A1.429,1.429,0,0,0,20,42.714V41.286A1.429,1.429,0,0,0,18.571,39.857Z" transform="translate(0 -32)" fill="#be1622"/>
                 </svg>
+                </div>
             </div>
             <div className={styles["special-offer__cards-outer-box__card"]}>
                 <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
@@ -99,7 +102,7 @@ export default function SpecialOffer() {
                         </div>
                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
-                            تعليم الرسم بالقلم الرصاص
+                            تعليم الرسم والتلوين
                             </div>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                             أ/ مروة عبدالله
@@ -139,9 +142,12 @@ export default function SpecialOffer() {
                 </div>
             </div>
             <div className={styles["special-offer__cards-outer-box__plus"]}>
+                <div>
+
                 <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 20 20">
                     <path id="plus-solid" d="M18.571,39.857H12.143V33.429A1.429,1.429,0,0,0,10.714,32H9.286a1.429,1.429,0,0,0-1.429,1.429v6.429H1.429A1.429,1.429,0,0,0,0,41.286v1.429a1.429,1.429,0,0,0,1.429,1.429H7.857v6.429A1.429,1.429,0,0,0,9.286,52h1.429a1.429,1.429,0,0,0,1.429-1.429V44.143h6.429A1.429,1.429,0,0,0,20,42.714V41.286A1.429,1.429,0,0,0,18.571,39.857Z" transform="translate(0 -32)" fill="#be1622"/>
                 </svg>
+                </div>
             </div>
             <div className={styles["special-offer__cards-outer-box__card"]}>
                 <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
@@ -159,7 +165,7 @@ export default function SpecialOffer() {
                         </div>
                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
-                            تعليم الرسم بالقلم الرصاص
+                            تعليم الرسم للأطفال
                             </div>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                             أ/ مروة عبدالله
@@ -216,7 +222,7 @@ export default function SpecialOffer() {
                     </div>
                 </div>
 
-                <div>
+                <div className={styles["special-offer__cards-outer-box__card__offer-duration-checkout-box"]}>
                     <div className={styles["special-offer__cards-outer-box__card__offer-duration-box"]}>
                         <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__offer-available"]}>
                             <div>العرض</div>
@@ -253,7 +259,7 @@ export default function SpecialOffer() {
 
                         </div>
                     </div>
-                    <div>
+                    <div className="w-100">
                         <Button className={styles["special-offer__cards-outer-box__card__add-to-cart-btn"]}>
                         <svg id="add_to_cart" data-name="add to cart" xmlns="http://www.w3.org/2000/svg" width="1.375rem" height="1.25rem" viewBox="0 0 22 20.135">
                             <g id="Group_10771" data-name="Group 10771" transform="translate(14.676 14.648)">

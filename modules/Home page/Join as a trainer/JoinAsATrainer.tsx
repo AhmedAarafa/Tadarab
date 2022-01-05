@@ -17,7 +17,7 @@ export default function JoinAsATrainer() {
                         </div>
                     <Button className={styles["join-as-a-trainer__btn"]}>
                     أنضم إلينا الأن
-                    </Button>
+                    </Button> 
                 </Col>
             </Row>
         </>

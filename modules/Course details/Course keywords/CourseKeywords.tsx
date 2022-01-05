@@ -9,11 +9,11 @@ export default function CourseKeywords() {
             الكلمات المفتاحية للدورة
             </div>
             <div className={styles["course-keywords__tags"]}>
+                <span> الرسم للمبتدئين </span>
                 <span> الرسم </span>
                 <span> التلوين </span>
                 <span> الألوان </span>
                 <span> الفنون </span>
-                <span> الرسم للمبتدئين </span>
             </div>
         </div>
             

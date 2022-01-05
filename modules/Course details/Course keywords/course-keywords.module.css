@@ -2,6 +2,7 @@
   margin-top: 3.438rem;
   padding: 3.438rem 0 0 0;
   border-top: 0.05rem solid rgba(34, 34, 34, 0.1);
+  width: 43rem;
 }
 
 .course-keywords__title {
@@ -24,5 +25,30 @@
   padding: 0.5rem 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
   margin-left: 0.5rem;
+}
+
+@media (max-width: 575px) {
+  .course-keywords {
+    margin-top: 9.688rem;
+    padding: 0 0 0 0;
+    border-top: none;
+  }
+  .course-keywords__title {
+    font-size: 3.75rem;
+  }
+  .course-keywords__tags {
+    margin-top: 3.125rem;
+  }
+  .course-keywords__tags span {
+    font-size: 1.875rem;
+    border-radius: 2.345rem;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 1.25rem 1.875rem;
+    margin-left: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
 }
 /*# sourceMappingURL=course-keywords.module.css.map */

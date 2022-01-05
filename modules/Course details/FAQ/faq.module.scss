@@ -68,5 +68,87 @@
     font-size: 1rem;
     color: $grey;
     padding: 0 3.8rem 2rem 2rem !important;
-   
+
+}
+
+.faq__contact-us{
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-top: 1.625rem;
+    span:nth-of-type(1){
+        color: $grey;
+    }
+    span:nth-of-type(2){
+        color: $primary-red;
+    }
+}
+
+@media (max-width:575px) {
+
+    .faq {
+        margin-top: 9.375rem;
+        width: 100%;
+    }
+
+    .faq__title {
+        font-size: 1.5rem*2.4;
+    }
+
+    .faq__accordion {
+        border-radius: 1.25rem*2.4 !important;
+        margin-top: 1.563rem*2.4;
+    }
+
+    .faq__accordion__item {
+        border-radius: 1.063rem*2.4 !important;
+        box-shadow: 0 0 1.25rem*2.4 #00000014;
+        border: 0 !important;
+        margin-top: 1.25rem*2.4;
+        @include flex(flex-start);
+        flex-direction: column;
+
+    }
+
+    .faq__accordion__header {
+        @include flex(center);
+
+        svg {
+            margin-left: 1.3rem*2.4;
+        }
+
+        button {
+            font-size: 1.125rem*2.4;
+            padding: 1.5rem*2.4 !important;
+            border-radius: 1.25rem*2.4 !important;
+            @include flex(center);
+            text-align: right;
+
+
+            &::after {
+                background-size: 1.25rem*2.4 1.1rem*2.4 !important;
+                margin-left: 1rem*2.4 !important;
+                margin-top: 0.3rem*2.4 !important;
+            }
+        }
+
+        button:not(.collapsed) {
+            &::after {
+                background-size: 1.25rem*2.4 1.1rem*2.4 !important;
+                margin-left: 1rem*2.4 !important;
+                margin-top: 0.3rem*2.4 !important;
+
+            }
+        }
+    }
+
+    .faq__accordion__body {
+        font-size: 1rem*2.4;
+        padding: 0 3.8rem*2.4 2rem*2.4 2rem*2.4 !important;
+    }
+
+    .faq__contact-us{
+        font-size: 1.125rem*2.4;
+        margin-top: 1.625rem*2.4;
+    }
+
 }

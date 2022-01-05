@@ -89,4 +89,99 @@
   color: #777777;
   padding: 0 3.8rem 2rem 2rem !important;
 }
+
+.faq__contact-us {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 1.625rem;
+}
+
+.faq__contact-us span:nth-of-type(1) {
+  color: #777777;
+}
+
+.faq__contact-us span:nth-of-type(2) {
+  color: #AF151F;
+}
+
+@media (max-width: 575px) {
+  .faq {
+    margin-top: 9.375rem;
+    width: 100%;
+  }
+  .faq__title {
+    font-size: 3.6rem;
+  }
+  .faq__accordion {
+    border-radius: 3rem !important;
+    margin-top: 3.7512rem;
+  }
+  .faq__accordion__item {
+    border-radius: 2.5512rem !important;
+    -webkit-box-shadow: 0 0 3rem #00000014;
+            box-shadow: 0 0 3rem #00000014;
+    border: 0 !important;
+    margin-top: 3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .faq__accordion__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .faq__accordion__header svg {
+    margin-left: 3.12rem;
+  }
+  .faq__accordion__header button {
+    font-size: 2.7rem;
+    padding: 3.6rem !important;
+    border-radius: 3rem !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    text-align: right;
+  }
+  .faq__accordion__header button::after {
+    background-size: 3rem 2.64rem !important;
+    margin-left: 2.4rem !important;
+    margin-top: 0.72rem !important;
+  }
+  .faq__accordion__header button:not(.collapsed)::after {
+    background-size: 3rem 2.64rem !important;
+    margin-left: 2.4rem !important;
+    margin-top: 0.72rem !important;
+  }
+  .faq__accordion__body {
+    font-size: 2.4rem;
+    padding: 0 9.12rem 4.8rem 4.8rem !important;
+  }
+  .faq__contact-us {
+    font-size: 2.7rem;
+    margin-top: 3.9rem;
+  }
+}
 /*# sourceMappingURL=faq.module.css.map */

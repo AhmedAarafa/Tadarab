@@ -37,5 +37,43 @@ export const popoverHandler = () => {
       `
     }
   });
-
 };
+
+export const closeBtnHandler = ()=>{
+  window.addEventListener("click" , (e:any)=>{
+    if(e.target.className == "btn-close" || e.target.className == "fade offcanvas-backdrop"){
+      const closeBtn:any=document.getElementsByClassName(`btn-close`)[0];
+      closeBtn.style.cssText=` display:none !important`;
+      const discoverSidebar:any = document.getElementById("offcanvasNavbar2");
+      discoverSidebar ?  discoverSidebar.style.cssText=`
+      transform: translateX(100%);
+      visibility:hidden;
+      transition: all 0.3s ease-in-out;
+      ` : null ;
+    }
+
+    if(e.target.id == "back-btn" ||
+     e.target.id == "back" ||
+     e.target.id == "back-btn-text" ||
+     e.target.id == "Path_12841"
+     ){
+      const discoverSidebar:any = document.getElementById("offcanvasNavbar2");
+      discoverSidebar.style.cssText=`
+      transform: translateX(100%);
+      visibility:hidden;
+      transition: all 0.3s ease-in-out;
+      `
+    }
+
+    if(e.target.id == "discover" ||
+     e.target.id == "next" ||
+     e.target.id == "Path_12841" 
+     ){
+      const discoverSidebar:any = document.getElementById("offcanvasNavbar2");
+      discoverSidebar ?  discoverSidebar.style.cssText=`
+      transform: none;
+      visibility:visible;
+      ` : null ;
+    }
+  });
+}

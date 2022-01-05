@@ -1,11 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React ,{ useEffect } from "react";
 import styles from "./trainer-info.module.css";
+import {scrollspyHandler} from "./utils"
 
 export default function TrainerInfo() {
+  useEffect(() => {
+    window.addEventListener("resize" , ()=>{
+      scrollspyHandler();
+     });
+   scrollspyHandler();
+  }, []);
   return (
     <>
-      <div className={styles["trainer-info-section"]}>
+      <div  className={styles["trainer-info-section"]}>
+        <div id="trainer-info" className={styles["trainer-info-section__scrollspy-helper"]}></div>
         <div className={styles["trainer-info-section__trainer-box"]}>
           <div className={styles["trainer-info-section__trainer-img"]}>
             <img src="/images/trainer img.png" alt="trainer image" />

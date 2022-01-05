@@ -50,4 +50,51 @@
   font-size: 0.938rem;
   color: #777777;
 }
+
+@media (max-width: 575px) {
+  .course-requirements {
+    margin-top: 8.75rem;
+    width: 100%;
+    border-radius: 3.125rem;
+    border: 0.1575rem solid rgba(34, 34, 34, 0.1);
+    padding: 1.75rem;
+  }
+  .course-requirements__mid-level {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    border-radius: 2.345rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 2rem 2.5rem;
+  }
+  .course-requirements__mid-level span {
+    font-size: 2.6575rem;
+    margin: 0 1.25rem -0.75rem 0;
+  }
+  .course-requirements__mid-level svg {
+    width: 4.6875rem;
+    height: 4.25rem;
+  }
+  .course-requirements__box {
+    padding: 3.25rem 2.5rem 0 0;
+  }
+  .course-requirements__box__title {
+    font-size: 2.75rem;
+  }
+  .course-requirements__box__requirements {
+    padding: 1.25rem 2.5rem 0 0;
+  }
+  .course-requirements__box__requirements li {
+    margin-bottom: 0.75rem;
+    font-size: 2.345rem;
+  }
+}
 /*# sourceMappingURL=course-requirements.module.css.map */

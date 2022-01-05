@@ -33,7 +33,7 @@
 
 .statistics__breif {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #777777;
   text-align: center;
 }
@@ -78,5 +78,75 @@
   font-weight: 800;
   color: #222222;
   line-height: 0;
+}
+
+@media (max-width: 575px) {
+  .statistics {
+    margin: 28rem 5rem 0 5rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .statistics::before {
+    content: "";
+    background-image: url("/images/map.svg");
+    background-size: 100% 30%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.6;
+  }
+  .statistics__title {
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: 800;
+    padding: 2rem 0 4rem 0;
+  }
+  .statistics__breif {
+    font-size: 2.656rem;
+    text-align: center;
+    margin: 0 -1rem 0 -1rem;
+  }
+  .statistics__details__card {
+    margin-bottom: 9.688rem;
+  }
+  .statistics__details {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    margin: 7.813rem 0 0 0;
+    padding-bottom: 8.75rem;
+  }
+  .statistics__details > div {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .statistics__details__img {
+    width: 12.345rem;
+    height: 7.8125rem;
+  }
+  .statistics__details__counter {
+    font-size: 7.8125rem;
+    font-weight: 800;
+  }
+  .statistics__details__counter span:nth-of-type(2) {
+    font-size: 3.4375rem;
+  }
+  .statistics__details__unit {
+    font-size: 3.4375rem;
+  }
 }
 /*# sourceMappingURL=statistics.module.css.map */

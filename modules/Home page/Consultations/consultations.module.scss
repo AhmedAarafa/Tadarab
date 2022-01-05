@@ -15,7 +15,7 @@
 
     span:nth-of-type(2) {
         color: $primary-red;
-        margin-right: 0.35rem;
+        margin-right: 0.45rem;
     }
 }
 
@@ -33,6 +33,11 @@
     color: white;
 }
 
+.consultations__show-all-btn-col{
+    @include flex(center,flex-end);
+    padding-left: 3rem;
+    background-color: #0E0B1D;
+}
 .consultations__minor-title-container__btn {
     font-size: 1.063rem;
     font-weight: 700;
@@ -55,13 +60,15 @@
 
 }
 
+
+
 .consultations__cards-carousel{
     background-color: #0E0B1D;
-    padding-top: 2.75rem;
-    padding-bottom: 6rem;
+    padding-top: 2.75rem*0.8;
+    padding-bottom: 6rem*0.8;
 
     &>div {
-        padding: 0 2rem !important;
+        padding: 0 2rem*0.8 !important;
         @include inset-box-shadow(black); 
         &>div:nth-child(1),
         &>div:nth-child(2) {
@@ -71,33 +78,34 @@
 }
 
 .consultations__cards-carousel__card{
-    width: 18.75rem;
-    height: 25.625rem;
-    border-radius: 0.75rem;
+    width: 18.75rem*0.8;
+    height: 25.625rem*0.8;
+    border-radius: 0.75rem*0.8;
     color: white;
     position: relative;
     overflow: hidden;
     @include flex(unset,flex-end);
     display: inline-flex;
-    background: transparent url('/images/trainer img.png') no-repeat padding-box;
+    background: transparent url('/images/trainer img@2x.png') no-repeat padding-box;
     background-size: contain;
     
 }
 
 .consultations__cards-carousel__card__card-body{
 padding: 0;
-background: transparent linear-gradient(180deg, #00000000 0%, #000000B3 48%, #000000E6 100%) 0% 0% no-repeat padding-box;
+background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
 }
 
 .consultations__cards-carousel__card__trainer{
-    font-size: 1.25rem;
+    font-size: 1.25rem*0.8;
     font-weight: 700;
-    margin-top: 2.5rem;
+    margin: 2.5rem*0.8 0 0.294rem*0.8 0;
+
 }
 
 .consultations__cards-carousel__card__job-title,
 .consultations__cards-carousel__card__job-history{
-font-size: 0.813rem;
+font-size: 0.813rem*0.8;
 padding: 0;
 
 }
@@ -105,18 +113,405 @@ padding: 0;
 .consultations__cards-carousel__card__btn{
     @include contained-button;
     width: 100%;
-    height: 3.75rem;
-    border-radius: 0 0 0.625rem 0.625rem;
-    margin-top: 0.8rem;
+    height: 3.75rem*0.8;
+    border-radius: 0 0 0.625rem*0.8 0.625rem*0.8;
+    margin-top: 1.5rem*0.8;
     @include flex(center,center);
 
-    img{
-        width: 1.5rem;
-        height: 1.5rem;
+    svg{
+        width: 1.5rem*0.8;
+        height: 1.5rem*0.8;
     }
     span{
-        font-size: 1rem;
-        margin-right: 0.781rem;
+        font-size: 1rem*0.8;
+        margin-right: 0.781rem*0.8;
     }
 
+}
+
+
+@media (max-width:1200px){
+        
+.consultations__title {
+    font-size: 2rem*1.03;
+    padding: 5rem*1.03 3rem*1.03 0 3rem*1.03;
+    border-radius: 5rem*1.03 0 0 0;
+    @include flex(center);
+
+    span:nth-of-type(1) {
+        color: white;
+    }
+
+    span:nth-of-type(2) {
+        margin-right: 0.45rem*1.03;
+    }
+}
+
+
+.consultations__minor-title-container {
+    @include flex(center, space-between);
+    padding: 1rem*1.03 3rem*1.03 0 3rem*1.03;
+
+}
+
+.consultations__minor-title-container__para {
+    font-size: 1.25rem*1.03;
+    font-weight: 700;
+    color: white;
+}
+
+.consultations__show-all-btn-col{
+    @include flex(center,flex-end);
+    padding-left: 3rem*1.03;
+}
+.consultations__minor-title-container__btn {
+    font-size: 1.063rem*1.03;
+    border: 0.063rem*1.03 solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem*1.03;
+    width: 15.188rem*1.03;
+    height: 2.75rem*1.03;
+    @include flex(center, space-around);
+
+    svg{
+        width: 0.5rem*1.03;
+        height: 0.875rem*1.03;
+    }
+    &:hover,&:active,&:focus{
+    border: 0.063rem*1.03 solid rgba(255, 255, 255, 0.2);
+    }
+
+}
+
+
+
+.consultations__cards-carousel{
+    padding-top: 2.75rem*1.03;
+    padding-bottom: 6rem*1.03;
+
+    &>div {
+        padding: 0 2rem*1.03 !important;
+        @include inset-box-shadow(black); 
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 42% !important;
+            &:after{
+                font-size: 1rem*1.03 !important;
+                box-shadow: 0 0 1.25rem*1.03 #00000033 !important;
+              }
+        }
+        &>div:nth-child(1){
+            right: 1rem*1.03 !important;
+            &:after{
+              padding: 1.5rem*1.03 1.18rem*1.03 1.5rem*1.03 1.28rem*1.03 !important;
+            }
+
+        }
+        &>div:nth-child(2){
+            left: 1rem*1.03 !important;
+            &:after{
+              padding: 1.5rem*1.03 1.28rem*1.03 1.5rem*1.03 1.18rem*1.03 !important;
+            }
+        }
+    }
+}
+
+.consultations__cards-carousel__card{
+    width: 18.75rem*1.03;
+    height: 25.625rem*1.03;
+    border-radius: 0.75rem*1.03;
+    @include flex(unset,flex-end);
+    background: transparent url('/images/trainer img@2x.png') no-repeat padding-box;
+    background-size: contain;
+    
+}
+
+.consultations__cards-carousel__card__card-body{
+padding: 0;
+background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
+}
+
+.consultations__cards-carousel__card__trainer{
+    font-size: 1.25rem*1.03;
+    font-weight: 700;
+    margin: 2.5rem*1.03 0 0.294rem*1.03 0;
+
+}
+
+.consultations__cards-carousel__card__job-title,
+.consultations__cards-carousel__card__job-history{
+font-size: 0.813rem*1.03;
+padding: 0;
+
+}
+
+.consultations__cards-carousel__card__btn{
+    @include contained-button;
+    width: 100%;
+    height: 3.75rem*1.03;
+    border-radius: 0 0 0.625rem*1.03 0.625rem*1.03;
+    margin-top: 1.5rem*1.03;
+    @include flex(center,center);
+
+    svg{
+        width: 1.5rem*1.03;
+        height: 1.5rem*1.03;
+    }
+    span{
+        font-size: 1rem*1.03;
+        margin-right: 0.781rem*1.03;
+    }
+}
+
+}
+
+@media (max-width:980px){
+    
+.consultations__title {
+    font-size: 2rem*1.34;
+    padding: 5rem*1.34 3rem*1.34 0 3rem*1.34;
+    border-radius: 5rem*1.34 0 0 0;
+    @include flex(center);
+
+    span:nth-of-type(1) {
+        color: white;
+    }
+
+    span:nth-of-type(2) {
+        margin-right: 0.45rem*1.34;
+    }
+}
+
+
+.consultations__minor-title-container {
+    @include flex(center, space-between);
+    padding: 1rem*1.34 3rem*1.34 0 3rem*1.34;
+
+}
+
+.consultations__minor-title-container__para {
+    font-size: 1.25rem*1.34;
+    font-weight: 700;
+    color: white;
+}
+
+.consultations__show-all-btn-col{
+    @include flex(center,flex-end);
+    padding-left: 3rem*1.34;
+}
+.consultations__minor-title-container__btn {
+    font-size: 1.063rem*1.34;
+    border: 0.063rem*1.34 solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.75rem*1.34;
+    width: 15.188rem*1.34;
+    height: 2.75rem*1.34;
+    @include flex(center, space-around);
+
+    svg{
+        width: 0.5rem*1.34;
+        height: 0.875rem*1.34;
+    }
+    &:hover,&:active,&:focus{
+    border: 0.063rem*1.34 solid rgba(255, 255, 255, 0.2);
+    }
+
+}
+
+
+
+.consultations__cards-carousel{
+    padding-top: 2.75rem*1.34;
+    padding-bottom: 6rem*1.34;
+
+    &>div {
+        padding: 0 2rem*1.34 !important;
+        @include inset-box-shadow(black); 
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 42% !important;
+            &:after{
+                font-size: 1rem*1.34 !important;
+                box-shadow: 0 0 1.25rem*1.34 #00000033 !important;
+              }
+        }
+        &>div:nth-child(1){
+            right: 1rem*1.34 !important;
+            &:after{
+              padding: 1.5rem*1.34 1.18rem*1.34 1.5rem*1.34 1.28rem*1.34 !important;
+            }
+
+        }
+        &>div:nth-child(2){
+            left: 1rem*1.34 !important;
+            &:after{
+              padding: 1.5rem*1.34 1.28rem*1.34 1.5rem*1.34 1.18rem*1.34 !important;
+            }
+        }
+    }
+}
+
+.consultations__cards-carousel__card{
+    width: 18.75rem*1.34;
+    height: 25.625rem*1.34;
+    border-radius: 0.75rem*1.34;
+    @include flex(unset,flex-end);
+    background: transparent url('/images/trainer img@2x.png') no-repeat padding-box;
+    background-size: contain;
+    
+}
+
+.consultations__cards-carousel__card__card-body{
+padding: 0;
+background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
+}
+
+.consultations__cards-carousel__card__trainer{
+    font-size: 1.25rem*1.34;
+    font-weight: 700;
+    margin: 2.5rem*1.34 0 0.294rem*1.34 0;
+
+}
+
+.consultations__cards-carousel__card__job-title,
+.consultations__cards-carousel__card__job-history{
+font-size: 0.813rem*1.34;
+padding: 0;
+
+}
+
+.consultations__cards-carousel__card__btn{
+    @include contained-button;
+    width: 100%;
+    height: 3.75rem*1.34;
+    border-radius: 0 0 0.625rem*1.34 0.625rem*1.34;
+    margin-top: 1.5rem*1.34;
+    @include flex(center,center);
+
+    svg{
+        width: 1.5rem*1.34;
+        height: 1.5rem*1.34;
+    }
+    span{
+        font-size: 1rem*1.34;
+        margin-right: 0.781rem*1.34;
+    }
+
+}
+
+}
+
+@media (max-width:575px){
+
+
+    .consultations__title {
+        font-size: 4.688rem;
+        padding: 8.5rem 3rem 0 3rem;
+        margin-top: 16.688rem;
+        border-radius: 0;
+        @include flex(center,center);
+    
+        span:nth-of-type(2) {
+            margin-right: 0.45rem;
+        }
+    }
+    
+    
+    .consultations__minor-title-container {
+        @include flex(center, center);
+        padding: 2.8rem 3rem 0 3rem;
+    
+    }
+    
+    .consultations__minor-title-container__para {
+        font-size: 2.2rem;
+        margin: 0 8rem 0 8rem;
+        text-align: center;
+    }
+    
+    .consultations__show-all-btn-col{
+        @include flex(center,center);
+        padding-left: 0;
+        background-color: #0E0B1D;
+    }
+    .consultations__minor-title-container__btn {
+        font-size: 1.063rem*2.43;
+        border: 0.063rem*2.43 solid rgba(255, 255, 255, 0.2);
+        background-color: #0E0B1D;
+        border-radius: 0.75rem*2.43;
+        width: 100%;
+        height: 2.75rem*2.43;
+        margin: 8.75rem 3.438rem 17.031rem 3.438rem;
+        @include flex(center, center);
+    
+        svg{
+            width: 0.5rem*2.5;
+        height: 0.875rem*2.5;
+        margin-right: 2.063rem;
+        }
+        &:hover,&:active,&:focus{
+        border: 0.063rem*2.43 solid rgba(255, 255, 255, 0.2);
+        }
+    
+    }
+    
+
+    .consultations__cards-carousel{
+        padding-top: 2.75rem*2.43;
+        padding-bottom: 0;
+    
+        &>div {
+            padding: 0 2rem*2.43 !important;
+            @include inset-box-shadow(black); 
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 42% !important;
+            }
+           
+        }
+    }
+    
+    .consultations__cards-carousel__card{
+        width: 18.75rem*2.43;
+        height: 25.625rem*2.43;
+        border-radius: 0.75rem*2.43;
+        color: white;
+        @include flex(unset,flex-end);
+    }
+    
+    .consultations__cards-carousel__card__card-body{
+    padding: 0;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 20%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    }
+    
+    .consultations__cards-carousel__card__trainer{
+        font-size: 1.25rem*2.43;
+        margin: 2.5rem*2.43 0 0.294rem*2.43 0;
+    
+    }
+    
+    .consultations__cards-carousel__card__job-title,
+    .consultations__cards-carousel__card__job-history{
+    font-size: 0.813rem*2.43;
+    padding: 0;
+    
+    }
+    
+    .consultations__cards-carousel__card__btn{
+        @include contained-button;
+        width: 100%;
+        height: 3.75rem*2.43;
+        border-radius: 0 0 0.625rem*2.43 0.625rem*2.43;
+        margin-top: 1.5rem*2.43;
+        @include flex(center,center);
+    
+        svg{
+            width: 1.5rem*2.43;
+            height: 1.5rem*2.43;
+        }
+        span{
+            font-size: 1rem*2.43;
+            margin-right: 0.781rem*2.43;
+        }
+    
+    }
+    
 }

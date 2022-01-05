@@ -18,28 +18,129 @@ import CourseReview from "modules/Course details/Course review/CourseReview";
 import CourseSubscribers from "modules/Course details/Course subscribers/CourseSubscribers";
 import TadarabBusiness from "modules/Course details/Tadarab business/TadarabBusiness";
 import CommentsSection from "modules/Course details/Comments section/CommentsSection";
+import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileNavTabsBar";
+import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
+import MonthlySubscriptionCard from "modules/Course details/Monthly subscription card/MonthlySubscriptionCard";
+
 import { Row, Col } from "react-bootstrap";
 
 export default function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
-
+  const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
+  
   useEffect(() => {
-    window.addEventListener("scroll", function () {
-      const projectsSection: any = document.getElementById("practical-projects-section");
-      const col: any = document.getElementById("card-column");
-      if (window.scrollY >= projectsSection.offsetTop) {
-        setColFullWidth(true);
-      }else if(window.scrollY < projectsSection.offsetTop){
-        setColFullWidth(false);
+    const rootFontSize = parseFloat(
+      window
+      .getComputedStyle(document.getElementsByTagName("html")[0])
+      .getPropertyValue("font-size")
+    );
+    const tabsResponsiveBar:any = document.getElementById("tabs-responsive-bar");
+    const mobileCheckoutBar:any = document.getElementById("mobile-checkout-bar");
+    const navbar:any = document.getElementById("nav");
+    let addToCartBtn:any = null;
+
+    if(screen.width >= 576){
+    let addToCartBtn:any = null;
+      setOriginalCardPlacement(true);
+      tabsResponsiveBar.style.cssText=`display:none`;
+      mobileCheckoutBar.style.cssText=`display:none`;
+      window.addEventListener("scroll", function () {
+        tabsResponsiveBar.style.cssText=`display:none`;
+        mobileCheckoutBar.style.cssText=`display:none`;
+        const projectsSection: any = document.getElementById("practical-projects-section");
+        if (window.scrollY >= projectsSection?.offsetTop) {
+          setColFullWidth(true);
+        }else if(window.scrollY < projectsSection?.offsetTop){
+          setColFullWidth(false);
+        }
+      });
+    }
+    else if(screen.width < 576){
+    
+      setOriginalCardPlacement(false);
+      window.addEventListener("scroll", function () {
+        let addToCartBtn:any = null;
+     addToCartBtn = document.getElementById("add-to-cart-btn");
+
+        if (window.scrollY >= addToCartBtn.offsetTop) {
+      
+          tabsResponsiveBar.style.cssText=`
+          display:flex;
+          align-items:center;
+          justify-content:space-around;
+          top:${navbar.offsetHeight}px;
+          `
+          mobileCheckoutBar.style.cssText=`
+          display:flex;
+          align-items:center;
+          justify-content:space-evenly;
+          bottom:0;
+          `
+        }else if(window.scrollY < addToCartBtn.offsetTop){
+        tabsResponsiveBar.style.cssText=`display:none`;
+        mobileCheckoutBar.style.cssText=`display:none`;
+        }
+      });
+    }
+
+
+    window.addEventListener("resize" , ()=>{
+
+      if(screen.width >= 576){
+    let addToCartBtn:any = null;
+      setOriginalCardPlacement(true);
+      tabsResponsiveBar.style.cssText=`display:none`;
+      mobileCheckoutBar.style.cssText=`display:none`;
+      window.addEventListener("scroll", function () {
+        tabsResponsiveBar.style.cssText=`display:none`;
+      mobileCheckoutBar.style.cssText=`display:none`;
+        
+          const projectsSection: any = document.getElementById("practical-projects-section");
+          if (window.scrollY >= projectsSection?.offsetTop) {
+            setColFullWidth(true);
+          }else if(window.scrollY < projectsSection?.offsetTop){
+            setColFullWidth(false);
+          }
+        });
       }
-    });
+      else if(screen.width < 576){
+    
+      setOriginalCardPlacement(false);
+      window.addEventListener("scroll", function () {
+        let addToCartBtn:any = null;
+     addToCartBtn = document.getElementById("add-to-cart-btn");
+
+        if (window.scrollY >= addToCartBtn.offsetTop) {
+          tabsResponsiveBar.style.cssText=`
+          display:flex;
+          align-items:center;
+          justify-content:space-around;
+          top:${navbar.offsetHeight}px;
+          `
+          mobileCheckoutBar.style.cssText=`
+          display:flex;
+          align-items:center;
+          justify-content:space-evenly;
+          bottom:0;
+          `
+        }else if(window.scrollY < addToCartBtn.offsetTop){
+        tabsResponsiveBar.style.cssText=`display:none`;
+        mobileCheckoutBar.style.cssText=`display:none`;
+        }
+      });
+      }
+    })
+    
   }, []);
   return (
     <>
       <Navbar />
-      <Row className={styles["course-details"]}>
-        <Col xs={8}>
+      <MobileNavTabsBar />
+      <MobileCheckoutBar />
+      <Row className={styles["course-details-row"]}>
+        <Col xs={12} sm={8}>
           <CourseAdvertisement />
+          {originalCardPlacement == false && <CourseCard />}
           <WhatYouWillLearn />
           <CourseDetailsSection />
           <CourseKeywords />
@@ -52,9 +153,9 @@ export default function CourseDetails() {
           <SpecialOffer />
         </Col>
         <Col xs={colFullWidth ? 12 : 4} id="card-column">
-          <CourseCard />
+          { originalCardPlacement == true && <CourseCard />}
         </Col>
-        <PracticalProjects />
+        <PracticalProjects /> 
       </Row>
       <Row className={styles["course-details__course-reviews"]}>
         <CourseReview />
