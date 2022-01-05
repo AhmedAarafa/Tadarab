@@ -14,7 +14,7 @@
     display: none;
     div{
         color: $grey;
-        cursor: pointer;
+        cursor: pointer; 
     }
 
     a{
@@ -22,7 +22,7 @@
         color: $grey; 
         }
         &:focus{
-            color: $dark-black;
+            color: $dark-black; 
         }
     }
 }

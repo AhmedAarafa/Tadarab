@@ -1,0 +1,110 @@
+.mobile-checkout-bar {
+  background-color: white;
+  height: 11.5rem;
+  -webkit-box-shadow: 0 -0.781rem 3.281rem #00000014;
+          box-shadow: 0 -0.781rem 3.281rem #00000014;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 5;
+  display: none;
+}
+
+.mobile-checkout-bar__add-to-cart-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+  padding: 0.9375rem 1.875rem;
+  border-radius: 1.5625rem;
+  width: 25rem;
+  height: 7.344rem;
+}
+
+.mobile-checkout-bar__add-to-cart-btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.mobile-checkout-bar__add-to-cart-btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.mobile-checkout-bar__add-to-cart-btn:hover, .mobile-checkout-bar__add-to-cart-btn:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.mobile-checkout-bar__add-to-cart-btn svg {
+  width: 3.281rem;
+  height: 2.8rem;
+  margin-left: 0.3rem;
+}
+
+.mobile-checkout-bar__add-to-cart-btn span {
+  font-size: 2.188rem;
+  font-weight: 700;
+}
+
+.mobile-checkout-bar__course-card__price-box {
+  color: #222222;
+}
+
+.mobile-checkout-bar__course-card__price-box__price {
+  font-size: 3.438rem;
+  font-weight: 800;
+}
+
+.mobile-checkout-bar__course-card__price-box__currency {
+  font-size: 2.188rem;
+  font-weight: 700;
+}
+
+.mobile-checkout-bar__course-card__old-price-box--line-through {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-text-decoration: line-through #AF151F;
+          text-decoration: line-through #AF151F;
+}
+
+.mobile-checkout-bar__course-card__old-price-box {
+  color: #777777;
+  margin-top: -0.4rem;
+}
+
+.mobile-checkout-bar__course-card__old-price-box__price {
+  font-size: 2.031rem;
+  font-weight: 800;
+}
+
+.mobile-checkout-bar__course-card__old-price-box__currency {
+  font-size: 1.719rem;
+}
+/*# sourceMappingURL=mobile-checkout-bar.module.css.map */

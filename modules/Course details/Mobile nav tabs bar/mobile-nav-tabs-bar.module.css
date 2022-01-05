@@ -1,0 +1,27 @@
+.tabs-responsive-bar {
+  background-color: white;
+  height: 7.813rem;
+  -webkit-box-shadow: 0 0.625rem 4.063rem #0000001A;
+          box-shadow: 0 0.625rem 4.063rem #0000001A;
+  font-size: 2.188rem;
+  font-weight: 700;
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  z-index: 5;
+  display: none;
+}
+
+.tabs-responsive-bar div {
+  color: #777777;
+  cursor: pointer;
+}
+
+.tabs-responsive-bar a:hover {
+  color: #777777;
+}
+
+.tabs-responsive-bar a:focus {
+  color: #222222;
+}
+/*# sourceMappingURL=mobile-nav-tabs-bar.module.css.map */

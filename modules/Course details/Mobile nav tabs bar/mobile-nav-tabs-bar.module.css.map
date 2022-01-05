@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,oBAAoB,CAAA;EAChB,gBAAgB,EAAE,KAAK;EACvB,MAAM,EAAE,QAAQ;EAChB,UAAU,EAAE,6BAA6B;EACzC,SAAS,EAAE,QAAQ;EACnB,WAAW,EAAE,GAAG;EAChB,QAAQ,EAAE,MAAM;EAChB,KAAK,EAAE,IAAI;EAEX,OAAO,EAAE,CAAC;EAEV,OAAO,EAAE,IAAI;CAchB;;AAzBD,AAYI,oBAZgB,CAYhB,GAAG,CAAA;EACC,KAAK,EEbL,OAAO;EFcP,MAAM,EAAE,OAAO;CAClB;;AAfL,AAkBQ,oBAlBY,CAiBhB,CAAC,AACI,MAAM,CAAA;EACP,KAAK,EEnBL,OAAO;CFoBN;;AApBT,AAqBQ,oBArBY,CAiBhB,CAAC,AAII,MAAM,CAAA;EACH,KAAK,EEvBH,OAAO;CFwBZ",
+    "sources": [
+        "mobile-nav-tabs-bar.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "mobile-nav-tabs-bar.module.css"
+}
