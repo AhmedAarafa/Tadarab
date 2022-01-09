@@ -36,9 +36,7 @@
     height: 100%;
     position: absolute;
     pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex(center,center);
 
     // &>svg {
     //     width: 1.1rem;
@@ -51,7 +49,7 @@
     margin: 0 2.8rem 0 0;
     padding: 0;
     //   padding-right: 2.7rem;
-    width: 100%;
+    width: 88%;
     height: 100%;
     font-size: 1rem;
     border: none !important;
@@ -111,7 +109,7 @@
 }
 
 
-.responsive-search-icon {
+.navbar_responsive-search-icon__1gfwv {
     margin-top: 0.2rem;
     display: none;
 }
@@ -521,7 +519,7 @@
         }
     }
 
-    .responsive-search-icon {
+    .navbar_responsive-search-icon__1gfwv {
         display: flex;
         width: 2.7rem;
         height: 2.7rem;

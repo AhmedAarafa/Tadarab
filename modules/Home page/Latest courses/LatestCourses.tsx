@@ -34,14 +34,14 @@ export default function LatestCourses() {
     // loop over them to control the hover effect per each card
     trigger.forEach((element: any) => {
       element.addEventListener("mouseout" , function(){
-        // setTimeout(() => {
-          // seeMoreBtn.style.cssText=`z-index:5;`
-          // departmentsList.style.cssText=`z-index:5;`
-        // }, 1000);
+        setTimeout(() => {
+          seeMoreBtn.style.cssText=`z-index:5;`
+          departmentsList.style.cssText=`z-index:5;`
+        }, 2000);
       })
       element.addEventListener("mouseover", function () {
-        // seeMoreBtn.style.cssText=`z-index:1;`
-        // departmentsList.style.cssText=`z-index:1;`
+        seeMoreBtn.style.cssText=`z-index:1;`
+        departmentsList.style.cssText=`z-index:1;`
         if(window.innerWidth > 1024){
           // console.log(Math.floor(window.innerWidth/element.offsetWidth));
 
@@ -59,14 +59,16 @@ export default function LatestCourses() {
           const observer = new MutationObserver((mutations, obs) => {
             let relatedPopover:any = document.getElementsByClassName(`popover-${element.id}`)[0];
             if (relatedPopover) {
-              // relatedPopover.addEventListener("mouseover" , function(){
-              //   seeMoreBtn.style.cssText=`z-index:1;`
-              //   departmentsList.style.cssText=`z-index:1;`
-              // });
-              // relatedPopover.addEventListener("mouseout" , function(){
-              //   seeMoreBtn.style.cssText=`z-index:5;`
-              //   departmentsList.style.cssText=`z-index:5;`
-              // });
+              relatedPopover.addEventListener("mouseover" , function(){
+                seeMoreBtn.style.cssText=`z-index:1;`
+                departmentsList.style.cssText=`z-index:1;`
+              });
+              setTimeout(() => {
+                relatedPopover.addEventListener("mouseout" , function(){
+                  seeMoreBtn.style.cssText=`z-index:5;`
+                  departmentsList.style.cssText=`z-index:5;`
+                });
+              }, 1000);
               // console.log(
               //   "element.getClientRects()[0].right",
               //   element.getClientRects()[0].right
@@ -462,7 +464,7 @@ export default function LatestCourses() {
                         }
                       >
             <Link href="/CourseDetails">
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -470,7 +472,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         </Link>
                         <div
                           className={
@@ -832,7 +834,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -840,7 +842,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -1196,7 +1198,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1204,7 +1206,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -1560,7 +1562,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1568,7 +1570,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -1926,7 +1928,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1934,7 +1936,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -2290,7 +2292,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -2298,7 +2300,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -2654,7 +2656,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -2662,7 +2664,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -3018,7 +3020,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -3026,7 +3028,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[
@@ -3383,7 +3385,7 @@ export default function LatestCourses() {
                           ]
                         }
                       >
-                        <div
+                        <h1
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -3391,7 +3393,7 @@ export default function LatestCourses() {
                           }
                         >
                           إحتراف التصوير بالكاميرا
-                        </div>
+                        </h1>
                         <div
                           className={
                             styles[

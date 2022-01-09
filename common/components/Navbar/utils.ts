@@ -24,17 +24,17 @@ export const popoverHandler = () => {
         e.clientX >= popoverBoundaries?.left &&
         e.clientX <= popoverBoundaries?.right)
     ) {
-      popover ? (popover.style.display = "flex") : "";
-      dropdownIcon.style.cssText=`
+      popover ? popover.style.display = "flex" : null;
+      dropdownIcon ? dropdownIcon.style.cssText=`
       transform:rotate(180deg);
       transition:all 0.3s linear;
-      `
+      `: null ;
     } else {
-      popover ? (popover.style.display = "none") : "";
-      dropdownIcon.style.cssText=`
+      popover ? popover.style.display = "none" : null;
+      dropdownIcon ? dropdownIcon.style.cssText=`
       transform:none;
       transition:all 0.3s linear;
-      `
+      `: null ;
     }
   });
 };

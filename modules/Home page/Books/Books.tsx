@@ -62,7 +62,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -99,7 +99,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -136,7 +136,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -173,7 +173,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -210,7 +210,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -247,7 +247,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -284,7 +284,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -321,7 +321,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -358,7 +358,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -395,7 +395,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -432,7 +432,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>
@@ -469,7 +469,7 @@ export default function Books() {
                                     <Card.Body
                                     className={styles["books__cards-carousel__card__card-body"]}
                                     >
-                                        <div className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</div>
+                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
                                         <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
                                         <div className="w-100">
                                             <Button className={styles["books__cards-carousel__card__download-btn"]}>

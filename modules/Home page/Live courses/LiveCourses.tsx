@@ -91,7 +91,7 @@ export default function LiveCourses() {
                       <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                           <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                               <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                  <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                  <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                               </div>
                               <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -160,7 +160,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -212,7 +212,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -264,7 +264,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -316,7 +316,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -368,7 +368,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -420,7 +420,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -472,7 +472,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -524,7 +524,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -576,7 +576,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -628,7 +628,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
@@ -680,7 +680,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</div>
+                                <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>مفاتيح النجاح في الحياة</h1>
                                 <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>د. حسين عبدالكريم</div>
                             </div>
                             <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>

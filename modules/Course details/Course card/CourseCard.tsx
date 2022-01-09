@@ -4,22 +4,29 @@ import { Button } from "react-bootstrap";
 import { stickyCardHandler } from "./utils";
 
 export default function CourseCard() {
+
   useEffect(() => {
 
     window.addEventListener("resize", () => {
       stickyCardHandler();
     });
     stickyCardHandler();
+
+    return () => {
+      window.removeEventListener("resize", () => {
+        console.log('event listener removed from course card component');
+      });
+    }
   }, []);
   return (
     <>
       <div className={styles["course-details__course-card"]} id="sticky-card">
-        <h5
+        <h1
           id="course-card__title"
           className={styles["course-details__course-card__title"]}
         >
           تعليم الرسم والتلوين
-        </h5>
+        </h1>
         <div id="course-card__prices-box">
           <div className={styles["course-details__course-card__price-box"]}>
             <span

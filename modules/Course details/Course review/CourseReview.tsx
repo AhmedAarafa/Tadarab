@@ -16,6 +16,12 @@ export default function CourseReview() {
           scrollspyHandler();
          });
        scrollspyHandler();
+
+       return () => {
+        window.removeEventListener("resize", () => {
+          console.log('event listener removed from course review component');
+        });
+      }
       }, []);
 
     return (

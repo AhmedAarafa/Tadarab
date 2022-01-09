@@ -90,7 +90,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -98,7 +98,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -282,7 +282,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -290,7 +290,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -474,7 +474,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -482,7 +482,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -666,7 +666,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -674,7 +674,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -858,7 +858,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -866,7 +866,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -1050,7 +1050,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1058,7 +1058,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -1242,7 +1242,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1250,7 +1250,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -1434,7 +1434,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1442,7 +1442,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[
@@ -1626,7 +1626,7 @@ export default function CourseSubscribers() {
                             ]
                             }
                         >
-                            <div
+                            <h1
                             className={
                                 styles[
                                 "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -1634,7 +1634,7 @@ export default function CourseSubscribers() {
                             }
                             >
                             إحتراف التصوير بالكاميرا
-                            </div>
+                            </h1>
                             <div
                             className={
                                 styles[

@@ -64,7 +64,7 @@
   color: rgba(34, 34, 34, 0.5);
   margin: 0 2.8rem 0 0;
   padding: 0;
-  width: 100%;
+  width: 88%;
   height: 100%;
   font-size: 1rem;
   border: none !important;
@@ -198,7 +198,7 @@
   border: 0.125rem solid #AF151F !important;
 }
 
-.responsive-search-icon {
+.navbar_responsive-search-icon__1gfwv {
   margin-top: 0.2rem;
   display: none;
 }
@@ -731,7 +731,7 @@
         -ms-flex-order: 4;
             order: 4;
   }
-  .responsive-search-icon {
+  .navbar_responsive-search-icon__1gfwv {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

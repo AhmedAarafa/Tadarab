@@ -38,9 +38,9 @@ export default function SpecialOffer() {
                             <img src="/images/trainer img.png" alt="trainer image" />
                         </div>
                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
-                            <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
+                            <h1 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
                             تعليم الرسم بالقلم الرصاصصصصصص
-                            </div>
+                            </h1>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                             أ/ مروة عبدالله
                             </div>
@@ -101,9 +101,9 @@ export default function SpecialOffer() {
                             <img src="/images/trainer img.png" alt="trainer image" />
                         </div>
                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
-                            <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
+                            <h1 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
                             تعليم الرسم والتلوين
-                            </div>
+                            </h1>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                             أ/ مروة عبدالله
                             </div>
@@ -164,9 +164,9 @@ export default function SpecialOffer() {
                             <img src="/images/trainer img.png" alt="trainer image" />
                         </div>
                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
-                            <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
+                            <h1 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]}>
                             تعليم الرسم للأطفال
-                            </div>
+                            </h1>
                             <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                             أ/ مروة عبدالله
                             </div>

@@ -248,7 +248,7 @@ export default function Navbar() {
             <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
 
             <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
-            <svg className={styles["responsive-search-icon"]} xmlns="http:www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 20 20">
+            <svg className={styles["navbar_responsive-search-icon__1gfwv"]} xmlns="http:www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 20 20">
                      <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#222"/>
                  </svg>
 

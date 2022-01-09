@@ -207,6 +207,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin: 0;
+  line-height: 1.5;
 }
 
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-name {

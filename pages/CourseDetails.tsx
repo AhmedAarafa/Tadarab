@@ -62,24 +62,28 @@ export default function CourseDetails() {
         let addToCartBtn:any = null;
      addToCartBtn = document.getElementById("add-to-cart-btn");
 
-        if (window.scrollY >= addToCartBtn.offsetTop) {
-      
-          tabsResponsiveBar.style.cssText=`
-          display:flex;
-          align-items:center;
-          justify-content:space-around;
-          top:${navbar.offsetHeight}px;
-          `
-          mobileCheckoutBar.style.cssText=`
-          display:flex;
-          align-items:center;
-          justify-content:space-evenly;
-          bottom:0;
-          `
-        }else if(window.scrollY < addToCartBtn.offsetTop){
-        tabsResponsiveBar.style.cssText=`display:none`;
-        mobileCheckoutBar.style.cssText=`display:none`;
-        }
+     if(addToCartBtn){
+
+       if (window.scrollY >= addToCartBtn.offsetTop) {
+     
+         tabsResponsiveBar.style.cssText=`
+         display:flex;
+         align-items:center;
+         justify-content:space-around;
+         top:${navbar.offsetHeight}px;
+         `
+         mobileCheckoutBar.style.cssText=`
+         display:flex;
+         align-items:center;
+         justify-content:space-evenly;
+         bottom:0;
+         `
+       }else if(window.scrollY < addToCartBtn.offsetTop){
+       tabsResponsiveBar.style.cssText=`display:none`;
+       mobileCheckoutBar.style.cssText=`display:none`;
+       } 
+     }
+
       });
     }
 

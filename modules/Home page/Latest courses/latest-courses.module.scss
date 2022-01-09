@@ -6,7 +6,7 @@
     font-size: 2rem;
     font-weight: 800;
     padding: 1rem 3rem 0 3rem;
-    // z-index: 5;
+    z-index: 5;
 
     span:nth-of-type(1) {
         color: $dark-black;
@@ -18,7 +18,7 @@
 }
 
 .latest-courses__departments-list {
-    // z-index: 5;
+    z-index: 5;
     font-size: 1.125rem;
     font-weight: 700;
     color: $grey;
@@ -62,6 +62,7 @@
     font-weight: 700;
     width: 10rem;
     height: 2.75rem;
+    z-index:5;
     border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     border-radius: 0.75rem;
     margin-left: 3rem;
@@ -184,6 +185,7 @@
     font-weight: 800;
     color: $dark-black;
     cursor: pointer;
+    margin:0;
 
 }
 
@@ -1009,7 +1011,6 @@
         border: 0.125rem*2.5 solid rgba(175, 21, 31, 0.2) !important;
         border-radius: 0.75rem*2.5;
         margin: 3rem 8.5rem 0 8.5rem;
-        // z-index: 5;
         @include flex(center,center);
     
         &:hover,

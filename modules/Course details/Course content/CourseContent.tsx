@@ -9,6 +9,12 @@ export default function CourseContent() {
           scrollspyHandler();
          });
        scrollspyHandler();
+
+       return () => {
+        window.removeEventListener("resize", () => {
+          console.log('event listener removed from course content component');
+        });
+      }
       }, []);
   return (
     <>
