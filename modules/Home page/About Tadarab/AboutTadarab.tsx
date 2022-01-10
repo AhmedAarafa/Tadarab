@@ -5,6 +5,7 @@ import { Row, Col} from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation,Pagination } from 'swiper';
 import "swiper/css";
+import Head from "next/head";
 
 export default function AboutTadarab() {
   SwiperCore.use([Navigation]);
@@ -12,6 +13,13 @@ export default function AboutTadarab() {
 
     return (
         <>
+        <Head>
+        <title>كورسات دورات اون لاين عن بعد مجانية و معتمدة | تدرب</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale = 1.0" />
+        <meta name="description" content="نقدم لك عبر موقع تدرب افضل الدورات المعتمدة عن بعد مع خبراء مختصين في مختلف المجالات. سجل في الدورات التدريبية المجانية لدينا اون لاين لتطوير مهاراتك" />
+        <link rel="icon" href="/images/logo.svg" />
+      </Head>
+        
         <Row className={styles["about-tadarab"]}>
           
             <Col xs={12} className={styles["about-tadarab__title"]}>
