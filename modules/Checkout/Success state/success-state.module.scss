@@ -1,0 +1,106 @@
+@import "../../../styles/mixins";
+
+
+.success-state {
+    margin-top: 12rem;
+    @include flex(center, center);
+    flex-direction: column;
+}
+
+.success-state__img {
+    width: 7rem;
+    height: 6.75rem;
+}
+
+.success-state__purchasing-done {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: $dark-black;
+    margin: 1.25rem 0 0 0;
+}
+
+.success-state__begin-learning {
+    font-size: 1.25rem;
+    color: $grey;
+    margin: 0.5rem 0 0 0;
+}
+
+.success-state__btn {
+    @include contained-button;
+    @include flex(center,center);
+    width: 13.75rem;
+    height: 2.8125rem;
+    margin: 1.3rem 0 0 0 ;
+
+    span {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    svg {
+        width: 0.75rem;
+        height: 0.75rem;
+        margin: 0 0.5rem 0 0 ;
+    }
+}
+
+.success-state__bill-details{
+    font-size: 1rem;
+    font-weight: 700;
+    color: $primary-red;
+    margin: 1.5rem 0 0 0;
+}
+
+@media (max-width:575px){
+
+    .success-state {
+        margin-top: 12rem*2.3;
+        @include flex(center, center);
+        flex-direction: column;
+    }
+    
+    .success-state__img {
+        width: 7rem*2.3;
+        height: 6.75rem*2.3;
+    }
+    
+    .success-state__purchasing-done {
+        font-size: 1.875rem*2.3;
+        font-weight: 800;
+        color: $dark-black;
+        margin: 1.25rem*2.3 0 0 0;
+    }
+    
+    .success-state__begin-learning {
+        font-size: 1.25rem*2.3;
+        color: $grey;
+        margin: 0.5rem*2.3 0 0 0;
+    }
+    
+    .success-state__btn {
+        @include contained-button;
+        width: 13.75rem*2.3;
+        height: 2.8125rem*2.3;
+        margin: 1.3rem*2.3 0 0 0 ;
+        border-radius: 0.625rem*2.3;
+    
+        span {
+            font-size: 1rem*2.3;
+            font-weight: 700;
+        }
+    
+        svg {
+            width: 1rem*2.3;
+            height: 1rem*2.3;
+            margin: 0 0.5rem*2.3 0 0 ;
+        }
+    }
+    
+    .success-state__bill-details{
+        font-size: 1rem*2.3;
+        font-weight: 700;
+        color: $primary-red;
+        margin: 1.5rem*2.3 0 0 0;
+    }
+    
+}

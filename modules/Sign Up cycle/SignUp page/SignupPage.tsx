@@ -10,7 +10,6 @@ export default function SignupPage() {
 
     const showHidePasswordHandler = () => {
         const passwordField: any = document.getElementById("password-field");
-        console.log("passwordField", passwordField);
         if (passwordField.type === "password") {
           passwordField.type = "text";
           setIsVisible(true);
@@ -19,9 +18,6 @@ export default function SignupPage() {
           setIsVisible(false);
         }
       };
-    useEffect(() => {
-        // showHidePasswordHandler();
-    }, []);
 
   return (
     <>
@@ -97,8 +93,13 @@ export default function SignupPage() {
                   </div>
 
                   <div className={styles["register__register-box__registeration-form-box__phone-field-container"]}>
+                  <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.75rem" viewBox="0 0 20.003 28.334">
+                      <path id="mobile" d="M15094.665,22269.334h-13.329A3.377,3.377,0,0,1,15078,22266v-21.662a3.377,3.377,0,0,1,3.337-3.336h13.329a3.377,3.377,0,0,1,3.337,3.336V22266a3.377,3.377,0,0,1-3.337,3.336Zm-6.164-4.336a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,15088.5,22265Zm-7.165-19.332a.851.851,0,0,0-.839.832v16.336a.851.851,0,0,0,.839.834h13.329a.84.84,0,0,0,.833-.834V22246.5a.84.84,0,0,0-.833-.832Zm4.582-2.33a.416.416,0,1,0,0,.832h4.164a.416.416,0,1,0,0-.832Z" transform="translate(-15077.999 -22241)" fill="#999"/>
+                    </svg>
+
+                    </div>
                     <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
-                   <img src="/images/egypt.png" alt="egypt" />
                    <DropdownButton
                     title="+ 20"
                     id="country-code-dropdown"
@@ -107,6 +108,7 @@ export default function SignupPage() {
                         <Dropdown.Item>+966</Dropdown.Item>
                         <Dropdown.Item>+956</Dropdown.Item>
                     </DropdownButton>
+                   <img src="/images/egypt.png" alt="egypt" />
                     </div>
                     <Form.Control type="text" placeholder="رقم الهاتف" className={styles["register__register-box__registeration-form-box__phone-field"]}/>
                   </div>
@@ -120,15 +122,9 @@ export default function SignupPage() {
                     <Form.Control type="password" placeholder="كلمة المرور"  id="password-field" className={styles["register__register-box__registeration-form-box__password-field"]}/>
                    
                    <div className={styles["register__register-box__registeration-form-box__show-password-icon-wrapper"]}>
-                    {isVisible == false ?
-                     <svg  onClick={()=>showHidePasswordHandler()} xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1rem" viewBox="0 0 24 16">
-                         <path id="eye-regular" d="M12,67.333a4.622,4.622,0,0,0-1.3.208,2.308,2.308,0,0,1,.3,1.125A2.333,2.333,0,0,1,8.667,71a2.308,2.308,0,0,1-1.125-.3A4.655,4.655,0,1,0,12,67.333Zm11.855,4.058A13.364,13.364,0,0,0,12,64,13.366,13.366,0,0,0,.146,71.392a1.348,1.348,0,0,0,0,1.216A13.364,13.364,0,0,0,12,80a13.366,13.366,0,0,0,11.855-7.392,1.348,1.348,0,0,0,0-1.216ZM12,78a11.335,11.335,0,0,1-9.914-6A11.334,11.334,0,0,1,12,66a11.334,11.334,0,0,1,9.914,6A11.334,11.334,0,0,1,12,78Z" transform="translate(-0.001 -64)" fill="#999" opacity="0.6"/>
+                   <svg  onClick={()=>showHidePasswordHandler()} xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1rem" viewBox="0 0 24 16">
+                         <path id="eye-regular" d="M12,67.333a4.622,4.622,0,0,0-1.3.208,2.308,2.308,0,0,1,.3,1.125A2.333,2.333,0,0,1,8.667,71a2.308,2.308,0,0,1-1.125-.3A4.655,4.655,0,1,0,12,67.333Zm11.855,4.058A13.364,13.364,0,0,0,12,64,13.366,13.366,0,0,0,.146,71.392a1.348,1.348,0,0,0,0,1.216A13.364,13.364,0,0,0,12,80a13.366,13.366,0,0,0,11.855-7.392,1.348,1.348,0,0,0,0-1.216ZM12,78a11.335,11.335,0,0,1-9.914-6A11.334,11.334,0,0,1,12,66a11.334,11.334,0,0,1,9.914,6A11.334,11.334,0,0,1,12,78Z" transform="translate(-0.001 -64)" fill={isVisible ? "#008000" : "#999" } opacity="0.6"/>
                     </svg>
-                    :
-                    <svg  onClick={()=>showHidePasswordHandler()} xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1rem" viewBox="0 0 24 16">
-                         <path id="eye-regular" d="M12,67.333a4.622,4.622,0,0,0-1.3.208,2.308,2.308,0,0,1,.3,1.125A2.333,2.333,0,0,1,8.667,71a2.308,2.308,0,0,1-1.125-.3A4.655,4.655,0,1,0,12,67.333Zm11.855,4.058A13.364,13.364,0,0,0,12,64,13.366,13.366,0,0,0,.146,71.392a1.348,1.348,0,0,0,0,1.216A13.364,13.364,0,0,0,12,80a13.366,13.366,0,0,0,11.855-7.392,1.348,1.348,0,0,0,0-1.216ZM12,78a11.335,11.335,0,0,1-9.914-6A11.334,11.334,0,0,1,12,66a11.334,11.334,0,0,1,9.914,6A11.334,11.334,0,0,1,12,78Z" transform="translate(-0.001 -64)" fill="#008000" opacity="0.6"/>
-                    </svg>
-                    }
                     </div>
                   </div>
 

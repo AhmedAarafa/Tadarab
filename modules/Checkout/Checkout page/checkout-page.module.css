@@ -1,0 +1,2262 @@
+.checkout {
+  margin: 10rem 0 0 0;
+  padding: 0 8.2rem;
+}
+
+/* stepper */
+.checkout__stepper-box {
+  height: 4rem;
+  width: 100%;
+  background-color: white;
+  -webkit-box-shadow: 0rem 0rem 1.3125rem #0000001A;
+          box-shadow: 0rem 0rem 1.3125rem #0000001A;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  z-index: 2;
+}
+
+.checkout__stepper-box__stepper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 0 17rem;
+  margin: 0;
+}
+
+.checkout__stepper-box__stepper__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #777777;
+}
+
+.checkout__stepper-box__stepper__item:not(:first-child),
+.checkout__stepper-box__stepper__item--active:not(:first-child) {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.checkout__stepper-box__stepper__item:not(:first-child):before,
+.checkout__stepper-box__stepper__item--active:not(:first-child):before {
+  content: "";
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 0.05rem;
+  border-top: 0.2rem dashed #e0e0e0;
+  -webkit-margin-end: 0.5rem;
+          margin-inline-end: 0.5rem;
+  -webkit-margin-start: 1.5rem;
+          margin-inline-start: 1.5rem;
+}
+
+.checkout__stepper-box__stepper__item--active:not(:first-child):before {
+  border-top: 0.2rem dashed #AF151F;
+}
+
+.checkout__stepper-box__stepper__step-number {
+  border: 0.0625rem solid rgba(34, 34, 34, 0.2);
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.checkout__stepper-box__stepper__item--active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  gap: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222222;
+}
+
+.checkout__stepper-box__stepper__item--active .checkout__stepper-box__stepper__step-number {
+  border: 0.0625rem solid #AF151F;
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  background-color: #AF151F;
+  color: white;
+  -webkit-box-shadow: 0 0 1.25rem #AF2B3633;
+          box-shadow: 0 0 1.25rem #AF2B3633;
+}
+
+.checkout__course-content__title {
+  margin-bottom: 1.125rem;
+}
+
+.checkout__course-content__title span:nth-of-type(1) {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.checkout__course-content__title span:nth-of-type(2) {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #AF151F;
+}
+
+.checkout__cards-outer-box__card {
+  width: 100%;
+  padding: 2.5rem 0 1.5rem 0;
+  border-top: 0.1rem solid rgba(119, 119, 119, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  overflow: hidden;
+}
+
+.checkout__cards-outer-box__card__course-img {
+  position: relative;
+  margin-right: 0.5rem;
+}
+
+.checkout__cards-outer-box__card__course-img:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4rem;
+  display: inline-block;
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 0.75rem;
+}
+
+.checkout__cards-outer-box__card__course-img img {
+  width: 12.5rem;
+  height: 7.5rem;
+  border-radius: 0.75rem;
+  -webkit-box-shadow: 0 0 1.25rem #0000001A;
+          box-shadow: 0 0 1.25rem #0000001A;
+}
+
+.checkout__cards-outer-box__card__category-chip {
+  position: absolute;
+  top: 1rem;
+  left: 1.2rem;
+  border-radius: 0.75rem;
+  padding: 0.12rem 0.7rem;
+  color: white;
+  top: 0.6rem;
+  left: auto;
+  right: 0.5rem;
+  background-color: #7B2CBF;
+  font-size: 0.75rem;
+  padding: 0.11rem 0.8rem 0.14rem 0.8rem;
+  z-index: 1;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box-container {
+  padding: 0 1.5rem 1rem 1.5rem;
+  width: 25.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkout__cards-outer-box__card__action-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0.2rem auto 0 0;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.checkout__cards-outer-box__card__action-btns svg {
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  z-index: 1;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-bottom: none;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box__info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box__trainer-img {
+  margin-left: 0.75rem;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box__trainer-img img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box__course-name {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  line-height: 1.5;
+  width: 21.75rem;
+}
+
+.checkout__cards-outer-box__card__trainer-info-box__trainer-name {
+  font-size: 0.875rem;
+  color: #777777;
+}
+
+.checkout__cards-outer-box__card__price {
+  color: #222222;
+  margin-top: 0.7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.checkout__cards-outer-box__card__price span:nth-of-type(1) {
+  font-size: 1.5625rem;
+  font-weight: 800;
+}
+
+.checkout__cards-outer-box__card__price span:nth-of-type(2) {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0.2rem 0.1rem 0 0;
+}
+
+.checkout__cards-outer-box__card__old-price {
+  color: #777777;
+  margin-top: -0.5rem;
+  -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
+          text-decoration: line-through rgba(175, 21, 31, 0.5);
+}
+
+.checkout__cards-outer-box__card__old-price span:nth-of-type(1) {
+  font-size: 0.9375rem;
+  font-weight: 800;
+}
+
+.checkout__cards-outer-box__card__old-price span:nth-of-type(2) {
+  font-size: 0.75rem;
+}
+
+.checkout__cart-sticky-card-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.checkout__cart-sticky-card {
+  width: 22rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  -webkit-box-shadow: 0rem 0rem 1.25rem #0000001A;
+          box-shadow: 0rem 0rem 1.25rem #0000001A;
+  border-radius: 1.25rem;
+  padding: 1.625rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 10rem;
+  margin: 0 0 2rem 0;
+}
+
+.checkout__cart-sticky-card__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #222222;
+  margin: 0 0 1.5625rem 0;
+}
+
+.checkout__cart-sticky-card__do-you-have-coupon {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222222;
+}
+
+.checkout__cart-sticky-card__search-bar-container {
+  position: relative;
+  border: 0.0625rem solid rgba(34, 34, 34, 0.1);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  font-weight: 400;
+  padding: 0.3rem 0rem 0.3rem 0rem;
+  letter-spacing: 0;
+  background-color: white;
+  margin-top: 0.5625rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.checkout__cart-sticky-card__search-bar-container__search-bar {
+  border: 0 !important;
+  padding: 0rem 1rem 0rem 0.5rem;
+  font-family: 'Almarai', sans-serif;
+  width: 70%;
+  font-size: 1rem;
+  color: rgba(34, 34, 34, 0.5);
+}
+
+.checkout__cart-sticky-card__search-bar-container__search-bar:active, .checkout__cart-sticky-card__search-bar-container__search-bar:focus {
+  outline: 0 !important;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.checkout__cart-sticky-card__search-bar-container__search-bar::-webkit-input-placeholder {
+  color: rgba(51, 51, 51, 0.5);
+}
+
+.checkout__cart-sticky-card__search-bar-container__search-bar:-ms-input-placeholder {
+  color: rgba(51, 51, 51, 0.5);
+}
+
+.checkout__cart-sticky-card__search-bar-container__search-bar::-ms-input-placeholder {
+  color: rgba(51, 51, 51, 0.5);
+}
+
+.checkout__cart-sticky-card__search-bar-container__search-bar::placeholder {
+  color: rgba(51, 51, 51, 0.5);
+}
+
+.checkout__cart-sticky-card__search-bar__btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+  background-color: #0E0B1D !important;
+  border: 0.125rem solid #0E0B1D !important;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  width: 6.25rem;
+  height: 2.5rem;
+  margin-left: 0.4rem;
+}
+
+.checkout__cart-sticky-card__search-bar__btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.checkout__cart-sticky-card__search-bar__btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+  background-color: #000f1d !important;
+  border: 0.125rem solid #000f1d !important;
+}
+
+.checkout__cart-sticky-card__total-price-box,
+.checkout__cart-sticky-card__final-price-box,
+.checkout__cart-sticky-card__coupon-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checkout__cart-sticky-card__total-price-box {
+  margin: 1.5625rem 0 0 0;
+}
+
+.checkout__cart-sticky-card__coupon-box {
+  margin: 0.3rem 0 0 0;
+  display: none;
+}
+
+.checkout__cart-sticky-card__final-price-box {
+  margin: 1.4375rem 0 0 0;
+}
+
+.checkout__cart-sticky-card__total-price-box__total-price-text,
+.checkout__cart-sticky-card__final-price-box__final-price-text,
+.checkout__cart-sticky-card__coupon-text {
+  font-size: 1.125rem;
+  color: #777777;
+}
+
+.checkout__cart-sticky-card__total-price-box__total-price,
+.checkout__cart-sticky-card__final-price-box__final-price,
+.checkout__cart-sticky-card__coupon-value {
+  color: #222222;
+}
+
+.checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(1),
+.checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(1),
+.checkout__cart-sticky-card__coupon-value span:nth-of-type(1) {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(2),
+.checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(2),
+.checkout__cart-sticky-card__coupon-value span:nth-of-type(2) {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.checkout__cart-sticky-card__guarantee-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  margin: 1.25rem 0 0 0;
+  padding: 0.875rem 1.25rem;
+  background-color: rgba(14, 11, 29, 0.05);
+  border-radius: 0.75rem;
+}
+
+.checkout__cart-sticky-card__guarantee-box__icon svg {
+  width: 1.375rem;
+  height: 1.5rem;
+}
+
+.checkout__cart-sticky-card__guarantee-box__text-box {
+  margin-right: 0.8rem;
+}
+
+.checkout__cart-sticky-card__guarantee-box__text-box__major,
+.checkout__cart-sticky-card__guarantee-box__text-box__minor {
+  font-size: 0.8125rem;
+  color: #222222;
+}
+
+.checkout__cart-sticky-card__guarantee-box__text-box__major {
+  font-weight: 700;
+}
+
+.checkout__cart-sticky-card__guarantee-box__text-box__minor {
+  font-weight: 400;
+  color: #777777;
+}
+
+.checkout__cart-sticky-card__purchasing-btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+  width: 100%;
+  margin: 1.6875rem 0 0 0;
+}
+
+.checkout__cart-sticky-card__purchasing-btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.checkout__cart-sticky-card__purchasing-btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.checkout__cart-sticky-card__purchasing-btn:hover, .checkout__cart-sticky-card__purchasing-btn:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.checkout__cart-sticky-card__complete-surfing-courses {
+  margin: 1.125rem 0 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.checkout__cart-sticky-card__complete-surfing-courses span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #AF151F;
+}
+
+.checkout__cart-sticky-card__complete-surfing-courses svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin: 0 0.5rem 0 0;
+}
+
+.checkout__similar-courses-row {
+  padding: 0 8.2rem 0 0;
+  margin: 15rem 0 5rem 0;
+}
+
+.checkout__similar-courses__title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.checkout__similar-courses__title div:nth-of-type(2) {
+  font-weight: 800;
+}
+
+.checkout__similar-courses__cards-carousel {
+  margin: 1.155rem 0 0 0;
+}
+
+.checkout__similar-courses__cards-carousel > div {
+  padding: 0.77rem 0.462rem 0.77rem 0 !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(1),
+.checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+  top: 45% !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(1):after,
+.checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+  font-size: 0.9rem !important;
+  -webkit-box-shadow: 0 0 1.125rem #00000033 !important;
+          box-shadow: 0 0 1.125rem #00000033 !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(1) {
+  right: 0.63rem !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(1):after {
+  padding: 1.35rem 1.062rem 1.35rem 1.152rem !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+  left: 0.63rem !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+  padding: 1.35rem 1.152rem 1.35rem 1.062rem !important;
+}
+
+.checkout__similar-courses__cards-carousel > div > div:nth-child(3) > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout__similar-courses__cards-carousel__course-card {
+  width: 14.4375rem;
+  height: 15.4rem;
+  -webkit-box-shadow: 0 0.385rem 0.72226rem #0000001A;
+          box-shadow: 0 0.385rem 0.72226rem #0000001A;
+  border-radius: 0.5775rem;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.checkout__similar-courses__cards-carousel__course-card:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3.85rem;
+  display: inline-block;
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.checkout__similar-courses__cards-carousel__course-card__category-chip {
+  position: absolute;
+  top: 1rem;
+  left: 1.2rem;
+  border-radius: 0.75rem;
+  padding: 0.12rem 0.7rem;
+  color: white;
+  font-size: 0.5775rem;
+  font-weight: 700;
+  background-color: #813A8A;
+  z-index: 1;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__course-img {
+  width: 100%;
+  height: 8.6625rem;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body {
+  padding: 0.462rem 0.77rem 0 0.77rem;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  position: relative;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__card-header:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -0.77rem;
+  width: 100%;
+  border-bottom: 0.0385rem solid rgba(34, 34, 34, 0.1);
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
+  border-radius: 50%;
+  width: 1.925rem;
+  height: 1.925rem;
+  margin-left: 0.462rem;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details {
+  display: inline-block;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
+  font-size: 0.77rem;
+  font-weight: 800;
+  color: #222222;
+  margin: 0;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
+  font-size: 0.62601rem;
+  color: #777777;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details {
+  margin-top: 1.232rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+  font-size: 0.9625rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+  font-size: 0.62601rem;
+  font-weight: 700;
+  color: #222222;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+  margin-top: -0.385rem;
+  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
+          text-decoration: line-through rgba(119, 119, 119, 0.7);
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+  font-size: 0.5775rem;
+  font-weight: 800;
+  color: #777777;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+  font-size: 0.48125rem;
+  color: #777777;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 2.025rem;
+  height: 2.025rem;
+  margin-right: 0.231rem;
+  padding: 0 !important;
+  border-radius: 0.5775rem;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+  width: 1.1935rem;
+  height: 1.309rem;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+  width: 1.08801rem;
+  height: 0.94325rem;
+}
+
+.checkout__cart-sticky-card__pay-safely {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 1.5rem 0 0 0;
+}
+
+.checkout__cart-sticky-card__pay-safely svg {
+  width: 1.0625rem;
+  height: 1.25rem;
+  margin-left: 0.625rem;
+}
+
+.checkout__cart-sticky-card__pay-safely span {
+  font-size: 0.875rem;
+  color: #777777;
+}
+
+.checkout__payment-method-box {
+  margin: 0 0 2.3125rem 0;
+}
+
+.checkout__payment-method-box__title {
+  font-size: 1.25rem;
+  color: #222222;
+  font-weight: 800;
+}
+
+.checkout__payment-method-box__payment-method {
+  width: 100%;
+  height: 5rem;
+  overflow: hidden;
+  -webkit-box-shadow: 0rem 0rem 1.25rem #0000001A;
+          box-shadow: 0rem 0rem 1.25rem #0000001A;
+  border-radius: 1.25rem;
+  margin: 1.5rem 0 0 0;
+  padding: 1.875rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkout__payment-method-box__payment-method input[type=radio] {
+  margin: 0 0 0 1.5rem;
+  border-color: #707070 !important;
+  cursor: pointer;
+}
+
+.checkout__payment-method-box__payment-method input[type=radio]:checked {
+  background-color: white !important;
+}
+
+.checkout__payment-method-box__payment-method input[type=radio]:checked[type="radio"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+}
+
+.checkout__payment-method-box__payment-method__card-info {
+  padding: 0 2.5rem 0 0;
+  width: 100%;
+  display: none;
+}
+
+.checkout__payment-method-box__payment-method__card-info label {
+  font-size: 0.875rem;
+  color: #777777;
+  margin-top: 1.125rem;
+}
+
+.checkout__payment-method-box__payment-method__card-info input {
+  border: 0.0625rem solid #2222221A;
+  border-radius: 0.75rem;
+  font-size: 1.0625rem;
+  color: #222222;
+}
+
+.checkout__payment-method-box__payment-method__card-info input:focus {
+  border: 0.0625rem solid #2222221A;
+  border-radius: 0.75rem;
+}
+
+.checkout__payment-method-box__payment-method__card-info__card-number-field {
+  width: 100%;
+  height: 2.8125rem;
+}
+
+.checkout__payment-method-box__payment-method__card-info__card-exp-date-box,
+.checkout__payment-method-box__payment-method__card-info__card-cvv-box {
+  width: 100%;
+}
+
+.checkout__payment-method-box__payment-method__card-info__card-cvv-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.checkout__payment-method-box__payment-method__card-info__card-cvv-box label {
+  margin-left: auto;
+  margin-right: 5%;
+}
+
+.checkout__payment-method-box__payment-method__card-info__card-exp-date {
+  width: 95%;
+  height: 2.8125rem;
+}
+
+.checkout__payment-method-box__payment-method__card-info__card-cvv {
+  width: 95%;
+  height: 2.8125rem;
+}
+
+.checkout__payment-method-box__payment-method__images__visa {
+  width: 3.0625rem;
+  height: 1rem;
+}
+
+.checkout__payment-method-box__payment-method__images__master-card {
+  width: 2rem;
+  height: 1.25rem;
+  margin: 0 1rem 0 0;
+}
+
+.checkout__payment-method-box__payment-method__images__knet {
+  width: 2.0625rem;
+  height: 1.5rem;
+}
+
+.checkout__payment-method-box__payment-method__images__paypal {
+  width: 4.875rem;
+  height: 1.25rem;
+}
+
+.checkout__payment-method-box__payment-method__text {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.checkout__payment-method-box__payment-method__card-info__save-card-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  margin-top: 1.1rem;
+}
+
+.checkout__payment-method-box__payment-method__card-info__save-card-info span {
+  font-size: 1rem;
+  color: #777777;
+  margin: 0.3rem 0.6rem 0 0;
+}
+
+.checkout__payment-method-box__payment-method__card-info__save-card-info input {
+  border-radius: 0.25rem !important;
+}
+
+.checkout__payment-method-box__payment-method__card-info__save-card-info input:checked {
+  background-color: #AF151F;
+  border-color: #AF151F;
+}
+
+@media (max-width: 1200px) {
+  .checkout__similar-courses-row {
+    padding: 0 3.125rem 0 0;
+    margin: 15rem 0 5rem 0;
+  }
+  .checkout__similar-courses__title {
+    font-size: 1.5965rem;
+  }
+  .checkout__similar-courses__cards-carousel {
+    margin: 2.25rem 0 0 0;
+  }
+  .checkout__similar-courses__cards-carousel > div {
+    padding: 1.03rem 0.618rem 1.03rem 0 !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1),
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+    top: 45% !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1):after,
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.2rem !important;
+    -webkit-box-shadow: 0 0 1.5rem #00000033 !important;
+            box-shadow: 0 0 1.5rem #00000033 !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1) {
+    right: 0.84rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1):after {
+    padding: 1.8rem 1.416rem 1.8rem 1.536rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+    left: 0.84rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+    padding: 1.8rem 1.536rem 1.8rem 1.416rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(3) > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .checkout__similar-courses__cards-carousel__course-card {
+    width: 19.3125rem;
+    height: 20.6rem;
+    -webkit-box-shadow: 0 0.515rem 0.96614rem #0000001A;
+            box-shadow: 0 0.515rem 0.96614rem #0000001A;
+    border-radius: 0.7725rem;
+    display: inline-block;
+  }
+  .checkout__similar-courses__cards-carousel__course-card:after {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5.15rem;
+    display: inline-block;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__category-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    border-radius: 0.75rem;
+    padding: 0.12rem 0.7rem;
+    color: white;
+    font-size: 0.7725rem;
+    top: 1.03rem;
+    left: 1.236rem;
+    border-radius: 0.7725rem;
+    padding: 0.1236rem 0.721rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__course-img {
+    width: 100%;
+    height: 11.5875rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body {
+    padding: 0.618rem 1.03rem 0 1.03rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    position: relative;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header:before {
+    right: 0;
+    bottom: -1.03rem;
+    width: 100%;
+    border-bottom: 0.0515rem solid rgba(34, 34, 34, 0.1);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
+    border-radius: 50%;
+    width: 2.575rem;
+    height: 2.575rem;
+    margin-left: 0.618rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details {
+    display: inline-block;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
+    font-size: 1.03rem;
+    margin: 0;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
+    font-size: 0.83739rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details {
+    margin-top: 1.648rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+    font-size: 1.2875rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 0.83739rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -0.515rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 0.7725rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 0.64375rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 2.5875rem;
+    height: 2.5875rem;
+    margin-right: 0.309rem;
+    padding: 0 !important;
+    border-radius: 0.7725rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+    width: 1.643rem;
+    height: 1.802rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+    width: 1.49778rem;
+    height: 1.2985rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .checkout__similar-courses-row {
+    padding: 0 3.125rem 0 0;
+    margin: 15rem 0 5rem 0;
+  }
+  .checkout__similar-courses__title {
+    font-size: 2.1235rem;
+  }
+  .checkout__similar-courses__cards-carousel {
+    margin: 2.25rem 0 0 0;
+  }
+  .checkout__similar-courses__cards-carousel > div {
+    padding: 1.37rem 0.822rem 1.37rem 0 !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1),
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+    top: 45% !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1):after,
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.5rem !important;
+    -webkit-box-shadow: 0 0 1.875rem #00000033 !important;
+            box-shadow: 0 0 1.875rem #00000033 !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1) {
+    right: 1.05rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1):after {
+    padding: 2.25rem 1.77rem 2.25rem 1.92rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+    left: 1.05rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+    padding: 2.25rem 1.92rem 2.25rem 1.77rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(3) > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .checkout__similar-courses__cards-carousel__course-card {
+    width: 25.6875rem;
+    height: 27.4rem;
+    -webkit-box-shadow: 0 0.685rem 1.28506rem #0000001A;
+            box-shadow: 0 0.685rem 1.28506rem #0000001A;
+    border-radius: 1.0275rem;
+    display: inline-block;
+  }
+  .checkout__similar-courses__cards-carousel__course-card:after {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 6.85rem;
+    display: inline-block;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__category-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    border-radius: 0.75rem;
+    padding: 0.12rem 0.7rem;
+    color: white;
+    font-size: 1.0275rem;
+    top: 1.37rem;
+    left: 1.644rem;
+    border-radius: 1.0275rem;
+    padding: 0.1644rem 0.959rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__course-img {
+    width: 100%;
+    height: 15.4125rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body {
+    padding: 0.822rem 1.37rem 0 1.37rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    position: relative;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header:before {
+    right: 0;
+    bottom: -1.37rem;
+    width: 100%;
+    border-bottom: 0.0685rem solid rgba(34, 34, 34, 0.1);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
+    border-radius: 50%;
+    width: 3.425rem;
+    height: 3.425rem;
+    margin-left: 0.822rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details {
+    display: inline-block;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
+    font-size: 1.37rem;
+    margin: 0;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
+    font-size: 1.11381rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details {
+    margin-top: 2.192rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+    font-size: 1.7125rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 1.11381rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -0.685rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 1.0275rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 0.85625rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 3.375rem;
+    height: 3.375rem;
+    margin-right: 0.411rem;
+    padding: 0 !important;
+    border-radius: 1.05rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+    width: 2.17rem;
+    height: 2.38rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+    width: 1.9782rem;
+    height: 1.715rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .checkout {
+    margin: 10rem 0 0 0;
+    padding: 0 3.125rem;
+  }
+  /* stepper */
+  .checkout__stepper-box {
+    height: 9rem;
+    width: 100%;
+    -webkit-box-shadow: 0 0 2.3625rem #0000001A;
+            box-shadow: 0 0 2.3625rem #0000001A;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    z-index: 2;
+  }
+  .checkout__stepper-box__stepper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+  }
+  .checkout__stepper-box__stepper li:first-child {
+    margin-left: 3rem;
+  }
+  .checkout__stepper-box__stepper li:last-child {
+    margin-right: 3rem;
+  }
+  .checkout__stepper-box__stepper__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    gap: 0;
+    font-size: 1.8rem;
+    width: calc(100vw/3);
+    margin-top: auto;
+    position: relative;
+  }
+  .checkout__stepper-box__stepper__item:not(:first-child),
+  .checkout__stepper-box__stepper__item--active:not(:first-child) {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .checkout__stepper-box__stepper__item:not(:first-child):before,
+  .checkout__stepper-box__stepper__item--active:not(:first-child):before {
+    content: "";
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    height: 0.09rem;
+    border-top: 0.36rem dashed #e0e0e0;
+    -webkit-margin-end: 0.9rem;
+            margin-inline-end: 0.9rem;
+    -webkit-margin-start: 2.7rem;
+            margin-inline-start: 2.7rem;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+    width: 65%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+  .checkout__stepper-box__stepper__item--active:not(:first-child):before {
+    border-top: 0.36rem dashed #AF151F;
+  }
+  .checkout__stepper-box__stepper__step-number {
+    border: 0.1125rem solid rgba(34, 34, 34, 0.2);
+    border-radius: 50%;
+    width: 4.05rem;
+    height: 4.05rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    cursor: pointer;
+  }
+  .checkout__stepper-box__stepper__step-number + div {
+    font-size: 1.4rem;
+    margin: 0.5rem 0 0 0;
+  }
+  .checkout__stepper-box__stepper__step-number svg {
+    width: 1.8rem;
+    height: 1.35rem;
+  }
+  .checkout__stepper-box__stepper__item--active {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 0;
+    font-size: 1.8rem;
+    width: calc(100vw/3);
+    margin-top: auto;
+    position: relative;
+  }
+  .checkout__stepper-box__stepper__item--active .checkout__stepper-box__stepper__step-number {
+    border: 0.1125rem solid #AF151F;
+    border-radius: 50%;
+    width: 4.05rem;
+    height: 4.05rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-color: #AF151F;
+    -webkit-box-shadow: 0 0 2.25rem #AF2B3633;
+            box-shadow: 0 0 2.25rem #AF2B3633;
+  }
+  .checkout__stepper-box__stepper__item--active .checkout__stepper-box__stepper__step-number + div {
+    font-size: 1.4rem;
+    margin: 0.5rem 0 0 0;
+  }
+  .checkout__stepper-box__stepper__item--active .checkout__stepper-box__stepper__step-number svg {
+    width: 1.8rem;
+    height: 1.35rem;
+  }
+  /** stepper **/
+  /* course-content */
+  .checkout__course-content {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    border-bottom: 0.23rem solid rgba(119, 119, 119, 0.2);
+  }
+  .checkout__course-content__title {
+    margin-bottom: 2.5875rem;
+  }
+  .checkout__course-content__title span:nth-of-type(1) {
+    font-size: 2.875rem;
+  }
+  .checkout__course-content__title span:nth-of-type(2) {
+    font-size: 2.5875rem;
+  }
+  .checkout__cards-outer-box__card {
+    width: 100%;
+    padding: 5.75rem 0 3.45rem 0;
+    border-top: 0.23rem solid rgba(119, 119, 119, 0.2);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .checkout__cards-outer-box__card__course-img {
+    position: relative;
+    margin-right: 1.15rem;
+  }
+  .checkout__cards-outer-box__card__course-img:after {
+    display: none;
+  }
+  .checkout__cards-outer-box__card__course-img img {
+    width: 16.25rem;
+    height: 9.75rem;
+    border-radius: 1.725rem;
+    -webkit-box-shadow: 0 0 2.875rem #0000001A;
+            box-shadow: 0 0 2.875rem #0000001A;
+  }
+  .checkout__cards-outer-box__card__category-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    border-radius: 0.75rem;
+    padding: 0.12rem 0.7rem;
+    color: white;
+    top: 1.38rem;
+    left: auto;
+    right: 1.15rem;
+    font-size: 1.725rem;
+    padding: 0.253rem 1.84rem 0.322rem 1.84rem;
+    z-index: 1;
+    display: none;
+  }
+  .checkout__cards-outer-box__card__trainer-info-box-container {
+    padding: 0 1.5rem 0 0;
+    width: 31rem;
+  }
+  .checkout__cards-outer-box__card__action-btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 0.46rem auto 0 0;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .checkout__cards-outer-box__card__action-btns svg:nth-of-type(1) {
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+  .checkout__cards-outer-box__card__trainer-info-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-bottom: none;
+  }
+  .checkout__cards-outer-box__card__trainer-info-box__info {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .checkout__cards-outer-box__card__trainer-info-box__trainer-img {
+    display: none;
+  }
+  .checkout__cards-outer-box__card__trainer-info-box__course-name {
+    font-size: 2.5875rem;
+    margin: 0;
+    line-height: 1.5;
+    width: 31rem;
+  }
+  .checkout__cards-outer-box__card__trainer-info-box__trainer-name {
+    font-size: 2.0125rem;
+  }
+  .checkout__cards-outer-box__card__price {
+    margin-top: 1.61rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .checkout__cards-outer-box__card__price span:nth-of-type(1) {
+    font-size: 3.59375rem;
+  }
+  .checkout__cards-outer-box__card__price span:nth-of-type(2) {
+    font-size: 2.3rem;
+    margin: 0.46rem 0.23rem 0 0;
+  }
+  .checkout__cards-outer-box__card__old-price {
+    margin-top: -1.15rem;
+  }
+  .checkout__cards-outer-box__card__old-price span:nth-of-type(1) {
+    font-size: 2.15625rem;
+  }
+  .checkout__cards-outer-box__card__old-price span:nth-of-type(2) {
+    font-size: 1.725rem;
+  }
+  /** course-content **/
+  .checkout__cart-sticky-card-col {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+  .checkout__cart-sticky-card {
+    width: 100%;
+    -webkit-box-shadow: 0rem 0rem 2.875rem #0000001A;
+            box-shadow: 0rem 0rem 2.875rem #0000001A;
+    border-radius: 2.875rem;
+    padding: 3.7375rem;
+    position: static;
+    margin: 10rem 0 4.6rem 0;
+  }
+  .checkout__cart-sticky-card__title {
+    font-size: 2.875rem;
+    margin: 0 0 3.59375rem 0;
+  }
+  .checkout__cart-sticky-card__do-you-have-coupon {
+    font-size: 2.3rem;
+  }
+  .checkout__cart-sticky-card__search-bar-container {
+    position: relative;
+    border: 0.14375rem solid rgba(34, 34, 34, 0.1);
+    border-radius: 1.725rem;
+    padding: 0.69rem 0rem 0.69rem 0rem;
+    margin-top: 1.29375rem;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+  }
+  .checkout__cart-sticky-card__search-bar-container__search-bar {
+    border: 0 !important;
+    padding: 0rem 2.3rem 0rem 1.15rem;
+    width: 75%;
+    font-size: 2.3rem;
+  }
+  .checkout__cart-sticky-card__search-bar__btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    background-color: #0E0B1D !important;
+    border: 0.2875rem solid #0E0B1D !important;
+    border-radius: 1.4375rem;
+    font-size: 2.3rem;
+    width: 14.375rem;
+    height: 5.75rem;
+    margin-left: 0.92rem;
+  }
+  .checkout__cart-sticky-card__search-bar__btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .checkout__cart-sticky-card__search-bar__btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+    background-color: #000f1d !important;
+    border: 0.2875rem solid #000f1d !important;
+  }
+  .checkout__cart-sticky-card__total-price-box,
+  .checkout__cart-sticky-card__final-price-box,
+  .checkout__cart-sticky-card__coupon-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .checkout__cart-sticky-card__total-price-box {
+    margin: 3.59375rem 0 0 0;
+  }
+  .checkout__cart-sticky-card__coupon-box {
+    margin: 0.69rem 0 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .checkout__cart-sticky-card__final-price-box {
+    margin: 3.30625rem 0 0 0;
+  }
+  .checkout__cart-sticky-card__total-price-box__total-price-text,
+  .checkout__cart-sticky-card__final-price-box__final-price-text,
+  .checkout__cart-sticky-card__coupon-text {
+    font-size: 2.5875rem;
+  }
+  .checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(1),
+  .checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(1),
+  .checkout__cart-sticky-card__coupon-value span:nth-of-type(1) {
+    font-size: 2.875rem;
+  }
+  .checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(2),
+  .checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(2),
+  .checkout__cart-sticky-card__coupon-value span:nth-of-type(2) {
+    font-size: 2.5875rem;
+  }
+  .checkout__cart-sticky-card__guarantee-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    margin: 2.875rem 0 0 0;
+    padding: 2.0125rem 2.875rem;
+    background-color: rgba(14, 11, 29, 0.05);
+    border-radius: 1.725rem;
+  }
+  .checkout__cart-sticky-card__guarantee-box__icon svg {
+    width: 3.1625rem;
+    height: 3.45rem;
+  }
+  .checkout__cart-sticky-card__guarantee-box__text-box {
+    margin-right: 1.84rem;
+  }
+  .checkout__cart-sticky-card__guarantee-box__text-box__major,
+  .checkout__cart-sticky-card__guarantee-box__text-box__minor {
+    font-size: 1.86875rem;
+    color: #222222;
+  }
+  .checkout__cart-sticky-card__guarantee-box__text-box__major {
+    font-weight: 700;
+  }
+  .checkout__cart-sticky-card__guarantee-box__text-box__minor {
+    font-weight: 400;
+    color: #777777;
+  }
+  .checkout__cart-sticky-card__purchasing-btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    width: 100%;
+    margin: 3.88125rem 0 0 0;
+    font-size: 2.231rem;
+    padding: 0.375rem 1.725rem;
+    border-radius: 1.4375rem;
+    height: 6.21rem;
+  }
+  .checkout__cart-sticky-card__purchasing-btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .checkout__cart-sticky-card__purchasing-btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .checkout__cart-sticky-card__purchasing-btn:hover, .checkout__cart-sticky-card__purchasing-btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .checkout__cart-sticky-card__complete-surfing-courses {
+    margin: 2.5875rem 0 0 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .checkout__cart-sticky-card__complete-surfing-courses span {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #AF151F;
+  }
+  .checkout__cart-sticky-card__complete-surfing-courses svg {
+    width: 1.725rem;
+    height: 1.725rem;
+    margin: 0 1.15rem 0 0;
+  }
+  .checkout__cart-sticky-card__pay-safely {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 3.45rem 0 0 0;
+  }
+  .checkout__cart-sticky-card__pay-safely svg {
+    width: 2.44375rem;
+    height: 2.875rem;
+    margin-left: 1.4375rem;
+  }
+  .checkout__cart-sticky-card__pay-safely span {
+    font-size: 2.0125rem;
+  }
+  .checkout__payment-method-box {
+    margin: 2.2rem 0 5.31875rem 0;
+  }
+  .checkout__payment-method-box__title {
+    font-size: 2.875rem;
+  }
+  .checkout__payment-method-box__payment-method {
+    width: 100%;
+    height: 11.5rem;
+    overflow: hidden;
+    -webkit-box-shadow: 0rem 0rem 2.875rem #0000001A;
+            box-shadow: 0rem 0rem 2.875rem #0000001A;
+    border-radius: 2.875rem;
+    margin: 3.45rem 0 0 0;
+    padding: 4.3125rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .checkout__payment-method-box__payment-method input[type=radio] {
+    margin: 0 0 0 3.45rem;
+    width: 2.3rem;
+    height: 2.3rem;
+  }
+  .checkout__payment-method-box__payment-method input[type=radio]:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+  }
+  .checkout__payment-method-box__payment-method__card-info {
+    padding: 0 5.75rem 0 0;
+    width: 100%;
+    display: none;
+  }
+  .checkout__payment-method-box__payment-method__card-info label {
+    font-size: 2.0125rem;
+    margin-top: 2.5875rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info input {
+    border: 0.14375rem solid #2222221A;
+    border-radius: 1.725rem;
+    font-size: 2.44375rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info input:focus {
+    border: 0.14375rem solid #2222221A;
+    border-radius: 1.725rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info__card-number-field {
+    width: 100%;
+    height: 6.46875rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info__card-exp-date-box,
+  .checkout__payment-method-box__payment-method__card-info__card-cvv-box {
+    width: 100%;
+  }
+  .checkout__payment-method-box__payment-method__card-info__card-cvv-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .checkout__payment-method-box__payment-method__card-info__card-cvv-box label {
+    margin-left: auto;
+    margin-right: 5%;
+  }
+  .checkout__payment-method-box__payment-method__card-info__card-exp-date {
+    width: 95%;
+    height: 6.46875rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info__card-cvv {
+    width: 95%;
+    height: 6.46875rem;
+  }
+  .checkout__payment-method-box__payment-method__images__visa {
+    width: 7.04375rem;
+    height: 2.3rem;
+  }
+  .checkout__payment-method-box__payment-method__images__master-card {
+    width: 4.6rem;
+    height: 2.875rem;
+    margin: 0 2.3rem 0 0;
+  }
+  .checkout__payment-method-box__payment-method__images__knet {
+    width: 4.74375rem;
+    height: 3.45rem;
+  }
+  .checkout__payment-method-box__payment-method__images__paypal {
+    width: 11.2125rem;
+    height: 2.875rem;
+  }
+  .checkout__payment-method-box__payment-method__text {
+    font-size: 2.3rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info__save-card-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    margin-top: 2.53rem;
+  }
+  .checkout__payment-method-box__payment-method__card-info__save-card-info span {
+    font-size: 2.1rem;
+    margin: 0.69rem 1.38rem 0 0;
+  }
+  .checkout__payment-method-box__payment-method__card-info__save-card-info input {
+    border-radius: 0.575rem !important;
+  }
+  .checkout__similar-courses-row {
+    padding: 0 3.125rem 0 0;
+    margin: 15rem 0 5rem 0;
+  }
+  .checkout__similar-courses__title {
+    font-size: 3.7975rem;
+  }
+  .checkout__similar-courses__cards-carousel {
+    margin: 2.25rem 0 0 0;
+  }
+  .checkout__similar-courses__cards-carousel > div {
+    padding: 2.45rem 1.47rem 2.45rem 0 !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1),
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+    top: 45% !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1):after,
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.5rem !important;
+    -webkit-box-shadow: 0 0 1.875rem #00000033 !important;
+            box-shadow: 0 0 1.875rem #00000033 !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1) {
+    right: 1.05rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(1):after {
+    padding: 2.25rem 1.77rem 2.25rem 1.92rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2) {
+    left: 1.05rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(2):after {
+    padding: 2.25rem 1.92rem 2.25rem 1.77rem !important;
+  }
+  .checkout__similar-courses__cards-carousel > div > div:nth-child(3) > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .checkout__similar-courses__cards-carousel__course-card {
+    width: 45.9375rem;
+    height: 49rem;
+    -webkit-box-shadow: 0 1.225rem 2.2981rem #0000001A;
+            box-shadow: 0 1.225rem 2.2981rem #0000001A;
+    border-radius: 1.8375rem;
+    display: inline-block;
+  }
+  .checkout__similar-courses__cards-carousel__course-card:after {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 12.25rem;
+    display: inline-block;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__category-chip {
+    position: absolute;
+    top: 1rem;
+    left: 1.2rem;
+    border-radius: 0.75rem;
+    padding: 0.12rem 0.7rem;
+    color: white;
+    font-size: 1.8375rem;
+    top: 2.45rem;
+    left: 2.94rem;
+    border-radius: 1.8375rem;
+    padding: 0.294rem 1.715rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__course-img {
+    width: 100%;
+    height: 27.5625rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body {
+    padding: 1.47rem 2.45rem 0 2.45rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    position: relative;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header:before {
+    right: 0;
+    bottom: -2.45rem;
+    width: 100%;
+    border-bottom: 0.1225rem solid rgba(34, 34, 34, 0.1);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
+    border-radius: 50%;
+    width: 6.125rem;
+    height: 6.125rem;
+    margin-left: 1.47rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details {
+    display: inline-block;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
+    font-size: 2.45rem;
+    margin: 0;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
+    font-size: 1.99185rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details {
+    margin-top: 3.92rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+    font-size: 3.0625rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 1.99185rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -1.225rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 1.8375rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 1.53125rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    width: 6.075rem;
+    height: 6.075rem;
+    margin-right: 0.735rem;
+    padding: 0 !important;
+    border-radius: 2.025rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+    width: 3.875rem;
+    height: 4.25rem;
+  }
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+    width: 3.5325rem;
+    height: 3.0625rem;
+  }
+}
+/*# sourceMappingURL=checkout-page.module.css.map */

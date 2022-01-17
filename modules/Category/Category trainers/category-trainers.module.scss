@@ -1,0 +1,242 @@
+@import "../../../styles/mixins";
+
+.category-trainer{
+    margin: 6.25rem 9rem 0 0;
+}
+
+.category-trainer__title{
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.category-trainer__cards-carousel{
+    padding-top: 2.0625rem;
+
+    &>div {
+        padding: 0 !important;
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 43% !important;
+        }
+    }
+    
+}
+
+.category-trainer__cards-carousel__card{
+    width: 18.75rem*0.8;
+    height: 21.875rem*0.8;
+    box-shadow: 0 0.5rem*0.8 1.313rem*0.8 #0000001A;
+    border-radius: 0.75rem*0.8;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    @include flex(unset,flex-end);
+    display: inline-flex;
+    background: transparent url('/images/trainer img.png') no-repeat padding-box;
+    background-size: contain; 
+}
+
+.category-trainer__cards-carousel__card__card-body{
+    padding: 0;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+
+   padding-bottom: 1.5rem*0.8; 
+}
+
+.category-trainer__cards-carousel__card__trainer{
+    font-size: 1.25rem*0.8;
+    font-weight: 700;
+    margin: 2.5rem*0.8 0 0.313rem*0.8 0;
+}
+.category-trainer__cards-carousel__card__job-title,
+.category-trainer__cards-carousel__card__job-history{
+    font-size: 0.813rem*0.8;
+    padding: 0;
+}
+
+
+
+
+@media (max-width:1200px){
+
+    
+    .category-trainer__cards-carousel{
+        padding-top: 2.563rem*0.95;
+    
+        &>div {
+            padding: 0 2rem*0.95 !important;
+            @include inset-box-shadow(white);
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+                &:after{
+                    font-size: 1rem*1.3 !important;
+                    box-shadow: 0 0 1.25rem*1.3 #00000033 !important;
+                  }
+            }
+            &>div:nth-child(1){
+                right: 1rem*1.3 !important;
+                &:after{
+                  padding: 1.5rem*1.3 1.18rem*1.3 1.5rem*1.3 1.28rem*1.3 !important;
+                }
+    
+            }
+            &>div:nth-child(2){
+                left: 1rem*1.3 !important;
+                &:after{
+                  padding: 1.5rem*1.3 1.28rem*1.3 1.5rem*1.3 1.18rem*1.3 !important;
+                }
+            }
+        }
+        
+    }
+    
+    .category-trainer__cards-carousel__card{
+        width: 18.75rem*0.95;
+        height: 21.875rem*0.95;
+        box-shadow: 0 0.5rem*0.95 1.313rem*0.95 #0000001A;
+        border-radius: 0.75rem*0.95;
+        @include flex(unset,flex-end);
+        background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        background-size: contain; 
+    }
+    
+    .category-trainer__cards-carousel__card__card-body{
+        padding: 0;
+        background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    
+       padding-bottom: 1.5rem*0.95;
+    }
+    
+    .category-trainer__cards-carousel__card__trainer{
+        font-size: 1.25rem*0.95;
+        margin: 2.5rem*0.95 0 0.313rem*0.95 0;
+    }
+    .category-trainer__cards-carousel__card__job-title,
+    .category-trainer__cards-carousel__card__job-history{
+        font-size: 0.813rem*0.95;
+        padding: 0;
+    }
+
+}
+
+@media (max-width:980px){
+
+
+    .category-trainer__cards-carousel{
+        padding-top: 2.563rem*1.335;
+    
+        &>div {
+            padding: 0 2rem*1.335 !important;
+            @include inset-box-shadow(white);
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+                &:after{
+                    font-size: 1rem*1.5 !important;
+                    box-shadow: 0 0 1.25rem*1.5 #00000033 !important;
+                  }
+            }
+            &>div:nth-child(1){
+                right: 1rem*1.5 !important;
+                &:after{
+                  padding: 1.5rem*1.5 1.18rem*1.5 1.5rem*1.5 1.28rem*1.5 !important;
+                }
+    
+            }
+            &>div:nth-child(2){
+                left: 1rem*1.5 !important;
+                &:after{
+                  padding: 1.5rem*1.5 1.28rem*1.5 1.5rem*1.5 1.18rem*1.5 !important;
+                }
+            }
+        }
+        
+    }
+    
+    .category-trainer__cards-carousel__card{
+        width: 18.75rem*1.335;
+        height: 21.875rem*1.335;
+        box-shadow: 0 0.5rem*1.335 1.313rem*1.335 #0000001A;
+        border-radius: 0.75rem*1.335;
+        @include flex(unset,flex-end);
+        background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        background-size: contain; 
+    }
+    
+    .category-trainer__cards-carousel__card__card-body{
+        padding: 0;
+        background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    
+       padding-bottom: 1.5rem*1.335;
+    }
+    
+    .category-trainer__cards-carousel__card__trainer{
+        font-size: 1.25rem*1.335;
+        margin: 2.5rem*1.335 0 0.313rem*1.335 0;
+    }
+    .category-trainer__cards-carousel__card__job-title,
+    .category-trainer__cards-carousel__card__job-history{
+        font-size: 0.813rem*1.335;
+        padding: 0;
+    }
+}
+
+@media (max-width:575px){
+    .category-trainer{
+        margin: 12.4rem 0 0 0;
+    }
+    
+    .category-trainer__title{
+        font-size: 1.75rem*2.2;
+        padding: 0 3rem 0 0;
+    }
+
+.category-trainer__cards-carousel{
+    padding-top: 6.406rem;
+
+    &>div {
+        padding: 0 2rem*2.2 !important;
+        &:before {
+            box-shadow: none ;
+        }
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 43% !important;
+        }
+        &>div:nth-child(4) {
+           &>div{
+               @include flex(unset,flex-start); 
+           }
+        }
+    }
+    
+}
+
+.category-trainer__cards-carousel__card{
+    width: 18.75rem*2.2;
+    height: 21.875rem*2.2;
+    box-shadow: 0 0.5rem*2.2 1.313rem*2.2 #0000001A;
+    border-radius: 0.75rem*2.2;
+    @include flex(unset,flex-end);
+}
+
+.category-trainer__cards-carousel__card__card-body{
+    padding: 0;
+    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+
+   padding-bottom: 1.5rem*2.2;
+}
+
+.category-trainer__cards-carousel__card__trainer{
+    font-size: 1.25rem*2.2;
+    font-weight: 700;
+    margin: 2.5rem*2.2 0 0.313rem*2.2 0;
+}
+.category-trainer__cards-carousel__card__job-title,
+.category-trainer__cards-carousel__card__job-history{
+    font-size: 0.813rem*2.2;
+    padding: 0;
+}
+}

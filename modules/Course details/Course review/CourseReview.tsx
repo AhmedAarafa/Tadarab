@@ -6,16 +6,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore , {Navigation} from 'swiper';
 import "swiper/css";
 import { Button } from "react-bootstrap";
-import {scrollspyHandler} from "./utils"
+// import {scrollspyHandler} from "./utils"
+import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
+
 
 
 export default function CourseReview() {
     SwiperCore.use([Navigation]);
     useEffect(() => {
-        window.addEventListener("resize" , ()=>{
-          scrollspyHandler();
-         });
-       scrollspyHandler();
+       scrollspyHandler("reviews-section");
 
        return () => {
         window.removeEventListener("resize", () => {

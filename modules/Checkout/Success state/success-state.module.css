@@ -1,0 +1,172 @@
+.success-state {
+  margin-top: 12rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.success-state__img {
+  width: 7rem;
+  height: 6.75rem;
+}
+
+.success-state__purchasing-done {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #222222;
+  margin: 1.25rem 0 0 0;
+}
+
+.success-state__begin-learning {
+  font-size: 1.25rem;
+  color: #777777;
+  margin: 0.5rem 0 0 0;
+}
+
+.success-state__btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 13.75rem;
+  height: 2.8125rem;
+  margin: 1.3rem 0 0 0;
+}
+
+.success-state__btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.success-state__btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.success-state__btn:hover, .success-state__btn:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.success-state__btn span {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.success-state__btn svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin: 0 0.5rem 0 0;
+}
+
+.success-state__bill-details {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #AF151F;
+  margin: 1.5rem 0 0 0;
+}
+
+@media (max-width: 575px) {
+  .success-state {
+    margin-top: 27.6rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .success-state__img {
+    width: 16.1rem;
+    height: 15.525rem;
+  }
+  .success-state__purchasing-done {
+    font-size: 4.3125rem;
+    font-weight: 800;
+    color: #222222;
+    margin: 2.875rem 0 0 0;
+  }
+  .success-state__begin-learning {
+    font-size: 2.875rem;
+    color: #777777;
+    margin: 1.15rem 0 0 0;
+  }
+  .success-state__btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    width: 31.625rem;
+    height: 6.46875rem;
+    margin: 2.99rem 0 0 0;
+    border-radius: 1.4375rem;
+  }
+  .success-state__btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .success-state__btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .success-state__btn:hover, .success-state__btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .success-state__btn span {
+    font-size: 2.3rem;
+    font-weight: 700;
+  }
+  .success-state__btn svg {
+    width: 2.3rem;
+    height: 2.3rem;
+    margin: 0 1.15rem 0 0;
+  }
+  .success-state__bill-details {
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #AF151F;
+    margin: 3.45rem 0 0 0;
+  }
+}
+/*# sourceMappingURL=success-state.module.css.map */

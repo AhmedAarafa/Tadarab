@@ -1,0 +1,481 @@
+@import "../../../styles/mixins";
+
+
+.training-courses {
+    margin: 4.1875rem 9rem 0 0;
+}
+
+
+.training-courses__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $dark-black;
+    margin: 0 0 0.2rem 0;
+}
+
+.training-courses__brief {
+    font-size: 1.125rem;
+    color: $grey;
+}
+
+.training-courses__filters-col {
+    padding: 2.4375rem 0 0 9rem;
+    @include flex(center, space-between);
+}
+
+.training-courses__filters-col__filter-box {
+    width: 15.5rem;
+    // height: 4.375rem;
+    box-shadow: 0rem 0.1875rem 1.625rem #00000029;
+    border-radius: 0.9375rem;
+    background-color: white;
+    // margin-bottom:12rem;
+    // z-index: 3;
+
+    // padding: 0.8125rem 1.25rem;
+}
+
+.training-courses__filters-col__filter-box__filter-by {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $grey;
+    padding: 0.8125rem 1.25rem 0;
+}
+
+.level-filter {
+    @include flex(center);
+
+    svg {
+        width: 1.875rem;
+        height: 1.5rem;
+        margin: 0 0 0.5rem 0.5rem;
+    }
+}
+
+.training-courses__filters-col__filter-box__filter {
+    // background-position: left 1.25rem center;
+    // background-size: 1rem 0.75rem;
+    // background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23777777' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+    padding: 0 1.25rem 0;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+
+    button {
+        width: 100%;
+        @include flex(center, space-between);
+        padding: 0.375rem 0 0.375rem 0;
+        background-color: white !important;
+        border: 0 !important;
+        font-size: 1.0625rem;
+        font-weight: 800;
+        color: $dark-black !important;
+        // z-index: 5;
+    z-index: 3;
+
+
+        &+div {
+            margin-inline-end: -7.8%;
+            width: 100%;
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+            border-radius: 0.9375rem;
+            // margin-top: -2rem;
+            // z-index: 1;
+            box-shadow: 0rem 0.1875rem 1.625rem #00000029;
+            border: 0;
+            // background-image: linear-gradient(rgba(0,0,0,0.1) , white ); 
+
+            a {
+                margin: 0;
+                padding: 0.2rem 0.2rem;
+                border-radius: 0.5rem;
+                text-align: right;
+                font-size: 1.0625rem;
+                font-weight: 800;
+                color: $dark-black;
+                // z-index: 3;
+                @include flex(center);
+                height: fit-content;
+
+                svg {
+                    width: 1.875rem;
+                    height: 1.5rem;
+                    margin: 0 0 0.5rem 0.5rem;
+                }
+
+                &:hover,
+                &:active {
+                    background-color: rgba(0, 0, 0, 0.05) !important;
+                    color: $dark-black !important;
+                }
+            }
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: white !important;
+            border: 0 !important;
+            color: $dark-black !important;
+        }
+
+        &::after {
+            background-position: left 1.25rem center;
+            background-size: 1.5rem 1rem;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23777777' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+            background-repeat: no-repeat;
+            width: 4rem;
+            height: 1.75rem;
+            margin: 0 0 0 -1.5rem;
+            border: 0;
+        }
+    }
+}
+
+.training-courses__filtered-courses{
+    padding: 4.25rem 4.625rem 0 13.625rem;
+    @include flex(center,space-between);
+    flex-wrap: wrap;
+}
+
+
+.training-courses__course-card {
+    width: 18.75rem*0.97;
+    height: 20rem*0.97;
+    box-shadow: 0 0.5rem*0.97 0.938rem*0.97 #0000001A;
+    border-radius: 0.75rem*0.97;
+    position: relative;
+    display: inline-block;
+    margin: 0 0 1.875rem 0;
+    overflow: hidden;
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 5rem*0.97;
+        display: inline-block;
+        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0,0.5) 100%);
+    }
+}
+
+.training-courses__course-card__category-chip {
+    @include categories-chip;
+    font-size: 0.75rem*0.97;
+    font-weight: 700;
+    padding: 0.12rem 0.5rem;
+    background-color: #813A8A;
+    z-index: 1;
+}
+
+
+.training-courses__course-card__course-img {
+    width: 100%;
+    height: 11.25rem*0.97;
+}
+
+.training-courses__course-card__card-body {
+    padding: 0.6rem*0.97 1rem*0.97 0 1rem*0.97;
+}
+
+.training-courses__course-card__card-body__card-header {
+    @include flex(center);
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -1rem*0.97;
+        width: 100%;
+        border-bottom: 0.05rem*0.97 solid rgba(34, 34, 34, 0.1);
+    }
+}
+
+.training-courses__course-card__card-body__card-header__trainer-img-box {
+    img {
+        border-radius: 50%;
+        width: 2.5rem*0.97;
+        height: 2.5rem*0.97;
+        margin-left: 0.6rem*0.97;
+    }
+}
+
+.training-courses__course-card__card-body__card-header__course-details {
+    display: inline-block;
+}
+
+.training-courses__course-card__card-body__card-header__course-details__title {
+    font-size: 1rem*0.97;
+    font-weight: 800;
+    color: $dark-black;
+    margin: 0;
+
+}
+
+.training-courses__course-card__card-body__card-header__course-details__author {
+    font-size: 0.813rem*0.97;
+    color: $grey;
+
+}
+
+.training-courses__course-card__card-body__checkout-details {
+    margin-top: 1.6rem*0.97;
+    @include flex(center, space-between);
+}
+
+.training-courses__course-card__card-body__checkout-details__price-container__price {
+    font-size: 1.25rem*0.97;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.training-courses__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 0.813rem*0.97;
+    font-weight: 700;
+    color: $dark-black;
+}
+
+.training-courses__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -0.5rem*0.97;
+    text-decoration: line-through rgba(119, 119, 119, 0.7);
+}
+
+.training-courses__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 0.75rem*0.97;
+    font-weight: 800;
+    color: $grey;
+}
+
+.training-courses__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 0.625rem*0.97;
+    color: $grey;
+}
+
+.training-courses__course-card__card-body__checkout-details__icon-btn {
+    @include icon-button;
+    width: 2.25rem*0.97;
+    height: 2.25rem*0.97;
+    margin-right: 0.3rem*0.97;
+    padding: 0 !important;
+    border-radius: 0.75rem*0.97;
+
+}
+.training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon {
+    width: 1.55rem*0.97;
+    height: 1.7rem*0.97;
+}
+.training-courses__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        width: 1.413rem*0.97;
+        height: 1.225rem*0.97;
+}
+
+
+@media (max-width:575px){
+    .training-courses {
+        margin: 4.1875rem 0 0 0;
+    }
+
+    .training-courses__filters-col {
+        padding: 2.4375rem 3rem 0 3rem;
+        @include flex(center, space-between);
+    }
+
+    .training-courses__title {
+        font-size: 1.75rem*2.3;
+        margin: 12.4rem 3rem 0.2rem 0;
+    }
+    
+    .training-courses__brief {
+        margin: 0 3rem 0 0;
+        font-size: 1.125rem*2.3;
+    }
+    .training-courses__filtered-courses{
+        padding: 4.25rem 3rem 0 3rem;
+    }
+
+
+.training-courses__filters-col__filter-box {
+    width: 12rem;
+    // height: 4.375rem;
+    box-shadow: 0rem 0.1875rem 1.625rem #00000029;
+    border-radius: 0.9375rem;
+    background-color: white;
+}
+
+.training-courses__filters-col__filter-box__filter-by {
+    font-size: 0.875rem;
+    padding: 0.8125rem 1.25rem 0;
+}
+
+.level-filter {
+    @include flex(center);
+
+    svg {
+        width: 1.875rem;
+        height: 1.5rem;
+        margin: 0 0 0.5rem 0.5rem;
+    }
+}
+
+.training-courses__filters-col__filter-box__filter {
+    padding: 0 1.25rem 0;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+
+    button {
+        width: 100%;
+        @include flex(center, space-between);
+        padding: 0.375rem 0 0.375rem 0;
+        border: 0 !important;
+        font-size: 1.0625rem;
+
+
+        &+div {
+            margin-inline-end: -7.8%;
+            width: 100%;
+            padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+            border-radius: 0.9375rem;
+            border: 0;
+
+            a {
+                margin: 0;
+                padding: 0.2rem 0.2rem;
+                border-radius: 0.5rem;
+                font-size: 1.0625rem;
+                @include flex(center);
+                height: fit-content;
+
+                svg {
+                    width: 1.875rem;
+                    height: 1.5rem;
+                    margin: 0 0 0.5rem 0.5rem;
+                }
+
+            }
+        }
+
+        &::after {
+            background-position: left 1.25rem center;
+            background-size: 1.5rem 1rem;
+            background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='none' stroke='%23777777' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/></svg>");
+            background-repeat: no-repeat;
+            width: 4rem;
+            height: 1.75rem;
+            margin: 0 0 0 -1.5rem;
+            border: 0;
+        }
+    }
+}
+
+    
+.training-courses__course-card {
+    width: 18.75rem*1.35;
+    height: 20rem*1.35;
+    box-shadow: 0 0.5rem*1.35 0.938rem*1.35 #0000001A;
+    border-radius: 0.75rem*1.35;
+    margin: 0 0 1.875rem 0;
+    &:after {
+        width: 100%;
+        height: 5rem*1.35;
+        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0,0.5) 100%);
+    }
+}
+
+.training-courses__course-card__category-chip {
+    @include categories-chip;
+    font-size: 0.75rem*1.35;
+    padding: 0.12rem*1.35 0.5rem*1.35;
+    z-index: 1;
+}
+
+
+.training-courses__course-card__course-img {
+    width: 100%;
+    height: 11.25rem*1.35;
+}
+
+.training-courses__course-card__card-body {
+    padding: 0.6rem*1.35 1rem*1.35 0 1rem*1.35;
+}
+
+.training-courses__course-card__card-body__card-header {
+    @include flex(center);
+    position: relative;
+
+    &:before {
+        bottom: -1rem*1.35;
+        width: 100%;
+        border-bottom: 0.05rem*1.35 solid rgba(34, 34, 34, 0.1);
+    }
+}
+
+.training-courses__course-card__card-body__card-header__trainer-img-box {
+    img {
+        border-radius: 50%;
+        width: 2.5rem*1.35;
+        height: 2.5rem*1.35;
+        margin-left: 0.6rem*1.35;
+    }
+}
+
+.training-courses__course-card__card-body__card-header__course-details {
+    display: inline-block;
+}
+
+.training-courses__course-card__card-body__card-header__course-details__title {
+    font-size: 1rem*1.35;
+    margin: 0;
+
+}
+
+.training-courses__course-card__card-body__card-header__course-details__author {
+    font-size: 0.813rem*1.35;
+
+}
+
+.training-courses__course-card__card-body__checkout-details {
+    margin-top: 1.6rem*1.35;
+    @include flex(center, space-between);
+}
+
+.training-courses__course-card__card-body__checkout-details__price-container__price {
+    font-size: 1.25rem*1.35;
+}
+
+.training-courses__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 0.813rem*1.35;
+}
+
+.training-courses__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -0.5rem*1.35;
+}
+
+.training-courses__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 0.75rem*1.35;
+}
+
+.training-courses__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 0.625rem*1.35;
+}
+
+.training-courses__course-card__card-body__checkout-details__icon-btn {
+    @include icon-button;
+    width: 2.25rem*1.35;
+    height: 2.25rem*1.35;
+    margin-right: 0.3rem*1.35;
+    padding: 0 !important;
+    border-radius: 0.75rem*1.35;
+
+}
+.training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon {
+    width: 1.55rem*1.35;
+    height: 1.7rem*1.35;
+}
+.training-courses__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        width: 1.413rem*1.35;
+        height: 1.225rem*1.35;
+}
+}

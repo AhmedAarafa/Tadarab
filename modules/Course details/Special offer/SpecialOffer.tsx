@@ -204,6 +204,7 @@ export default function SpecialOffer() {
                     </div>
                 </div>
             </div>
+            
             <div className={styles["special-offer__cards-outer-box__card__checkout-box"]}>
                 <div className={styles["special-offer__cards-outer-box__card__checkout-box__prices-box"]}>
                     <div className={styles["special-offer__cards-outer-box__card__checkout-box__prices-box__price"]}>

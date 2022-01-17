@@ -1,4 +1,4 @@
-.register__img img {
+.sign-in__img img {
   width: 39rem;
   height: 24.75rem;
   margin: 10.25rem 2.75rem 0 0;
@@ -8,25 +8,25 @@
           user-select: none;
 }
 
-.register__register-box {
+.sign-in__sign-in-box {
   padding: 6.313rem 12.5rem 0 0;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.register__register-box__title div:nth-of-type(1) {
+.sign-in__sign-in-box__title div:nth-of-type(1) {
   font-size: 1.875rem;
   color: #222222;
   font-weight: 800;
 }
 
-.register__register-box__title div:nth-of-type(2) {
+.sign-in__sign-in-box__title div:nth-of-type(2) {
   font-size: 1.0625rem;
   color: #777777;
 }
 
-.register__register-box__register-with {
+.sign-in__sign-in-box__sign-in-with {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,7 +39,7 @@
   margin-top: 1.25rem;
 }
 
-.register__register-box__register-with div {
+.sign-in__sign-in-box__sign-in-with div {
   font-size: 1.063rem;
   font-weight: 700;
   color: #222222;
@@ -62,17 +62,17 @@
   cursor: pointer;
 }
 
-.register__register-box__register-with div svg {
+.sign-in__sign-in-box__sign-in-with div svg {
   width: 1.5rem;
   height: 1.5rem;
   margin-left: 0.9375rem;
 }
 
-.register__register-box__register-with div:last-child {
+.sign-in__sign-in-box__sign-in-with div:last-child {
   margin-left: 0;
 }
 
-.register__register-box__register-with-email {
+.sign-in__sign-in-box__sign-in-with-email {
   font-size: 1.0625rem;
   color: #777777;
   text-align: center;
@@ -80,7 +80,7 @@
   position: relative;
 }
 
-.register__register-box__register-with-email:before {
+.sign-in__sign-in-box__sign-in-with-email:before {
   content: '';
   position: absolute;
   top: 60%;
@@ -91,7 +91,7 @@
           transform: translateY(-50%);
 }
 
-.register__register-box__register-with-email:after {
+.sign-in__sign-in-box__sign-in-with-email:after {
   content: '';
   position: absolute;
   top: 60%;
@@ -102,10 +102,8 @@
           transform: translateY(-50%);
 }
 
-.register__register-box__registeration-form-box__name-field-container,
-.register__register-box__registeration-form-box__email-field-container,
-.register__register-box__registeration-form-box__password-field-container,
-.register__register-box__registeration-form-box__phone-field-container {
+.sign-in__sign-in-box__sign-in-form-box__email-field-container,
+.sign-in__sign-in-box__sign-in-form-box__password-field-container {
   position: relative;
   -webkit-box-shadow: 0rem 0.1875rem 1.25rem #0000001A;
           box-shadow: 0rem 0.1875rem 1.25rem #0000001A;
@@ -123,47 +121,26 @@
           justify-content: unset;
 }
 
-.register__register-box__registeration-form-box__name-field-container {
+.sign-in__sign-in-box__sign-in-form-box__email-field-container {
   margin: 2.125rem 0 0 0;
 }
 
-.register__register-box__registeration-form-box__name-field-container svg {
-  width: 1.25rem;
-  height: 1.438rem;
-}
-
-.register__register-box__registeration-form-box__email-field-container {
-  margin: 1.25rem 0 0 0;
-}
-
-.register__register-box__registeration-form-box__email-field-container svg {
+.sign-in__sign-in-box__sign-in-form-box__email-field-container svg {
   width: 1.25rem;
   height: 0.9375rem;
 }
 
-.register__register-box__registeration-form-box__password-field-container {
+.sign-in__sign-in-box__sign-in-form-box__password-field-container {
   margin: 1.25rem 0 0 0;
 }
 
-.register__register-box__registeration-form-box__password-field-container svg {
+.sign-in__sign-in-box__sign-in-form-box__password-field-container svg {
   width: 1.25rem;
   height: 1.4375rem;
 }
 
-.register__register-box__registeration-form-box__phone-field-container {
-  margin: 1.25rem 0 0 0;
-}
-
-.register__register-box__registeration-form-box__phone-field-container img {
-  width: 1.6875rem;
-  height: 1.125rem;
-  border-radius: 0.125rem;
-}
-
-.register__register-box__registeration-form-box__name-field,
-.register__register-box__registeration-form-box__email-field,
-.register__register-box__registeration-form-box__password-field,
-.register__register-box__registeration-form-box__phone-field {
+.sign-in__sign-in-box__sign-in-form-box__email-field,
+.sign-in__sign-in-box__sign-in-form-box__password-field {
   font-size: 1.063rem;
   margin: 0 1.5rem 0 0;
   width: 100%;
@@ -172,13 +149,9 @@
   outline: none !important;
 }
 
-.register__register-box__registeration-form-box__name-field:active, .register__register-box__registeration-form-box__name-field:focus,
-.register__register-box__registeration-form-box__email-field:active,
-.register__register-box__registeration-form-box__email-field:focus,
-.register__register-box__registeration-form-box__password-field:active,
-.register__register-box__registeration-form-box__password-field:focus,
-.register__register-box__registeration-form-box__phone-field:active,
-.register__register-box__registeration-form-box__phone-field:focus {
+.sign-in__sign-in-box__sign-in-form-box__email-field:active, .sign-in__sign-in-box__sign-in-form-box__email-field:focus,
+.sign-in__sign-in-box__sign-in-form-box__password-field:active,
+.sign-in__sign-in-box__sign-in-form-box__password-field:focus {
   outline: 0 !important;
   border: none !important;
   -webkit-appearance: none;
@@ -186,25 +159,15 @@
           box-shadow: none !important;
 }
 
-.register__register-box__registeration-form-box__password-field {
+.sign-in__sign-in-box__sign-in-form-box__password-field {
   width: 87%;
 }
 
-.register__register-box__registeration-form-box__phone-field {
-  margin: 0 6rem 0 0;
-  border-radius: 0;
-  border-right: 1px solid rgba(119, 119, 119, 0.2) !important;
-}
-
-.register__register-box__registeration-form-box__phone-field:focus {
-  border-right: 1px solid rgba(119, 119, 119, 0.2) !important;
-}
-
-.register__register-box__registeration-form-box__country-code-dropdown {
+.sign-in__sign-in-box__sign-in-form-box__country-code-dropdown {
   background-color: transparent !important;
 }
 
-.register__register-box__registeration-form-box__country-code-dropdown button {
+.sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button {
   color: #777777 !important;
   background-color: transparent !important;
   border: 0 !important;
@@ -220,26 +183,26 @@
           justify-content: unset;
 }
 
-.register__register-box__registeration-form-box__country-code-dropdown button:after {
+.sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button:after {
   margin: 0 0.4375rem 0 0  !important;
 }
 
-.register__register-box__registeration-form-box__country-code-dropdown button + div a {
+.sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button + div a {
   background-color: transparent !important;
   color: #222222 !important;
 }
 
-.register__register-box__registeration-form-box__country-code-dropdown button + div a:hover {
+.sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button + div a:hover {
   background-color: rgba(119, 119, 119, 0.1) !important;
 }
 
-.register__register-box__registeration-form-box__show-password-icon-wrapper svg {
+.sign-in__sign-in-box__sign-in-form-box__show-password-icon-wrapper svg {
   width: 1.5rem;
   height: 1rem;
   cursor: pointer;
 }
 
-.register__register-box__registeration-form-box__icon-wrapper {
+.sign-in__sign-in-box__sign-in-form-box__icon-wrapper {
   height: 100%;
   position: absolute;
   display: -webkit-box;
@@ -253,7 +216,7 @@
           justify-content: center;
 }
 
-.register__register-box__registeration-form-box__make-new-acc-btn {
+.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn {
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
   text-transform: none;
@@ -269,45 +232,54 @@
   height: 3.4rem;
   border-radius: 0.75rem;
   font-size: 1.063rem;
-  margin-top: 1.625rem;
+  margin-top: 1rem;
 }
 
-.register__register-box__registeration-form-box__make-new-acc-btn:hover {
+.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.register__register-box__registeration-form-box__make-new-acc-btn:active {
+.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.register__register-box__registeration-form-box__make-new-acc-btn:hover, .register__register-box__registeration-form-box__make-new-acc-btn:active {
+.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover, .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
 
-.register__register-box__registeration-form-box__do-you-have-acc {
+.sign-in__sign-in-box__sign-in-form-box__forget-password {
   font-size: 1.125rem;
+  font-weight: 700;
+  color: #222222;
   text-align: center;
-  margin: 1.5rem 0 0 0;
+  margin: 1rem 0 0 0;
+  cursor: pointer;
 }
 
-.register__register-box__registeration-form-box__do-you-have-acc span:nth-of-type(1) {
+.sign-in__sign-in-box__sign-in-form-box__do-you-have-acc {
+  font-size: 1.125rem;
+  text-align: center;
+  margin: 1.5rem 0 5rem 0;
+}
+
+.sign-in__sign-in-box__sign-in-form-box__do-you-have-acc span:nth-of-type(1) {
   color: #777777;
 }
 
-.register__register-box__registeration-form-box__do-you-have-acc span:nth-of-type(2) {
+.sign-in__sign-in-box__sign-in-form-box__do-you-have-acc span:nth-of-type(2) {
   color: #AF151F;
   font-weight: 800;
   cursor: pointer;
 }
 
 @media (max-width: 575px) {
-  .register {
+  .sign-in {
     padding: 0 3rem;
   }
-  .register__img {
+  .sign-in__img {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -317,26 +289,27 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    display: none !important;
   }
-  .register__img img {
+  .sign-in__img img {
     width: 100%;
     height: 32rem;
     margin: 12rem 0 0 0;
   }
-  .register__register-box {
-    padding: 6.313rem 0 0 0;
+  .sign-in__sign-in-box {
+    padding: 15rem 0 0 0;
     width: 100%;
   }
-  .register__register-box__title {
+  .sign-in__sign-in-box__title {
     text-align: center;
   }
-  .register__register-box__title div:nth-of-type(1) {
+  .sign-in__sign-in-box__title div:nth-of-type(1) {
     font-size: 4.6875rem;
   }
-  .register__register-box__title div:nth-of-type(2) {
+  .sign-in__sign-in-box__title div:nth-of-type(2) {
     font-size: 2.65625rem;
   }
-  .register__register-box__register-with {
+  .sign-in__sign-in-box__sign-in-with {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -352,7 +325,7 @@
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .register__register-box__register-with div {
+  .sign-in__sign-in-box__sign-in-with div {
     font-size: 2.6575rem;
     width: 100%;
     height: 7.8125rem;
@@ -371,20 +344,20 @@
             justify-content: center;
     margin: 2.5rem 0 0 0;
   }
-  .register__register-box__register-with div svg {
+  .sign-in__sign-in-box__sign-in-with div svg {
     width: 3.75rem;
     height: 3.75rem;
     margin-left: 3rem;
   }
-  .register__register-box__register-with div:last-child {
+  .sign-in__sign-in-box__sign-in-with div:last-child {
     margin-left: 0;
   }
-  .register__register-box__register-with-email {
+  .sign-in__sign-in-box__sign-in-with-email {
     font-size: 2.65625rem;
     margin: 3.90625rem 0 0 0;
     position: relative;
   }
-  .register__register-box__register-with-email:before {
+  .sign-in__sign-in-box__sign-in-with-email:before {
     content: '';
     position: absolute;
     top: 60%;
@@ -394,7 +367,7 @@
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
   }
-  .register__register-box__register-with-email:after {
+  .sign-in__sign-in-box__sign-in-with-email:after {
     content: '';
     position: absolute;
     top: 60%;
@@ -404,10 +377,8 @@
     -webkit-transform: translateY(-50%);
             transform: translateY(-50%);
   }
-  .register__register-box__registeration-form-box__name-field-container,
-  .register__register-box__registeration-form-box__email-field-container,
-  .register__register-box__registeration-form-box__password-field-container,
-  .register__register-box__registeration-form-box__phone-field-container {
+  .sign-in__sign-in-box__sign-in-form-box__email-field-container,
+  .sign-in__sign-in-box__sign-in-form-box__password-field-container {
     -webkit-box-shadow: 0rem 0.1875rem 1.25rem #0000001A;
             box-shadow: 0rem 0.1875rem 1.25rem #0000001A;
     border-radius: 1.875rem;
@@ -423,70 +394,40 @@
         -ms-flex-pack: unset;
             justify-content: unset;
   }
-  .register__register-box__registeration-form-box__name-field-container {
+  .sign-in__sign-in-box__sign-in-form-box__email-field-container {
     margin: 5.3125rem 0 0 0;
   }
-  .register__register-box__registeration-form-box__name-field-container svg {
-    width: 3.125rem;
-    height: 3.595rem;
-  }
-  .register__register-box__registeration-form-box__email-field-container {
-    margin: 3.125rem 0 0 0;
-  }
-  .register__register-box__registeration-form-box__email-field-container svg {
+  .sign-in__sign-in-box__sign-in-form-box__email-field-container svg {
     width: 3.125rem;
     height: 2.34375rem;
   }
-  .register__register-box__registeration-form-box__password-field-container {
+  .sign-in__sign-in-box__sign-in-form-box__password-field-container {
     margin: 3.125rem 0 0 0;
   }
-  .register__register-box__registeration-form-box__password-field-container svg {
+  .sign-in__sign-in-box__sign-in-form-box__password-field-container svg {
     width: 3.125rem;
     height: 3.59375rem;
   }
-  .register__register-box__registeration-form-box__phone-field-container {
-    margin: 3.125rem 0 0 0;
-  }
-  .register__register-box__registeration-form-box__phone-field-container img {
-    width: 4.21875rem;
-    height: 2.8125rem;
-    border-radius: 0.3125rem;
-    margin-left: 1rem;
-  }
-  .register__register-box__registeration-form-box__name-field,
-  .register__register-box__registeration-form-box__email-field,
-  .register__register-box__registeration-form-box__password-field,
-  .register__register-box__registeration-form-box__phone-field {
+  .sign-in__sign-in-box__sign-in-form-box__email-field,
+  .sign-in__sign-in-box__sign-in-form-box__password-field {
     font-size: 2.6575rem;
     margin: 0 3.75rem 0 0;
     width: 100%;
     height: 100%;
   }
-  .register__register-box__registeration-form-box__name-field:active, .register__register-box__registeration-form-box__name-field:focus,
-  .register__register-box__registeration-form-box__email-field:active,
-  .register__register-box__registeration-form-box__email-field:focus,
-  .register__register-box__registeration-form-box__password-field:active,
-  .register__register-box__registeration-form-box__password-field:focus,
-  .register__register-box__registeration-form-box__phone-field:active,
-  .register__register-box__registeration-form-box__phone-field:focus {
+  .sign-in__sign-in-box__sign-in-form-box__email-field:active, .sign-in__sign-in-box__sign-in-form-box__email-field:focus,
+  .sign-in__sign-in-box__sign-in-form-box__password-field:active,
+  .sign-in__sign-in-box__sign-in-form-box__password-field:focus {
     outline: 0 !important;
     border: none !important;
     -webkit-appearance: none;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
   }
-  .register__register-box__registeration-form-box__password-field {
+  .sign-in__sign-in-box__sign-in-form-box__password-field {
     width: 80%;
   }
-  .register__register-box__registeration-form-box__phone-field {
-    margin: 0 15rem 0 0;
-    border-radius: 0;
-    border-right: 0.15625rem solid rgba(119, 119, 119, 0.2) !important;
-  }
-  .register__register-box__registeration-form-box__phone-field:focus {
-    border-right: 0.15625rem solid rgba(119, 119, 119, 0.2) !important;
-  }
-  .register__register-box__registeration-form-box__country-code-dropdown button {
+  .sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button {
     font-size: 2.5rem !important;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -498,27 +439,27 @@
         -ms-flex-pack: unset;
             justify-content: unset;
   }
-  .register__register-box__registeration-form-box__country-code-dropdown button:after {
+  .sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button:after {
     margin: 0 1.09375rem 0 0 !important;
   }
-  .register__register-box__registeration-form-box__country-code-dropdown button + div {
+  .sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button + div {
     min-width: 17rem;
     border-radius: 0.625rem;
     font-size: 2.5rem;
   }
-  .register__register-box__registeration-form-box__country-code-dropdown button + div a {
+  .sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button + div a {
     background-color: transparent !important;
     color: #222222 !important;
   }
-  .register__register-box__registeration-form-box__country-code-dropdown button + div a:hover {
+  .sign-in__sign-in-box__sign-in-form-box__country-code-dropdown button + div a:hover {
     background-color: rgba(119, 119, 119, 0.1) !important;
   }
-  .register__register-box__registeration-form-box__show-password-icon-wrapper svg {
+  .sign-in__sign-in-box__sign-in-form-box__show-password-icon-wrapper svg {
     width: 3.75rem;
     height: 2.5rem;
     margin-right: 0.5rem;
   }
-  .register__register-box__registeration-form-box__icon-wrapper {
+  .sign-in__sign-in-box__sign-in-form-box__icon-wrapper {
     height: 100%;
     position: absolute;
     display: -webkit-box;
@@ -531,7 +472,7 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .register__register-box__registeration-form-box__make-new-acc-btn {
+  .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn {
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
     text-transform: none;
@@ -547,23 +488,27 @@
     height: 8.5rem;
     border-radius: 1.875rem;
     font-size: 2.6575rem;
-    margin-top: 4.0625rem;
+    margin-top: 2.5rem;
   }
-  .register__register-box__registeration-form-box__make-new-acc-btn:hover {
+  .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover {
     -webkit-box-shadow: none;
             box-shadow: none;
   }
-  .register__register-box__registeration-form-box__make-new-acc-btn:active {
+  .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
     -webkit-box-shadow: none;
             box-shadow: none;
   }
-  .register__register-box__registeration-form-box__make-new-acc-btn:hover, .register__register-box__registeration-form-box__make-new-acc-btn:active {
+  .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover, .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-  .register__register-box__registeration-form-box__do-you-have-acc {
+  .sign-in__sign-in-box__sign-in-form-box__forget-password {
     font-size: 2.8125rem;
-    margin: 3.75rem 0 0 0;
+    margin: 2.5rem 0 0 0;
+  }
+  .sign-in__sign-in-box__sign-in-form-box__do-you-have-acc {
+    font-size: 2.8125rem;
+    margin: 3.75rem 0 12.5rem 0;
   }
 }
-/*# sourceMappingURL=sign-up-page.module.css.map */
+/*# sourceMappingURL=sign-in-page.module.css.map */

@@ -5,6 +5,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url(c:\Users\ahmed\Desktop\Tadarab Development\tadarab-development\node_modules\normalize.css\normalize.css);
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -11985,7 +11986,9 @@ a {
 
 button:active, button:focus,
 input:active,
-input:focus {
+input:focus,
+.form-select:active,
+.form-select:focus {
   outline: 0 !important;
   -webkit-appearance: none;
   -webkit-box-shadow: none !important;

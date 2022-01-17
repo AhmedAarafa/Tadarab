@@ -1,14 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import React ,{ useEffect } from "react";
 import styles from "./trainer-info.module.css";
-import {scrollspyHandler} from "./utils"
+// import {scrollspyHandler} from "./utils"
+import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
+
 
 export default function TrainerInfo() {
   useEffect(() => {
-    window.addEventListener("resize" , ()=>{
-      scrollspyHandler();
-     });
-   scrollspyHandler();
+   scrollspyHandler("trainer-info");
   }, []);
   return (
     <>

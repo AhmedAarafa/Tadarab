@@ -475,7 +475,7 @@
 
 @media (max-width:575px) {
     .navbar {
-        padding: 1.5rem 0 1.5rem 0;
+        padding: 1.5rem 1rem 1.5rem 1rem;
     }
 
     .navbar__img {
@@ -502,11 +502,12 @@
     }
 
     .navbar {
-        justify-content: center;
+        justify-content: space-between;
 
         a:first-child {
             order: 2;
-            margin: 0 15rem 0 15rem;
+            // margin: 0 15rem 0 15rem;
+            margin-right: 3rem;
         }
 
         button {

@@ -3,6 +3,7 @@ import styles from "./course-card.module.css";
 import { Button } from "react-bootstrap";
 import { stickyCardHandler } from "./utils";
 
+
 export default function CourseCard() {
 
   useEffect(() => {

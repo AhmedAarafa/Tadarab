@@ -685,7 +685,7 @@
 
 @media (max-width: 575px) {
   .navbar {
-    padding: 1.5rem 0 1.5rem 0;
+    padding: 1.5rem 1rem 1.5rem 1rem;
   }
   .navbar__img {
     width: 11rem;
@@ -707,15 +707,15 @@
     display: none;
   }
   .navbar {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
   }
   .navbar a:first-child {
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
-    margin: 0 15rem 0 15rem;
+    margin-right: 3rem;
   }
   .navbar button {
     -webkit-box-ordinal-group: 2;

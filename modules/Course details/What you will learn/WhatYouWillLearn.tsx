@@ -1,14 +1,13 @@
 import React , { useState,useEffect} from "react";
 import styles from "./what-you-will-learn.module.css";
-import {scrollspyHandler} from "./utils"
+// import {scrollspyHandler} from "./utils"
+import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
+
 
 export default function WhatYouWillLearn() {
     const [showMore, setShowMore] = useState(true);
     useEffect(() => {
-        window.addEventListener("resize" , ()=>{
-          scrollspyHandler();
-         });
-       scrollspyHandler();
+       scrollspyHandler("what-you-will-learn");
       }, []);
     function showMoreHandler(){
         const showMoreIcon:any = document.getElementById("read-more-icon");

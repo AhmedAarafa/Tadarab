@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./course-content.module.css";
 import { Accordion , Button} from "react-bootstrap";
-import {scrollspyHandler} from "./utils"
+// import {scrollspyHandler} from "./utils"
+import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
 
 export default function CourseContent() {
     useEffect(() => {
-        window.addEventListener("resize" , ()=>{
-          scrollspyHandler();
-         });
-       scrollspyHandler();
-
+       scrollspyHandler("course-content");
        return () => {
         window.removeEventListener("resize", () => {
           console.log('event listener removed from course content component');
