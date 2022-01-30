@@ -4,20 +4,22 @@
     margin-top: 3.938rem;
     padding: 1.875rem 2.5rem;
     color: white;
+    border-radius: 1.5625rem;
     // background: transparent linear-gradient(270deg, rgba(175, 21, 31, 0.87) 0%, rgba(88, 11, 16, 0.87) 100%) 0% 0% no-repeat padding-box;
     box-shadow: 0 0.188rem 3.5rem #0000001A;
     @include flex(center, flex-start);
     // background: transparent url('/images/imgbg.png') 100% 100% no-repeat padding-box;
-    height: 11.25rem;
-    background-image: url('/images/imgbg@2x.png');
-    background-position: center;
-    background-repeat: no-repeat;
+    height: 17.5rem;
+    background-image: url('/images/bgweb.png');
+    // background-position: center;
+    // background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 .tadarab-business__img {
     img {
-        width: 11.875rem;
-        height: 7.5rem;
+        width: 23.75rem;
+        height: 17.5rem;
     }
 }
 
@@ -58,13 +60,93 @@
             font-weight: 700;
             margin-left: 0.5rem;
         }
+        svg {
+            width: 0.875rem;
+            height: 0.875rem;
+        }
     }
 
 }
 
 
 @media (max-width:575px) {
+
+
     .tadarab-business {
-       display: none;
+        // display: none !important;
+        // width: 100%;
+        margin-top: 3.938rem*2.3;
+        padding: 0 2.5rem*2.3 1.875rem*2.3 2.5rem*2.3;
+        color: white;
+        border-radius: 1.5625rem*2.3;
+        // background: transparent linear-gradient(270deg, rgba(175, 21, 31, 0.87) 0%, rgba(88, 11, 16, 0.87) 100%) 0% 0% no-repeat padding-box;
+        box-shadow: 0 0.188rem*2.3 3.5rem*2.3 #0000001A;
+        @include flex(center, flex-start);
+        flex-direction: column;
+        // background: transparent url('/images/imgbg.png') 100% 100% no-repeat padding-box;
+        height: fit-content;
+        background-image: url('/images/bgmobile.png');
+        // background-position: center;
+        // background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .tadarab-business__img {
+        img {
+            margin: -3rem 0 0 0;
+            width: 23.75rem*2.3;
+            height: 17.5rem*2.3;
+        }
+    }
+
+    .tadarab-business__details {
+        margin-right: 0;
+        text-align: center;
+        @include flex(center, center);
+        flex-direction: column;
+    }
+
+    .tadarab-business__details__major {
+        font-size: 1.25rem*2.3;
+        font-weight: 800;
+        margin-bottom: 0.6rem*2.3;
+    }
+
+    .tadarab-business__details__minor {
+        font-size: 1rem*2.3;
+        margin-bottom: 0.7rem*2.3;
+    }
+
+    .tadarab-business__details__btn {
+        width: 100%;
+        button {
+            @include outlined-button;
+            width: 100% !important;
+            height: 2.5rem*2.3 !important;
+            border-radius: 0.625rem*2.3;
+            background-color: transparent !important;
+            color: white !important;
+            border: 0.063rem*2.3 solid white !important;
+            @include flex(center, center);
+
+            &:hover,
+            &:active {
+                background-color: transparent !important;
+                color: white !important;
+                border: 0.063rem*2.3 solid white !important;
+            }
+
+            span {
+                font-size: 1rem*2.3;
+                font-weight: 700;
+                margin-left: 0.5rem*2.3;
+            }
+
+            svg {
+                width: 0.875rem*2.3;
+                height: 0.875rem*2.3;
+            }
+        }
+
     }
 }

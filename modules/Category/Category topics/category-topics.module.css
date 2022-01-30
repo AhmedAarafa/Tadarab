@@ -41,6 +41,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0 0 0.75rem 1rem;
+  cursor: pointer;
 }
 
 @media (max-width: 575px) {

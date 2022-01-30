@@ -1,12 +1,18 @@
-import React from 'react'
-import Navbar from "common/components/Navbar/Navbar";
-import SignInPage from "modules/Sign Up cycle/SignIn page/SignInPage";
+import React from "react";
+import Navbar from "common/Navbar/Navbar";
+import SignInPage from "modules/Auth/SignIn page/SignInPage";
+import { Container } from "react-bootstrap";
+import withAuth from "configurations/auth guard/AuthGuard";
 
-export default function SignUp() {
-    return (
-        <>
-        <Navbar/>
-        <SignInPage/>
-        </>
-    )
+function SignIn() {
+  return (
+    <>
+      <Container fluid="xxl">
+        <Navbar />
+        <SignInPage />
+      </Container>
+    </>
+  );
 }
+
+export default withAuth(SignIn); 

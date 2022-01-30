@@ -1,26 +1,47 @@
 /* eslint-disable @next/next/no-img-element */
 import React,{useState} from 'react'
-import { Row, Col, Button,Card,Form,Dropdown,DropdownButton } from "react-bootstrap";
+import { Row, Col, Button,Card,Form,Dropdown,DropdownButton,Offcanvas} from "react-bootstrap";
 import styles from "./training-courses.module.css";
 import Select from 'react-select';
 
 export default function TrainingCourses() {
 
+    const [showMore, setShowMore] = useState<any>({
+        first:true,
+        second:true,
+        third:true,
+        fourth:true
+    });
+
+    const showMoreHandler = (order:any)=>{
+        switch (order) {
+            case "first":
+                setShowMore({...showMore,first:!showMore[`${order}`]});
+                break;
+            case "second":
+                setShowMore({...showMore,second:!showMore[`${order}`]});
+                break;
+            case "third":
+                setShowMore({...showMore,third:!showMore[`${order}`]});
+                break;
+            case "fourth":
+                setShowMore({...showMore,fourth:!showMore[`${order}`]});
+                break;
+        
+            default:
+                break;
+        }
+        
+    }
+
+    const [FilterSidebarShow, setFilterSidebarShow] = useState(false);
+     const handleFilterSidebarShow = (status:boolean)=>{
+    setFilterSidebarShow(status);
+  }
+
     const [filters, setFilters] = useState({
         orderby:"الأكثر مبيعاً",
-        level:
-        <div className={styles["level-filter"]}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.5rem" viewBox="0 0 30 24">
-            <g id="level" transform="translate(-1157 -5536)">
-                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-            </g>
-        </svg>
-        <div >
-       متوسط
-        </div>
-    </div>,
+        level:"متوسط",
         topics:"مهارات يدوية",
         price:"المدفوع"
     });
@@ -49,9 +70,216 @@ export default function TrainingCourses() {
         <Row className={styles["training-courses"]}>
 
 
-            <Col xs={12}>
-                <div className={styles["training-courses__title"]}> الدورات التدريبية </div>
-                <div className={styles["training-courses__brief"]}> ابحث عن الدورات المناسبة لاختيارتك ومهاراتك بكل سهولة </div>
+            <Col xs={12} className={styles["training-courses__title-col"]}>
+            <Offcanvas id="offcanvasNavbar3" aria-labelledby="offcanvasNavbarLabel3" placement="end" show={FilterSidebarShow} onHide={()=>{handleFilterSidebarShow(false)}}> 
+              <Offcanvas.Header className={styles["filter-sidebar"]} closeButton>
+                <Offcanvas.Title className={styles["filter-sidebar__title-box"]}>
+                 <div className={styles["filter-sidebar__title-box__icon"]}>
+                 <svg xmlns="http://www.w3.org/2000/svg" width=" 1.5625rem" height="1.6875rem" viewBox="0 0 24.648 27.208">
+                        <g id="filter" transform="translate(86.252 -109.198) rotate(90)">
+                            <path id="Path_34330" data-name="Path 34330" d="M274.632,73.455V84.894a1.356,1.356,0,0,0,1.39,1.359,1.376,1.376,0,0,0,1.39-1.359V73.455a4.341,4.341,0,0,0,0-8.279V62.964a1.356,1.356,0,0,0-1.39-1.359,1.376,1.376,0,0,0-1.39,1.359v2.212a4.4,4.4,0,0,0-3.034,4.14A4.489,4.489,0,0,0,274.632,73.455Zm-.253-4.14a1.643,1.643,0,1,1,1.643,1.643A1.632,1.632,0,0,1,274.379,69.315Z" transform="translate(-153.236 -0.001)"/>
+                            <path id="Path_34331" data-name="Path 34331" d="M112.232,82.586v2.307a1.391,1.391,0,0,0,2.781,0V82.586a4.341,4.341,0,0,0,0-8.279V62.963a1.391,1.391,0,0,0-2.781,0V74.307a4.341,4.341,0,0,0,0,8.279Zm-.284-4.14a1.643,1.643,0,1,1,1.643,1.643A1.7,1.7,0,0,1,111.947,78.446Z"/>
+                            <path id="Path_34332" data-name="Path 34332" d="M437.592,82.586v2.307a1.356,1.356,0,0,0,1.39,1.359,1.376,1.376,0,0,0,1.39-1.359V82.586a4.341,4.341,0,0,0,0-8.279V62.963a1.356,1.356,0,0,0-1.39-1.359,1.376,1.376,0,0,0-1.39,1.359V74.307a4.341,4.341,0,0,0,0,8.279Zm-.284-4.14a1.643,1.643,0,1,1,1.643,1.643A1.632,1.632,0,0,1,437.307,78.446Z" transform="translate(-307)"/>
+                        </g>
+                    </svg>
+                 </div>
+                 <div className={styles["filter-sidebar__title-box__title"]}>
+                     <div>تصنيف الدورات</div>
+                     <div>مسح النتائج</div>
+                 </div>
+                  </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <ul className={styles["filter-sidebar__filter-list"]}>
+                    <div>التخصصات</div>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        كل الأقسام
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        تصوير
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        تنمية بشرية
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        الزراعة الداخلية
+                        </span>
+                    </li>
+                    <div onClick={()=>{showMoreHandler("first")}}>
+                        <span>
+                            {
+                                showMore.first == true ?
+                            "اعرض المزيد"
+                            :
+                            "اعرض اقل"
+                            }
+                            </span>
+                        <svg  className={`${
+              showMore.first == false
+                ? styles["show-less"]
+                : styles["show-more"]
+            }`} xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
+                            <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
+                                <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#AF151F"/>
+                            </g>
+                        </svg>
+                    </div>
+                
+                </ul>
+                <ul className={styles["filter-sidebar__filter-list"]}>
+                    <div>المواضيع</div>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        كل المواضيع
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        تصوير
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        الزراعة الداخلية
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        فنون
+                        </span>
+                    </li>
+                    <div onClick={()=>{showMoreHandler("second")}}>
+                        <span>
+                        {
+                                showMore.second == true ?
+                            "اعرض المزيد"
+                            :
+                            "اعرض اقل"
+                            }
+                        </span>
+                        <svg  className={`${
+              showMore.second == false
+                ? styles["show-less"]
+                : styles["show-more"]
+            }`} xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
+                            <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
+                                <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#AF151F"/>
+                            </g>
+                        </svg>
+                    </div>
+                
+                </ul>
+                <ul className={styles["filter-sidebar__filter-list"]}>
+                    <div>السعر</div>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        مدفوع
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        مجاني
+                        </span>
+                    </li>
+                    <div onClick={()=>{showMoreHandler("third")}}>
+                    <span>
+                        {
+                            showMore.third == true ?
+                            "اعرض المزيد"
+                            :
+                            "اعرض اقل"
+                            }
+                        </span>
+                        <svg  className={`${
+              showMore.third == false
+                ? styles["show-less"]
+                : styles["show-more"]
+            }`} xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
+                            <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
+                                <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#AF151F"/>
+                            </g>
+                        </svg>
+                    </div>
+                
+                </ul>
+                <ul className={styles["filter-sidebar__filter-list"]}>
+                    <div>المستوي</div>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        مبتدئ
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        متوسط
+                        </span>
+                    </li>
+                    <li>
+                        <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
+                        <span >
+                        محترف
+                        </span>
+                    </li>
+                    
+                    <div onClick={()=>{showMoreHandler("fourth")}}>
+                    <span>
+                        {
+                            showMore.fourth == true ?
+                            "اعرض المزيد"
+                            :
+                            "اعرض اقل"
+                            }
+                        </span>
+                        <svg  className={`${
+              showMore.fourth == false
+                ? styles["show-less"]
+                : styles["show-more"]
+            }`} xmlns="http://www.w3.org/2000/svg" width="10" height="5.993" viewBox="0 0 10 5.993">
+                            <g id="dropdown" transform="translate(0 5.993) rotate(-90)">
+                                <path id="Path_12841" data-name="Path 12841" d="M11.454,4.29a.961.961,0,0,1,.164-.13L15.494.284a.969.969,0,0,1,1.37,1.37L13.525,4.992,16.88,8.347a.968.968,0,1,1-1.369,1.369L11.618,5.824a1.005,1.005,0,0,1-.164-1.534Z" transform="translate(-11.171 -0.001)" fill="#AF151F"/>
+                            </g>
+                        </svg>
+                    </div>
+                
+                </ul>
+             </Offcanvas.Body>
+             
+            </Offcanvas>
+                <div className="d-flex align-items-center justify-content-between">
+
+                    <div className={styles["training-courses__filter-icon"]} onClick={()=>{handleFilterSidebarShow(true)}}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width=" 1.5625rem" height="1.6875rem" viewBox="0 0 24.648 27.208">
+                        <g id="filter" transform="translate(86.252 -109.198) rotate(90)">
+                            <path id="Path_34330" data-name="Path 34330" d="M274.632,73.455V84.894a1.356,1.356,0,0,0,1.39,1.359,1.376,1.376,0,0,0,1.39-1.359V73.455a4.341,4.341,0,0,0,0-8.279V62.964a1.356,1.356,0,0,0-1.39-1.359,1.376,1.376,0,0,0-1.39,1.359v2.212a4.4,4.4,0,0,0-3.034,4.14A4.489,4.489,0,0,0,274.632,73.455Zm-.253-4.14a1.643,1.643,0,1,1,1.643,1.643A1.632,1.632,0,0,1,274.379,69.315Z" transform="translate(-153.236 -0.001)"/>
+                            <path id="Path_34331" data-name="Path 34331" d="M112.232,82.586v2.307a1.391,1.391,0,0,0,2.781,0V82.586a4.341,4.341,0,0,0,0-8.279V62.963a1.391,1.391,0,0,0-2.781,0V74.307a4.341,4.341,0,0,0,0,8.279Zm-.284-4.14a1.643,1.643,0,1,1,1.643,1.643A1.7,1.7,0,0,1,111.947,78.446Z"/>
+                            <path id="Path_34332" data-name="Path 34332" d="M437.592,82.586v2.307a1.356,1.356,0,0,0,1.39,1.359,1.376,1.376,0,0,0,1.39-1.359V82.586a4.341,4.341,0,0,0,0-8.279V62.963a1.356,1.356,0,0,0-1.39-1.359,1.376,1.376,0,0,0-1.39,1.359V74.307a4.341,4.341,0,0,0,0,8.279Zm-.284-4.14a1.643,1.643,0,1,1,1.643,1.643A1.632,1.632,0,0,1,437.307,78.446Z" transform="translate(-307)"/>
+                        </g>
+                    </svg>
+                    </div>
+                    <div>
+                        <div className={styles["training-courses__title"]}> الدورات التدريبية </div>
+                        <div className={styles["training-courses__brief"]}> ابحث عن الدورات المناسبة لاختيارتك ومهاراتك بكل سهولة </div>
+                    </div>
+                </div>
             </Col>
 
 
@@ -75,70 +303,16 @@ export default function TrainingCourses() {
                       المستوي
                     </div>
                    <DropdownButton className={styles["training-courses__filters-col__filter-box__filter"]}
-                    title={(filters.level)}
+                    title={filters.level}
                     id="input-group-dropdown-1"
                     >
-                        <Dropdown.Item onClick={()=> handleFilters("level",<div className={styles["level-filter"]}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.5rem" viewBox="0 0 30 24">
-                            <g id="level" transform="translate(-1157 -5536)">
-                                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                            </g>
-                        </svg>
-                        <div >
-                       مبتدأ
-                        </div>
-                    </div>)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24">
-                            <g id="level" transform="translate(-1157 -5536)">
-                                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                            </g>
-                        </svg>
-                            مبتدأ
+                        <Dropdown.Item onClick={()=> handleFilters("level","مبتدئ")}>
+                            مبتدئ
                             </Dropdown.Item>
-                        <Dropdown.Item onClick={()=> handleFilters("level",<div className={styles["level-filter"]}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.5rem" viewBox="0 0 30 24">
-                            <g id="level" transform="translate(-1157 -5536)">
-                                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                            </g>
-                        </svg>
-                        <div >
-                       متوسط
-                        </div>
-                    </div>)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24">
-                            <g id="level" transform="translate(-1157 -5536)">
-                                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                            </g>
-                        </svg>
+                        <Dropdown.Item onClick={()=> handleFilters("level","متوسط")}>
                             متوسط
                             </Dropdown.Item>
-                        <Dropdown.Item onClick={()=> handleFilters("level",<div className={styles["level-filter"]}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.5rem" viewBox="0 0 30 24">
-                            <g id="level" transform="translate(-1157 -5536)">
-                                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                            </g>
-                        </svg>
-                        <div >
-                        محترف
-                        </div>
-                    </div>)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24">
-                            <g id="level" transform="translate(-1157 -5536)">
-                                <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                                <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                                <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                            </g>
-                        </svg>
+                        <Dropdown.Item onClick={()=> handleFilters("level","محترف")}>
                             محترف
                             </Dropdown.Item>
                     </DropdownButton>

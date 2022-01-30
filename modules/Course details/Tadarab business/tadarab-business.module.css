@@ -2,6 +2,7 @@
   margin-top: 3.938rem;
   padding: 1.875rem 2.5rem;
   color: white;
+  border-radius: 1.5625rem;
   -webkit-box-shadow: 0 0.188rem 3.5rem #0000001A;
           box-shadow: 0 0.188rem 3.5rem #0000001A;
   display: -webkit-box;
@@ -13,15 +14,14 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  height: 11.25rem;
-  background-image: url("/images/imgbg@2x.png");
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 17.5rem;
+  background-image: url("/images/bgweb.png");
+  background-size: 100% 100%;
 }
 
 .tadarab-business__img img {
-  width: 11.875rem;
-  height: 7.5rem;
+  width: 23.75rem;
+  height: 17.5rem;
 }
 
 .tadarab-business__details {
@@ -101,9 +101,131 @@
   margin-left: 0.5rem;
 }
 
+.tadarab-business__details__btn button svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
 @media (max-width: 575px) {
   .tadarab-business {
-    display: none;
+    margin-top: 9.0574rem;
+    padding: 0 5.75rem 4.3125rem 5.75rem;
+    color: white;
+    border-radius: 3.59375rem;
+    -webkit-box-shadow: 0 0.4324rem 8.05rem #0000001A;
+            box-shadow: 0 0.4324rem 8.05rem #0000001A;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    background-image: url("/images/bgmobile.png");
+    background-size: 100% 100%;
+  }
+  .tadarab-business__img img {
+    margin: -3rem 0 0 0;
+    width: 54.625rem;
+    height: 40.25rem;
+  }
+  .tadarab-business__details {
+    margin-right: 0;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .tadarab-business__details__major {
+    font-size: 2.875rem;
+    font-weight: 800;
+    margin-bottom: 1.38rem;
+  }
+  .tadarab-business__details__minor {
+    font-size: 2.3rem;
+    margin-bottom: 1.61rem;
+  }
+  .tadarab-business__details__btn {
+    width: 100%;
+  }
+  .tadarab-business__details__btn button {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+    background-color: white !important;
+    width: 100% !important;
+    height: 5.75rem !important;
+    border-radius: 1.4375rem;
+    background-color: transparent !important;
+    color: white !important;
+    border: 0.1449rem solid white !important;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .tadarab-business__details__btn button:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .tadarab-business__details__btn button:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .tadarab-business__details__btn button:hover {
+    color: #AF151F !important;
+    border: 0.125rem solid #AF151F !important;
+  }
+  .tadarab-business__details__btn button:active {
+    background-color: #AF151F !important;
+    color: white !important;
+    border: 0.125rem solid #AF151F !important;
+  }
+  .tadarab-business__details__btn button:hover, .tadarab-business__details__btn button:active {
+    background-color: transparent !important;
+    color: white !important;
+    border: 0.1449rem solid white !important;
+  }
+  .tadarab-business__details__btn button span {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-left: 1.15rem;
+  }
+  .tadarab-business__details__btn button svg {
+    width: 2.0125rem;
+    height: 2.0125rem;
   }
 }
 /*# sourceMappingURL=tadarab-business.module.css.map */

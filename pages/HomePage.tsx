@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from 'common/components/Navbar/Navbar'
+import Navbar from 'common/Navbar/Navbar'
 import HeroSection from 'modules/Home page/Hero section/HeroSection'
 import LatestCourses from 'modules/Home page/Latest courses/LatestCourses'
 import CoursesDepartments from 'modules/Home page/Courses departments/CoursesDepartments'
@@ -13,9 +13,11 @@ import JoinAsATrainer from 'modules/Home page/Join as a trainer/JoinAsATrainer'
 import EducationalGuide from 'modules/Home page/Educational guide/EducationalGuide'
 import AboutTadarab from 'modules/Home page/About Tadarab/AboutTadarab'
 import JoinUs from 'modules/Home page/Join us/JoinUs'
-import Footer from 'common/components/Footer/Footer'
+import Footer from 'common/Footer/Footer'
 import { Container } from "react-bootstrap";
-export default function HomePage() {
+import withAuth from "configurations/auth guard/AuthGuard";
+
+function HomePage() {
     return (
         <>
         <Container fluid="xxl">
@@ -38,4 +40,7 @@ export default function HomePage() {
             
         </>
     )
-}
+};
+
+
+export default HomePage;

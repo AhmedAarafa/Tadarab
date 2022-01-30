@@ -25,6 +25,7 @@
         border-radius: 0.9375rem;
         @include flex(center,center);
         margin: 0 0 0.75rem 1rem;
+        cursor: pointer;
     }
 }
 
@@ -46,6 +47,8 @@
         font-size: 1.25rem*2.3;
         width: fit-content;
         height: 3.75rem*1.5;
+        // width: 16.25rem*1.5;
+        // height: 3.75rem*1.5;
         border-radius: 0.9375rem*2.3;
         @include flex(center,center);
         margin: 0 0 0.75rem*2.3 1rem*1.5;

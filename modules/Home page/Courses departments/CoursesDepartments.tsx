@@ -1,14 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect , useState } from "react";
 import styles from "./courses-departments.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import Link from 'next/link';
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import  {ChevronLeftIcon}  from "common/Icons/Icons";
 
 export default function CoursesDepartments() {
     SwiperCore.use([Navigation]);
+    const [departments, setDepartments] = useState([]);
+
+    useEffect(() => {
+      axiosInstance
+      .get("home/?country_code=eg")
+      .then(function (response:any) {
+        setDepartments(response.data.data.categories);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }, []);
   return (
     <>
       <Row>
@@ -23,9 +37,7 @@ export default function CoursesDepartments() {
 
           <Button className={styles["courses-departments__container__show-all-btn"]}>
             أعرض كل الأقسام
-            <svg id="more" xmlns="http://www.w3.org/2000/svg" width="0.5rem" height="0.875rem" viewBox="0 0 8.39 14">
-                <path id="Path_12841" data-name="Path 12841" d="M11.567,6.006a1.346,1.346,0,0,1,.229-.183L17.222.4A1.356,1.356,0,0,1,19.14,2.315L14.467,6.988l4.7,4.7A1.356,1.356,0,1,1,17.247,13.6L11.8,8.153a1.407,1.407,0,0,1-.229-2.147Z" transform="translate(-11.172 -0.001)" fill="#af151f"/>
-            </svg>
+            <ChevronLeftIcon color="#af151f"/>
 
           </Button>
           </Col>

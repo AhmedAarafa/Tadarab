@@ -1,13 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React , { useEffect ,useState} from "react";
 import styles from "./live-courses.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
+import { axiosInstance } from "configurations/axios/axiosConfig";
 
 export default function LiveCourses() {
     SwiperCore.use([Navigation]);
+
+    const [liveCourses, setLiveCourses] = useState([]);
+
+    useEffect(() => {
+      
+      axiosInstance
+      .get("home/?country_code=eg")
+      .then(function (response:any) {
+        setLiveCourses(response.data.data.live_courses);
+        // console.log("response",response.data.data.live_courses);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    
+      return () => {
+      };
+    }, []);
+    
   return (
     <>
       <Row>

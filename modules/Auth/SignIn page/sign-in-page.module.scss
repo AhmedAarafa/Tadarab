@@ -1,0 +1,449 @@
+@import "../../../styles/mixins";
+
+
+.sign-in__img {
+    img {
+        width: 39rem;
+        height: 24.75rem;
+        margin: 10.25rem 2.75rem 0 0;
+        user-select: none;
+    }
+}
+
+.sign-in__sign-in-box {
+    padding: 6.313rem 12.5rem 0 0;
+    width: fit-content;
+}
+
+.sign-in__sign-in-box__title {
+    div:nth-of-type(1) {
+        font-size: 1.875rem;
+        color: $dark-black;
+        font-weight: 800;
+    }
+
+    div:nth-of-type(2) {
+        font-size: 1.0625rem;
+        color: $grey;
+    }
+}
+
+.sign-in__sign-in-box__sign-in-with {
+    @include flex(center, flex-start);
+    margin-top: 1.25rem;
+
+    div {
+        font-size: 1.063rem;
+        font-weight: 700;
+        color: $dark-black;
+        width: 8.875rem;
+        height: 3.125rem;
+        box-shadow: 0 0.1875rem 1.25rem #0000001A;
+        border-radius: 0.75rem;
+        padding: 0.8125rem 1.1875rem 0.8125rem 0;
+        @include flex(center, flex-start);
+        margin-left: 0.75rem;
+        cursor: pointer;
+
+        svg {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-left: 0.9375rem;
+        }
+    }
+
+    div:last-child {
+        margin-left: 0;
+    }
+}
+
+.sign-in__sign-in-box__sign-in-with-email {
+    font-size: 1.0625rem;
+    color: $grey;
+    text-align: center;
+    margin: 1.5625rem 0 0 0;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 60%;
+        left: 0;
+        border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
+        width: 20%;
+        transform: translateY(-50%);
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 60%;
+        right: 0;
+        border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
+        width: 20%;
+        transform: translateY(-50%);
+    }
+}
+
+.sign-in__sign-in-box__sign-in-form-box__email-field-container,
+.sign-in__sign-in-box__sign-in-form-box__password-field-container {
+    position: relative;
+    box-shadow: 0rem 0.1875rem 1.25rem #0000001A;
+    border-radius: 0.75rem;
+    padding: 0.8125rem 1.1875rem 0.8125rem 0.5rem;
+    height: 3.125rem;
+    @include flex(center);
+}
+
+
+.sign-in__sign-in-box__sign-in-form-box__email-field-container {
+    margin: 2.125rem 0 0 0;
+
+    svg {
+        width: 1.25rem;
+        height: 0.9375rem;
+    }
+}
+
+.sign-in__sign-in-box__sign-in-form-box__password-field-container {
+    margin: 1.25rem 0 0 0;
+
+    svg {
+        width: 1.25rem;
+        height: 1.4375rem;
+    }
+}
+
+
+.sign-in__sign-in-box__sign-in-form-box__email-field,
+.sign-in__sign-in-box__sign-in-form-box__password-field {
+    font-size: 1.063rem;
+    margin: 0 1.5rem 0 0;
+    width: 100%;
+    height: 100%;
+    border: none !important;
+    outline: none !important;
+
+    &:active,
+    &:focus {
+        outline: 0 !important;
+        border: none !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+    }
+}
+
+.sign-in__sign-in-box__sign-in-form-box__password-field {
+    width: 87%;
+}
+
+
+.sign-in__sign-in-box__sign-in-form-box__country-code-dropdown {
+    background-color: transparent !important;
+
+    button {
+        color: $grey !important;
+        background-color: transparent !important;
+        border: 0 !important;
+        outline: 0 !important;
+        @include flex(center);
+
+        &:after {
+            margin: 0 0.4375rem 0 0 !important;
+        }
+
+        &+div {
+            a {
+                background-color: transparent !important;
+                color: $dark-black !important;
+
+                &:hover {
+                    background-color: rgba(119, 119, 119, 0.1) !important;
+                }
+            }
+        }
+    }
+}
+
+.sign-in__sign-in-box__sign-in-form-box__show-password-icon-wrapper {
+    svg {
+        width: 1.5rem;
+        height: 1rem;
+        cursor: pointer;
+    }
+}
+
+
+.sign-in__sign-in-box__sign-in-form-box__icon-wrapper {
+    height: 100%;
+    position: absolute;
+    @include flex(center, center);
+
+}
+
+.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn {
+    @include contained-button;
+    width: 100%;
+    height: 3.4rem;
+    border-radius: 0.75rem;
+    font-size: 1.063rem;
+    margin-top: 2.625rem;
+}
+
+.sign-in__sign-in-box__sign-in-form-box__forget-password {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: $dark-black;
+    text-align: center;
+    margin: 1rem 0 0 0;
+    cursor: pointer;
+}
+
+
+.sign-in__sign-in-box__sign-in-form-box__do-you-have-acc {
+    font-size: 1.125rem;
+    text-align: center;
+    margin: 1.5rem 0 5rem 0;
+
+    span:nth-of-type(1) {
+        color: $grey;
+    }
+
+    span:nth-of-type(2) {
+        color: $primary-red;
+        font-weight: 800;
+        cursor: pointer;
+    }
+}
+
+.required {
+    border: 0.0625rem solid red !important;
+}
+
+.error-msg {
+    font-size: 0.75rem;
+    color: red;
+    position: absolute;
+}
+
+.server-error-msg {
+    font-size: 0.75rem;
+    color: red;
+    text-align: center;
+    margin: 2rem 0 0 0;
+    position: absolute;
+    top: -0.5rem;
+    @include flex(unset,center);
+    width: 100%;
+}
+
+
+@media (max-width:575px) {
+    .server-error-msg {
+        font-size: 0.75rem*1.8;
+        margin: 2rem*2.3 0 0 0;
+        top: -0.5rem*2.3;
+    }
+
+    .error-msg {
+        font-size: 0.75rem*1.8;
+    }
+
+    .sign-in {
+        padding: 0 5rem;
+    }
+
+    .sign-in__img {
+        @include flex(center, center);
+
+        img {
+            width: 100%;
+            height: 32rem;
+            margin: 12rem 0 0 0;
+        }
+
+        display: none !important;
+    }
+
+    .sign-in__sign-in-box {
+        padding: 15rem 0 0 0;
+        width: 100%;
+    }
+
+    .sign-in__sign-in-box__title {
+        text-align: center;
+
+        div:nth-of-type(1) {
+            font-size: 1.875rem*2.3;
+        }
+
+        div:nth-of-type(2) {
+            font-size: 1.0625rem*2.3;
+        }
+    }
+
+    .sign-in__sign-in-box__sign-in-with {
+        @include flex(center, space-between);
+        margin-top: 1.25rem*2.3;
+        flex-direction: column;
+
+        div {
+            font-size: 1.063rem*2.3;
+            width: 100%;
+            height: 3.125rem*2.3;
+            box-shadow: 0 0.1875rem 1.25rem #0000001A;
+            border-radius: 0.75rem*2.3;
+            padding: 0.8125rem 1.1875rem;
+            @include flex(center, center);
+            margin: 2.5rem 0 0 0;
+
+
+            svg {
+                width: 1.5rem*2.3;
+                height: 1.5rem*2.3;
+                margin-left: 3rem;
+            }
+        }
+
+        div:last-child {
+            margin-left: 0;
+        }
+    }
+
+    .sign-in__sign-in-box__sign-in-with-email {
+        font-size: 1.0625rem*2.3;
+        margin: 1.5625rem*2.3 0 0 0;
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 60%;
+            left: 0;
+            border-top: 0.05rem*2.3 solid rgba(119, 119, 119, 0.5);
+            width: 12%;
+            transform: translateY(-50%);
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            top: 60%;
+            right: 0;
+            border-top: 0.05rem*2.3 solid rgba(119, 119, 119, 0.5);
+            width: 12%;
+            transform: translateY(-50%);
+        }
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__email-field-container,
+    .sign-in__sign-in-box__sign-in-form-box__password-field-container {
+        box-shadow: 0rem 0.1875rem 1.25rem #0000001A;
+        border-radius: 0.75rem*2.3;
+        padding: 0.8125rem*2.3 1.1875rem*2.3 0.8125rem*2.3 0.5rem*2.3;
+        height: 3.125rem*2.3;
+        @include flex(center);
+    }
+
+
+    .sign-in__sign-in-box__sign-in-form-box__email-field-container {
+        margin: 2.125rem*2.3 0 0 0;
+
+        svg {
+            width: 1.25rem*2.3;
+            height: 0.9375rem*2.3;
+        }
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__password-field-container {
+        margin: 1.25rem*2.3 0 0 0;
+
+        svg {
+            width: 1.25rem*2.3;
+            height: 1.4375rem*2.3;
+        }
+    }
+
+
+    .sign-in__sign-in-box__sign-in-form-box__email-field,
+    .sign-in__sign-in-box__sign-in-form-box__password-field {
+        font-size: 1.063rem*2.3;
+        margin: 0 1.5rem*2.3 0 0;
+        width: 100%;
+        height: 100%;
+
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            border: none !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+        }
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__password-field {
+        width: 80%;
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__country-code-dropdown {
+        button {
+            font-size: 2.5rem !important;
+            @include flex(center);
+
+            &:after {
+                margin: 0 0.4375rem*2.3 0 0 !important;
+            }
+
+            &+div {
+                min-width: 10rem*1.7;
+                border-radius: 0.25rem*2.3;
+                font-size: 1rem*2.3;
+
+                a {
+                    background-color: transparent !important;
+                    color: $dark-black !important;
+
+                    &:hover {
+                        background-color: rgba(119, 119, 119, 0.1) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__show-password-icon-wrapper {
+        svg {
+            width: 1.5rem*2.3;
+            height: 1rem*2.3;
+            margin-right: 0.5rem;
+        }
+    }
+
+
+    .sign-in__sign-in-box__sign-in-form-box__icon-wrapper {
+        height: 100%;
+        position: absolute;
+        @include flex(center, center);
+
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn {
+        @include contained-button;
+        width: 100%;
+        height: 3.4rem*2.3;
+        border-radius: 0.75rem*2.3;
+        font-size: 1.063rem*2.3;
+        margin-top: 2.625rem*2.3;
+    }
+
+    .sign-in__sign-in-box__sign-in-form-box__forget-password {
+        font-size: 1.125rem*2.3;
+        margin: 1rem*2.3 0 0 0;
+    }
+
+
+    .sign-in__sign-in-box__sign-in-form-box__do-you-have-acc {
+        font-size: 1.125rem*2.3;
+        margin: 1.5rem*2.3 0 5rem*2.3 0;
+    }
+}

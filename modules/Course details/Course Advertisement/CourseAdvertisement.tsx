@@ -1,8 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import styles from "./course-advertisement.module.css";
+import VideoPlayer from 'react-video-js-player';
+import VideoJS from './videojs'
 
 export default function CourseAdvertisement() {
+    const playerRef = React.useRef(null);
+    const videoJsOptions = { // lookup the options in the docs for more options
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        fluid: true,
+        sources: [{
+          src: 'https://player.vimeo.com/external/262394918.hd.mp4?s=56a6c0204726aae0e1434b00ac77e531f86eb8a3&profile_id=174',
+        }]
+      }
+    
+      const handlePlayerReady = (player:any) => {
+        playerRef.current = player;
+    
+        // you can handle player events here
+        player.on('waiting', () => {
+          console.log('player is waiting');
+        });
+    
+        player.on('dispose', () => {
+          console.log('player will dispose');
+        });
+      };
+
     return (
         <>
         <div className={styles["course-ad"]}>
@@ -11,7 +37,7 @@ export default function CourseAdvertisement() {
                 <li>الرسم</li>
                 <li>تعليم الرسم والتلوين</li>
             </ul> 
-            <div className={styles["course-ad__course-img"]}>
+            {/* <div className={styles["course-ad__course-img"]}>
                 <img src="/images/course2cropped.png" alt="course image" />
                 <div className={styles["course-ad__course-img__watch-ad"]}>
                     <div>
@@ -29,7 +55,12 @@ export default function CourseAdvertisement() {
                     <div>شاهد إعلان الدورة</div>
                 </div>
 
+            </div> */}
+            <div className={styles["course-ad__course-ad-video"]}>
+
+              <VideoJS  options={videoJsOptions} onReady={handlePlayerReady} />
             </div>
+
         </div>
             
         </>

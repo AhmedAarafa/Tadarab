@@ -85,8 +85,10 @@
 .learn-from-the-best__cards-carousel__card__card-body{
     padding: 0;
     background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
-
-   padding-bottom: 1.5rem*0.8;
+    padding: 0 1rem 1.5rem*0.8 1rem;
+    div{
+        height: fit-content;
+    }
 }
 
 .learn-from-the-best__cards-carousel__card__trainer{
@@ -98,6 +100,15 @@
 .learn-from-the-best__cards-carousel__card__job-history{
     font-size: 0.813rem*0.8;
     padding: 0;
+}
+.learn-from-the-best__cards-carousel__card__job-history{
+    max-height: fit-content;
+    width: 95%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 @media (max-width:1200px){
@@ -152,7 +163,7 @@
         padding: 0;
         background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
     
-       padding-bottom: 1.5rem*1.05;
+       padding: 0 1rem*1.05 1.5rem*1.05 1rem*1.05;
     }
     
     .learn-from-the-best__cards-carousel__card__trainer{
@@ -220,7 +231,8 @@
         padding: 0;
         background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
     
-       padding-bottom: 1.5rem*1.335;
+       padding: 0 1rem*1.335 1.5rem*1.335 1rem*1.335;
+
     }
     
     .learn-from-the-best__cards-carousel__card__trainer{
@@ -310,8 +322,7 @@
 .learn-from-the-best__cards-carousel__card__card-body{
     padding: 0;
     background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
-
-   padding-bottom: 1.5rem*2.4;
+    padding: 0 2rem 1.5rem*2.4 2rem;
 }
 
 .learn-from-the-best__cards-carousel__card__trainer{
@@ -324,4 +335,5 @@
     font-size: 0.813rem*2.4;
     padding: 0;
 }
+
 }

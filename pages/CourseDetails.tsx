@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "styles/course-details.module.css";
-import Navbar from "common/components/Navbar/Navbar";
+import Navbar from "common/Navbar/Navbar";
 import CourseCard from "modules/Course details/Course card/CourseCard";
 import CourseAdvertisement from "modules/Course details/Course Advertisement/CourseAdvertisement";
 import WhatYouWillLearn from "modules/Course details/What you will learn/WhatYouWillLearn";
@@ -21,10 +21,11 @@ import CommentsSection from "modules/Course details/Comments section/CommentsSec
 import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileNavTabsBar";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
 import MonthlySubscriptionCard from "modules/Course details/Monthly subscription card/MonthlySubscriptionCard";
+import withAuth from "configurations/auth guard/AuthGuard";
 
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
-export default function CourseDetails() {
+function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   
@@ -39,7 +40,7 @@ export default function CourseDetails() {
     const navbar:any = document.getElementById("nav");
     let addToCartBtn:any = null;
 
-    if(screen.width >= 576){
+    if(window.innerWidth >= 576){
     let addToCartBtn:any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar.style.cssText=`display:none`;
@@ -55,7 +56,7 @@ export default function CourseDetails() {
         }
       });
     }
-    else if(screen.width < 576){
+    else if(window.innerWidth < 576){
     
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
@@ -90,7 +91,7 @@ export default function CourseDetails() {
 
     window.addEventListener("resize" , ()=>{
 
-      if(screen.width >= 576){
+      if(window.innerWidth >= 576){
     let addToCartBtn:any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar.style.cssText=`display:none`;
@@ -107,7 +108,7 @@ export default function CourseDetails() {
           }
         });
       }
-      else if(screen.width < 576){
+      else if(window.innerWidth < 576){
     
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
@@ -138,6 +139,7 @@ export default function CourseDetails() {
   }, []);
   return (
     <>
+    <Container fluid="xxl">
       <Navbar />
       <MobileNavTabsBar />
       <MobileCheckoutBar />
@@ -173,6 +175,10 @@ export default function CourseDetails() {
       <Row className={styles["course-details__comments-section"]}>
         <CommentsSection />
       </Row>
+    </Container>
+
     </>
   );
 }
+
+export default withAuth(CourseDetails);

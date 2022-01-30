@@ -1,0 +1,26 @@
+@import "../../../styles/mixins";
+
+
+.trainer-profile {
+    padding: 6.0625rem 8.75rem 0 8.75rem;
+}
+
+.trainer-profile__trainer-info {
+    @include flex;
+    flex-wrap: wrap;
+}
+
+.trainer-profile__trainer-info-trainer-card-box{
+    @include flex;
+}
+
+
+@media (max-width: 575px){
+    .trainer-profile__trainer-info-trainer-card-box{
+        @include flex;
+        flex-direction: column;
+    }
+    .trainer-profile {
+        padding: 12rem 4.5rem 0 4.5rem;
+    }
+}

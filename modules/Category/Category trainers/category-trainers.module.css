@@ -224,14 +224,14 @@
     margin: 12.4rem 0 0 0;
   }
   .category-trainer__title {
-    font-size: 3.85rem;
+    font-size: 4.025rem;
     padding: 0 3rem 0 0;
   }
   .category-trainer__cards-carousel {
     padding-top: 6.406rem;
   }
   .category-trainer__cards-carousel > div {
-    padding: 0 4.4rem !important;
+    padding: 0 4.9rem !important;
   }
   .category-trainer__cards-carousel > div:before {
     -webkit-box-shadow: none;
@@ -248,16 +248,16 @@
     -webkit-box-align: unset;
         -ms-flex-align: unset;
             align-items: unset;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .category-trainer__cards-carousel__card {
-    width: 41.25rem;
-    height: 48.125rem;
-    -webkit-box-shadow: 0 1.1rem 2.8886rem #0000001A;
-            box-shadow: 0 1.1rem 2.8886rem #0000001A;
-    border-radius: 1.65rem;
+    width: 45.9375rem;
+    height: 53.59375rem;
+    -webkit-box-shadow: 0 1.225rem 3.21685rem #0000001A;
+            box-shadow: 0 1.225rem 3.21685rem #0000001A;
+    border-radius: 1.8375rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -272,16 +272,16 @@
     padding: 0;
     background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(30%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
     background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
-    padding-bottom: 3.3rem;
+    padding-bottom: 3.675rem;
   }
   .category-trainer__cards-carousel__card__trainer {
-    font-size: 2.75rem;
+    font-size: 3.0625rem;
     font-weight: 700;
-    margin: 5.5rem 0 0.6886rem 0;
+    margin: 6.125rem 0 0.76685rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
   .category-trainer__cards-carousel__card__job-history {
-    font-size: 1.7886rem;
+    font-size: 1.99185rem;
     padding: 0;
   }
 }

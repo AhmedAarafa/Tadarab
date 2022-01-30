@@ -22,7 +22,7 @@ export default function CategoryTrainers() {
         <Swiper dir="rtl" slidesPerView={3.7} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
           "50": {
-            slidesPerView: 1.1,
+            slidesPerView: 1,
           },
           "576": {
             slidesPerView: 2.7,

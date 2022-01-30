@@ -8,6 +8,59 @@ export default function CommentsSection() {
 
     useEffect(() => {
         commentsBorderHandler();
+        let rootFontSize = parseFloat(
+            window
+            .getComputedStyle(document.getElementsByTagName("html")[0])
+            .getPropertyValue("font-size")
+          );
+        // const commentBox:any = document.querySelector('#comment-box__replies > li:first-child');
+        const commentsTree:any = document.getElementById('tree-box');
+        window.addEventListener("resize" , ()=>{
+            rootFontSize = parseFloat(
+                    window
+                    .getComputedStyle(document.getElementsByTagName("html")[0])
+                    .getPropertyValue("font-size")
+                  );
+            //   console.log("rootFontSize",rootFontSize);
+              if(window.innerWidth < 576){
+
+                document.styleSheets[0].addRule(`#comment-box__replies > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
+            }else{
+
+                document.styleSheets[0].addRule(`#comment-box__replies > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (13.8*rootFontSize))}px`);
+            }
+        })
+
+        const resize_ob = new ResizeObserver(function(entries) {
+            // const rootFontSize = parseFloat(
+            //     window
+            //     .getComputedStyle(document.getElementsByTagName("html")[0])
+            //     .getPropertyValue("font-size")
+            //   );
+            //   console.log("rootFontSize",rootFontSize);
+            // since we are observing only a single element, so we access the first element in entries array
+            // let rect = entries[0].contentRect;
+        
+            // current width & height
+            // let width = rect.width;
+            // let height = rect.height;
+        
+            // console.log('Current Width : ' + width);
+            // console.log('Current Height : ' + height);
+            // console.log( "commentsTree.innerHeight", commentsTree.innerHeight);
+            if(window.innerWidth < 576){
+
+                document.styleSheets[0].addRule(`#comment-box__replies > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
+            }else{
+
+                document.styleSheets[0].addRule(`#comment-box__replies > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (13.8*rootFontSize))}px`);
+            }
+        });
+        
+        // start observing for resize
+        resize_ob.observe(commentsTree);
+
+       
     }, [])
     return (
         <>
@@ -28,7 +81,7 @@ export default function CommentsSection() {
                 </Button>
             </div>
             <div className={styles["comments-section__comments-tree"]}>
-                <ul className={styles["comments-section__comments-tree__box"]}>
+                <ul id="tree-box" className={styles["comments-section__comments-tree__box"]}>
                     <li id="comment-container">
                         <div id="comment-box" className={styles["comments-section__comments-tree__comment-box"]}>
 
@@ -135,7 +188,7 @@ export default function CommentsSection() {
                         </ul>
                     </li>
                 </ul>
-                <ul className={styles["comments-section__comments-tree__box"]}>
+                <ul id="tree-box" className={styles["comments-section__comments-tree__box"]}>
                     <li id="comment-container">
                         <div id="comment-box" className={styles["comments-section__comments-tree__comment-box"]}>
 

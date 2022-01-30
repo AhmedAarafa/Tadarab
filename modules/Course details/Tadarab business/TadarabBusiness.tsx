@@ -8,8 +8,9 @@ export default function TadarabBusiness() {
         <>
         <Col xs={12} className={styles["tadarab-business"]}>
             <div className={styles["tadarab-business__img"]}>
-                <img src="/images/tadarabBusiness.png" alt="Tadarab business" />
+                <img src="/images/TadarabForBusiness.gif" alt="Tadarab business" />
             </div>
+
             <div className={styles["tadarab-business__details"]}>
                 <div className={styles["tadarab-business__details__major"]}>
                 دورات عالية الجودة في جميع المجالات لأفراد شركتك

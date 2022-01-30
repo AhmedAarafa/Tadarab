@@ -147,7 +147,8 @@
     display: block;
   }
   .practical-projects__responsive-projects-slider > div {
-    padding: 2.55rem 0 2.55rem 4.25rem !important;
+    margin: 0 0 0 -3rem;
+    padding: 2.55rem 3.57rem !important;
   }
 }
 /*# sourceMappingURL=practical-projects.module.css.map */

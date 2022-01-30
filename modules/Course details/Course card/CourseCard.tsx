@@ -2,23 +2,26 @@ import React, { useState,useEffect } from "react";
 import styles from "./course-card.module.css";
 import { Button } from "react-bootstrap";
 import { stickyCardHandler } from "./utils";
+import  useResize from "custom hooks/useResize";
 
 
 export default function CourseCard() {
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    window.addEventListener("resize", () => {
-      stickyCardHandler();
-    });
-    stickyCardHandler();
+  //   window.addEventListener("resize", () => {
+  //     stickyCardHandler();
+  //   });
+  //   stickyCardHandler();
 
-    return () => {
-      window.removeEventListener("resize", () => {
-        console.log('event listener removed from course card component');
-      });
-    }
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", () => {
+  //       return;
+  //     });
+  //   }
+  // }, []);
+  useResize(stickyCardHandler);
+
   return (
     <>
       <div className={styles["course-details__course-card"]} id="sticky-card">

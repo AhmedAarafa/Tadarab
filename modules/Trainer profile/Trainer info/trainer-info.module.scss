@@ -1,0 +1,290 @@
+@import "../../../styles/mixins";
+
+.trainer-profile__trainer-info-col {
+    // padding: 0 0 2.1875rem 0;
+    // border-bottom: 0.125rem solid 	rgba(119, 119, 119,0.2);
+
+}
+
+.trainer-profile__trainer-info-col__trainer-info-box {
+    @include flex;
+}
+
+.trainer-profile__trainer-info-col__trainer-info-box__trainer-img {
+    img {
+        width: 9.375rem;
+        height: 9.375rem;
+        border-radius: 50%;
+    }
+}
+
+.trainer-profile__trainer-info-col__trainer-info-box__trainer-info {
+    margin: 0 2.75rem 0 0;
+    @include flex(flex-start, center);
+    flex-direction: column;
+
+    div:nth-of-type(1) {
+        font-size: 0.875rem;
+        color: $grey;
+        border-radius: 0.5rem;
+        background-color: #F2F2F2;
+        padding: 0.34rem 0.75rem;
+        width: fit-content;
+    }
+
+    h1 {
+        font-size: 1.875rem;
+        font-weight: 800;
+        color: $dark-black;
+        margin: 0.2rem 0 0.3rem 0;
+    }
+
+    div:nth-of-type(2) {
+        font-size: 1.25rem;
+        color: $grey;
+    }
+}
+
+.trainer-profile__trainer-info-col__stastics-box {
+    @include flex;
+    width: 41.875rem;
+    height: 6.25rem;
+    background-color: rgba(175, 21, 31, 0.05);
+    border-radius: 1.25rem;
+    padding: 2.25rem;
+    margin: 1.75rem 0 0 0;
+}
+
+.trainer-profile__trainer-info-col__stastics-box__stastics {
+    @include flex(center);
+
+    &:nth-of-type(1) {
+        svg {
+            width: 3.125rem;
+            height: 1.875rem;
+        }
+    }
+
+    &:nth-of-type(2) {
+        margin: 0 4.5rem 0 0;
+
+        svg {
+            width: 2.6875rem;
+            height: 1.875rem;
+        }
+    }
+}
+
+.trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses,
+.trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners {
+    margin: 0 0.875rem 0 0;
+
+    div:nth-of-type(1) {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: $dark-black;
+    }
+
+    div:nth-of-type(2) {
+        font-size: 1.875rem;
+        font-weight: 800;
+        color: $primary-red;
+    }
+}
+
+
+
+.trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer {
+    margin: 1.875rem 0 0 0;
+    width: 42.1875rem;
+    height: 16rem;
+    // padding: 1.875rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+
+}
+
+.trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $dark-black;
+    margin-bottom: 1rem;
+}
+
+.trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para {
+    font-size: 1rem;
+    color: $grey;
+}
+
+.trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__read-more {
+    font-size: 1.125rem;
+    font-weight: 800;
+    width: 100%;
+    background-color: white;
+    color: #AF151F;
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0;
+    padding: 0.8rem 0rem 1rem 0;
+    // margin-top: 0.8rem;
+    cursor: pointer;
+    z-index: 3;
+
+    span {
+        margin-left: 0.5rem;
+    }
+
+    svg {
+        width: 0.625rem;
+        height: 0.375rem;
+    }
+}
+
+.trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect {
+    position: absolute;
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%);
+    width: 100%;
+    bottom: 3rem;
+    height: 4rem;
+    pointer-events: none;
+}
+
+
+@media (max-width: 575px) {
+    .trainer-profile__trainer-info-col {
+        // padding: 0 0 2.1875rem*1.6 0;
+        // border-bottom: 0.125rem*1.6 solid 	rgba(119, 119, 119,0.2);
+
+    }
+
+    .trainer-profile__trainer-info-col__trainer-info-box {
+        @include flex;
+    }
+
+    .trainer-profile__trainer-info-col__trainer-info-box__trainer-img {
+        img {
+            width: 9.375rem*1.6;
+            height: 9.375rem*1.6;
+        }
+    }
+
+    .trainer-profile__trainer-info-col__trainer-info-box__trainer-info {
+        margin: 0 2.75rem*1.6 0 0;
+        @include flex(flex-start, center);
+        flex-direction: column;
+
+        div:nth-of-type(1) {
+            font-size: 0.875rem*1.6;
+            border-radius: 0.5rem*1.6;
+            padding: 0.34rem*1.6 0.75rem*1.6;
+            width: fit-content;
+        }
+
+        h1 {
+            font-size: 1.875rem*1.45;
+            margin: 0.2rem*1.6 0 0.3rem*1.6 0;
+        }
+
+        div:nth-of-type(2) {
+            font-size: 1.25rem*1.45;
+        }
+    }
+
+    .trainer-profile__trainer-info-col__stastics-box {
+        @include flex;
+        width: 100%;
+        height: 6.25rem*1.6;
+        border-radius: 1.25rem*1.6;
+        padding: 2.25rem*1.6;
+        margin: 1.75rem*1.6 0 0 0;
+    }
+
+    .trainer-profile__trainer-info-col__stastics-box__stastics {
+        @include flex(center);
+
+        &:nth-of-type(1) {
+            svg {
+                width: 3.125rem*1.6;
+                height: 1.875rem*1.6;
+            }
+        }
+
+        &:nth-of-type(2) {
+            margin: 0 4.5rem*1.6 0 0;
+
+            svg {
+                width: 2.6875rem*1.6;
+                height: 1.875rem*1.6;
+            }
+        }
+    }
+
+    .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses,
+    .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners {
+        margin: 0 0.875rem*1.6 0 0;
+
+        div:nth-of-type(1) {
+            font-size: 0.875rem*1.6;
+        }
+
+        div:nth-of-type(2) {
+            font-size: 1.875rem*1.6;
+        }
+    }
+
+
+
+    .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer {
+        margin: 1.875rem*1.6 0 0 0;
+        width: 100%;
+        height: 16rem*1.6;
+        // padding: 1.875rem*1.6;
+        padding-bottom: 2.5rem*1.6;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+
+    }
+
+    .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title {
+        font-size: 1.5rem*1.6;
+        margin-bottom: 1rem*1.6;
+    }
+
+    .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para {
+        font-size: 1rem*1.6;
+    }
+
+    .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__read-more {
+        font-size: 1.125rem*1.6;
+        font-weight: 800;
+        width: 100%;
+        position: absolute;
+        // bottom: -0.375rem*1.6;
+        right: 0;
+        bottom: -0.5rem;
+        padding: 1.75rem 0 1rem 0;
+        margin-top: 0;
+        cursor: pointer;
+        z-index: 3;
+
+        span {
+            margin-left: 0.5rem*1.6;
+        }
+        svg {
+            width: 0.625rem*1.6;
+            height: 0.375rem*1.6;
+        }
+    }
+
+    .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect {
+        position: absolute;
+        width: 100%;
+        bottom: 5rem;
+        height: 4rem*1.6;
+    }
+
+}

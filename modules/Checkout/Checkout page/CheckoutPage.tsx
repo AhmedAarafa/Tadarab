@@ -12,15 +12,21 @@ export default function CheckoutPage() {
   SwiperCore.use([Navigation]);
   const [step, setStep] = useState("added-courses");
   const [mobileView, setMobileView] = useState(false);
+//   const [inputTextValue, setInputTextValue] = useState("MM/YY");
 
-  
+
+//   const handleInput = (e:any)=>{
+//     console.log(e.target.value);
+//     setInputTextValue(e.target.value);
+//   }
+
+
   const radioBtnsHandler = ()=>{
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
     const infoBox:any = document.getElementById('card-info-box');
 
         if(window.innerWidth <= 576){
-
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
                 height: 12.5rem;
@@ -29,18 +35,31 @@ export default function CheckoutPage() {
                 border:none;
                 `;
                 const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-                relatedInfoBox.style.cssText=`
+                relatedInfoBox ?  relatedInfoBox.style.cssText=`
                 display:none;
-                `
+                `:
+                null ;
                 
             });
+
+            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+            checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+            ){
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 12.5rem;
+                box-shadow: 0 0 1.25rem #AF2B3633;
+                border: 0.3125rem solid #AF151F;
+                `
+            }else{
+
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 51.56rem;
+                overflow: visible;
+                box-shadow: 0 0 1.25rem #AF2B3633;
+                border: 0.3125rem solid #AF151F;
+                `
+            }
     
-            checkedRadioBtn.parentElement.parentElement.style.cssText=`
-            height: 51.56rem;
-            overflow: visible;
-            box-shadow: 0 0 1.25rem #AF2B3633;
-            border: 0.3125rem solid #AF151F;
-            `
 
         }else{
 
@@ -52,25 +71,38 @@ export default function CheckoutPage() {
                 border:none;
                 `;
                 const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-                relatedInfoBox.style.cssText=`
+                relatedInfoBox ? relatedInfoBox.style.cssText=`
                 display:none;
-                `
+                `:null;
                 
             });
+
+            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+            checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+            ){
+
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 5rem;
+                overflow: visible;
+                box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                border: 0.125rem solid #AF151F;
+                `
+            }else{
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 20.625rem;
+                overflow: visible;
+                box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                border: 0.125rem solid #AF151F;
+                `
+            }
     
-            checkedRadioBtn.parentElement.parentElement.style.cssText=`
-            height: 20.625rem;
-            overflow: visible;
-            box-shadow: 0rem 0rem 1.25rem #AF2B3633;
-            border: 0.125rem solid #AF151F;
-            `
 
         }
 
         const relatedInfoBox:any= document.querySelector(`#${checkedRadioBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-        relatedInfoBox.style.cssText=`
+        relatedInfoBox ?  relatedInfoBox.style.cssText=`
         display:block;
-        `
+        `:null;
   };
 
   useEffect(() => {
@@ -94,18 +126,35 @@ export default function CheckoutPage() {
             border:none;
             `;
             const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-            relatedInfoBox.style.cssText=`
+            relatedInfoBox ?  relatedInfoBox.style.cssText=`
             display:none;
-            `
+            `:null ;
             
         });
 
-        checkedRadioBtn ?  checkedRadioBtn.parentElement.parentElement.style.cssText=`
-        height: 51.56rem;
-        overflow: visible;
-        box-shadow: 0 0 1.25rem #AF2B3633;
-        border: 0.3125rem solid #AF151F;
-        ` : null ;
+        if(checkedRadioBtn){
+            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+                checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+                ){
+    
+                    checkedRadioBtn ?  checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                    height: 12.5rem;
+                    overflow: visible;
+                    box-shadow: 0 0 1.25rem #AF2B3633;
+                    border: 0.3125rem solid #AF151F;
+                    ` : null ;
+                }else{
+    
+                    checkedRadioBtn ?  checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                    height: 51.56rem;
+                    overflow: visible;
+                    box-shadow: 0 0 1.25rem #AF2B3633;
+                    border: 0.3125rem solid #AF151F;
+                    ` : null ;
+                }
+
+        }
+
 
     }else{
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
@@ -119,25 +168,40 @@ export default function CheckoutPage() {
             border:none;
             `;
             const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-            relatedInfoBox.style.cssText=`
+            relatedInfoBox ?  relatedInfoBox.style.cssText=`
             display:none;
-            `
+            `:null;
             
         });
 
-        checkedRadioBtn ? checkedRadioBtn.parentElement.parentElement.style.cssText=`
-        height: 20.625rem;
-        overflow: visible;
-        box-shadow: 0rem 0rem 1.25rem #AF2B3633;
-        border: 0.125rem solid #AF151F;
-        `:null ;
+        if(checkedRadioBtn){
+            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+                checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+                ){
+                    checkedRadioBtn ? checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                    height: 5rem;
+                    overflow: visible;
+                    box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                    border: 0.125rem solid #AF151F;
+                    `:null ;
+    
+                }else{
+                    checkedRadioBtn ? checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                    height: 20.625rem;
+                    overflow: visible;
+                    box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                    border: 0.125rem solid #AF151F;
+                    `:null ;
+                }
+
+        }
 
     }
     if(checkedRadioBtn){
         const relatedInfoBox:any= document.querySelector(`#${checkedRadioBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-        relatedInfoBox.style.cssText=`
+        relatedInfoBox ? relatedInfoBox.style.cssText=`
         display:block;
-        `
+        `:null ;
     }
 
     window.addEventListener("resize" ,()=>{
@@ -155,20 +219,37 @@ export default function CheckoutPage() {
                 border:none;
                 `;
                 const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-                relatedInfoBox.style.cssText=`
+                relatedInfoBox ? relatedInfoBox.style.cssText=`
                 display:none;
-                `
+                `:null ;
                 
             });
+
+            if(checkedRadioBtn){
+
+                if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+                checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+                ){
     
-            checkedRadioBtn ? checkedRadioBtn.parentElement.parentElement.style.cssText=`
-            height: 51.56rem;
-            overflow: visible;
-            box-shadow: 0 0 1.25rem #AF2B3633;
-            border: 0.3125rem solid #AF151F;
-            `
-            :
-            null;
+                    checkedRadioBtn ? checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                    height: 12.5rem;
+                    overflow: visible;
+                    box-shadow: 0 0 1.25rem #AF2B3633;
+                    border: 0.3125rem solid #AF151F;
+                    `
+                    :
+                    null;
+                }else{
+                    checkedRadioBtn ? checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                    height: 51.56rem;
+                    overflow: visible;
+                    box-shadow: 0 0 1.25rem #AF2B3633;
+                    border: 0.3125rem solid #AF151F;
+                    `
+                    :
+                    null;
+                }
+            }
 
         }else{
             
@@ -181,28 +262,44 @@ export default function CheckoutPage() {
                 border:none;
                 `;
                 const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-                relatedInfoBox.style.cssText=`
+                relatedInfoBox?  relatedInfoBox.style.cssText=`
                 display:none;
-                `
+                `:null ;
                 
             });
     
-          checkedRadioBtn ?  checkedRadioBtn.parentElement.parentElement.style.cssText=`
-            height: 20.625rem;
-            overflow: visible;
-            box-shadow: 0rem 0rem 1.25rem #AF2B3633;
-            border: 0.125rem solid #AF151F;
-            `
-            :
-            null;
+            if(checkedRadioBtn){
+                if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+                checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+                ){
+                    checkedRadioBtn ?  checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                      height: 5rem;
+                      overflow: visible;
+                      box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                      border: 0.125rem solid #AF151F;
+                      `
+                      :
+                      null;
+                }else{
+                    checkedRadioBtn ?  checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                      height: 20.625rem;
+                      overflow: visible;
+                      box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                      border: 0.125rem solid #AF151F;
+                      `
+                      :
+                      null;
+    
+                }
+            }
 
         }
 
         if(checkedRadioBtn){
             const relatedInfoBox:any= document.querySelector(`#${checkedRadioBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-            relatedInfoBox.style.cssText=`
+            relatedInfoBox ?  relatedInfoBox.style.cssText=`
             display:block;
-            `
+            `:null ;
         }
     });
 
@@ -362,7 +459,7 @@ export default function CheckoutPage() {
                         <div className="d-flex align-items-center">
                         <div className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date-box"]}>
                         <Form.Label>تاريخ انتهاء البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date"]}  type="number" placeholder="MM / YY" />
+                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date"]} type="number" placeholder="MM / YY" />
                         </div>
                         
                         <div className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv-box"]}>
@@ -378,7 +475,6 @@ export default function CheckoutPage() {
                             احتفظ بمعلومات البطاقة للمرة القادمة
                             </span>
                         </div>
-                    
                     </div>
                 </div>
                 <div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
@@ -395,33 +491,7 @@ export default function CheckoutPage() {
 
                     </label>
                     </div>
-                    <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
-                        <div>
-                        <Form.Label>رقم البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-number-field"]}  type="number" placeholder="XXXX XXXX XXXX XXXX" />
-                        </div>
-                        
-                        <div className="d-flex align-items-center">
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date-box"]}>
-                        <Form.Label>تاريخ انتهاء البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date"]}  type="number" placeholder="MM / YY" />
-                        </div>
-                        
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv-box"]}>
-                        <Form.Label> الرقم السري (CVV) </Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv"]}  type="number" placeholder="XXX" />
-                        </div>
-
-                        </div>
-
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__save-card-info"]}>
-                            <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
-                            <span >
-                            احتفظ بمعلومات البطاقة للمرة القادمة
-                            </span>
-                        </div>
                     
-                    </div>
                 </div>
                 <div id="payment-method3" className={styles["checkout__payment-method-box__payment-method"]}>
                 <div className="d-flex align-items-center">
@@ -437,33 +507,7 @@ export default function CheckoutPage() {
 
                     </label>
                     </div>
-                    <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
-                        <div>
-                        <Form.Label>رقم البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-number-field"]}  type="number" placeholder="XXXX XXXX XXXX XXXX" />
-                        </div>
-                        
-                        <div className="d-flex align-items-center">
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date-box"]}>
-                        <Form.Label>تاريخ انتهاء البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date"]}  type="number" placeholder="MM / YY" />
-                        </div>
-                        
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv-box"]}>
-                        <Form.Label> الرقم السري (CVV) </Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv"]}  type="number" placeholder="XXX" />
-                        </div>
-
-                        </div>
-
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__save-card-info"]}>
-                            <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
-                            <span >
-                            احتفظ بمعلومات البطاقة للمرة القادمة
-                            </span>
-                        </div>
                     
-                    </div>
                 </div>
 
             </div>}

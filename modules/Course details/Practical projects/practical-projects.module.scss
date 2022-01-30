@@ -152,7 +152,8 @@
     .practical-projects__responsive-projects-slider {
         display: block;
         &>div{
-            padding: 1.5rem*1.7 0 1.5rem*1.7 2.5rem*1.7 !important;
+            margin: 0 0 0 -3rem;
+            padding: 1.5rem*1.7 2.1rem*1.7 !important;
         }
     }
 

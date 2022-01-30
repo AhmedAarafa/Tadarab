@@ -1,0 +1,51 @@
+.trainer-profile {
+  padding: 6.0625rem 8.75rem 0 8.75rem;
+}
+
+.trainer-profile__trainer-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.trainer-profile__trainer-info-trainer-card-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+@media (max-width: 575px) {
+  .trainer-profile__trainer-info-trainer-card-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .trainer-profile {
+    padding: 12rem 4.5rem 0 4.5rem;
+  }
+}
+/*# sourceMappingURL=trainer-profile-page.module.css.map */

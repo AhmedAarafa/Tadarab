@@ -5,7 +5,7 @@ import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
-import download from '/images/download.svg';
+// import download from '/images/download.svg';
 
 export default function Books() {
     SwiperCore.use([Navigation]);

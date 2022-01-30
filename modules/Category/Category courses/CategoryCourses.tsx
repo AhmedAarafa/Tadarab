@@ -42,7 +42,7 @@ export default function CategoryCourses() {
         <Swiper dir="rtl" slidesPerView={3.8} navigation={true} 
         breakpoints={{
             "50": {
-                slidesPerView: 1.1,
+                slidesPerView: 1,
               },
               "576": {
                 slidesPerView: 2.8,

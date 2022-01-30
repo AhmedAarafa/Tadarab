@@ -189,7 +189,7 @@
     }
     
     .category-trainer__title{
-        font-size: 1.75rem*2.2;
+        font-size: 1.75rem*2.3;
         padding: 0 3rem 0 0;
     }
 
@@ -197,7 +197,7 @@
     padding-top: 6.406rem;
 
     &>div {
-        padding: 0 2rem*2.2 !important;
+        padding: 0 2rem*2.45 !important;
         &:before {
             box-shadow: none ;
         }
@@ -207,7 +207,7 @@
         }
         &>div:nth-child(4) {
            &>div{
-               @include flex(unset,flex-start); 
+               @include flex(unset,center); 
            }
         }
     }
@@ -215,10 +215,10 @@
 }
 
 .category-trainer__cards-carousel__card{
-    width: 18.75rem*2.2;
-    height: 21.875rem*2.2;
-    box-shadow: 0 0.5rem*2.2 1.313rem*2.2 #0000001A;
-    border-radius: 0.75rem*2.2;
+    width: 18.75rem*2.45;
+    height: 21.875rem*2.45;
+    box-shadow: 0 0.5rem*2.45 1.313rem*2.45 #0000001A;
+    border-radius: 0.75rem*2.45;
     @include flex(unset,flex-end);
 }
 
@@ -226,17 +226,17 @@
     padding: 0;
     background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
 
-   padding-bottom: 1.5rem*2.2;
+   padding-bottom: 1.5rem*2.45;
 }
 
 .category-trainer__cards-carousel__card__trainer{
-    font-size: 1.25rem*2.2;
+    font-size: 1.25rem*2.45;
     font-weight: 700;
-    margin: 2.5rem*2.2 0 0.313rem*2.2 0;
+    margin: 2.5rem*2.45 0 0.313rem*2.45 0;
 }
 .category-trainer__cards-carousel__card__job-title,
 .category-trainer__cards-carousel__card__job-history{
-    font-size: 0.813rem*2.2;
+    font-size: 0.813rem*2.45;
     padding: 0;
 }
 }

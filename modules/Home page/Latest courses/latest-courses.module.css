@@ -203,7 +203,21 @@
 }
 
 .latest-courses__cards-carousel__course-card__card-body {
-  padding: 0.6rem 1rem 0 1rem;
+  padding: 0.6rem 1rem 0.6rem 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 43.5%;
 }
 
 .latest-courses__cards-carousel__course-card__card-body__card-header {
@@ -217,14 +231,7 @@
       -ms-flex-pack: unset;
           justify-content: unset;
   position: relative;
-}
-
-.latest-courses__cards-carousel__course-card__card-body__card-header:before {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -0.7rem;
-  width: 100%;
+  padding: 0 0 0.7813rem 0;
   border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
 }
 
@@ -249,6 +256,10 @@
   color: #222222;
   cursor: pointer;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 9.688rem;
 }
 
 .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
@@ -257,7 +268,6 @@
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details {
-  margin-top: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -324,12 +334,12 @@
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
   width: 1.45rem;
   height: 1.6rem;
 }
 
-.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
   width: 1.313rem;
   height: 1.125rem;
 }
@@ -345,8 +355,6 @@
   height: -webkit-fit-content !important;
   height: -moz-fit-content !important;
   height: fit-content !important;
-  /* 
-    */
 }
 
 .latest-courses__popover-container__title {
@@ -354,9 +362,10 @@
   font-weight: 800;
   color: #222222;
   cursor: pointer;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 19rem;
 }
 
 .latest-courses__popover-container__learners {
@@ -411,7 +420,7 @@
   color: #777777;
 }
 
-.latest-courses__popover-container__what-you-will-learn__icon {
+.latest-courses__popover-container__what-you-will-learn svg {
   width: 1.125rem;
   height: 100%;
   margin-left: 0.5rem;
@@ -616,7 +625,21 @@
     height: 12.7rem;
   }
   .latest-courses__cards-carousel__course-card__card-body {
-    padding: 0.762rem 1.27rem 0 1.27rem;
+    padding: 0.762rem 1.27rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 43.5%;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header {
     display: -webkit-box;
@@ -629,13 +652,7 @@
         -ms-flex-pack: unset;
             justify-content: unset;
     position: relative;
-  }
-  .latest-courses__cards-carousel__course-card__card-body__card-header:before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: -0.889rem;
-    width: 100%;
+    padding: 0 0 0.99225rem 0;
     border-bottom: 0.0635rem solid rgba(34, 34, 34, 0.1);
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
@@ -652,8 +669,10 @@
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
     font-size: 1.11125rem;
-    font-weight: 800;
-    color: #222222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 29rem;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 1.03251rem;
@@ -726,12 +745,12 @@
   .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
     background-color: rgba(0, 0, 0, 0.07);
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 1.8415rem;
     height: 2.032rem;
     margin: 0.32rem 0.5rem 0.32rem 0.55rem;
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
     width: 1.66751rem;
     height: 1.42875rem;
     margin: 0.65rem 0.575rem 0.65rem 0.575rem;
@@ -825,7 +844,21 @@
     height: 16.7rem;
   }
   .latest-courses__cards-carousel__course-card__card-body {
-    padding: 1.002rem 1.67rem 0 1.67rem;
+    padding: 1.002rem 1.67rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 43.5%;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header {
     display: -webkit-box;
@@ -838,13 +871,7 @@
         -ms-flex-pack: unset;
             justify-content: unset;
     position: relative;
-  }
-  .latest-courses__cards-carousel__course-card__card-body__card-header:before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: -1.169rem;
-    width: 100%;
+    padding: 0 0 1.30477rem 0;
     border-bottom: 0.0835rem solid rgba(34, 34, 34, 0.1);
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
@@ -861,8 +888,10 @@
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
     font-size: 1.46125rem;
-    font-weight: 800;
-    color: #222222;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 16.5rem;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 1.35771rem;
@@ -935,12 +964,12 @@
   .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
     background-color: rgba(0, 0, 0, 0.07);
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 2.4215rem;
     height: 2.8056rem;
     margin: 0.42rem 0.7rem 0.42rem 0.8rem;
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
     width: 2.19271rem;
     height: 1.87875rem;
     margin: 0.88rem 0.88rem 0.88rem 0.88rem;
@@ -1065,7 +1094,21 @@
     height: 29.2rem;
   }
   .latest-courses__cards-carousel__course-card__card-body {
-    padding: 1.752rem 2.92rem 0 2.92rem;
+    padding: 1.752rem 2.92rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: unset;
+        -ms-flex-align: unset;
+            align-items: unset;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 43.5%;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header {
     display: -webkit-box;
@@ -1078,13 +1121,7 @@
         -ms-flex-pack: unset;
             justify-content: unset;
     position: relative;
-  }
-  .latest-courses__cards-carousel__course-card__card-body__card-header:before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: -2.044rem;
-    width: 100%;
+    padding: 0 0 2.2814rem 0;
     border-bottom: 0.146rem solid rgba(34, 34, 34, 0.1);
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
@@ -1101,7 +1138,10 @@
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
     font-size: 2.555rem;
-    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 28.5rem;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 2.37396rem;
@@ -1166,12 +1206,12 @@
   .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
     background-color: rgba(0, 0, 0, 0.07);
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 3.19rem;
     height: 3.52rem;
     margin: 0.85rem 1rem 0.85rem 1.05rem;
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
     width: 2.8886rem;
     height: 2.475rem;
     margin: 1.3rem 1.15rem 1.3rem 1.15rem;
