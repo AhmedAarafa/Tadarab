@@ -149,7 +149,7 @@ input,
   // width: 23.438rem !important;
   // padding:0;
   width: 23.438rem !important;
-    padding: 2rem 1.3rem !important;
+    padding: 1rem !important;
     // position: absolute;
     // bottom: -3.5rem;
     // right: 20rem; 
@@ -159,7 +159,10 @@ input,
     // display: none;
     box-shadow: 0 0 1.875rem #00000033 !important;
     border-radius: 0.75rem !important;
-    height: 464px !important;
+    height: 28rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-around !important;
 }
 [data-tippy-root]{
   max-width: 0 !important;
@@ -171,6 +174,19 @@ input,
   transform: translate3d(0, 0, 0) !important;
 }
 
+div[id^='popover-latest-courses-card'] {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.tippy-content{
+  padding: 0 0.5625rem !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
 
 .tippy-arrow{
 color:white !important;

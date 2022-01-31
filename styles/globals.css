@@ -12101,13 +12101,22 @@ input:focus,
   max-width: -moz-fit-content !important;
   max-width: fit-content !important;
   width: 23.438rem !important;
-  padding: 2rem 1.3rem !important;
+  padding: 1rem !important;
   background-color: white !important;
   z-index: 99999 !important;
   -webkit-box-shadow: 0 0 1.875rem #00000033 !important;
           box-shadow: 0 0 1.875rem #00000033 !important;
   border-radius: 0.75rem !important;
-  height: 464px !important;
+  height: 28rem !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  -ms-flex-pack: distribute !important;
+      justify-content: space-around !important;
 }
 
 [data-tippy-root] {
@@ -12116,6 +12125,34 @@ input:focus,
   z-index: 99999 !important;
   -webkit-transform: translate3d(0, 0, 0) !important;
           transform: translate3d(0, 0, 0) !important;
+}
+
+div[id^='popover-latest-courses-card'] {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+}
+
+.tippy-content {
+  padding: 0 0.5625rem !important;
+  height: 100% !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-box-direction: normal !important;
+      -ms-flex-direction: column !important;
+          flex-direction: column !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
 }
 
 .tippy-arrow {

@@ -568,3 +568,67 @@ export function AccountIcon() {
     </svg>
   );
 }
+
+export function LiveIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
+      <defs>
+        <filter id="live_now" x="0" y="0" filterUnits="userSpaceOnUse">
+          <feOffset dy="3" />
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feFlood floodOpacity="0.161" />
+          <feComposite operator="in" in2="blur" />
+          <feComposite in="SourceGraphic" />
+        </filter>
+      </defs>
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#live_now)">
+        <circle
+          id="live_now-2"
+          data-name="live now"
+          cx="4"
+          cy="4"
+          r="4"
+          transform="translate(9 6)"
+          fill="red"
+        />
+      </g>
+    </svg>
+  );
+}
+
+export function PlayIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1.75rem"
+      height="2rem"
+      viewBox="0 0 31.996 34"
+    >
+      <defs>
+        <filter
+          id="play_circle"
+          x="0"
+          y="0"
+          width="31.996"
+          height="34"
+          filterUnits="userSpaceOnUse"
+        >
+          <feOffset />
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feFlood />
+          <feComposite operator="in" in2="blur" />
+          <feComposite in="SourceGraphic" />
+        </filter>
+      </defs>
+      <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#play_circle)">
+        <path
+          id="play_circle-2"
+          data-name="play circle"
+          d="M19.62,11.921l-11-6.686A1.5,1.5,0,0,0,6.392,6.547v13a1.5,1.5,0,0,0,2.231,1.312l11-6.311A1.5,1.5,0,0,0,19.62,11.921Z"
+          transform="translate(2.61 3.96)"
+          opacity="0.4"
+        />
+      </g>
+    </svg>
+  );
+}

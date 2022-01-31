@@ -91,6 +91,11 @@
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
 }
 
+.live-courses__see-more-btn svg {
+  width: 0.5rem;
+  height: 0.875rem;
+}
+
 .live-courses__cards-carousel {
   margin-top: 2rem;
   margin-bottom: 5.6rem;
@@ -203,6 +208,7 @@
   width: 100%;
   height: 10rem;
   display: block;
+  border-radius: 0.68rem 0.68rem 0 0;
 }
 
 .live-courses__cards-carousel__card__card-body {
@@ -229,6 +235,10 @@
   color: #222222;
   margin: 0;
   line-height: 1.5;
+  width: 13.4375rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -466,6 +476,7 @@
     width: 100%;
     height: 13rem;
     display: block;
+    border-radius: 0.884rem 0.884rem 0 0;
   }
   .live-courses__cards-carousel__card__card-body {
     padding: 0.316rem 0.79rem 0 0.79rem;
@@ -486,6 +497,7 @@
     font-size: 1.10552rem;
     font-weight: 800;
     color: #222222;
+    width: 17.5rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 0.84552rem;
@@ -713,6 +725,7 @@
     width: 100%;
     height: 16.875rem;
     display: block;
+    border-radius: 1.1475rem 1.1475rem 0 0;
   }
   .live-courses__cards-carousel__card__card-body {
     padding: 0.316rem 0.79rem 0 0.79rem;
@@ -733,6 +746,7 @@
     font-size: 1.43505rem;
     font-weight: 800;
     color: #222222;
+    width: 22.5rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 1.09755rem;
@@ -1013,6 +1027,7 @@
   .live-courses__cards-carousel__card__trainer-img {
     width: 100%;
     height: 30rem;
+    border-radius: 2.04rem 2.04rem 0 0;
   }
   .live-courses__cards-carousel__card__card-body {
     padding: 0.96rem 2.4rem 0 2.4rem;
@@ -1029,6 +1044,7 @@
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
     font-size: 2.5512rem;
+    width: 40.25rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 1.9512rem;

@@ -143,7 +143,20 @@ export default function LatestCourses() {
       });
     });
 
+    return () => {
+      trigger.forEach((element: any) => {
+        element.removeEventListener("mouseout", ()=>{
+          return;
+        });
+        element.removeEventListener("mouseover", ()=>{
+          return;
+        });
+      })
+    };
+
   },);
+
+  
 
   
 
@@ -239,60 +252,79 @@ export default function LatestCourses() {
                     <div id={`popover-latest-courses-card${i}`}
                     // className={styles["latest-courses__popover-container"]}
                     >
-                    <div
-                    className={
-                      styles["latest-courses__popover-container__title"]
-                    }
-                    title={course.title}
-                  >
-                    {course.title}
-                  </div>
-                  { course.subscribers_count !== null ? 
-                  <div className={styles["latest-courses__popover-container__learners"]}>
-                    <LearnersIcon color="#af151f"/>
-                    <span>{course.subscribers_count}</span>
-                    <span>متعلم</span>
-                  </div>
-                  :
-                  null
-                  }
-                  <div
-                    className={
-                      styles["latest-courses__popover-container__brief"]
-                    }
-                  >
-                    {course.details}
-                  </div>
-                  <div
-                    className={
-                      styles[
-                        "latest-courses__popover-container__what-you-will-learn-title"
-                      ]
-                    }
-                  >
-                    ماذا ستتعلم في الدورة؟
-                  </div>
-                  { course.key_points.slice(0,6).map((kp:string,i:number)=>{
-                    return(
-                   <div key={i}
-                    className={
-                      styles[
-                        "latest-courses__popover-container__what-you-will-learn"
-                      ]
-                    }
-                  >
-                    <div>
 
-                    <TickIcon/>
+                  <div>
+                        <div
+                        className={
+                          styles["latest-courses__popover-container__title"]
+                        }
+                        title={course.title}
+                      >
+                        {course.title}
+                      </div>
+                      { course.subscribers_count !== null ? 
+                      <div className={styles["latest-courses__popover-container__learners"]}>
+                        <LearnersIcon color="#af151f"/>
+                        <span>{course.subscribers_count}</span>
+                        <span>متعلم</span>
+                      </div>
+                      :
+                      null
+                      }
+                      <div
+                        className={
+                          styles["latest-courses__popover-container__brief"]
+                        }
+                      >
+                        {course.details}
+                      </div>
+
+                  </div>
+
+                  <div>
+
+                  
+                    <div
+                      className={
+                        styles[
+                          "latest-courses__popover-container__what-you-will-learn-title"
+                        ]
+                      }
+                    >
+                      ماذا ستتعلم في الدورة؟
+                    </div>
+                    { course.key_points.slice(0,6).map((kp:string,i:number)=>{
+                      return(
+                    <div key={i}
+                      className={
+                        styles[
+                          "latest-courses__popover-container__what-you-will-learn"
+                        ]
+                      }
+                    >
+                      <div>
+
+                      <TickIcon/>
+                      </div>
+
+
+                      <span>{kp}</span>
                     </div>
 
+                      )
+                    })
+                    }
 
-                    <span>{kp}</span>
                   </div>
-
-                    )
-                  })
-                  }
+                  
+                      {
+                      course.key_points.length > 6 ?
+                       <div className={styles["latest-courses__show-more-link"]}>
+                        اعرض المزيد
+                      </div>
+                      :
+                      null
+                      }
                  
                     <div className={styles["latest-courses__popover-container__btns"]}>
                           <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
@@ -301,8 +333,12 @@ export default function LatestCourses() {
                           <span> أضف للسلة </span>  
                             </Button>
                       </div> 
-                  
+
+                 
                     </div>
+                    
+                  
+
 
                   }>
 
@@ -319,8 +355,9 @@ export default function LatestCourses() {
                               "latest-courses__cards-carousel__course-card__category-chip"
                             ]
                           }
+                          style={{backgroundColor:course.categories[0].color}}
                         > 
-                        {course.categories[1]} 
+                        {course.categories[0].title} 
                         </div>
                         <Card.Img
                           variant="top"
@@ -504,8 +541,6 @@ export default function LatestCourses() {
                 );
               })
             }
-
-          
           
           </Swiper>
         </Col>

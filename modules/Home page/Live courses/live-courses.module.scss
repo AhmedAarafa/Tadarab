@@ -42,10 +42,10 @@
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
-    // svg {
-    //     width: 0.5rem;
-    //     height: 0.875rem;
-    // }
+    svg {
+        width: 0.5rem;
+        height: 0.875rem;
+    }
 }
 
 
@@ -77,7 +77,6 @@
     border-radius: 0.85rem*0.8;
     position: relative;
     display: inline-block;
-    // margin-right: 1.8rem*0.8;
 
     &:after {
         content: '';
@@ -135,6 +134,8 @@
     width: 100%;
     height: 12.5rem*0.8;
     display: block;
+    border-radius: 0.85rem*0.8 0.85rem*0.8 0 0;
+
 }
 
 .live-courses__cards-carousel__card__card-body {
@@ -161,6 +162,10 @@
     color: $dark-black;
     margin: 0;
     line-height: 1.5;
+    width: 13.4375rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -276,7 +281,6 @@
     border-radius: 0.85rem*1.04;
     position: relative;
     display: inline-block;
-    // margin-right: 1.8rem*1.04;
 
     &:after {
         content: '';
@@ -334,6 +338,7 @@
     width: 100%;
     height: 12.5rem*1.04;
     display: block;
+    border-radius: 0.85rem*1.04 0.85rem*1.04 0 0 ;
 }
 
 .live-courses__cards-carousel__card__card-body {
@@ -358,6 +363,8 @@
     font-size: 1.063rem*1.04;
     font-weight: 800;
     color: $dark-black;
+    width: 17.5rem;
+
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -474,7 +481,6 @@
     border-radius: 0.85rem*1.35;
     position: relative;
     display: inline-block;
-    // margin-right: 1.8rem*1.35;
 
     &:after {
         content: '';
@@ -532,6 +538,8 @@
     width: 100%;
     height: 12.5rem*1.35;
     display: block;
+    border-radius: 0.85rem*1.35 0.85rem*1.35 0 0;
+
 }
 
 .live-courses__cards-carousel__card__card-body {
@@ -556,6 +564,8 @@
     font-size: 1.063rem*1.35;
     font-weight: 800;
     color: $dark-black;
+    width: 22.5rem;
+
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -669,7 +679,6 @@
 
     &>div {
         padding: 0 2rem*2.4 !important;
-        // @include inset-box-shadow(white);
         &:before {
             box-shadow: none;
         }
@@ -691,7 +700,6 @@
     padding-bottom: 1rem*2.4;
     box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
     border-radius: 0.85rem*2.4;
-    // margin-right: 1.8rem*2.4;
 
     &:after {
         content: '';
@@ -748,6 +756,8 @@
 .live-courses__cards-carousel__card__trainer-img {
     width: 100%;
     height: 12.5rem*2.4;
+    border-radius: 0.85rem*2.4 0.85rem*2.4 0 0;
+
 }
 
 .live-courses__cards-carousel__card__card-body {
@@ -768,6 +778,8 @@
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
     font-size: 1.063rem*2.4;
+    width: 40.25rem;
+
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {

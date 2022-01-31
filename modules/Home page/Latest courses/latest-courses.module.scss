@@ -234,7 +234,7 @@
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
 
-    svg{
+    svg {
         width: 1.45rem;
         height: 1.6rem;
     }
@@ -243,7 +243,7 @@
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
-    svg{
+    svg {
         width: 1.313rem;
         height: 1.125rem;
     }
@@ -305,7 +305,8 @@
         font-size: 0.875rem;
         color: $grey;
     }
-    svg{
+
+    svg {
         width: 1.125rem;
         height: 100%;
         margin-left: 0.5rem;
@@ -322,7 +323,7 @@
 
 .latest-courses__popover-container__btns {
     @include flex(center, flex-start);
-    margin-top: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 
@@ -356,6 +357,16 @@
 .show {
     display: block;
 }
+
+.latest-courses__show-more-link{
+    color: $primary-red;
+    font-size: 0.8125rem;
+    text-align: center;
+    margin: 0.5rem 0 0 0 ;
+    text-decoration: underline 0.0625rem 	rgba(0, 0, 0,0.5);
+    cursor: pointer;
+}
+
 
 @media (max-width:1200px) {
     .latest-courses__departments-list {
@@ -493,7 +504,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 29rem;
+        width: 13rem;
 
     }
 
@@ -547,7 +558,7 @@
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
-        svg{
+        svg {
 
             width: 1.45rem*1.27;
             height: 1.6rem*1.27;
@@ -556,7 +567,7 @@
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
-        svg{
+        svg {
             width: 1.313rem*1.27;
             height: 1.125rem*1.27;
             margin: 0.65rem 0.575rem 0.65rem 0.575rem;
@@ -750,7 +761,7 @@
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
-        svg{
+        svg {
             width: 1.45rem*1.67;
             height: 1.68rem*1.67;
             margin: 0.42rem 0.7rem 0.42rem 0.8rem;
@@ -759,7 +770,7 @@
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
-        svg{
+        svg {
             width: 1.313rem*1.67;
             height: 1.125rem*1.67;
             margin: 0.88rem 0.88rem 0.88rem 0.88rem;
@@ -971,7 +982,7 @@
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
-        svg{
+        svg {
             width: 1.45rem*2.2;
             height: 1.6rem*2.2;
             margin: 0.85rem 1rem 0.85rem 1.05rem;
@@ -979,7 +990,7 @@
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
-        svg{
+        svg {
             width: 1.313rem*2.2;
             height: 1.125rem*2.2;
             margin: 1.3rem 1.15rem 1.3rem 1.15rem;

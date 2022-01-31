@@ -95,11 +95,17 @@
     margin: 0;
     line-height: 1.5;
     padding: 0.5rem 0 0 0;
+    width: 13.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
 }
 
 .books__cards-carousel__card__card-body__category {
     font-size: 1rem;
     color: $grey;
+    width: 13.25rem;
 }
 
 .books__cards-carousel__card__download-btn {
@@ -201,11 +207,14 @@
         font-size: 1.063rem*1.33;
         font-weight: 800;
         color: $dark-black;
+        width: 17rem;
     }
     
     .books__cards-carousel__card__card-body__category {
         font-size: 1rem*1.33;
         color: $grey;
+        width: 17rem;
+
     }
     
     .books__cards-carousel__card__download-btn {
@@ -306,11 +315,15 @@
     font-size: 1.063rem*1.35;
     font-weight: 800;
     color: $dark-black;
+    width: 17rem;
+
 }
 
 .books__cards-carousel__card__card-body__category {
     font-size: 1rem*1.35;
     color: $grey;
+    width: 17rem;
+
 }
 
 .books__cards-carousel__card__download-btn {
@@ -440,11 +453,13 @@
         font-size: 1.063rem*3.1;
         font-weight: 800;
         color: $dark-black;
+        width: 41rem;
     }
 
     .books__cards-carousel__card__card-body__category {
         font-size: 1rem*3.1;
         color: $grey;
+        width: 41rem;
     }
 
     .books__cards-carousel__card__download-btn {

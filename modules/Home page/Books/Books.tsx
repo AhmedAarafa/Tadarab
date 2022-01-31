@@ -1,14 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React , { useState,useEffect} from "react";
 import styles from "./books.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 // import download from '/images/download.svg';
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import  {ChevronLeftIcon}  from "common/Icons/Icons";
 
 export default function Books() {
     SwiperCore.use([Navigation]);
+
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+      axiosInstance
+      .get("home/?country_code=eg")
+      .then(function (response:any) {
+        setBooks(response.data.data.books);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }, []);
 
   return (
     <>
@@ -49,450 +64,51 @@ export default function Books() {
             slidesPerView: 5,
           },
         }} className="mySwiper">
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20" stroke="currentColor">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" stroke="currentColor" fill="currentColor"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" stroke="currentColor" fill="currentColor"/>
-    </g>
-  </g>
-                                                </svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-                <Card className={styles["books__cards-carousel__card"]}>
-                                    <Card.Img
-                                    variant="top"
-                                    src="/images/book4.png"
-                                    alt="book image"
-                                    className={
-                                        styles["books__cards-carousel__card__book-img"]
-                                    }
-                                    />
-                                    <Card.Body
-                                    className={styles["books__cards-carousel__card__card-body"]}
-                                    >
-                                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>أخطر نقاط الفشل</h1>
-                                        <div className={styles["books__cards-carousel__card__card-body__category"]}>بيزنس</div>
-                                        <div className="w-100">
-                                            <Button className={styles["books__cards-carousel__card__download-btn"]}>
-                                                
-                                                <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20">
-  <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
-    <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
-      <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" fill="#af151f"/>
-    </g>
-  </g>
-  <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
-    <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
-      <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" fill="#af151f"/>
-    </g>
-  </g>
-</svg>
-                                                
-                                                <span>  تحميل مجاني </span>
-                                            </Button>
-                                        </div>
-                                    </Card.Body>
-                </Card> 
-            </SwiperSlide>
+
+            { books.map((book:any,i:number)=>{
+              return(
+                  <SwiperSlide key={i}> 
+                      <Card className={styles["books__cards-carousel__card"]}>
+                                          <Card.Img
+                                          variant="top"
+                                          src={book.image}
+                                          alt="book image"
+                                          className={
+                                              styles["books__cards-carousel__card__book-img"]
+                                          }
+                                          />
+                                          <Card.Body
+                                          className={styles["books__cards-carousel__card__card-body"]}
+                                          >
+                                              <h1 className={styles["books__cards-carousel__card__card-body__title"]}>{book.title}</h1>
+                                              <div className={styles["books__cards-carousel__card__card-body__category"]}>{book.categories[0]?.title}</div>
+                                              <div className="w-100">
+                                                  <Button className={styles["books__cards-carousel__card__download-btn"]}>
+                                                      
+                                                      <svg id="download_" data-name="download " xmlns="http://www.w3.org/2000/svg" width="1.188rem" height="1.25rem" viewBox="0 0 18.75 20" stroke="currentColor">
+        <g id="Group_2242" data-name="Group 2242" transform="translate(4.375)">
+          <g id="Group_2241" data-name="Group 2241" transform="translate(0)">
+            <path id="Path_1066" data-name="Path 1066" d="M137.942,9.116a.623.623,0,0,0-.569-.366h-2.5V.625A.625.625,0,0,0,134.248,0h-2.5a.625.625,0,0,0-.625.625V8.75h-2.5a.625.625,0,0,0-.47,1.036l4.375,5a.624.624,0,0,0,.94,0l4.375-5A.623.623,0,0,0,137.942,9.116Z" transform="translate(-127.998)" stroke="currentColor" fill="currentColor"/>
+          </g>
+        </g>
+        <g id="Group_2244" data-name="Group 2244" transform="translate(0 13.75)">
+          <g id="Group_2243" data-name="Group 2243" transform="translate(0)">
+            <path id="Path_1067" data-name="Path 1067" d="M32.25,352v3.75H18.5V352H16v5a1.25,1.25,0,0,0,1.25,1.25H33.5A1.249,1.249,0,0,0,34.75,357v-5Z" transform="translate(-16 -352)" stroke="currentColor" fill="currentColor"/>
+          </g>
+        </g>
+                                                      </svg>
+                                                      
+                                                      <span>  تحميل مجاني </span>
+                                                  </Button>
+                                              </div>
+                                          </Card.Body>
+                      </Card> 
+                  </SwiperSlide>
+
+              )
+            })
+            }
+       
           
         </Swiper>
         </Col>

@@ -10,7 +10,7 @@ export default function EducationalGuide() {
         <Col xs={12} className={styles["educational-guide"]}>
           <div className={styles["educational-guide__container"]}>
             <div className={styles["educational-guide__container__img"]}>
-                <img src="/images/guide.png" alt="guide" />
+                <img src="/images/Alaa.HEIC" alt="guide" />
             </div>
             <div className={styles["educational-guide__container__details-box"]}>
               <div className={styles["educational-guide__container__details-box__title"]}>
