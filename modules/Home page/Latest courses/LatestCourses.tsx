@@ -24,16 +24,49 @@ export default function LatestCourses() {
 
   const [placement, setPlacement] = useState<any>();
   const [latestCourses, setLatestCourses] = useState([]);
+  const [filterType, setFilterType] = useState("all");
+  const [favourite, setFavourite] = useState<any>([]);
 
-  const handleActionBtns = (course:any):any =>{
+  const handleFilterType = (type:string)=>{
+    setFilterType(type);
+    axiosInstance
+    .get(`courses/?type=${type}&country_code=eg&page=1&limit=10`)
+    .then(function (response:any) {
+      setLatestCourses(response.data.data.courses);
+      // console.log("response.data.data.courses",response.data.data.courses);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
+
+  const handleFavActionBtn = (course:any):any =>{
     // console.log("course" , course);
     course.is_in_favorites = !course.is_in_favorites;
-    setLatestCourses([...latestCourses])
+    // (async function setToFav(){
+    //   await  setFavourite([...favourite,course.id]);
+    //   localStorage.setItem("FAVOURITE" , JSON.stringify([...favourite,course.id]));
+    // })();
+    // console.log("storedFavCourses", localStorage.getItem("FAVOURITE"));
+    // const storedFavCourses:any = localStorage.getItem("FAVOURITE");
+    setLatestCourses([...latestCourses]);
   }
   useEffect(() => {
     axiosInstance
     .get("home/?country_code=eg")
     .then(function (response:any) {
+      // const favouriteCourses:any = localStorage.getItem("FAVOURITE");
+      // console.log("favouriteCourses",JSON.parse(favouriteCourses));
+      // JSON.parse(favouriteCourses).forEach((ID:any) => {
+      //   response.data.data.latest_courses.forEach((course:any)=>{
+      //     console.log("course",course.id);
+          
+      //     if(course.id === ID){
+      //       course.is_in_favorites = true;
+      //     }
+      //   })
+      // });
       setLatestCourses(response.data.data.latest_courses);
     })
     .catch(function (error) {
@@ -172,47 +205,28 @@ export default function LatestCourses() {
           className="d-flex align-items-center justify-content-start"
         >
           <ul id="departments-list" className={styles["latest-courses__departments-list"]}>
-            <li
-              className={
-                styles["latest-courses__departments-list__item--active"]
-              }
-            >
+            <li onClick={()=>{handleFilterType("all")}} 
+            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "all" && styles["latest-courses__departments-list__item--active"]}`}>
               كل الأقسام
             </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
+            <li onClick={()=>{handleFilterType("best-seller")}} 
+            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "best-seller" && styles["latest-courses__departments-list__item--active"]}`}>
               الأكثر مبيعاً
             </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              تنمية بشرية
-            </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              علوم
-            </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              حياة
-            </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              الصحة
-            </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              تربية الأطفال
-            </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              الفنون
-            </li>
-            <li className={styles["latest-courses__departments-list__item"]}>
-              بيزنس
+            <li onClick={()=>{handleFilterType("latest")}} 
+            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>
+              أحدث الدورات
             </li>
           </ul>
         </Col>
 
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
-
-        <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
-          اعرض المزيد
-          <ChevronLeftIcon color="#af151f"/>
-        
-        </Button>
+        <Link href="/CourseDetails">
+          <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
+            اعرض المزيد
+            <ChevronLeftIcon color="#af151f"/>
+          </Button>
+        </Link>
         </Col>
 
         <Col xs={{span:12 , order:2}} className={styles["latest-courses__cards-carousel"]}>
@@ -254,14 +268,17 @@ export default function LatestCourses() {
                     >
 
                   <div>
-                        <div
-                        className={
-                          styles["latest-courses__popover-container__title"]
-                        }
-                        title={course.title}
-                      >
-                        {course.title}
-                      </div>
+                        <Link href="/CourseDetails">
+                          <div
+                          className={
+                            styles["latest-courses__popover-container__title"]
+                          }
+                          title={course.title}
+                        >
+                          {course.title}
+                          </div>
+                        </Link>
+
                       { course.subscribers_count !== null ? 
                       <div className={styles["latest-courses__popover-container__learners"]}>
                         <LearnersIcon color="#af151f"/>
@@ -319,15 +336,21 @@ export default function LatestCourses() {
                   
                       {
                       course.key_points.length > 6 ?
-                       <div className={styles["latest-courses__show-more-link"]}>
-                        اعرض المزيد
-                      </div>
+                      <Link href="/CourseDetails">
+
+                        <div className={styles["latest-courses__show-more-link"]}>
+                          اعرض المزيد
+                        </div>
+                      </Link>
                       :
                       null
                       }
                  
                     <div className={styles["latest-courses__popover-container__btns"]}>
-                          <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
+
+                          <Link href="/CourseDetails">
+                            <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
+                          </Link>
                           <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
                           <CartIcon color="#fff"/>
                           <span> أضف للسلة </span>  
@@ -336,10 +359,6 @@ export default function LatestCourses() {
 
                  
                     </div>
-                    
-                  
-
-
                   }>
 
                     <Card
@@ -359,6 +378,9 @@ export default function LatestCourses() {
                         > 
                         {course.categories[0].title} 
                         </div>
+
+                        <Link href="/CourseDetails">
+
                         <Card.Img
                           variant="top"
                           src={course.image}
@@ -369,6 +391,8 @@ export default function LatestCourses() {
                             ]
                           }
                         />
+                        </Link>
+
                         <Card.Body
                           className={
                             styles[
@@ -402,16 +426,18 @@ export default function LatestCourses() {
                                 ]
                               }
                             >
-                              <h1 
-                             title={course.title}
-                                className={
-                                  styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                  ]
-                                }
-                              >
-                                {course.title}
-                              </h1>
+                          <Link href="/CourseDetails">
+                                <h1 
+                              title={course.title}
+                                  className={
+                                    styles[
+                                      "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
+                                    ]
+                                  }
+                                >
+                                  {course.title}
+                                </h1>
+                          </Link>
                               <div
                                 className={
                                   styles[
@@ -516,7 +542,7 @@ export default function LatestCourses() {
                                 }
                               >
 
-                                <div onClick={()=>handleActionBtns(course)} className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
+                                <div onClick={()=>handleFavActionBtn(course)} className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                  {
                                   course.is_in_favorites ?
                                   <AddedToFavouriteIcon />

@@ -104,7 +104,7 @@
 }
 
 .books__cards-carousel > div {
-  padding: 0 2rem !important;
+  padding: 0.5rem 2rem !important;
 }
 
 .books__cards-carousel > div:before {
@@ -242,7 +242,7 @@
     background-color: white;
   }
   .books__cards-carousel > div {
-    padding: 0 2.66rem !important;
+    padding: 0.665rem 2.66rem !important;
   }
   .books__cards-carousel > div:before {
     content: '';
@@ -377,7 +377,7 @@
     background-color: white;
   }
   .books__cards-carousel > div {
-    padding: 0 2.7rem !important;
+    padding: 0.675rem 2.7rem !important;
   }
   .books__cards-carousel > div:before {
     content: '';
@@ -596,7 +596,7 @@
     background-color: white;
   }
   .books__cards-carousel > div {
-    padding: 0 6.2rem !important;
+    padding: 1.55rem 6.2rem !important;
   }
   .books__cards-carousel > div:before {
     content: '';

@@ -57,7 +57,7 @@
     background-color: white;
 
     &>div {
-        padding: 0 2rem !important;
+        padding: 0.5rem 2rem !important;
         @include inset-box-shadow(white);
 
         &>div:nth-child(1),
@@ -155,7 +155,7 @@
         background-color: white;
     
         &>div {
-            padding: 0 2rem*1.33 !important;
+            padding: 0.5rem*1.33 2rem*1.33 !important;
             @include inset-box-shadow(white);
     
             &>div:nth-child(1),
@@ -263,7 +263,7 @@
     background-color: white;
 
     &>div {
-        padding: 0 2rem*1.35 !important;
+        padding: 0.5rem*1.35 2rem*1.35 !important;
         @include inset-box-shadow(white);
 
         &>div:nth-child(1),
@@ -417,7 +417,7 @@
         background-color: white;
 
         &>div {
-            padding: 0 2rem*3.1 !important;
+            padding: 0.5rem*3.1 2rem*3.1 !important;
             @include inset-box-shadow(white);
 
             &>div:nth-child(1),

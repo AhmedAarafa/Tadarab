@@ -2,6 +2,7 @@
 import React from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./hero-section.module.css";
+import  {SearchIcon}  from "common/Icons/Icons";
 
 export default function HeroSection() {
   return (
@@ -23,9 +24,7 @@ export default function HeroSection() {
                   styles["hero-section__search-bar-container__icon-wrapper"]
                 }
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.1rem" height="1.1rem" viewBox="0 0 20 20">
-                  <path id="search" d="M14.677,12.911a8.155,8.155,0,1,0-1.767,1.768L18.233,20,20,18.234l-5.323-5.323Zm-6.552.841A5.625,5.625,0,1,1,13.75,8.127,5.631,5.631,0,0,1,8.125,13.752Z" transform="translate(0 -0.002)" fill="#707070c5"/>
-                </svg>
+                <SearchIcon color="#777"/>
 
               </div>
               <Form.Control
@@ -58,7 +57,7 @@ export default function HeroSection() {
         </Col>
         <Col xs={{ span: 12, order: 'first' }}  sm={5} className={styles["hero-section__col"]}>
           <img
-            src="/images/hero.png"
+            src="/images/عبد العزيز الموسي.png"
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}
           />

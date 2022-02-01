@@ -6,7 +6,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import  {ChevronLeftIcon,LiveIcon,PlayIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
+import  {ChevronLeftIcon,LiveIcon,PlayIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon,BellIcon}  from "common/Icons/Icons";
+
 
 export default function LiveCourses() {
     SwiperCore.use([Navigation]);
@@ -65,11 +66,11 @@ export default function LiveCourses() {
           },
         }} className="mySwiper">
 
-
             {  liveCourses.map((lc:any,i:number)=>{
               return(
                 <SwiperSlide key={i}> 
-                  <Card className={styles["live-courses__cards-carousel__card"]}>
+                  <Card className={`${ lc.price == 0 ? styles["live-courses__cards-carousel__card"] : styles["live-courses__cards-carousel__card--paid"] } 
+                  `}>
                       <div
                         className={
                           styles[
@@ -88,12 +89,11 @@ export default function LiveCourses() {
                         }
                       >
                         <div>
-                         <LiveIcon/>
-                          
+                        { lc.full_date == Math.floor(Date.now() / 1000) && <LiveIcon/>}
                         </div>
                         <div>
 
-                          <span>مباشر الأن</span>
+                          { lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الأن</span> :  <span>{lc.short_date}</span>}
                         </div>
                       </div>
                           <Card.Img variant="top" src={lc.image} alt='trainer image'
@@ -108,17 +108,77 @@ export default function LiveCourses() {
                                   هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز
                                   </div>
                               </div>
+
+
                               <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
-                                  <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details__price"]}>مجانا</div>
+                                <div>
+                                  <div
+                                    className={
+                                      styles[
+                                        "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
+                                      ]
+                                    }
+                                  >
+                                    { lc.price !== 0 && <span
+                                      className={
+                                        styles[
+                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
+                                        ]
+                                      }
+                                    >
+                                    {lc.currency_code}
+                                    </span>}
+
+                                    <span
+                                      className={
+                                        styles[
+                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                        ]
+                                      }
+                                    >
+                                      {lc.price == 0 ? "مجاناً" : lc.price}
+                                    </span>
+                                  
+                                  </div>
+                                  { (lc.price > lc.discounted_price) &&
+                                  <div
+                                    className={
+                                      styles[
+                                        "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
+                                      ]
+                                    }
+                                  >
+                                    <span
+                                      className={
+                                        styles[
+                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
+                                        ]
+                                      }
+                                    >
+                                      {lc.currency_code}
+                                    </span>
+                                    <span
+                                      className={
+                                        styles[
+                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
+                                        ]
+                                      }
+                                    >
+                                      {lc.discounted_price}
+                                    </span>
+                                  
+                                  </div>
+                                  }
+                                </div>
                                   <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                                    <CartIcon color="#222"/>
+                                    {lc.price == 0 ? <BellIcon/> :<CartIcon color="#222"/>}
                                   </Button>
                               </div>
                           </Card.Body>
-                          <div className={styles["live-courses__cards-carousel__card__live-icon"]}>
+                          {lc.full_date == Math.floor(Date.now() / 1000) && <div className={styles["live-courses__cards-carousel__card__live-icon"]}>
                               <PlayIcon/>
 
-                          </div>
+                          </div>}
                   </Card> 
                 </SwiperSlide>
 

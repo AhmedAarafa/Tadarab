@@ -118,7 +118,7 @@ export default function SignInPage() {
                   console.log("Response",response);
                   if(response.data.status_code.startsWith("2")){
                     console.log("success");
-                    Router.push("http://localhost:3000/HomePage");
+                    Router.push("https://tadarab.vercel.app/HomePage");
                   }else if(response.data.status_code.startsWith(4) ||
                   response.data.status_code.startsWith(5)
                   ){

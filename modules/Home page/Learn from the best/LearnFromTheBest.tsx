@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, {useState, useEffect } from "react";
 import styles from "./learn-from-the-best.module.css";
@@ -7,6 +8,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon}  from "common/Icons/Icons";
+import Link from 'next/link';
 
 export default function LearnFromTheBest() {
   SwiperCore.use([Navigation]);
@@ -64,6 +66,7 @@ export default function LearnFromTheBest() {
             { trainers.map((trainer:any, i:number)=>{
               return(
                   <SwiperSlide key={i}> 
+                 <Link href="/TrainerProfile">
                     <Card className={styles["learn-from-the-best__cards-carousel__card"]} 
                     style={{background: `transparent url(${trainer.image}) no-repeat padding-box` , 
                     backgroundSize: "contain" }}
@@ -77,6 +80,7 @@ export default function LearnFromTheBest() {
                           </div>
                       
                     </Card> 
+                  </Link>
                   </SwiperSlide>
               )
             })

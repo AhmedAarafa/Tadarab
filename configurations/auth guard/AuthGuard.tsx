@@ -9,7 +9,7 @@ const withAuth = (Component:any) => {
     
     const dispatch = useDispatch();
 
-    let userAuthState = useSelector((state:any) => state.userAuthetication);
+    const userAuthState = useSelector((state:any) => state.userAuthentication);
 
     useEffect(() => {
       if (localStorage.getItem("TOKEN")) {
