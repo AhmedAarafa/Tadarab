@@ -254,7 +254,7 @@ export const stickyCardHandler = () => {
         width: 100%;
         box-shadow: 0 0 1.25rem*2.5 #0000001A;
         border-radius: 1.25rem*2.5;
-        position: static !important;
+        position: static ;
         `:null;
         cardDetailsBox ? cardDetailsBox.style.cssText= `display:none;` : null ;
         title ? title.style.cssText = `display:block`: null ;

@@ -82,7 +82,7 @@ export default function CoursesDepartments() {
                                     </div>
                                     <div className={styles["courses-departments__cards-carousel__departments-card__department"]}>{cat.title}</div>
                                     <div className={styles["courses-departments__cards-carousel__departments-card__learners-number"]}>
-                                    {cat.count} دورة 
+                                    {cat.buyers_count} متعلم 
                                     </div>
                                 </div>
                   </div>

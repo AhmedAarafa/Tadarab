@@ -447,11 +447,10 @@
   .live-courses__cards-carousel > div > div:nth-child(4) {
     padding-bottom: 2.6rem !important;
   }
-  .live-courses__cards-carousel__card {
+  .live-courses__cards-carousel__card,
+  .live-courses__cards-carousel__card--paid {
     width: 19.5rem;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: 26rem;
     padding-bottom: 1.04rem;
     -webkit-box-shadow: 0 0.52rem 1.36552rem #0000001A;
             box-shadow: 0 0.52rem 1.36552rem #0000001A;
@@ -459,7 +458,8 @@
     position: relative;
     display: inline-block;
   }
-  .live-courses__cards-carousel__card:after {
+  .live-courses__cards-carousel__card:after,
+  .live-courses__cards-carousel__card--paid:after {
     content: '';
     position: absolute;
     left: 0;
@@ -468,6 +468,12 @@
     height: 13rem;
     display: inline-block;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
+  }
+  .live-courses__cards-carousel__card--paid:after {
+    content: '';
+    position: absolute;
+    display: none;
+    background: none;
   }
   .live-courses__cards-carousel__course-card__category-chip {
     position: absolute;
@@ -694,11 +700,10 @@
   .live-courses__cards-carousel > div > div:nth-child(4) {
     padding-bottom: 3.375rem !important;
   }
-  .live-courses__cards-carousel__card {
+  .live-courses__cards-carousel__card,
+  .live-courses__cards-carousel__card--paid {
     width: 25.3125rem;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: 34rem;
     padding-bottom: 1.35rem;
     -webkit-box-shadow: 0 0.675rem 1.77255rem #0000001A;
             box-shadow: 0 0.675rem 1.77255rem #0000001A;
@@ -706,7 +711,8 @@
     position: relative;
     display: inline-block;
   }
-  .live-courses__cards-carousel__card:after {
+  .live-courses__cards-carousel__card:after,
+  .live-courses__cards-carousel__card--paid:after {
     content: '';
     position: absolute;
     left: 0;
@@ -715,6 +721,12 @@
     height: 16.875rem;
     display: inline-block;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
+  }
+  .live-courses__cards-carousel__card--paid:after {
+    content: '';
+    position: absolute;
+    display: none;
+    background: none;
   }
   .live-courses__cards-carousel__course-card__category-chip {
     position: absolute;
@@ -995,17 +1007,17 @@
   .live-courses__cards-carousel > div > div:nth-child(4) {
     padding-bottom: 6rem !important;
   }
-  .live-courses__cards-carousel__card {
+  .live-courses__cards-carousel__card,
+  .live-courses__cards-carousel__card--paid {
     width: 45rem;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: 60rem;
     padding-bottom: 2.4rem;
     -webkit-box-shadow: 0 1.2rem 3.1512rem #0000001A;
             box-shadow: 0 1.2rem 3.1512rem #0000001A;
     border-radius: 2.04rem;
   }
-  .live-courses__cards-carousel__card:after {
+  .live-courses__cards-carousel__card:after,
+  .live-courses__cards-carousel__card--paid:after {
     content: '';
     position: absolute;
     left: 0;
@@ -1014,6 +1026,12 @@
     height: 30rem;
     display: inline-block;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
+  }
+  .live-courses__cards-carousel__card--paid:after {
+    content: '';
+    position: absolute;
+    display: none;
+    background: none;
   }
   .live-courses__cards-carousel__course-card__category-chip {
     position: absolute;

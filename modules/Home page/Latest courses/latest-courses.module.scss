@@ -40,7 +40,9 @@
         &::before {
             content: "-";
             padding-left: 0.5rem;
-            color: $grey;
+            color: $grey; 
+            text-decoration:none !important;
+            display: inline-block;
         }
 
     }
