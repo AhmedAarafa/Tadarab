@@ -177,15 +177,18 @@ input,
 div[id^='popover-latest-courses-card'] {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
+  justify-content: space-evenly !important;
 }
 
 .tippy-content{
   padding: 0 0.5625rem !important;
   height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
+  // display: flex !important;
+  // flex-direction: column !important;
+  // justify-content: center !important;
+  &>div{
+   height: 100% !important;
+  }
 }
 
 .tippy-arrow{

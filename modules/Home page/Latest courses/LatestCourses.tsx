@@ -263,7 +263,7 @@ export default function LatestCourses() {
 
                   <Tippy className={`popover-latest-courses-card${i}`}  interactive={true} delay={100} placement={placement}
                   content={
-                    <div id={`popover-latest-courses-card${i}`}
+                    <div id={`popover-latest-courses-card${i}`} className="h-100"
                     // className={styles["latest-courses__popover-container"]}
                     >
 
