@@ -12,8 +12,8 @@ const withAuth = (Component:any) => {
     const userAuthState = useSelector((state:any) => state.userAuthentication);
 
     useEffect(() => {
-      if (localStorage.getItem("TOKEN")) {
-        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,token:localStorage.getItem("TOKEN")}));
+      if (localStorage.getItem("token")) {
+        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,token:localStorage.getItem("token")}));
       }else{
         dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null}));
       }

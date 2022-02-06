@@ -9,21 +9,29 @@ import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon}  from "common/Icons/Icons";
 import Link from 'next/link';
+import { useDispatch, useSelector } from "react-redux";
 
 export default function LearnFromTheBest() {
   SwiperCore.use([Navigation]);
+  const homePageData = useSelector((state:any) => state.homePageData);
+
   const [trainers, setTrainers] = useState([]);
 
   useEffect(() => {
-    axiosInstance
-    .get("home/?country_code=eg")
-    .then(function (response:any) {
-      setTrainers(response.data.data.trainers);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }, []);
+    // axiosInstance
+    // .get("home/?country_code=eg")
+    // .then(function (response:any) {
+    //   setTrainers(response.data.data.trainers);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    // if(homePageData !== {}){
+      setTrainers(homePageData.data?.trainers || []);
+    // }
+    // setTrainers(homePageData.data.trainers);
+
+  }, [homePageData]);
 
   return (
     <>
@@ -68,8 +76,7 @@ export default function LearnFromTheBest() {
                   <SwiperSlide key={i}> 
                  <Link href="/TrainerProfile">
                     <Card className={styles["learn-from-the-best__cards-carousel__card"]} 
-                    style={{background: `transparent url(${trainer.image}) no-repeat padding-box` , 
-                    backgroundSize: "contain" }}
+                    style={{backgroundImage: `url(${trainer.image})`}}
                       >
                           <div className={styles["learn-from-the-best__cards-carousel__card__card-body"]}>
                               <div className="text-center">

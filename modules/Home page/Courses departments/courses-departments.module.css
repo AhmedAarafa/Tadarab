@@ -148,6 +148,11 @@
           justify-content: center;
 }
 
+.courses-departments__cards-carousel__departments-card__img-box img {
+  width: 2.8125rem;
+  height: 2.8125rem;
+}
+
 .courses-departments__cards-carousel__departments-card__department {
   font-size: 1rem;
   font-weight: 700;
@@ -286,9 +291,9 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .courses-departments__cards-carousel__departments-card__img-box svg {
-    width: 2.625rem;
-    height: 2.45rem;
+  .courses-departments__cards-carousel__departments-card__img-box img {
+    width: 3.9375rem;
+    height: 3.9375rem;
   }
   .courses-departments__cards-carousel__departments-card__department {
     font-size: 1.4rem;
@@ -368,9 +373,9 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .courses-departments__cards-carousel__departments-card__img-box svg {
-    width: 4.125rem;
-    height: 3.85rem;
+  .courses-departments__cards-carousel__departments-card__img-box img {
+    width: 6.1875rem;
+    height: 6.1875rem;
   }
   .courses-departments__cards-carousel__departments-card__department {
     font-size: 2.2rem;

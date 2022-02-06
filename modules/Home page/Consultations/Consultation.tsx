@@ -24,7 +24,7 @@ export default function Consultation() {
       <Col xs={{span:12, order:4}} sm={{span:3 , order:3}} className={styles["consultations__show-all-btn-col"]}>
 
           <Button className={styles["consultations__minor-title-container__btn"]}>
-            أعرض كل المستشارين
+            اعرض كل المستشارين
             <svg
               id="previous"
               xmlns="http://www.w3.org/2000/svg"

@@ -40,8 +40,8 @@ export default function WhyTadarab() {
 
                     </div>
                     <div className={styles["why-tadarab__advantages-box__advantage"]}>
-                        <div>متاحة في أي وقت</div>
-                        <div>دورات أونلاين مسجلة بجودة عالية</div>
+                        <div>متاحة في أي وقت </div>
+                        <div>الدورات تكون في حسابك مدى الحياة</div>
                     </div>
                 </div>
                 <div className={styles["why-tadarab__advantages-box"]}>
@@ -57,7 +57,7 @@ export default function WhyTadarab() {
                     </div>
                     <div className={styles["why-tadarab__advantages-box__advantage"]}>
                         <div>أقل تكلفة</div>
-                        <div>دورات أونلاين مسجلة بجودة عالية</div>
+                        <div>أقل سعر دورات مقابل الجودة</div>
                     </div>
                 </div>
                
@@ -66,7 +66,7 @@ export default function WhyTadarab() {
                 <div className={styles["tadarab-for-companies"]}>
 
                     <div>
-                        <img src="/images/business.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
+                        <img src="/images/businesss.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
                     </div>
 
                     <div className={styles["tadarab-for-companies__titles-box"]}>
@@ -75,7 +75,7 @@ export default function WhyTadarab() {
                             <span> للشركات </span>
                         </div>
                         <div className={styles["tadarab-for-companies__titles-box__breif"]}>
-                            دورات عالية الجودة في جميع المجالات والعلوم دورات عالية
+                            دورات عالية الجودة في جميع المجالات والعلوم والمعارف المختلفة
                             </div>
                       <Button className={styles["tadarab-for-companies__titles-box__btn"]}>تواصل معانا</Button>
                     </div>

@@ -24,7 +24,7 @@
 
 .books__title > div span:nth-of-type(2) {
   color: #AF151F;
-  margin-right: 0.35rem;
+  margin-right: 0;
 }
 
 .see-more-btn-col {
@@ -142,8 +142,11 @@
   width: 100%;
   border-radius: 0.5rem;
   height: 18.75rem;
-  -webkit-box-shadow: 0 0 0.5rem #00000033;
-          box-shadow: 0 0 0.5rem #00000033;
+}
+
+.books__cards-carousel__card__book-img:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
 }
 
 .books__cards-carousel__card__card-body__title {
@@ -293,8 +296,6 @@
     width: 100%;
     border-radius: 0.665rem;
     height: 24.9375rem;
-    -webkit-box-shadow: 0 0 0.665rem #00000033;
-            box-shadow: 0 0 0.665rem #00000033;
   }
   .books__cards-carousel__card__card-body__title {
     font-size: 1.41379rem;
@@ -428,8 +429,6 @@
     width: 100%;
     border-radius: 0.675rem;
     height: 25.3125rem;
-    -webkit-box-shadow: 0 0 0.675rem #00000033;
-            box-shadow: 0 0 0.675rem #00000033;
   }
   .books__cards-carousel__card__card-body__title {
     font-size: 1.43505rem;
@@ -520,9 +519,6 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-  }
-  .books__title > div span:nth-of-type(2) {
-    margin-right: 0.35rem;
   }
   .see-more-btn-col {
     padding: 5.688rem 0 0 0;
@@ -629,8 +625,6 @@
     width: 100%;
     border-radius: 1.55rem;
     height: 58.125rem;
-    -webkit-box-shadow: 0 0 1.55rem #00000033;
-            box-shadow: 0 0 1.55rem #00000033;
   }
   .books__cards-carousel__card__card-body__title {
     font-size: 3.2953rem;

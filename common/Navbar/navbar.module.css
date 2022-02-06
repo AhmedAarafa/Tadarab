@@ -186,6 +186,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0 1.875rem 0 0;
+  cursor: pointer;
 }
 
 .navbar__account-icon svg {
@@ -748,6 +749,64 @@
   background-color: #AF151F !important;
   color: white !important;
   border: 0.125rem solid #AF151F !important;
+}
+
+.navbar__account-icon__dropdown {
+  -webkit-box-shadow: 0 0 1.875rem #0000001A;
+          box-shadow: 0 0 1.875rem #0000001A;
+  position: absolute;
+  background: #fff;
+  color: #222222;
+  font-weight: bold;
+  padding: 1.3rem 0.3rem;
+  font-size: 1rem;
+  border-radius: 1.25rem;
+  z-index: 5;
+  top: 1rem !important;
+  height: 4rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0 1.5rem;
+  border-radius: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navbar__account-icon__dropdown button {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: #AF151F !important;
+  border: 0.125rem solid #AF151F !important;
+}
+
+.navbar__account-icon__dropdown button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.navbar__account-icon__dropdown button:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.navbar__account-icon__dropdown button:hover, .navbar__account-icon__dropdown button:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
 }
 
 @media (max-width: 575px) {

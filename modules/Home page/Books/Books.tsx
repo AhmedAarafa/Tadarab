@@ -7,30 +7,36 @@ import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon,DownloadIcon}  from "common/Icons/Icons";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Books() {
     SwiperCore.use([Navigation]);
+  const homePageData = useSelector((state:any) => state.homePageData);
 
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
-      axiosInstance
-      .get("home/?country_code=eg")
-      .then(function (response:any) {
-        setBooks(response.data.data.books);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }, []);
+      // axiosInstance
+      // .get("home/?country_code=eg")
+      // .then(function (response:any) {
+      //   setBooks(response.data.data.books);
+      // })
+      // .catch(function (error) {
+      //   console.log(error);
+      // });
+      // setBooks(homePageData.data.books);
+      // if(homePageData !== {}){
+        setBooks(homePageData.data?.books || []);
+      // }
+    }, [homePageData]);
 
   return (
     <>
       <Row className={styles["books__row"]}>
         <Col xs={{span:12 ,order:1}} sm={{span:8 ,order:1}} className={styles["books__title"]}>
           <div>
-            <span> الكتب و </span>
-            <span> الملخصات </span>
+            <span>الكتب و</span>
+            <span>الملخصات</span>
           </div>
         </Col>
 

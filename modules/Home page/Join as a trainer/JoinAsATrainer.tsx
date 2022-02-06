@@ -13,10 +13,10 @@ export default function JoinAsATrainer() {
                         <span>  كمدرب؟   </span>
                     </div>
                     <div className={styles["join-as-a-trainer__para"]}>
-                        تحصل منصة تدرب علي اختيار افضل المدربين المعتمدين في الخليج والعالم العربي
+                    منصة تدرب هي الخيار الأمثل للاستفادة من أفضل المدربين والخبراء في الوطن العربي
                         </div>
                     <Button className={styles["join-as-a-trainer__btn"]}>
-                    أنضم إلينا الأن
+                    انضم إلينا الآن
                     </Button> 
                 </Col>
             </Row>

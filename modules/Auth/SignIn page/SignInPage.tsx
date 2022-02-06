@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import { Row, Col, Button,  Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./sign-in-page.module.css"; 
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import Router from "next/router";
+import Router, { useRouter }  from "next/router";
 import {
   Formik,
   FormikHelpers,
@@ -23,6 +23,7 @@ interface SignInFormValues {
 export default function SignInPage() {
     const [isVisible, setIsVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const router:any = useRouter();
 
    
     const showHidePasswordHandler = () => {
@@ -112,13 +113,18 @@ export default function SignInPage() {
                 .then((response:any) => {
                   console.log("Response.message",response);
                   if(response.data.data !== null){
-                    localStorage.setItem("TOKEN" , response.data.data.token);
+                    localStorage.setItem("token" , response.data.data.token);
                   }
                   // setResponse(response.data);
                   console.log("Response",response);
                   if(response.data.status_code.startsWith("2")){
                     console.log("success");
-                    Router.push("https://tadarab.vercel.app/HomePage");
+                    if (router.query && router.query.from) {
+                      // router.push(router.back());
+                      Router.back();
+                   }else{
+                     Router.push("https://tadarab.vercel.app/HomePage");
+                   }
                   }else if(response.data.status_code.startsWith(4) ||
                   response.data.status_code.startsWith(5)
                   ){

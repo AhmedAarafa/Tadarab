@@ -21,7 +21,7 @@ export default function EducationalGuide() {
               نظام دعم فني شخصي لكل متدرب لضمان نجاح كل جانب من جوانب تجربة تعلمك علي تدرب لرد علي استفساراتك
               </div>
               <Button className={styles["educational-guide__container__details-box__btn"]}>
-              تواصل معانا
+              تواصل معنا
               </Button>
             </div>
           </div>

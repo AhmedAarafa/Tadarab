@@ -78,8 +78,9 @@
     overflow: hidden;
     @include flex(unset,flex-end);
     display: inline-flex;
-    background: transparent url('/images/trainer img.png') no-repeat padding-box;
-    background-size: contain; 
+    // background: transparent url('/images/trainer img.png') no-repeat padding-box;
+    background-size: cover; 
+    background-repeat: no-repeat;
     cursor: pointer;
 }
 
@@ -156,8 +157,8 @@
         overflow: hidden;
         @include flex(unset,flex-end);
         display: inline-flex;
-        background: transparent url('/images/trainer img.png') no-repeat padding-box;
-        background-size: contain; 
+        // background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        // background-size: contain; 
     }
     
     .learn-from-the-best__cards-carousel__card__card-body{
@@ -224,8 +225,8 @@
         overflow: hidden;
         @include flex(unset,flex-end);
         display: inline-flex;
-        background: transparent url('/images/trainer img.png') no-repeat padding-box;
-        background-size: contain; 
+        // background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        // background-size: contain; 
     }
     
     .learn-from-the-best__cards-carousel__card__card-body{

@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React,{ useEffect } from "react";
 import styles from "./statistics.module.css";
 import { Row, Col } from "react-bootstrap";
 
 export default function Statistics() {
+
+  
   return (
     <>
       <Row>
@@ -51,7 +53,7 @@ export default function Statistics() {
 
                             </div>
                         <div className={styles["statistics__details__counter"]}>
-                            <span>+500</span>
+                            <span id="edu-course">+500</span>
                         </div>
                         <div className={styles["statistics__details__unit"]}>دورة تدريبية</div>
                     </div>

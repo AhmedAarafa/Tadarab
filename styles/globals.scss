@@ -323,6 +323,47 @@ input:-webkit-autofill:active{
   border:none !important;
 }
 
+.vjs-icon-placeholder{
+  &::before{
+    font-family: VideoJS !important;
+  }
+}
+
+.vjs-control-bar{
+  *{
+    font-family: VideoJS !important;
+    &::before{
+      font-family: VideoJS !important;
+    }
+  }
+}
+
+.vjs-big-play-button{
+  background-color: transparent !important;
+  border:none !important;
+  height: 3em !important;
+  width: 3em !important;
+
+  .vjs-icon-placeholder{
+    &::before{
+      content:"" !important;
+      background-image: url('/images/1- Play button on the outer poster.png') !important;
+      background-size: 100% 100% !important;
+    }
+}
+}
+.intl-tel-input.allow-dropdown .arrow {
+  display: none !important;
+  }
+  .intl-tel-input.allow-dropdown .selected-flag:after {
+  content: "▼";
+  font-size: 0.6rem;
+  margin-left: 0.3125rem;
+  color:rgba(119, 119, 119, 0.5) !important;
+  }
+  .intl-tel-input.allow-dropdown.expanded .selected-flag:after {
+  content: '▲';
+  }
 
 @media(min-width: 1400px){
   .container-xxl{

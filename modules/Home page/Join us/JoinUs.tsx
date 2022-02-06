@@ -8,7 +8,7 @@ export default function JoinUs() {
       <Row className={styles["join-us-row"]}>
         <Col xs={12} className={styles["join-us"]}>
           <div className={styles["join-us__title"]}>
-            انضم لتصلك احدث الدورات التدريبية والعروض
+          انضم لتصلك أحدث الدورات التدريبية والعروض
           </div>
           <div className="d-flex justify-content-center">
 

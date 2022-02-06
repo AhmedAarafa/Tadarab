@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
 import Navbar from 'common/Navbar/Navbar'
 import HeroSection from 'modules/Home page/Hero section/HeroSection'
 import LatestCourses from 'modules/Home page/Latest courses/LatestCourses'
@@ -16,14 +16,36 @@ import JoinUs from 'modules/Home page/Join us/JoinUs'
 import Footer from 'common/Footer/Footer'
 import { Container } from "react-bootstrap";
 import withAuth from "configurations/auth guard/AuthGuard";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { setHomePageData } from "configurations/redux/actions/homePageData";
 
 function HomePage() {
+  const dispatch = useDispatch();
+  const homePageData = useSelector((state:any) => state.homePageData);
+  // let [first, setfirst] = useState<any>();
+
+    useEffect(() => {
+        axiosInstance
+        .get("home/?country_code=eg")
+        .then(function (response:any) {
+            dispatch(setHomePageData(response.data.data));
+            // setfirst(response.data.data);
+      
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        // dispatch(setHomePageData());
+        
+      }, []);
+
     return (
         <>
         <Container fluid="xxl">
             <Navbar/>
             <HeroSection/>
-            <LatestCourses/>
+            <LatestCourses />
             <CoursesDepartments/>
             <LiveCourses/>
             <Consultation/>

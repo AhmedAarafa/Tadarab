@@ -12,11 +12,10 @@ export default function HeroSection() {
         <Col xs={12} sm={{ span: 5, order: 'first' }}>
           <div className={styles["hero-section__container"]}>
             <h4 className={styles["hero-section__title"]}>
-              تدرب أون لاين من الأفضل
+            تعلم أونلاين مع منصة تدرب
             </h4>
             <p className={styles["hero-section__para"]}>
-              أكبر منصة عربية متخصصة في التعلم عن بعد بتعاون أفضل المدربين
-              والخبراء
+            أكبر منصة عربية متخصصة في التعلم عن بعد بالتعاون مع أفضل المدربين والخبراء
             </p>
             <div className={styles["hero-section__search-bar-container"]}>
               <div
@@ -29,13 +28,13 @@ export default function HeroSection() {
               </div>
               <Form.Control
                 type="text"
-                placeholder="ماذا تريد ان تتعلم اليوم؟"
+                placeholder="ماذا تريد أن تتعلم اليوم؟"
                 className={
                   styles["hero-section__search-bar-container__search-bar"]
                 }
               />
               <Button className={styles["hero-section__search-bar__btn"]}>
-                أبحث
+              ابحث
               </Button>
             </div>
             <div className={styles["hero-section__chips-box"]}>
@@ -57,7 +56,7 @@ export default function HeroSection() {
         </Col>
         <Col xs={{ span: 12, order: 'first' }}  sm={5} className={styles["hero-section__col"]}>
           <img
-            src="/images/عبد العزيز الموسي.png"
+            src="/images/AbdElAzeezElMosa.png"
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}
           />

@@ -24,6 +24,10 @@ function Navbar() {
     setDiscoverSidebarShow(status);
   }
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+    localStorage.removeItem("cart");
+  }
   let isLoggedIn = useSelector((state:any) => state.userAuthetication.isUserAuthenticated);
  
   // useEffect(() => {
@@ -275,7 +279,12 @@ function Navbar() {
           </Button>
           </Link>   
           <Link href="/SignIn">
-          <Button className={styles["sidebar-list__sign-in-btn"]}>
+          <Button onClick={()=>{
+            isLoggedIn ? 
+            handleLogout() :
+            null
+          }}
+           className={styles["sidebar-list__sign-in-btn"]}>
             {
               isLoggedIn ? 
               "تسجيل خروج"
@@ -611,9 +620,22 @@ function Navbar() {
               </div>    
             </OverlayTrigger>
 
-            { isLoggedIn && <div className={styles["navbar__account-icon"]}>
-              <AccountIcon/>
-            </div>}
+            {
+             isLoggedIn && 
+             <>
+                <OverlayTrigger trigger="click" placement="bottom-start" rootClose overlay={
+                <div className={styles["navbar__account-icon__dropdown"]}>
+                    <Button onClick={()=>handleLogout()}
+                     className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
+                </div>
+              }>
+                <div className={styles["navbar__account-icon"]}>
+              
+                  <AccountIcon/>
+                </div>
+              </OverlayTrigger>
+             </>
+            }
         </Nav>
        
       </NavBar>

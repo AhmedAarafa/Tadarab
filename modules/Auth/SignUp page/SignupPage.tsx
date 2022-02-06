@@ -47,17 +47,51 @@ export default function SignupPage() {
       phoneNumber:false,
       password:false
     });
+    
     const [phoneFieldEvent, setPhoneFieldEvent] = useState<any>();
    
   
+    const updateValue =(e:any)=>{
+      setPhoneFieldEvent(e);
+      // console.log("e",e);
+      
+    };
     useEffect(() => {
-      const updateValue =(e:any)=>{
-        // console.log("lklk" , e.target.value);
-        setPhoneFieldEvent(e);
-      };
       const phoneField:any = document.querySelector("input[type='tel']");
+      phoneField.addEventListener('blur', updateValue);
       phoneField.addEventListener('change', updateValue);
+
+      // const arrow:any = document.getElementsByClassName("down" || "up")[0];
+      // const countryList:any = document.getElementsByClassName("country-list")[0];
+      // const intlTelInput:any = document.getElementsByClassName("intl-tel-input")[0];
+   
+      // (dialCodeBtn || arrow).addEventListener("click",  (e:any)=>{
+      //   if(countryList.classList.contains("hide")){
+      //     // e.preventDefault();
+      //     console.log("countryList",arrow);
+      //     // countryList.style.cssText=`display:block`;
+      //     countryList.classList.remove("hide");
+      //     intlTelInput.classList.add("expanded");
+      //     arrow?.classList.remove("down");
+      //     arrow?.classList.add("up");
+      //   }else{
+      //     // e.preventDefault();
+      //     console.log("not contains");
+      //     countryList.classList.add("hide");
+      //     intlTelInput.classList.remove("expanded");
+      //     arrow?.classList.remove("up");
+      //     arrow?.classList.add("down");
+      //     // countryList.style.cssText=`display:none`;
+
+      //   }
+        
+      // })
+      const intlTelInput:any = document.querySelector('.intl-tel-input .selected-dial-code');
+      setTimeout(() => {
+            intlTelInput?.classList.remove("selected-dial-code");
+            }, 50);
     }, []);
+ 
 
     
    
@@ -81,7 +115,7 @@ export default function SignupPage() {
 
       const validate = Yup.object({
         name: Yup.string()
-        .min(5, "الإسم يجب ان يكون 5 حروف او أكثر"),
+        .min(7, "الإسم يجب ان يكون 5 حروف او أكثر"),
         // .required("خانة الإسم مطلوبه"),
         email: Yup.string()
         .email("البريد الإلكتروني غير مناسب"),
@@ -103,10 +137,6 @@ export default function SignupPage() {
         setCountryCode(country.alpha2);
       }
 
-      // useEffect(() => {
-      //   console.log(".env" , process.env.NEXT_PUBLIC_BASE_URL);
-        
-      // }, []);
       
 
   return (
@@ -262,7 +292,7 @@ export default function SignupPage() {
                              
                               <IntlTelInput
                               fieldName="phoneNumber"
-                                preferredCountries={['eg','kw']}
+                                preferredCountries={['kw','sa','ae','qa','om','bh','iq','eg']}
                                 separateDialCode={true}
                                 onPhoneNumberBlur={() => {
                                   setFieldTouched("phoneNumber", true);
@@ -272,7 +302,7 @@ export default function SignupPage() {
                                   
                                   handleBlur(phoneFieldEvent);
                                   // // and do something about e
-                                  setFieldBlur({...fieldBlur, phone:phoneFieldEvent.target.value});
+                                  setFieldBlur({...fieldBlur, phone:phoneFieldEvent?.target.value});
                                 }}
                                 onPhoneNumberChange={(...args) => {
                                   setFieldValue("phoneNumber", args[1]);

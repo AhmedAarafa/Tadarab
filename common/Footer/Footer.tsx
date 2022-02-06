@@ -21,7 +21,7 @@ export default function FooterSection() {
                هل لديك سؤال؟
               </div>
               <div  className={styles[ "footer__inquiries-box__inquiry__breif"]}>
-               أسألنا وهنجاوبك في أقرب وقت ممكن
+              اترك سؤالك وستتلقى الرد في أقرب وقت ممكن
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function FooterSection() {
             />
           </div>
           <div>
-           <Button className={styles["footer__send-btn"]}>أرسل الأن</Button>
+           <Button className={styles["footer__send-btn"]}>ارسل الآن</Button>
           </div>
      </Col>
      <Col xs={{span:12,order:2}} sm={{span:2,order:2}}>

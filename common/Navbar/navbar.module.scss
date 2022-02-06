@@ -121,6 +121,7 @@
 .navbar__account-icon {
     @include flex (center, center);
     margin: 0 1.875rem 0 0;
+    cursor: pointer;
     svg {
         width: 2.25rem;
         height: 2.25rem;
@@ -497,6 +498,18 @@
 .sidebar-list__sign-in-btn {
     @include outlined-button;
     margin-top: 1.8rem;
+}
+.navbar__account-icon__dropdown{
+    @include popover;
+    top: 1rem !important;
+    height: 4rem;
+    width: fit-content;
+    padding: 0 1.5rem;
+    border-radius: 0.8rem;
+    @include flex(center,center);
+    button{
+        @include contained-button;
+    }
 }
 
 
