@@ -4,7 +4,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router from "next/router";
 import { setHomePageData } from "configurations/redux/actions/homePageData";
 
-const useAddToFav = (course: any,queryParam:any) => {
+const useAddToFav = (course?: any,queryParam?:any) => {
   const userStatus = useSelector((state:any) => state.userAuthetication);
   const homePageData = useSelector((state:any) => state.homePageData);
   // const [latestCourses, setLatestCourses] = useState([]);

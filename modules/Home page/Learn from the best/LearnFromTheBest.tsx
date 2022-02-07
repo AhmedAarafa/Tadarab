@@ -76,7 +76,7 @@ export default function LearnFromTheBest() {
                   <SwiperSlide key={i}> 
                  <Link href="/TrainerProfile">
                     <Card className={styles["learn-from-the-best__cards-carousel__card"]} 
-                    style={{backgroundImage: `url(${trainer.image})`}}
+                    style={{backgroundImage: `url("${trainer.image}")`}}
                       >
                           <div className={styles["learn-from-the-best__cards-carousel__card__card-body"]}>
                               <div className="text-center">

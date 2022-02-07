@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from 'react'
 import Navbar from 'common/Navbar/Navbar'
 import HeroSection from 'modules/Home page/Hero section/HeroSection'
 import LatestCourses from 'modules/Home page/Latest courses/LatestCourses'
+import BestSeller from 'modules/Home page/Best seller/BestSeller'
 import CoursesDepartments from 'modules/Home page/Courses departments/CoursesDepartments'
 import LiveCourses from 'modules/Home page/Live courses/LiveCourses'
 import Consultation from 'modules/Home page/Consultations/Consultation'
@@ -18,7 +19,7 @@ import { Container } from "react-bootstrap";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
-import { setHomePageData } from "configurations/redux/actions/homePageData";
+import { setHomePageData } from "configurations/redux/actions/homePageData"; 
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function HomePage() {
             <Navbar/>
             <HeroSection/>
             <LatestCourses />
+            <BestSeller />
             <CoursesDepartments/>
             <LiveCourses/>
             <Consultation/>

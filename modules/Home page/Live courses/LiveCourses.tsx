@@ -65,6 +65,81 @@ export default function LiveCourses() {
       }
       setLiveCourses([...liveCourses]);
     }
+    const handleCartActionBtn = (course:any):any =>{
+      if(userStatus.isUserAuthenticated == true){
+        if(course.is_in_cart == false){
+  
+          axiosInstance
+          .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
+          .then((response:any) => {
+           const totalItems:any = [];
+            console.log("Response",response);
+            response.data.data.forEach((item:any)=>{
+              totalItems.push(item.id);
+            });
+            localStorage.setItem("cart" , JSON.stringify(totalItems));
+            axiosInstance
+            .get("home/?country_code=eg")
+            .then(function (response:any) {
+              setLiveCourses(response.data.data.live_courses);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          })
+          .catch((error:any)=>{
+            console.log("error", error);
+          });
+  
+  
+        }else{
+          axiosInstance
+          .delete(`users/cart/?country_code=eg`, { data:{"item_id" : course.id}})
+          .then((response:any) => {
+           const totalItems:any = [];
+            console.log("Response",response);
+            response.data.data.forEach((item:any)=>{
+            totalItems.push(item.id);
+            });
+            localStorage.setItem("cart" , JSON.stringify(totalItems));
+  
+            axiosInstance
+            .get("home/?country_code=eg")
+            .then(function (response:any) {
+              setLiveCourses(response.data.data.live_courses);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          })
+          .catch((error:any)=>{
+            console.log("error", error);
+          });
+  
+        }
+      }else{
+        if(course.is_in_cart == false){
+          course.is_in_cart = true;
+          (async function (){ 
+          const storedCartCourses:any = await localStorage.getItem("cart");
+          
+          const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
+          localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
+            setLiveCourses([...liveCourses]);
+        })();
+        }else{
+          course.is_in_cart = false;
+          const localStorageItems:any = localStorage.getItem("cart");
+         const resultedItems:any = JSON.parse(localStorageItems).filter(function(ele:any){ 
+            return ele != course.id; 
+        });
+        localStorage.setItem("cart" , JSON.stringify(resultedItems));
+  
+        setLiveCourses([...liveCourses]);
+  
+        }
+      }
+    }
 
     useEffect(() => { 
       
@@ -227,7 +302,7 @@ export default function LiveCourses() {
                                   }
                                 </div>
                                   <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                                    {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <PlayIcon/> : <BellIcon/>} </div>  : <div> <CartIcon color="#222"/> </div>}
+                                    {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <PlayIcon/> : <BellIcon/>} </div>  : <div onClick={()=>handleCartActionBtn(lc)}> { lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>} </div>}
                                   </Button>
                               </div>
                           </Card.Body>

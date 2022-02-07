@@ -429,7 +429,7 @@ export default function TrainingCourses() {
                                 ]
                             }
                             >
-                            <div className="d-inline-block">
+                            <div className="d-flex flex-column">
                                 <div
                                 className={
                                     styles[

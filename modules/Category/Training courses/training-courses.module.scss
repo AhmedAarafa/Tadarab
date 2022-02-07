@@ -182,21 +182,17 @@
 }
 
 .training-courses__course-card__card-body {
-    padding: 0.6rem*0.97 1rem*0.97 0 1rem*0.97;
+    padding: 0.6rem*0.97 1rem*0.97 0.2rem 1rem*0.97;
+    @include flex(unset, space-between);
+    flex-direction: column;
+    height: 40%;
 }
 
 .training-courses__course-card__card-body__card-header {
     @include flex(center);
     position: relative;
-
-    &:before {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: -1rem*0.97;
-        width: 100%;
-        border-bottom: 0.05rem*0.97 solid rgba(34, 34, 34, 0.1);
-    }
+    padding: 0 0 0.7813rem 0;
+    border-bottom: 0.05rem*0.97 solid rgba(34, 34, 34, 0.1);
 }
 
 .training-courses__course-card__card-body__card-header__trainer-img-box {
@@ -217,6 +213,10 @@
     font-weight: 800;
     color: $dark-black;
     margin: 0;
+    width: 13.2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 
 }
 
@@ -227,7 +227,6 @@
 }
 
 .training-courses__course-card__card-body__checkout-details {
-    margin-top: 1.6rem*0.97;
     @include flex(center, space-between);
 }
 
@@ -313,18 +312,14 @@
     }
 
     .training-courses__course-card__card-body {
-        padding: 0.6rem*1.45 1rem*1.45 0 1rem*1.45;
+        padding: 0.6rem*1.45 1rem*1.45 0.6rem 1rem*1.45;
     }
 
     .training-courses__course-card__card-body__card-header {
         @include flex(center);
         position: relative;
-
-        &:before {
-            bottom: -1rem*1.45;
-            width: 100%;
-            border-bottom: 0.05rem*1.45 solid rgba(34, 34, 34, 0.1);
-        }
+        padding: 0 0 0.7813rem*1.45 0;
+        border-bottom: 0.05rem*1.45 solid rgba(34, 34, 34, 0.1);
     }
 
     .training-courses__course-card__card-body__card-header__trainer-img-box {
@@ -342,6 +337,7 @@
 
     .training-courses__course-card__card-body__card-header__course-details__title {
         font-size: 1rem*1.45;
+    width: 19.8rem;
         margin: 0;
 
     }
@@ -352,7 +348,7 @@
     }
 
     .training-courses__course-card__card-body__checkout-details {
-        margin-top: 1.6rem*1.45;
+        // margin-top: 1.6rem*1.45;
         @include flex(center, space-between);
     }
 
@@ -660,18 +656,15 @@
     }
 
     .training-courses__course-card__card-body {
-        padding: 0.6rem*2.7 1rem*2.7 0 1rem*2.7;
+        padding: 0.6rem*2.7 1rem*2.7 1.5rem 1rem*2.7;
+      
     }
 
     .training-courses__course-card__card-body__card-header {
         @include flex(center);
         position: relative;
-
-        &:before {
-            bottom: -1rem*2.7;
-            width: 100%;
-            border-bottom: 0.05rem*2.7 solid rgba(34, 34, 34, 0.1);
-        }
+        padding: 0 0 0.7813rem*2.7 0;
+        border-bottom: 0.05rem*2.7 solid rgba(34, 34, 34, 0.1);
     }
 
     .training-courses__course-card__card-body__card-header__trainer-img-box {
@@ -689,6 +682,7 @@
 
     .training-courses__course-card__card-body__card-header__course-details__title {
         font-size: 1rem*2.7;
+    width: 37rem;
         margin: 0;
 
     }
@@ -699,7 +693,7 @@
     }
 
     .training-courses__course-card__card-body__checkout-details {
-        margin-top: 1.6rem*2.7;
+        // margin-top: 1.6rem*2.7;
         @include flex(center, space-between);
     }
 

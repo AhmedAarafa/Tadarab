@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React , { useEffect , useState } from "react";
-import styles from "./latest-courses.module.css";
+import styles from "./best-seller.module.css";
 import {
   Row,
   Col,
@@ -61,7 +61,7 @@ export default function LatestCourses(props:any) {
           axiosInstance
           .get("home/?country_code=eg")
           .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
+            setLatestCourses(response.data.data.best_seller_courses);
           })
           .catch(function (error) {
             console.log(error);
@@ -78,7 +78,7 @@ export default function LatestCourses(props:any) {
           axiosInstance
           .get("home/?country_code=eg")
           .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
+            setLatestCourses(response.data.data.best_seller_courses);
           })
           .catch(function (error) {
             console.log(error);
@@ -95,14 +95,7 @@ export default function LatestCourses(props:any) {
         query: { from: "/HomePage" }
       })
     }
-    // console.log("course" , course);
-    // course.is_in_favorites = !course.is_in_favorites;
-    // (async function setToFav(){
-    //   await  setFavourite([...favourite,course.id]);
-    //   localStorage.setItem("FAVOURITE" , JSON.stringify([...favourite,course.id]));
-    // })();
-    // console.log("storedFavCourses", localStorage.getItem("FAVOURITE"));
-    // const storedFavCourses:any = localStorage.getItem("FAVOURITE");
+
     setLatestCourses([...latestCourses]);
   }
 
@@ -123,7 +116,7 @@ export default function LatestCourses(props:any) {
           axiosInstance
           .get("home/?country_code=eg")
           .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
+            setLatestCourses(response.data.data.best_seller_courses);
           })
           .catch(function (error) {
             console.log(error);
@@ -151,7 +144,7 @@ export default function LatestCourses(props:any) {
           axiosInstance
           .get("home/?country_code=eg")
           .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
+            setLatestCourses(response.data.data.best_seller_courses);
           })
           .catch(function (error) {
             console.log(error);
@@ -200,29 +193,10 @@ export default function LatestCourses(props:any) {
   }
 
   useEffect(() => {
-    // axiosInstance
-    // .get("home/?country_code=eg")
-    // .then(function (response:any) {
-    //   // const favouriteCourses:any = localStorage.getItem("FAVOURITE");
-    //   // console.log("favouriteCourses",JSON.parse(favouriteCourses));
-    //   // JSON.parse(favouriteCourses).forEach((ID:any) => {
-    //   //   response.data.data.latest_courses.forEach((course:any)=>{
-    //   //     console.log("course",course.id);
-          
-    //   //     if(course.id === ID){
-    //   //       course.is_in_favorites = true;
-    //   //     }
-    //   //   })
-    //   // });
-    //   setLatestCourses(response.data.data.latest_courses);
-    // })
-    // .catch(function (error) {
-    // });
-    // if(homePageData !== {}){
-      // console.log("ssss");
-      setLatestCourses(homePageData.data?.latest_courses || []);
+
+      setLatestCourses(homePageData.data?.best_seller_courses || []);
       const localStorageItems:any = localStorage.getItem("cart");
-      (homePageData.data?.latest_courses || []).forEach((item:any) => {
+      (homePageData.data?.best_seller_courses || []).forEach((item:any) => {
         if((JSON.parse(localStorageItems) || []).includes(item.id)){
           item.is_in_cart = true;
           // setLatestCourses([...latestCourses]);
@@ -238,7 +212,7 @@ export default function LatestCourses(props:any) {
 
     // to capture all the carousel cards
     const trigger: any = document.querySelectorAll(
-      '[id^="latest-courses-card"]'
+      '[id^="best-seller-card"]'
     );
  
     // loop over them to control the hover effect per each card
@@ -295,7 +269,7 @@ export default function LatestCourses(props:any) {
                 // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
                 // relatedPopover ?  relatedPopover.style.left=`${(element.getClientRects()[0].right)}px` : null ;
                 setPlacement("right");
-                // const cardWidth:any = document.getElementById("latest-courses-card1");
+                // const cardWidth:any = document.getElementById("best-seller-card1");
                 // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
                 if(window.innerWidth <= 1200){
                 relatedPopover ?  relatedPopover.style.left=`${2.32*(element.offsetWidth)}px` : null ;
@@ -315,7 +289,7 @@ export default function LatestCourses(props:any) {
                 // relatedPopover ?  relatedPopover.style.right=`${(element.getClientRects()[0].left)}px` : null ;
                 // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
                 //relatedPopover ?  relatedPopover.style.right=`${(window.innerWidth)/5.2}px` : null ;
-                // const cardWidth:any = document.getElementById("latest-courses-card1");
+                // const cardWidth:any = document.getElementById("best-seller-card1");
                 relatedPopover ?  relatedPopover.style.right=`${1.085*(element.offsetWidth)}px` : null ;
                 relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
                 // console.log("element.offsetWidth",element.offsetWidth);
@@ -353,41 +327,41 @@ export default function LatestCourses(props:any) {
 
   return (
     <>
-      <Row className={styles["latest-courses"]}>
-        <Col xs={12} className={styles["latest-courses__title"]}>
-          <span>أحدث </span>
-          <span>الدورات</span>
+      <Row className={styles["best-seller"]}>
+        <Col xs={12} className={styles["best-seller__title"]}>
+          <span>الأكثر </span>
+          <span>مبيعاً</span>
         </Col>
         <Col
            xs={{span:12 , order:1}} sm={9}
           className="d-flex align-items-center justify-content-start"
         >
-          <ul id="departments-list" className={styles["latest-courses__departments-list"]}>
+          <ul id="departments-list" className={styles["best-seller__departments-list"]}>
             <li onClick={()=>{handleFilterType("all")}} 
-            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "all" && styles["latest-courses__departments-list__item--active"]}`}>
+            className={`${styles["best-seller__departments-list__item"]} ${filterType == "all" && styles["best-seller__departments-list__item--active"]}`}>
               كل الأقسام
             </li>
             <li onClick={()=>{handleFilterType("best-seller")}} 
-            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "best-seller" && styles["latest-courses__departments-list__item--active"]}`}>
+            className={`${styles["best-seller__departments-list__item"]} ${filterType == "best-seller" && styles["best-seller__departments-list__item--active"]}`}>
               الأكثر مبيعاً
             </li>
             <li onClick={()=>{handleFilterType("latest")}} 
-            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>
+            className={`${styles["best-seller__departments-list__item"]} ${filterType == "latest" && styles["best-seller__departments-list__item--active"]}`}>
               أحدث الدورات
             </li>
           </ul>
         </Col>
 
-        <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
+        <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["best-seller__see-more-btn-col"]}>
         <Link href="/CourseDetails">
-          <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
+          <Button className={styles["best-seller__see-more-btn"]} id="see-more">
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
           </Button>
         </Link>
         </Col>
 
-        <Col xs={{span:12 , order:2}} className={styles["latest-courses__cards-carousel"]}>
+        <Col xs={{span:12 , order:2}} className={styles["best-seller__cards-carousel"]}>
 
           <Swiper 
             dir="rtl"
@@ -419,17 +393,17 @@ export default function LatestCourses(props:any) {
                 return (
                   <SwiperSlide key={i}>
 
-                  <Tippy className={`popover-latest-courses-card${i}`}  interactive={true} delay={100} placement={placement}
+                  <Tippy className={`popover-best-seller-card${i}`}  interactive={true} delay={100} placement={placement}
                   content={
-                    <div id={`popover-latest-courses-card${i}`} className="h-100"
-                    // className={styles["latest-courses__popover-container"]}
+                    <div id={`popover-best-seller-card${i}`} className="h-100"
+                    // className={styles["best-seller__popover-container"]}
                     >
 
                   <div>
                         <Link href="/CourseDetails">
                           <div
                           className={
-                            styles["latest-courses__popover-container__title"]
+                            styles["best-seller__popover-container__title"]
                           }
                           title={course.title}
                         >
@@ -438,7 +412,7 @@ export default function LatestCourses(props:any) {
                         </Link>
 
                       { course.subscribers_count !== null ? 
-                      <div className={styles["latest-courses__popover-container__learners"]}>
+                      <div className={styles["best-seller__popover-container__learners"]}>
                         <LearnersIcon color="#af151f"/>
                         <span>{course.subscribers_count}</span>
                         <span>متعلم</span>
@@ -448,7 +422,7 @@ export default function LatestCourses(props:any) {
                       }
                       <div
                         className={
-                          styles["latest-courses__popover-container__brief"]
+                          styles["best-seller__popover-container__brief"]
                         }
                       >
                         {course.details}
@@ -462,7 +436,7 @@ export default function LatestCourses(props:any) {
                     <div
                       className={
                         styles[
-                          "latest-courses__popover-container__what-you-will-learn-title"
+                          "best-seller__popover-container__what-you-will-learn-title"
                         ]
                       }
                     >
@@ -473,7 +447,7 @@ export default function LatestCourses(props:any) {
                     <div key={i}
                       className={
                         styles[
-                          "latest-courses__popover-container__what-you-will-learn"
+                          "best-seller__popover-container__what-you-will-learn"
                         ]
                       }
                     >
@@ -496,7 +470,7 @@ export default function LatestCourses(props:any) {
                       course.key_points.length > 6 ?
                       <Link href="/CourseDetails">
 
-                        <div className={styles["latest-courses__show-more-link"]}>
+                        <div className={styles["best-seller__show-more-link"]}>
                           اعرض المزيد
                         </div>
                       </Link>
@@ -504,12 +478,12 @@ export default function LatestCourses(props:any) {
                       null
                       }
                  
-                    <div className={styles["latest-courses__popover-container__btns"]}>
+                    <div className={styles["best-seller__popover-container__btns"]}>
 
                           <Link href="/CourseDetails">
-                            <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
+                            <Button className={styles["best-seller__popover-container__btns__details-btn"]}>التفاصيل</Button>
                           </Link>
-                          <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
+                          <Button className={styles["best-seller__popover-container__btns__add-to-cart-btn"]}>
                           <CartIcon color="#fff"/>
                           <span> أضف للسلة </span>  
                             </Button>
@@ -520,16 +494,16 @@ export default function LatestCourses(props:any) {
                   }>
 
                     <Card
-                        id={`latest-courses-card${i}`}
+                        id={`best-seller-card${i}`}
                         className={
-                          styles["latest-courses__cards-carousel__course-card"]
+                          styles["best-seller__cards-carousel__course-card"]
                         }
                       >
 
                         <div
                           className={
                             styles[
-                              "latest-courses__cards-carousel__course-card__category-chip"
+                              "best-seller__cards-carousel__course-card__category-chip"
                             ]
                           }
                           style={{backgroundColor:course.categories[0].color}}
@@ -545,7 +519,7 @@ export default function LatestCourses(props:any) {
                           alt="course image"
                           className={
                             styles[
-                              "latest-courses__cards-carousel__course-card__course-img"
+                              "best-seller__cards-carousel__course-card__course-img"
                             ]
                           }
                         />
@@ -554,21 +528,21 @@ export default function LatestCourses(props:any) {
                         <Card.Body
                           className={
                             styles[
-                              "latest-courses__cards-carousel__course-card__card-body"
+                              "best-seller__cards-carousel__course-card__card-body"
                             ]
                           }
                         >
                           <div
                             className={
                               styles[
-                                "latest-courses__cards-carousel__course-card__card-body__card-header"
+                                "best-seller__cards-carousel__course-card__card-body__card-header"
                               ]
                             }
                           >
                             <div
                               className={
                                 styles[
-                                  "latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
+                                  "best-seller__cards-carousel__course-card__card-body__card-header__trainer-img-box"
                                 ]
                               }
                             >
@@ -580,7 +554,7 @@ export default function LatestCourses(props:any) {
                             <div
                               className={
                                 styles[
-                                  "latest-courses__cards-carousel__course-card__card-body__card-header__course-details"
+                                  "best-seller__cards-carousel__course-card__card-body__card-header__course-details"
                                 ]
                               }
                             >
@@ -589,7 +563,7 @@ export default function LatestCourses(props:any) {
                               title={course.title}
                                   className={
                                     styles[
-                                      "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
+                                      "best-seller__cards-carousel__course-card__card-body__card-header__course-details__title"
                                     ]
                                   }
                                 >
@@ -599,7 +573,7 @@ export default function LatestCourses(props:any) {
                               <div
                                 className={
                                   styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
+                                    "best-seller__cards-carousel__course-card__card-body__card-header__course-details__author"
                                   ]
                                 }
                               >
@@ -611,7 +585,7 @@ export default function LatestCourses(props:any) {
                           <div
                             className={
                               styles[
-                                "latest-courses__cards-carousel__course-card__card-body__checkout-details"
+                                "best-seller__cards-carousel__course-card__card-body__checkout-details"
                               ]
                             }
                           >
@@ -619,14 +593,14 @@ export default function LatestCourses(props:any) {
                               <div
                                 className={
                                   styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
+                                    "best-seller__cards-carousel__course-card__card-body__checkout-details__price-container"
                                   ]
                                 }
                               >
                                  { course.price !== 0 && <span
                                   className={
                                     styles[
-                                      "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
+                                      "best-seller__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
                                     ]
                                   }
                                 >
@@ -636,7 +610,7 @@ export default function LatestCourses(props:any) {
                                 <span
                                   className={
                                     styles[
-                                      "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                      "best-seller__cards-carousel__course-card__card-body__checkout-details__price-container__price"
                                     ]
                                   }
                                 >
@@ -649,14 +623,14 @@ export default function LatestCourses(props:any) {
                               <div
                                 className={
                                   styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
+                                    "best-seller__cards-carousel__course-card__card-body__checkout-details__old-price-container"
                                   ]
                                 }
                               >
                                  <span
                                   className={
                                     styles[
-                                      "latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
+                                      "best-seller__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
                                     ]
                                   }
                                 >
@@ -665,7 +639,7 @@ export default function LatestCourses(props:any) {
                                 <span
                                   className={
                                     styles[
-                                      "latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
+                                      "best-seller__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
                                     ]
                                   }
                                 >
@@ -682,12 +656,12 @@ export default function LatestCourses(props:any) {
                               <Button
                                 className={
                                   styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
+                                    "best-seller__cards-carousel__course-card__card-body__checkout-details__icon-btn"
                                   ]
                                 }
                               >
                                 <div onClick={()=>handleCartActionBtn(course)} 
-                                className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
+                                className={styles["best-seller__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                   
                                   {
                                   course.is_in_cart ?
@@ -701,13 +675,13 @@ export default function LatestCourses(props:any) {
                               <Button
                                 className={
                                   styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
+                                    "best-seller__cards-carousel__course-card__card-body__checkout-details__icon-btn"
                                   ]
                                 }
                               >
 
                                 <div onClick={()=>handleFavActionBtn(course)} 
-                                className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
+                                className={styles["best-seller__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                  {
                                   course.is_in_favorites ?
                                   <AddedToFavouriteIcon />

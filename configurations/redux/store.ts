@@ -6,6 +6,7 @@ import { combineReducers } from "redux";
 import error from "./reducers/errorText";
 import userAuthetication from "./reducers/userAuthentication";
 import homePageData from "./reducers/homePageData";
+import cartItems from "./reducers/cartItems";
 
 // const devTools =
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -13,7 +14,8 @@ import homePageData from "./reducers/homePageData";
 const CombineReducers = combineReducers({
     error,
     userAuthetication,
-    homePageData
+    homePageData,
+    cartItems
 });
 const store = createStore(CombineReducers, composeWithDevTools(applyMiddleware(thunk)));
 

@@ -17,23 +17,38 @@ import {popoverHandler , closeBtnHandler} from "./utils";
 import {TadarabLogo,NextIcon,BackIcon,DarkModeIcon,DropDownIcon,SearchIcon,FavouriteIcon,CartIcon,AccountIcon} from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { setCartItems } from "configurations/redux/actions/cartItems"; 
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const handleDiscoverSidebarShow = (status:boolean)=>{
     setDiscoverSidebarShow(status);
   }
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
+
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
   }
   let isLoggedIn = useSelector((state:any) => state.userAuthetication.isUserAuthenticated);
+  const cartItems = useSelector((state:any) => state.cartItems);
  
-  // useEffect(() => {
-  //   localStorage.setItem("TOKEN", "123");
+  useEffect(() => {
+    // axiosInstance
+    //     .get("users/cart/?country_code=eg")
+    //     .then(function (response:any) {
+    //         console.log("navbar resp" , response);
+      
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    const localStorageItems:any = localStorage.getItem("cart") ;
+    dispatch(setCartItems((JSON.parse(localStorageItems)) || []));
 
-  // }, []);
+
+  }, []);
   
 
   useEffect(() => {
@@ -552,7 +567,7 @@ function Navbar() {
                           styles["navbar__cart-popover__checkout-box__items"]
                         }
                       >
-                        الإجمالي (2 دورة)
+                        الإجمالي ({cartItems.data?.length || [].length} دورة)
                       </div>
                       <div>
                         <span
@@ -614,7 +629,7 @@ function Navbar() {
             >       
            <div className={styles["navbar__cart-icon-container"]}>
                 <CartIcon color="#222"/>
-                <Badge className={styles["navbar__cart-icon__badge"]}>2</Badge>
+                <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems.data?.length || [].length}</Badge>
                 
               
               </div>    

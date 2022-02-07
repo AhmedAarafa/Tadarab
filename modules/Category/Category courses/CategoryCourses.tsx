@@ -140,7 +140,7 @@ export default function CategoryCourses() {
                             ]
                         }
                         >
-                        <div className="d-inline-block">
+                        <div className="d-flex flex-column">
                             <div
                             className={
                                 styles[
