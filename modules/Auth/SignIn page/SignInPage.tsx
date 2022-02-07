@@ -101,9 +101,9 @@ export default function SignInPage() {
                     axiosInstance
                     .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart") || []})
                     .then((response:any) => {
-                     console.log("response",response);
+                    //  console.log("response",response);
                      const totalItems:any = [];
-                     console.log("response.data",response.data);
+                    //  console.log("response.data",response.data);
                      response.data.data.forEach((item:any)=>{
                       totalItems.push(item.id);
                     });
@@ -111,7 +111,7 @@ export default function SignInPage() {
                    
                     })
                     .catch((error:any)=>{
-                      console.log("error", error);
+                      // console.log("error", error);
                     });
                     
 
