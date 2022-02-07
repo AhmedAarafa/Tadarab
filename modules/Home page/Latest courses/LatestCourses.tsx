@@ -119,7 +119,7 @@ export default function LatestCourses(props:any) {
             totalItems.push(item.id);
           });
           localStorage.setItem("cart" , JSON.stringify(totalItems));
-          //* **** dispatch(setCartItems(totalItems));
+         dispatch(setCartItems(totalItems));
           axiosInstance
           .get("home/?country_code=eg")
           .then(function (response:any) {

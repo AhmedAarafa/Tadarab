@@ -89,20 +89,21 @@ export default function SignInPage() {
                   "password": values.password,
                   })
                 .then((response:any) => {
-                  console.log("Response.message",response);
-                  if(response.data.data !== null){
-                    localStorage.setItem("token" , response.data.data.token);
-                  }
+                  // console.log("Response.message",response);
                   // setResponse(response.data);
-                  console.log("Response",response);
+                  // console.log("Response",response);
                   if(response.data.status_code.startsWith("2")){
                     console.log("success");
-
+                    if(response.data.data !== null){
+                      localStorage.setItem("token" , response.data.data.token);
+                    }
+                    
                     axiosInstance
-                    .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart")})
+                    .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart") || []})
                     .then((response:any) => {
                      console.log("response",response);
                      const totalItems:any = [];
+                     console.log("response.data",response.data);
                      response.data.data.forEach((item:any)=>{
                       totalItems.push(item.id);
                     });
@@ -119,7 +120,7 @@ export default function SignInPage() {
                       // router.push(router.back());
                       Router.back();
                    }else{
-                     Router.push("http://localhost:3000/HomePage");
+                     Router.push("https://tadarab.vercel.app/HomePage");
                    }
                   }else if(response.data.status_code.startsWith(4) ||
                   response.data.status_code.startsWith(5)
