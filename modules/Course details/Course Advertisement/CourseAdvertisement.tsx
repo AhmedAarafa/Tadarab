@@ -1,19 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React,{ useEffect,useState} from 'react'
 import styles from "./course-advertisement.module.css";
 import VideoPlayer from 'react-video-js-player';
 import VideoJS from './videojs'
+import { useDispatch, useSelector } from "react-redux";  
 
 export default function CourseAdvertisement() {
+  const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
+  const userStatus = useSelector((state:any) => state.userAuthentication);
+  const [courseDetails, setCourseDetails] = useState<any>([]);
+  
     const playerRef = React.useRef(null);
-    const videoJsOptions = { // lookup the options in the docs for more options
+    const videoJsOptions:any = {
         autoplay: false,
         controls: true,
         responsive: true,
         fluid: true,
-        sources: [{
-          src: 'https://player.vimeo.com/external/262394918.hd.mp4?s=56a6c0204726aae0e1434b00ac77e531f86eb8a3&profile_id=174',
-        }]
+        sources: []
       }
     
       const handlePlayerReady = (player:any) => {
@@ -28,6 +31,14 @@ export default function CourseAdvertisement() {
           console.log('player will dispose');
         });
       };
+
+      useEffect(() => {
+        
+        setCourseDetails(courseDetailsData.data || []);
+        // console.log("courseDetailsData.data",courseDetailsData);
+        
+        
+      }, [courseDetailsData]);
 
     return (
         <>
@@ -56,10 +67,23 @@ export default function CourseAdvertisement() {
                 </div>
 
             </div> */}
+         
+            {courseDetailsData.data == undefined ? 
+            <></>
+            :
             <div className={styles["course-ad__course-ad-video"]}>
-
-              <VideoJS  options={videoJsOptions} onReady={handlePlayerReady} />
+              
+              <VideoJS options={{
+                autoplay: false,
+                controls: true,
+                responsive: true,
+                fluid: true,
+                sources: [{
+                  src: courseDetailsData.data?.promo_video_url,
+              }]
+              }} onReady={handlePlayerReady} />
             </div>
+            }
 
         </div>
             

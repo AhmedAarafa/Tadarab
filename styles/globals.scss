@@ -348,7 +348,8 @@ input:-webkit-autofill:active{
     &::before{
       content:"" !important;
       background-image: url('/images/1- Play button on the outer poster.png') !important;
-      background-size: 100% 100% !important;
+      background-size: 80% 80% !important;
+    background-repeat: no-repeat !important;
     }
 }
 }

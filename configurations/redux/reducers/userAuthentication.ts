@@ -2,7 +2,7 @@
 import { boolean } from "yup/lib/locale";
 import * as TYPES from "../actionTypes/userAuthentication";
 
-export default (
+const userAuthentication = (
   state = {
     isUserAuthenticated: false,
     token: null,
@@ -16,7 +16,7 @@ export default (
   }
 ) => {
   switch (action.type) {
-    case TYPES.IS_USER_AUTHENTICATED:
+    case TYPES.IS_USER_AUTHENTICATED: 
       return {
         ...state,
         isUserAuthenticated: action.payload.isUserAuthenticated,
@@ -26,3 +26,5 @@ export default (
       return state;
   }
 };
+
+export default userAuthentication;

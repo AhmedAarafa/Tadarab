@@ -13,26 +13,27 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-import Tippy from '@tippyjs/react';
+import Tippy from '../../../node_modules/@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; 
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon,LearnersIcon,TickIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";  
 import Router from "next/router";
 import  useAddToCart  from "custom hooks/useAddToCart";
 import  useAddToFav  from "custom hooks/useAddToFav";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import withAuth from "configurations/auth guard/AuthGuard";
 
-export default function LatestCourses(props:any) {
+function LatestCourses(props:any) {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state:any) => state.homePageData);
-  const userStatus = useSelector((state:any) => state.userAuthetication);
+  const userStatus = useSelector((state:any) => state.userAuthentication);
 
   const [placement, setPlacement] = useState<any>();
   const [latestCourses, setLatestCourses] = useState([]);
   const [filterType, setFilterType] = useState("all");
-  const [cartItems, setCartItems] = useState<any>([]);
+  // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
 
 
@@ -107,18 +108,26 @@ export default function LatestCourses(props:any) {
   }
 
   const handleCartActionBtn = (course:any):any =>{
-    if(userStatus.isUserAuthenticated == true){
+    
+      console.log("userStatus?.isUserAuthenticated",userStatus?.isUserAuthenticated);
+    console.log("course",course);
+  
+    
+    if(userStatus?.isUserAuthenticated == true){
       if(course.is_in_cart == false){
+
 
         axiosInstance
         .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
         .then((response:any) => {
          const totalItems:any = [];
-          console.log("Response",response);
+          console.log("add to cart response",response);
           response.data.data.forEach((item:any)=>{
             totalItems.push(item.id);
           });
           localStorage.setItem("cart" , JSON.stringify(totalItems));
+          // console.log("totalItems",totalItems);
+          
          dispatch(setCartItems(totalItems));
           axiosInstance
           .get("home/?country_code=eg")
@@ -146,7 +155,7 @@ export default function LatestCourses(props:any) {
           totalItems.push(item.id);
           });
           localStorage.setItem("cart" , JSON.stringify(totalItems));
-          // dispatch(setCartItems(totalItems));
+          dispatch(setCartItems(totalItems));
 
           axiosInstance
           .get("home/?country_code=eg")
@@ -181,7 +190,7 @@ export default function LatestCourses(props:any) {
         
         const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
         localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
-          // dispatch(setCartItems(uniqeStoredCartCourses));
+          dispatch(setCartItems(uniqeStoredCartCourses));
           setLatestCourses([...latestCourses]);
       })();
       }else{
@@ -191,7 +200,7 @@ export default function LatestCourses(props:any) {
           return ele != course.id; 
       });
       localStorage.setItem("cart" , JSON.stringify(resultedItems));
-      // dispatch(setCartItems(resultedItems));
+      dispatch(setCartItems(resultedItems));
 
       setLatestCourses([...latestCourses]);
 
@@ -355,8 +364,8 @@ export default function LatestCourses(props:any) {
     <>
       <Row className={styles["latest-courses"]}>
         <Col xs={12} className={styles["latest-courses__title"]}>
-          <span>أحدث </span>
-          <span>الدورات</span>
+          <span>الدورات </span>
+          <span>المسجلة</span>
         </Col>
         <Col
            xs={{span:12 , order:1}} sm={9}
@@ -739,6 +748,9 @@ export default function LatestCourses(props:any) {
     </>
   );
 }
+
+
+export default withAuth(LatestCourses);
 
 
 /* 

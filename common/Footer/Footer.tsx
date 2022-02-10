@@ -88,8 +88,8 @@ export default function FooterSection() {
        <div className={styles["footer__pay-box"]}>
        <div>وسائل الدفع</div>
          <img src="/images/Mastercard.png" alt="Master card" />
-         <img src="/images/visa_inc.png" alt="Visa" />
-         <img src="/images/Knet.png" alt="Knet" />
+         <img src="/images/Visa_inc.png" alt="Visa" />
+         <img src="/images/knet.png" alt="Knet" />
        </div>
        </div>
      </Col>

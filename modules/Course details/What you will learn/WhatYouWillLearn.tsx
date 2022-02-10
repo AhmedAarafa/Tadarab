@@ -2,13 +2,27 @@ import React , { useState,useEffect} from "react";
 import styles from "./what-you-will-learn.module.css";
 // import {scrollspyHandler} from "./utils"
 import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
+import { useDispatch, useSelector } from "react-redux";  
 
 
 export default function WhatYouWillLearn() {
     const [showMore, setShowMore] = useState(true);
+    const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
+    const userStatus = useSelector((state:any) => state.userAuthentication);
+    const [courseDetails, setCourseDetails] = useState<any>([]);
+
+
     useEffect(() => {
        scrollspyHandler("what-you-will-learn");
       }, []);
+
+      useEffect(() => {
+
+        setCourseDetails(courseDetailsData.data || []);
+        
+        
+      }, [courseDetailsData]);
+
     function showMoreHandler(){
         const showMoreIcon:any = document.getElementById("read-more-icon");
         const fadeOut:any = document.getElementById("fadeout");
@@ -45,6 +59,7 @@ export default function WhatYouWillLearn() {
             }
         })
     }
+
   return (
     <>
       <div id="what-you-will-learn-list" className={styles["what-you-will-learn"]}>
@@ -53,77 +68,24 @@ export default function WhatYouWillLearn() {
         <div className={styles["what-you-will-learn__title"]}>
           ماذا سوف تتعلم في الدورة؟
         </div>
-            <div  className={styles["what-you-will-learn__list"]}>
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
-                    <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
-                </svg>
+        {
+            courseDetails?.course_details?.key_points.map((course:any,i:number)=>{
+                return(
+                <div key={i}  className={styles["what-you-will-learn__list"]}>
+                    <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
+                        <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
+                    </svg>
+                    </div>
+
+                    <span>
+                        {course}
+                    </span>
                 </div>
-
-                <span>
-                التلوين واستخدام الألوان الخشبية
-                </span>
-            </div>
-            <div className={styles["what-you-will-learn__list"]}>
-                <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
-                    <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
-                </svg>
-
-                </div>
-
-                <span>
-                    عمل لوحات فنية كاملة
-                </span>
-            </div>
-            <div className={styles["what-you-will-learn__list"]}>
-                <div>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
-                    <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
-                </svg>
-                </div>
-
-                <span>
-            اختيار الألوان المناسبة للرسومات
-                </span>
-            </div>
-            <div className={styles["what-you-will-learn__list"]}>
-                <div>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
-                    <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
-                </svg>
-                </div>
-
-                <span>
-                الرسم بالقلم الرصاص والألوان وعمل اسكتشات
-                </span>
-            </div>
-            <div className={styles["what-you-will-learn__list"]}>
-                <div>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
-                    <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
-                </svg>
-                </div>
-
-                <span>
-                التلوين واستخدام الألوان الخشبية
-                </span>
-            </div>
-            <div className={styles["what-you-will-learn__list"]}>
-                <div>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 18.029 14">
-                    <path id="check_" data-name="check " d="M6.9,14.136a.92.92,0,0,1-1.3,0L.4,8.938a1.38,1.38,0,0,1,0-1.953l.651-.651a1.38,1.38,0,0,1,1.953,0L6.253,9.58,15.022.811a1.38,1.38,0,0,1,1.953,0l.651.651a1.38,1.38,0,0,1,0,1.953Zm0,0" transform="translate(0 -0.406)" fill="#198754"/>
-                </svg>
-                </div>
-
-                <span>
-                    عمل لوحات فنية كاملة
-                </span>
-            </div>
+                )
+            })
+        }
+          
         
             <div className={styles["what-you-will-learn__read-more"]} onClick={showMoreHandler}>
                 {

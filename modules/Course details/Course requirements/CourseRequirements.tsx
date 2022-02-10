@@ -1,22 +1,33 @@
-import React from 'react'
+import React , { useState,useEffect} from "react";
 import styles from "./course-requirements.module.css";
+import { useDispatch, useSelector } from "react-redux";  
+import { LevelIcon } from "common/Icons/Icons";
 
 export default function CourseRequirements() {
+    const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
+    const userStatus = useSelector((state:any) => state.userAuthentication);
+    const [courseDetails, setCourseDetails] = useState<any>([]);
+
+    useEffect(() => {
+
+        setCourseDetails(courseDetailsData.data || []);
+        
+        
+      }, [courseDetailsData]);
+
     return (
         <>
         <div className={styles["course-requirements"]}>
             <div className={styles["course-requirements__mid-level"]}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1.875rem" height="1.7rem" viewBox="0 0 30 24">
-                    <g id="level" transform="translate(-1157 -5536)">
-                        <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity="0.2"/>
-                        <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f"/>
-                        <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f"/>
-                    </g>
-                </svg>
+
+                <LevelIcon level={courseDetails.course_details?.level}/>
+             
 
 
                 <span >
-                مستوى متوسط
+                    {courseDetails.course_details?.level == 1 && "مستوى مبتدئ" }
+                    {courseDetails.course_details?.level == 2 && "مستوى متوسط" }
+                    {courseDetails.course_details?.level == 3 && "مستوى محترف" }
                 </span>
 
             </div>
@@ -25,8 +36,12 @@ export default function CourseRequirements() {
                     متطلبات البدء في الدورة         
                 </div>
                 <ul className={styles["course-requirements__box__requirements"]}>
-                    <li> كشكول رسم </li>
-                    <li>  ألوان   </li>
+                    { courseDetails.course_details?.requirements.map((req:any,i:number)=>{
+                        return(
+                            <li key={i}> {req} </li>
+                        )
+                    })
+                    }
                 </ul>
             </div>
         </div>

@@ -77,6 +77,7 @@ export default function CoursesDepartments() {
                                         style={{backgroundColor:cat.color}}>
                                             
                                             <img src={`/images/${cat.icon}.png`} alt={cat.icon} />
+                                          
 
                                         </div>
                                     </div>

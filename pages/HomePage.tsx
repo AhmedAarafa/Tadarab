@@ -2,7 +2,6 @@ import React,{ useState, useEffect } from 'react'
 import Navbar from 'common/Navbar/Navbar'
 import HeroSection from 'modules/Home page/Hero section/HeroSection'
 import LatestCourses from 'modules/Home page/Latest courses/LatestCourses'
-import BestSeller from 'modules/Home page/Best seller/BestSeller'
 import CoursesDepartments from 'modules/Home page/Courses departments/CoursesDepartments'
 import LiveCourses from 'modules/Home page/Live courses/LiveCourses'
 import Consultation from 'modules/Home page/Consultations/Consultation'
@@ -24,20 +23,16 @@ import { setHomePageData } from "configurations/redux/actions/homePageData";
 function HomePage() {
   const dispatch = useDispatch();
   const homePageData = useSelector((state:any) => state.homePageData);
-  // let [first, setfirst] = useState<any>();
 
     useEffect(() => {
         axiosInstance
         .get("home/?country_code=eg")
         .then(function (response:any) {
             dispatch(setHomePageData(response.data.data));
-            // setfirst(response.data.data);
-      
         })
         .catch(function (error) {
           console.log(error);
         });
-        // dispatch(setHomePageData());
         
       }, []);
 
@@ -47,7 +42,6 @@ function HomePage() {
             <Navbar/>
             <HeroSection/>
             <LatestCourses />
-            <BestSeller />
             <CoursesDepartments/>
             <LiveCourses/>
             <Consultation/>

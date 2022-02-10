@@ -13,7 +13,8 @@ const withAuth = (Component:any) => {
 
     useEffect(() => {
       if (localStorage.getItem("token")) {
-        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,token:localStorage.getItem("token")}));
+        const tokenStored:any = localStorage.getItem("token");
+        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,token:tokenStored}));
       }else{
         dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null}));
       }

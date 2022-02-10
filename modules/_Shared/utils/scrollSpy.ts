@@ -25,5 +25,4 @@ export const scrollspyHandler = (helperId:any) => {
    );
    scrollspyHelper ? scrollspyHelper.style.cssText=`top:-${(navbar.offsetHeight * 2) + 2*rootFontSize}px`:null;
 
-
  }

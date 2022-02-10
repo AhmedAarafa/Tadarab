@@ -12,14 +12,37 @@
     z-index: 5;
     // @include flex(center,space-around);
     display: none;
-    div{
-        color: $grey;
-        cursor: pointer;
-    }
 
     a{
         &:hover{
         color: $grey; 
+        }
+        &:focus{
+            color: $dark-black;
+        }
+    }
+}
+
+.tabs-responsive-bar__list-item,
+.tabs-responsive-bar__list-item--active{
+    cursor: pointer;
+}
+.tabs-responsive-bar__list-item{
+    color: $grey; 
+    a{
+        &:hover{
+        color: $grey; 
+        }
+        &:focus{
+            color: $dark-black;
+        }
+    }
+}
+.tabs-responsive-bar__list-item--active{
+    color: $dark-black;
+    a{
+        &:hover{
+        color: $dark-black; 
         }
         &:focus{
             color: $dark-black;

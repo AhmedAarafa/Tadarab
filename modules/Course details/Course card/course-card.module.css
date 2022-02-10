@@ -212,6 +212,11 @@
   margin-right: 1rem;
 }
 
+.course-details__course-card__details-list__item svg, .course-details__course-card__details-list__item img {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .course-details__course-card__promo-code {
   text-align: center;
   font-size: 0.938rem;
@@ -225,6 +230,78 @@
 .course-details__course-card__promo-code span:nth-of-type(2) {
   font-weight: 800;
   color: #AF151F;
+}
+
+.course-details__sticky-top-course-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.3rem 8.3rem;
+  -webkit-box-shadow: 0px 5px 21px #00000014;
+          box-shadow: 0px 5px 21px #00000014;
+  z-index: 4;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  margin-right: -8.5rem;
+}
+
+.course-details__sticky-top-course-card__checkout-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.course-details__sticky-top-course-card__checkout-box .course-details__course-card__actions-btns {
+  margin: 0 1.5625rem 0 0;
+}
+
+.course-details__sticky-top-course-card__course-details-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.course-details__sticky-top-course-card__course-img img {
+  width: 5rem;
+  height: 3.125rem;
+  border-radius: 0.5rem;
+  -webkit-box-shadow: 0 0 1.25rem #0000001A;
+          box-shadow: 0 0 1.25rem #0000001A;
+}
+
+.course-details__sticky-top-course-card__course-details {
+  margin: 0 1rem 0 0;
+}
+
+.course-details__sticky-top-course-card__course-details div:nth-of-type(1) {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #222222;
+}
+
+.course-details__sticky-top-course-card__course-details div:nth-of-type(2) {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #777777;
 }
 
 @media (max-width: 575px) {
@@ -409,7 +486,7 @@
     font-size: 2.345rem;
     margin-right: 2.5rem;
   }
-  .course-details__course-card__details-list__item svg {
+  .course-details__course-card__details-list__item svg, .course-details__course-card__details-list__item img {
     width: 3.125rem;
     height: 3.125rem;
   }

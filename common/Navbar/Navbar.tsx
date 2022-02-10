@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import Router, { useRouter }  from "next/router";
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
@@ -30,22 +31,24 @@ function Navbar() {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
+    Router.push("http://localhost:3000/HomePage");
   }
-  let isLoggedIn = useSelector((state:any) => state.userAuthetication.isUserAuthenticated);
+  let isLoggedIn = useSelector((state:any) => state.userAuthentication.isUserAuthenticated);
   const cartItems = useSelector((state:any) => state.cartItems);
  
   useEffect(() => {
-    // axiosInstance
-    //     .get("users/cart/?country_code=eg")
-    //     .then(function (response:any) {
-    //         console.log("navbar resp" , response);
+    axiosInstance
+        .get("users/cart/?country_code=eg")
+        .then(function (response:any) {
+          // console.log("cart item get req",response.data.data); 
+        dispatch(setCartItems(response.data.data));
       
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    const localStorageItems:any = localStorage.getItem("cart") ;
-    dispatch(setCartItems((JSON.parse(localStorageItems)) || []));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    // const localStorageItems:any = localStorage.getItem("cart");
+    // dispatch(setCartItems(JSON.parse(localStorageItems)));
 
 
   }, []);
@@ -402,158 +405,98 @@ function Navbar() {
               placement="bottom-start"
               overlay={
                 <div className={styles["navbar__cart-popover"]} id="cart-popover">
-                  <div className={styles["navbar__cart-popover__outer-box"]}>
-                    <img
-                      src="/images/course img1.png"
-                      alt="course image"
-                      className={styles["navbar__cart-popover__img"]}
-                    />
-                    <div
-                      className={styles["navbar__cart-popover__course-details"]}
-                    >
-                      <div
-                        className={
-                          styles["navbar__cart-popover__course-details__title"]
-                        }
-                      >
-                        مفاتيح النجاح في الحياة
-                      </div>
-                      <div
-                        className={
-                          styles["navbar__cart-popover__course-details__author"]
-                        }
-                      >
-                        {" "}
-                        د. حسين عبدالكريم{" "}
-                      </div>
-                      <div
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__price-container"
-                          ]
-                        }
-                      >
-                        <span
-                          className={
-                            styles["navbar__cart-popover__course-details__price"]
-                          }
-                        >
-                          850
-                        </span>
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__course-details__currency"
-                            ]
-                          }
-                        >
-                          جنية مصري
-                        </span>
-                      </div>
-                      <div
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__old-price-container"
-                          ]
-                        }
-                      >
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__course-details__old-price"
-                            ]
-                          }
-                        >
-                          950
-                        </span>
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__course-details__old-price-currency"
-                            ]
-                          }
-                        >
-                          جنية مصري
-                        </span>
-                      </div>
+
+                  {
+                    cartItems.data?.slice(0,2).map((item:any,i:number)=>{
+                      return(
+
+                        <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
+                          <img
+                            src={item.image}
+                            alt="course image"
+                            className={styles["navbar__cart-popover__img"]}
+                          />
+                          <div
+                            className={styles["navbar__cart-popover__course-details"]}
+                          >
+                            <div
+                              className={
+                                styles["navbar__cart-popover__course-details__title"]
+                              }
+                            >
+                            {item.title}
+                            </div>
+                            <div
+                              className={
+                                styles["navbar__cart-popover__course-details__author"]
+                              }
+                            >
+                              {" "}
+                              {item.trainer?.name_ar}{" "}
+                            </div>
+                            <div
+                              className={
+                                styles[
+                                  "navbar__cart-popover__course-details__price-container"
+                                ]
+                              }
+                            >
+                              <span
+                                className={
+                                  styles["navbar__cart-popover__course-details__price"]
+                                }
+                              >
+                                {item.price}
+                              </span>
+                              <span
+                                className={
+                                  styles[
+                                    "navbar__cart-popover__course-details__currency"
+                                  ]
+                                }
+                              >
+                                {item.currency_code}
+                              </span>
+                            </div>
+                            {item.price > item.discounted_price && 
+                            <div
+                              className={
+                                styles[
+                                  "navbar__cart-popover__course-details__old-price-container"
+                                ]
+                              }
+                            >
+                              <span
+                                className={
+                                  styles[
+                                    "navbar__cart-popover__course-details__old-price"
+                                  ]
+                                }
+                              >
+                               {item.discounted_price}
+                              </span>
+                              <span
+                                className={
+                                  styles[
+                                    "navbar__cart-popover__course-details__old-price-currency"
+                                  ]
+                                }
+                              >
+                                {item.currency_code}
+                              </span>
+                            </div>
+                            }
+                          </div>
+                        </div>
+
+                      )
+                    })
+                  }
+
+                  <div className={styles["navbar__cart-popover__show-more-link"]}>
+                    {cartItems.data?.length > 2 && "اعرض المزيد"}
+                    
                     </div>
-                  </div>
-                  <div className={styles["navbar__cart-popover__outer-box"]}>
-                    <img
-                      src="/images/course img1.png"
-                      alt="course image"
-                      className={styles["navbar__cart-popover__img"]}
-                    />
-                    <div
-                      className={styles["navbar__cart-popover__course-details"]}
-                    >
-                      <div
-                        className={
-                          styles["navbar__cart-popover__course-details__title"]
-                        }
-                      >
-                        مفاتيح النجاح في الحياة
-                      </div>
-                      <div
-                        className={
-                          styles["navbar__cart-popover__course-details__author"]
-                        }
-                      >
-                        {" "}
-                        د. حسين عبدالكريم{" "}
-                      </div>
-                      <div
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__price-container"
-                          ]
-                        }
-                      >
-                        <span
-                          className={
-                            styles["navbar__cart-popover__course-details__price"]
-                          }
-                        >
-                          850
-                        </span>
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__course-details__currency"
-                            ]
-                          }
-                        >
-                          جنية مصري
-                        </span>
-                      </div>
-                      <div
-                        className={
-                          styles[
-                            "navbar__cart-popover__course-details__old-price-container"
-                          ]
-                        }
-                      >
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__course-details__old-price"
-                            ]
-                          }
-                        >
-                          950
-                        </span>
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__course-details__old-price-currency"
-                            ]
-                          }
-                        >
-                          جنية مصري
-                        </span>
-                      </div>
-                    </div>
-                  </div>
                   <div className={styles["navbar__cart-popover__checkout-box"]}>
                     <div
                       className={
@@ -577,7 +520,9 @@ function Navbar() {
                             ]
                           }
                         >
-                          1450
+                          { 
+                            cartItems.data?.map((item:any)=> item.price).reduce((prev:any, curr:any) => prev + curr, 0)
+                          }
                         </span>
                         <span
                           className={
@@ -586,35 +531,45 @@ function Navbar() {
                             ]
                           }
                         >
-                          جنية مصري
+
+                         { cartItems.data && cartItems.data[0].currency_code}
                         </span>
                       </div>
-                      <div
-                        className={
-                          styles[
-                            "navbar__cart-popover__checkout-box__old-total-price-box"
-                          ]
-                        }
-                      >
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__checkout-box__old-total-price"
-                            ]
-                          }
+                      {
+                        cartItems.data?.map((item:any)=> item.price).reduce((prev:any, curr:any) => prev + curr, 0)
                         >
-                          1550
-                        </span>
-                        <span
-                          className={
-                            styles[
-                              "navbar__cart-popover__checkout-box__old-total-price-currency"
-                            ]
-                          }
-                        >
-                          جنية مصري
-                        </span>
-                      </div>
+                        cartItems.data?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)
+                        &&
+                          <div
+                            className={
+                              styles[
+                                "navbar__cart-popover__checkout-box__old-total-price-box"
+                              ]
+                            }
+                          >
+                            <span
+                              className={
+                                styles[
+                                  "navbar__cart-popover__checkout-box__old-total-price"
+                                ]
+                              }
+                            >
+                              { 
+                                cartItems.data?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)
+                              }
+                            </span>
+                            <span
+                              className={
+                                styles[
+                                  "navbar__cart-popover__checkout-box__old-total-price-currency"
+                                ]
+                              }
+                            >
+                              {cartItems.data[0]?.currency_code}
+                            </span>
+                          </div>
+
+                      }
                     </div>
                     <div
                       className={

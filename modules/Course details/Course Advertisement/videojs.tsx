@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import 'videojs-font/css/videojs-icons.css';
+import { useDispatch, useSelector } from "react-redux";  
 
 export const VideoJS = ( props:any ) => {
+  const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
+  const [courseDetails, setCourseDetails] = useState<any>([]);
 
   const videoRef = React.useRef(null);
   const playerRef:any = React.useRef(null);
   const { options, onReady } = props;
 
-  React.useEffect(() => {
+  useEffect(() => {
     // make sure Video.js player is only initialized once
     if (!playerRef.current) {
       const videoElement = videoRef.current;
@@ -27,6 +30,12 @@ export const VideoJS = ( props:any ) => {
     }
   }, [options, videoRef]);
 
+  useEffect(() => {
+
+    setCourseDetails(courseDetailsData.data || []);
+    
+  }, [courseDetailsData]);
+
   // Dispose the Video.js player when the functional component unmounts
   React.useEffect(() => {
     const player = playerRef.current;
@@ -41,7 +50,13 @@ export const VideoJS = ( props:any ) => {
 
   return (
     <div data-vjs-player>
-      <video ref={videoRef} poster={"/images/course1.png"} className="video-js vjs-big-play-centered" />
+       {courseDetailsData.data == undefined ? 
+            <></>
+            :
+            <video ref={videoRef} poster={courseDetailsData.data.course_details.image} className="video-js vjs-big-play-centered" />
+          
+            }
+      
     </div>
   );
 }

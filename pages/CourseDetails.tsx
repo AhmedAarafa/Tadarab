@@ -22,13 +22,17 @@ import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileN
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
 import MonthlySubscriptionCard from "modules/Course details/Monthly subscription card/MonthlySubscriptionCard";
 import withAuth from "configurations/auth guard/AuthGuard";
-
 import { Row, Col, Container } from "react-bootstrap";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData"; 
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
-  
+  const dispatch = useDispatch();
+  const courseDetailsData = useSelector((state:any) => state.homePageData);
+
   useEffect(() => {
     const rootFontSize = parseFloat(
       window
@@ -134,9 +138,30 @@ function CourseDetails() {
         }
       });
       }
+    });
+
+    axiosInstance
+    .get("courses/32720/?country_code=eg")
+    .then(function (response:any) {
+      // console.log("response",response);
+      
+        dispatch(setCourseDetailsData(response.data.data));
+  
     })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+    return () => {
+      window.removeEventListener("resize",()=>{
+        return;
+      })
+    };
+    
     
   }, []);
+
+  
   return (
     <>
     <Container fluid="xxl">

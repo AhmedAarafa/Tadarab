@@ -4,6 +4,8 @@ import { Row, Col, Button,  Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./sign-in-page.module.css"; 
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter }  from "next/router";
+import { useDispatch, useSelector } from "react-redux";  
+import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import {
   Formik,
   FormikHelpers,
@@ -25,6 +27,8 @@ export default function SignInPage() {
     const [isVisible, setIsVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const router:any = useRouter();
+  const dispatch = useDispatch();
+
 
    
     const showHidePasswordHandler = () => {
@@ -97,22 +101,44 @@ export default function SignInPage() {
                     if(response.data.data !== null){
                       localStorage.setItem("token" , response.data.data.token);
                     }
+
+                    if(localStorage.getItem("cart")){
+
+                      axiosInstance
+                      .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart")})
+                      .then((response:any) => {
+                      //  console.log("response",response);
+                       const totalItems:any = [];
+                      //  console.log("response.data",response.data);
+                       response.data.data.forEach((item:any)=>{
+                        totalItems.push(item.id);
+                      });
+                      localStorage.setItem("cart" , JSON.stringify(totalItems));
+                      dispatch(setCartItems(totalItems));
+                     
+                      })
+                      .catch((error:any)=>{
+                        console.log("error", error);
+                      });
+                    }else{
+                      axiosInstance
+                      .get("users/cart/?country_code=eg")
+                      .then(function (response:any) {
+                        console.log("login response",response);
+                        const totalItems:any = [];
+                        // console.log("response.data",response.data);
+                        response.data.data.forEach((item:any)=>{
+                         totalItems.push(item.id);
+                       });
+                       localStorage.setItem("cart" , JSON.stringify(totalItems));
+                      dispatch(setCartItems(totalItems));
                     
-                    axiosInstance
-                    .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart") || []})
-                    .then((response:any) => {
-                    //  console.log("response",response);
-                     const totalItems:any = [];
-                    //  console.log("response.data",response.data);
-                     response.data.data.forEach((item:any)=>{
-                      totalItems.push(item.id);
-                    });
-                    localStorage.setItem("cart" , JSON.stringify(totalItems));
-                   
-                    })
-                    .catch((error:any)=>{
-                      // console.log("error", error);
-                    });
+                      })
+                      .catch(function (error) {
+                        console.log(error);
+                      });
+                    }
+                    
                     
 
 

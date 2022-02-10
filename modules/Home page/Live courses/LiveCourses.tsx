@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import  {ChevronLeftIcon,LiveIcon,PlayIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon,BellIcon}  from "common/Icons/Icons";
+import  {ChevronLeftIcon,LiveIcon,PlayIcon,CartIcon,FavouriteIcon,AddedToCartIcon,ContainedBellIcon,AddedToFavouriteIcon,BellIcon}  from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
 
@@ -15,7 +15,7 @@ export default function LiveCourses() {
     SwiperCore.use([Navigation]);
     const homePageData = useSelector((state:any) => state.homePageData);
     const [liveCourses, setLiveCourses] = useState([]);
-    const userStatus = useSelector((state:any) => state.userAuthetication);
+    const userStatus = useSelector((state:any) => state.userAuthentication);
 
     const handleSubscribeBtn = (course:any):any =>{
       if(userStatus.isUserAuthenticated == true){
@@ -236,7 +236,7 @@ export default function LiveCourses() {
                                       <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer.name_ar}</div>
                                   </div>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
-                                  هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز
+                                  {lc.details}
                                   </div>
                               </div>
 
@@ -302,7 +302,7 @@ export default function LiveCourses() {
                                   }
                                 </div>
                                   <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                                    {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <PlayIcon/> : <BellIcon/>} </div>  : <div onClick={()=>handleCartActionBtn(lc)}> { lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>} </div>}
+                                    {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon/> : <BellIcon/>} </div>  : <div onClick={()=>handleCartActionBtn(lc)}> { lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>} </div>}
                                   </Button>
                               </div>
                           </Card.Body>

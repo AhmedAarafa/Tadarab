@@ -21,6 +21,7 @@
 .course-details-section__para {
     font-size: 1rem;
     color: $grey;
+
 }
 
 .course-details-section__read-more {
@@ -30,12 +31,13 @@
     background-color: white;
     color: #AF151F;
     position: absolute;
-    bottom: 0.2rem;
+    bottom: 0;
     right: 0;
     padding: 0.8rem 0rem 1rem 0;
     // margin-top: 0.8rem;
     cursor: pointer;
-    z-index: 3;
+    z-index: 4;
+    @include flex;
 
     span {
         margin-left: 0.5rem;
@@ -58,7 +60,7 @@
     .course-details-section {
         margin-top: 15.156rem;
         width: 100%;
-        height: 14.5rem*2.5;
+        height: 36rem;
         // padding: 1.875rem*2.5;
         padding-bottom: 2.5rem*2.5;
     }
@@ -70,6 +72,7 @@
     
     .course-details-section__para {
         font-size: 1rem*2.5;
+
     }
     
     .course-details-section__read-more {
@@ -81,7 +84,6 @@
         padding: 0.8rem*2.5 0rem*2.5 1rem*2.5 0;
         // margin-top: 0.8rem*2.5;
         cursor: pointer;
-        z-index: 4;
     
         span {
             margin-left: 0.5rem*2.5;

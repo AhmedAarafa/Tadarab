@@ -59,6 +59,7 @@
           box-shadow: 0 0 1.25rem #0000001A;
   overflow: hidden;
   border-radius: 1.375rem;
+  position: relative;
 }
 
 .course-ad__course-ad-video > div {
@@ -72,7 +73,7 @@
 
 .course-ad__course-img__watch-ad {
   position: absolute;
-  top: 0%;
+  top: 20%;
   left: 0%;
   padding: 0;
   margin: 0;
@@ -105,6 +106,7 @@
   font-size: 0.938rem;
   font-weight: 700;
   cursor: pointer;
+  z-index: 5;
 }
 
 @media (max-width: 575px) {
@@ -171,7 +173,7 @@
   }
   .course-ad__course-img__watch-ad {
     position: absolute;
-    top: 0%;
+    top: 50%;
     left: 0%;
     padding: 0;
     margin: 0;

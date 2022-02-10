@@ -28,11 +28,20 @@
   background-color: white;
   color: #AF151F;
   position: absolute;
-  bottom: 0.2rem;
+  bottom: 0;
   right: 0;
   padding: 0.8rem 0rem 1rem 0;
   cursor: pointer;
-  z-index: 3;
+  z-index: 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
 }
 
 .course-details-section__read-more span {
@@ -53,7 +62,7 @@
   .course-details-section {
     margin-top: 15.156rem;
     width: 100%;
-    height: 36.25rem;
+    height: 36rem;
     padding-bottom: 6.25rem;
   }
   .course-details-section__title {
@@ -71,7 +80,6 @@
     right: 0;
     padding: 2rem 0rem 2.5rem 0;
     cursor: pointer;
-    z-index: 4;
   }
   .course-details-section__read-more span {
     margin-left: 1.25rem;

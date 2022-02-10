@@ -1,0 +1,2 @@
+
+export const COURSE_DETAILS_DATA = 'COURSE_DETAILS_DATA';

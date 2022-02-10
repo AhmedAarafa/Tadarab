@@ -6,7 +6,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url(d:\Desktop\Tadarab Development\tadarab-development\node_modules\normalize.css\normalize.css);
+@import url(e:\Desktop\Tadarab Development\tadarab-development\node_modules\normalize.css\normalize.css);
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12303,7 +12303,8 @@ input:-webkit-autofill:active {
 .vjs-big-play-button .vjs-icon-placeholder::before {
   content: "" !important;
   background-image: url("/images/1- Play button on the outer poster.png") !important;
-  background-size: 100% 100% !important;
+  background-size: 80% 80% !important;
+  background-repeat: no-repeat !important;
 }
 
 .intl-tel-input.allow-dropdown .arrow {

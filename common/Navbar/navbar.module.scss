@@ -235,6 +235,7 @@
 .navbar__cart-popover__img {
     width: 7.5rem;
     height: 6.25rem;
+    border-radius: 0.75rem;
 }
 
 .navbar__cart-popover__course-details {
@@ -245,6 +246,7 @@
     @include popover;
     padding: 0rem 1.3rem;
     top: 1.5rem !important;
+    width: 25rem;
 }
 
 .navbar__cart-popover__outer-box {
@@ -265,6 +267,10 @@
     font-size: 1rem;
     font-weight: 800;
     color: $dark-black;
+    width: 13.5625rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .navbar__cart-popover__course-details__author,
@@ -510,6 +516,17 @@
     button{
         @include contained-button;
     }
+}
+
+.navbar__cart-popover__show-more-link{
+    color: #AF151F;
+    font-size: 0.8125rem;
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+    -webkit-text-decoration: underline 0.0625rem rgba(0, 0, 0, 0.5);
+    -moz-text-decoration: underline 0.0625rem rgba(0, 0, 0, 0.5);
+    text-decoration: underline 0.0625rem rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 

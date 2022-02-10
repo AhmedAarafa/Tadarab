@@ -4,8 +4,9 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { combineReducers } from "redux";
 import error from "./reducers/errorText";
-import userAuthetication from "./reducers/userAuthentication";
+import userAuthentication from "./reducers/userAuthentication";
 import homePageData from "./reducers/homePageData";
+import courseDetailsData from "./reducers/courseDetailsData";
 import cartItems from "./reducers/cartItems";
 
 // const devTools =
@@ -13,9 +14,10 @@ import cartItems from "./reducers/cartItems";
 
 const CombineReducers = combineReducers({
     error,
-    userAuthetication,
+    userAuthentication,
     homePageData,
-    cartItems
+    cartItems,
+    courseDetailsData
 });
 const store = createStore(CombineReducers, composeWithDevTools(applyMiddleware(thunk)));
 
