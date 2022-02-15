@@ -998,7 +998,7 @@
   }
   .latest-courses__departments-list {
     padding: 0 4rem 0 4rem;
-    font-size: 1.875rem;
+    font-size: 2.4375rem;
     list-style-type: none;
     color: #0E0B1D;
     display: -webkit-box;
@@ -1007,25 +1007,21 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
   .latest-courses__departments-list li {
-    padding: 0.6rem 1.4rem;
+    float: right;
+    padding-left: 1.5rem;
+    list-style-type: none;
     cursor: pointer;
-    border-radius: 2.344rem;
-    border: 0.156rem solid rgba(14, 11, 29, 0.2);
-    margin: 0 0 1.25rem 0.625rem;
+    z-index: 3;
   }
   .latest-courses__departments-list li::before {
-    content: none;
-  }
-  .latest-courses__departments-list__item--active {
-    text-decoration: none;
-    border-color: #222222 !important;
+    padding-left: 1.46rem;
   }
   .latest-courses__cards-carousel {
     margin: 0.5rem 0 0 0;

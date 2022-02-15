@@ -793,28 +793,29 @@
 
     .latest-courses__departments-list {
         padding: 0 4rem 0 4rem;
-        font-size: 1.875rem;
+        font-size: 1.875rem*1.3;
         list-style-type: none;
         color: #0E0B1D;
-        @include flex(center, center);
+        @include flex(center, flex-start);
         flex-wrap: wrap;
 
         li {
-            padding: 0.6rem 1.4rem;
+            float: right;
+            padding-left: 1rem*1.5;
+            list-style-type: none;
             cursor: pointer;
-            border-radius: 2.344rem;
-            border: 0.156rem solid rgba(14, 11, 29, 0.2);
-            margin: 0 0 1.25rem 0.625rem;
-
+            z-index: 3;
+    
             &::before {
-                content: none;
+                padding-left: 0.5rem*2.92;
             }
+    
         }
     }
 
     .latest-courses__departments-list__item--active {
-        text-decoration: none;
-        border-color: $dark-black !important;
+        // text-decoration: none;
+        // border-color: $dark-black !important;
     }
 
 

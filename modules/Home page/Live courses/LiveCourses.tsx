@@ -250,7 +250,7 @@ export default function LiveCourses() {
                                       ]
                                     }
                                   >
-                                    { lc.price !== 0 && <span
+                                    { lc.discounted_price !== 0 && <span
                                       className={
                                         styles[
                                           "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
@@ -267,7 +267,7 @@ export default function LiveCourses() {
                                         ]
                                       }
                                     >
-                                      {lc.price == 0 ? "مجانًا" : lc.price}
+                                      {lc.discounted_price == 0 ? "مجانًا" : lc.discounted_price}
                                     </span>
                                   
                                   </div>
@@ -295,7 +295,7 @@ export default function LiveCourses() {
                                         ]
                                       }
                                     >
-                                      {lc.discounted_price}
+                                      {lc.price}
                                     </span>
                                   
                                   </div>

@@ -24,12 +24,17 @@ import  useAddToCart  from "custom hooks/useAddToCart";
 import  useAddToFav  from "custom hooks/useAddToFav";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import withAuth from "configurations/auth guard/AuthGuard";
+import { handleFav } from "modules/_Shared/utils/handleFav";
+import { handleCart } from "modules/_Shared/utils/handleCart";
 
-function LatestCourses(props:any) {
+
+function LatestCourses() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state:any) => state.homePageData);
   const userStatus = useSelector((state:any) => state.userAuthentication);
+  const cartItems = useSelector((state:any) => state.cartItems);
 
+  const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [placement, setPlacement] = useState<any>();
   const [latestCourses, setLatestCourses] = useState([]);
   const [filterType, setFilterType] = useState("all");
@@ -53,43 +58,10 @@ function LatestCourses(props:any) {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-      if(course.is_in_favorites == false){
-
-        axiosInstance
-        .post(`users/favorites/?country_code=eg`, {"course_id" : course.id})
-        .then((response:any) => {
-          console.log("Response",response);
-          axiosInstance
-          .get("home/?country_code=eg")
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-      }else{
-        axiosInstance
-        .delete(`users/favorites/?country_code=eg`, { data:{"course_id" : course.id}})
-        .then((response:any) => {
-          console.log("Response",response);
-          axiosInstance
-          .get("home/?country_code=eg")
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-
-      }
+    const handleFavResponse:any =  handleFav(course,"home/?country_code=eg");
+    handleFavResponse.then(function(response:any) {
+     setLatestCourses(response.data.data.latest_courses);
+    })
     }else{
       Router.push({
         pathname: "http://localhost:3000/SignIn",
@@ -104,139 +76,51 @@ function LatestCourses(props:any) {
     // })();
     // console.log("storedFavCourses", localStorage.getItem("FAVOURITE"));
     // const storedFavCourses:any = localStorage.getItem("FAVOURITE");
-    setLatestCourses([...latestCourses]);
+    // setLatestCourses([...latestCourses]);
   }
 
   const handleCartActionBtn = (course:any):any =>{
     
-      console.log("userStatus?.isUserAuthenticated",userStatus?.isUserAuthenticated);
-    console.log("course",course);
-  
-    
     if(userStatus?.isUserAuthenticated == true){
-      if(course.is_in_cart == false){
-
-
-        axiosInstance
-        .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
-        .then((response:any) => {
-         const totalItems:any = [];
-          console.log("add to cart response",response);
-          response.data.data.forEach((item:any)=>{
-            totalItems.push(item.id);
-          });
-          localStorage.setItem("cart" , JSON.stringify(totalItems));
-          // console.log("totalItems",totalItems);
-          
-         dispatch(setCartItems(totalItems));
-          axiosInstance
-          .get("home/?country_code=eg")
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+      const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",true);
+      handleCartResponse.then(function(firstresponse:any) {
+        firstresponse.resp.then(function(response:any){
+           setLatestCourses(response.data.data.latest_courses);
+           dispatch(setCartItems(firstresponse.totalItems));
         })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-        // const localStorageCartItems:any = localStorage.getItem("cart");
-        // dispatch(setCartItems(JSON.parse(localStorageCartItems)));
-
-
-      }else{
-        axiosInstance
-        .delete(`users/cart/?country_code=eg`, { data:{"item_id" : course.id}})
-        .then((response:any) => {
-         const totalItems:any = [];
-          console.log("Response",response);
-          response.data.data.forEach((item:any)=>{
-          totalItems.push(item.id);
-          });
-          localStorage.setItem("cart" , JSON.stringify(totalItems));
-          dispatch(setCartItems(totalItems));
-
-          axiosInstance
-          .get("home/?country_code=eg")
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-      //   (async function (){ 
-      //     const storedCartCourses:any = await localStorage.getItem("cart");
-      //    const resultedItems = JSON.parse(storedCartCourses).filter(function(ele:any){ 
-      //       return ele != course.id; 
-      //   });
-      // localStorage.setItem("cart" , JSON.stringify(resultedItems));
-
-
-      //   })();
-
-
-      }
-    }else{
-      if(course.is_in_cart == false){
-        course.is_in_cart = true;
-        (async function (){ 
-        // await  setCartItems([...new Set(cartItems),course.id]);
-        const storedCartCourses:any = await localStorage.getItem("cart");
-        
-        const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
-        localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
-          dispatch(setCartItems(uniqeStoredCartCourses));
-          setLatestCourses([...latestCourses]);
-      })();
-      }else{
-        course.is_in_cart = false;
-        const localStorageItems:any = localStorage.getItem("cart");
-       const resultedItems:any = JSON.parse(localStorageItems).filter(function(ele:any){ 
-          return ele != course.id; 
-      });
-      localStorage.setItem("cart" , JSON.stringify(resultedItems));
-      dispatch(setCartItems(resultedItems));
-
-      setLatestCourses([...latestCourses]);
-
-      }
+      //  setLocalCartItems(response.totalItems);
+      })
     }
+    else{
+      const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",false);
+      handleCartResponse.then(function(response:any) {
+          dispatch(setCartItems(response));
+        //  setLocalCartItems(response);
+          setLatestCourses([...latestCourses]);
+      })
+
+    }
+    // setLatestCourses([...latestCourses]);
   }
 
   useEffect(() => {
-    // axiosInstance
-    // .get("home/?country_code=eg")
-    // .then(function (response:any) {
-    //   // const favouriteCourses:any = localStorage.getItem("FAVOURITE");
-    //   // console.log("favouriteCourses",JSON.parse(favouriteCourses));
-    //   // JSON.parse(favouriteCourses).forEach((ID:any) => {
-    //   //   response.data.data.latest_courses.forEach((course:any)=>{
-    //   //     console.log("course",course.id);
-          
-    //   //     if(course.id === ID){
-    //   //       course.is_in_favorites = true;
-    //   //     }
-    //   //   })
-    //   // });
-    //   setLatestCourses(response.data.data.latest_courses);
-    // })
-    // .catch(function (error) {
-    // });
-    // if(homePageData !== {}){
-      // console.log("ssss");
+
       setLatestCourses(homePageData.data?.latest_courses || []);
       const localStorageItems:any = localStorage.getItem("cart");
-      (homePageData.data?.latest_courses || []).forEach((item:any) => {
-        if((JSON.parse(localStorageItems) || []).includes(item.id)){
-          item.is_in_cart = true;
-          // setLatestCourses([...latestCourses]);
-        }
-      });
+      // setLocalCartItems(JSON.parse(localStorageItems) || []);
+      // (homePageData.data?.latest_courses || []).forEach((item:any) => {
+      //   // if(localStorageItems == [] || localStorageItems == undefined){
+      //   //   item.is_in_cart = false;
+      //   //   item.is_in_favorites = false;
+      //   // }
+      //   if((JSON.parse(localStorageItems) || []).includes(item.id)){
+      //     item.is_in_cart = true;
+      //     console.log(item);
+      //     // setLatestCourses([...latestCourses]);
+          
+      //   }
+      // });
+      
     // }
 
   }, [homePageData]);
@@ -632,7 +516,7 @@ function LatestCourses(props:any) {
                                   ]
                                 }
                               >
-                                 { course.price !== 0 && <span
+                                 { course.discounted_price !== 0 && <span
                                   className={
                                     styles[
                                       "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
@@ -649,7 +533,7 @@ function LatestCourses(props:any) {
                                     ]
                                   }
                                 >
-                                  {course.price == 0 ? "مجانًا" : course.price}
+                                  {course.discounted_price == 0 ? "مجانًا" : course.discounted_price}
                                 </span>
                                
                               </div>
@@ -678,7 +562,7 @@ function LatestCourses(props:any) {
                                     ]
                                   }
                                 >
-                                  {course.discounted_price}
+                                  {course.price}
                                 </span>
                                
                               </div>
@@ -697,7 +581,13 @@ function LatestCourses(props:any) {
                               >
                                 <div onClick={()=>handleCartActionBtn(course)} 
                                 className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
-                                  
+                                  {/* {
+                                    // console.log(localCartItems.includes(course.id))
+                                    console.log(cartItems.data?.map((item:any)=>{
+                                     return item.id == course.id
+                                    }))
+                                    
+                                  } */}
                                   {
                                   course.is_in_cart ?
                                   <AddedToCartIcon color="#222"/>
@@ -754,5 +644,138 @@ export default withAuth(LatestCourses);
 
 
 /* 
+if(course.is_in_favorites == false){
 
+        axiosInstance
+        .post(`users/favorites/?country_code=eg`, {"course_id" : course.id})
+        .then((response:any) => {
+          console.log("Response",response);
+          axiosInstance
+          .get("home/?country_code=eg")
+          .then(function (response:any) {
+            setLatestCourses(response.data.data.latest_courses);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        })
+        .catch((error:any)=>{
+          console.log("error", error);
+        });
+      }else{
+        axiosInstance
+        .delete(`users/favorites/?country_code=eg`, { data:{"course_id" : course.id}})
+        .then((response:any) => {
+          console.log("Response",response);
+          axiosInstance
+          .get("home/?country_code=eg")
+          .then(function (response:any) {
+            setLatestCourses(response.data.data.latest_courses);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        })
+        .catch((error:any)=>{
+          console.log("error", error);
+        });
+
+      }
+
+
+
+
+       if(userStatus?.isUserAuthenticated == true){
+      if(course.is_in_cart == false){
+
+
+        axiosInstance
+        .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
+        .then((response:any) => {
+         const totalItems:any = [];
+          console.log("add to cart response",response);
+          response.data.data.forEach((item:any)=>{
+            totalItems.push(item.id);
+          });
+          localStorage.setItem("cart" , JSON.stringify(totalItems));
+          // console.log("totalItems",totalItems);
+          
+         dispatch(setCartItems(totalItems));
+          axiosInstance
+          .get("home/?country_code=eg")
+          .then(function (response:any) {
+            setLatestCourses(response.data.data.latest_courses);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        })
+        .catch((error:any)=>{
+          console.log("error", error);
+        });
+        // const localStorageCartItems:any = localStorage.getItem("cart");
+        // dispatch(setCartItems(JSON.parse(localStorageCartItems)));
+
+
+      }else{
+        axiosInstance
+        .delete(`users/cart/?country_code=eg`, { data:{"item_id" : course.id}})
+        .then((response:any) => {
+         const totalItems:any = [];
+          console.log("Response",response);
+          response.data.data.forEach((item:any)=>{
+          totalItems.push(item.id);
+          });
+          localStorage.setItem("cart" , JSON.stringify(totalItems));
+          dispatch(setCartItems(totalItems));
+
+          axiosInstance
+          .get("home/?country_code=eg")
+          .then(function (response:any) {
+            setLatestCourses(response.data.data.latest_courses);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        })
+        .catch((error:any)=>{
+          console.log("error", error);
+        });
+      //   (async function (){ 
+      //     const storedCartCourses:any = await localStorage.getItem("cart");
+      //    const resultedItems = JSON.parse(storedCartCourses).filter(function(ele:any){ 
+      //       return ele != course.id; 
+      //   });
+      // localStorage.setItem("cart" , JSON.stringify(resultedItems));
+
+
+      //   })();
+
+
+      }
+    }else{
+      if(course.is_in_cart == false){
+        course.is_in_cart = true;
+        (async function (){ 
+        // await  setCartItems([...new Set(cartItems),course.id]);
+        const storedCartCourses:any = await localStorage.getItem("cart");
+        
+        const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
+        localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
+          dispatch(setCartItems(uniqeStoredCartCourses));
+          setLatestCourses([...latestCourses]);
+      })();
+      }else{
+        course.is_in_cart = false;
+        const localStorageItems:any = localStorage.getItem("cart");
+       const resultedItems:any = JSON.parse(localStorageItems).filter(function(ele:any){ 
+          return ele != course.id; 
+      });
+      localStorage.setItem("cart" , JSON.stringify(resultedItems));
+      dispatch(setCartItems(resultedItems));
+
+      setLatestCourses([...latestCourses]);
+
+      }
+    }
 */

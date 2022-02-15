@@ -145,7 +145,7 @@ function CourseDetails() {
     .then(function (response:any) {
       // console.log("response",response);
       
-        dispatch(setCourseDetailsData(response.data.data));
+        dispatch(setCourseDetailsData(response?.data?.data));
   
     })
     .catch(function (error) {

@@ -307,7 +307,7 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course.price}
+                                        { course.discounted_price}
                                     </span>
                                     <span
                                         className={
@@ -335,7 +335,7 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course.discounted_price}
+                                        { course.price}
                                     </span>
                                     <span
                                         className={

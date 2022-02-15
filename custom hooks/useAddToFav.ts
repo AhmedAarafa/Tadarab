@@ -10,7 +10,7 @@ const useAddToFav = (course?: any,queryParam?:any) => {
   // const [latestCourses, setLatestCourses] = useState([]);
   const dispatch = useDispatch();
 
-    if(userStatus.isUserAuthenticated == true){
+    if(userStatus.isUserAuthenticated == true){ 
         if(course.is_in_favorites == false){
   
           axiosInstance

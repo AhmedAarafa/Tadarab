@@ -19,7 +19,7 @@ export const stickyCardHandler = () => {
 
       if(window.innerWidth >= 576){
 
-        if (window.scrollY >= projectsSection.offsetTop) {
+        if (window.scrollY >= projectsSection?.offsetTop) {
             // hide un-wanted elements in the full width sticky view
             // and change the remained ones properties to fit to the new view
             const stickyCard: any = document.getElementById("sticky-card");
@@ -33,7 +33,7 @@ export const stickyCardHandler = () => {
                  `:null;
     
            
-        }else if(window.scrollY < projectsSection.offsetTop){
+        }else if(window.scrollY < projectsSection?.offsetTop){
             const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");
             const stickyCard: any = document.getElementById("sticky-card");
             const stickyTopCourseCard: any = document.getElementById("sticky-top-course-card");

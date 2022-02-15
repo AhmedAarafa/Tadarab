@@ -11,11 +11,10 @@ const useResize = (fn:any)=>{
     
         return () => {
           window.removeEventListener("resize", () => {
-            return;
+            null;
           });
         }
       }, [fn]);
-
 }
 
 

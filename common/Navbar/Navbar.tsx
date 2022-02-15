@@ -20,19 +20,37 @@ import withAuth from "configurations/auth guard/AuthGuard";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import Router, { useRouter }  from "next/router";
+import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
+import { setHomePageData } from "configurations/redux/actions/homePageData";
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const handleDiscoverSidebarShow = (status:boolean)=>{
     setDiscoverSidebarShow(status);
   }
+  const userAuthState = useSelector((state:any) => state.userAuthentication);
+  const homePageData = useSelector((state:any) => state.homePageData);
+
   const dispatch = useDispatch();
 
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
-    Router.push("http://localhost:3000/HomePage");
+    Router.push("https://tadarab.vercel.app/HomePage");
+
+    dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null}));
+    dispatch(setCartItems(null));
+    axiosInstance
+        .get("home/?country_code=eg",{ headers: {"Authorization" : ``} })
+        .then(function (response:any) {
+          dispatch(setHomePageData(response.data.data))
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    
   }
+  
   let isLoggedIn = useSelector((state:any) => state.userAuthentication.isUserAuthenticated);
   const cartItems = useSelector((state:any) => state.cartItems);
  
@@ -41,7 +59,12 @@ function Navbar() {
         .get("users/cart/?country_code=eg")
         .then(function (response:any) {
           // console.log("cart item get req",response.data.data); 
-        dispatch(setCartItems(response.data.data));
+          if(response.data.data == null){
+          const storedCartCourses:any = localStorage.getItem("cart");
+            dispatch(setCartItems(JSON.parse(storedCartCourses)));
+          }else{
+          dispatch(setCartItems(response.data.data));
+        }
       
         })
         .catch(function (error) {
@@ -455,7 +478,7 @@ function Navbar() {
                                   ]
                                 }
                               >
-                                {item.currency_code}
+                                {item?.currency_code}
                               </span>
                             </div>
                             {item.price > item.discounted_price && 
@@ -482,7 +505,7 @@ function Navbar() {
                                   ]
                                 }
                               >
-                                {item.currency_code}
+                                {item?.currency_code}
                               </span>
                             </div>
                             }
@@ -532,7 +555,7 @@ function Navbar() {
                           }
                         >
 
-                         { cartItems.data && cartItems.data[0].currency_code}
+                         { cartItems.data && cartItems.data[0]?.currency_code}
                         </span>
                       </div>
                       {

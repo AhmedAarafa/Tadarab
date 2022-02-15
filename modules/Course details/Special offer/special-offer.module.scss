@@ -28,6 +28,10 @@
     padding: 1.7rem 2.25rem 2.25rem 2.25rem;
     flex-direction: column;
     @include flex(center);
+
+    .special-offer__cards-outer-box__plus:nth-last-child(2) {
+        display: none;
+    }
 }
 
 .special-offer__cards-outer-box__card {
@@ -35,7 +39,7 @@
     // height: 11.25rem;
     // box-shadow: 0.12rem 0 1.313rem #0000001A;
     border-radius: 0.75rem;
-    margin: 1.25rem 0 1.25rem 0;
+    margin: 1.25rem 0 0.5rem 0;
     @include flex;
     overflow: hidden;
 
@@ -60,21 +64,23 @@
     border-radius: 50%;
     @include flex(center, center);
     margin: 1rem 0 1.2rem 0;
-    &:before{
+
+    &:before {
         content: '';
         position: absolute;
         top: 50%;
         left: 0;
-        border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+        border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
         width: 38%;
         transform: translateY(-50%);
     }
-    &:after{
+
+    &:after {
         content: '';
         position: absolute;
         top: 50%;
         right: 0;
-        border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+        border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
         width: 38%;
         transform: translateY(-50%);
     }
@@ -83,13 +89,15 @@
         background-color: rgba(175, 21, 31, 0.1);
         padding: 0.8rem;
         border-radius: 50%;
-         @include flex(center, center);
+        @include flex(center, center);
 
         svg {
             width: 1.125rem;
             height: 1.125rem;
         }
     }
+
+
 }
 
 .special-offer__cards-outer-box__card__course-img {
@@ -215,7 +223,6 @@
 }
 
 .special-offer__cards-outer-box__card__old-price {
-    display: none;
     color: $grey;
     margin-top: -0.5rem;
     text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -236,7 +243,7 @@
     width: 100%;
     padding-top: 2.5rem;
     margin-top: 2.5rem;
-    border-top: 0.125rem solid rgba(119, 119, 119,0.2);
+    border-top: 0.125rem solid rgba(119, 119, 119, 0.2);
 
 }
 
@@ -317,6 +324,7 @@
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
     @include flex(center, center);
     flex-direction: column;
+    width: 2.3125rem;
 
     div:nth-of-type(1) {
         font-size: 0.813rem;
@@ -329,6 +337,8 @@
         background-color: white;
         padding: 0.313rem 0.5rem;
         margin-top: 0.1rem;
+        @include flex(center, center);
+        width: 100%;
     }
 }
 
@@ -397,7 +407,7 @@
         // height: 11.25rem*1.24;
         box-shadow: none;
         border-radius: 0;
-        margin: 1.25rem*1.24 0 1.25rem*1.24 0;
+        margin: 1.25rem*1.24 0 0.5rem*1.24 0;
         @include flex;
         overflow: hidden;
 
@@ -421,21 +431,23 @@
         border-radius: 50%;
         @include flex(center, center);
         margin: 1.5rem 0;
-        &:before{
+
+        &:before {
             content: '';
             position: absolute;
             top: 50%;
             left: 0;
-            border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+            border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
             width: 38%;
             transform: translateY(-50%);
         }
-        &:after{
+
+        &:after {
             content: '';
             position: absolute;
             top: 50%;
             right: 0;
-            border-top: 0.05rem solid 	rgba(119, 119, 119,0.5);
+            border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
             width: 38%;
             transform: translateY(-50%);
         }
@@ -444,7 +456,7 @@
             background-color: rgba(175, 21, 31, 0.1);
             padding: 1.2rem;
             border-radius: 50%;
-         @include flex(center, center);
+            @include flex(center, center);
 
             svg {
                 width: 3rem;
@@ -542,7 +554,6 @@
     .special-offer__cards-outer-box__card__old-price {
         margin-top: -0.5rem*1.24;
         text-decoration: line-through rgba(175, 21, 31, 0.5);
-        display: none;
 
         span:nth-of-type(1) {
             // font-size: 0.75rem*1.24;
@@ -557,7 +568,7 @@
         @include flex(center, space-between);
         flex-direction: column;
         width: 100%;
-        border-top: 0.063rem solid rgba(119, 119, 119,0.5);
+        border-top: 0.063rem solid rgba(119, 119, 119, 0.5);
         margin-top: 2rem;
         padding-top: 2rem;
     }
@@ -637,6 +648,8 @@
     .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
         @include flex(center, center);
         flex-direction: column;
+        width: 5rem;
+
 
         div:nth-of-type(1) {
             font-size: 2.031rem;

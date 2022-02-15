@@ -114,10 +114,10 @@ export default function SignupPage() {
         password:'',
       };
 
-      const validate = Yup.object({
+      const validate = Yup.object().shape({
         name: Yup.string()
         .min(7, "الإسم يجب ان يكون 5 حروف او أكثر"),
-        // .required("خانة الإسم مطلوبه"),
+        // required("خانة الإسم مطلوبه"),   
         email: Yup.string()
         .email("البريد الإلكتروني غير مناسب"),
         // .required("خانة البريد الإلكتروني مطلوبه"),
@@ -172,7 +172,7 @@ export default function SignupPage() {
 
             <Formik  initialValues={initialValues}
             validateOnChange={false}
-            validateOnBlur={false}
+            validateOnBlur={true}
          onSubmit={(values, actions) => {
             //  console.log("ss",{ values, actions });
            actions.setSubmitting(false);
@@ -222,7 +222,7 @@ export default function SignupPage() {
           {({ touched, errors, isSubmitting , isValid , validateOnMount , validateOnBlur, validateOnChange , handleBlur , dirty ,setFieldTouched , setFieldValue}) => (
               <Form >
                             {/* {console.log("errorsss",isSubmitting)} */}
-                              <div className={`${styles["register__register-box__registeration-form-box__name-field-container"]} ${ ( fieldBlur.name !== "" && dirty && errors.name ) && styles["required"]}`}>
+                              <div className={`${styles["register__register-box__registeration-form-box__name-field-container"]} ${ ( fieldBlur.name !== "" && errors.name ) && styles["required"]}`}>
                                 {/* {console.log("isValid",isValid, "errors.name" , errors.name , " dirty" ,dirty) } */}
                                 <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                     <NameFieldIcon/>
@@ -240,7 +240,7 @@ export default function SignupPage() {
                               </div>
                             { fieldBlur.name !== "" && dirty && errors.name && <ErrorMessage name="name" component="div" className={styles["error-msg"]}/>}
 
-                              <div className={`${styles["register__register-box__registeration-form-box__email-field-container"]} ${ fieldBlur.email !== "" && dirty && errors.email && styles["required"]}`}>
+                              <div className={`${styles["register__register-box__registeration-form-box__email-field-container"]} ${ fieldBlur.email !== "" && errors.email && styles["required"]}`}>
                                 <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                 <EnvelopeIcon/>
                                 </div>
@@ -256,7 +256,7 @@ export default function SignupPage() {
                               </div>
                                 { fieldBlur.email !== "" && dirty && errors.email && <ErrorMessage name="email"  component="div" className={styles["error-msg"]}/>}
 
-                                <div className={`${styles["register__register-box__registeration-form-box__phone-field-container"]} ${ fieldBlur.phone !== "" && dirty && errors.phoneNumber ? styles["required"] : null}`}>
+                                <div className={`${styles["register__register-box__registeration-form-box__phone-field-container"]} ${ fieldBlur.phone !== ""&& errors.phoneNumber ? styles["required"] : null}`}>
                               <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                 <MobileIcon/>
 
@@ -297,7 +297,7 @@ export default function SignupPage() {
                                 // }}
                               />
                               </div>
-                                { fieldBlur.phone !== "" && dirty && errors.phoneNumber && <ErrorMessage name="phoneNumber"  component="div" className={styles["error-msg"]}/>}
+                                { fieldBlur.phone !== ""&& errors.phoneNumber && <ErrorMessage name="phoneNumber"  component="div" className={styles["error-msg"]}/>}
                                 {/* {console.log("fieldBlur.phone",fieldBlur.phone,"dirty",dirty,"errors.phoneNumber",errors.phoneNumber)
                                 } */}
                               <div className={`${styles["register__register-box__registeration-form-box__password-field-container"]} ${ fieldBlur.password !== "" && dirty && errors.password && styles["required"]}`}>
@@ -320,7 +320,7 @@ export default function SignupPage() {
                              </div>
                                 </div>
                               </div>
-                                { fieldBlur.password !== "" && dirty && errors.password && <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
+                                { fieldBlur.password !== ""&& errors.password && <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
 
                               <div className="position-relative">
 

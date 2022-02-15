@@ -23,15 +23,16 @@ import { setHomePageData } from "configurations/redux/actions/homePageData";
 function HomePage() {
   const dispatch = useDispatch();
   const homePageData = useSelector((state:any) => state.homePageData);
-
-    useEffect(() => {
+  
+  useEffect(() => {
+      const countryCode:any = localStorage.getItem("countryCode");
         axiosInstance
-        .get("home/?country_code=eg")
+        .get(`home/?country_code=eg`)
         .then(function (response:any) {
             dispatch(setHomePageData(response.data.data));
         })
         .catch(function (error) {
-          console.log(error);
+          console.log(error); 
         });
         
       }, []);

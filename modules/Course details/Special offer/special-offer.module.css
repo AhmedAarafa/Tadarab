@@ -45,10 +45,14 @@
           justify-content: unset;
 }
 
+.special-offer__cards-outer-box .special-offer__cards-outer-box__plus:nth-last-child(2) {
+  display: none;
+}
+
 .special-offer__cards-outer-box__card {
   width: 100%;
   border-radius: 0.75rem;
-  margin: 1.25rem 0 1.25rem 0;
+  margin: 1.25rem 0 0.5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -270,7 +274,6 @@
 }
 
 .special-offer__cards-outer-box__card__old-price {
-  display: none;
   color: #777777;
   margin-top: -0.5rem;
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -417,6 +420,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  width: 2.3125rem;
 }
 
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(1) {
@@ -430,6 +434,16 @@
   background-color: white;
   padding: 0.313rem 0.5rem;
   margin-top: 0.1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
 }
 
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator {
@@ -542,7 +556,7 @@
     -webkit-box-shadow: none;
             box-shadow: none;
     border-radius: 0;
-    margin: 1.55rem 0 1.55rem 0;
+    margin: 1.55rem 0 0.62rem 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -706,7 +720,6 @@
     margin-top: -0.62rem;
     -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
             text-decoration: line-through rgba(175, 21, 31, 0.5);
-    display: none;
   }
   .special-offer__cards-outer-box__card__checkout-box {
     display: -webkit-box;
@@ -853,6 +866,7 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: 5rem;
   }
   .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(1) {
     font-size: 2.031rem;

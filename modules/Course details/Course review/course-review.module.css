@@ -97,6 +97,7 @@
   -webkit-box-shadow: 0 0 1.25rem #0000001A;
           box-shadow: 0 0 1.25rem #0000001A;
   border-radius: 1.25rem;
+  height: 10.0625rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -115,6 +116,21 @@
 
 .course-review__cards-carousel__card__review-box {
   margin-right: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .course-review__cards-carousel__card__review-box__name {
@@ -150,6 +166,11 @@
   font-size: 0.938rem;
   color: #777777;
   margin-top: 0.2rem;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .course-review__mobile-view {
@@ -247,6 +268,10 @@
     -webkit-box-pack: unset;
         -ms-flex-pack: unset;
             justify-content: unset;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin: 0 0 3rem 0;
   }
   .course-review__cards-carousel__card > div:nth-of-type(1) img {
     width: 7.5rem;
@@ -286,6 +311,11 @@
   .course-review__cards-carousel__card__review-box__review {
     font-size: 2.2512rem;
     margin: 0.48rem -8rem 0 0;
+    display: block;
+    overflow: visible;
+    text-overflow: clip;
+    -webkit-line-clamp: none;
+    -webkit-box-orient: vertical;
   }
   .show-all-reviews-btn {
     -webkit-box-shadow: none !important;
@@ -301,7 +331,7 @@
     border: 0.125rem solid #AF151F !important;
     background-color: white !important;
     width: 94%;
-    margin: 4.688rem 0 0 0;
+    margin: 2rem 0 0 0;
     font-size: 2.813rem;
     border-radius: 1.875rem;
     height: 6.875rem;
