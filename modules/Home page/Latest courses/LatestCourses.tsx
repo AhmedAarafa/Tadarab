@@ -37,7 +37,7 @@ function LatestCourses() {
   const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [placement, setPlacement] = useState<any>();
   const [latestCourses, setLatestCourses] = useState([]);
-  const [filterType, setFilterType] = useState("all");
+  const [filterType, setFilterType] = useState("best-seller");
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
 
@@ -45,9 +45,10 @@ function LatestCourses() {
   const handleFilterType = (type:string)=>{
     setFilterType(type);
     axiosInstance
-    .get(`courses/?type=${type}&country_code=eg&page=1&limit=10`)
+    .get(`home/courses/?country_code=eg&type=${type}`)
+    /* home/courses/?country_code=eg&type=${type} */
     .then(function (response:any) {
-      setLatestCourses(response.data.data.courses);
+      setLatestCourses(response.data.data);
       // console.log("response.data.data.courses",response.data.data.courses);
     })
     .catch(function (error) {
@@ -60,7 +61,7 @@ function LatestCourses() {
     if(userStatus.isUserAuthenticated == true){
     const handleFavResponse:any =  handleFav(course,"home/?country_code=eg");
     handleFavResponse.then(function(response:any) {
-     setLatestCourses(response.data.data.latest_courses);
+     setLatestCourses(response.data.data.best_seller_courses);
     })
     }else{
       Router.push({
@@ -85,7 +86,7 @@ function LatestCourses() {
       const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",true);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
-           setLatestCourses(response.data.data.latest_courses);
+           setLatestCourses(response.data.data.best_seller_courses);
            dispatch(setCartItems(firstresponse.totalItems));
         })
       //  setLocalCartItems(response.totalItems);
@@ -105,7 +106,7 @@ function LatestCourses() {
 
   useEffect(() => {
 
-      setLatestCourses(homePageData.data?.latest_courses || []);
+      setLatestCourses(homePageData.data?.best_seller_courses || []);
       const localStorageItems:any = localStorage.getItem("cart");
       // setLocalCartItems(JSON.parse(localStorageItems) || []);
       // (homePageData.data?.latest_courses || []).forEach((item:any) => {
@@ -256,10 +257,6 @@ function LatestCourses() {
           className="d-flex align-items-center justify-content-start"
         >
           <ul id="departments-list" className={styles["latest-courses__departments-list"]}>
-            <li onClick={()=>{handleFilterType("all")}} 
-            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "all" && styles["latest-courses__departments-list__item--active"]}`}>
-              كل الأقسام
-            </li>
             <li onClick={()=>{handleFilterType("best-seller")}} 
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "best-seller" && styles["latest-courses__departments-list__item--active"]}`}>
               الأكثر مبيعاً
@@ -267,6 +264,10 @@ function LatestCourses() {
             <li onClick={()=>{handleFilterType("latest")}} 
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>
               أحدث الدورات
+            </li>
+            <li onClick={()=>{handleFilterType("most-viewed")}} 
+            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "most-viewed" && styles["latest-courses__departments-list__item--active"]}`}>
+              الأكثر زيارة
             </li>
           </ul>
         </Col>

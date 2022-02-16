@@ -92,7 +92,7 @@
 }
 
 .course-content__accordion__header__details-box {
-    @include flex(center, flex-start);
+    @include flex(flex-start, flex-start);
     flex-direction: column;
 }
 
@@ -101,7 +101,7 @@
     flex-direction: row;
     font-size: 0.813rem;
     color: $grey;
-    margin: 0.2rem -0.7rem 0 0;
+    margin: 0.2rem 0 0 0;
 }
 
 .course-content__accordion__header__details__duration {
@@ -250,17 +250,17 @@
         }
     }
 
-    .course-content__accordion__header__details-box {
-        @include flex(center, flex-start);
-        flex-direction: column;
-    }
+    // .course-content__accordion__header__details-box {
+    //     @include flex(flex-start, flex-start);
+    //     flex-direction: column;
+    // }
 
     .course-content__accordion__header__details {
         @include flex(center, flex-start);
         flex-direction: row;
         font-size: 0.813rem*2.5;
         color: $grey;
-        margin: 0.2rem*2.5 -0.7rem*2.5 0 0;
+        margin: 0.2rem*2.5 0 0 0;
     }
 
     .course-content__accordion__body__list-item {

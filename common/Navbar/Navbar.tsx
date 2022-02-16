@@ -36,7 +36,7 @@ function Navbar() {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
-    Router.push("https://tadarab.vercel.app/HomePage");
+    Router.push("http://localhost:3000/HomePage");
 
     dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null}));
     dispatch(setCartItems(null));
@@ -51,30 +51,32 @@ function Navbar() {
     
   }
   
-  let isLoggedIn = useSelector((state:any) => state.userAuthentication.isUserAuthenticated);
+  const isLoggedIn = useSelector((state:any) => state.userAuthentication.isUserAuthenticated);
   const cartItems = useSelector((state:any) => state.cartItems);
  
   useEffect(() => {
-    axiosInstance
-        .get("users/cart/?country_code=eg")
-        .then(function (response:any) {
-          // console.log("cart item get req",response.data.data); 
-          if(response.data.data == null){
-          const storedCartCourses:any = localStorage.getItem("cart");
-            dispatch(setCartItems(JSON.parse(storedCartCourses)));
-          }else{
-          dispatch(setCartItems(response.data.data));
-        }
-      
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    if(isLoggedIn){
+      axiosInstance
+          .get("users/cart/?country_code=eg")
+          .then(function (response:any) {
+            // console.log("cart item get req",response.data.data); 
+            if(response.data.data == null){
+            const storedCartCourses:any = localStorage.getItem("cart");
+              dispatch(setCartItems(JSON.parse(storedCartCourses)));
+            }else{
+            dispatch(setCartItems(response.data.data));
+          }
+        
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+    }
     // const localStorageItems:any = localStorage.getItem("cart");
     // dispatch(setCartItems(JSON.parse(localStorageItems)));
 
 
-  }, []);
+  }, [isLoggedIn]);
   
 
   useEffect(() => {

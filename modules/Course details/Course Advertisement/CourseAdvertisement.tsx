@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import React,{ useEffect,useState} from 'react'
 import styles from "./course-advertisement.module.css";
 import VideoPlayer from 'react-video-js-player';
 import VideoJS from './videojs'
 import { useDispatch, useSelector } from "react-redux";  
+import videojs from  "node_modules/videojs-playlist/dist/videojs-playlist.js";
+import ReactPlayer from 'react-player'
 
 export default function CourseAdvertisement() {
   const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
@@ -36,7 +39,6 @@ export default function CourseAdvertisement() {
         
         setCourseDetails(courseDetailsData.data || []);
         // console.log("courseDetailsData.data",courseDetailsData);
-        
         
       }, [courseDetailsData]);
 
@@ -72,8 +74,9 @@ export default function CourseAdvertisement() {
             <></>
             :
             <div className={styles["course-ad__course-ad-video"]}>
+              {/* <div className={styles["course-ad__course-ad-video__text"]}>شاهد إعلان الدورة</div> */}
               
-              <VideoJS options={{
+              <VideoJS id="videoPlayer" options={{
                 autoplay: false,
                 controls: true,
                 responsive: true,
@@ -82,6 +85,18 @@ export default function CourseAdvertisement() {
                   src: courseDetailsData.data?.promo_video_url,
               }]
               }} onReady={handlePlayerReady} />
+              {/* <ReactPlayer playIcon={<img src="/images/play.svg"/>}
+              config={{
+                file: { 
+                  attributes: { 
+                    poster: courseDetailsData.data.course_details.image
+                  } 
+                } 
+              }}
+                pip={true} controls={true} url={[
+                  "https://player.vimeo.com/external/457959992.hd.mp4?s=fc37002109188d47df8e7312dc5ec664e703ace6&profile_id=174",
+                  "https://player.vimeo.com/external/457959992.hd.mp4?s=fc37002109188d47df8e7312dc5ec664e703ace6&profile_id=174"
+                ]} /> */}
             </div>
             }
 

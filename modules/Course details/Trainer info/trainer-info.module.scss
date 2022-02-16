@@ -122,6 +122,11 @@
 .trainer-info-section__para{
     font-size: 1rem*2.5;
     margin: 1.3rem*2.5 0 0.8rem*2.5 0;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
     
 }
 

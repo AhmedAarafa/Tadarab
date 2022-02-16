@@ -71,6 +71,14 @@
 
     }
 }
+.course-ad__course-ad-video__text{
+    position: absolute;
+    color: white;
+    z-index: 1;
+    top: 15rem;
+    right: 17rem;
+    font-size: 1.2rem;
+}
 
 .course-ad__course-img__watch-ad {
     position: absolute;
@@ -161,6 +169,11 @@
             border-radius: 1.375rem;
     
         }
+    }
+    .course-ad__course-ad-video__text{
+        top: 22rem;
+        right: 22rem;
+        font-size: 2rem;
     }
 
     .course-ad__course-img__watch-ad {

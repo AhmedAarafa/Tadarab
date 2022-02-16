@@ -9,7 +9,8 @@
       "pages/*": ["pages/*"],
       "configurations/*": ["configurations/*"],
       "custom hooks/*": ["custom hooks/*"],
-      "typeRoots": ["node_modules/@types"]
+      "typeRoots": ["node_modules/@types"],
+      "node_modules/*": ["node_modules/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

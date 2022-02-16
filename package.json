@@ -21,6 +21,7 @@
     "react-bootstrap": "^2.0.3",
     "react-dom": "17.0.2",
     "react-intl-tel-input": "^8.2.0",
+    "react-player": "^2.9.0",
     "react-redux": "^7.2.6",
     "react-select": "^5.2.2",
     "react-stepper-horizontal": "^1.0.11",
@@ -30,6 +31,8 @@
     "redux-thunk": "^2.4.1",
     "swiper": "^7.3.1",
     "video.js": "^7.17.0",
+    "videojs-playlist": "^5.0.0",
+    "videojs-qualityselector": "^0.0.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

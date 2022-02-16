@@ -22,7 +22,6 @@ export default function CourseReview() {
         .get(`courses/32720/reviews/?country_code=eg`)
         .then(function (response:any) {
             setCourseReviews(response.data.data);
-            console.log(response.data.data);
         })
         .catch(function (error) { 
         console.log(error); 

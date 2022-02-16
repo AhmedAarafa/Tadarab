@@ -189,7 +189,7 @@ export default function SignupPage() {
               // setResponse(response.data);
               console.log("Response",response);
               if(response.data.status_code.startsWith("2")){
-                Router.push("https://tadarab.vercel.app/SignIn");
+                Router.push("http://localhost:3000/SignIn");
               }else if(response.data.status_code.startsWith(4) ||
               response.data.status_code.startsWith(5)
               ){
@@ -201,19 +201,7 @@ export default function SignupPage() {
               }
             })
             .catch((error:any)=>{
-              // console.log("errrrr", error);
-              // if (error.response) {
-              //   // Request made and server responded
-              //   console.log(error.response.data);
-              //   console.log(error.response.status);
-              //   console.log(error.response.headers);
-              // } else if (error.request) {
-              //   // The request was made but no response was received
-              //   console.log(error.request);
-              // } else {
-              //   // Something happened in setting up the request that triggered an Error
-              //   console.log('Error', error.message);
-              // }
+              console.log("errrrr", error);
             })
          }}
          validationSchema={validate}
