@@ -36,7 +36,7 @@ function Navbar() {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
-    Router.push("http://localhost:3000/HomePage");
+    Router.push("https://tadarab.vercel.app/HomePage");
 
     dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null}));
     dispatch(setCartItems(null));

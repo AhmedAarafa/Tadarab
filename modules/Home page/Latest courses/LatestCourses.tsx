@@ -65,7 +65,7 @@ function LatestCourses() {
     })
     }else{
       Router.push({
-        pathname: "http://localhost:3000/SignIn",
+        pathname: "https://tadarab.vercel.app/SignIn",
         query: { from: "/HomePage" }
       })
     }

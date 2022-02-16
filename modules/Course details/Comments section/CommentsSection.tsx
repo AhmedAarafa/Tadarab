@@ -159,7 +159,7 @@ export default function CommentsSection() {
 
         }else{
             Router.push({
-                pathname: "http://localhost:3000/SignIn",
+                pathname: "https://tadarab.vercel.app/SignIn",
                 query: { from: "/HomePage" }
               })
         }
@@ -174,7 +174,7 @@ export default function CommentsSection() {
         if(userStatus.isUserAuthenticated == true){
         }else{
             Router.push({
-                pathname: "http://localhost:3000/SignIn",
+                pathname: "https://tadarab.vercel.app/SignIn",
                 query: { from: "/HomePage" }
               })
         }
