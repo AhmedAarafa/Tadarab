@@ -3,7 +3,7 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import 'videojs-font/css/videojs-icons.css';
 import { useDispatch, useSelector } from "react-redux";  
-import videojsPlaylistPlugin from "node_modules/videojs-playlist/dist/videojs-playlist.js";
+// import videojsPlaylistPlugin from "node_modules/videojs-playlist/dist/videojs-playlist.js";
 // import qualityselector from "node_modules/videojs-qualityselector/dist/videojs-qualityselector.min.js";
 
 export const VideoJS = ( props:any ) => {
@@ -22,7 +22,7 @@ export const VideoJS = ( props:any ) => {
       const videoElement = videoRef.current;
       if (!videoElement) return;
 
-      videojs.registerPlugin("playlist", videojsPlaylistPlugin);
+//       videojs.registerPlugin("playlist", videojsPlaylistPlugin);
       const player:any = playerRef.current = videojs(videoElement, options, () => {
         console.log("player is ready");
         onReady && onReady(player);
@@ -38,27 +38,27 @@ export const VideoJS = ( props:any ) => {
         })
       })
 
-     player.playlist([
-        {
-          sources: [
-            {
-              src:
-                "https://player.vimeo.com/external/457769206.hd.mp4?s=5496a31f6e5eeb574a53a1974de90ae70d37aeee&profile_id=175"
-            }
-          ],
-          poster: "http://media.w3.org/2010/05/sintel/poster.png"
-        },
-        {
-          sources: [
-            {
-              src:
-                "https://player.vimeo.com/external/457772218.hd.mp4?s=2f87edc2a51519b756a7a80af1cb8b1d51c8de07&profile_id=175"
-            }
-          ],
-          poster: "http://media.w3.org/2010/05/bunny/poster.png"
-        },
-      ]);
-     player.playlist.autoadvance(0); 
+//      player.playlist([
+//         {
+//           sources: [
+//             {
+//               src:
+//                 "https://player.vimeo.com/external/457769206.hd.mp4?s=5496a31f6e5eeb574a53a1974de90ae70d37aeee&profile_id=175"
+//             }
+//           ],
+//           poster: "http://media.w3.org/2010/05/sintel/poster.png"
+//         },
+//         {
+//           sources: [
+//             {
+//               src:
+//                 "https://player.vimeo.com/external/457772218.hd.mp4?s=2f87edc2a51519b756a7a80af1cb8b1d51c8de07&profile_id=175"
+//             }
+//           ],
+//           poster: "http://media.w3.org/2010/05/bunny/poster.png"
+//         },
+//       ]);
+//      player.playlist.autoadvance(0); 
     
         
     } else {
