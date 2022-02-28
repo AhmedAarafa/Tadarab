@@ -5,115 +5,78 @@ import styles from "./checkout-page.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
+import withAuth from "configurations/auth guard/AuthGuard";
 import SuccessState from "../Success state/SuccessState";
 import FailedState from "../Failed state/FailedState";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { GuaranteeIcon, ArrowLeftIcon, PaySafeIcon, RemoveIcon, CartIcon, FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon } from "common/Icons/Icons";
+import { handleFav } from "modules/_Shared/utils/handleFav";
+import { handleCart } from "modules/_Shared/utils/handleCart";
+import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import Router from "next/router";
+import Head from "next/head";
+import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 
-export default function CheckoutPage() {
+function CheckoutPage() {
   SwiperCore.use([Navigation]);
   const [step, setStep] = useState("added-courses");
+  const [localStateCartItems, setLocalStateCartItems] = useState<any>([]);
   const [mobileView, setMobileView] = useState(false);
-//   const [inputTextValue, setInputTextValue] = useState("MM/YY");
+  const [isCouponApplied, setIsCouponApplied] = useState({status:false,discounted_amount:0,value:""});
+  const [errorMessage, setErrorMessage] = useState("");
+  const [relatedCourses, setRelatedCourses] = useState<any>([]);
+ const dispatch = useDispatch();
+ const cartItems = useSelector((state:any) => state.cartItems);
+ const userStatus = useSelector((state:any) => state.userAuthentication);
 
 
-//   const handleInput = (e:any)=>{
-//     console.log(e.target.value);
-//     setInputTextValue(e.target.value);
-//   }
-
-
-  const radioBtnsHandler = ()=>{
-    const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
-    const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-    const infoBox:any = document.getElementById('card-info-box');
-
-        if(window.innerWidth <= 576){
-            unCheckedRadioBtns.forEach((radBtn:any) => {
-                radBtn.parentElement.parentElement.style.cssText=`
-                height: 12.5rem;
-                overflow: hidden;
-                box-shadow: 0 0 1.25rem #0000001A;
-                border:none;
-                `;
-                const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-                relatedInfoBox ?  relatedInfoBox.style.cssText=`
-                display:none;
-                `:
-                null ;
-                
-            });
-
-            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
-            checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
-            ){
-                checkedRadioBtn.parentElement.parentElement.style.cssText=`
-                height: 12.5rem;
-                box-shadow: 0 0 1.25rem #AF2B3633;
-                border: 0.3125rem solid #AF151F;
-                `
-            }else{
-
-                checkedRadioBtn.parentElement.parentElement.style.cssText=`
-                height: 51.56rem;
-                overflow: visible;
-                box-shadow: 0 0 1.25rem #AF2B3633;
-                border: 0.3125rem solid #AF151F;
-                `
-            }
-    
-
-        }else{
-
-            unCheckedRadioBtns.forEach((radBtn:any) => {
-                radBtn.parentElement.parentElement.style.cssText=`
-                height: 5rem;
-                overflow: hidden;
-                box-shadow: 0rem 0rem 1.25rem #0000001A;
-                border:none;
-                `;
-                const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-                relatedInfoBox ? relatedInfoBox.style.cssText=`
-                display:none;
-                `:null;
-                
-            });
-
-            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
-            checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
-            ){
-
-                checkedRadioBtn.parentElement.parentElement.style.cssText=`
-                height: 5rem;
-                overflow: visible;
-                box-shadow: 0rem 0rem 1.25rem #AF2B3633;
-                border: 0.125rem solid #AF151F;
-                `
-            }else{
-                checkedRadioBtn.parentElement.parentElement.style.cssText=`
-                height: 20.625rem;
-                overflow: visible;
-                box-shadow: 0rem 0rem 1.25rem #AF2B3633;
-                border: 0.125rem solid #AF151F;
-                `
-            }
-    
-
-        }
-
-        const relatedInfoBox:any= document.querySelector(`#${checkedRadioBtn.parentElement.parentElement.id}  div#card-info-box`) ;
-        relatedInfoBox ?  relatedInfoBox.style.cssText=`
-        display:block;
-        `:null;
-  };
-
-  useEffect(() => {
+ useEffect(() => {
     const navbar: any = document.getElementById("nav");
     const stepperBox: any = document.getElementById("stepper-box");
     const list: any = document.getElementsByTagName("ol")[0];
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     // const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
     stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+    // console.log("navbar.offsetHeight",navbar.offsetHeight);
+    const localStorageItems:any = localStorage.getItem("cart");
 
-    if(window.innerWidth <= 576){
+    axiosInstance
+        .get(`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .then(function (response:any) {
+            // setRelatedCourses(response.data.data);
+            if(response.data.data !== undefined){
+                axiosInstance
+                .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+                .then(function (resp:any) {
+                    // console.log(resp.data.data);
+                    // setLocalStateCartItems(resp.data.data);
+                  let newArray:any = response.data.data;
+                  if(resp.data.data !== undefined){
+    
+                      resp?.data.data.forEach((element:any) => {
+                       newArray?.forEach((ele:any) => {
+                           if(element.id === ele.id){
+                             ele.is_in_cart = true;
+                         }
+                     });
+                 });
+                 setRelatedCourses([...newArray]);
+                  }
+        
+              })
+              .catch(function (error) {
+                console.log(error); 
+              });
+
+            }
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
+
+    if(document.documentElement.clientWidth <= 576){
+    stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         setMobileView(true);
@@ -128,7 +91,8 @@ export default function CheckoutPage() {
             const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
             relatedInfoBox ?  relatedInfoBox.style.cssText=`
             display:none;
-            `:null ;
+            `:
+            null ;
             
         });
 
@@ -157,6 +121,7 @@ export default function CheckoutPage() {
 
 
     }else{
+    stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         setMobileView(false);
@@ -205,11 +170,13 @@ export default function CheckoutPage() {
     }
 
     window.addEventListener("resize" ,()=>{
+        // console.log("navbar.offsetHeight",navbar.offsetHeight);
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
         const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
-        if(window.innerWidth <= 576){
+        if(document.documentElement.clientWidth <= 576){
             setMobileView(true);
+            stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
 
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
@@ -252,7 +219,7 @@ export default function CheckoutPage() {
             }
 
         }else{
-            
+        stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
             setMobileView(false);
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
@@ -332,6 +299,32 @@ export default function CheckoutPage() {
   }, []);
 
   useEffect(() => {
+    //   if(userStatus.isUserAuthenticated === true){
+    //       setLocalStateCartItems(cartItems.data);
+          
+          
+    //     }else if(userStatus.isUserAuthenticated === false){
+        (async function () {
+            
+            const localStorageItems:any = await localStorage.getItem("cart");
+            // console.log(localStorageItems);
+            
+          await  axiosInstance
+            .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+            .then(function (response:any) {
+            //   console.log(response.data.data);
+              setLocalStateCartItems(response.data.data);
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
+        })();
+
+    //   }
+
+  }, [cartItems,userStatus])
+  
+  useEffect(() => {
     const firstStepBox:any = document.getElementById("added-courses");
     const secondStepBox:any = document.getElementById("payment-types");
     const thirdStepBox:any = document.getElementById("begin-learning");
@@ -343,23 +336,27 @@ export default function CheckoutPage() {
             thirdStepBox.innerHTML = '3';
           break;
         case "payment-types":
-            firstStepBox.innerHTML = 
-            `<svg id="added-courses" xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 15.629 12">
-            <g id="added-courses"  transform="translate(-7.983 -9.033)">
-              <path id="added-courses" data-name="Path 13142" d="M8.546,16.842a1.922,1.922,0,0,1,2.718-2.718l2.27,2.269,6.8-6.8a1.922,1.922,0,1,1,2.718,2.718l-8.16,8.154a1.918,1.918,0,0,1-2.718,0L8.546,16.842Z" transform="translate(0)" fill="#fff"/>
-            </g>
-          </svg>
-          `;
-            secondStepBox.innerHTML = '2';
-            thirdStepBox.innerHTML = '3';
+                firstStepBox.style.cssText=`pointer-events: all`;
+                firstStepBox.innerHTML = 
+                `<svg id="added-courses" xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 15.629 12">
+                <g id="added-courses"  transform="translate(-7.983 -9.033)">
+                  <path id="added-courses" data-name="Path 13142" d="M8.546,16.842a1.922,1.922,0,0,1,2.718-2.718l2.27,2.269,6.8-6.8a1.922,1.922,0,1,1,2.718,2.718l-8.16,8.154a1.918,1.918,0,0,1-2.718,0L8.546,16.842Z" transform="translate(0)" fill="#fff"/>
+                </g>
+              </svg>
+              `;
+                secondStepBox.innerHTML = '2';
+                thirdStepBox.innerHTML = '3';
+           
           break;
         case "begin-learning":
+            firstStepBox.style.cssText=`pointer-events: all`;
             firstStepBox.innerHTML = `<svg id="added-courses" xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 15.629 12">
             <g  id="added-courses" transform="translate(-7.983 -9.033)">
               <path id="added-courses" data-name="Path 13142" d="M8.546,16.842a1.922,1.922,0,0,1,2.718-2.718l2.27,2.269,6.8-6.8a1.922,1.922,0,1,1,2.718,2.718l-8.16,8.154a1.918,1.918,0,0,1-2.718,0L8.546,16.842Z" transform="translate(0)" fill="#fff"/>
             </g>
           </svg>
           `;
+          secondStepBox.style.cssText=`pointer-events: all`;
             secondStepBox.innerHTML = `<svg id="payment-types" xmlns="http://www.w3.org/2000/svg" width="1rem" height="0.75rem" viewBox="0 0 15.629 12">
             <g id="payment-types" transform="translate(-7.983 -9.033)">
               <path id="payment-types" data-name="Path 13142" d="M8.546,16.842a1.922,1.922,0,0,1,2.718-2.718l2.27,2.269,6.8-6.8a1.922,1.922,0,1,1,2.718,2.718l-8.16,8.154a1.918,1.918,0,0,1-2.718,0L8.546,16.842Z" transform="translate(0)" fill="#fff"/>
@@ -371,10 +368,208 @@ export default function CheckoutPage() {
         default:
           break;
       }
-  }, [step])
+  }, [step,userStatus])
+
+
+  const radioBtnsHandler = ()=>{
+    const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
+    const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
+    const infoBox:any = document.getElementById('card-info-box');
+
+        if(document.documentElement.clientWidth <= 576){
+            unCheckedRadioBtns.forEach((radBtn:any) => {
+                radBtn.parentElement.parentElement.style.cssText=`
+                height: 12.5rem;
+                overflow: hidden;
+                box-shadow: 0 0 1.25rem #0000001A;
+                border:none;
+                `;
+                const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
+                relatedInfoBox ?  relatedInfoBox.style.cssText=`
+                display:none;
+                `:
+                null ;
+                
+            });
+
+            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+            checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+            ){
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 12.5rem;
+                box-shadow: 0 0 1.25rem #AF2B3633;
+                border: 0.3125rem solid #AF151F;
+                `
+            }else{
+
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 51.56rem;
+                overflow: visible;
+                box-shadow: 0 0 1.25rem #AF2B3633;
+                border: 0.3125rem solid #AF151F;
+                `
+            }
+    
+
+        }else{
+
+            unCheckedRadioBtns.forEach((radBtn:any) => {
+                radBtn.parentElement.parentElement.style.cssText=`
+                height: 5rem;
+                overflow: hidden;
+                box-shadow: 0rem 0rem 1.25rem #0000001A;
+                border:none;
+                `;
+                const relatedInfoBox:any= document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`) ;
+                relatedInfoBox ? relatedInfoBox.style.cssText=`
+                display:none;
+                `:null;
+                
+            });
+
+            if(checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
+            checkedRadioBtn.parentElement.parentElement.id == "payment-method3" 
+            ){
+
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 5rem;
+                overflow: visible;
+                box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                border: 0.125rem solid #AF151F;
+                `
+            }else{
+                checkedRadioBtn.parentElement.parentElement.style.cssText=`
+                height: 20.625rem;
+                overflow: visible;
+                box-shadow: 0rem 0rem 1.25rem #AF2B3633;
+                border: 0.125rem solid #AF151F;
+                `
+            }
+    
+
+        }
+
+        const relatedInfoBox:any= document.querySelector(`#${checkedRadioBtn.parentElement.parentElement.id}  div#card-info-box`) ;
+        relatedInfoBox ?  relatedInfoBox.style.cssText=`
+        display:block;
+        `:null;
+  };
+
+  const removeFromCart = (course:any)=>{
+
+    if (userStatus?.isUserAuthenticated == true) {
+        const handleCartResponse: any = handleCart(course, "users/cart/?country_code=eg", true);
+        handleCartResponse.then(function (firstresponse: any) {
+            firstresponse?.resp.then(function (response: any) {
+                // setTrainerProfile(response.data.data);
+            console.log("response.data.data",response.data.data);
+            dispatch(setCartItems(response.data.data));
+            console.log("firstresponse.totalItems",firstresponse.totalItems);
+            })
+            //  setLocalCartItems(response.totalItems);
+        })
+    }
+    else {
+        const handleCartResponse: any = handleCart(course, "users/cart/?country_code=eg", false);
+        handleCartResponse.then(function (response: any) {
+            dispatch(setCartItems(response));
+            console.log('response',response);
+            //  setLocalCartItems(response);
+            // setTrainerProfile(trainerProfile);
+        })
+
+    }
+    // setLatestCourses([...latestCourses]);
+  }
+
+  const promoCodeHandler = (e:any)=>{
+      e.preventDefault();
+    const localStorageItems:any = localStorage.getItem("cart");
+    // console.log(e.target[0].value == "");
+    if(e.target[0].value == "" || e.target[0].value == null){
+        setErrorMessage("الرجاء إدخال الكوبون");
+    }else{
+        axiosInstance
+            .post(`coupons/${e.target[0].value}/?country_code=eg`, {"course_ids" : localStorageItems?.replace(/[\[\]']+/g,'')})
+            .then((response:any) => {
+             console.log(response);
+             if(response.status.toString().startsWith("2")){
+                 setIsCouponApplied({status:true,discounted_amount:response.data.data.total_discount_amount,value:e.target[0].value})
+                 setErrorMessage("");
+    
+             }else if(response.status.toString().startsWith("4") || response.status.toString().startsWith("5")){
+                setErrorMessage(response.data.message);
+                console.log('response.data.message',response.data.message);
+                
+             }
+            })
+            .catch((error:any)=>{
+              console.log("error", error);
+            })
+    }
+  }
+
+  const handleCouponInput = ()=>{
+    const couponInputField:any = document.querySelector('[name="couponField"]');
+    couponInputField.value = "";
+    setIsCouponApplied({status:false,discounted_amount:0,value:""});
+  }
+
+  const handleFavActionBtn = (course:any):any =>{
+    const localStorageItems:any = localStorage.getItem("cart");
+    if(userStatus.isUserAuthenticated == true){
+    const handleFavResponse:any =  handleFav(course,`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`);
+    handleFavResponse.then(function(response:any) {
+        setRelatedCourses(response.data.data);
+    })
+    }else{
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+        query: { from: "/Checkout" }
+      })
+    }
+  }
+
+  const handleCartActionBtn = (course:any):any =>{
+    const localStorageItems:any = localStorage.getItem("cart");
+    
+    if(userStatus?.isUserAuthenticated == true){
+      const handleCartResponse:any =  handleCart(course,`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`,true);
+      handleCartResponse.then(function(firstresponse:any) {
+        firstresponse.resp.then(function(response:any){
+            setRelatedCourses(response.data.data);
+           dispatch(setCartItems(firstresponse.cartResponse));
+        })
+      //  setLocalCartItems(response.totalItems);
+      })
+    }
+    else{
+      const handleCartResponse:any =  handleCart(course,`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`,false);
+      handleCartResponse.then(function(response:any) {
+          dispatch(setCartItems(response.data.data));
+
+          let newArray:any = relatedCourses;
+          response.data.data?.forEach((element:any) => {
+           newArray.forEach((ele:any) => {
+               if(element.id === ele.id){
+                 console.log(ele);
+                 ele.is_in_cart = true;
+             }
+         });
+     });
+     setRelatedCourses([...newArray]);
+   
+      })
+    }
+    // setLatestCourses([...latestCourses]);
+  }
+
 
   return (
     <>
+    <Head>
+        <script async src="https://cdn.checkout.com/js/framesv2.min.js"></script>
+    </Head>
       <div id="stepper-box" className={styles["checkout__stepper-box"]}>
         <ol
           id="stepper-list"
@@ -428,14 +623,91 @@ export default function CheckoutPage() {
         </ol>
       </div>
       {(step == "added-courses" || step == "payment-types") && <Row className={styles["checkout"]}>
-        <Col className={styles["checkout__course-content"]}>
+        <Col style={{borderBottom: localStateCartItems == null ? "none" : "0.1rem solid rgba(119, 119, 119, 0.2)"}} className={styles["checkout__course-content"]}>
 
             {step == "payment-types" && <div className={styles["checkout__payment-method-box"]}>
                 <div className={styles["checkout__payment-method-box__title"]}>
-                    حدد وسيلة الدفع المناسبة لك         
+                    حدد وسيلة الدفع المناسبة لك      
                 </div>
 
                 <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
+                    <div className="d-flex align-items-center">
+                    <input onClick={()=> radioBtnsHandler()} type="radio" id="visa" name="payment-type" value="VISA" className="form-check-input"/>
+                    <label htmlFor="visa">
+                        <div className={styles["checkout__payment-method-box__payment-method__images"]}>
+                            <img className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/Visa_Inc.png" alt="VISA" />
+                            <img className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
+                        </div>
+                        <div className={styles["checkout__payment-method-box__payment-method__text"]}>
+                            بطاقات الائتمان / الخصم المباشر
+                        </div>
+
+                    </label>
+                    </div>
+
+                    <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
+                    <Frames 
+                        config={{
+                            debug: true,
+                            publicKey: 'pk_test_75517722-24ba-4bb4-a67b-1f021aca70ea',
+                            localization: {
+                                cardNumberPlaceholder: 'رقم البطاقة',
+                                expiryMonthPlaceholder: '(YY) سنة',
+                                expiryYearPlaceholder: '(MM) شهر ',
+                                cvvPlaceholder: ' الرقم السري (CVV)',
+                            },
+                            style: {
+                                base: {
+                                    fontSize: '1.2em',
+                                    direction: 'rtl',
+                                    padding: '0 1.5rem',
+                                    fontFamily: "'Almarai', sans-serif !important",
+                                    color: '#222222'
+                                },
+                            },
+                        }}
+                        ready={() => {}}
+                        frameActivated={(e) => {}}
+                        frameFocus={(e) => {}}
+                        frameBlur={(e) => {}}
+                        frameValidationChanged={(e) => {}}
+                        paymentMethodChanged={(e) => {}}
+                        cardValidationChanged={(e) => {}}
+                        cardSubmitted={() => {}}
+                        cardTokenized={(e) => {
+                        const localStorageItems:any = localStorage.getItem("cart");
+
+                            console.log('e.token',e.token);
+                            alert(e.token);
+                            axiosInstance.post(`payments/payouts/?country_code=eg`, {
+                              "checkout_token": e.token,
+                              "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
+                              "coupon_code": isCouponApplied.value
+                            })
+                            .then((response:any) => {
+                              console.log("Response",response);
+                              if(JSON.stringify(response.status).startsWith("2")){
+                                localStorage.setItem("successUrl" , response.data.data.success_url);
+                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                              }
+                             
+                            })
+                            .catch((error:any)=>{
+                              console.log("error", error);
+                            })
+                        }}
+                        cardTokenizationFailed={(e) => {}}
+                        cardBinChanged={(e) => {}}
+                    >
+                        <CardNumber />
+                        <ExpiryDate />
+                        <Cvv />
+                        
+                    </Frames>
+
+                    </div>
+                </div>
+                {/* <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
                     <div className="d-flex align-items-center">
                     <input onClick={()=> radioBtnsHandler()} type="radio" id="visa" name="payment-type" value="VISA" className="form-check-input"/>
                     <label htmlFor="visa">
@@ -476,7 +748,7 @@ export default function CheckoutPage() {
                             </span>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
                 <div className="d-flex align-items-center">
 
@@ -518,42 +790,73 @@ export default function CheckoutPage() {
                 <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
                 <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
 
-                <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
-              <Form.Control
-                type="text"
-                placeholder="ادخل الكوبون هنا"
-                className={
-                  styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
-                }
-              />
-              <Button className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
-              تطبيق
-              </Button>
-                
-                
+               <div style={{position:"relative"}}>
+                    <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
+                        <Form onSubmit={()=>{promoCodeHandler(event)}}>
+
+                        <Form.Control
+                            type="text"
+                            name="couponField"
+                            placeholder="ادخل الكوبون هنا"
+                            className={
+                            styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
+                            }
+                            onChange={()=>{setErrorMessage("")}}
+                            disabled={isCouponApplied.status ? true : false}
+                        />
+                            {
+                                isCouponApplied.status ?
+                                <input type="button" onClick={()=>{handleCouponInput()}} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]}/>
+                                    
+                                :
+                                    <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
+                                        تطبيق
+                                    </Button>
+                                 
+                            }
+                        </Form>
+                    
+                    
+                    </div>
+                        {
+                            errorMessage !== "" &&
+                        <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
+                            {errorMessage}
+                        </div>
+                        }
+
                 </div>
+
 
                 <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
                     السعر الإجمالي
                     </div>
+                    { localStateCartItems !== [] &&
+
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
-                        <span> 1200 </span>
-                        <span>جنيه</span>
+                        <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
+                        <span>{localStateCartItems !== undefined && localStateCartItems[0]?.currency_code}</span>
                     </div>
+
+                    }
 
                 </div>
 
-                <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
-                    <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
-                    الكوبون
-                    </div>
-                    <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                        <span> -100 </span>
-                        <span>جنيه</span>
-                    </div>
+                {
+                        isCouponApplied.status == true &&
 
-                </div>
+                        <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
+                            <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
+                            الكوبون
+                            </div>
+                            <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
+                                <span> {isCouponApplied.discounted_amount}- </span>
+                                <span>{localStateCartItems !== undefined && localStateCartItems[0]?.currency_code}</span>
+                            </div>
+
+                        </div>
+                    }
 
                 <div className={styles["checkout__cart-sticky-card__guarantee-box"]}
                     >
@@ -562,28 +865,7 @@ export default function CheckoutPage() {
                         styles["checkout__cart-sticky-card__guarantee-box__icon"]
                         }
                     >
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1.375rem"
-                        height="1.5rem"
-                        viewBox="0 0 21.603 24"
-                        >
-                        <g id="guarantee" transform="translate(-4 -3.15)">
-                            <g
-                            id="Group_11536"
-                            data-name="Group 11536"
-                            transform="translate(4 3.15)"
-                            >
-                            <path
-                                id="Path_13195"
-                                data-name="Path 13195"
-                                d="M4,5.783V20.365A2.551,2.551,0,0,0,5.485,22.8l8.1,4.051a2.582,2.582,0,0,0,2.43,0l8.1-4.051a2.551,2.551,0,0,0,1.485-2.43V5.783A23.474,23.474,0,0,0,4,5.783Zm17.148,6.346L14.4,18.88a1.226,1.226,0,0,1-.945.405,1.919,1.919,0,0,1-.81-.27l-4.051-2.7a1.428,1.428,0,0,1-.27-1.89,1.328,1.328,0,0,1,1.89-.405l3.105,2.025L19.257,10.1a1.305,1.305,0,0,1,1.89,0A1.468,1.468,0,0,1,21.148,12.129Z"
-                                transform="translate(-4 -3.15)"
-                                fill="#198754"
-                            />
-                            </g>
-                        </g>
-                        </svg>
+                        <GuaranteeIcon/>
                     </div>
                     <div
                         className={
@@ -615,31 +897,52 @@ export default function CheckoutPage() {
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
                     السعر الإجمالي
                     </div>
+                    { localStateCartItems !== [] &&
+
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                        <span> 1200 </span>
-                        <span>جنيه</span>
+                    <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0) 
+                    - 
+                    isCouponApplied.discounted_amount
+                    } </span>
+                        <span>{localStateCartItems !== undefined && localStateCartItems[0]?.currency_code}</span>
                     </div>
+                    }
 
                 </div>
 
-                <Button className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                إتمام الشراء
+                { step == "added-courses" ?
+                 <Button onClick={()=>{ 
+                     userStatus.isUserAuthenticated ?
+                     setStep("payment-types")
+                     :
+                     Router.push({
+                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                        query: { from: "/Checkout" }
+                      })
+                    }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                  
+                  الدفع
+
                 </Button>
+                :
+                <Button onClick={() => {
+                    Frames.submitCard();
+                }}
+                 className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                    إتمام الشراء
+                
+                </Button>}
 
                 {step == "added-courses" &&  <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                     <span>
                     اكمل البحث عن دورات أخرى
                     </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14.364" height="14" viewBox="0 0 14.364 14">
-                        <path id="goArrow" d="M8.207,50.712l-.712.712a.766.766,0,0,1-1.087,0L.176,45.195a.766.766,0,0,1,0-1.087l6.232-6.232a.766.766,0,0,1,1.087,0l.712.712a.77.77,0,0,1-.013,1.1l-3.863,3.68h9.214a.768.768,0,0,1,.769.769v1.026a.768.768,0,0,1-.769.769H4.331l3.863,3.68A.765.765,0,0,1,8.207,50.712Z" transform="translate(0.05 -37.65)" fill="#AF151F"/>
-                    </svg>
+                    <ArrowLeftIcon color="#af151f"/>
 
                 </div>}
 
                 { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="17.268" height="20" viewBox="0 0 17.268 20">
-                        <path id="secure" d="M41.018,15.974a16.841,16.841,0,0,1-3.5-.86,7.5,7.5,0,0,1-3.212-1.95l-.057-.057-.057-.057c-.057,0-.057-.057-.115-.057s-.057-.057-.115-.057-.057-.057-.115-.057-.057-.057-.115-.057h-.688c-.057,0-.057,0-.115.057-.057,0-.057,0-.115.057-.057,0-.057.057-.115.057s-.057.057-.115.057l-.057.057-.057.057a8.278,8.278,0,0,1-3.212,1.95,20.252,20.252,0,0,1-3.5.86,1.173,1.173,0,0,0-1.032,1.147,24.925,24.925,0,0,0,1.262,8.889,11.45,11.45,0,0,0,3.5,4.875,7.592,7.592,0,0,0,1.835,1.147c.746.4,1.663,1.032,2.523.688a11.915,11.915,0,0,0,5.62-4.3,12.49,12.49,0,0,0,1.262-2.466,24.925,24.925,0,0,0,1.262-8.889A1.1,1.1,0,0,0,41.018,15.974Zm-2.351,9.234a8.9,8.9,0,0,1-5.219,5.276,8.9,8.9,0,0,1-5.219-5.276,21.759,21.759,0,0,1-1.09-7.112,19.58,19.58,0,0,0,2.982-.8,10.978,10.978,0,0,0,3.326-1.778,10.978,10.978,0,0,0,3.326,1.778,17.964,17.964,0,0,0,2.982.8,21.758,21.758,0,0,1-1.09,7.112ZM32.989,23.6l-2.294-1.663a1.147,1.147,0,0,0-1.376,1.835l3.154,2.294a1.192,1.192,0,0,0,1.721-.4c1.262-1.548,2.581-3.1,3.843-4.645a1.142,1.142,0,1,0-1.778-1.434L32.989,23.6Z" transform="translate(-24.73 -12.82)" fill="#6c757d"/>
-                    </svg>
+                    <PaySafeIcon color="#6c757d" />
 
                     <span> ادفع بأمان وسهولة عبر تدرب </span>
                 </div>}
@@ -650,184 +953,74 @@ export default function CheckoutPage() {
 
           <div className={styles["checkout__course-content__title"]}>
               <span> محتويات السلة </span>
-              <span>  (4 دورة) </span>
+              {
+                  localStateCartItems !== []  &&
+                  <span>  ({localStateCartItems?.length} دورة) </span>
+                }
           </div>
-          <div className={styles["checkout__cards-outer-box__card"]}>
-                <div className={styles["checkout__cards-outer-box__card__course-img"]}>
-                    <img src="/images/course2cropped.png" alt="course image" />
-                    <div className={styles["checkout__cards-outer-box__card__category-chip"]}>
-                        فنون
-                    </div>
-                </div>
 
-                <div className={styles["checkout__cards-outer-box__card__trainer-info-box-container"]}>
+          {
+                localStateCartItems == [] &&
+              <div className={styles["checkout__no-courses-in-your-cart"]}>
+                  لا يوجد اي دورات في السلة الخاصة بك
+              </div>
+          }
 
-                    <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                            <img src="/images/trainer img.png" alt="trainer image" />
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
-                            <h1 className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
-                            تعليم الرسم بالقلم الرصاص
-                            </h1>
-                            <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-name"]}>
-                            أ/ مروة عبدالله
+          {localStateCartItems !== [] && localStateCartItems?.map((it:any,i:number)=>{
+              
+              return(
+
+                <div key={i} className={styles["checkout__cards-outer-box__card"]}>
+                        <div className={styles["checkout__cards-outer-box__card__course-img"]}>
+                            <img src={it?.image && it.image } alt="course image" />
+                            <div style={{backgroundColor:`${it.categories !== undefined && it.categories[0].color}`}}
+                             className={styles["checkout__cards-outer-box__card__category-chip"]}>
+                                {it.categories !== undefined && it.categories[0].title}
                             </div>
                         </div>
-                    </div>
-                    <div className={styles["checkout__cards-outer-box__card__prices-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__price"]}>
-                            <span> 800 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__old-price"]}>
-                            <span> 860 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                    </div>
-                </div>
 
-                <div className={styles["checkout__cards-outer-box__card__action-btns"]}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                        <g id="remove" transform="translate(28.585 12)">
-                            <path id="Path_15221" data-name="Path 15221" d="M15.343,30.657a1.1,1.1,0,0,0,1.6,0L23,24.6l6.057,6.057a1.1,1.1,0,0,0,1.6,0,1.1,1.1,0,0,0,0-1.6L24.6,23l6.057-6.057a1.131,1.131,0,0,0-1.6-1.6L23,21.4l-6.057-6.057a1.131,1.131,0,0,0-1.6,1.6L21.4,23l-6.057,6.057a1.1,1.1,0,0,0,0,1.6Z" transform="translate(-43.585 -27)" fill="#222"/>
-                        </g>
-                    </svg>
+                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box-container"]}>
 
-                </div>
-            </div>
-          <div className={styles["checkout__cards-outer-box__card"]}>
-                <div className={styles["checkout__cards-outer-box__card__course-img"]}>
-                    <img src="/images/course2cropped.png" alt="course image" />
-                    <div className={styles["checkout__cards-outer-box__card__category-chip"]}>
-                        فنون
-                    </div>
-                </div>
+                            <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
+                                <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
+                                    <img src={it.trainer !== undefined && it.trainer.image} alt="trainer image" />
+                                </div>
+                                <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
+                                    <h1 className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title={it.title}>
+                                    {it.title}
+                                    </h1>
+                                    <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-name"]}>
+                                    {it.trainer !== undefined && it.trainer.name_ar}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles["checkout__cards-outer-box__card__prices-box"]}>
 
-                <div className={styles["checkout__cards-outer-box__card__trainer-info-box-container"]}>
+                                <div className={styles["checkout__cards-outer-box__card__price"]}>
+                                    <span> {it.discounted_price == 0 ? "مجانًا" : it.discounted_price} </span>
+                                    <span> {it.discounted_price !== 0 && it.currency_code} </span>
+                                </div>
+                                
+                                {
+                                    it.price > it.discounted_price &&
+                                <div className={styles["checkout__cards-outer-box__card__old-price"]}>
+                                    <span> {it.price} </span>
+                                    <span> {it.currency_code} </span>
+                                </div>
+                                }
 
-                    <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                            <img src="/images/trainer img.png" alt="trainer image" />
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
-                            <h1 className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
-                            تعليم الرسم بالقلم الرصاص
-                            </h1>
-                            <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-name"]}>
-                            أ/ مروة عبدالله
                             </div>
                         </div>
+
+                        { step == "added-courses" &&
+                         <div onClick={()=>{removeFromCart(it)}} className={styles["checkout__cards-outer-box__card__action-btns"]}>
+                            <RemoveIcon color="#222"/>
+
+                        </div>}
                     </div>
-                    <div className={styles["checkout__cards-outer-box__card__prices-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__price"]}>
-                            <span> 800 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__old-price"]}>
-                            <span> 860 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                    </div>
-                </div>
+              )
+          })}
 
-                <div className={styles["checkout__cards-outer-box__card__action-btns"]}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                        <g id="remove" transform="translate(28.585 12)">
-                            <path id="Path_15221" data-name="Path 15221" d="M15.343,30.657a1.1,1.1,0,0,0,1.6,0L23,24.6l6.057,6.057a1.1,1.1,0,0,0,1.6,0,1.1,1.1,0,0,0,0-1.6L24.6,23l6.057-6.057a1.131,1.131,0,0,0-1.6-1.6L23,21.4l-6.057-6.057a1.131,1.131,0,0,0-1.6,1.6L21.4,23l-6.057,6.057a1.1,1.1,0,0,0,0,1.6Z" transform="translate(-43.585 -27)" fill="#222"/>
-                        </g>
-                    </svg>
-
-                </div>
-            </div>
-          <div className={styles["checkout__cards-outer-box__card"]}>
-                <div className={styles["checkout__cards-outer-box__card__course-img"]}>
-                    <img src="/images/course2cropped.png" alt="course image" />
-                    <div className={styles["checkout__cards-outer-box__card__category-chip"]}>
-                        فنون
-                    </div>
-                </div>
-
-                <div className={styles["checkout__cards-outer-box__card__trainer-info-box-container"]}>
-
-                    <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                            <img src="/images/trainer img.png" alt="trainer image" />
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
-                            <h1 className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
-                            تعليم الرسم بالقلم الرصاص
-                            </h1>
-                            <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-name"]}>
-                            أ/ مروة عبدالله
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles["checkout__cards-outer-box__card__prices-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__price"]}>
-                            <span> 800 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__old-price"]}>
-                            <span> 860 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles["checkout__cards-outer-box__card__action-btns"]}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                        <g id="remove" transform="translate(28.585 12)">
-                            <path id="Path_15221" data-name="Path 15221" d="M15.343,30.657a1.1,1.1,0,0,0,1.6,0L23,24.6l6.057,6.057a1.1,1.1,0,0,0,1.6,0,1.1,1.1,0,0,0,0-1.6L24.6,23l6.057-6.057a1.131,1.131,0,0,0-1.6-1.6L23,21.4l-6.057-6.057a1.131,1.131,0,0,0-1.6,1.6L21.4,23l-6.057,6.057a1.1,1.1,0,0,0,0,1.6Z" transform="translate(-43.585 -27)" fill="#222"/>
-                        </g>
-                    </svg>
-
-                </div>
-            </div>
-          <div className={styles["checkout__cards-outer-box__card"]}>
-                <div className={styles["checkout__cards-outer-box__card__course-img"]}>
-                    <img src="/images/course2cropped.png" alt="course image" />
-                    <div className={styles["checkout__cards-outer-box__card__category-chip"]}>
-                        فنون
-                    </div>
-                </div>
-
-                <div className={styles["checkout__cards-outer-box__card__trainer-info-box-container"]}>
-
-                    <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                            <img src="/images/trainer img.png" alt="trainer image" />
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
-                            <h1 className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title=" تعليم الرسم بالقلم الرصاصصصص">
-                            تعليم الرسم بالقلم الرصاص
-                            </h1>
-                            <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-name"]}>
-                            أ/ مروة عبدالله
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles["checkout__cards-outer-box__card__prices-box"]}>
-                        <div className={styles["checkout__cards-outer-box__card__price"]}>
-                            <span> 800 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                        <div className={styles["checkout__cards-outer-box__card__old-price"]}>
-                            <span> 860 </span>
-                            <span> جنية مصري </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div className={styles["checkout__cards-outer-box__card__action-btns"]}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                        <g id="remove" transform="translate(28.585 12)">
-                            <path id="Path_15221" data-name="Path 15221" d="M15.343,30.657a1.1,1.1,0,0,0,1.6,0L23,24.6l6.057,6.057a1.1,1.1,0,0,0,1.6,0,1.1,1.1,0,0,0,0-1.6L24.6,23l6.057-6.057a1.131,1.131,0,0,0-1.6-1.6L23,21.4l-6.057-6.057a1.131,1.131,0,0,0-1.6,1.6L21.4,23l-6.057,6.057a1.1,1.1,0,0,0,0,1.6Z" transform="translate(-43.585 -27)" fill="#222"/>
-                        </g>
-                    </svg>
-
-                </div>
-            </div>
 
         </Col>
         { mobileView == false && <Col className={styles["checkout__cart-sticky-card-col"]}>
@@ -836,42 +1029,73 @@ export default function CheckoutPage() {
                 <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
                 <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
 
-                <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
-              <Form.Control
-                type="text"
-                placeholder="ادخل الكوبون هنا"
-                className={
-                  styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
-                }
-              />
-              <Button className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
-              تطبيق
-              </Button>
-                
-                
+                <div style={{position:"relative"}}>
+                    <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
+                        <Form onSubmit={()=>{promoCodeHandler(event)}}>
+
+                        <Form.Control
+                            type="text"
+                            name="couponField"
+                            placeholder="ادخل الكوبون هنا"
+                            className={
+                            styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
+                            }
+                            onChange={()=>{setErrorMessage("")}}
+                            disabled={isCouponApplied.status ? true : false}
+                        />
+                            {
+                                isCouponApplied.status ?
+                                <input type="button" onClick={()=>{handleCouponInput()}} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]}/>
+                                    
+                                :
+                                    <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
+                                        تطبيق
+                                    </Button>
+                                 
+                            }
+                        </Form>
+                    
+                    
+                    </div>
+                        {
+                            errorMessage !== "" &&
+                        <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
+                            {errorMessage}
+                        </div>
+                        }
+
                 </div>
 
                 <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
                     السعر الإجمالي
                     </div>
+                    { localStateCartItems !== [] &&
+
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
-                        <span> 1200 </span>
-                        <span>جنيه</span>
+                        <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
+                        <span>{localStateCartItems !== undefined && localStateCartItems[0]?.currency_code}</span>
                     </div>
+                    
+                    }
 
                 </div>
+                
+                    {
+                        isCouponApplied.status == true &&
 
-                <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
-                    <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
-                    الكوبون
-                    </div>
-                    <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                        <span> -100 </span>
-                        <span>جنيه</span>
-                    </div>
+                        <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
+                            <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
+                            الكوبون
+                            </div>
+                            <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
+                                <span> {isCouponApplied.discounted_amount}- </span>
+                                <span>{localStateCartItems !== undefined && localStateCartItems[0]?.currency_code}</span>
+                            </div>
 
-                </div>
+                        </div>
+                    }
+
 
                 <div className={styles["checkout__cart-sticky-card__guarantee-box"]}
                     >
@@ -880,28 +1104,7 @@ export default function CheckoutPage() {
                         styles["checkout__cart-sticky-card__guarantee-box__icon"]
                         }
                     >
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="1.375rem"
-                        height="1.5rem"
-                        viewBox="0 0 21.603 24"
-                        >
-                        <g id="guarantee" transform="translate(-4 -3.15)">
-                            <g
-                            id="Group_11536"
-                            data-name="Group 11536"
-                            transform="translate(4 3.15)"
-                            >
-                            <path
-                                id="Path_13195"
-                                data-name="Path 13195"
-                                d="M4,5.783V20.365A2.551,2.551,0,0,0,5.485,22.8l8.1,4.051a2.582,2.582,0,0,0,2.43,0l8.1-4.051a2.551,2.551,0,0,0,1.485-2.43V5.783A23.474,23.474,0,0,0,4,5.783Zm17.148,6.346L14.4,18.88a1.226,1.226,0,0,1-.945.405,1.919,1.919,0,0,1-.81-.27l-4.051-2.7a1.428,1.428,0,0,1-.27-1.89,1.328,1.328,0,0,1,1.89-.405l3.105,2.025L19.257,10.1a1.305,1.305,0,0,1,1.89,0A1.468,1.468,0,0,1,21.148,12.129Z"
-                                transform="translate(-4 -3.15)"
-                                fill="#198754"
-                            />
-                            </g>
-                        </g>
-                        </svg>
+                        <GuaranteeIcon/>
                     </div>
                     <div
                         className={
@@ -931,33 +1134,57 @@ export default function CheckoutPage() {
 
                 <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
-                    السعر الإجمالي
+                    السعر النهائي
                     </div>
-                    <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                        <span> 1200 </span>
-                        <span>جنيه</span>
-                    </div>
+                    { localStateCartItems !== [] &&
 
+                    <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
+                    <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0) 
+                    - 
+                    isCouponApplied.discounted_amount
+                    } </span>
+                        <span>{localStateCartItems !== undefined && localStateCartItems[0]?.currency_code}</span>
+                    </div>
+            }
                 </div>
 
-                <Button className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                إتمام الشراء
+                { step == "added-courses" ?
+                 <Button onClick={()=>{ 
+                    userStatus.isUserAuthenticated ?
+                    setStep("payment-types")
+                    :
+                    Router.push({
+                       pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                       query: { from: "/Checkout" }
+                     })
+                   }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                  
+                  الدفع
+
                 </Button>
+                :
+                <Button 
+                onClick={() => {
+                    Frames.submitCard();
+                }}
+                 className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                    إتمام الشراء
+                
+                </Button>
+                }
 
                 { step == "added-courses" &&  <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                     <span>
                     اكمل البحث عن دورات أخرى
                     </span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14.364" height="14" viewBox="0 0 14.364 14">
-                        <path id="goArrow" d="M8.207,50.712l-.712.712a.766.766,0,0,1-1.087,0L.176,45.195a.766.766,0,0,1,0-1.087l6.232-6.232a.766.766,0,0,1,1.087,0l.712.712a.77.77,0,0,1-.013,1.1l-3.863,3.68h9.214a.768.768,0,0,1,.769.769v1.026a.768.768,0,0,1-.769.769H4.331l3.863,3.68A.765.765,0,0,1,8.207,50.712Z" transform="translate(0.05 -37.65)" fill="#AF151F"/>
-                    </svg>
+                    <ArrowLeftIcon color="#af151f"/>
+
 
                 </div>}
 
                 { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="17.268" height="20" viewBox="0 0 17.268 20">
-                        <path id="secure" d="M41.018,15.974a16.841,16.841,0,0,1-3.5-.86,7.5,7.5,0,0,1-3.212-1.95l-.057-.057-.057-.057c-.057,0-.057-.057-.115-.057s-.057-.057-.115-.057-.057-.057-.115-.057-.057-.057-.115-.057h-.688c-.057,0-.057,0-.115.057-.057,0-.057,0-.115.057-.057,0-.057.057-.115.057s-.057.057-.115.057l-.057.057-.057.057a8.278,8.278,0,0,1-3.212,1.95,20.252,20.252,0,0,1-3.5.86,1.173,1.173,0,0,0-1.032,1.147,24.925,24.925,0,0,0,1.262,8.889,11.45,11.45,0,0,0,3.5,4.875,7.592,7.592,0,0,0,1.835,1.147c.746.4,1.663,1.032,2.523.688a11.915,11.915,0,0,0,5.62-4.3,12.49,12.49,0,0,0,1.262-2.466,24.925,24.925,0,0,0,1.262-8.889A1.1,1.1,0,0,0,41.018,15.974Zm-2.351,9.234a8.9,8.9,0,0,1-5.219,5.276,8.9,8.9,0,0,1-5.219-5.276,21.759,21.759,0,0,1-1.09-7.112,19.58,19.58,0,0,0,2.982-.8,10.978,10.978,0,0,0,3.326-1.778,10.978,10.978,0,0,0,3.326,1.778,17.964,17.964,0,0,0,2.982.8,21.758,21.758,0,0,1-1.09,7.112ZM32.989,23.6l-2.294-1.663a1.147,1.147,0,0,0-1.376,1.835l3.154,2.294a1.192,1.192,0,0,0,1.721-.4c1.262-1.548,2.581-3.1,3.843-4.645a1.142,1.142,0,1,0-1.778-1.434L32.989,23.6Z" transform="translate(-24.73 -12.82)" fill="#6c757d"/>
-                    </svg>
+                <PaySafeIcon color="#6c757d" />
+
 
                     <span> ادفع بأمان وسهولة عبر تدرب </span>
                 </div>}
@@ -968,13 +1195,14 @@ export default function CheckoutPage() {
 
       </Row>}
 
-      {step == "added-courses" && <Row id="similar-courses-row" className={styles["checkout__similar-courses-row"]}>
+      {step == "added-courses" && localStateCartItems !== []   && <Row id="similar-courses-row" className={styles["checkout__similar-courses-row"]}>
       <Col xs={12} className={styles["checkout__similar-courses"]}>
         <div className={styles["checkout__similar-courses__title"]}>
             <div>الدورات مشابه قد تعجبك</div>
         </div>
       </Col>
-        <Col xs={12} className={styles["checkout__similar-courses__cards-carousel"]}>
+      
+        { localStateCartItems !== [] && <Col xs={12} className={styles["checkout__similar-courses__cards-carousel"]}>
         <Swiper dir="rtl" slidesPerView={3.8} navigation={true} 
         breakpoints={{
             "50": {
@@ -990,1737 +1218,204 @@ export default function CheckoutPage() {
                 slidesPerView: 4.8,
               },
         }} className="mySwiper">
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
+            {relatedCourses?.map((course:any,i:number)=>{
+                return(
+
+                    <SwiperSlide key={i}>
+                        <Card
                             className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
+                                styles["checkout__similar-courses__cards-carousel__course-card"]
                             }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
+                            >
+                            <div style={{backgroundColor:`${course.categories[0].color}`}}
+                                className={
+                                styles[
+                                    "checkout__similar-courses__cards-carousel__course-card__category-chip"]}
+                                    > 
+                                {course.categories[0].title} 
+                            </div>
+                            <Card.Img
+                                variant="top"
+                                src={course.image}
+                                alt="course image"
+                                className={
+                                styles[
+                                    "checkout__similar-courses__cards-carousel__course-card__course-img"
+                                ]
+                                }
                             />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
+                            <Card.Body
                                 className={
                                 styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                    "checkout__similar-courses__cards-carousel__course-card__card-body"
                                 ]
                                 }
                             >
-                                850
-                            </span>
-                            <span
+                                <div
                                 className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
+                                    styles[
+                                    "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
+                                    ]
                                 }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
+                                >
+                                <div
+                                    className={
+                                    styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
+                                    ]
+                                    }
+                                >
+                                    <img
+                                    src={course.trainer.image}
+                                    alt="trainer image"
+                                    />
+                                </div>
+                                <div
+                                    className={
+                                    styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
+                                    ]
+                                    }
+                                >
+                                    <h1
+                                    className={
+                                        styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
+                                        ]
+                                    }
+                                    >
+                                    {course.title}
+                                    </h1>
+                                    <div
+                                    className={
+                                        styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
+                                        ]
+                                    }
+                                    >
+                                    {course.trainer.name_ar}
+                                    </div>
+                                </div>
+                                </div>
+
+                                <div
                                 className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
+                                    styles[
+                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
+                                    ]
                                 }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
+                                >
+                                <div className="d-inline-block">
+                                    <div
+                                    className={
+                                        styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
+                                        ]
+                                    }
+                                    >
+                                    <span
+                                        className={
+                                        styles[
+                                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                        ]
+                                        }
+                                    >
+                                        {course.discounted_price == 0 ?  "مجانًا" : course.discounted_price}
+                                    </span>
+                                    <span
+                                        className={
+                                        styles[
+                                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
+                                        ]
+                                        }
+                                    >
+                                        {course.discounted_price !== 0 && course.currency_code}
+                                    </span>
+                                    </div>
+                                    {
+                                        course.price > course.discounted_price
+                                        &&
+                                    <div
+                                    className={
+                                        styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
+                                        ]
+                                    }
+                                    >
+                                    <span
+                                        className={
+                                        styles[
+                                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
+                                        ]
+                                        }
+                                    >
+                                        {course.price}
+                                    </span>
+                                    <span
+                                        className={
+                                        styles[
+                                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
+                                        ]
+                                        }
+                                    >
+                                        {course.currency_code}
+                                    </span>
+                                    </div>
+                                    }
+                                </div>
 
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
+                                <div className="d-inline-block">
+                                    <Button
+                                    className={
+                                        styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
+                                        ]
+                                    }
+                                    >
+                                    <div onClick={()=>handleCartActionBtn(course)} 
+                                     className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
+                                    {
+                                        course.is_in_cart ? 
+                                        <AddedToCartIcon color="#222"/>
+                                        :
+                                        <CartIcon color="#222"/>
 
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
+                                    }
+                                    </div>
 
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
+                                    </Button>
+                                    <Button
+                                    className={
+                                        styles[
+                                        "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
+                                        ]
+                                    }
+                                    >
+                                        <div onClick={()=>handleFavActionBtn(course)} 
+                                         className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
+                                        
+                                        {
+                                            course.is_in_favorites ?
+                                            <AddedToFavouriteIcon/>
+                                            :
+                                            <FavouriteIcon color="#222"/>
 
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
+                                        }  
+                                        </div>
+                                
 
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
-            <SwiperSlide>
-                <Card
-                    className={
-                        styles["checkout__similar-courses__cards-carousel__course-card"]
-                    }
-                    >
-                    <div
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__category-chip"
-                        ]
-                        }
-                    > 
-                        الفنون 
-                    </div>
-                    <Card.Img
-                        variant="top"
-                        src="/images/course2cropped.png"
-                        alt="course image"
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__course-img"
-                        ]
-                        }
-                    />
-                    <Card.Body
-                        className={
-                        styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body"
-                        ]
-                        }
-                    >
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__card-header"
-                            ]
-                        }
-                        >
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
-                            ]
-                            }
-                        >
-                            <img
-                            src="/images/trainer img.png"
-                            alt="trainer image"
-                            />
-                        </div>
-                        <div
-                            className={
-                            styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details"
-                            ]
-                            }
-                        >
-                            <h1
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                ]
-                            }
-                            >
-                            إحتراف التصوير بالكاميرا
-                            </h1>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                ]
-                            }
-                            >
-                            م. محمد مصطفي
-                            </div>
-                        </div>
-                        </div>
-
-                        <div
-                        className={
-                            styles[
-                            "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                        }
-                        >
-                        <div className="d-inline-block">
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                ]
-                                }
-                            >
-                                850
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                            <div
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                ]
-                            }
-                            >
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                ]
-                                }
-                            >
-                                950
-                            </span>
-                            <span
-                                className={
-                                styles[
-                                    "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                ]
-                                }
-                            >
-                                جنية مصري
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="d-inline-block">
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}  
-                            xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 25 22.135">
-                            <g id="add_to_cart" data-name="add to cart" transform="translate(-989 -650)">
-                                <g id="Group_10771" data-name="Group 10771" transform="translate(1003.676 664.648)">
-                                <g id="Group_9975" data-name="Group 9975" transform="translate(0 0)">
-                                    <path id="Path_12759" data-name="Path 12759" d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z" transform="translate(-341.547 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10770" data-name="Group 10770" transform="translate(989 650)">
-                                <g id="Group_9977" data-name="Group 9977" transform="translate(0 0)">
-                                    <path id="Path_12760" data-name="Path 12760" d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z" transform="translate(0 -21.705)" fill="#222"/>
-                                </g>
-                                </g>
-                                <g id="Group_10772" data-name="Group 10772" transform="translate(993.719 664.648)">
-                                <g id="Group_9979" data-name="Group 9979" transform="translate(0 0)">
-                                    <path id="Path_12761" data-name="Path 12761" d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z" transform="translate(-109.806 -362.612)" fill="#222"/>
-                                </g>
-                                </g>
-                            </g>
-                            </svg>
-
-                            </Button>
-                            <Button
-                            className={
-                                styles[
-                                "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                            }
-                            >
-                            
-                            <svg className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 20.571 18">
-    <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-        <path d="M18.562,33.2a5.494,5.494,0,0,0-7.5.546l-.792.816-.792-.816a5.494,5.494,0,0,0-7.5-.546,5.769,5.769,0,0,0-.4,8.353l7.774,8.028a1.26,1.26,0,0,0,1.82,0l7.774-8.028A5.766,5.766,0,0,0,18.562,33.2Z" stroke="none"/>
-        <path d="M 5.35462474822998 33.66680526733398 C 4.504674911499023 33.66680526733398 3.720794677734375 33.95197296142578 3.088695526123047 34.49063491821289 C 2.242284774780273 35.21304321289062 1.746435165405273 36.23271560668945 1.692474365234375 37.36181259155273 C 1.638875961303711 38.48357391357422 2.045904159545898 39.57950592041016 2.80848503112793 40.36787414550781 L 10.27174949645996 48.07412719726562 L 17.7353458404541 40.36752319335938 C 18.49968528747559 39.5787353515625 18.90761566162109 38.48318481445312 18.85453414916992 37.36177444458008 C 18.80109596252441 36.23286437988281 18.30541610717773 35.21321487426758 17.45979499816895 34.49146270751953 C 16.82672500610352 33.95196533203125 16.04329490661621 33.66680526733398 15.19420528411865 33.66680526733398 C 14.12225532531738 33.66680526733398 13.06226539611816 34.12616348266602 12.28523540496826 34.92791366577148 L 10.2737455368042 37.00065231323242 L 8.26032543182373 34.92589569091797 C 7.48636531829834 34.12572479248047 6.427274703979492 33.66680526733398 5.35462474822998 33.66680526733398 M 5.354625701904297 31.96680068969727 C 6.852423667907715 31.96680068969727 8.36213493347168 32.58594131469727 9.482254981994629 33.74399566650391 L 10.27375507354736 34.55960464477539 L 11.06526470184326 33.74399566650391 C 13.08620452880859 31.65876007080078 16.36069488525391 31.32126617431641 18.56244468688965 33.19757461547852 C 21.08560562133789 35.35110473632812 21.21819496154785 39.21621322631836 18.95618438720703 41.55054473876953 L 11.18177509307861 49.57808685302734 C 10.67955589294434 50.09637069702148 9.863945960998535 50.09637451171875 9.361715316772461 49.57808685302734 L 1.587305068969727 41.55054473876953 C -0.670684814453125 39.21621322631836 -0.5381050109863281 35.35110473632812 1.985065460205078 33.19757461547852 C 2.964054107666016 32.3632926940918 4.155433654785156 31.96680068969727 5.354625701904297 31.96680068969727 Z" stroke="none" fill="#222"/>
-    </g>
-    </svg>
-
-                            </Button>
-                        </div>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </SwiperSlide>
+                                    </Button>
+                                </div>
+                                </div>
+                            </Card.Body>
+                        </Card>
+                    </SwiperSlide>
+                )
+            })}
+           
            
         </Swiper>
-        </Col>
+        </Col>}
       </Row>}
 
       { step == "begin-learning" && <SuccessState/>}
@@ -2728,3 +1423,7 @@ export default function CheckoutPage() {
     </>
   );
 }
+
+
+export default withAuth(CheckoutPage);
+

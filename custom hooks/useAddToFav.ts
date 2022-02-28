@@ -56,7 +56,7 @@ const useAddToFav = (course?: any,queryParam?:any) => {
         }
       }else{
         Router.push({
-          pathname: "https://tadarab.vercel.app/SignIn",
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
           query: { from: queryParam }
         })
   

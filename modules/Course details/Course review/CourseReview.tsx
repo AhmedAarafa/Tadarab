@@ -19,7 +19,7 @@ export default function CourseReview() {
     useEffect(() => {
        scrollspyHandler("reviews-section");
        axiosInstance
-        .get(`courses/32720/reviews/?country_code=eg`)
+        .get(`courses/1540/reviews/?country_code=eg`)
         .then(function (response:any) {
             setCourseReviews(response.data.data);
         })

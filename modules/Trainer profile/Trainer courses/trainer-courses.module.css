@@ -75,7 +75,21 @@
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body {
-  padding: 0.54rem 0.9rem 0 0.9rem;
+  padding: 0.54rem 0.9rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: unset;
+      -ms-flex-align: unset;
+          align-items: unset;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 40.5%;
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header {
@@ -89,15 +103,8 @@
       -ms-flex-pack: unset;
           justify-content: unset;
   position: relative;
-}
-
-.trainer-courses-box__trainer-courses__course-card__card-body__card-header:before {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -0.9rem;
-  width: 100%;
-  border-bottom: 0.045rem solid rgba(34, 34, 34, 0.1);
+  padding: 0 0 0.7813rem 0;
+  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__trainer-img-box img {
@@ -116,6 +123,10 @@
   font-weight: 800;
   color: #222222;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 12.3rem;
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author {
@@ -124,7 +135,6 @@
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details {
-  margin-top: 1.44rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -194,12 +204,12 @@
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon {
+.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
   width: 1.395rem;
   height: 1.53rem;
 }
 
-.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__fav-icon {
+.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
   width: 1.2717rem;
   height: 1.1025rem;
 }
@@ -262,6 +272,7 @@
   }
   .trainer-courses-box__trainer-courses__course-card__card-body {
     padding: 1.5rem 2.5rem 0 2.5rem;
+    height: 37.5%;
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__card-header {
     display: -webkit-box;
@@ -274,10 +285,7 @@
         -ms-flex-pack: unset;
             justify-content: unset;
     position: relative;
-  }
-  .trainer-courses-box__trainer-courses__course-card__card-body__card-header:before {
-    bottom: -2.5rem;
-    width: 100%;
+    padding: 0 0 1.95325rem 0;
     border-bottom: 0.125rem solid rgba(34, 34, 34, 0.1);
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__card-header__trainer-img-box img {
@@ -291,12 +299,12 @@
   .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__title {
     font-size: 2.5rem;
     margin: 0;
+    width: 33.3rem;
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author {
     font-size: 2.0325rem;
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details {
-    margin-top: 4rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -349,11 +357,11 @@
   .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:hover, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:active, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:focus {
     background-color: rgba(0, 0, 0, 0.07);
   }
-  .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon {
+  .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 3.875rem;
     height: 4.25rem;
   }
-  .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__fav-icon {
+  .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
     width: 3.5325rem;
     height: 3.0625rem;
   }

@@ -374,9 +374,22 @@ input:-webkit-autofill:active{
   content: '▲';
   }
 
+
+  .card-number-frame,
+  .expiry-date-frame,
+  .cvv-frame{
+    height:3rem;
+    border: 0.0625rem solid #2222221A;
+        border-radius: 0.75rem;
+        font-size: 1.0625rem;
+        color: $dark-black;
+        margin: 1rem 0 ;
+  }
+
+
 @media(min-width: 1400px){
   .container-xxl{
-    max-width: 1961px !important;
+    max-width: 1961px !important; 
   }
 }
 
@@ -605,6 +618,19 @@ input:-webkit-autofill:active{
   
     }
   
+  }
+  .card-number-frame,
+  .expiry-date-frame,
+  .cvv-frame{
+      height:3rem*2.3;
+      border: 0.0625rem*2.3 solid #2222221A;
+      border-radius: 0.75rem*2.3;
+      *{
+
+        font-size: 1.0625rem*2.3;
+      }
+      color: $dark-black;
+      margin: 1rem*2.3 0 ;
   }
 
 }

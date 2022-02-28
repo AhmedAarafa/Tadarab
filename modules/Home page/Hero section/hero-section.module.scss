@@ -7,10 +7,11 @@
 .categories-cards-col {
     position: relative;
     background-color: white;
+    display: none;
 }
 
 .hero-section__container {
-    margin: 12.875rem -2.2rem 0 0;
+    margin: 10rem -2.2rem 0 0;
     display: inline-block;
 }
 
@@ -119,7 +120,7 @@
 .hero-section__hero-img {
     width: 31.75rem;
     height: 30rem;
-    margin-top: 10.175rem;
+    margin-top: 6rem;
     margin-right: -5.5rem;
 }
 

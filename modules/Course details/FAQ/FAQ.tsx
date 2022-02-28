@@ -9,7 +9,7 @@ export default function FAQ() {
 
   useEffect(() => {
     axiosInstance
-    .get("courses/32720/faqs")
+    .get("courses/1540/faqs")
     .then(function (response:any) {
         // console.log("response",response);
         setFaqs(response.data.data);

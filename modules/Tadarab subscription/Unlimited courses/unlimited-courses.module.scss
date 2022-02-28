@@ -1,0 +1,186 @@
+@import "../../../styles/mixins";
+
+.unlimited-courses {
+    margin: 6.875rem 8.75rem 0 8.75rem;
+}
+
+.unlimited-courses__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: $dark-black;
+
+    // width: 19.6875rem;
+    span {
+        color: $primary-red;
+        margin: 0 0.1rem;
+    }
+}
+
+.unlimited-courses__brief {
+    font-size: 1.0625rem;
+    color: $grey;
+    margin: 0.8rem 0 0 0;
+}
+
+.unlimited-courses__search-bar-container {
+    position: relative;
+    box-shadow: 0 0 1.625rem #0000001A;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    font-weight: 400;
+    padding: 0.4rem 0rem 0.4rem 0rem;
+    letter-spacing: 0;
+    background-color: white;
+    margin-top: 1.5rem;
+    width: 27.188rem;
+    @include flex(center);
+
+}
+
+
+.unlimited-courses__search-bar-container__search-bar {
+    border: 0 !important;
+    padding: 0rem 1rem 0rem 0;
+    font-family: 'Almarai', sans-serif;
+    width: 70%;
+    height: fit-content;
+    font-size: 1.063rem;
+    color: rgba(34, 34, 34, 0.5);
+
+    &:active,
+    &:focus {
+        outline: 0 !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+    }
+
+    &::placeholder {
+        color: rgba(51, 51, 51, 0.5);
+    }
+
+}
+
+.unlimited-courses__search-bar__btn {
+    @include contained-button;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    width: 7.5rem;
+    height: 2.75rem;
+    margin-right: 0.2rem;
+
+    svg {
+        margin: 0 0.625rem 0 0;
+    }
+}
+
+.unlimited-courses__subscription-value {
+    width: 17.8125rem;
+    height: 3.75rem;
+    background-color: $pale-red;
+    color: $primary-red;
+    font-size: 1rem;
+    font-weight: 700;
+    @include flex(center, center);
+    box-shadow: 0 0 1.625rem #0000001A;
+    border-radius: 0.625rem;
+    margin: 1.25rem 0 0 0;
+
+    span {
+        font-weight: 800;
+        font-size: 1.875rem;
+        margin: 0 0.15rem 0.5rem 0.15rem;
+
+    }
+}
+
+.unlimited-courses__video-container {
+    img {
+        width: 28.125rem;
+        height: 18.75rem;
+        margin: 0 5.625rem 0 0;
+        border-radius: 1.25rem;
+    }
+}
+
+
+@media (max-width: 575px) {
+
+    .unlimited-courses {
+        margin: 11.5rem 5rem 0 5rem;
+    }
+
+    .unlimited-courses__title {
+        font-size: 1.75rem*2.3;
+        text-align: center;
+
+        span {
+            margin: 0 0.1rem*2.3;
+        }
+    }
+
+    .unlimited-courses__brief {
+        font-size: 1.0625rem*2.3;
+        margin: 0.8rem*2.3 0 0 0;
+        text-align: center;
+    }
+
+    .unlimited-courses__search-bar-container {
+        box-shadow: 0 0 1.625rem*2.3 #0000001A;
+        border-radius: 0.75rem*2.3;
+        padding: 0.4rem*2.3 0rem*2.3 0.4rem*2.3 0rem*2.3;
+        margin-top: 1.5rem*2.3;
+        width: 100%;
+        @include flex(center);
+    }
+
+
+    .unlimited-courses__search-bar-container__search-bar {
+        border: 0 !important;
+        padding: 0rem*2.3 1rem*2.3 0rem*2.3 0;
+        width: 62%;
+        font-size: 1.063rem*2;
+
+    }
+
+    .unlimited-courses__search-bar__btn {
+        @include contained-button;
+        font-size: 1rem*2.3;
+        width: 7.5rem*2.3;
+        height: 2.75rem*2.3;
+        margin-right: 0.2rem*2.3;
+        border-radius: 0.625rem*2.3;
+
+
+        svg {
+            margin: 0 0.625rem*2.3 0 0;
+            width: 0.625rem*2.3;
+            height: 1rem*2.3;
+        }
+    }
+
+    .unlimited-courses__subscription-value {
+        width: 100%;
+        height: 3.75rem*2.3;
+        font-size: 1rem*2.3;
+        @include flex(center, center);
+        box-shadow: 0 0 1.625rem*2.3 #0000001A;
+        border-radius: 0.625rem*2.3;
+        margin: 1.25rem*2.3 0 0 0;
+
+        span {
+            font-size: 1.875rem*2.3;
+            margin: 0 0.15rem*2.3 0.5rem*2.3 0.15rem*2.3;
+
+        }
+    }
+
+    .unlimited-courses__video-container {
+        img {
+            width: 100%;
+            height: 18.75rem*1.8;
+            margin: 5rem 0 0 0;
+            border-radius: 1.25rem*2.3;
+        }
+    }
+}

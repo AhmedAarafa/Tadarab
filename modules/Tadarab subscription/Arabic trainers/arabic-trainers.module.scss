@@ -1,0 +1,439 @@
+@import "../../../styles/mixins";
+
+.arabic-trainers {
+    margin: 3.125rem 0 0 0;
+}
+
+.arabic-trainers__title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: $dark-black;
+    text-align: center;
+
+    span {
+        color: $primary-red;
+        margin: 0 0.3rem 0 0;
+    }
+}
+
+.arabic-trainers__brief {
+    font-size: 1rem;
+    color: $grey;
+    text-align: center;
+    margin: 0.625rem 0 0 0;
+}
+
+
+.arabic-trainers__cards-carousel {
+    padding-top: 2rem;
+
+    &>div {
+        padding: 0 2rem !important;
+        @include inset-box-shadow(white);
+
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 43% !important;
+        }
+    }
+
+}
+
+.arabic-trainers__cards-carousel__card {
+    width: 18.75rem*0.8;
+    height: 21.875rem*0.8;
+    box-shadow: 0 0.5rem*0.8 1.313rem*0.8 #0000001A;
+    border-radius: 0.75rem*0.8;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    @include flex(unset, flex-end);
+    display: inline-flex;
+    // background: transparent url('/images/trainer img.png') no-repeat padding-box;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.arabic-trainers__cards-carousel__card__card-body {
+    padding: 0;
+    // background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.14) 10%,
+            rgba(0, 0, 0, 0.24) 20%,
+            rgba(0, 0, 0, 0.34) 30%,
+            rgba(0, 0, 0, 0.44) 40%,
+            rgba(0, 0, 0, 0.54) 50%,
+            rgba(0, 0, 0, 0.64) 60%,
+            rgba(0, 0, 0, 0.74) 70%,
+            rgba(0, 0, 0, 0.84) 80%,
+            rgba(0, 0, 0, 0.84) 90%,
+            rgba(0, 0, 0, 0.84) 100%);
+
+    padding: 0 1rem 1.5rem*0.8 1rem;
+
+    div {
+        height: fit-content;
+    }
+}
+
+.arabic-trainers__cards-carousel__card__trainer {
+    font-size: 1.25rem*0.8;
+    font-weight: 700;
+    margin: 2.5rem*0.8 0 0.313rem*0.8 0;
+}
+
+.arabic-trainers__cards-carousel__card__job-title,
+.arabic-trainers__cards-carousel__card__job-history {
+    font-size: 0.813rem*0.8;
+    padding: 0;
+}
+
+.arabic-trainers__cards-carousel__card__job-history {
+    max-height: fit-content;
+    width: 95%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.arabic-trainers__subscribe-box {
+    margin: 1.9375rem 0 0 0;
+
+    div:nth-of-type(1) {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: $dark-black;
+        text-align: center;
+    }
+
+    div:nth-of-type(2) {
+        margin: 1.125rem 0 0 0;
+        @include flex(unset, center)
+    }
+}
+
+.arabic-trainers__search-bar-container {
+    position: relative;
+    box-shadow: 0 0 1.625rem #0000001A;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    font-weight: 400;
+    padding: 0.4rem 0rem 0.4rem 0rem;
+    letter-spacing: 0;
+    background-color: white;
+    width: 31rem;
+    @include flex(center);
+
+}
+
+
+.arabic-trainers__search-bar-container__search-bar {
+    border: 0 !important;
+    padding: 0rem 1rem 0rem 0;
+    font-family: 'Almarai', sans-serif;
+    width: 73.5%;
+    height: fit-content;
+    font-size: 1.063rem;
+    color: rgba(34, 34, 34, 0.5);
+
+    &:active,
+    &:focus {
+        outline: 0 !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+    }
+
+    &::placeholder {
+        color: rgba(51, 51, 51, 0.5);
+    }
+
+}
+
+.arabic-trainers__search-bar__btn {
+    @include contained-button;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    width: 7.5rem;
+    height: 2.75rem;
+    margin-right: 0.2rem;
+
+    svg {
+        margin: 0 0.625rem 0 0;
+    }
+}
+
+@media (max-width:1200px) {
+
+
+    .arabic-trainers__cards-carousel {
+        padding-top: 2.563rem*1.05;
+
+        &>div {
+            padding: 0 2rem*1.05 !important;
+            @include inset-box-shadow(white);
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+
+                &:after {
+                    font-size: 1rem*1.3 !important;
+                    box-shadow: 0 0 1.25rem*1.3 #00000033 !important;
+                }
+            }
+
+            &>div:nth-child(1) {
+                right: 1rem*1.3 !important;
+
+                &:after {
+                    padding: 1.5rem*1.3 1.18rem*1.3 1.5rem*1.3 1.28rem*1.3 !important;
+                }
+
+            }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.3 !important;
+
+                &:after {
+                    padding: 1.5rem*1.3 1.28rem*1.3 1.5rem*1.3 1.18rem*1.3 !important;
+                }
+            }
+        }
+
+    }
+
+    .arabic-trainers__cards-carousel__card {
+        width: 18.75rem*1.05;
+        height: 21.875rem*1.05;
+        box-shadow: 0 0.5rem*1.05 1.313rem*1.05 #0000001A;
+        border-radius: 0.75rem*1.05;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        @include flex(unset, flex-end);
+        display: inline-flex;
+        // background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        // background-size: contain; 
+    }
+
+    .arabic-trainers__cards-carousel__card__card-body {
+        padding: 0;
+        // background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+
+        padding: 0 1rem*1.05 1.5rem*1.05 1rem*1.05;
+    }
+
+    .arabic-trainers__cards-carousel__card__trainer {
+        font-size: 1.25rem*1.05;
+        font-weight: 700;
+        margin: 2.5rem*1.05 0 0.313rem*1.05 0;
+    }
+
+    .arabic-trainers__cards-carousel__card__job-title,
+    .arabic-trainers__cards-carousel__card__job-history {
+        font-size: 0.813rem*1.05;
+        padding: 0;
+    }
+
+}
+
+@media (max-width:980px) {
+
+
+    .arabic-trainers__cards-carousel {
+        padding-top: 2.563rem*1.335;
+
+        &>div {
+            padding: 0 2rem*1.335 !important;
+            @include inset-box-shadow(white);
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+
+                &:after {
+                    font-size: 1rem*1.5 !important;
+                    box-shadow: 0 0 1.25rem*1.5 #00000033 !important;
+                }
+            }
+
+            &>div:nth-child(1) {
+                right: 1rem*1.5 !important;
+
+                &:after {
+                    padding: 1.5rem*1.5 1.18rem*1.5 1.5rem*1.5 1.28rem*1.5 !important;
+                }
+
+            }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.5 !important;
+
+                &:after {
+                    padding: 1.5rem*1.5 1.28rem*1.5 1.5rem*1.5 1.18rem*1.5 !important;
+                }
+            }
+        }
+
+    }
+
+    .arabic-trainers__cards-carousel__card {
+        width: 18.75rem*1.335;
+        height: 21.875rem*1.335;
+        box-shadow: 0 0.5rem*1.335 1.313rem*1.335 #0000001A;
+        border-radius: 0.75rem*1.335;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        @include flex(unset, flex-end);
+        display: inline-flex;
+        // background: transparent url('/images/trainer img.png') no-repeat padding-box;
+        // background-size: contain; 
+    }
+
+    .arabic-trainers__cards-carousel__card__card-body {
+        padding: 0;
+        // background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+
+        padding: 0 1rem*1.335 1.5rem*1.335 1rem*1.335;
+
+    }
+
+    .arabic-trainers__cards-carousel__card__trainer {
+        font-size: 1.25rem*1.335;
+        font-weight: 700;
+        margin: 2.5rem*1.335 0 0.313rem*1.335 0;
+    }
+
+    .arabic-trainers__cards-carousel__card__job-title,
+    .arabic-trainers__cards-carousel__card__job-history {
+        font-size: 0.813rem*1.335;
+        padding: 0;
+    }
+}
+
+@media (max-width:575px) {
+
+    .arabic-trainers {
+        margin: 3.125rem*2.3 0 0 0;
+    }
+
+    .arabic-trainers__title {
+        font-size: 1.875rem*2.3;
+
+        span {
+            margin: 0 0.3rem*2.3 0 0;
+        }
+    }
+
+    .arabic-trainers__brief {
+        font-size: 1rem*2.3;
+        text-align: center;
+        margin: 0.625rem*2.3 0 0 0;
+    }
+
+    .arabic-trainers__cards-carousel {
+        padding-top: 6.406rem;
+
+        &>div {
+            padding: 0 2rem*2.4 !important;
+
+            &:before {
+                box-shadow: none;
+            }
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 43% !important;
+            }
+        }
+
+    }
+
+    .arabic-trainers__cards-carousel__card {
+        width: 18.75rem*2.4;
+        height: 21.875rem*2.4;
+        box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
+        border-radius: 0.75rem*2.4;
+        @include flex(unset, flex-end);
+    }
+
+    .arabic-trainers__cards-carousel__card__card-body {
+        padding: 0;
+        // background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+        padding: 0 2rem 1.5rem*2.4 2rem;
+    }
+
+    .arabic-trainers__cards-carousel__card__trainer {
+        font-size: 1.25rem*2.4;
+        font-weight: 700;
+        margin: 2.5rem*2.4 0 0.313rem*2.4 0;
+    }
+
+    .arabic-trainers__cards-carousel__card__job-title,
+    .arabic-trainers__cards-carousel__card__job-history {
+        font-size: 0.813rem*2.4;
+        padding: 0;
+    }
+
+
+    .arabic-trainers__subscribe-box {
+        margin: 1.9375rem*2.3 0 0 0;
+        padding: 0 5rem;
+
+        div:nth-of-type(1) {
+            font-size: 1.375rem*1.8;
+            text-align: center;
+        }
+
+        div:nth-of-type(2) {
+            margin: 1.125rem*2.3 0 0 0;
+            @include flex(unset, center)
+        }
+    }
+
+    .arabic-trainers__search-bar-container {
+        position: relative;
+        box-shadow: 0 0 1.625rem*2.3 #0000001A;
+        border-radius: 0.75rem*2.3;
+        overflow: hidden;
+        padding: 0.4rem*2.3 0rem*2.3 0.4rem*2.3 0rem*2.3;
+        letter-spacing: 0;
+        background-color: white;
+        width: 100%;
+        @include flex(center);
+
+    }
+
+
+    .arabic-trainers__search-bar-container__search-bar {
+        border: 0 !important;
+        padding: 0rem*2.3 1rem*2.3 0rem*2.3 0;
+        width: 62%;
+        height: fit-content;
+        font-size: 1.063rem*2;
+
+
+    }
+
+    .arabic-trainers__search-bar__btn {
+        @include contained-button;
+        font-size: 1rem*2.3;
+        width: 7.5rem*2.3;
+        height: 2.75rem*2.3;
+        margin-right: 0.2rem*2.3;
+        border-radius: 0.625rem*2.3;
+
+
+        svg {
+            margin: 0 0.625rem*2.3 0 0;
+            width: 0.625rem*2.3;
+            height: 1rem*2.3;
+        }
+    }
+
+}

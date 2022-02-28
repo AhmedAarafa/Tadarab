@@ -82,8 +82,8 @@
     @include flex(center, center);
 
     img {
-        width: 2.8125rem;
-        height: 2.8125rem;
+        width: 2rem;
+        height: 2rem;
     }
 
 }
@@ -250,8 +250,8 @@
         @include flex(center, center);
 
         img {
-            width: 2.8125rem*1.4;
-            height: 2.8125rem*1.4;
+            width: 2rem*1.4;
+            height: 2rem*1.4;
         }
 
     }
@@ -357,8 +357,8 @@
         @include flex(center, center);
 
         img {
-            width: 2.8125rem*2.2;
-            height: 2.8125rem*2.2;
+            width: 2rem*2.2;
+            height: 2rem*2.2;
         }
 
     }

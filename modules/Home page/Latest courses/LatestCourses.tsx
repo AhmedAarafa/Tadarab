@@ -36,7 +36,7 @@ function LatestCourses() {
 
   const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [placement, setPlacement] = useState<any>();
-  const [latestCourses, setLatestCourses] = useState([]);
+  const [latestCourses, setLatestCourses] = useState<any>([]);
   const [filterType, setFilterType] = useState("best-seller");
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
@@ -65,19 +65,10 @@ function LatestCourses() {
     })
     }else{
       Router.push({
-        pathname: "https://tadarab.vercel.app/SignIn",
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
         query: { from: "/HomePage" }
       })
     }
-    // console.log("course" , course);
-    // course.is_in_favorites = !course.is_in_favorites;
-    // (async function setToFav(){
-    //   await  setFavourite([...favourite,course.id]);
-    //   localStorage.setItem("FAVOURITE" , JSON.stringify([...favourite,course.id]));
-    // })();
-    // console.log("storedFavCourses", localStorage.getItem("FAVOURITE"));
-    // const storedFavCourses:any = localStorage.getItem("FAVOURITE");
-    // setLatestCourses([...latestCourses]);
   }
 
   const handleCartActionBtn = (course:any):any =>{
@@ -87,7 +78,7 @@ function LatestCourses() {
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
            setLatestCourses(response.data.data.best_seller_courses);
-           dispatch(setCartItems(firstresponse.totalItems));
+           dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
       })
@@ -95,36 +86,107 @@ function LatestCourses() {
     else{
       const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",false);
       handleCartResponse.then(function(response:any) {
-          dispatch(setCartItems(response));
-        //  setLocalCartItems(response);
-          setLatestCourses([...latestCourses]);
+        // console.log(response.data.data);
+          dispatch(setCartItems(response.data.data));
+          let newArray:any = latestCourses; 
+         response.data.data?.forEach((element:any) => {
+          newArray.forEach((ele:any) => {
+              if(element.id === ele.id){
+                // console.log(ele);
+                ele.is_in_cart = true;
+            }
+        });
+    });
+    setLatestCourses([...newArray]);
+       
       })
-
     }
-    // setLatestCourses([...latestCourses]);
   }
 
   useEffect(() => {
 
       setLatestCourses(homePageData.data?.best_seller_courses || []);
       const localStorageItems:any = localStorage.getItem("cart");
-      // setLocalCartItems(JSON.parse(localStorageItems) || []);
-      // (homePageData.data?.latest_courses || []).forEach((item:any) => {
-      //   // if(localStorageItems == [] || localStorageItems == undefined){
-      //   //   item.is_in_cart = false;
-      //   //   item.is_in_favorites = false;
-      //   // }
-      //   if((JSON.parse(localStorageItems) || []).includes(item.id)){
-      //     item.is_in_cart = true;
-      //     console.log(item);
-      //     // setLatestCourses([...latestCourses]);
-          
-      //   }
-      // });
-      
-    // }
+      axiosInstance
+        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .then(function (response:any) {
+          // console.log(response);
+          let newArray:any = homePageData.data?.best_seller_courses;
+         response.data.data.forEach((element:any) => {
+          newArray.forEach((ele:any) => {
+              if(element.id === ele.id){
+                // console.log(ele);
+                ele.is_in_cart = true;
+                // newArray.ele.is_in_cart = true;
+                // console.log("newArray",newArray);
+              }
+            });
+          });
+          setLatestCourses([...newArray]);
+
+      })
+      .catch(function (error) {
+        console.log(error); 
+      });
 
   }, [homePageData]);
+
+  // useEffect(() => {
+
+  //     setLatestCourses(homePageData.data?.best_seller_courses || []);
+  //     const localStorageItems:any = localStorage.getItem("cart");
+  //     axiosInstance
+  //       .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+  //       .then(function (response:any) {
+  //         console.log(response);
+  //         response.data.data.forEach((element:any) => {
+  //           console.log(element);
+  //           console.log(homePageData.data?.best_seller_courses);
+            
+  //         });
+  //       //   if(latestCourses.some((course:any) => localStorageItems.includes(JSON.stringify(course.id)) )){
+  //       //     console.log("Object found inside the array.");
+  //       // } else{
+  //       //     console.log("Object not found.");
+  //       // }
+  //           // console.log("not logged in",response.data.data);
+  //           // // dispatch(setCartItems(response.data.data));
+  //           // let newArray = latestCourses.forEach((element:any) => {
+
+  //           //   response.data.data.forEach((elem:any) => {
+  //           //     if(element.id == elem.id){
+  //           //       return {...elem, is_in_cart: !elem.is_in_cart}
+  //           //     }
+  //           //     console.log("elem",elem);
+                
+  //           //     return elem;
+  //           //   });
+              
+  //           // });
+  //           // console.log("newArray",newArray);
+            
+  //           // setLatestCourses(newArray);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error); 
+  //     });
+  //     // setLocalCartItems(JSON.parse(localStorageItems) || []);
+  //     // (homePageData.data?.latest_courses || []).forEach((item:any) => {
+  //     //   // if(localStorageItems == [] || localStorageItems == undefined){
+  //     //   //   item.is_in_cart = false;
+  //     //   //   item.is_in_favorites = false;
+  //     //   // }
+  //     //   if((JSON.parse(localStorageItems) || []).includes(item.id)){
+  //     //     item.is_in_cart = true;
+  //     //     console.log(item);
+  //     //     // setLatestCourses([...latestCourses]);
+          
+  //     //   }
+  //     // });
+      
+  //   // }
+
+  // }, []);
 
   useEffect(() => {
     const seeMoreBtn:any = document.getElementById("see-more");
@@ -307,7 +369,6 @@ function LatestCourses() {
             }}
             className="mySwiper"
           >
-
             {
               latestCourses.map((course:any , i:number)=>{
                 return (
@@ -362,7 +423,7 @@ function LatestCourses() {
                     >
                       ماذا ستتعلم في الدورة؟
                     </div>
-                    { course.key_points.slice(0,6).map((kp:string,i:number)=>{
+                    { course?.key_points?.slice(0,6).map((kp:string,i:number)=>{
                       return(
                     <div key={i}
                       className={
@@ -387,7 +448,7 @@ function LatestCourses() {
                   </div>
                   
                       {
-                      course.key_points.length > 6 ?
+                      course.key_points?.length > 6 ?
                       <Link href="/CourseDetails">
 
                         <div className={styles["latest-courses__show-more-link"]}>
@@ -420,7 +481,8 @@ function LatestCourses() {
                         }
                       >
 
-                        <div
+                        {course.categories !== undefined &&
+                          <div
                           className={
                             styles[
                               "latest-courses__cards-carousel__course-card__category-chip"
@@ -429,7 +491,7 @@ function LatestCourses() {
                           style={{backgroundColor:course.categories[0].color}}
                         > 
                         {course.categories[0].title} 
-                        </div>
+                        </div>}
 
                         <Link href="/CourseDetails">
 
@@ -467,7 +529,7 @@ function LatestCourses() {
                               }
                             >
                               <img
-                                src={course.trainer.image}
+                                src={course.trainer?.image}
                                 alt="trainer image"
                               />
                             </div>
@@ -497,7 +559,7 @@ function LatestCourses() {
                                   ]
                                 }
                               >
-                                {course.trainer.name_ar}
+                                {course.trainer?.name_ar}
                               </div>
                             </div>
                           </div>

@@ -53,12 +53,10 @@
 }
 
 .statistics__details > div {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 8rem;
 }
 
-.statistics__details__img {
+.statistics__details__img svg {
   width: 4.938rem;
   height: 3.125rem;
 }
@@ -130,11 +128,9 @@
     padding-bottom: 8.75rem;
   }
   .statistics__details > div {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+    width: 50%;
   }
-  .statistics__details__img {
+  .statistics__details__img svg {
     width: 12.345rem;
     height: 7.8125rem;
   }

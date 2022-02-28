@@ -26,33 +26,56 @@ interface SignInFormValues {
 export default function SignInPage() {
     const [isVisible, setIsVisible] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [validationAfterSubmit, setValidationAfterSubmit] = useState({email:false,password:false});
+    const [fieldBlur, setFieldBlur] = useState({email:"",password:""});
+
     const router:any = useRouter();
   const dispatch = useDispatch();
 
+  const showHidePasswordHandler = () => {
+      const passwordField: any = document.getElementById("password-field");
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        setIsVisible(true);
+      } else {
+        passwordField.type = "password";
+        setIsVisible(false);
+      }
+    };
 
-   
-    const showHidePasswordHandler = () => {
-        const passwordField: any = document.getElementById("password-field");
-        if (passwordField.type === "password") {
-          passwordField.type = "text";
-          setIsVisible(true);
-        } else {
-          passwordField.type = "password";
-          setIsVisible(false);
-        }
-      };
+    function validationSchema() {
+      return Yup.object().shape({
+        email: Yup.string()
+        .required("خانة البريد الإلكتروني مطلوبه"),
+        password: Yup.string()
+        .required("خانة كلمة المرور مطلوبه "),
+      });
+    }
 
       const initialValues: SignInFormValues = {  
         email:'',
         password:'',
       };
 
-      const validate = Yup.object({
-        email: Yup.string()
-        ,
-        password: Yup.string()
-        ,
-      });
+      const handleValidationOnSubmit = ():any =>{
+        if(fieldBlur.email == ""){
+          const newValidationState = validationAfterSubmit;
+          newValidationState.email = true;
+          setValidationAfterSubmit(newValidationState);
+        }
+        if(fieldBlur.password == ""){
+          const newValidationState = validationAfterSubmit;
+          newValidationState.password = true;
+          setValidationAfterSubmit(newValidationState);
+        }
+    }
+
+      // const validate = Yup.object({
+      //   email: Yup.string()
+      //   .required("خانة البريد الإلكتروني مطلوبه"),
+      //   password: Yup.string()
+      //   .required("خانة كلمة المرور مطلوبه "),
+      // });
 
   return (
     <>
@@ -69,7 +92,7 @@ export default function SignInPage() {
                 جوجل
             </div>
             <div>
-            <FbIcon/>
+            <FbIcon color="#1977f3"/>
                 فيسبوك
             </div>
             <div>
@@ -83,10 +106,13 @@ export default function SignInPage() {
           </div>
           
           <div className={styles["sign-in__sign-in-box__sign-in-form-box"]}>
-            <Formik initialValues={initialValues}
-            onSubmit={(values, actions) => {
+            <Formik 
+            validateOnChange={false}
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+            onSubmit={(values) => {
               //  console.log({ values, actions });
-               actions.setSubmitting(false);
+              //  actions.setSubmitting(false);
                axiosInstance
                 .post(`login`, {
                   "email": values.email,
@@ -96,7 +122,7 @@ export default function SignInPage() {
                   // console.log("Response.message",response);
                   // setResponse(response.data);
                   // console.log("Response",response);
-                  if(response.data.status_code.startsWith("2")){
+                  if(JSON.stringify(response.status).startsWith("2")){
                     console.log("success");
                     if(response.data.data !== null){
                       localStorage.setItem("token" , response.data.data.token);
@@ -114,7 +140,7 @@ export default function SignInPage() {
                         totalItems.push(item.id);
                       });
                       localStorage.setItem("cart" , JSON.stringify(totalItems));
-                      dispatch(setCartItems(totalItems));
+                      dispatch(setCartItems(response.data.data));
                      
                       })
                       .catch((error:any)=>{
@@ -131,7 +157,7 @@ export default function SignInPage() {
                          totalItems.push(item.id);
                        });
                        localStorage.setItem("cart" , JSON.stringify(totalItems));
-                      dispatch(setCartItems(totalItems));
+                      dispatch(setCartItems(response.data.data));
                     
                       })
                       .catch(function (error) {
@@ -146,11 +172,9 @@ export default function SignInPage() {
                       // router.push(router.back());
                       Router.back();
                    }else{
-                     Router.push("https://tadarab.vercel.app/HomePage");
+                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}HomePage`);
                    }
-                  }else if(response.data.status_code.startsWith(4) ||
-                  response.data.status_code.startsWith(5)
-                  ){
+                  }else {
                     console.log("error 4xx or 5xx");
                     setErrorMessage(response.data.message);
                     // setTimeout(() => {
@@ -162,27 +186,48 @@ export default function SignInPage() {
                   console.log("errrrr", error);
                 })
              }}
-             validationSchema={validate}
             >
-          {({ touched, errors, isSubmitting , isValid , dirty}) => (
+          {({ resetForm,errors,handleBlur }) => (
 
               <Form>
                 
                   <div className={`${styles["sign-in__sign-in-box__sign-in-form-box__email-field-container"]} 
-                  ${ errors.email ? styles["required"] : null}`}>
+                  ${ errors.email && validationAfterSubmit.email && styles["required"]}`}>
                     <div className={styles["sign-in__sign-in-box__sign-in-form-box__icon-wrapper"]}>
                     <EnvelopeIcon/>
                     </div>
-                    <Field type="email" name="email" placeholder="البريد الالكتروني" className={styles["sign-in__sign-in-box__sign-in-form-box__email-field"]}/>
+                    <Field
+                    onKeyPress={ (e:any)=>{
+                      e.stopPropagation();
+                      // setServerResponse({value:"" , color:""});
+                      setValidationAfterSubmit({...validationAfterSubmit,email:false});
+                  } }
+                  onBlur={(e:any) => {
+                    handleBlur(e);
+                    setErrorMessage("");
+                    setFieldBlur({...fieldBlur, email:e.target.value});
+                }}
+                     type="email" name="email" placeholder="البريد الالكتروني" className={styles["sign-in__sign-in-box__sign-in-form-box__email-field"]}/>
                   </div>
-                  <ErrorMessage name="email"  component="div" className={styles["error-msg"]}/>
+                  { validationAfterSubmit.email && <ErrorMessage name="email"  component="div" className={styles["error-msg"]}/>}
 
                   <div className={`${styles["sign-in__sign-in-box__sign-in-form-box__password-field-container"]} 
-                  ${ errors.password ? styles["required"] : null}`}>
+                  ${ errors.password && validationAfterSubmit.password && styles["required"]}`}>
                     <div className={styles["sign-in__sign-in-box__sign-in-form-box__icon-wrapper"]}>
                     <LockIcon/>
                     </div>
-                    <Field type="password" name="password" placeholder="كلمة المرور"  id="password-field" className={styles["sign-in__sign-in-box__sign-in-form-box__password-field"]}/>
+                    <Field 
+                     onKeyPress={ (e:any)=>{
+                      e.stopPropagation();
+                      // setServerResponse({value:"" , color:""});
+                      setValidationAfterSubmit({...validationAfterSubmit,password:false});
+                  } }
+                  onBlur={(e:any) => {
+                    handleBlur(e);
+                    setErrorMessage("");
+                    setFieldBlur({...fieldBlur, password:e.target.value});
+                }}
+                    type="password" name="password" placeholder="كلمة المرور"  id="password-field" className={styles["sign-in__sign-in-box__sign-in-form-box__password-field"]}/>
                    
                    <div className={styles["sign-in__sign-in-box__sign-in-form-box__show-password-icon-wrapper"]}>
                      <div onClick={()=>showHidePasswordHandler()}>
@@ -192,7 +237,7 @@ export default function SignInPage() {
                     
                     </div>
                   </div>
-                  <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>
+                  { validationAfterSubmit.password &&  <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
                   
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__forget-password"]}>
                   هل نسيت كلمة المرور؟
@@ -200,7 +245,7 @@ export default function SignInPage() {
 
                   <div className="position-relative">
                     {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
-                  <Button type="submit" className={styles["sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn"]}>
+                  <Button onClick={handleValidationOnSubmit} type="submit" className={styles["sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn"]}>
                   تسجيل الدخول
                   </Button>
                      </div>

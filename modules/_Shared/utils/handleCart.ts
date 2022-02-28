@@ -11,8 +11,13 @@ if(isAuthenticated == true){
         .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
         .then((response:any) => {
          const totalItems:any = [];
-          response.data.data.forEach((item:any)=>{
+         console.log("response.data.data",response.data.data);
+         const cartResponse:any = response.data.data;
+         
+          response.data.data?.forEach((item:any)=>{
             totalItems.push(item.id);
+            console.log(totalItems);
+            
           });
           localStorage.setItem("cart" , JSON.stringify(totalItems));
 
@@ -20,7 +25,7 @@ if(isAuthenticated == true){
             return response ;
           })
 
-          return ({resp,totalItems})
+          return ({resp,cartResponse})
         })
         .catch((error:any)=>{
           console.log("error", error);
@@ -31,6 +36,8 @@ if(isAuthenticated == true){
         .then((response:any) => {
          const totalItems:any = [];
           console.log("Response",response);
+         const cartResponse:any = response.data.data;
+
           response.data.data.forEach((item:any)=>{
           totalItems.push(item.id);
           });
@@ -40,7 +47,7 @@ if(isAuthenticated == true){
             return response ;
           })
 
-          return ({resp,totalItems})
+          return ({resp,cartResponse})
 
         })
         .catch((error:any)=>{
@@ -58,7 +65,17 @@ if(isAuthenticated == true){
         localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
         //   dispatch(setCartItems(uniqeStoredCartCourses));
         //   setLatestCourses([...latestCourses]);
-        return uniqeStoredCartCourses;
+        
+        return (axiosInstance
+          .get(`courses/?country_code=eg&course_ids=${JSON.stringify(uniqeStoredCartCourses)?.replace(/[\[\]']+/g,'')}`)
+          .then(function (response:any) {
+            console.log(response.data.data);
+            return response;
+        })
+      .catch(function (error) {
+        console.log(error); 
+      }));
+
       })())
       }else{
         course.is_in_cart = false;
@@ -69,7 +86,15 @@ if(isAuthenticated == true){
               return ele != course.id; 
           });
           localStorage.setItem("cart" , JSON.stringify(resultedItems));
-          return resultedItems ;
+          return (axiosInstance
+          .get(`courses/?country_code=eg&course_ids=${JSON.stringify(resultedItems)?.replace(/[\[\]']+/g,'')}`)
+          .then(function (response:any) {
+            console.log(response.data.data);
+            return response;
+        })
+        .catch(function (error) {
+          console.log(error); 
+        }));
         })())
     //   dispatch(setCartItems(resultedItems));
 

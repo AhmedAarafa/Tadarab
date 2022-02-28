@@ -13,7 +13,7 @@ export default function PracticalProjects() {
   useEffect(() => {
 
     axiosInstance
-    .get(`courses/32720/projects/?country_code=eg`)
+    .get(`courses/1540/projects/?country_code=eg`)
     .then(function (response:any) {
         setCourseProjects(response.data.data);
     })

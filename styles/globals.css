@@ -12324,6 +12324,17 @@ input:-webkit-autofill:active {
   content: '▲';
 }
 
+.card-number-frame,
+.expiry-date-frame,
+.cvv-frame {
+  height: 3rem;
+  border: 0.0625rem solid #2222221A;
+  border-radius: 0.75rem;
+  font-size: 1.0625rem;
+  color: #222222;
+  margin: 1rem 0;
+}
+
 @media (min-width: 1400px) {
   .container-xxl {
     max-width: 1961px !important;
@@ -12576,6 +12587,20 @@ input:-webkit-autofill:active {
     height: 2.875 !important;
     -webkit-transform: rotate(-90deg) !important;
             transform: rotate(-90deg) !important;
+  }
+  .card-number-frame,
+  .expiry-date-frame,
+  .cvv-frame {
+    height: 6.9rem;
+    border: 0.14375rem solid #2222221A;
+    border-radius: 1.725rem;
+    color: #222222;
+    margin: 2.3rem 0;
+  }
+  .card-number-frame *,
+  .expiry-date-frame *,
+  .cvv-frame * {
+    font-size: 2.44375rem;
   }
 }
 

@@ -1,9 +1,26 @@
-import React from "react";
+import React,{ useState, useEffect } from "react";
 import Navbar from "common/Navbar/Navbar";
 import TrainerProfilePage from "modules/Trainer profile/Trainer profile page/TrainerProfilePage";
 import { Container } from "react-bootstrap";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { setTrainerProfileData } from "configurations/redux/actions/trainerProfileData"; 
 
 export default function TrainerProfile() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+      axiosInstance
+      .get(`trainers/10253/?country_code=eg`)
+      .then(function (response:any) {
+          dispatch(setTrainerProfileData(response.data.data));
+      })
+      .catch(function (error) {
+        console.log(error); 
+      });
+      
+    }, []);
+
   return (
     <>
       <Container fluid="xxl">

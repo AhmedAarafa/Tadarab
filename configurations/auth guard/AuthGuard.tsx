@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { useEffect } from "react";
 import SignIn from "pages/SignIn";
+import { setCartItems } from "configurations/redux/actions/cartItems"; 
 
 const withAuth = (Component:any) => {
   const Auth = (props:any) => {
@@ -10,6 +11,7 @@ const withAuth = (Component:any) => {
     const dispatch = useDispatch();
 
     const userAuthState = useSelector((state:any) => state.userAuthentication);
+    const cartItems = useSelector((state:any) => state.cartItems);
 
     useEffect(() => {
       if (localStorage.getItem("token")) {

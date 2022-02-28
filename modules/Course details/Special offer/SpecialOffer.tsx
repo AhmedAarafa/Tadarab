@@ -12,7 +12,7 @@ export default function SpecialOffer() {
 
     useEffect(() => {
           axiosInstance
-          .get(`courses/32720/special-bundle/?country_code=eg`)
+          .get(`courses/1540/special-bundle/?country_code=eg`)
           .then(function (response:any) {
             setSpecialBundleData(response?.data?.data);
             // console.log("response.data.courses",response?.data?.data); 

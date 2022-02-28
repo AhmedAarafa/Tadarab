@@ -39,7 +39,7 @@ function HomePage() {
 
     return (
         <>
-        <Container fluid="xxl">
+        <Container fluid="xxl" >
             <Navbar/>
             <HeroSection/>
             <LatestCourses />

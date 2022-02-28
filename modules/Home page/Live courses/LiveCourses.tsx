@@ -9,12 +9,16 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon,LiveIcon,PlayIcon,CartIcon,FavouriteIcon,AddedToCartIcon,ContainedBellIcon,AddedToFavouriteIcon,BellIcon}  from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
-
+import { handleFav } from "modules/_Shared/utils/handleFav";
+import { handleCart } from "modules/_Shared/utils/handleCart";
+import { setCartItems } from "configurations/redux/actions/cartItems"; 
 
 export default function LiveCourses() {
     SwiperCore.use([Navigation]);
+  const dispatch = useDispatch();
+
     const homePageData = useSelector((state:any) => state.homePageData);
-    const [liveCourses, setLiveCourses] = useState([]);
+    const [liveCourses, setLiveCourses] = useState<any>([]);
     const userStatus = useSelector((state:any) => state.userAuthentication);
 
     const handleSubscribeBtn = (course:any):any =>{
@@ -58,7 +62,7 @@ export default function LiveCourses() {
         }
       }else{
         Router.push({
-          pathname: "https://tadarab.vercel.app/SignIn",
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
           query: { from: "/HomePage" }
         })
   
@@ -66,99 +70,64 @@ export default function LiveCourses() {
       setLiveCourses([...liveCourses]);
     }
     const handleCartActionBtn = (course:any):any =>{
-      if(userStatus.isUserAuthenticated == true){
-        if(course.is_in_cart == false){
-  
-          axiosInstance
-          .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
-          .then((response:any) => {
-           const totalItems:any = [];
-            console.log("Response",response);
-            response.data.data.forEach((item:any)=>{
-              totalItems.push(item.id);
-            });
-            localStorage.setItem("cart" , JSON.stringify(totalItems));
-            axiosInstance
-            .get("home/?country_code=eg")
-            .then(function (response:any) {
-              setLiveCourses(response.data.data.live_courses);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+    
+      if(userStatus?.isUserAuthenticated == true){
+        const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",true);
+        handleCartResponse.then(function(firstresponse:any) {
+          firstresponse.resp.then(function(response:any){
+            setLiveCourses(response.data.data.live_courses);
+             dispatch(setCartItems(firstresponse.cartResponse));
           })
-          .catch((error:any)=>{
-            console.log("error", error);
-          });
-  
-  
-        }else{
-          axiosInstance
-          .delete(`users/cart/?country_code=eg`, { data:{"item_id" : course.id}})
-          .then((response:any) => {
-           const totalItems:any = [];
-            console.log("Response",response);
-            response.data.data.forEach((item:any)=>{
-            totalItems.push(item.id);
-            });
-            localStorage.setItem("cart" , JSON.stringify(totalItems));
-  
-            axiosInstance
-            .get("home/?country_code=eg")
-            .then(function (response:any) {
-              setLiveCourses(response.data.data.live_courses);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-          })
-          .catch((error:any)=>{
-            console.log("error", error);
-          });
-  
-        }
-      }else{
-        if(course.is_in_cart == false){
-          course.is_in_cart = true;
-          (async function (){ 
-          const storedCartCourses:any = await localStorage.getItem("cart");
-          
-          const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
-          localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
-            setLiveCourses([...liveCourses]);
-        })();
-        }else{
-          course.is_in_cart = false;
-          const localStorageItems:any = localStorage.getItem("cart");
-         const resultedItems:any = JSON.parse(localStorageItems).filter(function(ele:any){ 
-            return ele != course.id; 
-        });
-        localStorage.setItem("cart" , JSON.stringify(resultedItems));
-  
-        setLiveCourses([...liveCourses]);
-  
-        }
+        //  setLocalCartItems(response.totalItems);
+        })
       }
+      else{
+        const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",false);
+        handleCartResponse.then(function(response:any) {
+            dispatch(setCartItems(response.data.data));
+            let newArray:any = liveCourses;
+            response.data.data?.forEach((element:any) => {
+             newArray.forEach((ele:any) => {
+                 if(element.id === ele.id){
+                   // console.log(ele);
+                   ele.is_in_cart = true;
+               }
+           });
+       });
+       setLiveCourses([...newArray]);
+          
+        })
+      }
+      // setLatestCourses([...latestCourses]);
     }
 
-    useEffect(() => { 
-      
-      // axiosInstance
-      // .get("home/?country_code=eg")
-      // .then(function (response:any) {
-      //   setLiveCourses(response.data.data.live_courses);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
 
-    
-      // return () => {
-      // };
-      // setLiveCourses(homePageData.data.live_courses);
-      // if(homePageData !== {}){
+    useEffect(() => { 
+  
         setLiveCourses(homePageData.data?.live_courses || []);
-      // }
+        const localStorageItems:any = localStorage.getItem("cart");
+      axiosInstance
+        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .then(function (response:any) {
+          // console.log(response);
+          let newArray:any = homePageData.data?.live_courses;
+         response.data.data.forEach((element:any) => {
+          newArray.forEach((ele:any) => {
+              if(element.id === ele.id){
+                // console.log(ele);
+                ele.is_in_cart = true;
+                // newArray.ele.is_in_cart = true;
+                // console.log("newArray",newArray);
+              }
+            });
+          });
+          setLiveCourses([...newArray]);
+
+      })
+      .catch(function (error) {
+        console.log(error); 
+      });
+
     }, [homePageData]);
     
   return (

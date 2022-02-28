@@ -62,31 +62,6 @@ export default function SignupPage() {
       phoneField.addEventListener('blur', updateValue);
       phoneField.addEventListener('change', updateValue);
 
-      // const arrow:any = document.getElementsByClassName("down" || "up")[0];
-      // const countryList:any = document.getElementsByClassName("country-list")[0];
-      // const intlTelInput:any = document.getElementsByClassName("intl-tel-input")[0];
-   
-      // (dialCodeBtn || arrow).addEventListener("click",  (e:any)=>{
-      //   if(countryList.classList.contains("hide")){
-      //     // e.preventDefault();
-      //     console.log("countryList",arrow);
-      //     // countryList.style.cssText=`display:block`;
-      //     countryList.classList.remove("hide");
-      //     intlTelInput.classList.add("expanded");
-      //     arrow?.classList.remove("down");
-      //     arrow?.classList.add("up");
-      //   }else{
-      //     // e.preventDefault();
-      //     console.log("not contains");
-      //     countryList.classList.add("hide");
-      //     intlTelInput.classList.remove("expanded");
-      //     arrow?.classList.remove("up");
-      //     arrow?.classList.add("down");
-      //     // countryList.style.cssText=`display:none`;
-
-      //   }
-        
-      // })
       const intlTelInput:any = document.querySelector('.intl-tel-input .selected-dial-code');
       setTimeout(() => {
             intlTelInput?.classList.remove("selected-dial-code");
@@ -94,6 +69,27 @@ export default function SignupPage() {
     }, []);
  
 
+    function validationSchema() {
+      return Yup.object().shape({
+        name: Yup.string()
+        .required("خانة الإسم مطلوبه")
+        .min(5, "الإسم يجب ان يكون 5 حروف او أكثر"),
+        email: Yup.string()
+        .required("خانة البريد الإلكتروني مطلوبه")
+        .email("البريد الإلكتروني غير مناسب")
+        .matches(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        ,'البريد الإلكتروني غير مناسب'),
+        phoneNumber: Yup.string()
+        .required("خانة الرقم مطلوبه")
+        .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي علي حروف او رموز خاصه')
+        .min(5, "رقم الهاتف يجب ان يكون 5 أرقام او أكثر")
+        .typeError("رقم الهاتف غير مناسب"),
+        password: Yup.string()
+        .required("خانة كلمة المرور مطلوبه")
+        .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر"),
+      });
+    }
     
    
     const showHidePasswordHandler = () => {
@@ -114,22 +110,45 @@ export default function SignupPage() {
         password:'',
       };
 
-      const validate = Yup.object().shape({
-        name: Yup.string()
-        .min(7, "الإسم يجب ان يكون 5 حروف او أكثر"),
-        // required("خانة الإسم مطلوبه"),   
-        email: Yup.string()
-        .email("البريد الإلكتروني غير مناسب"),
-        // .required("خانة البريد الإلكتروني مطلوبه"),
-        phoneNumber: Yup.string()
-        .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي علي حروف او رموز خاصه')
-        .min(5, "رقم الهاتف غير مناسب")
-        .typeError("رقم الهاتف غير مناسب"),
-        // .required("خانة الرقم مطلوبه"),
-        password: Yup.string()
-        .min(5, "كلمة السر يجب ان تكون 5 حروف او أكثر"),
-        // .required("خانة كلمة السر مطلوبه"),
-      });
+    const handleValidationOnSubmit = ():any =>{
+      if(fieldBlur.name == ""){
+        const newValidationState = validationAfterSubmit;
+        newValidationState.name = true;
+        setValidationAfterSubmit(newValidationState);
+      }
+      if(fieldBlur.email == ""){
+        const newValidationState = validationAfterSubmit;
+        newValidationState.email = true;
+        setValidationAfterSubmit(newValidationState);
+      }
+      if(fieldBlur.phone == ""){
+        const newValidationState = validationAfterSubmit;
+        newValidationState.phoneNumber = true;
+        setValidationAfterSubmit(newValidationState);
+      }
+      if(fieldBlur.password == ""){
+        const newValidationState = validationAfterSubmit;
+        newValidationState.password = true;
+        setValidationAfterSubmit(newValidationState);
+      }
+    }
+
+      // const validate = Yup.object().shape({
+      //   name: Yup.string()
+      //   .min(7, "الإسم يجب ان يكون 5 حروف او أكثر")
+      //   .required("خانة الإسم مطلوبه"),   
+      //   email: Yup.string()
+      //   .email("البريد الإلكتروني غير مناسب")
+      //   .required("خانة البريد الإلكتروني مطلوبه"),
+      //   phoneNumber: Yup.string()
+      //   .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي علي حروف او رموز خاصه')
+      //   .min(5, "رقم الهاتف غير مناسب")
+      //   .typeError("رقم الهاتف غير مناسب")
+      //   .required("خانة الرقم مطلوبه"),
+      //   password: Yup.string()
+      //   .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر")
+      //   .required("خانة كلمة المرور مطلوبه"),
+      // });
 
 
       const handleCountryCode = (country:any)=>{
@@ -155,7 +174,7 @@ export default function SignupPage() {
                 جوجل
             </div>
             <div>
-            <FbIcon/>
+            <FbIcon color="#1977f3"/>
                 فيسبوك
             </div>
             <div>
@@ -170,12 +189,13 @@ export default function SignupPage() {
           
           <div className={styles["register__register-box__registeration-form-box"]}>
 
-            <Formik  initialValues={initialValues}
-            validateOnChange={false}
-            validateOnBlur={true}
-         onSubmit={(values, actions) => {
+            <Formik  
+             validateOnChange={false}
+             initialValues={initialValues}
+             validationSchema={validationSchema}
+         onSubmit={(values) => {
             //  console.log("ss",{ values, actions });
-           actions.setSubmitting(false);
+          //  actions.setSubmitting(false);
            axiosInstance
             .post(`users`, {
               "email": values.email,
@@ -188,11 +208,9 @@ export default function SignupPage() {
             .then((response:any) => {
               // setResponse(response.data);
               console.log("Response",response);
-              if(response.data.status_code.startsWith("2")){
-                Router.push("https://tadarab.vercel.app/SignIn");
-              }else if(response.data.status_code.startsWith(4) ||
-              response.data.status_code.startsWith(5)
-              ){
+              if(JSON.stringify(response.status).startsWith("2")){
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`);
+              }else {
                 // console.log("error 4xx or 5xx");
                 setErrorMessage(response.data.message);
                 // setTimeout(() => {
@@ -204,36 +222,59 @@ export default function SignupPage() {
               console.log("errrrr", error);
             })
          }}
-         validationSchema={validate}
          >
 
           {({ touched, errors, isSubmitting , isValid , validateOnMount , validateOnBlur, validateOnChange , handleBlur , dirty ,setFieldTouched , setFieldValue}) => (
               <Form >
-                            {/* {console.log("errorsss",isSubmitting)} */}
-                              <div className={`${styles["register__register-box__registeration-form-box__name-field-container"]} ${ ( fieldBlur.name !== "" && errors.name ) && styles["required"]}`}>
+                              <div className={`${styles["register__register-box__registeration-form-box__name-field-container"]} ${ ( validationAfterSubmit.name  && errors.name ) && styles["required"]}`}>
                                 {/* {console.log("isValid",isValid, "errors.name" , errors.name , " dirty" ,dirty) } */}
                                 <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                     <NameFieldIcon/>
                                 </div>
                                 <Field 
+                                 onKeyPress={ (e:any)=>{
+                                  e.stopPropagation();
+                                  setErrorMessage("");
+                                  setValidationAfterSubmit({...validationAfterSubmit,name:false});
+                              } }
                                 onBlur={(e:any) => {
+                                  if(e.target.value !== "" 
+                              &&
+                              e.target.value.length < 5
+                              ){
+                                setValidationAfterSubmit({...validationAfterSubmit,name:true});
+                              }else{
+                                setValidationAfterSubmit({...validationAfterSubmit,name:false});
+                              } 
                                   // call the built-in handleBur
                                   handleBlur(e);
                                   // and do something about e
                                   setFieldBlur({...fieldBlur, name:e.target.value});
-                                  // console.log("e",e.target.value);
                               }}
                                  type="text" name="name"  placeholder="الاسم"
                                  className={styles["register__register-box__registeration-form-box__name-field"]}/>
                               </div>
-                            { fieldBlur.name !== "" && dirty && errors.name && <ErrorMessage name="name" component="div" className={styles["error-msg"]}/>}
+                            { validationAfterSubmit.name  && <ErrorMessage name="name" component="div" className={styles["error-msg"]}/>}
 
-                              <div className={`${styles["register__register-box__registeration-form-box__email-field-container"]} ${ fieldBlur.email !== "" && errors.email && styles["required"]}`}>
+                              <div className={`${styles["register__register-box__registeration-form-box__email-field-container"]} ${ validationAfterSubmit.email  && errors.email && styles["required"]}`}>
                                 <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                 <EnvelopeIcon/>
                                 </div>
                                 <Field
+                                onKeyPress={ (e:any)=>{
+                                  e.stopPropagation();
+                                  setErrorMessage("");
+                                  setValidationAfterSubmit({...validationAfterSubmit,email:false});
+                              } }
                                  onBlur={(e:any) => {
+                                  if(e.target.value !== "" 
+                                  &&
+                                  !e.target.value.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+                                  ){
+                                    setValidationAfterSubmit({...validationAfterSubmit,email:true});
+                                  }else{
+                                    setValidationAfterSubmit({...validationAfterSubmit,email:false});
+                                  } 
                                   // call the built-in handleBur
                                   handleBlur(e);
                                   // and do something about e
@@ -242,19 +283,31 @@ export default function SignupPage() {
                               }}
                                  type="email" name="email" placeholder="البريد الالكتروني" className={styles["register__register-box__registeration-form-box__email-field"]}/>
                               </div>
-                                { fieldBlur.email !== "" && dirty && errors.email && <ErrorMessage name="email"  component="div" className={styles["error-msg"]}/>}
+                                { validationAfterSubmit.email && <ErrorMessage name="email"  component="div" className={styles["error-msg"]}/>}
 
-                                <div className={`${styles["register__register-box__registeration-form-box__phone-field-container"]} ${ fieldBlur.phone !== ""&& errors.phoneNumber ? styles["required"] : null}`}>
+                                <div className={`${styles["register__register-box__registeration-form-box__phone-field-container"]} ${ validationAfterSubmit.phoneNumber && errors.phoneNumber ? styles["required"] : null}`}>
                               <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                 <MobileIcon/>
 
                                 </div>
                              
-                              <IntlTelInput
+                              <IntlTelInput  fieldId="phone-number-field"
                               fieldName="phoneNumber"
                                 preferredCountries={['kw','sa','ae','qa','om','bh','iq','eg']}
                                 separateDialCode={true}
-                                onPhoneNumberBlur={() => {
+                                onPhoneNumberBlur={(e:any) => {
+                                  const phoneNumberField:any = document.getElementById("phone-number-field");
+                                  
+                                  if(phoneNumberField.value !== "" 
+                                  &&
+                                  phoneNumberField.value.length < 5
+                                  &&
+                                  phoneNumberField.value.match(/^\d+$/)
+                                  ){
+                                    setValidationAfterSubmit({...validationAfterSubmit,phoneNumber:true});
+                                  }else{
+                                    setValidationAfterSubmit({...validationAfterSubmit,phoneNumber:false});
+                                  } 
                                   setFieldTouched("phoneNumber", true);
                                   // console.log("eeeee",e);
                                   // const phoneField:any = document.querySelector("input[type='tel']");
@@ -265,6 +318,8 @@ export default function SignupPage() {
                                   setFieldBlur({...fieldBlur, phone:phoneFieldEvent?.target.value});
                                 }}
                                 onPhoneNumberChange={(...args) => {
+                                  setErrorMessage("");
+                                setValidationAfterSubmit({...validationAfterSubmit,phoneNumber:false});
                                   setFieldValue("phoneNumber", args[1]);
                                   const countryDialCode:any = Number(args[2].dialCode);
                                   setCountryCallingCode(countryDialCode);
@@ -285,15 +340,28 @@ export default function SignupPage() {
                                 // }}
                               />
                               </div>
-                                { fieldBlur.phone !== ""&& errors.phoneNumber && <ErrorMessage name="phoneNumber"  component="div" className={styles["error-msg"]}/>}
+                                { validationAfterSubmit.phoneNumber && <ErrorMessage name="phoneNumber"  component="div" className={styles["error-msg"]}/>}
                                 {/* {console.log("fieldBlur.phone",fieldBlur.phone,"dirty",dirty,"errors.phoneNumber",errors.phoneNumber)
                                 } */}
-                              <div className={`${styles["register__register-box__registeration-form-box__password-field-container"]} ${ fieldBlur.password !== "" && dirty && errors.password && styles["required"]}`}>
+                              <div className={`${styles["register__register-box__registeration-form-box__password-field-container"]} ${ validationAfterSubmit.password && errors.password && styles["required"]}`}>
                                 <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                                 <LockIcon/>
                                 </div>
                                 <Field
+                                onKeyPress={ (e:any)=>{
+                                  e.stopPropagation();
+                                  setErrorMessage("");
+                                  setValidationAfterSubmit({...validationAfterSubmit,password:false});
+                              } }
                                 onBlur={(e:any) => {
+                                  if(e.target.value !== "" 
+                                  &&
+                                  e.target.value.length < 5
+                                  ){
+                                    setValidationAfterSubmit({...validationAfterSubmit,password:true});
+                                  }else{
+                                    setValidationAfterSubmit({...validationAfterSubmit,password:false});
+                                  } 
                                   // call the built-in handleBur
                                   handleBlur(e);
                                   // and do something about e
@@ -308,12 +376,12 @@ export default function SignupPage() {
                              </div>
                                 </div>
                               </div>
-                                { fieldBlur.password !== ""&& errors.password && <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
+                                { validationAfterSubmit.password && <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
 
                               <div className="position-relative">
 
                                 {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
-                                <Button type="submit" className={styles["register__register-box__registeration-form-box__make-new-acc-btn"]}>
+                                <Button onClick={handleValidationOnSubmit} type="submit" className={styles["register__register-box__registeration-form-box__make-new-acc-btn"]}>
                                 انشاء حساب جديد
                                 </Button>
                               </div>
@@ -330,7 +398,7 @@ export default function SignupPage() {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["register__img"]}>
-          <img src="/images/register.png" alt="register now" />
+          <img src="/images/signUpDiscImg.png" alt="register now" />
         </Col>
       </Row>
     </>

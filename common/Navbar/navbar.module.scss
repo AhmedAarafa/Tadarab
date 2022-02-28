@@ -84,6 +84,9 @@
     }
 
     &:hover {
+        &+div{
+            display: flex;
+        }
         &>svg {
             transform: rotate(180deg);
             transition: all 0.3s linear;
@@ -92,6 +95,7 @@
 
 
 }
+
 
 .navbar__dark-mode-icon {
     background-color: #0E0B1D;
@@ -179,6 +183,19 @@
     text-align: center;
 }
 
+.navbar__discover-popover__wrapper{
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    top: 4.8rem;
+    right: 10rem;
+    margin-top: -2rem;
+    display: none;
+    &:hover{
+        display: flex;
+     
+    }
+}
 
 .navbar__discover-popover__box {
     display: inline-block;
@@ -221,9 +238,13 @@
 }
 
 .navbar__discover-popover {
-    display: none;
-    top: 4.8rem;
+    display: flex;
+    // top: 4.8rem;
+    // right: 10rem;
+    position:static !important;
     @include popover;
+    margin-top: 2rem;
+
 
     div:last-child ul {
         border: 0 !important;
@@ -566,6 +587,9 @@
 
     .navbar {
         justify-content: space-between;
+        span{
+            order: 2;
+        }
 
         a:first-child {
             order: 2;

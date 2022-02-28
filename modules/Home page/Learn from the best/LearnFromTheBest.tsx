@@ -29,7 +29,7 @@ export default function LearnFromTheBest() {
     // if(homePageData !== {}){
       setTrainers(homePageData.data?.trainers || []);
     // }
-    // setTrainers(homePageData.data.trainers);
+    // setTrainers(homePageData.data.trainers); 
 
   }, [homePageData]);
 

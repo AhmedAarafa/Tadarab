@@ -9,6 +9,8 @@ export function handleFav(course:any,endPoint:string){
         .then((response:any) => {
     
            return (getData(endPoint).then(function(response) {
+             console.log(response);
+             
               return response ;
             }))
         })

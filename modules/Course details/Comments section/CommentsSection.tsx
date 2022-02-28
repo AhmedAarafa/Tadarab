@@ -16,7 +16,7 @@ export default function CommentsSection() {
 
     useEffect(() => {
         axiosInstance
-        .get(`courses/32720/comments`)
+        .get(`courses/1540/comments`)
         .then(function (response:any) {
             setCourseComments(response.data.data);
             
@@ -92,7 +92,7 @@ export default function CommentsSection() {
             .post(`courses/comments/${commentId}/likes`)
             .then((response:any) => {
                 axiosInstance
-                .get(`courses/32720/comments`)
+                .get(`courses/1540/comments`)
                 .then(function (response:any) {
                     setCourseComments(response.data.data);
         
@@ -159,7 +159,7 @@ export default function CommentsSection() {
 
         }else{
             Router.push({
-                pathname: "https://tadarab.vercel.app/SignIn",
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
                 query: { from: "/HomePage" }
               })
         }
@@ -174,7 +174,7 @@ export default function CommentsSection() {
         if(userStatus.isUserAuthenticated == true){
         }else{
             Router.push({
-                pathname: "https://tadarab.vercel.app/SignIn",
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
                 query: { from: "/HomePage" }
               })
         }
@@ -187,7 +187,7 @@ export default function CommentsSection() {
         
 
         axiosInstance
-        .post(`courses/32720/comments`,{comment:e.target['0'].value ,reply_to_comment_id:replyTo})
+        .post(`courses/1540/comments`,{comment:e.target['0'].value ,reply_to_comment_id:replyTo})
         .then((response:any) => {
             const CommentTextBox:any = document.querySelector('[name="commentTextArea"]');
             CommentTextBox.value ="";
@@ -204,7 +204,7 @@ export default function CommentsSection() {
             });
 
             axiosInstance
-            .get(`courses/32720/comments`)
+            .get(`courses/1540/comments`)
             .then(function (response:any) {
 
                 setCourseComments(response.data.data);

@@ -44,7 +44,7 @@ function CourseDetails() {
     const navbar:any = document.getElementById("nav");
     let addToCartBtn:any = null;
 
-    if(window.innerWidth >= 576){
+    if(document.documentElement.clientWidth >= 576){
     let addToCartBtn:any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar.style.cssText=`display:none`;
@@ -60,7 +60,7 @@ function CourseDetails() {
         }
       });
     }
-    else if(window.innerWidth < 576){
+    else {
     
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
@@ -95,7 +95,8 @@ function CourseDetails() {
 
     window.addEventListener("resize" , ()=>{
 
-      if(window.innerWidth >= 576){
+      if(document.documentElement.clientWidth >= 576){
+        
     let addToCartBtn:any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar.style.cssText=`display:none`;
@@ -112,7 +113,7 @@ function CourseDetails() {
           }
         });
       }
-      else if(window.innerWidth < 576){
+      else {
     
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
@@ -144,7 +145,7 @@ function CourseDetails() {
     });
 
     axiosInstance
-    .get("courses/32720/?country_code=eg")
+    .get("courses/1540/?country_code=eg")
     .then(function (response:any) {
       // console.log("response",response);
       
@@ -158,7 +159,10 @@ function CourseDetails() {
     return () => {
       window.removeEventListener("resize",()=>{
         return;
-      })
+      });
+      window.removeEventListener("scroll",()=>{
+        return;
+      });
     };
     
     
@@ -174,7 +178,9 @@ function CourseDetails() {
       <Row className={styles["course-details-row"]}>
         <Col xs={12} sm={8}>
           <CourseAdvertisement />
-          {originalCardPlacement == false && <CourseCard />}
+          {originalCardPlacement == false && 
+          <CourseCard />
+           }
           <WhatYouWillLearn />
           <CourseDetailsSection />
           <CourseKeywords />
@@ -186,9 +192,12 @@ function CourseDetails() {
           <FAQ />
           <SpecialOffer />
         </Col>
+        {
+          originalCardPlacement == true &&
         <Col xs={colFullWidth ? 12 : 4} id="card-column">
-          { originalCardPlacement == true && <CourseCard />}
+         {  originalCardPlacement == true &&  <CourseCard />}
         </Col>
+        }
         <PracticalProjects /> 
       </Row>
       <Row className={styles["course-details__course-reviews"]}>

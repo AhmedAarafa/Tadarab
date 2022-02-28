@@ -9,19 +9,17 @@ import TrainerCourses from "../Trainer courses/TrainerCourses";
 export default function TrainerProfilePage() {
 
 
-
   return (
     <>
       <Row className={styles["trainer-profile"]}>
         <Col xs={12} className={styles["trainer-profile__trainer-info"]}>
           <div className={styles["trainer-profile__trainer-info-trainer-card-box"]}>
 
-          <TrainerInfo />
-          <TrainerAccountsCard />
+           <TrainerInfo />
+           <TrainerAccountsCard />
           </div>
           
-        <TrainerCourses />
-
+          <TrainerCourses />
 
         </Col>
       </Row>

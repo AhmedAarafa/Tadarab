@@ -5,7 +5,7 @@ import styles from "./course-advertisement.module.css";
 import VideoPlayer from 'react-video-js-player';
 import VideoJS from './videojs'
 import { useDispatch, useSelector } from "react-redux";  
-import videojs from  "node_modules/videojs-playlist/dist/videojs-playlist.js";
+// import videojs from  "node_modules/videojs-playlist/dist/videojs-playlist.js";
 import ReactPlayer from 'react-player'
 
 export default function CourseAdvertisement() {
@@ -100,7 +100,7 @@ export default function CourseAdvertisement() {
             </div>
             }
 
-        </div>
+        </div> 
             
         </>
     )
