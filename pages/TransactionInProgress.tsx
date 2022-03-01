@@ -4,7 +4,7 @@ import React from 'react';
 export default function TransactionInProgress() {
   return (
     <>
-<!--      <LoopCircleLoading color='#af151f'/> -->
+      <div>Loading...</div>
     </>
   )
 }
