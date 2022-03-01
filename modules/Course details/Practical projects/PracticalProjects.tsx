@@ -38,7 +38,7 @@ export default function PracticalProjects() {
         </div>
       </Col>
 
-      {courseProjects.map((project:any,i:number)=>{
+      {courseProjects?.map((project:any,i:number)=>{
           return(
             <Col key={i} xs={6} className={styles["practical-projects__project-card-col"]}>
                 <div className={styles["practical-projects__project-card"]}>
@@ -75,7 +75,7 @@ export default function PracticalProjects() {
            
         }} className="mySwiper">
             {
-                courseProjects.map((project:any,i:number)=>{
+                courseProjects?.map((project:any,i:number)=>{
                     return(
                         <SwiperSlide key={i}>
                             <div className={styles["practical-projects__project-card"]}>

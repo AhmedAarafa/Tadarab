@@ -65,12 +65,12 @@ export default function CourseReview() {
 
             <div className={styles["course-review__title"]}>التقييم العام للدورة</div>
             <div className={styles["course-review__review-box"]}>
-                <div className={styles["course-review__review-box__number"]}>{courseReviews.reviews_average}</div>
+                <div className={styles["course-review__review-box__number"]}>{courseReviews?.reviews_average}</div>
                 <div className={styles["course-review__review-box__review"]}>
                     <div className={styles["course-review__review-box__review__stars"]}>
                         {
                             [...Array(5)].map((course:any,i:number)=>{
-                                if( i < Math.floor(courseReviews.reviews_average)){
+                                if( i < Math.floor(courseReviews?.reviews_average)){
                                     return(
                                     <ReviewStartIcon key={i}  color="#ffa120"/>
                                     )
@@ -83,7 +83,7 @@ export default function CourseReview() {
                         }
                     </div>
                     <div className={styles["course-review__review-box__review__number-of-reviews"]}>
-                        <span> {courseReviews.reviews_count} </span>
+                        <span> {courseReviews?.reviews_count} </span>
                         <span> تقييم من المتعلمين </span>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ export default function CourseReview() {
 
         <Col xs={12} className={styles["course-review__mobile-view"]}>
             {
-                courseReviews.reviews?.slice(0,reviewsSlicer).map((review:any,i:number)=>{
+                courseReviews?.reviews?.slice(0,reviewsSlicer).map((review:any,i:number)=>{
                     return(
                           <div key={i} className={styles["course-review__cards-carousel__card"]} >
                                 <div className={styles["course-review__cards-carousel__card__reviewer-img"]}>
@@ -217,7 +217,7 @@ export default function CourseReview() {
                 })
             }
             {
-                reviewsSlicer < courseReviews.reviews?.length && 
+                reviewsSlicer < courseReviews?.reviews?.length && 
 
                 <Button onClick={()=> setReviewsSlicer(reviewsSlicer+1)} className={styles["show-all-reviews-btn"]}>
                     اعرض أكثر
@@ -237,7 +237,7 @@ export default function CourseReview() {
             },
         }} className="mySwiper">
             {
-                courseReviews.reviews?.map((review:any, i:number)=>{
+                courseReviews?.reviews?.map((review:any, i:number)=>{
                     return(
 
                         <SwiperSlide key={i}>

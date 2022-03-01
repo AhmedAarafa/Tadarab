@@ -6,6 +6,7 @@ import {Provider, useDispatch} from 'react-redux';
 import {store} from "configurations/redux/store";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import React,{ useState, useEffect } from 'react'
+import TransactionInProgress from "./TransactionInProgress";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // useEffect(() => {
@@ -26,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   });
     
   // }, []);
-  return   <Provider store={store}> <Component {...pageProps} /></Provider> 
+  return   <Provider store={store}> <Component {...pageProps} /></Provider>
 }
 
 export default MyApp
