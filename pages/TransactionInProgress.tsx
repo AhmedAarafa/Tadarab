@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
 // import { BabelLoading,LoopCircleLoading } from "react-loadingg";
 import { axiosInstance } from "configurations/axios/axiosConfig";
@@ -7,10 +6,6 @@ import { TailSpin } from  'react-loader-spinner';
 import { useDispatch, useSelector } from "react-redux";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
-=======
-import React from 'react';
-// import { BabelLoading,LoopCircleLoading } from "react-loadingg";
->>>>>>> dac1a16ecbc5ff8acab52dd483b28ed3c1ad3e55
 
 export default function TransactionInProgress() {
   const router = useRouter();
@@ -37,7 +32,7 @@ export default function TransactionInProgress() {
           setServerResponse("حدث خطأ الرجاء المحاولة مره أخري");
         }
       })
-      .catch(function (error) {
+      .catch(function (error:any) {
         console.log(error); 
       });
     }
@@ -49,15 +44,11 @@ export default function TransactionInProgress() {
   
   return (
     <>
-<<<<<<< HEAD
     <div style={{width:"100vw" , height:"100vh"}} className="d-flex align-items-center justify-content-center position-relative">
 
      { serverResponse !== "حدث خطأ الرجاء المحاولة مره أخري" && <div className="loader"></div>}
      <div className="loader-text" >الرجاء الإنتظار حتي تستكمل هذه العملية</div>
     </div>
-=======
-      <div>Loading...</div>
->>>>>>> dac1a16ecbc5ff8acab52dd483b28ed3c1ad3e55
     </>
   )
 }
