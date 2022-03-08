@@ -2,27 +2,32 @@
 
 
 .success-state {
-    margin-top: 12rem;
+    margin-top: 9rem;
     @include flex(center, center);
     flex-direction: column;
 }
 
 .success-state__img {
-    width: 7rem;
-    height: 6.75rem;
+    svg{
+        width: 7rem;
+        height: 6.75rem;
+    }
 }
 
 .success-state__purchasing-done {
     font-size: 1.875rem;
     font-weight: 800;
     color: $dark-black;
-    margin: 1.25rem 0 0 0;
+    margin: 1.25rem 3rem 0 0;
+    text-align: center;
 }
 
 .success-state__begin-learning {
     font-size: 1.25rem;
     color: $grey;
-    margin: 0.5rem 0 0 0;
+    margin: 0.5rem 3rem 0 0;
+    text-align: center;
+
 }
 
 .success-state__btn {
@@ -51,37 +56,93 @@
     margin: 1.5rem 0 0 0;
 }
 
+.success-state-row__invoice-box {
+    margin : 9.5rem 8rem 0 0;
+    padding: 1.5625rem 1.25rem;
+    width: 21.875rem;
+    height: 28.125rem;
+    box-shadow: 0 0 1.25rem #0000001A;
+    border-radius: 1.25rem;
+    
+}
+
+.success-state-row__invoice-box__title{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.success-state-row__invoice-box__details-box{
+    margin: 1.25rem 0 0 0;
+    @include flex(center,space-between);
+    flex-direction: column;
+    height: 88%;
+}
+.success-state-row__invoice-box__details-box__details{
+    position: relative;
+    width: 100%;
+    @include flex(center,space-between);
+    font-size: 0.75rem;
+    div{
+        background-color: white;
+        z-index: 1;
+    }
+    div:nth-of-type(1){
+        color: $grey;
+        padding: 0 0 0 0.5rem;
+    }
+    div:nth-of-type(2){
+        color: $dark-black;
+        font-weight: 700;
+        padding: 0 0.5rem 0 0;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        @include flex(center,center);
+        text-align: center;
+        border-top: 0.05rem dashed rgba(119, 119, 119, 0.5);
+        width: 100%;
+        transform: translateY(-50%);
+    }
+
+}
+
 @media (max-width:575px){
 
     .success-state {
-        margin-top: 12rem*2.3;
+        margin-top: 9rem*2.3;
         @include flex(center, center);
         flex-direction: column;
     }
     
     .success-state__img {
-        width: 7rem*2.3;
-        height: 6.75rem*2.3;
+        svg{
+            width: 7rem*2.3;
+            height: 6.75rem*2.3;
+        }
     }
     
     .success-state__purchasing-done {
-        font-size: 1.875rem*2.3;
+        font-size: 1.875rem*2.1;
         font-weight: 800;
         color: $dark-black;
-        margin: 1.25rem*2.3 0 0 0;
+        margin: 1.25rem*2.1 5rem  0 5rem;
     }
     
     .success-state__begin-learning {
-        font-size: 1.25rem*2.3;
+        font-size: 1.25rem*2.1;
         color: $grey;
-        margin: 0.5rem*2.3 0 0 0;
+        margin: 0.5rem*2.1 5rem 0 5rem;
     }
     
     .success-state__btn {
         @include contained-button;
         width: 13.75rem*2.3;
         height: 2.8125rem*2.3;
-        margin: 1.3rem*2.3 0 0 0 ;
+        margin: 1.3rem*2.1 0 0 0 ;
         border-radius: 0.625rem*2.3;
     
         span {
@@ -102,5 +163,41 @@
         color: $primary-red;
         margin: 1.5rem*2.3 0 0 0;
     }
+
+    .success-state-row__invoice-box {
+        margin : 7rem 7.5% 10rem 7.5%;
+        padding: 1.5625rem*2.3 1.25rem*2.3;
+        width: 85%;
+        height: 28.125rem*2.3;
+        box-shadow: 0 0 1.25rem*2.3 #0000001A;
+        border-radius: 1.25rem*2.3;
+    }
+    
+    .success-state-row__invoice-box__title{
+        font-size: 1rem*2.3;
+    }
+    
+    .success-state-row__invoice-box__details-box{
+        margin: 1.25rem*2.3 0 0 0;
+        height: 88%;
+    }
+    .success-state-row__invoice-box__details-box__details{
+        width: 100%;
+        @include flex(center,space-between);
+        font-size: 0.75rem*2.3;
+       
+        div:nth-of-type(1){
+            padding: 0 0 0 0.5rem*2.3;
+        }
+        div:nth-of-type(2){
+            padding: 0 0.5rem*2.3 0 0;
+        }
+    
+        &:before {
+            border-top: 0.05rem*2.3 dashed rgba(119, 119, 119, 0.5);
+        }
+    
+    }
+
     
 }

@@ -195,6 +195,10 @@
 .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 0.813rem;
     color: $grey;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 9.688rem;
 
 }
 
@@ -516,6 +520,7 @@
     .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.27;
         color: $grey;
+        width: 13rem;
 
     }
 
@@ -719,6 +724,7 @@
     .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.67;
         color: $grey;
+        width: 16.5rem;
 
     }
 
@@ -948,6 +954,7 @@
 
     .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
         font-size: 0.813rem*2.92;
+        width: 28.5rem;
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details {

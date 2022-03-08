@@ -8,7 +8,7 @@ if(isAuthenticated == true){
     if(course.is_in_cart == false){
 
         return (axiosInstance
-        .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
+        .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id]).replace(/[\[\]']+/g,'')})
         .then((response:any) => {
          const totalItems:any = [];
          console.log("response.data.data",response.data.data);
@@ -38,7 +38,7 @@ if(isAuthenticated == true){
           console.log("Response",response);
          const cartResponse:any = response.data.data;
 
-          response.data.data.forEach((item:any)=>{
+          response?.data?.data?.forEach((item:any)=>{
           totalItems.push(item.id);
           });
           localStorage.setItem("cart" , JSON.stringify(totalItems));

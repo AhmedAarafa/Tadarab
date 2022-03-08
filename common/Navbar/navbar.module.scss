@@ -550,6 +550,35 @@
     cursor: pointer;
 }
 
+.navbar__cart-popover__cart-items-wrapper{
+    max-height: 18.25rem;
+    width: 23rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 0.1rem 0 0 0;
+    /* width */
+&::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent; 
+    border-radius: 0.625rem;
+  }
+   
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 0.625rem;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(123, 122, 122); 
+  }
+}
+
 
 
 @media (max-width:575px) {

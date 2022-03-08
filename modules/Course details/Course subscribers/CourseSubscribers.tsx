@@ -200,7 +200,7 @@ export default function CourseSubscribers() {
                                     ]
                                     }
                                 >
-                                    <h1
+                                    <h1 title={course.title}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -209,7 +209,7 @@ export default function CourseSubscribers() {
                                     >
                                    {course.title}
                                     </h1>
-                                    <div
+                                    <div title={course.trainer.name_ar}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author"
@@ -243,9 +243,12 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course.discounted_price}
+                                        {course.is_purchased && "تم الشراء"}
+                                  {
+                                    !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                  }
                                     </span>
-                                    <span
+                                   { course.discounted_price !== 0 && !course.is_purchased &&   <span
                                         className={
                                         styles[
                                             "course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
@@ -253,10 +256,10 @@ export default function CourseSubscribers() {
                                         }
                                     >
                                         { course.currency_code}
-                                    </span>
+                                    </span>}
                                     </div>
 
-                                    {course.price > course.discounted_price &&
+                                    {(course.price > course.discounted_price) && !course.is_purchased &&
                                     <div
                                     className={
                                         styles[
@@ -288,7 +291,7 @@ export default function CourseSubscribers() {
                                 </div>
 
                                 <div className="d-inline-block">
-                                    <Button onClick={()=>handleCartActionBtn(course)} 
+                                     { !course.is_purchased && <Button onClick={()=>handleCartActionBtn(course)} 
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -305,7 +308,7 @@ export default function CourseSubscribers() {
                                    }
                                     </div>
 
-                                    </Button>
+                                    </Button>}
                                     <Button onClick={()=>handleFavActionBtn(course)}
                                     className={
                                         styles[

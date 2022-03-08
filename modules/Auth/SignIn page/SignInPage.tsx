@@ -131,7 +131,7 @@ export default function SignInPage() {
                     if(localStorage.getItem("cart")){
 
                       axiosInstance
-                      .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart")})
+                      .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart")?.replace(/[\[\]']+/g,'')})
                       .then((response:any) => {
                       //  console.log("response",response);
                        const totalItems:any = [];

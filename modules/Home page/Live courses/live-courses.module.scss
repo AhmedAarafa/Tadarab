@@ -188,6 +188,10 @@
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 0.813rem*0.8;
     color: $grey;
+    width: 13.4375rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -458,6 +462,8 @@
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.04;
         color: $grey;
+        width: 17.5rem;
+        
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -692,6 +698,8 @@
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.35;
         color: $grey;
+        width: 22.5rem;
+
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -937,6 +945,8 @@
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
         font-size: 0.813rem*2.4;
         color: $grey;
+        width: 40.25rem;
+
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {

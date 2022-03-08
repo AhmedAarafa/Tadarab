@@ -132,6 +132,10 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author {
   font-size: 0.7317rem;
   color: #777777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 12.3rem;
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details {
@@ -303,6 +307,7 @@
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author {
     font-size: 2.0325rem;
+    width: 33.3rem;
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details {
     display: -webkit-box;

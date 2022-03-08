@@ -2,14 +2,17 @@
 
 
 .failed-state {
-    margin-top: 12rem;
+    margin-top: 9rem;
     @include flex(center, center);
     flex-direction: column;
 }
 
 .failed-state__img {
-    width: 7rem;
-    height: 6.75rem;
+    svg {
+
+        width: 7rem;
+        height: 6.75rem;
+    }
 }
 
 .failed-state__purchasing-failed {
@@ -27,10 +30,10 @@
 
 .failed-state__btn {
     @include contained-button;
-    @include flex(center,center);
+    @include flex(center, center);
     width: 15.625rem;
     height: 2.8125rem;
-    margin: 1.3rem 0 0 0 ;
+    margin: 1.3rem 0 0 0;
 
     span {
         font-size: 1rem;
@@ -44,60 +47,154 @@
     }
 }
 
-.failed-state__back-to-main-page{
+.failed-state__back-to-main-page {
     font-size: 1rem;
     font-weight: 700;
     color: $primary-red;
     margin: 1.5rem 0 0 0;
+    cursor: pointer;
 }
 
-
-@media (max-width:575px){
+.failed-state-row__invoice-box {
+    margin : 9.5rem 8rem 0 0;
+    padding: 1.5625rem 1.25rem;
+    width: 21.875rem;
+    height: 28.125rem;
+    box-shadow: 0 0 1.25rem #0000001A;
+    border-radius: 1.25rem;
     
-.failed-state {
-    margin-top: 12rem*2.3;
-    @include flex(center, center);
+}
+
+.failed-state-row__invoice-box__title{
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 800;
+    color: $dark-black;
+}
+
+.failed-state-row__invoice-box__details-box{
+    margin: 1.25rem 0 0 0;
+    @include flex(center,space-between);
     flex-direction: column;
+    height: 88%;
+}
+.failed-state-row__invoice-box__details-box__details{
+    position: relative;
+    width: 100%;
+    @include flex(center,space-between);
+    font-size: 0.75rem;
+    div{
+        background-color: white;
+        z-index: 1;
+    }
+    div:nth-of-type(1){
+        color: $grey;
+        padding: 0 0 0 0.5rem;
+    }
+    div:nth-of-type(2){
+        color: $dark-black;
+        font-weight: 700;
+        padding: 0 0.5rem 0 0;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        @include flex(center,center);
+        text-align: center;
+        // top: 50%;
+        // left: 20%;
+        border-top: 0.05rem dashed rgba(119, 119, 119, 0.5);
+        width: 100%;
+        transform: translateY(-50%);
+    }
+
 }
 
-.failed-state__img {
-    width: 7rem*2.3;
-    height: 6.75rem*2.3;
-}
 
-.failed-state__purchasing-failed {
-    font-size: 1.875rem*2.3;
-    margin: 1.25rem*2.3 0 0 0;
-}
+@media (max-width:575px) {
 
-.failed-state__purchasing-failed-brief {
-    font-size: 1.25rem*2.3;
-    margin: 0.5rem*2.3 0 0 0;
-}
+    .failed-state {
+        margin-top: 9rem*2.3;
+        @include flex(center, center);
+        flex-direction: column;
+    }
 
-.failed-state__btn {
-    @include contained-button;
-    width: 15.625rem*2.3;
-    height: 2.8125rem*2.3;
-    margin: 1.3rem*2.3 0 0 0 ;
-    padding: 0.375rem 0.75rem*2.3;
-    border-radius: 0.625rem*2.3;
+    .failed-state__img {
+        svg {
+            width: 7rem*2.3;
+            height: 6.75rem*2.3;
+        }
+    }
 
-    span {
+    .failed-state__purchasing-failed {
+        font-size: 1.875rem*2.1;
+        margin: 1.25rem*2.1 0 0 0;
+    }
+
+    .failed-state__purchasing-failed-brief {
+        font-size: 1.25rem*2.1;
+        margin: 0.5rem*2.1 0 0 0;
+    }
+
+    .failed-state__btn {
+        @include contained-button;
+        width: 15.625rem*2.3;
+        height: 2.8125rem*2.3;
+        margin: 1.3rem*2.1 0 0 0;
+        padding: 0.375rem 0.75rem*2.3;
+        border-radius: 0.625rem*2.3;
+
+        span {
+            font-size: 1rem*2.3;
+        }
+
+        svg {
+            width: 1.25rem*2.3;
+            height: 1.25rem*2.3;
+            margin: 0 0 0 0.5rem*2.3;
+        }
+    }
+
+    .failed-state__back-to-main-page {
+        font-size: 1rem*2.3;
+        margin: 1.5rem*2.1 0 0 0;
+    }
+
+    .failed-state-row__invoice-box {
+        margin : 5rem 7.5% 10rem 7.5%;
+        padding: 1.5625rem*2.3 1.25rem*2.3;
+        width: 85%;
+        height: 28.125rem*2.3;
+        box-shadow: 0 0 1.25rem*2.3 #0000001A;
+        border-radius: 1.25rem*2.3;
+    }
+    
+    .failed-state-row__invoice-box__title{
         font-size: 1rem*2.3;
     }
-
-    svg {
-        width: 1.25rem*2.3;
-        height: 1.25rem*2.3;
-        margin: 0 0 0 0.5rem*2.3;
+    
+    .failed-state-row__invoice-box__details-box{
+        margin: 1.25rem*2.3 0 0 0;
+        height: 88%;
     }
-}
-
-.failed-state__back-to-main-page{
-    font-size: 1rem*2.3;
-    margin: 1.5rem*2.3 0 0 0;
-}
+    .failed-state-row__invoice-box__details-box__details{
+        width: 100%;
+        @include flex(center,space-between);
+        font-size: 0.75rem*2.3;
+       
+        div:nth-of-type(1){
+            padding: 0 0 0 0.5rem*2.3;
+        }
+        div:nth-of-type(2){
+            padding: 0 0.5rem*2.3 0 0;
+        }
+    
+        &:before {
+            border-top: 0.05rem*2.3 dashed rgba(119, 119, 119, 0.5);
+        }
+    
+    }
 
 
 }

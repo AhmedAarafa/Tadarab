@@ -47,7 +47,7 @@ function Navbar() {
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null}));
     dispatch(setCartItems(null));
-    setLocalStateCartItems(null);
+    setLocalStateCartItems([]);
 
     axiosInstance
         .get("home/?country_code=eg",{ headers: {"Authorization" : ``} })
@@ -143,21 +143,25 @@ function Navbar() {
     let localStorageItems:any = localStorage.getItem("cart");
     // console.log("cartItems",cartItems);
     // console.log("localStorageItems",localStorageItems);
-
-    if(userStatus.isUserAuthenticated === true){
+    // if(userStatus.isUserAuthenticated === true){
         // setLocalStateCartItems(cartItems?.data);
+
+      if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
         axiosInstance
         .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
-            // console.log("not logged in",response.data.data);
-            // dispatch(setCartItems(response.data.data));
-
-            setLocalStateCartItems(response.data.data);
-      })
-      .catch(function (error) {
-        console.log(error); 
-      });
+          // console.log("not logged in",response.data.data);
+          // dispatch(setCartItems(response.data.data));
+          
+          setLocalStateCartItems(response?.data?.data);
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
         
+      }else{
+        setLocalStateCartItems([]);
+      }
         // dispatch(setCartItems(response.data.data));
         
         // axiosInstance
@@ -171,24 +175,24 @@ function Navbar() {
         // console.log("logged in");
 
         
-      }else if(userStatus.isUserAuthenticated === false){
+      // }else if(userStatus.isUserAuthenticated === false){
         // console.log("not logged in");
         
         // console.log("localStorageItems",localStorageItems);
         
-        axiosInstance
-        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-        .then(function (response:any) {
-            // console.log("not logged in",response.data.data);
-            // dispatch(setCartItems(response.data.data));
+      //   axiosInstance
+      //   .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+      //   .then(function (response:any) {
+      //       // console.log("not logged in",response.data.data);
+      //       // dispatch(setCartItems(response.data.data));
 
-            setLocalStateCartItems(response.data.data);
-      })
-      .catch(function (error) {
-        console.log(error); 
-      });
+      //       setLocalStateCartItems(response?.data?.data);
+      // })
+      // .catch(function (error) {
+      //   console.log(error); 
+      // });
 
-    }
+    // }
 
 }, [cartItems,userStatus])
 
@@ -388,104 +392,111 @@ function Navbar() {
             <div className={styles["navbar_responsive-search-icon"]}>
             <SearchIcon color="#222"/>
             </div>
-
+{/*  style={{display: localStateCartItems == [] || localStateCartItems == null ?  "none" : null }} */}
+              {console.log(localStateCartItems)
+              }
             <OverlayTrigger
             trigger='click'
             rootClose
               placement="bottom-start"
               overlay={
-                <div className={styles["navbar__cart-popover"]} id="cart-popover">
-                  {
-                    localStateCartItems?.slice(0,2).map((item:any,i:number)=>{
-                      return(
+                <div className={styles["navbar__cart-popover"]} 
+                style={{display: (JSON.stringify(localStateCartItems) == "[]" || localStateCartItems == null) ?  "none" : "" }}
+                id="cart-popover">
+                  <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
 
-                        <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                          <img
-                            src={item.image}
-                            alt="course image"
-                            className={styles["navbar__cart-popover__img"]}
-                          />
-                          <div
-                            className={styles["navbar__cart-popover__course-details"]}
-                          >
+                    {
+                      localStateCartItems?.map((item:any,i:number)=>{
+                        return(
+
+                          <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
+                            <img
+                              src={item.image}
+                              alt="course image"
+                              className={styles["navbar__cart-popover__img"]}
+                            />
                             <div
-                              className={
-                                styles["navbar__cart-popover__course-details__title"]
-                              }
+                              className={styles["navbar__cart-popover__course-details"]}
                             >
-                            {item.title}
-                            </div>
-                            <div
-                              className={
-                                styles["navbar__cart-popover__course-details__author"]
-                              }
-                            >
-                              {" "}
-                              {item.trainer?.name_ar}{" "}
-                            </div>
-                            <div
-                              className={
-                                styles[
-                                  "navbar__cart-popover__course-details__price-container"
-                                ]
-                              }
-                            >
-                              <span
+                              <div
                                 className={
-                                  styles["navbar__cart-popover__course-details__price"]
+                                  styles["navbar__cart-popover__course-details__title"]
                                 }
                               >
-                                {item.price}
-                              </span>
-                              <span
+                              {item.title}
+                              </div>
+                              <div
+                                className={
+                                  styles["navbar__cart-popover__course-details__author"]
+                                }
+                              >
+                                {" "}
+                                {item.trainer?.name_ar}{" "}
+                              </div>
+                              <div
                                 className={
                                   styles[
-                                    "navbar__cart-popover__course-details__currency"
+                                    "navbar__cart-popover__course-details__price-container"
                                   ]
                                 }
                               >
-                                {item?.currency_code}
-                              </span>
-                            </div>
-                            {item.price > item.discounted_price && 
-                            <div
-                              className={
-                                styles[
-                                  "navbar__cart-popover__course-details__old-price-container"
-                                ]
+                                <span
+                                  className={
+                                    styles["navbar__cart-popover__course-details__price"]
+                                  }
+                                >
+                                  {item.price}
+                                </span>
+                                <span
+                                  className={
+                                    styles[
+                                      "navbar__cart-popover__course-details__currency"
+                                    ]
+                                  }
+                                >
+                                  {item?.currency_code}
+                                </span>
+                              </div>
+                              {item.price > item.discounted_price && 
+                              <div
+                                className={
+                                  styles[
+                                    "navbar__cart-popover__course-details__old-price-container"
+                                  ]
+                                }
+                              >
+                                <span
+                                  className={
+                                    styles[
+                                      "navbar__cart-popover__course-details__old-price"
+                                    ]
+                                  }
+                                >
+                                {item.discounted_price}
+                                </span>
+                                <span
+                                  className={
+                                    styles[
+                                      "navbar__cart-popover__course-details__old-price-currency"
+                                    ]
+                                  }
+                                >
+                                  {item?.currency_code}
+                                </span>
+                              </div>
                               }
-                            >
-                              <span
-                                className={
-                                  styles[
-                                    "navbar__cart-popover__course-details__old-price"
-                                  ]
-                                }
-                              >
-                               {item.discounted_price}
-                              </span>
-                              <span
-                                className={
-                                  styles[
-                                    "navbar__cart-popover__course-details__old-price-currency"
-                                  ]
-                                }
-                              >
-                                {item?.currency_code}
-                              </span>
                             </div>
-                            }
                           </div>
-                        </div>
 
-                      )
-                    })
-                  }
+                        )
+                      })
+                    }
+                  </div>
 
-                  <div className={styles["navbar__cart-popover__show-more-link"]}>
+                  {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
                     {localStateCartItems?.length > 2 && "اعرض المزيد"}
                     
-                    </div>
+                    </div> */}
                   <div className={styles["navbar__cart-popover__checkout-box"]}>
                     <div
                       className={

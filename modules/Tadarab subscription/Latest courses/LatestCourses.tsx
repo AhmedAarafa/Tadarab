@@ -499,7 +499,7 @@ function LatestCourses() {
                                   {course.title}
                                 </h1>
                           </Link>
-                              <div
+                              <div title={course.trainer.name_ar}
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
@@ -526,7 +526,7 @@ function LatestCourses() {
                                   ]
                                 }
                               >
-                                 { course.discounted_price !== 0 && <span
+                                 { course.discounted_price !== 0 && !course.is_purchased && <span
                                   className={
                                     styles[
                                       "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
@@ -543,12 +543,15 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                  {course.discounted_price == 0 ? "مجانًا" : course.discounted_price}
+                                   {course.is_purchased && "تم الشراء"}
+                                  {
+                                    !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                  }
                                 </span>
                                
                               </div>
                               {
-                                (course.price > course.discounted_price) &&
+                                (course.price > course.discounted_price) && !course.is_purchased &&
                               <div
                                 className={
                                   styles[
@@ -582,7 +585,7 @@ function LatestCourses() {
                             </div>
 
                             <div >
-                              <Button
+                              { !course.is_purchased &&  <Button
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -606,7 +609,7 @@ function LatestCourses() {
                                    }
                                 </div>
 
-                              </Button>
+                              </Button>}
                               <Button
                                 className={
                                   styles[

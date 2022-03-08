@@ -152,7 +152,7 @@ export default function TrainerCourses() {
                                             >
                                                 {course.title}
                                             </h1>
-                                            <div
+                                            <div title={course.trainer.name_ar}
                                                 className={
                                                     styles[
                                                     "trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author"
@@ -186,10 +186,13 @@ export default function TrainerCourses() {
                                                         ]
                                                     }
                                                 >
-                                                    {course.discounted_price == 0 ? "مجانًا" : course.discounted_price}
+                                                    {course.is_purchased && "تم الشراء"}
+                                                    {
+                                                        !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                                    }
                                                 </span>
                                                 {
-                                                    course.discounted_price !== 0 &&
+                                                    course.discounted_price !== 0 && !course.is_purchased &&
                                                 <span
                                                     className={
                                                         styles[
@@ -204,7 +207,7 @@ export default function TrainerCourses() {
 
                                             </div>
                                             {
-                                                course.price > course.discounted_price &&
+                                                (course.price > course.discounted_price) && !course.is_purchased &&
                                                 <div
                                                     className={
                                                         styles[
@@ -235,7 +238,7 @@ export default function TrainerCourses() {
                                         </div>
 
                                         <div className="d-inline-block">
-                                            <Button
+                                            { !course.is_purchased && <Button
                                                 className={
                                                     styles[
                                                     "trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn"
@@ -252,7 +255,7 @@ export default function TrainerCourses() {
                                                     <CartIcon color="#222"/>
                                                     }
                                                 </div>
-                                            </Button>
+                                            </Button>}
                                             <Button
                                                 className={
                                                     styles[

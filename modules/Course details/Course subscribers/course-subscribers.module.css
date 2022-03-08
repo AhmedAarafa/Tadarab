@@ -157,6 +157,10 @@
 .course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author {
   font-size: 0.62601rem;
   color: #777777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 10.5rem;
 }
 
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details {
@@ -340,6 +344,7 @@
   }
   .course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 0.83739rem;
+    width: 14rem;
   }
   .course-subscribers__cards-carousel__course-card__card-body__checkout-details {
     display: -webkit-box;
@@ -506,6 +511,7 @@
   }
   .course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 1.11381rem;
+    width: 18.5rem;
   }
   .course-subscribers__cards-carousel__course-card__card-body__checkout-details {
     display: -webkit-box;
@@ -683,6 +689,7 @@
   }
   .course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 1.87803rem;
+    width: 31rem;
   }
   .course-subscribers__cards-carousel__course-card__card-body__checkout-details {
     display: -webkit-box;

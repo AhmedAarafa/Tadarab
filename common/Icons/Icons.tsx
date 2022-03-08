@@ -1218,3 +1218,40 @@ export function RemoveIcon(props: { color: string }) {
     </svg>
   );
 }
+
+export function TransactionErrorIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="7rem" height="6.75rem" viewBox="0 0 100 100">
+      <g id="error" transform="translate(0.312 0.143)">
+        <g id="Group_11910" data-name="Group 11910" transform="translate(-0.312 -0.239)">
+          <circle id="Ellipse_262" data-name="Ellipse 262" cx="50" cy="50" r="50" transform="translate(0 0.096)" fill="#e6a0a5" />
+        </g>
+        <path id="exclamation-solid" d="M31.625,42.188a7.812,7.812,0,1,1-7.812-7.812A7.821,7.821,0,0,1,31.625,42.188ZM16.9,2.461l1.328,26.562a2.344,2.344,0,0,0,2.341,2.227h6.479a2.344,2.344,0,0,0,2.341-2.227L30.721,2.461A2.344,2.344,0,0,0,28.38,0H19.245A2.344,2.344,0,0,0,16.9,2.461Z" transform="translate(25.688 24.857)" fill="#fff" />
+      </g>
+    </svg>
+  );
+}
+export function TransactionSuccessIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="7rem" height="6.75rem" viewBox="0 0 112 107.999">
+      <g id="success" transform="translate(6.312 8.142)">
+        <g id="Group_11910" data-name="Group 11910" transform="translate(-0.312 -0.239)">
+          <circle id="Ellipse_262" data-name="Ellipse 262" cx="50" cy="50" r="50" transform="translate(0 0.096)" fill="#31af91" />
+        </g>
+        <g id="Group_11911" data-name="Group 11911" transform="translate(19.068 30.816)">
+          <path id="Path_15065" data-name="Path 15065" d="M47.66,84.365,24.733,61.439a.751.751,0,0,1,0-1.088l6.606-6.606a.751.751,0,0,1,1.088,0L48.2,69.521,77.892,39.833a.751.751,0,0,1,1.088,0l6.606,6.606a.751.751,0,0,1,0,1.088L48.748,84.365A.751.751,0,0,1,47.66,84.365Z" transform="translate(-24.5 -39.6)" fill="#fff" />
+        </g>
+        <path id="Path_15219" data-name="Path 15219" d="M6.65,19.6l1.41-3.58L9.48,19.6l3.58,1.42L9.48,22.43,8.06,26.02,6.65,22.43,3.06,21.02Z" transform="translate(-9.372 64.838)" fill="#31af91" opacity="0.3" />
+        <path id="Path_15220" data-name="Path 15220" d="M10.24,23.18l2.82-7.16,2.84,7.16,7.16,2.84L15.9,28.84l-2.84,7.18-2.82-7.18L3.06,26.02Z" transform="translate(82.628 -24.162)" fill="#31af91" opacity="0.4" />
+      </g>
+    </svg>
+  );
+}
+
+export function RetryIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 20 20">
+      <path id="retry" d="M18.018,8a9.966,9.966,0,0,1,6.889,2.77l1.44-1.44A.968.968,0,0,1,28,10.013v5.406a.968.968,0,0,1-.968.968H21.627a.968.968,0,0,1-.684-1.652l1.683-1.683A6.774,6.774,0,1,0,22.461,23.1a.483.483,0,0,1,.66.022l1.6,1.6a.485.485,0,0,1-.019.7A10,10,0,1,1,18.018,8Z" transform="translate(-8 -8)" fill="#fff" />
+    </svg>
+  );
+}

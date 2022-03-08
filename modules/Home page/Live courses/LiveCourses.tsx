@@ -201,8 +201,8 @@ export default function LiveCourses() {
                           <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                               <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                      <h1 className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
-                                      <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer.name_ar}</div>
+                                      <h1 title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
+                                      <div title={lc.trainer.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer.name_ar}</div>
                                   </div>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
                                   {lc.details}
@@ -219,7 +219,7 @@ export default function LiveCourses() {
                                       ]
                                     }
                                   >
-                                    { lc.discounted_price !== 0 && <span
+                                    { lc.discounted_price !== 0 && !lc.is_purchased && <span
                                       className={
                                         styles[
                                           "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
@@ -236,11 +236,13 @@ export default function LiveCourses() {
                                         ]
                                       }
                                     >
-                                      {lc.discounted_price == 0 ? "مجانًا" : lc.discounted_price}
+                                  {lc.is_purchased && "تم الشراء"}
+
+                                      {!lc.is_purchased && (lc.discounted_price == 0 ? "مجانًا" : lc.discounted_price)}
                                     </span>
                                   
                                   </div>
-                                  { (lc.price > lc.discounted_price) &&
+                                  { (lc.price > lc.discounted_price) && !lc.is_purchased &&
                                   <div
                                     className={
                                       styles[
@@ -271,7 +273,9 @@ export default function LiveCourses() {
                                   }
                                 </div>
                                   <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
-                                    {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon/> : <BellIcon/>} </div>  : <div onClick={()=>handleCartActionBtn(lc)}> { lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>} </div>}
+                                    {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon/> : <BellIcon/>} </div>  
+                                    :
+                                    <div onClick={()=>handleCartActionBtn(lc)}> { !lc.is_purchased && (lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>)} </div>}
                                   </Button>
                               </div>
                           </Card.Body>

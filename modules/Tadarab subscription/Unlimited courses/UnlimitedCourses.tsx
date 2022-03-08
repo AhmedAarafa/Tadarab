@@ -7,7 +7,7 @@ import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
 export default function UnlimitedCourses() {
   return (
       <Row className={styles["unlimited-courses"]}>
-          <Col xs={12} sm={6}>
+          <Col xs={12}>
 
               <div className={styles["unlimited-courses__title"]}>
                   <div>
@@ -48,11 +48,11 @@ export default function UnlimitedCourses() {
               </div>
 
           </Col>
-          <Col xs={12} sm={6}>
+          {/* <Col xs={12} sm={6}>
               <div className={styles["unlimited-courses__video-container"]}>
                   <img src="/images/VideoPlaceholder.png" alt="promo video" />
               </div>
-          </Col>
+          </Col> */}
       </Row>
   )
 }

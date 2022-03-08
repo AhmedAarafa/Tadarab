@@ -2,11 +2,12 @@ import '../styles/globals.css'
 import "swiper/css/bundle";
 import type { AppProps } from 'next/app'
 import 'normalize.css';
-import {Provider, useDispatch} from 'react-redux';
-import {store} from "configurations/redux/store";
+import { Provider, useDispatch } from 'react-redux';
+import { store } from "configurations/redux/store";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import React,{ useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import TransactionInProgress from "./TransactionInProgress";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function MyApp({ Component, pageProps }: AppProps) {
   // useEffect(() => {
@@ -25,9 +26,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   .catch(function (error) {
   //     console.log(error);
   //   });
-    
+
   // }, []);
-  return   <Provider store={store}> <Component {...pageProps} /></Provider>
+  return (
+    <PayPalScriptProvider options={{ "client-id": "AeLqJFQeNFqlkkFkdnwMPpKQb9gkBag-B-34Rym8Pndoi_5u0W305sZzses1NIcyZYENmZjpyKQYxKMu" }}>
+      <Provider store={store}> <Component {...pageProps} /></Provider>
+    </PayPalScriptProvider>
+  )
 }
 
 export default MyApp

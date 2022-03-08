@@ -26,6 +26,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
+import { json } from "stream/consumers";
 
 
 function LatestCourses() {
@@ -107,27 +108,30 @@ function LatestCourses() {
 
       setLatestCourses(homePageData.data?.best_seller_courses || []);
       const localStorageItems:any = localStorage.getItem("cart");
-      axiosInstance
-        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-        .then(function (response:any) {
-          // console.log(response);
-          let newArray:any = homePageData.data?.best_seller_courses;
-         response.data.data.forEach((element:any) => {
-          newArray.forEach((ele:any) => {
-              if(element.id === ele.id){
-                // console.log(ele);
-                ele.is_in_cart = true;
-                // newArray.ele.is_in_cart = true;
-                // console.log("newArray",newArray);
-              }
-            });
-          });
-          setLatestCourses([...newArray]);
+      if(JSON.parse(localStorageItems) !== [] && JSON.parse(localStorageItems) !== null && JSON.parse(localStorageItems) !== undefined){
 
-      })
-      .catch(function (error) {
-        console.log(error); 
-      });
+        axiosInstance
+          .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+          .then(function (response:any) {
+            // console.log(response);
+            let newArray:any = homePageData.data?.best_seller_courses;
+           response.data.data.forEach((element:any) => {
+            newArray.forEach((ele:any) => {
+                if(element.id === ele.id){
+                  // console.log(ele);
+                  ele.is_in_cart = true;
+                  // newArray.ele.is_in_cart = true;
+                  // console.log("newArray",newArray);
+                }
+              });
+            });
+            setLatestCourses([...newArray]);
+  
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
+      }
 
   }, [homePageData]);
 
@@ -552,7 +556,7 @@ function LatestCourses() {
                                   {course.title}
                                 </h1>
                           </Link>
-                              <div
+                              <div title={course.trainer?.name_ar}
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
@@ -579,7 +583,7 @@ function LatestCourses() {
                                   ]
                                 }
                               >
-                                 { course.discounted_price !== 0 && <span
+                                 { course.discounted_price !== 0 && !course.is_purchased && <span
                                   className={
                                     styles[
                                       "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
@@ -596,12 +600,15 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                  {course.discounted_price == 0 ? "مجانًا" : course.discounted_price}
+                                  {course.is_purchased && "تم الشراء"}
+                                  {
+                                    !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                  }
                                 </span>
                                
                               </div>
                               {
-                                (course.price > course.discounted_price) &&
+                                (course.price > course.discounted_price) && !course.is_purchased &&
                               <div
                                 className={
                                   styles[
@@ -634,8 +641,8 @@ function LatestCourses() {
                               
                             </div>
 
-                            <div >
-                              <Button
+                              <div >
+                              { !course.is_purchased && <Button
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -659,7 +666,8 @@ function LatestCourses() {
                                    }
                                 </div>
 
-                              </Button>
+                              </Button>}
+                              
                               <Button
                                 className={
                                   styles[
