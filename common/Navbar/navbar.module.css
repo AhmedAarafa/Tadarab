@@ -140,6 +140,57 @@
   transition: all 0.3s linear;
 }
 
+.navbar__purchased-course-name {
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: #222222;
+  margin: auto 1.5625rem auto 0;
+  padding: 0 1.5625rem 0 0;
+  border-right: 0.0625rem solid rgba(0, 0, 0, 0.2);
+}
+
+.navbar__purchased-course-nav {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #222222;
+  margin: 0 22rem 0 0;
+}
+
+.navbar__purchased-course-nav svg {
+  margin: 0 0 0 0.5rem;
+}
+
+.navbar__purchased-course-nav div {
+  height: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0.55rem 0 0.55rem 3.5rem;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.navbar__purchased-course-nav--active {
+  color: #AF151F;
+  border-bottom: 0.1875rem solid #AF151F;
+}
+
+.navbar__purchased-course-nav__curriculum svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.navbar__purchased-course-nav__certificate svg {
+  width: 1.55rem;
+  height: 1.3rem;
+}
+
+.navbar__three-dots-icon {
+  width: 2rem;
+  height: 2rem;
+  margin: auto 0 auto 0;
+}
+
 .navbar__dark-mode-icon {
   background-color: #0E0B1D;
   border-radius: 50%;
@@ -952,6 +1003,15 @@
     height: 2.7rem;
     margin-left: 1.5rem;
   }
+  .navbar__three-dots-icon {
+    display: none;
+  }
+  .navbar__purchased-course-name {
+    display: none;
+  }
+  .navbar__purchased-course-nav {
+    display: none;
+  }
   .navbar__cart-popover {
     display: none;
   }
@@ -972,6 +1032,9 @@
   }
   .navbar__search-bar-container {
     width: calc(100vw - 54.5rem);
+  }
+  .navbar__purchased-course-nav {
+    margin: 0 calc(100vw - 64rem) 0 0;
   }
 }
 /*# sourceMappingURL=navbar.module.css.map */

@@ -20,12 +20,14 @@ import TadarabBusiness from "modules/Course details/Tadarab business/TadarabBusi
 import CommentsSection from "modules/Course details/Comments section/CommentsSection";
 import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileNavTabsBar";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
+import MyCourse from "modules/Course details/My course/MyCourse";
 import MonthlySubscriptionCard from "modules/Course details/Monthly subscription card/MonthlySubscriptionCard";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { Row, Col, Container } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData"; 
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -150,6 +152,13 @@ function CourseDetails() {
       // console.log("response",response);
       
         dispatch(setCourseDetailsData(response?.data?.data));
+
+                let tadarabFbPixel = new TadarabFBPixel();
+            response.data.fb_tracking_events.forEach((ev:any)=>{
+
+              tadarabFbPixel.setEventId(ev.event_id);
+              tadarabFbPixel.eventHandler(ev.event_name, null);
+            })
   
     })
     .catch(function (error) {
@@ -212,6 +221,7 @@ function CourseDetails() {
       <Row className={styles["course-details__comments-section"]}>
         <CommentsSection />
       </Row>
+      {/* <MyCourse/> */}
     </Container>
 
     </>

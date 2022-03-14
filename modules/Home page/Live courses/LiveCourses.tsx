@@ -272,11 +272,11 @@ export default function LiveCourses() {
                                   </div>
                                   }
                                 </div>
-                                  <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]}>
+                                  {  !lc.is_purchased &&  <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart} variant={""}>
                                     {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon/> : <BellIcon/>} </div>  
                                     :
-                                    <div onClick={()=>handleCartActionBtn(lc)}> { !lc.is_purchased && (lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>)} </div>}
-                                  </Button>
+                                    <div onClick={()=>handleCartActionBtn(lc)}> {(lc.is_in_cart ? <AddedToCartIcon color="#222"/>: <CartIcon color="#222"/>)} </div>}
+                                  </Button>}
                               </div>
                           </Card.Body>
                           {lc.full_date == Math.floor(Date.now() / 1000) && <div className={styles["live-courses__cards-carousel__card__live-icon"]}>

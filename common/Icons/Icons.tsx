@@ -568,6 +568,18 @@ export function DownloadIcon(props: { color: string }) {
   );
 }
 
+export function FileDownloadIcon(props: { color: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="27.646" height="28" viewBox="0 0 27.646 28">
+      <g id="downloadFile" transform="translate(1376.028 -875.949)">
+        <path id="Path_34514" data-name="Path 34514" d="M-1350.083,885.657a1.7,1.7,0,0,0-1.7,1.7v5.385a.994.994,0,0,1-.992.992h-18.856a.993.993,0,0,1-.992-.992v-5.385a1.7,1.7,0,0,0-1.7-1.7,1.7,1.7,0,0,0-1.7,1.7v5.385a4.4,4.4,0,0,0,4.4,4.4h18.856a4.4,4.4,0,0,0,4.4-4.4v-5.385A1.7,1.7,0,0,0-1350.083,885.657Z" transform="translate(0 6.81)" fill={props.color} />
+        <path id="Path_34515" data-name="Path 34515" d="M-1365.486,895.372a1.7,1.7,0,0,0,1.2.5,1.7,1.7,0,0,0,1.2-.5l6.735-6.735a1.7,1.7,0,0,0,0-2.406,1.7,1.7,0,0,0-2.406,0l-3.558,3.556V877.65a1.7,1.7,0,0,0-1.7-1.7,1.7,1.7,0,0,0-1.7,1.7v12.683l-4.1-4.1a1.7,1.7,0,0,0-2.406,0,1.7,1.7,0,0,0,0,2.406Z" transform="translate(2.321 0)" fill={props.color} />
+      </g>
+    </svg>
+
+  );
+}
+
 export function AccountIcon() {
   return (
     <svg
@@ -1252,6 +1264,56 @@ export function RetryIcon() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 20 20">
       <path id="retry" d="M18.018,8a9.966,9.966,0,0,1,6.889,2.77l1.44-1.44A.968.968,0,0,1,28,10.013v5.406a.968.968,0,0,1-.968.968H21.627a.968.968,0,0,1-.684-1.652l1.683-1.683A6.774,6.774,0,1,0,22.461,23.1a.483.483,0,0,1,.66.022l1.6,1.6a.485.485,0,0,1-.019.7A10,10,0,1,1,18.018,8Z" transform="translate(-8 -8)" fill="#fff" />
+    </svg>
+  );
+}
+
+export function ThreeDotsIcon(props: { color: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" style={{ stroke: props.color }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+  );
+}
+
+export function CertificateIcon(props: { color: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24.3" height="19.846" viewBox="0 0 24.3 19.846">
+      <g id="CourseCertificate" transform="translate(-303.67 -165.41)">
+        <g id="Page-1" transform="translate(303.67 165.41)">
+          <g id="icon-138-certificate">
+            <path id="Path_15427" data-name="Path 15427" d="M312.4,176.206a2.53,2.53,0,1,1-2.525-2.536A2.532,2.532,0,0,1,312.4,176.206Z" transform="translate(-303.294 -164.563)" fill={props.color} opacity="0.5" />
+            <path id="Path_15428" data-name="Path 15428" d="M325.941,165.41H305.7a2.007,2.007,0,0,0-2.029,2.018v13.164a2.023,2.023,0,0,0,2.029,2.029h1.929v-3.054a3.633,3.633,0,1,1,5.237,0v3.054h13.076a2.035,2.035,0,0,0,2.029-2.018V167.428A2.021,2.021,0,0,0,325.941,165.41Zm-.75,12.348h-7.166v-1.323h7.166Zm0-3.308H315.82v-1.323h9.371Zm0-3.308h-17.64V169.82h17.64Z" transform="translate(-303.67 -165.41)" fill={props.color} />
+          </g>
+        </g>
+        <g id="Page-1-2" transform="translate(308.728 180.25)">
+          <g id="icon-138-certificate-2">
+            <g id="certificate-2">
+              <path id="Path_15429" data-name="Path 15429" d="M311.29,178.87v5.005l-1.51-1.521-1.521,1.521V178.87a3.5,3.5,0,0,0,1.521.342A3.451,3.451,0,0,0,311.29,178.87Z" transform="translate(-308.258 -178.87)" fill={props.color} />
+            </g>
+          </g>
+        </g>
+      </g>
+    </svg>
+
+  );
+}
+
+export function CheckCircleIcon(props: { color: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+      <path id="check-circle-solid" d="M28,18A10,10,0,1,1,18,8,10,10,0,0,1,28,18ZM16.843,23.295l7.419-7.419a.645.645,0,0,0,0-.912l-.912-.912a.645.645,0,0,0-.912,0L16.387,20.1l-2.825-2.825a.645.645,0,0,0-.912,0l-.912.912a.645.645,0,0,0,0,.912l4.194,4.194a.645.645,0,0,0,.912,0Z" transform="translate(-8 -8)" fill={props.color} />
+    </svg>
+
+
+  );
+}
+
+export function AttachmentsIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24.313" height="27.786" viewBox="0 0 24.313 27.786">
+      <g id="file" transform="translate(-925.6 -2219.607)">
+        <path id="docs" d="M17.366,24.313v2.171a1.3,1.3,0,0,1-1.3,1.3H1.3a1.3,1.3,0,0,1-1.3-1.3V6.512a1.3,1.3,0,0,1,1.3-1.3H5.21V21.273a3.042,3.042,0,0,0,3.039,3.039Z" transform="translate(925.6 2219.607)" fill="#be1622" opacity="0.3" />
+        <path id="docs-2" data-name="docs" d="M17.366,5.644V0H8.249a1.3,1.3,0,0,0-1.3,1.3V21.273a1.3,1.3,0,0,0,1.3,1.3H23.01a1.3,1.3,0,0,0,1.3-1.3V6.946H18.669A1.306,1.306,0,0,1,17.366,5.644ZM23.931,3.96,20.352.381A1.3,1.3,0,0,0,19.431,0H19.1V5.21h5.21V4.881a1.3,1.3,0,0,0-.381-.921Z" transform="translate(925.6 2219.607)" fill="#be1622" />
+      </g>
     </svg>
   );
 }

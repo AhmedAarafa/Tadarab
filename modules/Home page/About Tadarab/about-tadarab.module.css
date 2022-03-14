@@ -44,7 +44,7 @@
 }
 
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(3) {
-  bottom: -0.4rem;
+  bottom: 0;
   display: block !important;
 }
 

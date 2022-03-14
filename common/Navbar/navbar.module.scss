@@ -84,9 +84,10 @@
     }
 
     &:hover {
-        &+div{
+        &+div {
             display: flex;
         }
+
         &>svg {
             transform: rotate(180deg);
             transition: all 0.3s linear;
@@ -94,6 +95,59 @@
     }
 
 
+}
+
+.navbar__purchased-course-name {
+    font-size: 1.0625rem;
+    font-weight: 800;
+    color: $dark-black;
+    margin: auto 1.5625rem auto 0;
+    padding: 0 1.5625rem 0 0;
+    border-right: 0.0625rem solid rgba(0, 0, 0, 0.2);
+}
+
+.navbar__purchased-course-nav {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: $dark-black;
+    margin: 0 22rem 0 0;
+    svg {
+        margin: 0 0 0 0.5rem;
+    }
+
+    div{
+        height: 100%;
+        width: fit-content;
+        margin: 0.55rem 0 0.55rem 3.5rem ;
+        display: inline-block;
+        cursor: pointer;
+    }
+}
+
+.navbar__purchased-course-nav--active{
+    color: $primary-red;    
+    border-bottom: 0.1875rem solid $primary-red;
+}
+
+.navbar__purchased-course-nav__curriculum{
+    svg {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+
+.navbar__purchased-course-nav__certificate{
+    svg {
+        width: 1.55rem;
+        height: 1.3rem;
+    }
+}
+
+
+.navbar__three-dots-icon {
+    width: 2rem;
+    height: 2rem;
+    margin: auto 0 auto 0;
 }
 
 
@@ -126,6 +180,7 @@
     @include flex (center, center);
     margin: 0 1.875rem 0 0;
     cursor: pointer;
+
     svg {
         width: 2.25rem;
         height: 2.25rem;
@@ -148,8 +203,8 @@
 }
 
 
-.navbar_responsive-search-icon{
-    svg{
+.navbar_responsive-search-icon {
+    svg {
 
         margin-top: 0.2rem;
         display: none;
@@ -162,7 +217,8 @@
     align-items: center;
     position: relative;
     cursor: pointer;
-    svg{
+
+    svg {
         width: 2.063rem;
         height: 1.875rem;
         color: $dark-black;
@@ -183,7 +239,7 @@
     text-align: center;
 }
 
-.navbar__discover-popover__wrapper{
+.navbar__discover-popover__wrapper {
     width: fit-content;
     height: fit-content;
     position: absolute;
@@ -191,9 +247,10 @@
     right: 10rem;
     margin-top: -2rem;
     display: none;
-    &:hover{
+
+    &:hover {
         display: flex;
-     
+
     }
 }
 
@@ -241,7 +298,7 @@
     display: flex;
     // top: 4.8rem;
     // right: 10rem;
-    position:static !important;
+    position: static !important;
     @include popover;
     margin-top: 2rem;
 
@@ -526,20 +583,22 @@
     @include outlined-button;
     margin-top: 1.8rem;
 }
-.navbar__account-icon__dropdown{
+
+.navbar__account-icon__dropdown {
     @include popover;
     top: 1rem !important;
     height: 4rem;
     width: fit-content;
     padding: 0 1.5rem;
     border-radius: 0.8rem;
-    @include flex(center,center);
-    button{
+    @include flex(center, center);
+
+    button {
         @include contained-button;
     }
 }
 
-.navbar__cart-popover__show-more-link{
+.navbar__cart-popover__show-more-link {
     color: #AF151F;
     font-size: 0.8125rem;
     text-align: center;
@@ -550,33 +609,34 @@
     cursor: pointer;
 }
 
-.navbar__cart-popover__cart-items-wrapper{
+.navbar__cart-popover__cart-items-wrapper {
     max-height: 18.25rem;
     width: 23rem;
     overflow-y: scroll;
     overflow-x: hidden;
     margin: 0.1rem 0 0 0;
+
     /* width */
-&::-webkit-scrollbar {
-    width: 0.25rem;
-  }
-  
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: transparent; 
-    border-radius: 0.625rem;
-  }
-   
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 0.625rem;
-  }
-  
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: rgb(123, 122, 122); 
-  }
+    &::-webkit-scrollbar {
+        width: 0.25rem;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 0.625rem;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 0.625rem;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgb(123, 122, 122);
+    }
 }
 
 
@@ -594,9 +654,10 @@
     .navbar__cart-icon-container {
         margin: 0 1.8rem 0 0.7rem;
         order: 4;
-        svg{
+
+        svg {
             width: 3rem;
-        height: 3.1rem;
+            height: 3.1rem;
         }
     }
 
@@ -616,7 +677,8 @@
 
     .navbar {
         justify-content: space-between;
-        span{
+
+        span {
             order: 2;
         }
 
@@ -636,7 +698,7 @@
     }
 
     .navbar_responsive-search-icon {
-        svg{
+        svg {
 
             display: flex;
             width: 2.7rem;
@@ -645,7 +707,17 @@
         }
     }
 
-    
+    .navbar__three-dots-icon {
+        display: none;
+    }
+
+    .navbar__purchased-course-name {
+        display: none;
+    }
+
+    .navbar__purchased-course-nav {
+        display: none;
+    }
 
     .navbar__cart-popover {
         display: none;
@@ -654,13 +726,13 @@
     .navbar__dark-mode-icon {
         display: none;
     }
-    
+
     .navbar__fav-icon {
         display: none;
     }
-    
+
     .navbar__account-icon {
-       display: none;
+        display: none;
     }
 }
 
@@ -671,5 +743,9 @@
 
     .navbar__search-bar-container {
         width: calc(100vw - 54.5rem);
+    }
+
+    .navbar__purchased-course-nav{
+        margin: 0 calc(100vw - 64rem) 0 0;
     }
 }

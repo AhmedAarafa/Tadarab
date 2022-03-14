@@ -14,7 +14,8 @@ import {
   Offcanvas
 } from "react-bootstrap";
 import { popoverHandler ,closeBtnHandler} from "./utils";
-import {TadarabLogo,NextIcon,BackIcon,DarkModeIcon,DropDownIcon,SearchIcon,FavouriteIcon,CartIcon,AccountIcon} from "common/Icons/Icons";
+import {TadarabLogo,NextIcon,BackIcon,DarkModeIcon,DropDownIcon,SearchIcon,
+  FavouriteIcon,CartIcon,AccountIcon,ThreeDotsIcon,CertificateIcon,LessonPlayIcon} from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { axiosInstance } from "configurations/axios/axiosConfig";
@@ -24,16 +25,16 @@ import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthent
 import { setHomePageData } from "configurations/redux/actions/homePageData";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { withRouter } from 'next/router';
-
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
+  const [isCoursePurchased, setIsCoursePurchased] = useState(false);
+  const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
   const handleDiscoverSidebarShow = (status:boolean)=>{
     setDiscoverSidebarShow(status);
   }
   const [localStateCartItems, setLocalStateCartItems] = useState<any>(null);
-  // const userAuthState = useSelector((state:any) => state.userAuthentication);
-  // const homePageData = useSelector((state:any) => state.homePageData);
   const userStatus = useSelector((state:any) => state.userAuthentication);
   const cartItems = useSelector((state:any) => state.cartItems);
 
@@ -47,7 +48,7 @@ function Navbar() {
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null}));
     dispatch(setCartItems(null));
-    setLocalStateCartItems([]);
+    setLocalStateCartItems(null);
 
     axiosInstance
         .get("home/?country_code=eg",{ headers: {"Authorization" : ``} })
@@ -93,33 +94,45 @@ function Navbar() {
    const searchBar:any = document.getElementById("search-bar");
 
       if(userStatus.isUserAuthenticated){
-        if(window.innerWidth > 1960){
-          searchBar.style.cssText=`width: calc(100vw - 59rem)`;
-        } else{
-          searchBar.style.cssText=`width:28rem`;
-        }
-        window.addEventListener("resize" , ()=>{
+        if(searchBar){
           if(window.innerWidth > 1960){
             searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           } else{
             searchBar.style.cssText=`width:28rem`;
           }
+        }
+        window.addEventListener("resize" , ()=>{
+        if(searchBar){
+
+          if(window.innerWidth > 1960){
+            searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+          } else{
+            searchBar.style.cssText=`width:28rem`;
+          }
+        }
         });
    
       }
       else{
         // setIsLoggedIn(false);
-        if(window.innerWidth > 1960){
-          searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
-        } else{
-          searchBar.style.cssText=`width:32.5rem`;
+        if(searchBar){
+
+          if(window.innerWidth > 1960){
+            searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+          } else{
+            searchBar.style.cssText=`width:32.5rem`;
+          }
         }
+
         window.addEventListener("resize" , ()=>{
+        if(searchBar){
+
           if(window.innerWidth > 1960){
             searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           } else if(window.innerWidth <= 1960){
             searchBar.style.cssText=`width:32.5rem`;
           }
+        }
         });
     
       }
@@ -145,15 +158,46 @@ function Navbar() {
     // console.log("localStorageItems",localStorageItems);
     // if(userStatus.isUserAuthenticated === true){
         // setLocalStateCartItems(cartItems?.data);
+        
+        if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
 
-      if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
+        axiosInstance
+        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .then(function (response:any) {
+          // console.log("not logged in",response.data.data);
+          // dispatch(setCartItems(response?.data?.data));
+          setLocalStateCartItems(cartItems?.data);
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
+        
+      }else{
+
+        setLocalStateCartItems(null);
+        // dispatch(setCartItems(null));
+      }
+
+
+}, [])
+
+  useEffect(() => {
+    
+    let localStorageItems:any = localStorage.getItem("cart");
+    // console.log("cartItems",cartItems);
+    console.log("localStorageItems",localStorageItems);
+    // if(userStatus.isUserAuthenticated === true){
+        // setLocalStateCartItems(cartItems?.data);
+        
+        if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
+          
         axiosInstance
         .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           // console.log("not logged in",response.data.data);
           // dispatch(setCartItems(response.data.data));
           
-          setLocalStateCartItems(response?.data?.data);
+          setLocalStateCartItems(cartItems?.data);
         })
         .catch(function (error) {
           console.log(error); 
@@ -162,46 +206,18 @@ function Navbar() {
       }else{
         setLocalStateCartItems([]);
       }
-        // dispatch(setCartItems(response.data.data));
-        
-        // axiosInstance
-        //         .get("users/cart/?country_code=eg")
-        //         .then(function (response:any) {
-        //           dispatch(setCartItems(response.data.data));
-        //         })
-        //         .catch(function (error) {
-        //           console.log(error);
-        //         });
-        // console.log("logged in");
 
-        
-      // }else if(userStatus.isUserAuthenticated === false){
-        // console.log("not logged in");
-        
-        // console.log("localStorageItems",localStorageItems);
-        
-      //   axiosInstance
-      //   .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-      //   .then(function (response:any) {
-      //       // console.log("not logged in",response.data.data);
-      //       // dispatch(setCartItems(response.data.data));
-
-      //       setLocalStateCartItems(response?.data?.data);
-      // })
-      // .catch(function (error) {
-      //   console.log(error); 
-      // });
-
-    // }
-
-}, [cartItems,userStatus])
+}, [cartItems])
 
 
   
 
   return (
     <>
-      <NavBar id="nav" fixed="top" className={styles["navbar"]} expand="sm" >
+      <NavBar id="nav" fixed="top"
+       style={{justifyContent : isCoursePurchased ? "right" : "" ,
+       paddingRight : isCoursePurchased ? "0.6rem" : ""}} 
+       className={styles["navbar"]} expand="sm" >
         <Link href="/HomePage">
 
         <NavBar.Brand className={styles["navbar__img"]} >
@@ -301,7 +317,9 @@ function Navbar() {
           </Link>   
         </NavBar.Offcanvas>
         <Nav>
-              <Nav.Link onMouseOver={()=> popoverHandler("over")}
+        { !isCoursePurchased &&
+        <>
+          <Nav.Link onMouseOver={()=> popoverHandler("over")}
               onMouseOut={()=> popoverHandler("out")}
                className={styles["navbar__links"]} id="discover" >
                 استكشف
@@ -370,14 +388,47 @@ function Navbar() {
 
             <Nav.Link className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
             { userStatus.isUserAuthenticated && <Nav.Link className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>}
+        </>
+          }
+          
+            {
+             userStatus.isUserAuthenticated && isCoursePurchased &&
+             <>
+             <div className={styles["navbar__purchased-course-name"]}>
+             دورة التسويق الفعال للمشروعات الصغيرة
+             </div>
+             <div className={styles["navbar__purchased-course-nav"]}>
+               <div className={`${styles["navbar__purchased-course-nav__curriculum"]}
+               ${ purchasedCoursesNav == "curriculum" && styles["navbar__purchased-course-nav--active"]} `} 
+               onClick={()=>setPurchasedCoursesNav("curriculum")}>
 
+                <LessonPlayIcon color={ purchasedCoursesNav == "curriculum" ? "#af151f" : "#bbbabf" } opacity="1"/>
+                <span>المنهج</span>
+
+               </div>
+               <div className={`${styles["navbar__purchased-course-nav__certificate"]} 
+               ${ purchasedCoursesNav == "certificate" && styles["navbar__purchased-course-nav--active"]} `} 
+               onClick={()=>setPurchasedCoursesNav("certificate")}>
+
+                <CertificateIcon color={ purchasedCoursesNav == "certificate" ? "#af151f" : "#bbbabf" }/>
+                <span>شهادة الدورة</span>
+
+               </div>
+
+             </div>
+             <div className={styles["navbar__three-dots-icon"]}>
+              <ThreeDotsIcon color="#222"/>
+            </div>
+             </>
+            }
             { userStatus.isUserAuthenticated && <div className={styles["navbar__dark-mode-icon"]}>
               <DarkModeIcon/>
             </div>}
 
-            { userStatus.isUserAuthenticated && <div className={styles["navbar__fav-icon"]}>
+            { userStatus.isUserAuthenticated && !isCoursePurchased && <div className={styles["navbar__fav-icon"]}>
               <FavouriteIcon color="#222"/>
             </div>}
+            
 
            
 
@@ -392,10 +443,8 @@ function Navbar() {
             <div className={styles["navbar_responsive-search-icon"]}>
             <SearchIcon color="#222"/>
             </div>
-{/*  style={{display: localStateCartItems == [] || localStateCartItems == null ?  "none" : null }} */}
-              {console.log(localStateCartItems)
-              }
-            <OverlayTrigger
+
+            { !isCoursePurchased && <OverlayTrigger
             trigger='click'
             rootClose
               placement="bottom-start"
@@ -410,7 +459,7 @@ function Navbar() {
                         return(
 
                           <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                            <img
+                            <img 
                               src={item.image}
                               alt="course image"
                               className={styles["navbar__cart-popover__img"]}
@@ -576,7 +625,10 @@ function Navbar() {
                         styles["navbar__cart-popover__checkout-box__cart-btn"]
                       }
                     >
+                    <Link href="/Checkout">
+
                       <Button>إذهب للسلة</Button>
+                    </Link>
                     </div>
                   </div>
                 </div>
@@ -584,11 +636,11 @@ function Navbar() {
             >       
            <div className={styles["navbar__cart-icon-container"]}>
                 <CartIcon color="#222"/>
-                <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || localStateCartItems?.length || ""}</Badge>
-                
+                <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length ||  localStateCartItems?.length  || ""}</Badge>
+                {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
               
               </div>    
-            </OverlayTrigger>
+            </OverlayTrigger>}
 
             {
              userStatus.isUserAuthenticated && 

@@ -35,7 +35,7 @@ function LatestCourses() {
   const cartItems = useSelector((state:any) => state.cartItems);
 
   const [localCartItems, setLocalCartItems] = useState<any>([]);
-  const [placement, setPlacement] = useState<any>();
+  const [isFnExecuted, setIsFnExecuted] = useState(false);
   const [latestCourses, setLatestCourses] = useState<any>([]);
   const [filterType, setFilterType] = useState("best-seller");
   // const [cartItems, setCartItems] = useState<any>([]);
@@ -135,122 +135,194 @@ function LatestCourses() {
 
   }, [homePageData]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   const seeMoreBtn:any = document.getElementById("see-more");
+  //   const departmentsList:any = document.getElementById("departments-list");
+
+  //   // to capture all the carousel cards
+  //   const trigger: any = document.querySelectorAll(
+  //     '[id^="latest-courses-card"]'
+  //   );
+ 
+  //   // loop over them to control the hover effect per each card
+  //   trigger.forEach((element: any) => {
+  //     element.addEventListener("mouseout" , function(){
+  //       // setTimeout(() => {
+  //         seeMoreBtn.style.cssText=`z-index:5;`
+  //         departmentsList.style.cssText=`z-index:5;`
+  //       // }, 2000);
+  //     })
+  //     element.addEventListener("mouseover", function () {
+  //       seeMoreBtn.style.cssText=`z-index:1;`
+  //       departmentsList.style.cssText=`z-index:1;`
+  //       if(window.innerWidth > 1024){
+
+  //       // to get right and left empty spaces to decide which direction the popover will appear
+  //       const rootFontSize = parseFloat(
+  //         window
+  //         .getComputedStyle(document.getElementsByTagName("html")[0])
+  //         .getPropertyValue("font-size")
+  //       );
+  //       const cardRightBoundary =
+  //         window.innerWidth - element.getClientRects()[0].left;
+  //       const cardLeftBoundary =
+  //         element.getClientRects()[0].left;
+
+          
+  //         const observer = new MutationObserver((mutations, obs) => {
+  //           let relatedPopover:any = document.getElementsByClassName(`popover-${element.id}`)[0];
+  //           if (relatedPopover) {
+  //             relatedPopover.addEventListener("mouseover" , function(){
+  //               seeMoreBtn.style.cssText=`z-index:1;`
+  //               departmentsList.style.cssText=`z-index:1;`
+                
+  //             });
+  //             // setTimeout(() => {
+  //               relatedPopover.addEventListener("mouseout" , function(){
+  //                 seeMoreBtn.style.cssText=`z-index:5;`
+  //                 departmentsList.style.cssText=`z-index:5;`
+  //               });
+  //             // }, 1000);
+  //             // console.log(
+  //             //   "element.getClientRects()[0].right",
+  //             //   element.getClientRects()[0].right
+  //             // );
+  //             // console.log(
+  //             //   "element.getClientRects()[0].left",
+  //             //   element.getClientRects()[0].left
+  //             // );
+  //              obs.disconnect();
+  //             if (cardRightBoundary > cardLeftBoundary) {
+  //               // element.style.right="22rem"
+  //               // console.log(document.getElementById(`popover-${element.id}`));
+  //               // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
+  //               // relatedPopover ?  relatedPopover.style.left=`${(element.getClientRects()[0].right)}px` : null ;
+  //               setPlacement("right");
+  //               // const cardWidth:any = document.getElementById("latest-courses-card1");
+  //               // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
+  //               if(window.innerWidth <= 1200){
+  //               relatedPopover ?  relatedPopover.style.left=`${2.32*(element.offsetWidth)}px` : null ;
+  //               }else if(window.innerWidth > 1200){
+  //               relatedPopover ?  relatedPopover.style.left=`${2.63*(element.offsetWidth)}px` : null ;
+  //               }
+  //               // relatedPopover ?  relatedPopover.style.left=`${2.65*(element.offsetWidth)}px` : null ;
+  //               relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
+  //               // console.log("element.offsetWidth",element.offsetWidth);
+
+  //             } else if (cardRightBoundary < cardLeftBoundary) {
+  //               // element.style.left="22rem"
+  //               // console.log(document.getElementById(`popover-${element.id}`));
+  //               // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
+  //               // relatedPopover ?  relatedPopover.style.inset=`0px  ${(window.innerWidth - element.getClientRects()[0].left)}px auto auto` : null ;
+  //               setPlacement("left");
+  //               // relatedPopover ?  relatedPopover.style.right=`${(element.getClientRects()[0].left)}px` : null ;
+  //               // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
+  //               //relatedPopover ?  relatedPopover.style.right=`${(window.innerWidth)/5.2}px` : null ;
+  //               // const cardWidth:any = document.getElementById("latest-courses-card1");
+  //               relatedPopover ?  relatedPopover.style.right=`${1.085*(element.offsetWidth)}px` : null ;
+  //               relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
+  //               // console.log("element.offsetWidth",element.offsetWidth);
+
+  //             }
+  //             return;
+  //           }
+  //         });
+          
+  //         observer.observe(document, {
+  //           childList: true,
+  //           subtree: true
+  //         });
+
+  //     }
+  //     });
+  //   });
+
+  //   return () => {
+  //     trigger.forEach((element: any) => {
+  //       element.removeEventListener("mouseout", ()=>{
+  //         return;
+  //       });
+  //       element.removeEventListener("mouseover", ()=>{
+  //         return;
+  //       });
+  //     })
+  //   };
+
+  // },);
+
+  const handlePlacement = ()=>{
+    
+    if(!isFnExecuted){
+      // to capture all the carousel cards
+      const trigger: any = document.querySelectorAll(
+        '[id^="latest-courses-card"]'
+      );
+   
+      // loop over them to control the hover effect per each card
+      trigger.forEach((element: any) => {
+     
+        element.addEventListener("mouseover", function (event:any) {
+          // event.stopPropagation();
+  
+          if(window.innerWidth > 1024){
+            // const observer = new MutationObserver((mutations, obs) => {
+            let relatedPopover:any = document.getElementById(`popover-${element.id}`);
+            let relatedWrapper:any = document.getElementById(`wrapper-${element.id}`);
+  
+          const cardRightBoundary =
+            window.innerWidth - element.getClientRects()[0].left;
+          const cardLeftBoundary =
+            element.getClientRects()[0].left;
+            // if (relatedPopover) {
+  
+                //  obs.disconnect();
+              
+                if (cardRightBoundary > cardLeftBoundary) {
+                  // setPlacement("right");
+                  console.log("right");
+                  relatedWrapper.style.cssText=`left: 100% ;
+                   bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                  // relatedWrapper.style.cssText=`bottom: -${relatedWrapper.offsetHeight/6}px`;
+                  relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
+                  // relatedPopover.style.cssText=`left: 100%;`
+                } else if (cardRightBoundary < cardLeftBoundary) {
+                  // setPlacement("left");
+                  console.log("left");
+                  relatedWrapper.style.cssText=`right: 100%;
+                   bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                  // relatedWrapper.style.cssText=`bottom: -${relatedWrapper.offsetHeight/6}px`;
+                  relatedPopover.style.cssText=`left: 0%;`;
+                  relatedPopover.classList.add(styles["latest-courses__popover-container--left"]);
+                }
+                // return;
+              // }
+              // });
+            
+              // observer.observe(document, {
+              //   childList: true,
+              //   subtree: true
+              // });
+        }
+        });
+  
+      });
+
+      setIsFnExecuted(true);
+    }
+  }
+
+  const handleZindex = (status:any)=>{
     const seeMoreBtn:any = document.getElementById("see-more");
     const departmentsList:any = document.getElementById("departments-list");
-
-    // to capture all the carousel cards
-    const trigger: any = document.querySelectorAll(
-      '[id^="latest-courses-card"]'
-    );
- 
-    // loop over them to control the hover effect per each card
-    trigger.forEach((element: any) => {
-      element.addEventListener("mouseout" , function(){
-        // setTimeout(() => {
+    if(status == 'high'){
           seeMoreBtn.style.cssText=`z-index:5;`
           departmentsList.style.cssText=`z-index:5;`
-        // }, 2000);
-      })
-      element.addEventListener("mouseover", function () {
-        seeMoreBtn.style.cssText=`z-index:1;`
-        departmentsList.style.cssText=`z-index:1;`
-        if(window.innerWidth > 1024){
+        }else {
+          seeMoreBtn.style.cssText=`z-index:1;`
+          departmentsList.style.cssText=`z-index:1;`
 
-        // to get right and left empty spaces to decide which direction the popover will appear
-        const rootFontSize = parseFloat(
-          window
-          .getComputedStyle(document.getElementsByTagName("html")[0])
-          .getPropertyValue("font-size")
-        );
-        const cardRightBoundary =
-          window.innerWidth - element.getClientRects()[0].left;
-        const cardLeftBoundary =
-          element.getClientRects()[0].left;
-
-          
-          const observer = new MutationObserver((mutations, obs) => {
-            let relatedPopover:any = document.getElementsByClassName(`popover-${element.id}`)[0];
-            if (relatedPopover) {
-              relatedPopover.addEventListener("mouseover" , function(){
-                seeMoreBtn.style.cssText=`z-index:1;`
-                departmentsList.style.cssText=`z-index:1;`
-                
-              });
-              // setTimeout(() => {
-                relatedPopover.addEventListener("mouseout" , function(){
-                  seeMoreBtn.style.cssText=`z-index:5;`
-                  departmentsList.style.cssText=`z-index:5;`
-                });
-              // }, 1000);
-              // console.log(
-              //   "element.getClientRects()[0].right",
-              //   element.getClientRects()[0].right
-              // );
-              // console.log(
-              //   "element.getClientRects()[0].left",
-              //   element.getClientRects()[0].left
-              // );
-               obs.disconnect();
-              if (cardRightBoundary > cardLeftBoundary) {
-                // element.style.right="22rem"
-                // console.log(document.getElementById(`popover-${element.id}`));
-                // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
-                // relatedPopover ?  relatedPopover.style.left=`${(element.getClientRects()[0].right)}px` : null ;
-                setPlacement("right");
-                // const cardWidth:any = document.getElementById("latest-courses-card1");
-                // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
-                if(window.innerWidth <= 1200){
-                relatedPopover ?  relatedPopover.style.left=`${2.32*(element.offsetWidth)}px` : null ;
-                }else if(window.innerWidth > 1200){
-                relatedPopover ?  relatedPopover.style.left=`${2.63*(element.offsetWidth)}px` : null ;
-                }
-                // relatedPopover ?  relatedPopover.style.left=`${2.65*(element.offsetWidth)}px` : null ;
-                relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
-                // console.log("element.offsetWidth",element.offsetWidth);
-
-              } else if (cardRightBoundary < cardLeftBoundary) {
-                // element.style.left="22rem"
-                // console.log(document.getElementById(`popover-${element.id}`));
-                // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
-                // relatedPopover ?  relatedPopover.style.inset=`0px  ${(window.innerWidth - element.getClientRects()[0].left)}px auto auto` : null ;
-                setPlacement("left");
-                // relatedPopover ?  relatedPopover.style.right=`${(element.getClientRects()[0].left)}px` : null ;
-                // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
-                //relatedPopover ?  relatedPopover.style.right=`${(window.innerWidth)/5.2}px` : null ;
-                // const cardWidth:any = document.getElementById("latest-courses-card1");
-                relatedPopover ?  relatedPopover.style.right=`${1.085*(element.offsetWidth)}px` : null ;
-                relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
-                // console.log("element.offsetWidth",element.offsetWidth);
-
-              }
-              return;
-            }
-          });
-          
-          observer.observe(document, {
-            childList: true,
-            subtree: true
-          });
-
-      }
-      });
-    });
-
-    return () => {
-      trigger.forEach((element: any) => {
-        element.removeEventListener("mouseout", ()=>{
-          return;
-        });
-        element.removeEventListener("mouseover", ()=>{
-          return;
-        });
-      })
-    };
-
-  },);
-
-  
+    }
+  }
 
   
 
@@ -322,112 +394,121 @@ function LatestCourses() {
                 return (
                   <SwiperSlide key={i}>
 
-                  <Tippy className={`popover-latest-courses-card${i}`}  interactive={true} delay={100} placement={placement}
-                  content={
-                    <div id={`popover-latest-courses-card${i}`} className="h-100"
-                    // className={styles["latest-courses__popover-container"]}
-                    >
-
-                  <div>
-                        <Link href="/CourseDetails">
-                          <div
-                          className={
-                            styles["latest-courses__popover-container__title"]
-                          }
-                          title={course.title}
-                        >
-                          {course.title}
-                          </div>
-                        </Link>
-
-                      { course.subscribers_count !== null ? 
-                      <div className={styles["latest-courses__popover-container__learners"]}>
-                        <LearnersIcon color="#af151f"/>
-                        <span>{course.subscribers_count}</span>
-                        <span>متعلم</span>
-                      </div>
-                      :
-                      null
-                      }
-                      <div
-                        className={
-                          styles["latest-courses__popover-container__brief"]
-                        }
-                      >
-                        {course.details}
-                      </div>
-
-                  </div>
-
-                  <div>
-
                   
-                    <div
-                      className={
-                        styles[
-                          "latest-courses__popover-container__what-you-will-learn-title"
-                        ]
-                      }
-                    >
-                      ماذا ستتعلم في الدورة؟
-                    </div>
-                    { course.key_points.slice(0,6).map((kp:string,i:number)=>{
-                      return(
-                    <div key={i}
-                      className={
-                        styles[
-                          "latest-courses__popover-container__what-you-will-learn"
-                        ]
-                      }
-                    >
-                      <div>
 
-                      <TickIcon/>
-                      </div>
-
-
-                      <span>{kp}</span>
-                    </div>
-
-                      )
-                    })
-                    }
-
-                  </div>
-                  
-                      {
-                      course.key_points.length > 6 ?
-                      <Link href="/CourseDetails">
-
-                        <div className={styles["latest-courses__show-more-link"]}>
-                          اعرض المزيد
-                        </div>
-                      </Link>
-                      :
-                      null
-                      }
-                 
-                    <div className={styles["latest-courses__popover-container__btns"]}>
-
-                          <Link href="/CourseDetails">
-                            <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
-                          </Link>
-                          <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
-                          <CartIcon color="#fff"/>
-                          <span> أضف للسلة </span>  
-                            </Button>
-                      </div> 
-
-                 
-                    </div>
-                  }>
-
-                    <Card
+                    <Card onMouseMove={()=>{
+                        handleZindex("low");
+                        handlePlacement();
+                      }} onMouseOut={()=>{handleZindex("high")}}
                         id={`latest-courses-card${i}`}
                         className={
                           styles["latest-courses__cards-carousel__course-card"]
                         }
                       >
+                        <div  className={
+                      styles["popover-wrapper"]
+                    }
+                    id={`wrapper-latest-courses-card${i}`}
+                     onMouseMove={()=>{handleZindex("low")}} onMouseOut={()=>{handleZindex("high")}}>
+
+                      <div id={`popover-latest-courses-card${i}`} 
+                      className={styles["latest-courses__popover-container"]}
+                      >
+
+                    <div>
+                          <Link href="/CourseDetails">
+                            <div
+                            className={
+                              styles["latest-courses__popover-container__title"]
+                            }
+                            title={course.title}
+                          >
+                            {course.title}
+                            </div>
+                          </Link>
+
+                        { course.subscribers_count !== null ? 
+                        <div className={styles["latest-courses__popover-container__learners"]}>
+                          <LearnersIcon color="#af151f"/>
+                          <span>{course.subscribers_count}</span>
+                          <span>متعلم</span>
+                        </div>
+                        :
+                        null
+                        }
+                        <div
+                          className={
+                            styles["latest-courses__popover-container__brief"]
+                          }
+                        >
+                          {course.details}
+                        </div>
+
+                    </div>
+
+                    <div>
+
+                    
+                      <div
+                        className={
+                          styles[
+                            "latest-courses__popover-container__what-you-will-learn-title"
+                          ]
+                        }
+                      >
+                        ماذا ستتعلم في الدورة؟
+                      </div>
+                      { course.key_points.slice(0,6).map((kp:string,i:number)=>{
+                        return(
+                      <div key={i}
+                        className={
+                          styles[
+                            "latest-courses__popover-container__what-you-will-learn"
+                          ]
+                        }
+                      >
+                        <div>
+
+                        <TickIcon/>
+                        </div>
+
+
+                        <span>{kp}</span>
+                      </div>
+
+                        )
+                      })
+                      }
+
+                    </div>
+                    
+                        {
+                        course.key_points.length > 6 ?
+                        <Link href="/CourseDetails">
+
+                          <div className={styles["latest-courses__show-more-link"]}>
+                            اعرض المزيد
+                          </div>
+                        </Link>
+                        :
+                        null
+                        }
+                  
+                      <div className={styles["latest-courses__popover-container__btns"]}>
+
+                            <Link href="/CourseDetails">
+                              <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
+                            </Link>
+                            <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
+                            <CartIcon color="#fff"/>
+                            <span> أضف للسلة </span>  
+                              </Button>
+                        </div> 
+
+                  
+                      </div>
+
+                     </div>
 
                         <div
                           className={
@@ -585,7 +666,7 @@ function LatestCourses() {
                             </div>
 
                             <div >
-                              { !course.is_purchased &&  <Button
+                              { !course.is_purchased &&  <Button disabled={course.is_in_cart} variant={""}
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -636,9 +717,6 @@ function LatestCourses() {
                         </Card.Body>
 
                       </Card>
-
-
-                  </Tippy>
 
                   </SwiperSlide>
                 );

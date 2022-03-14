@@ -1,5 +1,6 @@
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { getData } from "./getData"
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 export function handleCart(course:any,endPoint:string,isAuthenticated:boolean){
 
@@ -20,6 +21,13 @@ if(isAuthenticated == true){
             
           });
           localStorage.setItem("cart" , JSON.stringify(totalItems));
+
+          let tadarabFbPixel = new TadarabFBPixel();
+      response.data.fb_tracking_events.forEach((ev:any)=>{
+
+        tadarabFbPixel.setEventId(ev.event_id);
+        tadarabFbPixel.eventHandler(ev.event_name, null);
+      })
 
           const resp:any =  getData(endPoint).then(function(response) {
             return response ;
@@ -46,6 +54,8 @@ if(isAuthenticated == true){
           const resp:any =  getData(endPoint).then(function(response) {
             return response ;
           })
+          console.log("resp",resp);
+          
 
           return ({resp,cartResponse})
 

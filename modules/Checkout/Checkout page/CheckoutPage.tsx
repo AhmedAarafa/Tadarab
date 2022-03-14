@@ -20,6 +20,7 @@ import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 
 function CheckoutPage() {
@@ -48,6 +49,7 @@ const [billingDetails, setBillingDetails] = useState("");
 
  
 useEffect(() => {
+
     const navbar: any = document.getElementById("nav");
     const stepperBox: any = document.getElementById("stepper-box");
     const list: any = document.getElementsByTagName("ol")[0];
@@ -60,6 +62,7 @@ useEffect(() => {
     axiosInstance
         .get(`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
+
             // setRelatedCourses(response.data.data);
             
             if(response.data.data !== undefined){
@@ -342,6 +345,8 @@ useEffect(() => {
   
 
   useEffect(() => {
+      console.log("cartItems");
+      
     //   if(userStatus.isUserAuthenticated === true){
     //       setLocalStateCartItems(cartItems.data);
           
@@ -349,25 +354,32 @@ useEffect(() => {
     //     }else if(userStatus.isUserAuthenticated === false){
         (async function () {
             
-            const localStorageItems:any = await localStorage.getItem("cart");
+            const localStorageItems:any = localStorage.getItem("cart");
 
             if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
           await  axiosInstance
             .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
             .then(function (response:any) {
-            //   console.log(response.data.data);
               setLocalStateCartItems(response?.data?.data);
+
+              let tadarabFbPixel = new TadarabFBPixel();
+              response.data.fb_tracking_events.forEach((ev:any)=>{
+                tadarabFbPixel.setEventId(ev.event_id);
+                tadarabFbPixel.eventHandler(ev.event_name, null);
+              })
         })
         .catch(function (error) {
           console.log(error); 
         });
+    }else{
+        setLocalStateCartItems([]);
     }
 
         })();
 
     //   }
 
-  }, [cartItems,userStatus])
+  }, [cartItems])
   
   useEffect(() => {
     const firstStepBox:any = document.getElementById("added-courses");
@@ -510,33 +522,48 @@ useEffect(() => {
         `:null;
   };
 
-  const removeFromCart = (course:any)=>{
+//   const removeFromCart = (course:any)=>{
+//     const localStorageItems:any = localStorage.getItem("cart");
 
-    if (userStatus?.isUserAuthenticated == true) {
-        const handleCartResponse: any = handleCart(course, "users/cart/?country_code=eg", true);
-        handleCartResponse.then(function (firstresponse: any) {
-            firstresponse?.resp.then(function (response: any) {
-                // setTrainerProfile(response.data.data);
-            console.log("response.data.data",response.data.data);
-            dispatch(setCartItems(response.data.data));
-            setLocalStateCartItems(response.data.data);
-            console.log("firstresponse.totalItems",firstresponse.totalItems);
-            })
-            //  setLocalCartItems(response.totalItems);
-        })
-    }
-    else {
-        const handleCartResponse: any = handleCart(course, "users/cart/?country_code=eg", false);
-        handleCartResponse.then(function (response: any) {
-            dispatch(setCartItems(response));
-            console.log('response',response);
-            setLocalStateCartItems(response);
-            // setTrainerProfile(trainerProfile);
-        })
+//     if (userStatus?.isUserAuthenticated == true) {
+//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, true);
+//         handleCartResponse.then(function (firstresponse: any) {
+//             firstresponse?.resp.then(function (response: any) {
+//                 // setTrainerProfile(response.data.data);
+//             console.log("response.data.data",response.data.data);
+//             dispatch(setCartItems(firstresponse.cartResponse));
+//             setLocalStateCartItems(firstresponse.cartResponse);
+//             setRelatedCourses(response.data.data);
+//             })
+//             //  setLocalCartItems(response.totalItems);
+//         })
+//     }
+//     else {
+//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, false);
+//         handleCartResponse.then(function (response: any) {
+            
+//             // dispatch(setCartItems(response));
+//             console.log('response',response);
+//             setLocalStateCartItems(response.data.data);
+//              dispatch(setCartItems(response.data.data));
 
-    }
-    // setLatestCourses([...latestCourses]);
-  }
+//           let newArray:any = relatedCourses;
+//           response.data.data?.forEach((element:any) => {
+//            newArray.forEach((ele:any) => {
+//                if(element.id === ele.id){
+//                  console.log(ele);
+//                  ele.is_in_cart = true;
+//              }
+//          });
+//      });
+//      setRelatedCourses([...newArray]);
+   
+//             // setTrainerProfile(trainerProfile);
+//         })
+
+//     }
+//     // setLatestCourses([...latestCourses]);
+//   }
 
   const promoCodeHandler = (e:any)=>{
       e.preventDefault();
@@ -588,19 +615,32 @@ useEffect(() => {
 
   const handleCartActionBtn = (course:any):any =>{
     const localStorageItems:any = localStorage.getItem("cart");
+    let url:string;
+    if(course.is_in_cart){
+
+      url = `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'').replace(`${course.id},`,'')
+      .replace(`,${course.id}`,'')
+
+}`;
+    }else{
+
+      url = `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')},${course.id}`;
+    }
     
     if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart(course,`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`,true);
+        console.log('url',url);
+        
+      const handleCartResponse:any =  handleCart(course,url,true);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
-            setRelatedCourses(response.data.data);
-           dispatch(setCartItems(firstresponse.cartResponse));
+            setRelatedCourses(response.data.data || []);
+            dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
       })
     }
     else{
-      const handleCartResponse:any =  handleCart(course,`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`,false);
+      const handleCartResponse:any =  handleCart(course,url,false);
       handleCartResponse.then(function(response:any) {
           dispatch(setCartItems(response.data.data));
 
@@ -1143,6 +1183,16 @@ const onError = (data:any,actions:any)=>{
                                             localStorage.removeItem("paymentId");
                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                             dispatch(setInvoiceDetails(response.data.data));
+
+
+                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                            let tadarabFbPixel = new TadarabFBPixel();
+                                                    response.data.fb_tracking_events.forEach((ev:any)=>{
+                                                      tadarabFbPixel.setEventId(ev.event_id);
+                                                      tadarabFbPixel.eventHandler(ev.event_name, customData);
+                                                    })
+
+
                                             localStorage.setItem("cart" , "[]");
                                             dispatch(setCartItems([]));
                                         }else{
@@ -1254,7 +1304,7 @@ const onError = (data:any,actions:any)=>{
                         </div>
 
                         { step == "added-courses" &&
-                         <div onClick={()=>{removeFromCart(it)}} className={styles["checkout__cards-outer-box__card__action-btns"]}>
+                         <div onClick={()=>{handleCartActionBtn(it)}} className={styles["checkout__cards-outer-box__card__action-btns"]}>
                             <RemoveIcon color="#222"/>
 
                         </div>}
@@ -1500,6 +1550,12 @@ const onError = (data:any,actions:any)=>{
                                             localStorage.removeItem("paymentId");
                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                             dispatch(setInvoiceDetails(response.data.data));
+                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                            let tadarabFbPixel = new TadarabFBPixel();
+                                                    response.data.fb_tracking_events.forEach((ev:any)=>{
+                                                      tadarabFbPixel.setEventId(ev.event_id);
+                                                      tadarabFbPixel.eventHandler(ev.event_name, customData);
+                                                    })
                                             localStorage.setItem("cart" , "[]");
                                             dispatch(setCartItems([]));
                                         }else{
@@ -1741,14 +1797,14 @@ const onError = (data:any,actions:any)=>{
                                 </div>
 
                                 <div className="d-inline-block">
-                                    { !course.is_purchased &&  <Button
+                                    { !course.is_purchased &&  <Button disabled={course.is_in_cart} variant={""}
                                     className={
                                         styles[
                                         "checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
                                         ]
                                     }
                                     >
-                                    <div onClick={()=>handleCartActionBtn(course)} 
+                                    <div onClick={()=>{handleCartActionBtn(course)}} 
                                      className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                     {
                                         course.is_in_cart ? 

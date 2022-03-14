@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "my-course.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "my-course.module.css"
+}

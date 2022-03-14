@@ -31,46 +31,46 @@ export default function CommentsSection() {
                 return comm.reply_to_comment_id == 0
               }) ;
 
-            //   for (let index = 0; index < noOfComments.length; index++) {
+              for (let index = 0; index < noOfComments.length; index++) {
                   
-            //       let commentsTree:any = document.getElementById(`tree-box${index}`);
-            //       let commentsBox:any = document.getElementById(`comment-box${index}`);
-            //       let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
+                  let commentsTree:any = document.getElementById(`tree-box${index}`);
+                  let commentsBox:any = document.getElementById(`comment-box${index}`);
+                  let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
                   
                   
-            //       window.addEventListener("resize" , ()=>{
-            //           rootFontSize = parseFloat(
-            //                   window
-            //                   .getComputedStyle(document.getElementsByTagName("html")[0])
-            //                   .getPropertyValue("font-size")
-            //                 );
-            //             if(window.innerWidth < 576){
+                  window.addEventListener("resize" , ()=>{
+                      rootFontSize = parseFloat(
+                              window
+                              .getComputedStyle(document.getElementsByTagName("html")[0])
+                              .getPropertyValue("font-size")
+                            );
+                        if(window.innerWidth < 576){
           
-            //               document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (37 *rootFontSize))}px`);
-            //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.74) }px`);                      
-            //         }else{
+                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (37 *rootFontSize))}px`);
+                        document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.74) }px`);                      
+                    }else{
           
-            //               document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
-            //               document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-            //           }
-            //       })
+                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
+                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                      }
+                  })
           
-            //       const resize_ob:any = new ResizeObserver(function(entries):any {
-            //           if(window.innerWidth < 576){
+                  const resize_ob:any = new ResizeObserver(function(entries):any {
+                      if(window.innerWidth < 576){
           
-            //               document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (37 *rootFontSize))}px`);
-            //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.74) }px`);
-            //           }else{
+                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (37 *rootFontSize))}px`);
+                        document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.74) }px`);
+                      }else{
           
-            //               document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
-            //               document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-            //           }
-            //       });
+                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
+                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                      }
+                  });
                   
-            //       // start observing for resize
-            //       resize_ob.observe(commentsTree);
+                  // start observing for resize
+                  resize_ob.observe(commentsTree);
           
-            //   }
+              }
         })
         .catch(function (error) { 
         console.log(error); 

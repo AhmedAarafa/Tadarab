@@ -47,7 +47,7 @@ export const stickyCardHandler = () => {
           window.addEventListener("scroll", function () {
            // check if the user scroll to the "practical projects" section (the section that the card turns to full width sticky at)
            if(window.innerWidth >= 576){
-             if (window.scrollY >= projectsSection.offsetTop) {
+             if (window.scrollY >= projectsSection?.offsetTop) {
                   const stickyCard: any = document.getElementById("sticky-card");
                   const stickyTopCourseCard: any = document.getElementById("sticky-top-course-card");
                    stickyCard ? stickyCard.style.cssText = `display:none`:null;
@@ -56,7 +56,7 @@ export const stickyCardHandler = () => {
                    position:fixed;
                    top:${navbar.offsetHeight}px;
                    `:null;
-              }else if(window.scrollY < projectsSection.offsetTop){
+              }else if(window.scrollY < projectsSection?.offsetTop){
                 const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");
                 const stickyCard: any = document.getElementById("sticky-card");
                 const stickyTopCourseCard: any = document.getElementById("sticky-top-course-card");

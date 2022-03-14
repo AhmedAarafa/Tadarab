@@ -20,6 +20,7 @@ import  "../../../node_modules/country-codes/node_modules/country-data/data/coun
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon,MobileIcon,NameFieldIcon } from "common/Icons/Icons";
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 interface SignUpFormValues {
   name: string;
@@ -210,6 +211,16 @@ export default function SignupPage() {
               console.log("Response",response);
               if(JSON.stringify(response.status).startsWith("2")){
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`);
+
+                let customData = {email: values.email, phone: values.phoneNumber};
+                let tadarabFbPixel = new TadarabFBPixel();
+            response.data.fb_tracking_events.forEach((ev:any)=>{
+
+              tadarabFbPixel.setEventId(ev.event_id);
+              tadarabFbPixel.eventHandler(ev.event_name, null);
+            })
+
+                
               }else {
                 // console.log("error 4xx or 5xx");
                 setErrorMessage(response.data.message);

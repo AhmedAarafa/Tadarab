@@ -4,6 +4,7 @@ import styles from "./success-state.module.css";
 import { TransactionSuccessIcon, ArrowLeftIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from 'configurations/redux/actions/cartItems';
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 export default function SuccessState() {
  const dispatch = useDispatch();
@@ -13,7 +14,9 @@ export default function SuccessState() {
     
     useEffect(() => {
       localStorage.setItem("cart" , "[]");
-      dispatch(setCartItems([]));
+      dispatch(setCartItems(null));
+      console.log("success state",invoiceDetails);
+      
     }, [])
     
     return (
@@ -63,6 +66,20 @@ export default function SuccessState() {
                                 <div> Track ID </div>
                                 <div> {invoiceDetails?.data?.transaction_details.payment_id} </div>
                             </div>
+
+
+                            { invoiceDetails?.data?.transaction_details?.knet_transaction_id && <div className={styles["success-state-row__invoice-box__details-box__details"]}>
+                                <div> رقم عملية الشراء </div>
+                                <div> {invoiceDetails?.data?.transaction_details.knet_transaction_id} </div>
+                            </div>}
+
+
+                            {  invoiceDetails?.data?.transaction_details?.bank_reference && <div className={styles["success-state-row__invoice-box__details-box__details"]}>
+                                <div> الرقم المرجعي </div>
+                                <div> {invoiceDetails?.data?.transaction_details.bank_reference} </div>
+                            </div>}
+
+
                             <div className={styles["success-state-row__invoice-box__details-box__details"]}>
                                 <div> البريد الإلكتروني </div>
                                 <div> {invoiceDetails?.data?.transaction_details.email ? invoiceDetails?.data?.transaction_details.email : ""} </div>

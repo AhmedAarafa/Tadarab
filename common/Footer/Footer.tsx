@@ -25,14 +25,14 @@ export default function FooterSection() {
               </div>
             </div>
           </div>
-          <div>
+          <div >
             <Form.Control
               type="text"
               placeholder="ارسل استفسارك هنا..."
               className={styles["footer__inquiry-field"]}
             />
           </div>
-          <div>
+          <div className={styles["footer__name-email-fields-box"]}>
             <Form.Control
               type="text"
               placeholder="الأسم"

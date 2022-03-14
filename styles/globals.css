@@ -12253,9 +12253,14 @@ div[id^='popover-latest-courses-card'] {
   -webkit-box-direction: normal !important;
       -ms-flex-direction: column !important;
           flex-direction: column !important;
-  -webkit-box-pack: space-evenly !important;
-      -ms-flex-pack: space-evenly !important;
-          justify-content: space-evenly !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+  position: absolute !important;
+  margin: 0 !important;
+  z-index: 5 !important;
+  width: 21.75rem !important;
+  height: 28rem !important;
 }
 
 .tippy-content {

@@ -238,7 +238,7 @@ export default function TrainerCourses() {
                                         </div>
 
                                         <div className="d-inline-block">
-                                            { !course.is_purchased && <Button
+                                            { !course.is_purchased && <Button disabled={course.is_in_cart} variant={""}
                                                 className={
                                                     styles[
                                                     "trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn"

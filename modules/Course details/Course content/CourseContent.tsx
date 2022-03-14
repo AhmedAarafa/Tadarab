@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styles from "./course-content.module.css";
-import { Accordion , Button} from "react-bootstrap";
+import { Accordion , Button , ProgressBar} from "react-bootstrap";
 // import {scrollspyHandler} from "./utils"
 import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
 import { useDispatch, useSelector } from "react-redux";  
-import { UnlockIcon,LessonPlayIcon,ClockIcon,LockIcon } from "common/Icons/Icons";
+import { UnlockIcon,LessonPlayIcon,ClockIcon,LockIcon,AttachmentsIcon,FileDownloadIcon,CheckCircleIcon } from "common/Icons/Icons";
 
 export default function CourseContent() {
 
@@ -90,7 +90,7 @@ export default function CourseContent() {
             </div>
         </div>
 
-      <Accordion defaultActiveKey="0" className={styles["course-content__accordion"]}>
+      <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
 
           {
               courseDetailsData.data?.syllabus.map((syl:any,i:number)=>{
@@ -101,7 +101,7 @@ export default function CourseContent() {
 
                         <div className={styles["course-content__accordion__header__details-box"]}>
                             <div className={styles["course-content__accordion__header__group-number"]}>
-                            اسم المجموعة 1
+                            {syl.title}
                             </div>
                             <div className={styles["course-content__accordion__header__details"]}>
                                 <span className={styles["course-content__accordion__header__details__lessons-number"]}>
@@ -190,9 +190,108 @@ export default function CourseContent() {
               })
           }
 
-      
+            {
+                    <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
+                    <Accordion.Header className={styles["course-content__accordion__header"]}>
+
+                        <div className={styles["course-content__accordion__header__details-box"]}>
+                            <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
+                            ملفات شرح
+                            </div>
+                        </div>
+                    </Accordion.Header>
+                    <Accordion.Body className={styles["course-content__accordion__body"]}>
+                        {
+                            courseDetailsData.data?.attachments.map((att:any,i:number)=>{
+                                return(
+                                    <div key={i} className={styles["course-content__accordion__body__list-item"]}>
+                                        <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
+                                            <div className={styles["course-content__accordion__body__list-item__icon"]}>
+                                                <AttachmentsIcon />
+                                            </div>
+                                            <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
+                                                <div>{att.title}</div>
+                                              
+                                            </div>
+                                        </div>
+
+                                        <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
+                                            <FileDownloadIcon color="#af151f"/>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                      
+                    </Accordion.Body>
+                    </Accordion.Item>
+          }
        
       </Accordion>
+ 
+
+          <div className={styles["purchased-course-playlist"]}>
+              <div className={styles["purchased-course-playlist__progress-box"]}>
+                  <span>  منهج الدورة  </span>
+                  <span>  ( 32% مكتمل )  </span>
+                <div className={styles["purchased-course-playlist__progress-box__progress-bar"]}>
+
+                    <ProgressBar now={80} />
+                </div>
+              </div>
+
+            <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
+
+                {
+                    courseDetailsData.data?.syllabus.map((syl:any,i:number)=>{
+                        return(
+
+                            <Accordion.Item key={i} eventKey={JSON.stringify(i)}  className={styles["purchased-course-content__accordion__item"]}>
+                            <Accordion.Header className={styles["purchased-course-content__accordion__header"]}>
+
+                                <div className={styles["course-content__accordion__header__details-box"]}>
+                                    <div className={styles["purchased-course-content__accordion__header__group-number"]}>
+                                    {syl.title}
+                                    <span>(3/5)</span>
+                                    </div>
+                                
+                                </div>
+                            </Accordion.Header>
+                            <Accordion.Body className={styles["purchased-course-content__accordion__body"]}>
+                                {
+                                    syl.lectures.map((lec:any,i:number)=>{
+                                        return(
+                                            <div key={i} className={styles["purchased-course-content__accordion__body__list-item"]}>
+                                                <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
+                                                    <div className={styles["purchased-course-content__accordion__body__list-item__icon"]}>
+                                                        <CheckCircleIcon color="#9E9DA4" />
+                                                        
+                                                    </div>
+                                                    <div className={styles["purchased-course-content__accordion__body__list-item__lesson-name"]}>
+                                                        <div>{lec.title}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div className={styles["purchased-course-content__accordion__body__list-item__duration"]}>
+                                                01:34
+                                                </div>
+                                            </div>
+
+                                        )
+                                    })
+                                }
+                            
+                            </Accordion.Body>
+                            </Accordion.Item>
+
+                        )
+
+                    })
+                }
+
+            
+            </Accordion>
+          </div>
 
       <Button className={styles["course-content__show-more-btn"]}>
       أعرض المزيد من الدروس

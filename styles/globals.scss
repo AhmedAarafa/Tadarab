@@ -276,9 +276,18 @@ input,
 }
 
 div[id^='popover-latest-courses-card'] {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-evenly !important;
+   display: flex !important;
+   flex-direction: column !important;
+   justify-content: center !important;
+   // width: 400px !important;
+   // z-index: 2;
+   position: absolute !important;
+     // inset: auto auto 0px 0px !important;
+     // transform: translate(624px, 953px) !important;
+     margin: 0 !important;
+     z-index: 5 !important;
+     width: 21.75rem !important; 
+     height: 28rem !important;
 }
 
 .tippy-content{
@@ -950,4 +959,4 @@ input:-webkit-autofill:active{
   //   &:after{
   //     padding: 1.5rem*2.55 1.18rem*2.55 1.5rem*2.55 1.28rem*2.55 !important;
   //   }
-  // }
+  // }o

@@ -291,7 +291,7 @@ export default function CourseSubscribers() {
                                 </div>
 
                                 <div className="d-inline-block">
-                                     { !course.is_purchased && <Button onClick={()=>handleCartActionBtn(course)} 
+                                     { !course.is_purchased && <Button onClick={()=>handleCartActionBtn(course)}  disabled={course.is_in_cart} variant={""}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
