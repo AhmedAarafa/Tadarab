@@ -42,12 +42,12 @@ export default function TrainerInfo() {
     const fadeOut:any = document.getElementById("fadeout2");
     const briefAboutTrainer:any = document.getElementById("brief-about-trainer");
     let el:any = document.getElementById('bio');
-    let divHeight = el.offsetHeight;
+    let divHeight = el?.offsetHeight;
     let lines = Math.ceil(divHeight / 24);
 
     window.addEventListener("resize" , ()=>{
       let el:any = document.getElementById('bio');
-      let divHeight = el.offsetHeight;
+      let divHeight = el?.offsetHeight;
       // console.log("divHeight",divHeight);
       let lines = Math.ceil(divHeight / 24);
       // console.log("Lines: " + lines);
@@ -175,7 +175,7 @@ export default function TrainerInfo() {
                 <div>عدد المتعلمين</div>
                 <div>
                   {
-                  trainerProfileData.data?.courses.map((item:any)=> item.subscribers_count).reduce((prev:any, curr:any) => prev + curr, 0) +
+                  trainerProfileData.data?.courses?.map((item:any)=> item.subscribers_count).reduce((prev:any, curr:any) => prev + curr, 0) +
                   parseInt(trainerProfileData.data?.buyers_count) 
                 }
                 </div>

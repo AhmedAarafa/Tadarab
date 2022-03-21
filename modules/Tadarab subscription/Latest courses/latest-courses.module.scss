@@ -11,11 +11,11 @@
     z-index: 5;
 
     span:nth-of-type(1) {
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     span:nth-of-type(2) {
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }
 
@@ -23,7 +23,7 @@
     z-index: 5;
     font-size: 1.125rem;
     font-weight: 700;
-    color: $grey;
+    color: var(--grey);
     padding-top: 1.25rem;
 
     li:nth-of-type(1) {
@@ -42,7 +42,7 @@
         &::before {
             content: "-";
             padding-left: 0.5rem;
-            color: $grey; 
+            color: var(--grey); 
             text-decoration:none !important;
             display: inline-block;
         }
@@ -52,8 +52,8 @@
 
 .latest-courses__departments-list__item--active {
     font-weight: 800;
-    color: $dark-black;
-    text-decoration: underline 0.150rem $pale-red;
+    color: var(--dark-black);
+    text-decoration: underline 0.150rem var(--pale-red);
 }
 
 .latest-courses__see-more-btn-col {
@@ -63,7 +63,7 @@
 .latest-courses__see-more-btn {
     @include outlined-button;
     font-size: 1.063rem;
-    color: $primary-red;
+    color: var(--primary-red);
     font-weight: 700;
     width: 10rem;
     height: 2.75rem;
@@ -76,7 +76,7 @@
     &:hover,
     &:active {
         background-color: white !important;
-        color: $primary-red !important;
+        color: var(--primary-red) !important;
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
@@ -242,7 +242,7 @@
 .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
     font-size: 0.875rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     cursor: pointer;
     margin: 0;
     white-space: nowrap;
@@ -253,7 +253,7 @@
 
 .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 0.813rem;
-    color: $grey;
+    color: var(--grey);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -268,13 +268,13 @@
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
     font-size: 0.813rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -285,12 +285,12 @@
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
     font-size: 0.875rem;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
     font-size: 0.625rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
@@ -330,7 +330,7 @@
 .latest-courses__popover-container__title {
     font-size: 1.1rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     cursor: pointer;
     white-space: nowrap;
     overflow: hidden;
@@ -340,7 +340,7 @@
 
 .latest-courses__popover-container__learners {
     @include flex(center);
-    color: $dark-black;
+    color: var(--dark-black);
     margin-top: 0.2rem;
 
     svg {
@@ -361,7 +361,7 @@
 
 .latest-courses__popover-container__brief {
     font-size: 0.938rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .latest-courses__popover-container__what-you-will-learn {
@@ -371,7 +371,7 @@
 
     span {
         font-size: 0.85rem;
-        color: $grey;
+        color: var(--grey);
     }
 
     svg {
@@ -384,7 +384,7 @@
 .latest-courses__popover-container__what-you-will-learn-title {
     font-size: 1rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 
 }
 
@@ -426,7 +426,7 @@
 }
 
 .latest-courses__show-more-link{
-    color: $primary-red;
+    color: var(--primary-red);
     font-size: 0.8125rem;
     text-align: center;
     margin: 0.5rem 0 0 0 ;
@@ -584,7 +584,7 @@
 
     .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.27;
-        color: $grey;
+        color: var(--grey);
         width: 13rem;
 
     }
@@ -597,13 +597,13 @@
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
         font-size: 1.25rem*1.27;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
         font-size: 0.813rem*1.27;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -614,12 +614,12 @@
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
         font-size: 0.875rem*1.27;
         font-weight: 800;
-        color: $grey;
+        color: var(--grey);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
         font-size: 0.625rem*1.27;
-        color: $grey;
+        color: var(--grey);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
@@ -789,7 +789,7 @@
 
     .latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.67;
-        color: $grey;
+        color: var(--grey);
         width: 16.5rem;
 
     }
@@ -802,13 +802,13 @@
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
         font-size: 1.25rem*1.67;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
         font-size: 0.813rem*1.67;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -819,12 +819,12 @@
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
         font-size: 0.875rem*1.67;
         font-weight: 800;
-        color: $grey;
+        color: var(--grey);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
         font-size: 0.625rem*1.67;
-        color: $grey;
+        color: var(--grey);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
@@ -889,7 +889,7 @@
 
     .latest-courses__departments-list__item--active {
         // text-decoration: none;
-        // border-color: $dark-black !important;
+        // border-color: var(--dark-black) !important;
     }
 
 

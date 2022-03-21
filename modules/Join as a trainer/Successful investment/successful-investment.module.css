@@ -7,7 +7,7 @@
 .successful-investment__title {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #AF151F;
+  color: var(--primary-red);
   text-align: center;
   margin: 0 0 3.125rem 0;
 }
@@ -41,7 +41,7 @@
 .successful-investment__marketing_boxes__box__text {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 1.25rem 1.875rem 0 1.875rem;
   text-align: center;
 }

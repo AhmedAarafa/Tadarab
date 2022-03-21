@@ -159,7 +159,7 @@ export default function CommentsSection() {
 
         }else{
             Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
                 query: { from: "/HomePage" }
               })
         }
@@ -174,7 +174,7 @@ export default function CommentsSection() {
         if(userStatus.isUserAuthenticated == true){
         }else{
             Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
                 query: { from: "/HomePage" }
               })
         }

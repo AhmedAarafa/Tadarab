@@ -8,9 +8,10 @@
       "styles/*": ["styles/*"],
       "pages/*": ["pages/*"],
       "configurations/*": ["configurations/*"],
+      "validation rules/*": ["validation rules/*"],
       "custom hooks/*": ["custom hooks/*"],
       "typeRoots": ["node_modules/@types"],
-      "node_modules/*": ["node_modules/*"]
+      "node_modules/*": ["node_modules/*"],
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

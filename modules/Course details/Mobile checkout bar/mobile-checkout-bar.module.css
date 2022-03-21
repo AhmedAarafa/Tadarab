@@ -29,8 +29,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   padding: 0.9375rem 1.875rem;
   border-radius: 1.5625rem;
   width: 25rem;
@@ -64,7 +64,7 @@
 }
 
 .mobile-checkout-bar__course-card__price-box {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .mobile-checkout-bar__course-card__price-box__price {
@@ -90,12 +90,12 @@
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-text-decoration: line-through #AF151F;
-          text-decoration: line-through #AF151F;
+  -webkit-text-decoration: line-through var(--primary-red);
+          text-decoration: line-through var(--primary-red);
 }
 
 .mobile-checkout-bar__course-card__old-price-box {
-  color: #777777;
+  color: var(--grey);
   margin-top: -0.4rem;
 }
 

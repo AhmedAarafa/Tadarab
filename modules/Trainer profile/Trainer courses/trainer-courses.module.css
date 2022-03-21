@@ -11,11 +11,11 @@
 }
 
 .trainer-courses-box__title span:nth-of-type(1) {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .trainer-courses-box__title span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .trainer-courses-box__trainer-courses {
@@ -121,7 +121,7 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__title {
   font-size: 0.9rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -131,7 +131,7 @@
 
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author {
   font-size: 0.7317rem;
-  color: #777777;
+  color: var(--grey);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,13 +153,13 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__price-container__price {
   font-size: 1.125rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__price-container__currency {
   font-size: 0.7317rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__old-price-container {
@@ -171,12 +171,12 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__old-price-container__price {
   font-size: 0.675rem;
   font-weight: 800;
-  color: #777777;
+  color: var(--grey);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__old-price-container__currency {
   font-size: 0.5625rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn {

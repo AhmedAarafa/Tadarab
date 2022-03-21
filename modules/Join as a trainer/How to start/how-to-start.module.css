@@ -13,13 +13,13 @@
 }
 
 .how-to-start__title-box__title span {
-  color: #AF151F;
+  color: var(--primary-red);
   margin: 0 0 0 0.2rem;
 }
 
 .how-to-start__title-box__brief {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .how-to-start__box {
@@ -64,12 +64,12 @@
 }
 
 .how-to-start__title--important {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .how-to-start__brief {
   margin: 1.125rem 0 0 0;
-  color: #777777;
+  color: var(--grey);
   font-size: 1rem;
 }
 
@@ -83,8 +83,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 12.625rem;
   border-radius: 0.625rem;
   margin: 1.5625rem 0 0 0;
@@ -204,8 +204,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 100%;
     border-radius: 1.4375rem;
     margin: 3.59375rem 0 0 0;

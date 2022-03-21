@@ -17,7 +17,7 @@
 .what-you-will-learn__title{
     font-size: 1.5rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin-bottom: 1.5rem;
 }
 
@@ -29,7 +29,7 @@
     margin-bottom: 1rem;
     span{
         font-size: 1rem;
-        color: $grey;
+        color: var(--grey);
         margin-right: 0.8rem;
     }
 }
@@ -40,7 +40,7 @@
     width: 100%;
     flex-grow: 2;
     background-color: white;
-    color: $primary-red;
+    color: var(--primary-red);
     position: absolute;
     bottom: 0rem;
     padding: 0.7rem 0 1.4rem 0;
@@ -88,7 +88,7 @@
     .what-you-will-learn__title{
         font-size: 1.5rem*2.4;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
         margin-bottom: 1.5rem*2.5;
     }
     
@@ -100,7 +100,7 @@
         margin-bottom: 1rem*2.5;
         span{
             font-size: 1rem*2.5;
-            color: $grey;
+            color: var(--grey);
             margin-right: 0.8rem*2.5;
         }
         svg{
@@ -115,7 +115,7 @@
         width: 85%;
         flex-grow: 2;
         background-color: white;
-        color: $primary-red;
+        color: var(--primary-red);
         position: absolute;
         bottom: 0rem*2.5;
         padding: 0.7rem*2.5 0 1.4rem*2.5 0;

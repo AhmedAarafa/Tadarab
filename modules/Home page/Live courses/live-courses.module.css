@@ -14,11 +14,11 @@
 }
 
 .live-courses__title > div span:nth-of-type(1) {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .live-courses__title > div span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .live-courses__see-more-btn-col {
@@ -44,11 +44,11 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   background-color: white !important;
   font-size: 1.063rem;
-  color: #AF151F;
+  color: var(--primary-red);
   font-weight: 700;
   width: 10rem;
   height: 2.75rem;
@@ -75,19 +75,19 @@
 }
 
 .live-courses__see-more-btn:hover {
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .live-courses__see-more-btn:active {
-  background-color: #AF151F !important;
+  background-color: var(--primary-red) !important;
   color: white !important;
-  border: 0.125rem solid #AF151F !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .live-courses__see-more-btn:hover, .live-courses__see-more-btn:active {
   background-color: white !important;
-  color: #AF151F !important;
+  color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
 }
 
@@ -168,7 +168,7 @@
   color: white;
   font-size: 0.6rem;
   font-weight: 700;
-  background-color: #AF151F;
+  background-color: var(--primary-red);
 }
 
 .live-courses__cards-carousel__course-card__duration-chip {
@@ -182,7 +182,7 @@
   right: 0.16rem;
   font-size: 0.6rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -233,7 +233,7 @@
 .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
   font-size: 0.8504rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0;
   line-height: 1.5;
   width: 13.4375rem;
@@ -244,7 +244,7 @@
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
   font-size: 0.6504rem;
-  color: #777777;
+  color: var(--grey);
   width: 13.4375rem;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -253,7 +253,7 @@
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
   font-size: 0.6504rem;
-  color: #777777;
+  color: var(--grey);
   margin-top: 0.8rem;
   width: 100%;
   display: -webkit-box;
@@ -279,7 +279,7 @@
 .live-courses__cards-carousel__card__card-body__checkout-details__price {
   font-size: 1rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
@@ -370,13 +370,13 @@
 .live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
   font-size: 0.813rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -388,12 +388,12 @@
 .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
   font-size: 0.875rem;
   font-weight: 800;
-  color: #777777;
+  color: var(--grey);
 }
 
 .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
   font-size: 0.625rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 @media (max-width: 1200px) {
@@ -494,7 +494,7 @@
     color: white;
     font-size: 0.78rem;
     font-weight: 700;
-    background-color: #AF151F;
+    background-color: var(--primary-red);
   }
   .live-courses__cards-carousel__course-card__duration-chip {
     position: absolute;
@@ -507,7 +507,7 @@
     right: 0.208rem;
     font-size: 0.78rem;
     font-weight: 700;
-    color: #222222;
+    color: var(--dark-black);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -540,17 +540,17 @@
   .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
     font-size: 1.10552rem;
     font-weight: 800;
-    color: #222222;
+    color: var(--dark-black);
     width: 17.5rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 0.84552rem;
-    color: #777777;
+    color: var(--grey);
     width: 17.5rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
     font-size: 0.84552rem;
-    color: #777777;
+    color: var(--grey);
     margin-top: 1.04rem;
   }
   .live-courses__cards-carousel__card__card-body__checkout-details {
@@ -568,7 +568,7 @@
   .live-courses__cards-carousel__card__card-body__checkout-details__price {
     font-size: 1.3rem;
     font-weight: 800;
-    color: #222222;
+    color: var(--dark-black);
   }
   .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
     width: 2.25rem;
@@ -748,7 +748,7 @@
     color: white;
     font-size: 1.0125rem;
     font-weight: 700;
-    background-color: #AF151F;
+    background-color: var(--primary-red);
   }
   .live-courses__cards-carousel__course-card__duration-chip {
     position: absolute;
@@ -761,7 +761,7 @@
     right: 0.27rem;
     font-size: 1.0125rem;
     font-weight: 700;
-    color: #222222;
+    color: var(--dark-black);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -794,17 +794,17 @@
   .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
     font-size: 1.43505rem;
     font-weight: 800;
-    color: #222222;
+    color: var(--dark-black);
     width: 22.5rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 1.09755rem;
-    color: #777777;
+    color: var(--grey);
     width: 22.5rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
     font-size: 1.09755rem;
-    color: #777777;
+    color: var(--grey);
     margin-top: 1.35rem;
   }
   .live-courses__cards-carousel__card__card-body__checkout-details {
@@ -822,7 +822,7 @@
   .live-courses__cards-carousel__card__card-body__checkout-details__price {
     font-size: 1.6875rem;
     font-weight: 800;
-    color: #222222;
+    color: var(--dark-black);
   }
   .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
     width: 2.25rem;
@@ -957,8 +957,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     background-color: white !important;
     font-size: 2.5512rem;
     width: 100%;
@@ -985,13 +985,13 @@
             box-shadow: none;
   }
   .live-courses__see-more-btn:hover {
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .live-courses__see-more-btn:active {
-    background-color: #AF151F !important;
+    background-color: var(--primary-red) !important;
     color: white !important;
-    border: 0.125rem solid #AF151F !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .live-courses__see-more-btn:hover, .live-courses__see-more-btn:active {
     border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;
@@ -1069,7 +1069,7 @@
     top: 2.4rem;
     left: 0;
     right: 0.48rem;
-    color: #222222;
+    color: var(--dark-black);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1104,12 +1104,12 @@
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 1.9512rem;
-    color: #777777;
+    color: var(--grey);
     width: 40.25rem;
   }
   .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
     font-size: 1.9512rem;
-    color: #777777;
+    color: var(--grey);
     margin-top: 2.4rem;
   }
   .live-courses__cards-carousel__card__card-body__checkout-details {

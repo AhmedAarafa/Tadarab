@@ -7,18 +7,18 @@
 .arabic-trainers__title {
     font-size: 1.875rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     text-align: center;
 
     span {
-        color: $primary-red;
-        margin: 0 0.3rem 0 0;
+        color: var(--primary-red);
+        margin: 0 0.3rem 0 0; 
     }
 }
 
 .arabic-trainers__brief {
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
     text-align: center;
     margin: 0.625rem 0 0 0;
 }
@@ -105,7 +105,7 @@
     div:nth-of-type(1) {
         font-size: 1.375rem;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         text-align: center;
     }
 

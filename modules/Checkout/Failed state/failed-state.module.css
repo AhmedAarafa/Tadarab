@@ -23,13 +23,13 @@
 .failed-state__purchasing-failed {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 1.25rem 0 0 0;
 }
 
 .failed-state__purchasing-failed-brief {
   font-size: 1.25rem;
-  color: #777777;
+  color: var(--grey);
   margin: 0.5rem 0 0 0;
 }
 
@@ -43,8 +43,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -88,7 +88,7 @@
 .failed-state__back-to-main-page {
   font-size: 1rem;
   font-weight: 700;
-  color: #AF151F;
+  color: var(--primary-red);
   margin: 1.5rem 0 0 0;
   cursor: pointer;
 }
@@ -107,7 +107,7 @@
   text-align: center;
   font-size: 1rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .failed-state-row__invoice-box__details-box {
@@ -149,12 +149,12 @@
 }
 
 .failed-state-row__invoice-box__details-box__details div:nth-of-type(1) {
-  color: #777777;
+  color: var(--grey);
   padding: 0 0 0 0.5rem;
 }
 
 .failed-state-row__invoice-box__details-box__details div:nth-of-type(2) {
-  color: #222222;
+  color: var(--dark-black);
   font-weight: 700;
   padding: 0 0.5rem 0 0;
 }
@@ -217,8 +217,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 35.9375rem;
     height: 6.46875rem;
     margin: 2.73rem 0 0 0;

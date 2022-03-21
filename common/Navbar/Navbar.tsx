@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React , { useState , useEffect } from "react";
+import React , { useState , useEffect, ChangeEvent } from "react";
 import styles from "./navbar.module.css";
 import Link from 'next/link';
 import {
@@ -23,20 +23,27 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import Router, { useRouter }  from "next/router";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { setHomePageData } from "configurations/redux/actions/homePageData";
+import { setMyCourseNavigator } from "configurations/redux/actions/myCourseNavigator";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { withRouter } from 'next/router';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import useResize from "custom hooks/useResize";
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [expanded, setExpanded] = useState<any>(false);
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
+  const [searchQuery, setSearchQuery] = useState("");
   const handleDiscoverSidebarShow = (status:boolean)=>{
     setDiscoverSidebarShow(status);
   }
   const [localStateCartItems, setLocalStateCartItems] = useState<any>(null);
   const userStatus = useSelector((state:any) => state.userAuthentication);
   const cartItems = useSelector((state:any) => state.cartItems);
+  const myCourseNavigator = useSelector((state:any) => state.myCourseNavigator);
+
 
   const dispatch = useDispatch();
 
@@ -44,14 +51,14 @@ function Navbar() {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
-    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}HomePage`);
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null}));
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
     axiosInstance
-        .get("home/?country_code=eg",{ headers: {"Authorization" : ``} })
+        .get(`home/?country_code=${localStorage.getItem("countryCode")}`,{ headers: {"Authorization" : ``} })
         .then(function (response:any) {
           dispatch(setHomePageData(response.data.data))
         })
@@ -60,33 +67,7 @@ function Navbar() {
         });
     
   }
-  
 
-  // useEffect(() => {
-  //   if(userStatus.isUserAuthenticated){
-  //     console.log("ay7aga");
-      
-  //     axiosInstance
-  //         .get("users/cart/?country_code=eg")
-  //         .then(function (response:any) {
-  //           // console.log("cart item get req",response.data.data); 
-  //           // if(response.data.data == null){
-  //           // const storedCartCourses:any = localStorage.getItem("cart");
-            
-  //             // console.log("response.data.data",response.data.data);
-  //           dispatch(setCartItems(response.data.data));
-  //         // }
-        
-  //         })
-  //         .catch(function (error) {
-  //           console.log(error);
-  //         });
-  //   }
-
-
-
-  // }, [userStatus]);
-  
 
   useEffect(() => {
     // popoverHandler();
@@ -149,7 +130,7 @@ function Navbar() {
       });
     };
   },[userStatus]);
-
+ 
   
   useEffect(() => {
     
@@ -159,10 +140,11 @@ function Navbar() {
     // if(userStatus.isUserAuthenticated === true){
         // setLocalStateCartItems(cartItems?.data);
         
+        
         if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
 
         axiosInstance
-        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           // console.log("not logged in",response.data.data);
           // dispatch(setCartItems(response?.data?.data));
@@ -184,15 +166,13 @@ function Navbar() {
   useEffect(() => {
     
     let localStorageItems:any = localStorage.getItem("cart");
-    // console.log("cartItems",cartItems);
-    console.log("localStorageItems",localStorageItems);
     // if(userStatus.isUserAuthenticated === true){
-        // setLocalStateCartItems(cartItems?.data);
-        
-        if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
+      // setLocalStateCartItems(cartItems?.data);
+      
+      if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
           
         axiosInstance
-        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           // console.log("not logged in",response.data.data);
           // dispatch(setCartItems(response.data.data));
@@ -209,23 +189,72 @@ function Navbar() {
 
 }, [cartItems])
 
+  useResize((
+    ()=>{
+      if(window.innerWidth < 576){
+        setIsMobileView(true);
+      }else{
+        setIsMobileView(false);
+      }
+    }
+  ))
+
+const handleSearchBarEntries = (e:ChangeEvent<HTMLInputElement> | Event | undefined)=>{
+ e && e.target  && setSearchQuery((e.target as HTMLInputElement).value);
+}
+
+const sendSearchQuery = (e:any)=>{
+
+  if (e.key === 'Enter' || e.keyCode === 13 || e.target.id == "responsive-search-field-btn") {
+    if(searchQuery == ""){
+      console.log("متخمش يسطا");
+    }else{
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SearchResults`,
+        query: { search_query: searchQuery }
+      });
+      const searchBar:any = document.getElementById("search-field");
+      const responsiveSearchBar:any = document.getElementById("responsive-search-field");
+      searchBar.value = "";
+      searchBar.blur();
+      responsiveSearchBar.value = "";
+      responsiveSearchBar.blur();
+    }
+}
+}
+
+const searchBoxToggler = (action:any) =>{
+ const searchBoxOverlay:any =  document.getElementById("search-box-overlay");
+  switch (action) {
+    case "open":
+      searchBoxOverlay.style.cssText=`display:block;`
+      break;
+    case "close":
+      searchBoxOverlay.style.cssText=`display:none;`
+      break;
+  
+    default:
+      break;
+  }
+}
+
 
   
 
   return (
     <>
       <NavBar id="nav" fixed="top"
-       style={{justifyContent : isCoursePurchased ? "right" : "" ,
+       style={{justifyContent : (isCoursePurchased && !isMobileView) ? "right" : "" ,
        paddingRight : isCoursePurchased ? "0.6rem" : ""}} 
-       className={styles["navbar"]} expand="sm" >
-        <Link href="/HomePage">
+       className={styles["navbar"]} expanded={expanded} expand="sm">
+        <Link href="/">
 
         <NavBar.Brand className={styles["navbar__img"]} >
         <TadarabLogo />
         </NavBar.Brand>
         </Link>
         
-        <NavBar.Toggle aria-controls="offcanvasNavbar1" />
+        <NavBar.Toggle onClick={() => {setExpanded(!expanded)}} aria-controls="offcanvasNavbar1" />
         <NavBar.Offcanvas  onHide={()=>{handleDiscoverSidebarShow(false)}}
           id="offcanvasNavbar1"
           aria-labelledby="offcanvasNavbarLabel1"
@@ -281,6 +310,17 @@ function Navbar() {
             <li className={styles["sidebar-list__item"]}>تدرب للشركات</li>
             <li className={styles["sidebar-list__item"]}>انضم كمدرب</li>
             { userStatus.isUserAuthenticated && <li className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>}
+            <li id="curriculum" className={styles["sidebar-list__item"]}
+            onClick={()=>{dispatch(setMyCourseNavigator("curriculum"));
+            setExpanded(false);
+          }
+        }
+            >المنهج</li>
+            <li id="certificate" className={styles["sidebar-list__item"]}
+            onClick={()=>{dispatch(setMyCourseNavigator("certificate"));
+            setExpanded(false);
+          }}
+            >شهادة الدورة</li>
           </ul>
           <div className={styles["sidebar-list__dark-mode-box"]}>
             <span>تغيير للوضع الداكن</span>
@@ -290,7 +330,7 @@ function Navbar() {
             </div>
 
           </div>
-          <Link href="/SignUp">
+          <Link href="/signup">
           <Button className={styles["sidebar-list__register-btn"]}>
           {
               userStatus.isUserAuthenticated ? 
@@ -300,7 +340,7 @@ function Navbar() {
             }
           </Button>
           </Link>   
-          <Link href="/SignIn">
+          <Link href="/signin">
           <Button onClick={()=>{
             userStatus.isUserAuthenticated ? 
             handleLogout() :
@@ -377,7 +417,10 @@ function Navbar() {
               >
                 <SearchIcon color="#777"/>
               </div>
-              <Form.Control
+              <Form.Control 
+              id="search-field"
+              onChange={()=>{handleSearchBarEntries(event)}}
+              onKeyUp={()=>{sendSearchQuery(event)}}
                 type="text"
                 placeholder="اكتشف هواياتك..."
                 className={styles["navbar__search-bar-container__search-bar"]}
@@ -399,18 +442,18 @@ function Navbar() {
              </div>
              <div className={styles["navbar__purchased-course-nav"]}>
                <div className={`${styles["navbar__purchased-course-nav__curriculum"]}
-               ${ purchasedCoursesNav == "curriculum" && styles["navbar__purchased-course-nav--active"]} `} 
-               onClick={()=>setPurchasedCoursesNav("curriculum")}>
+               ${ myCourseNavigator == "curriculum" && styles["navbar__purchased-course-nav--active"]} `} 
+               onClick={ ()=>{ dispatch(setMyCourseNavigator("curriculum")); } }>
 
-                <LessonPlayIcon color={ purchasedCoursesNav == "curriculum" ? "#af151f" : "#bbbabf" } opacity="1"/>
+                <LessonPlayIcon color={ myCourseNavigator == "curriculum" ? "#af151f" : "#bbbabf" } opacity="1"/>
                 <span>المنهج</span>
 
                </div>
                <div className={`${styles["navbar__purchased-course-nav__certificate"]} 
-               ${ purchasedCoursesNav == "certificate" && styles["navbar__purchased-course-nav--active"]} `} 
-               onClick={()=>setPurchasedCoursesNav("certificate")}>
+               ${ myCourseNavigator == "certificate" && styles["navbar__purchased-course-nav--active"]} `} 
+               onClick={ ()=>{ dispatch(setMyCourseNavigator("certificate")); }  }>
 
-                <CertificateIcon color={ purchasedCoursesNav == "certificate" ? "#af151f" : "#bbbabf" }/>
+                <CertificateIcon color={ myCourseNavigator == "certificate" ? "#af151f" : "#bbbabf" }/>
                 <span>شهادة الدورة</span>
 
                </div>
@@ -432,19 +475,56 @@ function Navbar() {
 
            
 
-            { userStatus.isUserAuthenticated == false &&  <Link href="/SignUp">
+            { userStatus.isUserAuthenticated == false &&  <Link href="/signup">
              <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
           </Link>  
           }
-         { userStatus.isUserAuthenticated == false && <Link href="/SignIn">
+         { userStatus.isUserAuthenticated == false && <Link href="/signin">
             <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
           </Link> }
 
             <div className={styles["navbar_responsive-search-icon"]}>
-            <SearchIcon color="#222"/>
+                <div onClick={()=>{
+                  searchBoxToggler("open");
+                  const searchBox:any =  document.getElementById("responsive-search-field");
+                  searchBox.focus();
+                  }}>
+                  <SearchIcon color="#222"/>
+                </div>
+                <div id="search-box-overlay" className={styles["search-box-overlay"]}
+                onClick={(e:any)=>{
+                  
+                  console.log(e.target.id);
+                  e.stopPropagation();
+                  e.target.id == "search-box-overlay" ?
+                  searchBoxToggler("close")
+                  :
+                  null 
+                  ;
+                }}
+                >
+
+                <div className={styles["responsive-navbar__search-bar-container"]}>
+                  <Form.Control
+                  id="responsive-search-field"
+                  onChange={()=> handleSearchBarEntries(event)}
+                  onKeyUp={()=>{sendSearchQuery(event)}}
+                    type="text"
+                    placeholder="ماذا تريد أن تتعلم اليوم؟"
+                    className={
+                      styles["responsive-navbar__search-bar-container__search-bar"]
+                    }
+                  />
+                  <Button id="responsive-search-field-btn" onClick={()=>{sendSearchQuery(event)}} 
+                  className={styles["responsive-navbar__search-bar__btn"]}>
+                     <SearchIcon color="#fff"/>
+                  </Button>
+                </div>
+
+              </div>
             </div>
 
-            { !isCoursePurchased && <OverlayTrigger
+            { (!isCoursePurchased || isMobileView) && <OverlayTrigger
             trigger='click'
             rootClose
               placement="bottom-start"
@@ -640,7 +720,8 @@ function Navbar() {
                 {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
               
               </div>    
-            </OverlayTrigger>}
+            </OverlayTrigger>
+            }
 
             {
              userStatus.isUserAuthenticated && 

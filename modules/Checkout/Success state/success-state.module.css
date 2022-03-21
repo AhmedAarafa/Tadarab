@@ -23,14 +23,14 @@
 .success-state__purchasing-done {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 1.25rem 3rem 0 0;
   text-align: center;
 }
 
 .success-state__begin-learning {
   font-size: 1.25rem;
-  color: #777777;
+  color: var(--grey);
   margin: 0.5rem 3rem 0 0;
   text-align: center;
 }
@@ -45,8 +45,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -90,7 +90,7 @@
 .success-state__bill-details {
   font-size: 1rem;
   font-weight: 700;
-  color: #AF151F;
+  color: var(--primary-red);
   margin: 1.5rem 0 0 0;
 }
 
@@ -108,7 +108,7 @@
   text-align: center;
   font-size: 1rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .success-state-row__invoice-box__details-box {
@@ -150,12 +150,12 @@
 }
 
 .success-state-row__invoice-box__details-box__details div:nth-of-type(1) {
-  color: #777777;
+  color: var(--grey);
   padding: 0 0 0 0.5rem;
 }
 
 .success-state-row__invoice-box__details-box__details div:nth-of-type(2) {
-  color: #222222;
+  color: var(--dark-black);
   font-weight: 700;
   padding: 0 0.5rem 0 0;
 }
@@ -203,12 +203,12 @@
   .success-state__purchasing-done {
     font-size: 3.9375rem;
     font-weight: 800;
-    color: #222222;
+    color: var(--dark-black);
     margin: 2.625rem 5rem 0 5rem;
   }
   .success-state__begin-learning {
     font-size: 2.625rem;
-    color: #777777;
+    color: var(--grey);
     margin: 1.05rem 5rem 0 5rem;
   }
   .success-state__btn {
@@ -221,8 +221,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 31.625rem;
     height: 6.46875rem;
     margin: 2.73rem 0 0 0;
@@ -252,7 +252,7 @@
   .success-state__bill-details {
     font-size: 2.3rem;
     font-weight: 700;
-    color: #AF151F;
+    color: var(--primary-red);
     margin: 3.45rem 0 0 0;
   }
   .success-state-row__invoice-box {

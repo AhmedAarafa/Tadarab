@@ -28,14 +28,14 @@ export default function TrainerCourses() {
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, "trainers/10253/?country_code=eg");
+            const handleFavResponse: any = handleFav(course, `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`);
             handleFavResponse.then(function (response: any) {
                 setTrainerProfile(response.data.data);
                 console.log("response.data.data",response.data.data);
             })
         } else {
             Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
                 query: { from: "/TrainerProfile" }
             })
         }
@@ -44,7 +44,7 @@ export default function TrainerCourses() {
     const handleCartActionBtn = (course: any): any => {
 
         if (userStatus?.isUserAuthenticated == true) {
-            const handleCartResponse: any = handleCart(course, "trainers/10253/?country_code=eg", true);
+            const handleCartResponse: any = handleCart(course, `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, true);
             handleCartResponse.then(function (firstresponse: any) {
                 firstresponse.resp.then(function (response: any) {
                     setTrainerProfile(response.data.data);
@@ -56,7 +56,7 @@ export default function TrainerCourses() {
             })
         }
         else {
-            const handleCartResponse: any = handleCart(course, "trainers/10253/?country_code=eg", false);
+            const handleCartResponse: any = handleCart(course, `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
             handleCartResponse.then(function (response: any) {
                 dispatch(setCartItems(response.data.data));
                 let newArray:any = trainerProfile.courses;

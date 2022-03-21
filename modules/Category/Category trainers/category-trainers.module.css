@@ -5,7 +5,7 @@
 .category-trainer__title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .category-trainer__cards-carousel {

@@ -8,7 +8,7 @@
 .course-keywords__title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .course-keywords__tags {
@@ -17,7 +17,7 @@
 
 .course-keywords__tags span {
   font-size: 0.75rem;
-  color: #777777;
+  color: var(--grey);
   border-radius: 0.938rem;
   width: -webkit-fit-content;
   width: -moz-fit-content;

@@ -11,14 +11,14 @@
 .course-keywords__title {
     font-size: 1.5rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-keywords__tags{
     margin-top: 1.25rem;
     span{
         font-size: 0.75rem;
-        color: $grey;
+        color: var(--grey);
         border-radius: 0.938rem;
         width: fit-content;
         padding: 0.5rem 0.75rem;

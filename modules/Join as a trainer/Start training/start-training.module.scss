@@ -10,16 +10,16 @@
     font-size: 1.75rem;
     font-weight: 800;
     div:nth-of-type(1){
-        color: $dark-black;
+        color: var(--dark-black);
     }
     div:nth-of-type(2){
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }
 
 .start-training__brief{
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
     margin: 0.9375rem 0 0 0;
     width: 26.625rem;
 }

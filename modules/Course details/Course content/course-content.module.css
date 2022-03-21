@@ -6,12 +6,12 @@
 .course-content__title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .course-content__course-duration-box {
   font-size: 1.25rem;
-  color: #777777;
+  color: var(--grey);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -130,18 +130,18 @@
 .purchased-course-content__accordion__header__group-number {
   font-size: 1.125rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .purchased-course-content__accordion__header__group-number {
-  color: #777777;
+  color: var(--grey);
 }
 
 .purchased-course-content__accordion__header__group-number span {
   margin: 0 0.5rem 0 0;
   font-size: 0.9rem;
   font-weight: 400;
-  color: #777777;
+  color: var(--grey);
 }
 
 .course-content__accordion__body,
@@ -191,7 +191,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   font-size: 0.813rem;
-  color: #777777;
+  color: var(--grey);
   margin: 0.2rem 0 0 0;
 }
 
@@ -267,19 +267,19 @@
 .purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(1) {
   font-size: 0.938rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .course-content__accordion__body__list-item__lesson-name-duration div:nth-of-type(2),
 .purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(2) {
   font-size: 0.813rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(1) {
   font-size: 1rem;
   font-weight: 400;
-  color: #777777;
+  color: var(--grey);
 }
 
 .course-content__accordion__body__list-item__watch-free,
@@ -299,7 +299,7 @@
 .course-content__accordion__body__list-item__download span {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   margin-left: 0.6rem;
 }
 
@@ -311,7 +311,7 @@
 
 .purchased-course-content__accordion__body__list-item__duration {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .course-content__show-more-btn {
@@ -334,12 +334,12 @@
 .purchased-course-playlist__progress-box span:nth-of-type(1) {
   font-size: 1.125rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .purchased-course-playlist__progress-box span:nth-of-type(2) {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .purchased-course-playlist__progress-box__progress-bar {
@@ -352,7 +352,7 @@
 }
 
 .purchased-course-playlist__progress-box__progress-bar > div:first-child > div:first-child {
-  background-color: #AF151F;
+  background-color: var(--primary-red);
 }
 
 @media (max-width: 575px) {
@@ -453,7 +453,7 @@
     font-size: 2.8125rem;
   }
   .purchased-course-content__accordion__header__group-number {
-    color: #777777;
+    color: var(--grey);
   }
   .purchased-course-content__accordion__header__group-number span {
     margin: 0 1.25rem 0 0;
@@ -485,7 +485,7 @@
         -ms-flex-direction: row;
             flex-direction: row;
     font-size: 2.0325rem;
-    color: #777777;
+    color: var(--grey);
     margin: 0.5rem 0 0 0;
   }
   .course-content__accordion__body__list-item {
@@ -584,11 +584,11 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     background-color: white !important;
     width: 100%;
-    border: 0.125rem solid #F7E7E8 !important;
+    border: 0.125rem solid var(--pale-red) !important;
     height: 6rem;
     font-size: 2.5rem;
     border-radius: 1.5rem;
@@ -603,16 +603,16 @@
             box-shadow: none;
   }
   .course-content__show-more-btn:hover {
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .course-content__show-more-btn:active {
-    background-color: #AF151F !important;
+    background-color: var(--primary-red) !important;
     color: white !important;
-    border: 0.125rem solid #AF151F !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .course-content__show-more-btn:hover, .course-content__show-more-btn:active {
-    border: 0.125rem solid #F7E7E8 !important;
+    border: 0.125rem solid var(--pale-red) !important;
   }
   .purchased-course-playlist__progress-box {
     height: 15.625rem;

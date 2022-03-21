@@ -5,7 +5,7 @@
 .trainers-opinions__title {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0 3.125rem 3.1875rem 0;
   width: 42.5rem;
   text-align: center;
@@ -39,12 +39,12 @@
 .trainers-opinions__inquiries-section div:nth-of-type(1) {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .trainers-opinions__inquiries-section div:nth-of-type(2) {
   font-size: 1.25rem;
-  color: #777777;
+  color: var(--grey);
   margin: 0.3125rem 0 0 0;
 }
 
@@ -58,8 +58,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 12.5rem;
   border-radius: 0.625rem;
   margin: 0.9375rem 0 0 0;
@@ -130,8 +130,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 100%;
     border-radius: 1.4375rem;
     margin: 2.15625rem 0 0 0;

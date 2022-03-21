@@ -49,7 +49,7 @@
 }
 
 .educational-guide__container__details-box__title span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .educational-guide__container__details-box__breif {
@@ -68,8 +68,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 10rem;
   height: 3.125rem;
   color: white;
@@ -153,8 +153,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 40rem;
     height: 7.5rem;
     font-size: 2.5rem;

@@ -7,19 +7,19 @@
 .join-us__title {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   text-align: center;
 }
 
 .join-us__title div {
-  color: #AF151F;
+  color: var(--primary-red);
   margin: 0 0.3rem 0 0;
   display: inline-block;
 }
 
 .join-us__brief {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
   text-align: center;
   margin: 0.625rem 0 0 0;
 }
@@ -135,8 +135,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 15rem;
   border-radius: 0.625rem;
   margin: 2.4375rem 0 0 0;

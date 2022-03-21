@@ -5,7 +5,7 @@
 .comments-section__title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin-bottom: 1.188rem;
 }
 
@@ -48,8 +48,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -198,7 +198,7 @@
 .comments-section__comments-tree__comment-box__comment-details__name span:nth-of-type(1) {
   font-size: 1.125rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .comments-section__comments-tree__comment-box__comment-details__name span:nth-of-type(2) {
@@ -223,7 +223,7 @@
 
 .comments-section__comments-tree__comment-box__comment-details__comment {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .comments-section__comments-tree__comment-box__comment-details__reactions-box {
@@ -251,7 +251,7 @@
       -ms-flex-pack: unset;
           justify-content: unset;
   margin-left: 1.875rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies span, .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies svg {
@@ -314,8 +314,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

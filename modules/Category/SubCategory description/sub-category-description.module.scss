@@ -28,7 +28,7 @@
         width: 4.25rem;
         height: 1.75rem;
         font-size: 0.875rem;
-        color: $grey;
+        color: var(--grey);
         border-radius: 0.5rem;
         background-color: #F2F2F2;
         @include flex(center,center);
@@ -37,11 +37,11 @@
     div:nth-of-type(2) {
         font-size: 1.875rem;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
         span{
             font-size: 1.25rem;
             font-weight: 400;
-            color: $grey;
+            color: var(--grey);
             width: fit-content;
             position: relative;
             z-index: 2;
@@ -64,7 +64,7 @@
 
     div:nth-of-type(3) {
         font-size: 1.25rem;
-        color: $grey;
+        color: var(--grey);
         margin: -0.2rem 0 0 0;
         span{
             font-weight: 800;
@@ -74,7 +74,7 @@
 
 .category-description__brief{
     font-size: 1.125rem;
-    color: $grey;
+    color: var(--grey);
     margin: 1rem 0 0 0;
 }
 

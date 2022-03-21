@@ -9,11 +9,11 @@
 
     &>div {
         span:nth-of-type(1) {
-            color: $dark-black;
+            color: var(--dark-black);
         }
 
         span:nth-of-type(2) {
-            color: $primary-red;
+            color: var(--primary-red);
         }
     }
 
@@ -27,7 +27,7 @@
 .live-courses__see-more-btn {
     @include outlined-button;
     font-size: 1.063rem;
-    color: $primary-red;
+    color: var(--primary-red);
     font-weight: 700;
     width: 10rem;
     height: 2.75rem;
@@ -38,7 +38,7 @@
     &:hover,
     &:active {
         background-color: white !important;
-        color: $primary-red !important;
+        color: var(--primary-red) !important;
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
@@ -121,7 +121,7 @@
     @include categories-chip;
     font-size: 0.75rem*0.8;
     font-weight: 700;
-    background-color: $primary-red;
+    background-color: var(--primary-red);
 }
 
 .live-courses__cards-carousel__course-card__duration-chip {
@@ -130,7 +130,7 @@
     right: 0.2rem*0.8;
     font-size: 0.75rem*0.8;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
     @include flex;
 
     &>div {
@@ -176,7 +176,7 @@
 .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
     font-size: 1.063rem*0.8;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0;
     line-height: 1.5;
     width: 13.4375rem;
@@ -187,7 +187,7 @@
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
     font-size: 0.813rem*0.8;
-    color: $grey;
+    color: var(--grey);
     width: 13.4375rem;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -196,7 +196,7 @@
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
     font-size: 0.813rem*0.8;
-    color: $grey;
+    color: var(--grey);
     margin-top: 1rem*0.8;
     width: 100%;
     display: -webkit-box;
@@ -214,7 +214,7 @@
 .live-courses__cards-carousel__card__card-body__checkout-details__price {
     font-size: 1.25rem*0.8;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
@@ -267,13 +267,13 @@
 .live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
     font-size: 0.813rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -284,12 +284,12 @@
 .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
     font-size: 0.875rem;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 }
 
 .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
     font-size: 0.625rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 @media (max-width:1200px) {
@@ -410,7 +410,7 @@
         @include categories-chip;
         font-size: 0.75rem*1.04;
         font-weight: 700;
-        background-color: $primary-red;
+        background-color: var(--primary-red);
     }
 
     .live-courses__cards-carousel__course-card__duration-chip {
@@ -419,7 +419,7 @@
         right: 0.2rem*1.04;
         font-size: 0.75rem*1.04;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         @include flex;
 
         &>div {
@@ -454,21 +454,21 @@
     .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
         font-size: 1.063rem*1.04;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
         width: 17.5rem;
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.04;
-        color: $grey;
+        color: var(--grey);
         width: 17.5rem;
         
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
         font-size: 0.813rem*1.04;
-        color: $grey;
+        color: var(--grey);
         margin-top: 1rem*1.04;
     }
 
@@ -480,7 +480,7 @@
     .live-courses__cards-carousel__card__card-body__checkout-details__price {
         font-size: 1.25rem*1.04;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
@@ -645,7 +645,7 @@
         @include categories-chip;
         font-size: 0.75rem*1.35;
         font-weight: 700;
-        background-color: $primary-red;
+        background-color: var(--primary-red);
     }
 
     .live-courses__cards-carousel__course-card__duration-chip {
@@ -654,7 +654,7 @@
         right: 0.2rem*1.35;
         font-size: 0.75rem*1.35;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         @include flex;
 
         &>div {
@@ -690,21 +690,21 @@
     .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
         font-size: 1.063rem*1.35;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
         width: 22.5rem;
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
         font-size: 0.813rem*1.35;
-        color: $grey;
+        color: var(--grey);
         width: 22.5rem;
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
         font-size: 0.813rem*1.35;
-        color: $grey;
+        color: var(--grey);
         margin-top: 1rem*1.35;
     }
 
@@ -716,7 +716,7 @@
     .live-courses__cards-carousel__card__card-body__checkout-details__price {
         font-size: 1.25rem*1.35;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
@@ -905,7 +905,7 @@
         top: 1rem*2.4;
         left: 0;
         right: 0.2rem*2.4;
-        color: $dark-black;
+        color: var(--dark-black);
         @include flex;
 
         &>div {
@@ -944,14 +944,14 @@
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
         font-size: 0.813rem*2.4;
-        color: $grey;
+        color: var(--grey);
         width: 40.25rem;
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
         font-size: 0.813rem*2.4;
-        color: $grey;
+        color: var(--grey);
         margin-top: 1rem*2.4;
     }
 

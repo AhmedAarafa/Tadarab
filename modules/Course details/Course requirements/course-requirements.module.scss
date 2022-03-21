@@ -12,14 +12,14 @@
 .course-requirements__mid-level {
     @include flex(center);
     border-radius: 0.938rem;
-    background-color: $pale-red;
+    background-color: var(--pale-red);
     height: fit-content;
     padding: 0.8rem 1rem;
 
     span {
         font-size: 1.063rem;
         font-weight: 800;
-        color: $primary-red;
+        color: var(--primary-red);
         margin: 0 0.5rem -0.3rem 0;
     }
     svg{
@@ -34,7 +34,7 @@
 .course-requirements__box__title{
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-requirements__box__requirements{
@@ -42,7 +42,7 @@
     li{
         margin-bottom: 0.3rem;
         font-size: 0.938rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 

@@ -14,11 +14,11 @@
 .course-details__course-card__title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-details__course-card__price-box {
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-details__course-card__price-box__price {
@@ -34,11 +34,11 @@
 .course-details__course-card__old-price-box--line-through {
     @include flex(center);
     display: inline-flex;
-    text-decoration: line-through $primary-red;
+    text-decoration: line-through var(--primary-red);
 }
 
 .course-details__course-card__old-price-box {
-    color: $grey;
+    color: var(--grey);
     margin-top: -0.4rem;
 }
 
@@ -94,7 +94,7 @@
 .course-details__course-card__guarantee-box__text-box__major,
 .course-details__course-card__guarantee-box__text-box__minor {
     font-size: 0.813rem;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-details__course-card__guarantee-box__text-box__major {
@@ -103,7 +103,7 @@
 
 .course-details__course-card__guarantee-box__text-box__minor {
     font-weight: 400;
-    color: $grey;
+    color: var(--grey);
 }
 
 .course-details__course-card__details-list {
@@ -119,7 +119,7 @@
 
     span {
         font-size: 0.938rem;
-        color: $dark-black;
+        color: var(--dark-black);
         margin-right: 1rem;
     }
     svg,img {
@@ -134,12 +134,12 @@
     padding: 0.9rem 0 1.5rem 0;
 
     span:nth-of-type(1) {
-        color: $grey;
+        color: var(--grey);
     }
 
     span:nth-of-type(2) {
         font-weight: 800;
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }
 
@@ -182,12 +182,12 @@
     div:nth-of-type(1){
         font-size: 1.25rem;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
     div:nth-of-type(2){
         font-size: 0.875rem;
         font-weight: 700;
-        color: $grey;
+        color: var(--grey);
     }
 }
 

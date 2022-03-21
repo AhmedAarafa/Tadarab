@@ -30,7 +30,7 @@ export default function FailedState() {
 
             </Button>
 
-        <Link href="/HomePage">
+        <Link href="/">
             <div className={styles["failed-state__back-to-main-page"]} > اذهب للصفحة الرئيسية </div>
         </Link>
             

@@ -9,7 +9,7 @@
     @include flex(center);
     font-size: 0.938rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
     padding: 0;
     margin-bottom: 1.2rem;
 

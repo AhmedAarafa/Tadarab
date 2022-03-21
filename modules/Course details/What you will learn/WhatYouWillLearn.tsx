@@ -69,7 +69,7 @@ export default function WhatYouWillLearn() {
           ماذا سوف تتعلم في الدورة؟
         </div>
         {
-            courseDetails?.course_details?.key_points.map((course:any,i:number)=>{
+            courseDetails?.course_details?.key_points?.map((course:any,i:number)=>{
                 return(
                 <div key={i}  className={styles["what-you-will-learn__list"]}>
                     <div>

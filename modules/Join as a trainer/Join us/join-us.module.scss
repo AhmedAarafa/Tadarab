@@ -10,11 +10,11 @@
 .join-us__title {
     font-size: 1.875rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     text-align: center;
 
     div {
-        color: $primary-red;
+        color: var(--primary-red);
         margin: 0 0.3rem 0 0;
         display: inline-block;
     }
@@ -22,7 +22,7 @@
 
 .join-us__brief {
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
     text-align: center;
     margin: 0.625rem 0 0 0;
 }

@@ -30,18 +30,18 @@ export default function MobileCheckoutBar() {
                 styles["mobile-checkout-bar__course-card__price-box__price"]
               }
             >
-              {courseDetailsData.data?.course_details.price}
+              {courseDetailsData.data?.course_details?.price}
             </span>
             <span
               className={
                 styles["mobile-checkout-bar__course-card__price-box__currency"]
               }
             >
-             {courseDetailsData.data?.course_details.currency_code}
+             {courseDetailsData.data?.course_details?.currency_code}
             </span>
           </div>
           {
-            courseDetailsData.data?.course_details.price > courseDetailsData.data?.course_details.discounted_price 
+            courseDetailsData.data?.course_details?.price > courseDetailsData.data?.course_details?.discounted_price 
             &&
             <div className={styles["mobile-checkout-bar__course-card__old-price-box"]}>
               <div
@@ -57,14 +57,14 @@ export default function MobileCheckoutBar() {
                   }
                 >
                   
-                  {courseDetailsData.data?.course_details.currency_code}
+                  {courseDetailsData.data?.course_details?.currency_code}
                 </span>
                 <span
                   className={
                     styles["mobile-checkout-bar__course-card__old-price-box__price"]
                   }
                 >
-                  {courseDetailsData.data?.course_details.discounted_price}
+                  {courseDetailsData.data?.course_details?.discounted_price}
                 </span>
               
               </div>

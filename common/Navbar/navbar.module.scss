@@ -71,7 +71,7 @@
     margin-right: 0.6rem;
     font-weight: 700;
     font-size: 0.9375rem;
-    color: $dark-black !important;
+    color: var(--dark-black) !important;
     text-align: right;
     transition: all 0.3s linear;
     @include flex(center);
@@ -100,7 +100,7 @@
 .navbar__purchased-course-name {
     font-size: 1.0625rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: auto 1.5625rem auto 0;
     padding: 0 1.5625rem 0 0;
     border-right: 0.0625rem solid rgba(0, 0, 0, 0.2);
@@ -109,7 +109,7 @@
 .navbar__purchased-course-nav {
     font-size: 0.9375rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0 22rem 0 0;
     svg {
         margin: 0 0 0 0.5rem;
@@ -125,8 +125,8 @@
 }
 
 .navbar__purchased-course-nav--active{
-    color: $primary-red;    
-    border-bottom: 0.1875rem solid $primary-red;
+    color: var(--primary-red);    
+    border-bottom: 0.1875rem solid var(--primary-red);
 }
 
 .navbar__purchased-course-nav__curriculum{
@@ -204,11 +204,21 @@
 
 
 .navbar_responsive-search-icon {
-    svg {
+    div{
 
-        margin-top: 0.2rem;
-        display: none;
+        svg {
+    
+            margin-top: 0.2rem;
+            display: none;
+        }
     }
+}
+
+.search-box-overlay{
+      display: none;  
+}
+.hero-section__search-bar-container{
+    display: none;
 }
 
 .navbar__cart-icon-container {
@@ -221,14 +231,14 @@
     svg {
         width: 2.063rem;
         height: 1.875rem;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 }
 
 
 .navbar__cart-icon__badge {
     position: absolute;
-    background-color: $primary-red !important;
+    background-color: var(--primary-red) !important;
     top: 0.125rem;
     right: -0.625rem;
     border-radius: 50%;
@@ -260,7 +270,7 @@
 
 .navbar__discover-popover__caption {
     font-size: 0.813rem;
-    color: $grey;
+    color: var(--grey);
     margin-right: 2rem;
     position: relative;
     width: fit-content;
@@ -272,7 +282,7 @@
         right: 0;
         bottom: -0.188rem;
         width: 60%;
-        border-bottom: 0.125rem solid $primary-red;
+        border-bottom: 0.125rem solid var(--primary-red);
     }
 
 }
@@ -344,7 +354,7 @@
 .navbar__cart-popover__course-details__title {
     font-size: 1rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     width: 13.5625rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -354,19 +364,19 @@
 .navbar__cart-popover__course-details__author,
 .navbar__cart-popover__course-details__old-price {
     font-size: 0.75rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .navbar__cart-popover__course-details__price {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $primary-red;
+    color: var(--primary-red);
 
 }
 
 .navbar__cart-popover__course-details__currency {
     font-size: 0.813rem;
-    color: $primary-red;
+    color: var(--primary-red);
 }
 
 .navbar__cart-popover__course-details__old-price {
@@ -375,7 +385,7 @@
 
 .navbar__cart-popover__course-details__old-price-currency {
     font-size: 0.625rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .navbar__cart-popover__course-details__price-container {
@@ -395,19 +405,19 @@
 
 .navbar__cart-popover__checkout-box__items {
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .navbar__cart-popover__checkout-box__total-price {
     font-size: 1.5rem;
     font-weight: 800;
-    color: $primary-red;
+    color: var(--primary-red);
 }
 
 .navbar__cart-popover__checkout-box__total-price-currency {
     font-size: 1.125rem;
     font-weight: 700;
-    color: $primary-red;
+    color: var(--primary-red);
 }
 
 .navbar__cart-popover__checkout-box__old-total-price-box {
@@ -418,13 +428,13 @@
 .navbar__cart-popover__checkout-box__old-total-price {
     font-size: 1.063rem;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 
 }
 
 .navbar__cart-popover__checkout-box__old-total-price-currency {
     font-size: 0.875rem;
-    color: $grey;
+    color: var(--grey);
 
 }
 
@@ -465,7 +475,7 @@
         width: 100%;
         font-size: 2.656rem;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         padding: 3.125rem 0 3.125rem 0;
         border-bottom: 0.05rem solid rgba(34, 34, 34, 0.05);
 
@@ -488,14 +498,14 @@
     list-style-type: none;
     font-size: 2.656rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
     padding: 0;
     margin: 0;
     padding: 0 4.5rem 0 4.5rem !important;
 
     div {
         font-size: 2.188rem;
-        color: $grey;
+        color: var(--grey);
         padding-top: 2rem;
         border-top: 0.05rem solid rgba(34, 34, 34, 0.05);
         margin-bottom: 4.5rem;
@@ -511,7 +521,7 @@
                 right: 0;
                 bottom: -0.5rem;
                 width: 35%;
-                border-bottom: 0.31rem solid $primary-red;
+                border-bottom: 0.31rem solid var(--primary-red);
                 font-size: 1.5rem;
             }
 
@@ -546,7 +556,7 @@
     span {
         font-size: 2.656rem;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     svg {
@@ -698,13 +708,101 @@
     }
 
     .navbar_responsive-search-icon {
-        svg {
-
-            display: flex;
-            width: 2.7rem;
-            height: 2.7rem;
-            margin-left: 1.5rem;
+        div{
+            svg {
+                display: flex;
+                width: 2.7rem;
+                height: 2.7rem;
+                margin-left: 1.5rem;
+                cursor: pointer;
+            }
         }
+    }
+
+    .search-box-overlay{
+        height: 100%;
+        width: 100%;
+        display: none;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0, 0.9);
+    }
+
+    .responsive-navbar__search-bar-container {
+        position: relative;
+        box-shadow: 0 0 1.625rem*2.5 #0000001A;
+        border-radius: 0.75rem*2.5;
+        overflow: hidden;
+        font-weight: 400;
+        padding: 0;
+        // padding: 0.4rem*2.5 0rem*2.5 0.4rem*2.5 0rem*2.5;
+        letter-spacing: 0;
+        background-color: white;
+        margin : auto; 
+        width: 100%;
+        height: 9rem;
+        top: 0%;
+        z-index: 3;
+        @include flex(center,space-between);
+    }
+    
+    // .responsive-navbar__search-bar-container__icon-wrapper {
+    //     padding: 0 1rem*2.5;
+    //     height: 100%;
+    //     position: absolute;
+    //     pointer-events: none;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    
+    //     &>svg {
+    //         width: 1.1rem*2.5;
+    //         height: 1.1rem*2.5;
+    //     }
+    // }
+    
+    .responsive-navbar__search-bar-container__search-bar {
+        border: 0 !important;
+        padding: 0 3rem 0 0;
+        font-family: 'Almarai', sans-serif;
+        width: 80%;
+        height: fit-content;
+        font-size: 1.063rem*2.5;
+        color: rgba(34, 34, 34, 0.5);
+    
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+        }
+    
+        &::placeholder{
+            color: rgba(51, 51, 51,0.5);
+        }
+    
+    }
+
+    .responsive-navbar__search-bar__btn {
+        @include contained-button;
+        color: white;
+        font-weight: 700;
+        font-size: 1rem*2.5;
+        width: 10rem;
+        height: 100%;
+        margin-right: 0;
+        padding: 1rem;
+        border-radius: 0.625rem*2.5;
+        @include flex(center,center);
+        svg{
+            margin: 0 !important;
+            width:3rem !important ;
+            height:3rem !important ;
+        }
+    
     }
 
     .navbar__three-dots-icon {

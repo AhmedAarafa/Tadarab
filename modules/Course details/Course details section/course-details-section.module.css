@@ -12,13 +12,12 @@
 .course-details-section__title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin-bottom: 1rem;
 }
 
 .course-details-section__para {
-  font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .course-details-section__read-more {

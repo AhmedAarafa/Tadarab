@@ -6,7 +6,7 @@
 
 .course-subscribers__title{
     font-size: 1.55rem;
-    color: $dark-black;
+    color: var(--dark-black);
     div:nth-of-type(2){
         font-weight: 800;
     }
@@ -116,7 +116,7 @@
 .course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title {
     font-size: 1rem*0.77;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -127,7 +127,7 @@
 
 .course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 0.813rem*0.77;
-    color: $grey;
+    color: var(--grey);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -143,13 +143,13 @@
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.25rem*0.77;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
     font-size: 0.813rem*0.77;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -160,12 +160,12 @@
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
     font-size: 0.75rem*0.77;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 }
 
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
     font-size: 0.625rem*0.77;
-    color: $grey;
+    color: var(--grey);
 }
  
 .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn {
@@ -513,7 +513,7 @@
     
     .course-subscribers__title{
         font-size: 1.55rem*2.25;
-        color: $dark-black;
+        color: var(--dark-black);
         div:nth-of-type(2){
             font-weight: 800;
         }

@@ -40,7 +40,7 @@
   width: 4.25rem;
   height: 1.75rem;
   font-size: 0.875rem;
-  color: #777777;
+  color: var(--grey);
   border-radius: 0.5rem;
   background-color: #F2F2F2;
   display: -webkit-box;
@@ -57,13 +57,13 @@
 .category-description__info div:nth-of-type(2) {
   font-size: 1.875rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .category-description__info div:nth-of-type(2) span {
   font-size: 1.25rem;
   font-weight: 400;
-  color: #777777;
+  color: var(--grey);
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -87,7 +87,7 @@
 
 .category-description__info div:nth-of-type(3) {
   font-size: 1.25rem;
-  color: #777777;
+  color: var(--grey);
   margin: -0.2rem 0 0 0;
 }
 
@@ -97,7 +97,7 @@
 
 .category-description__brief {
   font-size: 1.125rem;
-  color: #777777;
+  color: var(--grey);
   margin: 1rem 0 0 0;
 }
 

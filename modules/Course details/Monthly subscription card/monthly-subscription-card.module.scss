@@ -16,11 +16,11 @@
 .monthly-subscription__course-card__title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .monthly-subscription__course-card__price-box {
-    color: $dark-black;
+    color: var(--dark-black);
     margin-top: 0.5rem;
 }
 
@@ -37,11 +37,11 @@
 .monthly-subscription__course-card__old-price-box--line-through {
     @include flex(center);
     display: inline-flex;
-    text-decoration: line-through $primary-red;
+    text-decoration: line-through var(--primary-red);
 }
 
 .monthly-subscription__course-card__old-price-box {
-    color: $grey;
+    color: var(--grey);
     margin-top: -0.4rem;
 }
 
@@ -68,16 +68,16 @@
     width: 11.563rem;
     height: 3.125rem;
     background-color: white !important;
-    border: 0.063rem solid $dark-black !important;
-    color: $dark-black !important;
+    border: 0.063rem solid var(--dark-black) !important;
+    color: var(--dark-black) !important;
     &:hover,&:active{
         background-color: white !important;
-        border: 0.063rem solid $dark-black !important;
-        color: $dark-black;
+        border: 0.063rem solid var(--dark-black) !important;
+        color: var(--dark-black);
     }
     svg{
         *{
-            fill: $dark-black;
+            fill: var(--dark-black);
         }
     }
 
@@ -94,12 +94,12 @@
     height: 3.125rem;
     margin-right: 0.6rem;
     background-color: white !important;
-    border: 0.063rem solid $dark-black !important;
-    color: $dark-black !important;
+    border: 0.063rem solid var(--dark-black) !important;
+    color: var(--dark-black) !important;
     &:hover,&:active{
         background-color: white !important;
-        border: 0.063rem solid $dark-black !important;
-        color: $dark-black;
+        border: 0.063rem solid var(--dark-black) !important;
+        color: var(--dark-black);
     }
 }
 
@@ -118,7 +118,7 @@
 .monthly-subscription__course-card__guarantee-box__text-box__major,
 .monthly-subscription__course-card__guarantee-box__text-box__minor {
     font-size: 0.813rem;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .monthly-subscription__course-card__guarantee-box__text-box__major {
@@ -127,7 +127,7 @@
 
 .monthly-subscription__course-card__guarantee-box__text-box__minor {
     font-weight: 400;
-    color: $grey;
+    color: var(--grey);
 }
 
 .monthly-subscription__subscribe-btn-box{
@@ -165,7 +165,7 @@
 .monthly-subscription__watch-this-course,
 .monthly-subscription__or-box{
     font-size: 0.938rem;
-    color: $grey;
+    color: var(--grey);
     text-align: center;
 }
 
@@ -211,7 +211,7 @@
 
     span {
         font-size: 0.938rem;
-        color: $dark-black;
+        color: var(--dark-black);
         margin-right: 1rem;
     }
 }
@@ -222,11 +222,11 @@
     padding: 0.9rem 0 1.5rem 0;
 
     span:nth-of-type(1) {
-        color: $grey;
+        color: var(--grey);
     }
 
     span:nth-of-type(2) {
         font-weight: 800;
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }

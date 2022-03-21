@@ -17,6 +17,7 @@ import {
 } from 'formik';
 import * as Yup from "yup";
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon } from "common/Icons/Icons";
+import { signinValidationRules } from "validation rules/signin";
 
 interface SignInFormValues {
   email:string;
@@ -44,12 +45,7 @@ export default function SignInPage() {
     };
 
     function validationSchema() {
-      return Yup.object().shape({
-        email: Yup.string()
-        .required("خانة البريد الإلكتروني مطلوبه"),
-        password: Yup.string()
-        .required("خانة كلمة المرور مطلوبه "),
-      });
+      return Yup.object().shape(signinValidationRules);
     }
 
       const initialValues: SignInFormValues = {  
@@ -69,13 +65,6 @@ export default function SignInPage() {
           setValidationAfterSubmit(newValidationState);
         }
     }
-
-      // const validate = Yup.object({
-      //   email: Yup.string()
-      //   .required("خانة البريد الإلكتروني مطلوبه"),
-      //   password: Yup.string()
-      //   .required("خانة كلمة المرور مطلوبه "),
-      // });
 
   return (
     <>
@@ -111,7 +100,7 @@ export default function SignInPage() {
                     initialValues={initialValues}
                     validationSchema={validationSchema}
             onSubmit={(values) => {
-              //  console.log({ values, actions });
+               console.log({ values});
               //  actions.setSubmitting(false);
                axiosInstance
                 .post(`login`, {
@@ -119,7 +108,7 @@ export default function SignInPage() {
                   "password": values.password,
                   })
                 .then((response:any) => {
-                  // console.log("Response.message",response);
+                  console.log("Response.message",response);
                   // setResponse(response.data);
                   // console.log("Response",response);
                   if(JSON.stringify(response.status).startsWith("2")){
@@ -131,7 +120,7 @@ export default function SignInPage() {
                     if(localStorage.getItem("cart")){
 
                       axiosInstance
-                      .post(`users/cart/?country_code=eg`, {"item_ids" : localStorage.getItem("cart")?.replace(/[\[\]']+/g,'')})
+                      .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"item_ids" : localStorage.getItem("cart")?.replace(/[\[\]']+/g,'')})
                       .then((response:any) => {
                       //  console.log("response",response);
                        const totalItems:any = [];
@@ -148,7 +137,7 @@ export default function SignInPage() {
                       });
                     }else{
                       axiosInstance
-                      .get("users/cart/?country_code=eg")
+                      .get(`users/cart/?country_code=${localStorage.getItem("countryCode")}`)
                       .then(function (response:any) {
                         console.log("login response",response);
                         const totalItems:any = [];
@@ -172,7 +161,7 @@ export default function SignInPage() {
                       // router.push(router.back());
                       Router.back();
                    }else{
-                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}HomePage`);
+                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                    }
                   }else {
                     console.log("error 4xx or 5xx");

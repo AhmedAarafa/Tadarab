@@ -6,7 +6,7 @@
 }
 
 .practical-projects__title {
-    color: $dark-black;
+    color: var(--dark-black);
     font-size: 1.75rem;
 
     div:nth-of-type(2) {
@@ -17,7 +17,7 @@
 
 .practical-projects__brief {
     font-size: 1.125rem;
-    color: $grey;
+    color: var(--grey);
     margin-top: 1.563rem;
     padding-left: 11rem;
     margin-bottom: 3.188rem;
@@ -28,7 +28,7 @@
     // height: 19.75rem;
     border-radius: 1.25rem;
     overflow: hidden;
-    color: $grey;
+    color: var(--grey);
     box-shadow: 0 0 2.5rem #1010101A;
     margin: 0rem 0rem 1.938rem 0rem;
 }
@@ -57,7 +57,7 @@
 .practical-projects__project-card__trainee-details-box__details__name {
     font-size: 1.125rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 
     span {
         font-size: 0.875rem;

@@ -20,7 +20,7 @@
 }
 
 .consultations__title span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
   margin-right: 0.45rem;
 }
 
@@ -166,8 +166,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 100%;
   height: 3rem;
   border-radius: 0 0 0.5rem 0.5rem;
@@ -361,8 +361,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 100%;
     height: 3.8625rem;
     border-radius: 0 0 0.64375rem 0.64375rem;
@@ -552,8 +552,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 100%;
     height: 5.025rem;
     border-radius: 0 0 0.8375rem 0.8375rem;
@@ -726,8 +726,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 100%;
     height: 9.1125rem;
     border-radius: 0 0 1.51875rem 1.51875rem;

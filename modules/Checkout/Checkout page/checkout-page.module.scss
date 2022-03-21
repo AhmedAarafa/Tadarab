@@ -31,7 +31,7 @@
     gap: 1rem;
     font-size: 1rem;
     font-weight: 700;
-    color: $grey;
+    color: var(--grey);
 }
 
 .checkout__stepper-box__stepper__item:not(:first-child),
@@ -59,7 +59,7 @@
 }
 
 .checkout__stepper-box__stepper__item--active:not(:first-child):before {
-    border-top: 0.2rem dashed $primary-red;
+    border-top: 0.2rem dashed var(--primary-red);
 }
 
 .checkout__stepper-box__stepper__step-number {
@@ -78,10 +78,10 @@
     gap: 1rem;
     font-size: 1rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 
     .checkout__stepper-box__stepper__step-number {
-        border: 0.0625rem solid $primary-red;
+        border: 0.0625rem solid var(--primary-red);
         border-radius: 50%;
         width: 2.25rem;
         height: 2.25rem;
@@ -89,7 +89,7 @@
         @include flex(center, center);
         // cursor: pointer;
         pointer-events: none;
-        background-color: $primary-red;
+        background-color: var(--primary-red);
         color: white;
         box-shadow: 0 0 1.25rem #AF2B3633;
     line-height: 0;
@@ -105,13 +105,13 @@
     span:nth-of-type(1) {
         font-size: 1.25rem;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     span:nth-of-type(2) {
         font-size: 1.125rem;
         font-weight: 700;
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }
 
@@ -214,7 +214,7 @@
 .checkout__cards-outer-box__card__trainer-info-box__course-name {
     font-size: 1.125rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -225,12 +225,12 @@
 
 .checkout__cards-outer-box__card__trainer-info-box__trainer-name {
     font-size: 0.875rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 
 .checkout__cards-outer-box__card__price {
-    color: $dark-black;
+    color: var(--dark-black);
     margin-top: 0.7rem;
     @include flex(center);
 
@@ -247,7 +247,7 @@
 }
 
 .checkout__cards-outer-box__card__old-price {
-    color: $grey;
+    color: var(--grey);
     margin-top: -0.5rem;
     text-decoration: line-through rgba(175, 21, 31, 0.5);
 
@@ -281,14 +281,14 @@
 .checkout__cart-sticky-card__title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0 0 1.5625rem 0;
 }
 
 .checkout__cart-sticky-card__do-you-have-coupon {
     font-size: 1rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .checkout__cart-sticky-card__search-bar-container__error-msg{
@@ -380,13 +380,13 @@
 .checkout__cart-sticky-card__final-price-box__final-price-text,
 .checkout__cart-sticky-card__coupon-text {
     font-size: 1.125rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .checkout__cart-sticky-card__total-price-box__total-price,
 .checkout__cart-sticky-card__final-price-box__final-price,
 .checkout__cart-sticky-card__coupon-value {
-    color: $dark-black;
+    color: var(--dark-black);
 
     span:nth-of-type(1) {
         font-size: 1.25rem;
@@ -421,7 +421,7 @@
 .checkout__cart-sticky-card__guarantee-box__text-box__major,
 .checkout__cart-sticky-card__guarantee-box__text-box__minor {
     font-size: 0.8125rem;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .checkout__cart-sticky-card__guarantee-box__text-box__major {
@@ -430,7 +430,7 @@
 
 .checkout__cart-sticky-card__guarantee-box__text-box__minor {
     font-weight: 400;
-    color: $grey;
+    color: var(--grey);
 }
 
 .checkout__cart-sticky-card__purchasing-btn {
@@ -446,7 +446,7 @@
     span {
         font-size: 1rem;
         font-weight: 700;
-        color: $primary-red;
+        color: var(--primary-red);
         cursor: pointer;
     }
 
@@ -468,7 +468,7 @@
 .checkout__similar-courses__title {
     font-size: 1.55rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 
     div:nth-of-type(2) {
         font-weight: 800;
@@ -592,7 +592,7 @@
 .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
     font-size: 1rem*0.77;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -603,7 +603,7 @@
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
     font-size: 0.813rem*0.77;
-    color: $grey;
+    color: var(--grey);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -618,13 +618,13 @@
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.25rem*0.77;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
     font-size: 0.813rem*0.77;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -635,12 +635,12 @@
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
     font-size: 0.75rem*0.77;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 }
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
     font-size: 0.625rem*0.77;
-    color: $grey;
+    color: var(--grey);
 }
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
@@ -684,7 +684,7 @@
 
     span {
         font-size: 0.875rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 
@@ -695,7 +695,7 @@
 
 .checkout__payment-method-box__title {
     font-size: 1.25rem;
-    color: $dark-black;
+    color: var(--dark-black);
     font-weight: 800;
 }
 
@@ -733,7 +733,7 @@
 
     // label {
     //     font-size: 0.875rem;
-    //     color: $grey;
+    //     color: var(--grey);
     //     margin-top: 1.125rem;
     // }
 
@@ -741,7 +741,7 @@
     //     border: 0.0625rem solid #2222221A;
     //     border-radius: 0.75rem;
     //     font-size: 1.0625rem;
-    //     color: $dark-black;
+    //     color: var(--dark-black);
 
     //     &:focus {
     //         border: 0.0625rem solid #2222221A;
@@ -805,7 +805,7 @@
 .checkout__payment-method-box__payment-method__text {
     font-size: 1rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .checkout__payment-method-box__payment-method__card-info__save-card-info {
@@ -814,7 +814,7 @@
 
     span {
         font-size: 1rem;
-        color: $grey;
+        color: var(--grey);
         margin: 0.3rem 0.6rem 0 0;
     }
 
@@ -830,7 +830,7 @@
 
 .checkout__no-courses-in-your-cart{
     font-size: 1.6875rem;
-    color: $primary-red;
+    color: var(--primary-red);
     margin: 2.5rem 0 0 0;
 }
 
@@ -1284,7 +1284,7 @@
     }
 
     .checkout__stepper-box__stepper__item--active:not(:first-child):before {
-        border-top: 0.2rem*1.8 dashed $primary-red;
+        border-top: 0.2rem*1.8 dashed var(--primary-red);
     }
 
     .checkout__stepper-box__stepper__step-number {
@@ -1318,13 +1318,13 @@
         position: relative;
 
         .checkout__stepper-box__stepper__step-number {
-            border: 0.0625rem*1.8 solid $primary-red;
+            border: 0.0625rem*1.8 solid var(--primary-red);
             border-radius: 50%;
             width: 2.25rem*1.8;
             height: 2.25rem*1.8;
             // line-height: 0;
             @include flex(center, center);
-            background-color: $primary-red;
+            background-color: var(--primary-red);
             box-shadow: 0 0 1.25rem*1.8 #AF2B3633;
 
             &+div {
@@ -1595,7 +1595,7 @@
 .checkout__cart-sticky-card__guarantee-box__text-box__major,
 .checkout__cart-sticky-card__guarantee-box__text-box__minor {
     font-size: 0.8125rem*2.2;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .checkout__cart-sticky-card__guarantee-box__text-box__major {
@@ -1604,7 +1604,7 @@
 
 .checkout__cart-sticky-card__guarantee-box__text-box__minor {
     font-weight: 400;
-    color: $grey;
+    color: var(--grey);
 }
 
 .checkout__cart-sticky-card__purchasing-btn {
@@ -1625,7 +1625,7 @@
     span {
         font-size: 1rem*2.2;
         font-weight: 700;
-        color: $primary-red;
+        color: var(--primary-red);
     }
 
     svg {

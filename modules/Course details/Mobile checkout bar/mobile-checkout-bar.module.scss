@@ -33,7 +33,7 @@
 }
 
 .mobile-checkout-bar__course-card__price-box {
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .mobile-checkout-bar__course-card__price-box__price {
@@ -49,11 +49,11 @@
 .mobile-checkout-bar__course-card__old-price-box--line-through {
     @include flex(center);
     display: inline-flex;
-    text-decoration: line-through $primary-red;
+    text-decoration: line-through var(--primary-red);
 }
 
 .mobile-checkout-bar__course-card__old-price-box {
-    color: $grey;
+    color: var(--grey);
     margin-top: -0.4rem;
 }
 

@@ -25,7 +25,7 @@ export default function FAQ() {
       <div className={styles["faq"]}>
         <div className={styles["faq__title"]}>الأسئلة الشائعة عن الدورة</div>
         <Accordion defaultActiveKey="0" className={styles["faq__accordion"]}>
-          {faqs.map((faq:any,i:any)=>{
+          {faqs?.map((faq:any,i:any)=>{
             return(
 
               <Accordion.Item

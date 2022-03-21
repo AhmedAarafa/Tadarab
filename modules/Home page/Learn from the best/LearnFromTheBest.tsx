@@ -19,7 +19,7 @@ export default function LearnFromTheBest() {
 
   useEffect(() => {
     // axiosInstance
-    // .get("home/?country_code=eg")
+    // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
     // .then(function (response:any) {
     //   setTrainers(response.data.data.trainers);
     // })
@@ -71,10 +71,10 @@ export default function LearnFromTheBest() {
 
         }} className="mySwiper">
            
-            { trainers.map((trainer:any, i:number)=>{
+            { trainers?.map((trainer:any, i:number)=>{
               return(
                   <SwiperSlide key={i}> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["learn-from-the-best__cards-carousel__card"]} 
                     style={{backgroundImage: `url("${trainer.image}")`}}
                       >

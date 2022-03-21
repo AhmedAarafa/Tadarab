@@ -7,7 +7,7 @@
     background-color: rgba(25, 135, 84, 0.1);
     padding: 1.875rem;
     @include flex(center);
-    color: $dark-black;
+    color: var(--dark-black);
     margin-top: 5.25rem;
 }
 

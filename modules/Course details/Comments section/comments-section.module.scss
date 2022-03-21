@@ -7,7 +7,7 @@
 .comments-section__title {
     font-size: 1.5rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin-bottom: 1.188rem;
 }
 
@@ -211,7 +211,7 @@
     span:nth-of-type(1) {
         font-size: 1.125rem;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     span:nth-of-type(2) {
@@ -239,7 +239,7 @@
 
 .comments-section__comments-tree__comment-box__comment-details__comment {
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 
@@ -252,7 +252,7 @@
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
     @include flex(center);
     margin-left: 1.875rem;
-    color: $grey;
+    color: var(--grey);
 }
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
   span,svg{

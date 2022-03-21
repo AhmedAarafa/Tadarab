@@ -37,7 +37,7 @@
         }
 
         span:nth-of-type(2) {
-            color: $primary-red;
+            color: var(--primary-red);
         }
 }
 

@@ -22,7 +22,7 @@
 .special-offer__title span {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #AF151F;
+  color: var(--primary-red);
   margin-right: 1.25rem;
 }
 
@@ -207,7 +207,7 @@
 .special-offer__cards-outer-box__card__trainer-info-box__course-name {
   font-size: 1rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -217,7 +217,7 @@
 
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-name {
   font-size: 0.813rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .special-offer__cards-outer-box__card__rating-box {
@@ -235,12 +235,12 @@
 .special-offer__cards-outer-box__card__rating-box span:nth-of-type(1) {
   font-size: 1rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .special-offer__cards-outer-box__card__rating-box span:nth-of-type(2) {
   font-size: 0.813rem;
-  color: #777777;
+  color: var(--grey);
   margin-right: 0.3rem;
 }
 
@@ -249,7 +249,7 @@
 }
 
 .special-offer__cards-outer-box__card__price {
-  color: #222222;
+  color: var(--dark-black);
   margin-top: 0.7rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -274,7 +274,7 @@
 }
 
 .special-offer__cards-outer-box__card__old-price {
-  color: #777777;
+  color: var(--grey);
   margin-top: -0.5rem;
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
           text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -306,7 +306,7 @@
 }
 
 .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
-  color: #222222;
+  color: var(--dark-black);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -331,7 +331,7 @@
 
 .special-offer__cards-outer-box__card__checkout-box__prices-box__old-price {
   font-size: 1.25rem;
-  color: #777777;
+  color: var(--grey);
   margin-top: -0.8rem;
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
           text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -353,7 +353,7 @@
 
 .special-offer__cards-outer-box__card__checkout-box__prices-box__discount {
   font-size: 0.938rem;
-  color: #777777;
+  color: var(--grey);
   margin-top: -0.2rem;
 }
 
@@ -368,7 +368,7 @@
           box-shadow: 0 0.188rem 0.5rem #0000001A;
   padding: 0.563rem 1rem 0.7rem 1rem;
   border-radius: 0.625rem;
-  color: #AF151F;
+  color: var(--primary-red);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -449,7 +449,7 @@
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator {
   font-size: 1.063rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0.8rem 0.2rem 0 0.2rem;
 }
 
@@ -472,8 +472,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 18.75rem;
   height: 3.125rem;
   margin-top: 0.75rem;
@@ -900,8 +900,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 100%;
     height: 7.813rem;
     border-radius: 1.3rem;

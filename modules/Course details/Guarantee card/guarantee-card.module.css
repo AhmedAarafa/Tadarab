@@ -12,7 +12,7 @@
   -webkit-box-pack: unset;
       -ms-flex-pack: unset;
           justify-content: unset;
-  color: #222222;
+  color: var(--dark-black);
   margin-top: 5.25rem;
 }
 

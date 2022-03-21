@@ -11,11 +11,11 @@
 }
 
 .why-tadarab__title span:nth-of-type(1) {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .why-tadarab__title span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .why-tadarab__advantages-box-container {
@@ -70,12 +70,12 @@
 .why-tadarab__advantages-box__advantage div:nth-of-type(1) {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .why-tadarab__advantages-box__advantage div:nth-of-type(2) {
   font-size: 1.3rem;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .tadarab-for-companies {
@@ -114,7 +114,7 @@
 }
 
 .tadarab-for-companies__titles-box__title span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .tadarab-for-companies__titles-box__breif {
@@ -133,8 +133,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   width: 10rem;
   height: 3.125rem;
   color: white;
@@ -290,8 +290,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     width: 28rem;
     height: 5.74rem;
     font-size: 2rem;

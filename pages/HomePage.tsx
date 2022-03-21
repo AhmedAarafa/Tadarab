@@ -20,6 +20,16 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setHomePageData } from "configurations/redux/actions/homePageData"; 
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { GetStaticProps } from 'next';
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   return {
+//     redirect: {
+//       destination: 'http://localhost:3000/home',
+//       permanent: false,
+//     },
+//   };
+// };
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -28,12 +38,11 @@ function HomePage() {
   useEffect(() => {
       const countryCode:any = localStorage.getItem("countryCode");
         axiosInstance
-        .get(`home/?country_code=eg`)
+        .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
         .then(function (response:any) {
             dispatch(setHomePageData(response.data.data));
             let tadarabFbPixel = new TadarabFBPixel();
             response.data.fb_tracking_events.forEach((ev:any)=>{
-              console.log(ev.event_id,ev.event_name);
               
               tadarabFbPixel.setEventId(ev.event_id);
               tadarabFbPixel.eventHandler(ev.event_name, null);
@@ -42,8 +51,9 @@ function HomePage() {
         .catch(function (error) {
           console.log(error); 
         });
-        
-      }, []);
+  }, []);
+
+
 
     return (
         <>

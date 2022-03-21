@@ -8,7 +8,7 @@
 .course-review__title {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-review__review-box {
@@ -19,7 +19,7 @@
 .course-review__review-box__number {
     font-size: 3.75rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin-left: 0.75rem;
 }
 
@@ -33,12 +33,12 @@
     span:nth-of-type(1) {
         font-size: 1.063rem;
         font-weight: 700;
-        color: $grey;
+        color: var(--grey);
     }
 
     span:nth-of-type(2) {
         font-size: 0.938rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 
@@ -111,7 +111,7 @@
 .course-review__cards-carousel__card__review-box__name {
     font-size: 1.125rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
     margin-bottom: 0.2rem;
 }
 
@@ -131,7 +131,7 @@
 
 .course-review__cards-carousel__card__review-box__review {
     font-size: 0.938rem;
-    color: $grey;
+    color: var(--grey);
     margin-top: 0.2rem;
     display: -webkit-box;
     overflow: hidden;

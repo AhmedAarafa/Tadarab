@@ -6,7 +6,7 @@
 
 .faq__title {
   font-size: 1.5rem;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .faq__title div:nth-of-type(2) {
@@ -59,7 +59,7 @@
 .faq__accordion__header button {
   font-size: 1.125rem;
   font-weight: 800;
-  color: #222222 !important;
+  color: var(--dark-black) !important;
   background-color: white !important;
   padding: 1.5rem !important;
   border-radius: 1.25rem !important;
@@ -91,7 +91,7 @@
 
 .faq__accordion__body {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
   padding: 0 3.8rem 2rem 2rem !important;
 }
 
@@ -102,11 +102,11 @@
 }
 
 .faq__contact-us span:nth-of-type(1) {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .faq__contact-us span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 @media (max-width: 575px) {

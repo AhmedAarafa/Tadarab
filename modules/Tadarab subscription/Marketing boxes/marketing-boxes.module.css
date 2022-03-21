@@ -52,7 +52,7 @@
 }
 
 .marketing-boxes__title--important {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .marketing-boxes__brief {

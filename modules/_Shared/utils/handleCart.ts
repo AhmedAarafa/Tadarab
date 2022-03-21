@@ -9,7 +9,7 @@ if(isAuthenticated == true){
     if(course.is_in_cart == false){
 
         return (axiosInstance
-        .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id]).replace(/[\[\]']+/g,'')})
+        .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"item_ids" : JSON.stringify([course.id]).replace(/[\[\]']+/g,'')})
         .then((response:any) => {
          const totalItems:any = [];
          console.log("response.data.data",response.data.data);
@@ -40,7 +40,7 @@ if(isAuthenticated == true){
         }))
       }else{
         return (axiosInstance
-        .delete(`users/cart/?country_code=eg`, { data:{"item_id" : course.id}})
+        .delete(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, { data:{"item_id" : course.id}})
         .then((response:any) => {
          const totalItems:any = [];
           console.log("Response",response);
@@ -77,7 +77,7 @@ if(isAuthenticated == true){
         //   setLatestCourses([...latestCourses]);
         
         return (axiosInstance
-          .get(`courses/?country_code=eg&course_ids=${JSON.stringify(uniqeStoredCartCourses)?.replace(/[\[\]']+/g,'')}`)
+          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${JSON.stringify(uniqeStoredCartCourses)?.replace(/[\[\]']+/g,'')}`)
           .then(function (response:any) {
             console.log(response.data.data);
             return response;
@@ -97,7 +97,7 @@ if(isAuthenticated == true){
           });
           localStorage.setItem("cart" , JSON.stringify(resultedItems));
           return (axiosInstance
-          .get(`courses/?country_code=eg&course_ids=${JSON.stringify(resultedItems)?.replace(/[\[\]']+/g,'')}`)
+          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${JSON.stringify(resultedItems)?.replace(/[\[\]']+/g,'')}`)
           .then(function (response:any) {
             console.log(response.data.data);
             return response;

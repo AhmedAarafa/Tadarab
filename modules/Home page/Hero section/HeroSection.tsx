@@ -1,10 +1,44 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./hero-section.module.css";
 import  {SearchIcon}  from "common/Icons/Icons";
+import Router from "next/router";
 
 export default function HeroSection() {
+  const [searchQuery, setSearchQuery] = useState("");
+
+
+  const handleSearchBarEntries = (e:any)=>{
+    console.log(e.target.value);
+    setSearchQuery(e.target.value);
+  }
+
+  const sendSearchQuery = (tagsSearchQuery:{status:boolean,value:string})=>{
+    if(tagsSearchQuery.status == true){
+      
+        Router.push({
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
+          query: { search_query: tagsSearchQuery.value }
+        })
+
+    }else if(tagsSearchQuery.status == false){
+
+      if(searchQuery == ""){
+        console.log("متخمش يسطا");
+      }else{
+        Router.push({
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
+          query: { search_query: searchQuery }
+        })
+      }
+      const searchBar:any = document.getElementById("search-field");
+      searchBar.value = "" ;
+      searchBar.blur();
+
+    }
+  }
+
   return (
     <>
       <Row className={styles["hero-section"]}>
@@ -26,31 +60,42 @@ export default function HeroSection() {
                 <SearchIcon color="#777"/>
 
               </div>
-              <Form.Control
-                type="text"
-                placeholder="ماذا تريد أن تتعلم اليوم؟"
-                className={
-                  styles["hero-section__search-bar-container__search-bar"]
-                }
-              />
-              <Button className={styles["hero-section__search-bar__btn"]}>
-              ابحث
-              </Button>
+
+                <Form.Control
+                id="search-field"
+                onChange={()=> handleSearchBarEntries(event)}
+                  type="text"
+                  placeholder="ماذا تريد أن تتعلم اليوم؟"
+                  className={
+                    styles["hero-section__search-bar-container__search-bar"]
+                  }
+                />
+                <Button onClick={()=>{sendSearchQuery({status:false,value:""})}} className={styles["hero-section__search-bar__btn"]}>
+                ابحث
+                </Button>
             </div>
             <div className={styles["hero-section__chips-box"]}>
-              <span className={styles["hero-section__chip"]}>
-                تربية الأطفال
-              </span>
-              <span className={styles["hero-section__chip"]}>التصوير</span>
-              <span className={styles["hero-section__chip"]}>تنمية بشرية</span>
-              <span className={styles["hero-section__chip"]}>
-                الزراعة الداخلية
-              </span>
-              <span className={styles["hero-section__chip"]}>تنمية بشرية</span>
-              <span className={styles["hero-section__chip"]}>
-                الزراعة الداخلية
-              </span>
-              <span className={styles["hero-section__chip"]}>تنظيم الوقت</span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"تربية الأطفال"});
+                }} className={styles["hero-section__chip"]}> تربية الأطفال </span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"التصوير"});
+                }} className={styles["hero-section__chip"]}>التصوير</span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"تنمية بشرية"});
+                }} className={styles["hero-section__chip"]}>تنمية بشرية</span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"الزراعة الداخلية"});
+                }} className={styles["hero-section__chip"]}> الزراعة الداخلية </span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"تنمية بشرية"});
+                }} className={styles["hero-section__chip"]}>تنمية بشرية</span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"الزراعة الداخلية"});
+                }} className={styles["hero-section__chip"]}> الزراعة الداخلية </span>
+              <span onClick={()=>{
+                sendSearchQuery({status:true,value:"تنظيم الوقت"});
+                }} className={styles["hero-section__chip"]}>تنظيم الوقت</span>
             </div>
           </div>
         </Col>

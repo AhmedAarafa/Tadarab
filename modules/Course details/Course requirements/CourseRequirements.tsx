@@ -36,7 +36,7 @@ export default function CourseRequirements() {
                     متطلبات البدء في الدورة         
                 </div>
                 <ul className={styles["course-requirements__box__requirements"]}>
-                    { courseDetails.course_details?.requirements.map((req:any,i:number)=>{
+                    { courseDetails.course_details?.requirements?.map((req:any,i:number)=>{
                         return(
                             <li key={i}> {req} </li>
                         )

@@ -25,7 +25,7 @@
 
     // width: 19.6875rem;
     span {
-        color: $primary-red;
+        color: var(--primary-red);
         margin: 0 0.1rem;
     }
 }
@@ -91,8 +91,8 @@
 .unlimited-courses__subscription-value {
     width: 17.8125rem;
     height: 3.75rem;
-    background-color: $pale-red;
-    color: $primary-red;
+    background-color: var(--pale-red);
+    color: var(--primary-red);
     font-size: 1rem;
     font-weight: 700;
     @include flex(center, center);

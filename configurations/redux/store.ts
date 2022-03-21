@@ -11,6 +11,7 @@ import courseDetailsData from "./reducers/courseDetailsData";
 import cartItems from "./reducers/cartItems";
 import transactionStatus from "./reducers/transactionStatus";
 import invoiceDetails from "./reducers/invoiceDetails";
+import myCourseNavigator from "./reducers/myCourseNavigator";
 
 // const devTools =
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -23,13 +24,10 @@ const CombineReducers = combineReducers({
     courseDetailsData,
     trainerProfileData,
     transactionStatus,
-    invoiceDetails
+    invoiceDetails,
+    myCourseNavigator
 });
 const store = createStore(CombineReducers, composeWithDevTools(applyMiddleware(thunk)));
-
-
-
-
 
 
 export {store,CombineReducers};

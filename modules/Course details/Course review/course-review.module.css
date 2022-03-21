@@ -5,7 +5,7 @@
 .course-review__title {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .course-review__review-box {
@@ -24,7 +24,7 @@
 .course-review__review-box__number {
   font-size: 3.75rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin-left: 0.75rem;
 }
 
@@ -35,12 +35,12 @@
 .course-review__review-box__review__number-of-reviews span:nth-of-type(1) {
   font-size: 1.063rem;
   font-weight: 700;
-  color: #777777;
+  color: var(--grey);
 }
 
 .course-review__review-box__review__number-of-reviews span:nth-of-type(2) {
   font-size: 0.938rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .course-review__cards-carousel {
@@ -136,7 +136,7 @@
 .course-review__cards-carousel__card__review-box__name {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   margin-bottom: 0.2rem;
 }
 
@@ -164,7 +164,7 @@
 
 .course-review__cards-carousel__card__review-box__review {
   font-size: 0.938rem;
-  color: #777777;
+  color: var(--grey);
   margin-top: 0.2rem;
   display: -webkit-box;
   overflow: hidden;
@@ -327,8 +327,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     background-color: white !important;
     width: 94%;
     margin: 2rem 0 0 0;
@@ -345,13 +345,13 @@
             box-shadow: none;
   }
   .show-all-reviews-btn:hover {
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .show-all-reviews-btn:active {
-    background-color: #AF151F !important;
+    background-color: var(--primary-red) !important;
     color: white !important;
-    border: 0.125rem solid #AF151F !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .course-review__mobile-view {
     display: block;

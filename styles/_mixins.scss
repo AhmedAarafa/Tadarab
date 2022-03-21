@@ -29,8 +29,8 @@
 @mixin contained-button {
     @include generic-button;
 
-    background-color: $primary-red !important;
-    border: 0.125rem solid $primary-red !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
 
 
     &:hover, &:active {
@@ -51,22 +51,22 @@
 @mixin outlined-button {
     @include generic-button;
 
-    color: $primary-red !important;
-    border: 0.125rem solid $primary-red !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     background-color: white !important;
 
     &:hover {
-        // background-color: $primary-red !important;
-        color: $primary-red !important;
-        border: 0.125rem solid $primary-red !important;
+        // background-color: var(--primary-red) !important;
+        color: var(--primary-red) !important;
+        border: 0.125rem solid var(--primary-red) !important;
     }
 
     ;
 
     &:active {
-        background-color: $primary-red !important;
+        background-color: var(--primary-red) !important;
         color: white !important;
-        border: 0.125rem solid $primary-red !important;
+        border: 0.125rem solid var(--primary-red) !important;
     }
 
     ;
@@ -93,7 +93,7 @@
     box-shadow: 0 0 1.875rem #0000001A;
     position: absolute;
     background: #fff;
-    color: $dark-black;
+    color: var(--dark-black);
     font-weight: bold;
     padding: 1.3rem 0.3rem;
     font-size: 1rem;

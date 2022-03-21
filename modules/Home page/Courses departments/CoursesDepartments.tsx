@@ -18,7 +18,7 @@ export default function CoursesDepartments() {
 
     useEffect(() => {
       // axiosInstance
-      // .get("home/?country_code=eg")
+      // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
       // .then(function (response:any) {
       //   setCategories(response.data.data.categories);
       // })
@@ -65,7 +65,7 @@ export default function CoursesDepartments() {
             },
         }} className="mySwiper">
           
-            { categories.map((cat:any,i:any)=>{
+            { categories?.map((cat:any,i:any)=>{
               return(
                 <SwiperSlide key={i}>
                   <div className={styles["courses-departments__cards-carousel__departments-card"]}>

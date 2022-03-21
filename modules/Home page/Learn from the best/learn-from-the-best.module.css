@@ -14,11 +14,11 @@
 }
 
 .learn-from-the-best__title > div span:nth-of-type(1) {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .learn-from-the-best__title > div span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
   margin-right: 0.35rem;
 }
 
@@ -44,11 +44,11 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   background-color: white !important;
   font-size: 1.063rem;
-  color: #AF151F;
+  color: var(--primary-red);
   font-weight: 700;
   width: 13.25rem;
   height: 2.75rem;
@@ -76,19 +76,19 @@
 }
 
 .learn-from-the-best__see-more-btn:hover {
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .learn-from-the-best__see-more-btn:active {
-  background-color: #AF151F !important;
+  background-color: var(--primary-red) !important;
   color: white !important;
-  border: 0.125rem solid #AF151F !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
   background-color: white !important;
-  color: #AF151F !important;
+  color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
 }
 
@@ -384,11 +384,11 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     background-color: white !important;
     font-size: 2.5512rem;
-    color: #AF151F;
+    color: var(--primary-red);
     font-weight: 700;
     width: 31.8rem;
     height: 6.6rem;
@@ -415,17 +415,17 @@
             box-shadow: none;
   }
   .learn-from-the-best__see-more-btn:hover {
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .learn-from-the-best__see-more-btn:active {
-    background-color: #AF151F !important;
+    background-color: var(--primary-red) !important;
     color: white !important;
-    border: 0.125rem solid #AF151F !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
     background-color: white !important;
-    color: #AF151F !important;
+    color: var(--primary-red) !important;
     border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;
   }
   .learn-from-the-best__see-more-btn svg {

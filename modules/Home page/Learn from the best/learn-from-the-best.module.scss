@@ -11,11 +11,11 @@
 
     &>div {
         span:nth-of-type(1) {
-            color: $dark-black;
+            color: var(--dark-black);
         }
 
         span:nth-of-type(2) {
-            color: $primary-red;
+            color: var(--primary-red);
             margin-right: 0.35rem;
         }
     }
@@ -29,7 +29,7 @@
 .learn-from-the-best__see-more-btn{
     @include outlined-button;
     font-size: 1.063rem;
-    color: $primary-red;
+    color: var(--primary-red);
     font-weight: 700;
     width: 13.25rem;
     height: 2.75rem;
@@ -41,7 +41,7 @@
     &:hover,
     &:active {
         background-color: white !important;
-        color: $primary-red !important;
+        color: var(--primary-red) !important;
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
     }
 
@@ -282,7 +282,7 @@
     .learn-from-the-best__see-more-btn{
         @include outlined-button;
         font-size: 1.063rem*2.4;
-        color: $primary-red;
+        color: var(--primary-red);
         font-weight: 700;
         width: 13.25rem*2.4;
         height: 2.75rem*2.4;
@@ -295,7 +295,7 @@
         &:hover,
         &:active {
             background-color: white !important;
-            color: $primary-red !important;
+            color: var(--primary-red) !important;
             border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
         }
 

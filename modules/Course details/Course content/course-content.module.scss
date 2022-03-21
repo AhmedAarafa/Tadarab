@@ -9,12 +9,12 @@
 .course-content__title {
     font-size: 1.5rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .course-content__course-duration-box {
     font-size: 1.25rem;
-    color: $grey;
+    color: var(--grey);
     @include flex(center);
     margin: 0.5rem 0 1rem 0;
 }
@@ -105,19 +105,19 @@
 .purchased-course-content__accordion__header__group-number {
     font-size: 1.125rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 
 }
 
 .purchased-course-content__accordion__header__group-number {
-    color: $grey;
+    color: var(--grey);
 
     span {
         // display: inline-block;
         margin: 0 0.5rem 0 0;
         font-size: 0.9rem;
         font-weight: 400;
-        color: $grey;
+        color: var(--grey);
         // line-height: 0;
     }
 }
@@ -147,7 +147,7 @@
     @include flex(center, flex-start);
     flex-direction: row;
     font-size: 0.813rem;
-    color: $grey;
+    color: var(--grey);
     margin: 0.2rem 0 0 0;
 }
 
@@ -206,12 +206,12 @@
     div:nth-of-type(1) {
         font-size: 0.938rem;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     div:nth-of-type(2) {
         font-size: 0.813rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 
@@ -219,7 +219,7 @@
     div:nth-of-type(1) {
         font-size: 1rem;
         font-weight: 400;
-        color: $grey;
+        color: var(--grey);
     }
 }
 
@@ -230,7 +230,7 @@
     span {
         font-size: 0.875rem;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         margin-left: 0.6rem;
     }
 
@@ -242,7 +242,7 @@
 
 .purchased-course-content__accordion__body__list-item__duration{
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .course-content__show-more-btn {
@@ -262,11 +262,11 @@
     span:nth-of-type(1){
         font-size: 1.125rem;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
     span:nth-of-type(2){
         font-size: 1rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 
@@ -276,7 +276,7 @@
         border-radius: 0.9375rem;
         height: 0.7rem;
         &>div:first-child{
-            background-color: $primary-red;
+            background-color: var(--primary-red);
         }
     }
 }
@@ -367,7 +367,7 @@
     }
 
     .purchased-course-content__accordion__header__group-number {
-        color: $grey;
+        color: var(--grey);
 
         span {
             margin: 0 0.5rem*2.5 0 0;
@@ -399,7 +399,7 @@
         @include flex(center, flex-start);
         flex-direction: row;
         font-size: 0.813rem*2.5;
-        color: $grey;
+        color: var(--grey);
         margin: 0.2rem*2.5 0 0 0;
     }
 
@@ -475,14 +475,14 @@
         @include flex(center, center);
         @include outlined-button;
         width: 100%;
-        border: 0.125rem solid $pale-red !important;
+        border: 0.125rem solid var(--pale-red) !important;
         height: 6rem;
         font-size: 2.5rem;
         border-radius: 1.5rem;
 
         &:hover,
         &:active {
-            border: 0.125rem solid $pale-red !important;
+            border: 0.125rem solid var(--pale-red) !important;
         }
 
         margin-top: 3.125rem;

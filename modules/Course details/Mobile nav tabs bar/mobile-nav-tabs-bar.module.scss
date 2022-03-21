@@ -15,10 +15,10 @@
 
     a{
         &:hover{
-        color: $grey; 
+        color: var(--grey); 
         }
         &:focus{
-            color: $dark-black;
+            color: var(--dark-black);
         }
     }
 }
@@ -28,24 +28,24 @@
     cursor: pointer;
 }
 .tabs-responsive-bar__list-item{
-    color: $grey; 
+    color: var(--grey); 
     a{
         &:hover{
-        color: $grey; 
+        color: var(--grey); 
         }
         &:focus{
-            color: $dark-black;
+            color: var(--dark-black);
         }
     }
 }
 .tabs-responsive-bar__list-item--active{
-    color: $dark-black;
+    color: var(--dark-black);
     a{
         &:hover{
-        color: $dark-black; 
+        color: var(--dark-black); 
         }
         &:focus{
-            color: $dark-black;
+            color: var(--dark-black);
         }
     }
 }

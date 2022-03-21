@@ -30,7 +30,7 @@ export default function LiveCourses() {
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get("home/?country_code=eg")
+            .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
             .then(function (response:any) {
               setLiveCourses(response.data.data.live_courses);
             })
@@ -47,7 +47,7 @@ export default function LiveCourses() {
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get("home/?country_code=eg")
+            .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
             .then(function (response:any) {
               setLiveCourses(response.data.data.live_courses);
             })
@@ -62,7 +62,7 @@ export default function LiveCourses() {
         }
       }else{
         Router.push({
-          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
           query: { from: "/HomePage" }
         })
   
@@ -72,7 +72,7 @@ export default function LiveCourses() {
     const handleCartActionBtn = (course:any):any =>{
     
       if(userStatus?.isUserAuthenticated == true){
-        const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",true);
+        const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,true);
         handleCartResponse.then(function(firstresponse:any) {
           firstresponse.resp.then(function(response:any){
             setLiveCourses(response.data.data.live_courses);
@@ -82,7 +82,7 @@ export default function LiveCourses() {
         })
       }
       else{
-        const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",false);
+        const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
         handleCartResponse.then(function(response:any) {
             dispatch(setCartItems(response.data.data));
             let newArray:any = liveCourses;
@@ -106,27 +106,30 @@ export default function LiveCourses() {
   
         setLiveCourses(homePageData.data?.live_courses || []);
         const localStorageItems:any = localStorage.getItem("cart");
-      axiosInstance
-        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-        .then(function (response:any) {
-          // console.log(response);
-          let newArray:any = homePageData.data?.live_courses;
-         response.data.data.forEach((element:any) => {
-          newArray.forEach((ele:any) => {
-              if(element.id === ele.id){
-                // console.log(ele);
-                ele.is_in_cart = true;
-                // newArray.ele.is_in_cart = true;
-                // console.log("newArray",newArray);
-              }
+      if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
+        axiosInstance
+          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+          .then(function (response:any) {
+            // console.log(response);
+            let newArray:any = homePageData.data?.live_courses;
+           response.data.data.forEach((element:any) => {
+            newArray.forEach((ele:any) => {
+                if(element.id === ele.id){
+                  // console.log(ele);
+                  ele.is_in_cart = true;
+                  // newArray.ele.is_in_cart = true;
+                  // console.log("newArray",newArray);
+                }
+              });
             });
-          });
-          setLiveCourses([...newArray]);
+            setLiveCourses([...newArray]);
+  
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
 
-      })
-      .catch(function (error) {
-        console.log(error); 
-      });
+      }
 
     }, [homePageData]);
     
@@ -166,7 +169,7 @@ export default function LiveCourses() {
           },
         }} className="mySwiper">
 
-            {  liveCourses.map((lc:any,i:number)=>{
+            {  liveCourses?.map((lc:any,i:number)=>{
               return(
                 <SwiperSlide key={i}> 
                   <Card className={`${ lc.price == 0 ? styles["live-courses__cards-carousel__card"] : styles["live-courses__cards-carousel__card--paid"] } 

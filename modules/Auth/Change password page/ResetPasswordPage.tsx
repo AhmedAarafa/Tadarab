@@ -140,7 +140,7 @@ export default function ChangePasswordPage() {
                           setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red"});
                       }else{
                           setServerResponse({value: "تم تغيير كلمة المرور بنجاح" , color:"green"});
-                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}HomePage`);
+                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                       }
                       
                       })

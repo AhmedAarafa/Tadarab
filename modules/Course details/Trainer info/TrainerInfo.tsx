@@ -28,16 +28,16 @@ export default function TrainerInfo() {
         <div id="trainer-info" className={styles["trainer-info-section__scrollspy-helper"]}></div>
         <div className={styles["trainer-info-section__trainer-box"]}>
           <div className={styles["trainer-info-section__trainer-img"]}>
-            <img src={courseDetailsData.data?.course_details.trainer.image} alt="trainer image" />
+            <img src={courseDetailsData.data?.course_details?.trainer.image} alt="trainer image" />
           </div>
           <div className={styles["trainer-info-section__trainer-info"]}>
             <div className={styles["trainer-info-section__trainer-info__name"]}>
-              {courseDetailsData.data?.course_details.trainer.name_ar}
+              {courseDetailsData.data?.course_details?.trainer.name_ar}
             </div>
             <div
               className={styles["trainer-info-section__trainer-info__title"]}
             >
-             {courseDetailsData.data?.course_details.trainer.title}
+             {courseDetailsData.data?.course_details?.trainer.title}
             </div>
             <div
               className={
@@ -46,7 +46,7 @@ export default function TrainerInfo() {
             >
               <CoursesNumberIcon color="#b4b4b4"/>
 
-              <span> {courseDetailsData.data?.course_details.trainer.courses_count} </span>
+              <span> {courseDetailsData.data?.course_details?.trainer.courses_count} </span>
               دورات
               <span
                 className={
@@ -60,13 +60,13 @@ export default function TrainerInfo() {
               </span>
              <LearnersIcon color="#b4b4b4"/>
 
-              <span> {courseDetailsData.data?.course_details.trainer.buyers_count} </span>
+              <span> {courseDetailsData.data?.course_details?.trainer.buyers_count} </span>
               متعلم
             </div>
           </div>
         </div>
         <p className={styles["trainer-info-section__para"]}>
-        {courseDetailsData.data?.course_details.trainer.bio}
+        {courseDetailsData.data?.course_details?.trainer.bio}
         </p>
         <div className={styles["trainer-info-section__view-trainer-account"]}>
             <span>اعرض حساب المدرب</span>

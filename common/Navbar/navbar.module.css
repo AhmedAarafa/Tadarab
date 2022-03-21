@@ -106,7 +106,7 @@
   margin-right: 0.6rem;
   font-weight: 700;
   font-size: 0.9375rem;
-  color: #222222 !important;
+  color: var(--dark-black) !important;
   text-align: right;
   -webkit-transition: all 0.3s linear;
   transition: all 0.3s linear;
@@ -143,7 +143,7 @@
 .navbar__purchased-course-name {
   font-size: 1.0625rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: auto 1.5625rem auto 0;
   padding: 0 1.5625rem 0 0;
   border-right: 0.0625rem solid rgba(0, 0, 0, 0.2);
@@ -152,7 +152,7 @@
 .navbar__purchased-course-nav {
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0 22rem 0 0;
 }
 
@@ -171,8 +171,8 @@
 }
 
 .navbar__purchased-course-nav--active {
-  color: #AF151F;
-  border-bottom: 0.1875rem solid #AF151F;
+  color: var(--primary-red);
+  border-bottom: 0.1875rem solid var(--primary-red);
 }
 
 .navbar__purchased-course-nav__curriculum svg {
@@ -268,8 +268,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .navbar__register-btn:hover {
@@ -297,8 +297,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   background-color: white !important;
 }
 
@@ -313,18 +313,26 @@
 }
 
 .navbar__sign-in-btn:hover {
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .navbar__sign-in-btn:active {
-  background-color: #AF151F !important;
+  background-color: var(--primary-red) !important;
   color: white !important;
-  border: 0.125rem solid #AF151F !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
-.navbar_responsive-search-icon svg {
+.navbar_responsive-search-icon div svg {
   margin-top: 0.2rem;
+  display: none;
+}
+
+.search-box-overlay {
+  display: none;
+}
+
+.hero-section__search-bar-container {
   display: none;
 }
 
@@ -343,12 +351,12 @@
 .navbar__cart-icon-container svg {
   width: 2.063rem;
   height: 1.875rem;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .navbar__cart-icon__badge {
   position: absolute;
-  background-color: #AF151F !important;
+  background-color: var(--primary-red) !important;
   top: 0.125rem;
   right: -0.625rem;
   border-radius: 50%;
@@ -385,7 +393,7 @@
 
 .navbar__discover-popover__caption {
   font-size: 0.813rem;
-  color: #777777;
+  color: var(--grey);
   margin-right: 2rem;
   position: relative;
   width: -webkit-fit-content;
@@ -399,7 +407,7 @@
   right: 0;
   bottom: -0.188rem;
   width: 60%;
-  border-bottom: 0.125rem solid #AF151F;
+  border-bottom: 0.125rem solid var(--primary-red);
 }
 
 .navbar__discover-popover__list {
@@ -426,7 +434,7 @@
           box-shadow: 0 0 1.875rem #0000001A;
   position: absolute;
   background: #fff;
-  color: #222222;
+  color: var(--dark-black);
   font-weight: bold;
   padding: 1.3rem 0.3rem;
   font-size: 1rem;
@@ -454,7 +462,7 @@
           box-shadow: 0 0 1.875rem #0000001A;
   position: absolute;
   background: #fff;
-  color: #222222;
+  color: var(--dark-black);
   font-weight: bold;
   padding: 1.3rem 0.3rem;
   font-size: 1rem;
@@ -482,7 +490,7 @@
 .navbar__cart-popover__course-details__title {
   font-size: 1rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   width: 13.5625rem;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -492,18 +500,18 @@
 .navbar__cart-popover__course-details__author,
 .navbar__cart-popover__course-details__old-price {
   font-size: 0.75rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .navbar__cart-popover__course-details__price {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .navbar__cart-popover__course-details__currency {
   font-size: 0.813rem;
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .navbar__cart-popover__course-details__old-price {
@@ -512,7 +520,7 @@
 
 .navbar__cart-popover__course-details__old-price-currency {
   font-size: 0.625rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .navbar__cart-popover__course-details__price-container {
@@ -540,19 +548,19 @@
 
 .navbar__cart-popover__checkout-box__items {
   font-size: 1rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .navbar__cart-popover__checkout-box__total-price {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .navbar__cart-popover__checkout-box__total-price-currency {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .navbar__cart-popover__checkout-box__old-total-price-box {
@@ -563,12 +571,12 @@
 .navbar__cart-popover__checkout-box__old-total-price {
   font-size: 1.063rem;
   font-weight: 800;
-  color: #777777;
+  color: var(--grey);
 }
 
 .navbar__cart-popover__checkout-box__old-total-price-currency {
   font-size: 0.875rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .navbar__cart-popover__checkout-box__total-price-box,
@@ -586,8 +594,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   color: white;
 }
 
@@ -635,7 +643,7 @@
   width: 100%;
   font-size: 2.656rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   padding: 3.125rem 0 3.125rem 0;
   border-bottom: 0.05rem solid rgba(34, 34, 34, 0.05);
 }
@@ -652,7 +660,7 @@
   list-style-type: none;
   font-size: 2.656rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   padding: 0;
   margin: 0;
   padding: 0 4.5rem 0 4.5rem !important;
@@ -660,7 +668,7 @@
 
 .sidebar-list__discover-sidebar__list div {
   font-size: 2.188rem;
-  color: #777777;
+  color: var(--grey);
   padding-top: 2rem;
   border-top: 0.05rem solid rgba(34, 34, 34, 0.05);
   margin-bottom: 4.5rem;
@@ -680,7 +688,7 @@
   right: 0;
   bottom: -0.5rem;
   width: 35%;
-  border-bottom: 0.31rem solid #AF151F;
+  border-bottom: 0.31rem solid var(--primary-red);
   font-size: 1.5rem;
 }
 
@@ -736,7 +744,7 @@
 .sidebar-list__dark-mode-box span {
   font-size: 2.656rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .sidebar-list__dark-mode-box svg {
@@ -780,8 +788,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   margin-top: 3rem;
 }
 
@@ -810,8 +818,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   background-color: white !important;
   margin-top: 1.8rem;
 }
@@ -827,14 +835,14 @@
 }
 
 .sidebar-list__sign-in-btn:hover {
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .sidebar-list__sign-in-btn:active {
-  background-color: #AF151F !important;
+  background-color: var(--primary-red) !important;
   color: white !important;
-  border: 0.125rem solid #AF151F !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .navbar__account-icon__dropdown {
@@ -842,7 +850,7 @@
           box-shadow: 0 0 1.875rem #0000001A;
   position: absolute;
   background: #fff;
-  color: #222222;
+  color: var(--dark-black);
   font-weight: bold;
   padding: 1.3rem 0.3rem;
   font-size: 1rem;
@@ -876,8 +884,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .navbar__account-icon__dropdown button:hover {
@@ -995,13 +1003,126 @@
         -ms-flex-order: 4;
             order: 4;
   }
-  .navbar_responsive-search-icon svg {
+  .navbar_responsive-search-icon div svg {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     width: 2.7rem;
     height: 2.7rem;
     margin-left: 1.5rem;
+    cursor: pointer;
+  }
+  .search-box-overlay {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  .responsive-navbar__search-bar-container {
+    position: relative;
+    -webkit-box-shadow: 0 0 4.0625rem #0000001A;
+            box-shadow: 0 0 4.0625rem #0000001A;
+    border-radius: 1.875rem;
+    overflow: hidden;
+    font-weight: 400;
+    padding: 0;
+    letter-spacing: 0;
+    background-color: white;
+    margin: auto;
+    width: 100%;
+    height: 9rem;
+    top: 0%;
+    z-index: 3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .responsive-navbar__search-bar-container__search-bar {
+    border: 0 !important;
+    padding: 0 3rem 0 0;
+    font-family: 'Almarai', sans-serif;
+    width: 80%;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    font-size: 2.6575rem;
+    color: rgba(34, 34, 34, 0.5);
+  }
+  .responsive-navbar__search-bar-container__search-bar:active, .responsive-navbar__search-bar-container__search-bar:focus {
+    outline: 0 !important;
+    -webkit-appearance: none;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+  }
+  .responsive-navbar__search-bar-container__search-bar::-webkit-input-placeholder {
+    color: rgba(51, 51, 51, 0.5);
+  }
+  .responsive-navbar__search-bar-container__search-bar:-ms-input-placeholder {
+    color: rgba(51, 51, 51, 0.5);
+  }
+  .responsive-navbar__search-bar-container__search-bar::-ms-input-placeholder {
+    color: rgba(51, 51, 51, 0.5);
+  }
+  .responsive-navbar__search-bar-container__search-bar::placeholder {
+    color: rgba(51, 51, 51, 0.5);
+  }
+  .responsive-navbar__search-bar__btn {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
+    color: white;
+    font-weight: 700;
+    font-size: 2.5rem;
+    width: 10rem;
+    height: 100%;
+    margin-right: 0;
+    padding: 1rem;
+    border-radius: 1.5625rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .responsive-navbar__search-bar__btn:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .responsive-navbar__search-bar__btn:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .responsive-navbar__search-bar__btn:hover, .responsive-navbar__search-bar__btn:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .responsive-navbar__search-bar__btn svg {
+    margin: 0 !important;
+    width: 3rem !important;
+    height: 3rem !important;
   }
   .navbar__three-dots-icon {
     display: none;

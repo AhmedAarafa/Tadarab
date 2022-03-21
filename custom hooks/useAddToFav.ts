@@ -14,11 +14,11 @@ const useAddToFav = (course?: any,queryParam?:any) => {
         if(course.is_in_favorites == false){
   
           axiosInstance
-          .post(`users/favorites/?country_code=eg`, {"course_id" : course.id})
+          .post(`users/favorites/?country_code=${localStorage.getItem("countryCode")}`, {"course_id" : course.id})
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get("home/?country_code=eg")
+            .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
             .then(async function (response:any) {
              await dispatch(setHomePageData(response.data.data.latest_courses));
               // return latestCourses;
@@ -34,11 +34,11 @@ const useAddToFav = (course?: any,queryParam?:any) => {
           });
         }else{
           axiosInstance
-          .delete(`users/favorites/?country_code=eg`, { data:{"course_id" : course.id}})
+          .delete(`users/favorites/?country_code=${localStorage.getItem("countryCode")}`, { data:{"course_id" : course.id}})
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get("home/?country_code=eg")
+            .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
             .then(async function (response:any) {
              await dispatch(setHomePageData(response.data.data.latest_courses));
               // return latestCourses;
@@ -56,7 +56,7 @@ const useAddToFav = (course?: any,queryParam?:any) => {
         }
       }else{
         Router.push({
-          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
           query: { from: queryParam }
         })
   

@@ -18,13 +18,13 @@
 .sign-in__sign-in-box__title {
     div:nth-of-type(1) {
         font-size: 1.875rem;
-        color: $dark-black;
+        color: var(--dark-black);
         font-weight: 800;
     }
 
     div:nth-of-type(2) {
         font-size: 1.0625rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 
@@ -35,7 +35,7 @@
     div {
         font-size: 1.063rem;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         width: 8.875rem;
         height: 3.125rem;
         box-shadow: 0 0.1875rem 1.25rem #0000001A;
@@ -59,7 +59,7 @@
 
 .sign-in__sign-in-box__sign-in-with-email {
     font-size: 1.0625rem;
-    color: $grey;
+    color: var(--grey);
     text-align: center;
     margin: 1.5625rem 0 0 0;
     position: relative;
@@ -142,7 +142,7 @@
     background-color: transparent !important;
 
     button {
-        color: $grey !important;
+        color: var(--grey) !important;
         background-color: transparent !important;
         border: 0 !important;
         outline: 0 !important;
@@ -155,7 +155,7 @@
         &+div {
             a {
                 background-color: transparent !important;
-                color: $dark-black !important;
+                color: var(--dark-black) !important;
 
                 &:hover {
                     background-color: rgba(119, 119, 119, 0.1) !important;
@@ -193,7 +193,7 @@
 .sign-in__sign-in-box__sign-in-form-box__forget-password {
     font-size: 1.125rem;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
     text-align: center;
     margin: 1rem 0 0 0;
     cursor: pointer;
@@ -206,11 +206,11 @@
     margin: 1.5rem 0 5rem 0;
 
     span:nth-of-type(1) {
-        color: $grey;
+        color: var(--grey);
     }
 
     span:nth-of-type(2) {
-        color: $primary-red;
+        color: var(--primary-red);
         font-weight: 800;
         cursor: pointer;
     }
@@ -401,7 +401,7 @@
 
                 a {
                     background-color: transparent !important;
-                    color: $dark-black !important;
+                    color: var(--dark-black) !important;
 
                     &:hover {
                         background-color: rgba(119, 119, 119, 0.1) !important;

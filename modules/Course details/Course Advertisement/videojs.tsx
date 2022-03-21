@@ -24,13 +24,13 @@ export const VideoJS = ( props:any ) => {
 
       // videojs.registerPlugin("playlist", videojsPlaylistPlugin);
       const player:any = playerRef.current = videojs(videoElement, options, () => {
-        console.log("player is ready");
+        // console.log("player is ready");
         onReady && onReady(player);
       });
       let listOfLinks:any = [];
 
-      courseDetailsData.data.syllabus.map((syl:any)=>{
-        syl.lectures.map((lec:any)=>{
+      courseDetailsData?.data?.syllabus?.map((syl:any)=>{
+        syl.lectures?.map((lec:any)=>{
           listOfLinks.push(lec.links["640"]);
           setPlayListLinks(listOfLinks);
           // console.log("playListLinks",playListLinks);
@@ -94,7 +94,7 @@ export const VideoJS = ( props:any ) => {
        {courseDetailsData.data == undefined ?
             <></>
             :
-            <video ref={videoRef} poster={courseDetailsData.data.course_details.image} className="video-js vjs-big-play-centered" />
+            <video ref={videoRef} poster={courseDetailsData.data.course_details?.image} className="video-js vjs-big-play-centered" />
             }
     </div>
   );

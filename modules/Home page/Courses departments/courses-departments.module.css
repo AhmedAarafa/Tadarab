@@ -17,11 +17,11 @@
 }
 
 .courses-departments__container__title span:nth-of-type {
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .courses-departments__container__title span:nth-of-type(2) {
-  color: #AF151F;
+  color: var(--primary-red);
 }
 
 .courses-departments__see-more-btn-col {
@@ -47,11 +47,11 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   background-color: white !important;
   font-size: 1.063rem;
-  color: #AF151F;
+  color: var(--primary-red);
   font-weight: 700;
   width: 13.125rem;
   height: 2.75rem;
@@ -78,19 +78,19 @@
 }
 
 .courses-departments__container__show-all-btn:hover {
-  color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .courses-departments__container__show-all-btn:active {
-  background-color: #AF151F !important;
+  background-color: var(--primary-red) !important;
   color: white !important;
-  border: 0.125rem solid #AF151F !important;
+  border: 0.125rem solid var(--primary-red) !important;
 }
 
 .courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active {
   background-color: white !important;
-  color: #AF151F !important;
+  color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
 }
 
@@ -136,7 +136,7 @@
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 50%;
-  background-color: #AF151F;
+  background-color: var(--primary-red);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -156,13 +156,13 @@
 .courses-departments__cards-carousel__departments-card__department {
   font-size: 1rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
   margin-top: 0.3rem;
 }
 
 .courses-departments__cards-carousel__departments-card__learners-number {
   font-size: 0.875rem;
-  color: #777777;
+  color: var(--grey);
   margin-top: 0.3rem;
 }
 
@@ -280,7 +280,7 @@
     width: 4.375rem;
     height: 4.375rem;
     border-radius: 50%;
-    background-color: #AF151F;
+    background-color: var(--primary-red);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -298,12 +298,12 @@
   .courses-departments__cards-carousel__departments-card__department {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #222222;
+    color: var(--dark-black);
     margin-top: 0.42rem;
   }
   .courses-departments__cards-carousel__departments-card__learners-number {
     font-size: 1.225rem;
-    color: #777777;
+    color: var(--grey);
     margin-top: 0.42rem;
   }
 }
@@ -362,7 +362,7 @@
     width: 6.875rem;
     height: 6.875rem;
     border-radius: 50%;
-    background-color: #AF151F;
+    background-color: var(--primary-red);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -380,12 +380,12 @@
   .courses-departments__cards-carousel__departments-card__department {
     font-size: 2.2rem;
     font-weight: 700;
-    color: #222222;
+    color: var(--dark-black);
     margin-top: 0.66rem;
   }
   .courses-departments__cards-carousel__departments-card__learners-number {
     font-size: 1.925rem;
-    color: #777777;
+    color: var(--grey);
     margin-top: 0.66rem;
   }
   .courses-departments__see-more-btn-col {
@@ -410,11 +410,11 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     background-color: white !important;
     font-size: 2.3386rem;
-    color: #AF151F;
+    color: var(--primary-red);
     font-weight: 700;
     width: 100%;
     height: 6.05rem;
@@ -440,13 +440,13 @@
             box-shadow: none;
   }
   .courses-departments__container__show-all-btn:hover {
-    color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .courses-departments__container__show-all-btn:active {
-    background-color: #AF151F !important;
+    background-color: var(--primary-red) !important;
     color: white !important;
-    border: 0.125rem solid #AF151F !important;
+    border: 0.125rem solid var(--primary-red) !important;
   }
   .courses-departments__container__show-all-btn svg {
     width: 1.25rem;
@@ -455,7 +455,7 @@
   }
   .courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active {
     background-color: white !important;
-    color: #AF151F !important;
+    color: var(--primary-red) !important;
     border: 0.275rem solid rgba(175, 21, 31, 0.2) !important;
   }
 }

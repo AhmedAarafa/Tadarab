@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setErrorText } from "../redux/actions/errorText";
+import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 
 export const axiosInstance = axios.create({
   // baseURL: "https://developer.tadarab.com/wp-json/api/",
@@ -16,7 +17,7 @@ axiosInstance.interceptors.request.use(
     // config.params = config.params || {};
     // config.params['auth'] = 'token';
     // console.log(config);
-    document.body.classList.add('loading-indicator');
+    toggleLoader("show");
     if(localStorage.getItem("token")){
       config.headers.Authorization =  `Bearer ${localStorage.getItem("token")}`;
     }
@@ -24,7 +25,7 @@ axiosInstance.interceptors.request.use(
   },
   function (error: any) {
     // Do something with request error
-    document.body.classList.add('loading-indicator');
+    toggleLoader("show");
 
     return Promise.reject(error);
   }
@@ -38,17 +39,15 @@ axiosInstance.interceptors.response.use(
     // hide loader
     // console.log("response", response);
     // response.data.push("test")
-    setTimeout(() => {
-      document.body.classList.remove('loading-indicator');
-    }, 600);
+    toggleLoader("hide");
+
 
     return response;
   },
   function (error: any) {
     // console.log(error.response.data);
-    setTimeout(() => {
-      document.body.classList.remove('loading-indicator');
-    }, 600);
+    toggleLoader("hide");
+
   
     return error.response;
     // Any status codes that falls outside the range of 2xx cause this function to trigger

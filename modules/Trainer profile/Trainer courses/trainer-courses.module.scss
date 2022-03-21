@@ -13,11 +13,11 @@
     font-weight: 800;
 
     span:nth-of-type(1) {
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     span:nth-of-type(2) {
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }
 
@@ -95,7 +95,7 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__title {
     font-size: 1rem*0.9;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0;
     white-space: nowrap;
     overflow: hidden;
@@ -106,7 +106,7 @@
 
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author {
     font-size: 0.813rem*0.9;
-    color: $grey;
+    color: var(--grey);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -122,13 +122,13 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.25rem*0.9;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__price-container__currency {
     font-size: 0.813rem*0.9;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__old-price-container {
@@ -139,12 +139,12 @@
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__old-price-container__price {
     font-size: 0.75rem*0.9;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__old-price-container__currency {
     font-size: 0.625rem*0.9;
-    color: $grey;
+    color: var(--grey);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn {

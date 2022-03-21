@@ -17,7 +17,7 @@
       -ms-flex-pack: unset;
           justify-content: unset;
   border-radius: 0.938rem;
-  background-color: #F7E7E8;
+  background-color: var(--pale-red);
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -27,7 +27,7 @@
 .course-requirements__mid-level span {
   font-size: 1.063rem;
   font-weight: 800;
-  color: #AF151F;
+  color: var(--primary-red);
   margin: 0 0.5rem -0.3rem 0;
 }
 
@@ -43,7 +43,7 @@
 .course-requirements__box__title {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .course-requirements__box__requirements {
@@ -53,7 +53,7 @@
 .course-requirements__box__requirements li {
   margin-bottom: 0.3rem;
   font-size: 0.938rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 @media (max-width: 575px) {

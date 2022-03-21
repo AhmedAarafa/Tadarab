@@ -6,23 +6,23 @@
 
 .categories-cards-col {
     position: relative;
-    background-color: white;
+    background-color: white;  
     display: none;
 }
 
 .hero-section__container {
-    margin: 10rem -2.2rem 0 0;
+    margin: 10rem -2.2rem 0 0;  
     display: inline-block;
 }
 
 .hero-section__title {
     font-size: 1.875rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
-.hero-section__para {
-    color: $dark-black;
+.hero-section__para { 
+    color: var(--dark-black);
     font-size: 1.063rem;
     margin-top: 1rem;
     opacity: 80%;
@@ -37,7 +37,7 @@
     padding: 0.4rem 0rem 0.4rem 0rem;
     letter-spacing: 0;
     background-color: white;
-    margin-top: 2rem;
+    margin-top: 2rem; 
     width: 27.188rem;
     @include flex(center);
 
@@ -93,10 +93,10 @@
     height: 1.563rem;
     border: 0.063rem solid rgba(14, 11, 29, 0.3);
     border-radius: 0.938rem;
-    color: $dark-black;
+    color: var(--dark-black);
     font-size: 0.625rem;
     display: flex;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
     padding: 0.063rem 0.663rem;
     font-weight: 700;
@@ -133,11 +133,11 @@
 
     div:nth-of-type(1) {
         div:nth-of-type(1) {
-            background-color: $primary-red;
+            background-color: var(--primary-red);
         }
 
         div:nth-of-type(2) {
-            color: $primary-red;
+            color: var(--primary-red);
         }
     }
 
@@ -200,7 +200,7 @@
 .categories-cards-container__category {
     font-size: 1.125rem;
     font-weight: 800;
-    color: $primary-red;
+    color: var(--primary-red);
     margin-left: 0.8rem;
     cursor: pointer;
 }
@@ -255,19 +255,19 @@
         height: 86.5%;
         width: 9rem;
         border-radius: 1.3rem;
-        font-size: 2rem;
+        font-size: 2rem; 
     }
     .hero-section__search-bar-container__icon-wrapper {
         padding: 0 2.5rem;
         &>svg {
-            width:2.8rem;
+            width:2.8rem;       
             height:2.8rem;
           
         }
     }
     .hero-section__title {
         margin: 3.5rem 0 0 0;
-        font-size: 4.2rem;
+        font-size: 4.2rem; 
     }
     .hero-section__para {
         margin: 2.5rem 0 10.625rem 0;

@@ -53,9 +53,8 @@ export default function CourseContent() {
         <div className={styles["course-content__course-duration-box"]}>
             <div className={styles["course-content__course-duration-box__courses-number"]}>
                 <LessonPlayIcon color="#999" opacity="0.7"/>
-                <span> {courseDetailsData.data?.syllabus.map((item:any)=> item.lectures.length).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
+                <span> {courseDetailsData.data?.syllabus?.map((item:any)=> item.lectures.length).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
                 <span> درس </span>
-
 
             </div>
             -
@@ -63,11 +62,11 @@ export default function CourseContent() {
                <ClockIcon color="#999" opacity="0.7"/>
                 {
                     durationCalculator(
-                        courseDetailsData.data?.syllabus.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
+                        courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
                         ).h !== 0 &&
                         <>
                     <span> {durationCalculator(
-                    courseDetailsData.data?.syllabus.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
+                    courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
                     ).h
                     } </span>
                     <span> س: </span>
@@ -75,11 +74,11 @@ export default function CourseContent() {
                 }
                 {
                     durationCalculator(
-                        courseDetailsData.data?.syllabus.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
+                        courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
                         ).m !== 0 &&
                         <>
                     <span> {durationCalculator(
-                    courseDetailsData.data?.syllabus.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
+                    courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
                     ).m
                     } </span>
                     <span> د </span>
@@ -93,7 +92,7 @@ export default function CourseContent() {
       <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
 
           {
-              courseDetailsData.data?.syllabus.map((syl:any,i:number)=>{
+              courseDetailsData.data?.syllabus?.map((syl:any,i:number)=>{
                   return(
 
                     <Accordion.Item key={i} eventKey={JSON.stringify(i)}  className={styles["course-content__accordion__item"]}>
@@ -124,7 +123,7 @@ export default function CourseContent() {
                     </Accordion.Header>
                     <Accordion.Body className={styles["course-content__accordion__body"]}>
                         {
-                            syl.lectures.map((lec:any,i:number)=>{
+                            syl.lectures?.map((lec:any,i:number)=>{
                                 return(
                                     <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                         <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
@@ -202,7 +201,7 @@ export default function CourseContent() {
                     </Accordion.Header>
                     <Accordion.Body className={styles["course-content__accordion__body"]}>
                         {
-                            courseDetailsData.data?.attachments.map((att:any,i:number)=>{
+                            courseDetailsData.data?.attachments?.map((att:any,i:number)=>{
                                 return(
                                     <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                         <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
@@ -230,7 +229,7 @@ export default function CourseContent() {
       </Accordion>
  
 
-          <div className={styles["purchased-course-playlist"]}>
+          {/* <div className={styles["purchased-course-playlist"]}>
               <div className={styles["purchased-course-playlist__progress-box"]}>
                   <span>  منهج الدورة  </span>
                   <span>  ( 32% مكتمل )  </span>
@@ -241,9 +240,8 @@ export default function CourseContent() {
               </div>
 
             <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
-
                 {
-                    courseDetailsData.data?.syllabus.map((syl:any,i:number)=>{
+                    courseDetailsData.data?.syllabus?.map((syl:any,i:number)=>{
                         return(
 
                             <Accordion.Item key={i} eventKey={JSON.stringify(i)}  className={styles["purchased-course-content__accordion__item"]}>
@@ -291,7 +289,7 @@ export default function CourseContent() {
 
             
             </Accordion>
-          </div>
+          </div> */}
 
       <Button className={styles["course-content__show-more-btn"]}>
       أعرض المزيد من الدروس

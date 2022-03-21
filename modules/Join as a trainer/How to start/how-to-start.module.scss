@@ -15,14 +15,14 @@
     font-weight: 800;
 
     span {
-        color: $primary-red;
+        color: var(--primary-red);
         margin: 0 0 0 0.2rem;
     }
 }
 
 .how-to-start__title-box__brief {
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 
@@ -62,12 +62,12 @@
 }
 
 .how-to-start__title--important {
-    color: $primary-red;
+    color: var(--primary-red);
 }
 
 .how-to-start__brief {
     margin: 1.125rem 0 0 0;
-    color: $grey;
+    color: var(--grey);
     font-size: 1rem;
 
 }

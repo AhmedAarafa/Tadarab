@@ -18,7 +18,7 @@ export default function TadarabSubscription() {
   useEffect(() => {
       const countryCode:any = localStorage.getItem("countryCode");
         axiosInstance
-        .get(`home/?country_code=eg`)
+        .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
         .then(function (response:any) {
             dispatch(setHomePageData(response.data.data));
         })

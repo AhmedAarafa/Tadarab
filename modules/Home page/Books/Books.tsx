@@ -17,7 +17,7 @@ export default function Books() {
 
     useEffect(() => {
       // axiosInstance
-      // .get("home/?country_code=eg")
+      // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
       // .then(function (response:any) {
       //   setBooks(response.data.data.books);
       // })
@@ -68,7 +68,7 @@ export default function Books() {
           },
         }} className="mySwiper">
 
-            { books.map((book:any,i:number)=>{
+            { books?.map((book:any,i:number)=>{
               return(
                   <SwiperSlide key={i}> 
                       <Card className={styles["books__cards-carousel__card"]}>

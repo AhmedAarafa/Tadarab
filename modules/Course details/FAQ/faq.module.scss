@@ -9,7 +9,7 @@
 .faq__title {
     font-size: 1.5rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .faq__accordion {
@@ -37,7 +37,7 @@
     button {
         font-size: 1.125rem;
         font-weight: 800;
-        color: $dark-black !important;
+        color: var(--dark-black) !important;
         background-color: white !important;
         padding: 1.5rem !important;
         border-radius: 1.25rem !important;
@@ -66,7 +66,7 @@
 
 .faq__accordion__body {
     font-size: 1rem;
-    color: $grey;
+    color: var(--grey);
     padding: 0 3.8rem 2rem 2rem !important;
 
 }
@@ -76,10 +76,10 @@
     font-weight: 700;
     margin-top: 1.625rem;
     span:nth-of-type(1){
-        color: $grey;
+        color: var(--grey);
     }
     span:nth-of-type(2){
-        color: $primary-red;
+        color: var(--primary-red);
     }
 }
 

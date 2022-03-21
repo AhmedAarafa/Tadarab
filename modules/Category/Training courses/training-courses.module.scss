@@ -9,7 +9,7 @@
 .training-courses__title {
     font-size: 1.75rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0 0 0.2rem 0;
 }
 
@@ -19,7 +19,7 @@
 
 .training-courses__brief {
     font-size: 1.125rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .training-courses__filters-col {
@@ -42,7 +42,7 @@
 .training-courses__filters-col__filter-box__filter-by {
     font-size: 0.875rem;
     font-weight: 700;
-    color: $grey;
+    color: var(--grey);
     padding: 0.8125rem 1.25rem 0;
 }
 
@@ -74,7 +74,7 @@
         border: 0 !important;
         font-size: 1.0625rem;
         font-weight: 800;
-        color: $dark-black !important;
+        color: var(--dark-black) !important;
         // z-index: 5;
         z-index: 3;
 
@@ -97,7 +97,7 @@
                 text-align: right;
                 font-size: 1.0625rem;
                 font-weight: 800;
-                color: $dark-black;
+                color: var(--dark-black);
                 // z-index: 3;
                 @include flex(center);
                 height: fit-content;
@@ -111,7 +111,7 @@
                 &:hover,
                 &:active {
                     background-color: rgba(0, 0, 0, 0.05) !important;
-                    color: $dark-black !important;
+                    color: var(--dark-black) !important;
                 }
             }
         }
@@ -121,7 +121,7 @@
         &:focus {
             background-color: white !important;
             border: 0 !important;
-            color: $dark-black !important;
+            color: var(--dark-black) !important;
         }
 
         &::after {
@@ -211,7 +211,7 @@
 .training-courses__course-card__card-body__card-header__course-details__title {
     font-size: 1rem*0.97;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
     margin: 0;
     width: 13.2rem;
     text-overflow: ellipsis;
@@ -222,7 +222,7 @@
 
 .training-courses__course-card__card-body__card-header__course-details__author {
     font-size: 0.813rem*0.97;
-    color: $grey;
+    color: var(--grey);
 
 }
 
@@ -233,13 +233,13 @@
 .training-courses__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.25rem*0.97;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .training-courses__course-card__card-body__checkout-details__price-container__currency {
     font-size: 0.813rem*0.97;
     font-weight: 700;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .training-courses__course-card__card-body__checkout-details__old-price-container {
@@ -250,12 +250,12 @@
 .training-courses__course-card__card-body__checkout-details__old-price-container__price {
     font-size: 0.75rem*0.97;
     font-weight: 800;
-    color: $grey;
+    color: var(--grey);
 }
 
 .training-courses__course-card__card-body__checkout-details__old-price-container__currency {
     font-size: 0.625rem*0.97;
-    color: $grey;
+    color: var(--grey);
 }
 
 .training-courses__course-card__card-body__checkout-details__icon-btn {
@@ -417,13 +417,13 @@
         div:nth-of-type(1) {
             font-size: 1.25rem*2.3;
             font-weight: 800;
-            color: $dark-black;
+            color: var(--dark-black);
         }
 
         div:nth-of-type(2) {
             font-size: 0.875rem*2.3;
             font-weight: 700;
-            color: $primary-red;
+            color: var(--primary-red);
             margin: -0.5rem 0 0 0;
         }
     }
@@ -432,7 +432,7 @@
         list-style-type: none;
         font-size: 1rem*2.3;
         font-weight: 700;
-        color: $dark-black;
+        color: var(--dark-black);
         margin: 0;
         padding: 1.4063rem*2.3 0;
         border-bottom: 0.063rem solid rgba(119, 119, 119, 0.2);
@@ -463,8 +463,8 @@
             }
 
             &:checked {
-                background-color: $primary-red;
-                border-color: $primary-red;
+                background-color: var(--primary-red);
+                border-color: var(--primary-red);
             }
         }
 
@@ -476,7 +476,7 @@
         div:nth-of-type(2) {
             font-size: 0.875rem*2.3;
             font-weight: 700;
-            color: $primary-red;
+            color: var(--primary-red);
             @include flex(center);
             cursor: pointer;
             width: fit-content;

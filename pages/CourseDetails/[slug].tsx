@@ -28,14 +28,21 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData"; 
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { useRouter } from 'next/router';
+import { Course } from "_models/Course";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state:any) => state.homePageData);
+  const Router = useRouter();
+  const { slug } = Router.query;
+
 
   useEffect(() => {
+    console.log('Router.query',Router.query);
+        
     const rootFontSize = parseFloat(
       window
       .getComputedStyle(document.getElementsByTagName("html")[0])
@@ -85,6 +92,7 @@ function CourseDetails() {
          justify-content:space-evenly;
          bottom:0;
          `
+         
        }else if(window.scrollY < addToCartBtn.offsetTop){
        tabsResponsiveBar.style.cssText=`display:none`;
        mobileCheckoutBar.style.cssText=`display:none`;
@@ -146,24 +154,30 @@ function CourseDetails() {
       }
     });
 
-    axiosInstance
-    .get("courses/1540/?country_code=eg")
-    .then(function (response:any) {
-      // console.log("response",response);
-      
-        dispatch(setCourseDetailsData(response?.data?.data));
 
-                let tadarabFbPixel = new TadarabFBPixel();
-            response.data.fb_tracking_events.forEach((ev:any)=>{
+    if(Router.query.slug){
 
-              tadarabFbPixel.setEventId(ev.event_id);
-              tadarabFbPixel.eventHandler(ev.event_name, null);
-            })
+      axiosInstance
+      .get(`courses/${slug}/?country_code=${localStorage.getItem("countryCode")}`)
+      .then(function (response:any) {
+        const data:Course = response?.data?.data ;
+                
+          dispatch(setCourseDetailsData(data));
   
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+                  let tadarabFbPixel = new TadarabFBPixel();
+              response.data.fb_tracking_events.forEach((ev:any)=>{
+                console.table("ev",ev);
+                
+                tadarabFbPixel.setEventId(ev.event_id);
+                tadarabFbPixel.eventHandler(ev.event_name, null);
+              })
+    
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
     
     return () => {
       window.removeEventListener("resize",()=>{
@@ -175,8 +189,9 @@ function CourseDetails() {
     };
     
     
-  }, []);
+  }, [Router.query]);
 
+ 
   
   return (
     <>

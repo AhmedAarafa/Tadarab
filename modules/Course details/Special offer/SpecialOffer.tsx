@@ -12,7 +12,7 @@ export default function SpecialOffer() {
 
     useEffect(() => {
           axiosInstance
-          .get(`courses/1540/special-bundle/?country_code=eg`)
+          .get(`courses/1540/special-bundle/?country_code=${localStorage.getItem("countryCode")}`)
           .then(function (response:any) {
             setSpecialBundleData(response?.data?.data);
             // console.log("response.data.courses",response?.data?.data); 
@@ -108,7 +108,7 @@ export default function SpecialOffer() {
         <div className={styles["special-offer__cards-outer-box"]}>
 
             {
-                specialBundleData?.courses.map((course:any,i:number)=>{
+                specialBundleData?.courses?.map((course:any,i:number)=>{
                     return(
                         <>
                             <div key={i} className={styles["special-offer__cards-outer-box__card"]}>

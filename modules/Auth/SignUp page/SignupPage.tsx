@@ -15,12 +15,13 @@ import {
   ErrorMessage
 } from 'formik';
 import * as Yup from "yup";
-import Countries from  "../../../node_modules/country-codes/node_modules/country-data/data/countries.json";
-import  "../../../node_modules/country-codes/node_modules/country-data/data/countries2.json";
+// import Countries from  "../../../node_modules/country-codes/node_modules/country-data/data/countries.json";
+// import  "../../../node_modules/country-codes/node_modules/country-data/data/countries2.json";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon,MobileIcon,NameFieldIcon } from "common/Icons/Icons";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { signupValidationRules } from "validation rules/signup";
 
 interface SignUpFormValues {
   name: string;
@@ -71,25 +72,7 @@ export default function SignupPage() {
  
 
     function validationSchema() {
-      return Yup.object().shape({
-        name: Yup.string()
-        .required("خانة الإسم مطلوبه")
-        .min(5, "الإسم يجب ان يكون 5 حروف او أكثر"),
-        email: Yup.string()
-        .required("خانة البريد الإلكتروني مطلوبه")
-        .email("البريد الإلكتروني غير مناسب")
-        .matches(
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        ,'البريد الإلكتروني غير مناسب'),
-        phoneNumber: Yup.string()
-        .required("خانة الرقم مطلوبه")
-        .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي علي حروف او رموز خاصه')
-        .min(5, "رقم الهاتف يجب ان يكون 5 أرقام او أكثر")
-        .typeError("رقم الهاتف غير مناسب"),
-        password: Yup.string()
-        .required("خانة كلمة المرور مطلوبه")
-        .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر"),
-      });
+      return Yup.object().shape(signupValidationRules);
     }
     
    
@@ -134,24 +117,6 @@ export default function SignupPage() {
       }
     }
 
-      // const validate = Yup.object().shape({
-      //   name: Yup.string()
-      //   .min(7, "الإسم يجب ان يكون 5 حروف او أكثر")
-      //   .required("خانة الإسم مطلوبه"),   
-      //   email: Yup.string()
-      //   .email("البريد الإلكتروني غير مناسب")
-      //   .required("خانة البريد الإلكتروني مطلوبه"),
-      //   phoneNumber: Yup.string()
-      //   .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي علي حروف او رموز خاصه')
-      //   .min(5, "رقم الهاتف غير مناسب")
-      //   .typeError("رقم الهاتف غير مناسب")
-      //   .required("خانة الرقم مطلوبه"),
-      //   password: Yup.string()
-      //   .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر")
-      //   .required("خانة كلمة المرور مطلوبه"),
-      // });
-
-
       const handleCountryCode = (country:any)=>{
         setCountryCallingCode(country.countryCallingCodes);
         setCountryFlag(`${country.alpha2.toLowerCase()}.png`);
@@ -195,7 +160,6 @@ export default function SignupPage() {
              initialValues={initialValues}
              validationSchema={validationSchema}
          onSubmit={(values) => {
-            //  console.log("ss",{ values, actions });
           //  actions.setSubmitting(false);
            axiosInstance
             .post(`users`, {
@@ -210,7 +174,7 @@ export default function SignupPage() {
               // setResponse(response.data);
               console.log("Response",response);
               if(JSON.stringify(response.status).startsWith("2")){
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`);
 
                 let customData = {email: values.email, phone: values.phoneNumber};
                 let tadarabFbPixel = new TadarabFBPixel();

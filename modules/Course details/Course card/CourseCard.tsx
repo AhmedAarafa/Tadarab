@@ -153,7 +153,7 @@ export default function CourseCard() {
           id="course-card__details-list"
           className={styles["course-details__course-card__details-list"]}
         >
-          {courseDetails.course_details?.key_features.map((kf:any,i:number)=>{
+          {courseDetails.course_details?.key_features?.map((kf:any,i:number)=>{
 
             return(
 

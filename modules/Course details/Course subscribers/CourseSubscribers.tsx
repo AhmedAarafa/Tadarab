@@ -24,13 +24,13 @@ export default function CourseSubscribers() {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,"courses/1540/?country_code=eg");
+    const handleFavResponse:any =  handleFav(course,`courses/1540/?country_code=${localStorage.getItem("countryCode")}`);
     handleFavResponse.then(function(response:any) {
       setCourseDetails(response.data.data?.related_courses);
     })
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
         query: { from: "/CourseDetails" }
       })
     }
@@ -39,7 +39,7 @@ export default function CourseSubscribers() {
   const handleCartActionBtn = (course:any):any =>{
     
     if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart(course,"courses/1540/?country_code=eg",true);
+      const handleCartResponse:any =  handleCart(course,`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,true);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             // console.log("response.data.data",response.data.data);
@@ -51,7 +51,7 @@ export default function CourseSubscribers() {
       })
     }
     else{
-      const handleCartResponse:any =  handleCart(course,"courses/1540/?country_code=eg",false);
+      const handleCartResponse:any =  handleCart(course,`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
       handleCartResponse.then(function(response:any) {
           dispatch(setCartItems(response.data.data));
 
@@ -76,14 +76,12 @@ export default function CourseSubscribers() {
     setCourseDetails(courseDetailsData.data?.related_courses || []);
     
     const localStorageItems:any = localStorage.getItem("cart");
-    if(localStorageItems !== undefined && localStorageItems !== null && localStorageItems !== [] ){
+    if(localStorageItems !== "undefined" && localStorageItems !== "null" && localStorageItems !== "[]" ){
         
         axiosInstance
-        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
-            // console.log(response);
-            console.log("courseDetailsData.data",courseDetailsData.data?.related_courses);
-            console.log("response.data.data",response.data.data);
+         
           let newArray:any = courseDetailsData.data?.related_courses;
          response.data.data.forEach((element:any) => {
           newArray.forEach((ele:any) => {

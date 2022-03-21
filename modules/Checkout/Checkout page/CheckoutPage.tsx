@@ -60,7 +60,7 @@ useEffect(() => {
     const localStorageItems:any = localStorage.getItem("cart");
 
     axiosInstance
-        .get(`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
 
             // setRelatedCourses(response.data.data);
@@ -68,7 +68,7 @@ useEffect(() => {
             if(response.data.data !== undefined){
                 if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
                         axiosInstance
-                        .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+                        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
                         .then(function (resp:any) {
                             // console.log(resp.data.data);
                             // setLocalStateCartItems(resp.data.data);
@@ -358,7 +358,7 @@ useEffect(() => {
 
             if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
           await  axiosInstance
-            .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+            .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
             .then(function (response:any) {
               setLocalStateCartItems(response?.data?.data);
 
@@ -526,7 +526,7 @@ useEffect(() => {
 //     const localStorageItems:any = localStorage.getItem("cart");
 
 //     if (userStatus?.isUserAuthenticated == true) {
-//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, true);
+//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, true);
 //         handleCartResponse.then(function (firstresponse: any) {
 //             firstresponse?.resp.then(function (response: any) {
 //                 // setTrainerProfile(response.data.data);
@@ -539,7 +539,7 @@ useEffect(() => {
 //         })
 //     }
 //     else {
-//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, false);
+//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, false);
 //         handleCartResponse.then(function (response: any) {
             
 //             // dispatch(setCartItems(response));
@@ -573,7 +573,7 @@ useEffect(() => {
         setErrorMessage("الرجاء إدخال الكوبون");
     }else{
         axiosInstance
-            .post(`coupons/${e.target[0].value}/?country_code=eg`, {"course_ids" : localStorageItems?.replace(/[\[\]']+/g,'')})
+            .post(`coupons/${e.target[0].value}/?country_code=${localStorage.getItem("countryCode")}`, {"course_ids" : localStorageItems?.replace(/[\[\]']+/g,'')})
             .then((response:any) => {
              console.log(response);
              if(response.status.toString().startsWith("2")){
@@ -601,13 +601,13 @@ useEffect(() => {
   const handleFavActionBtn = (course:any):any =>{
     const localStorageItems:any = localStorage.getItem("cart");
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,`users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`);
+    const handleFavResponse:any =  handleFav(course,`users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`);
     handleFavResponse.then(function(response:any) {
         setRelatedCourses(response.data.data);
     })
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
         query: { from: "/Checkout" }
       })
     }
@@ -618,13 +618,13 @@ useEffect(() => {
     let url:string;
     if(course.is_in_cart){
 
-      url = `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'').replace(`${course.id},`,'')
+      url = `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'').replace(`${course.id},`,'')
       .replace(`,${course.id}`,'')
 
 }`;
     }else{
 
-      url = `users/cart/related-courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')},${course.id}`;
+      url = `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')},${course.id}`;
     }
     
     if(userStatus?.isUserAuthenticated == true){
@@ -664,62 +664,62 @@ useEffect(() => {
 
 
 // creates a paypal order
-const createOrder = (data:any, actions:any) => {
-    console.log("data",data);
-    console.log("actions",actions);
-    return actions.order
-      .create({
-        purchase_units: [
-          {
-            amount: {
-              // charge users $499 per order
-              value: 499,
-            },
-          },
-        ],
-        // remove the applicaiton_context object if you need your users to add a shipping address
-        application_context: {
-          shipping_preference: "NO_SHIPPING",
-        },
-      })
-      .then((orderID:any) => {
-        setOrderID(orderID);
-        return orderID;
-      });
-  };
+// const createOrder = (data:any, actions:any) => {
+//     console.log("data",data);
+//     console.log("actions",actions);
+//     return actions.order
+//       .create({
+//         purchase_units: [
+//           {
+//             amount: {
+//               // charge users $499 per order
+//               value: 499,
+//             },
+//           },
+//         ],
+//         // remove the applicaiton_context object if you need your users to add a shipping address
+//         application_context: {
+//           shipping_preference: "NO_SHIPPING",
+//         },
+//       })
+//       .then((orderID:any) => {
+//         setOrderID(orderID);
+//         return orderID;
+//       });
+//   };
 
-  // handles when a payment is confirmed for paypal
-  const onApprove = (data:any, actions:any) => {
-    //   setInterval(() => {
+//   // handles when a payment is confirmed for paypal
+//   const onApprove = (data:any, actions:any) => {
+//     //   setInterval(() => {
           
-          console.log("checkoutTransactionDetails5_55",checkoutTransactionDetails);
-          console.log("billingDetails1212",billingDetails);
-          //   }, 2000);
+//           console.log("checkoutTransactionDetails5_55",checkoutTransactionDetails);
+//           console.log("billingDetails1212",billingDetails);
+//           //   }, 2000);
           
-          return actions.order.capture().then(function (details:any) {
-              const {payer} = details;
-              setBillingDetails(payer);
-              setSucceeded(true);
-              console.log("details",details);
-              console.log("data",data);
-              console.log("billingDetails",billingDetails);
-      console.log("checkoutTransactionDetails",checkoutTransactionDetails);
-      axiosInstance
-        .get(`payments/details?payment_method=paypal&
-        checkout_transaction_id=${checkoutTransactionDetails.checkout_transaction_id}&
-        order_id=${data.orderID}&
-        payment_id=${checkoutTransactionDetails.payment_id}&
-        paypal_status=${details.status}`)
-        .then(function (response:any) {
-            console.log('responseresponse',response);
-            localStorage.removeItem("checkoutTransactionId");
-            localStorage.removeItem("paymentId");
-        })
-        .catch(function (error) {
-          console.log(error); 
-        });
-    })
-  };
+//           return actions.order.capture().then(function (details:any) {
+//               const {payer} = details;
+//               setBillingDetails(payer);
+//               setSucceeded(true);
+//               console.log("details",details);
+//               console.log("data",data);
+//               console.log("billingDetails",billingDetails);
+//       console.log("checkoutTransactionDetails",checkoutTransactionDetails);
+//       axiosInstance
+//         .get(`payments/details?payment_method=paypal&
+//         checkout_transaction_id=${checkoutTransactionDetails.checkout_transaction_id}&
+//         order_id=${data.orderID}&
+//         payment_id=${checkoutTransactionDetails.payment_id}&
+//         paypal_status=${details.status}`)
+//         .then(function (response:any) {
+//             console.log('responseresponse',response);
+//             localStorage.removeItem("checkoutTransactionId");
+//             localStorage.removeItem("paymentId");
+//         })
+//         .catch(function (error) {
+//           console.log(error); 
+//         });
+//     })
+//   };
   
 // handles payment errors
 const onError = (data:any,actions:any)=>{
@@ -871,7 +871,7 @@ const onError = (data:any,actions:any)=>{
                         const localStorageItems:any = localStorage.getItem("cart");
 
                             alert(e.token);
-                            axiosInstance.post(`payments/payouts/?country_code=eg`, {
+                            axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
                               "checkout_token": e.token,
                               "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
                               "coupon_code": isCouponApplied.value,
@@ -1073,7 +1073,7 @@ const onError = (data:any,actions:any)=>{
                      setStep("payment-types")
                      :
                      Router.push({
-                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
                         query: { from: "/Checkout" }
                       })
                     }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
@@ -1112,7 +1112,7 @@ const onError = (data:any,actions:any)=>{
                             let checkoutDetails:any = {};
 
                             return(async function(){
-                                await axiosInstance.post(`payments/payouts/?country_code=eg`, {
+                                await axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
                                     "checkout_token": "",
                                     "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
                                     "coupon_code": isCouponApplied.value,
@@ -1447,7 +1447,7 @@ const onError = (data:any,actions:any)=>{
                     setStep("payment-types")
                     :
                     Router.push({
-                       pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+                       pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
                        query: { from: "/Checkout" }
                      })
                    }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
@@ -1484,7 +1484,7 @@ const onError = (data:any,actions:any)=>{
                             let checkoutDetails:any = {};
 
                             return(async function(){
-                                await axiosInstance.post(`payments/payouts/?country_code=eg`, {
+                                await axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
                                     "checkout_token": "",
                                     "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
                                     "coupon_code": isCouponApplied.value,
@@ -1577,7 +1577,7 @@ const onError = (data:any,actions:any)=>{
                     onClick={() => {
                         const localStorageItems:any = localStorage.getItem("cart");
 
-                        axiosInstance.post(`payments/payouts/?country_code=eg`, {
+                        axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
                             "checkout_token": "",
                             "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
                             "coupon_code": isCouponApplied.value,

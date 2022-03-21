@@ -69,11 +69,11 @@
     @include flex(center, center);
 
     span:nth-of-type(1) {
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     span:nth-of-type(2) {
-        color: $primary-red;
+        color: var(--primary-red);
         margin-right: 0.3rem;
     }
 }
@@ -82,7 +82,7 @@
     @include flex(center, center);
     background-color: white;
     font-size: 1.063rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 
@@ -175,12 +175,12 @@
 
         font-size: 1.5rem;
         font-weight: 800;
-        color: $dark-black;
+        color: var(--dark-black);
     }
 
     div:nth-of-type(2) {
         font-size: 1.25rem;
-        color: $grey;
+        color: var(--grey);
     }
 }
 

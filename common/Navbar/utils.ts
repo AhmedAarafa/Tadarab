@@ -61,8 +61,11 @@ export const popoverHandler = (status:string) => {
 };
 
 export const closeBtnHandler = ()=>{
+  
   window.addEventListener("click" , (e:any)=>{
-    if(e.target.className == "btn-close" || e.target.className == "fade offcanvas-backdrop"){
+    if(e.target.className == "btn-close" ||
+     e.target.className == "fade offcanvas-backdrop" 
+     ){
       const closeBtn:any=document.getElementsByClassName(`btn-close`)[0];
       closeBtn.style.cssText=` display:none !important`;
       const discoverSidebar:any = document.getElementById("offcanvasNavbar2");

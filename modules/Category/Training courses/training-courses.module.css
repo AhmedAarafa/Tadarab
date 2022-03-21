@@ -5,7 +5,7 @@
 .training-courses__title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0 0 0.2rem 0;
 }
 
@@ -15,7 +15,7 @@
 
 .training-courses__brief {
   font-size: 1.125rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .training-courses__filters-col {
@@ -42,7 +42,7 @@
 .training-courses__filters-col__filter-box__filter-by {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #777777;
+  color: var(--grey);
   padding: 0.8125rem 1.25rem 0;
 }
 
@@ -88,7 +88,7 @@
   border: 0 !important;
   font-size: 1.0625rem;
   font-weight: 800;
-  color: #222222 !important;
+  color: var(--dark-black) !important;
   z-index: 3;
 }
 
@@ -108,7 +108,7 @@
   text-align: right;
   font-size: 1.0625rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -131,13 +131,13 @@
 
 .training-courses__filters-col__filter-box__filter button + div a:hover, .training-courses__filters-col__filter-box__filter button + div a:active {
   background-color: rgba(0, 0, 0, 0.05) !important;
-  color: #222222 !important;
+  color: var(--dark-black) !important;
 }
 
 .training-courses__filters-col__filter-box__filter button:hover, .training-courses__filters-col__filter-box__filter button:active, .training-courses__filters-col__filter-box__filter button:focus {
   background-color: white !important;
   border: 0 !important;
-  color: #222222 !important;
+  color: var(--dark-black) !important;
 }
 
 .training-courses__filters-col__filter-box__filter button::after {
@@ -255,7 +255,7 @@
 .training-courses__course-card__card-body__card-header__course-details__title {
   font-size: 0.97rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0;
   width: 13.2rem;
   text-overflow: ellipsis;
@@ -265,7 +265,7 @@
 
 .training-courses__course-card__card-body__card-header__course-details__author {
   font-size: 0.78861rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .training-courses__course-card__card-body__checkout-details {
@@ -283,13 +283,13 @@
 .training-courses__course-card__card-body__checkout-details__price-container__price {
   font-size: 1.2125rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .training-courses__course-card__card-body__checkout-details__price-container__currency {
   font-size: 0.78861rem;
   font-weight: 700;
-  color: #222222;
+  color: var(--dark-black);
 }
 
 .training-courses__course-card__card-body__checkout-details__old-price-container {
@@ -301,12 +301,12 @@
 .training-courses__course-card__card-body__checkout-details__old-price-container__price {
   font-size: 0.7275rem;
   font-weight: 800;
-  color: #777777;
+  color: var(--grey);
 }
 
 .training-courses__course-card__card-body__checkout-details__old-price-container__currency {
   font-size: 0.60625rem;
-  color: #777777;
+  color: var(--grey);
 }
 
 .training-courses__course-card__card-body__checkout-details__icon-btn {
@@ -501,19 +501,19 @@
   .filter-sidebar__title-box__title div:nth-of-type(1) {
     font-size: 2.875rem;
     font-weight: 800;
-    color: #222222;
+    color: var(--dark-black);
   }
   .filter-sidebar__title-box__title div:nth-of-type(2) {
     font-size: 2.0125rem;
     font-weight: 700;
-    color: #AF151F;
+    color: var(--primary-red);
     margin: -0.5rem 0 0 0;
   }
   .filter-sidebar__filter-list {
     list-style-type: none;
     font-size: 2.3rem;
     font-weight: 700;
-    color: #222222;
+    color: var(--dark-black);
     margin: 0;
     padding: 3.23449rem 0;
     border-bottom: 0.063rem solid rgba(119, 119, 119, 0.2);
@@ -546,8 +546,8 @@
     border-color: rgba(0, 0, 0, 0.25);
   }
   .filter-sidebar__filter-list input:checked {
-    background-color: #AF151F;
-    border-color: #AF151F;
+    background-color: var(--primary-red);
+    border-color: var(--primary-red);
   }
   .filter-sidebar__filter-list div:nth-of-type(1) {
     font-size: 2.5875rem;
@@ -556,7 +556,7 @@
   .filter-sidebar__filter-list div:nth-of-type(2) {
     font-size: 2.0125rem;
     font-weight: 700;
-    color: #AF151F;
+    color: var(--primary-red);
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

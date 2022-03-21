@@ -45,7 +45,7 @@ export default function ArabicTrainers() {
         }} className="mySwiper">
            
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -61,7 +61,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -77,7 +77,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -93,7 +93,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -109,7 +109,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -125,7 +125,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -141,7 +141,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >
@@ -157,7 +157,7 @@ export default function ArabicTrainers() {
                   </Link>
                   </SwiperSlide>
                   <SwiperSlide> 
-                 <Link href="/TrainerProfile">
+                 <Link href="/trainer">
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
                     style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
                       >

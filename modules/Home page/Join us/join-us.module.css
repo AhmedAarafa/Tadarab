@@ -10,7 +10,7 @@
 .join-us__title {
   font-size: 2rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin-top: 5.625rem;
 }
 
@@ -63,8 +63,8 @@
   border-radius: 0.625rem;
   font-family: 'Almarai', sans-serif;
   border: 0 !important;
-  background-color: #AF151F !important;
-  border: 0.125rem solid #AF151F !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
   color: white;
   font-weight: 700;
   font-size: 0.938rem;
@@ -138,8 +138,8 @@
     border-radius: 0.625rem;
     font-family: 'Almarai', sans-serif;
     border: 0 !important;
-    background-color: #AF151F !important;
-    border: 0.125rem solid #AF151F !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
     font-size: 1.6rem;
     width: 8.813rem;
     height: 85%;

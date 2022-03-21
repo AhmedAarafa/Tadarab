@@ -3,7 +3,7 @@
 
 .trainer-info-section {
     margin-top: 4.063rem;
-    color: $grey;
+    color: var(--grey);
     width: 43.75rem;
 }
 
@@ -27,12 +27,12 @@
 .trainer-info-section__trainer-info__name {
     font-size: 1.25rem;
     font-weight: 800;
-    color: $dark-black;
+    color: var(--dark-black);
 }
 
 .trainer-info-section__trainer-info__title {
     font-size: 0.938rem;
-    color: $grey;
+    color: var(--grey);
 }
 
 .trainer-info-section__trainer-info__courses-number-box{
@@ -59,7 +59,7 @@
 .trainer-info-section__view-trainer-account{
     span{
         font-size: 1rem;
-        color: $primary-red;
+        color: var(--primary-red);
         font-weight: 800;
         margin-left: 0.5rem;
     }

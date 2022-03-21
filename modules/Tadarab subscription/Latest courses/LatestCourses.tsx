@@ -45,8 +45,8 @@ function LatestCourses() {
   const handleFilterType = (type:string)=>{
     setFilterType(type);
     axiosInstance
-    .get(`home/courses/?country_code=eg&type=${type}`)
-    /* home/courses/?country_code=eg&type=${type} */
+    .get(`home/courses/?country_code=${localStorage.getItem("countryCode")}&type=${type}`)
+    /* home/courses/?country_code=${localStorage.getItem("countryCode")}&type=${type} */
     .then(function (response:any) {
       setLatestCourses(response.data.data);
       // console.log("response.data.data.courses",response.data.data.courses);
@@ -59,13 +59,13 @@ function LatestCourses() {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,"home/?country_code=eg");
+    const handleFavResponse:any =  handleFav(course,`home/?country_code=${localStorage.getItem("countryCode")}`);
     handleFavResponse.then(function(response:any) {
      setLatestCourses(response.data.data.best_seller_courses);
     })
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SignIn`,
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
         query: { from: "/TadarabSubscription" }
       })
     }
@@ -75,7 +75,7 @@ function LatestCourses() {
   const handleCartActionBtn = (course:any):any =>{
     
     if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",true);
+      const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,true);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
            setLatestCourses(response.data.data.best_seller_courses);
@@ -85,7 +85,7 @@ function LatestCourses() {
       })
     }
     else{
-      const handleCartResponse:any =  handleCart(course,"home/?country_code=eg",false);
+      const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
       handleCartResponse.then(function(response:any) {
           dispatch(setCartItems(response));
         //  setLocalCartItems(response);
@@ -110,27 +110,32 @@ function LatestCourses() {
 
       setLatestCourses(homePageData.data?.best_seller_courses || []);
       const localStorageItems:any = localStorage.getItem("cart");
-      axiosInstance
-      .get(`courses/?country_code=eg&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-      .then(function (response:any) {
-        // console.log(response);
-        let newArray:any = homePageData.data?.best_seller_courses;
-       response.data.data.forEach((element:any) => {
-        newArray.forEach((ele:any) => {
-            if(element.id === ele.id){
-              // console.log(ele);
-              ele.is_in_cart = true;
-              // newArray.ele.is_in_cart = true;
-              // console.log("newArray",newArray);
-              setLatestCourses([...newArray]);
-            }
-          });
-        });
 
-    })
-    .catch(function (error) {
-      console.log(error); 
-    });
+      if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
+
+        axiosInstance
+        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .then(function (response:any) {
+          // console.log(response);
+          let newArray:any = homePageData.data?.best_seller_courses;
+         response.data.data.forEach((element:any) => {
+          newArray.forEach((ele:any) => {
+              if(element.id === ele.id){
+                // console.log(ele);
+                ele.is_in_cart = true;
+                // newArray.ele.is_in_cart = true;
+                // console.log("newArray",newArray);
+                setLatestCourses([...newArray]);
+              }
+            });
+          });
+  
+      })
+      .catch(function (error) {
+        console.log(error); 
+      });
+      }
+
  
 
   }, [homePageData]);
@@ -354,7 +359,7 @@ function LatestCourses() {
         </Col>
 
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
-        <Link href="/CourseDetails">
+        <Link href="/course">
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
@@ -390,11 +395,9 @@ function LatestCourses() {
           >
 
             {
-              latestCourses.map((course:any , i:number)=>{
+              latestCourses?.map((course:any , i:number)=>{
                 return (
                   <SwiperSlide key={i}>
-
-                  
 
                     <Card onMouseMove={()=>{
                         handleZindex("low");
@@ -403,8 +406,7 @@ function LatestCourses() {
                         id={`latest-courses-card${i}`}
                         className={
                           styles["latest-courses__cards-carousel__course-card"]
-                        }
-                      >
+                        }>
                         <div  className={
                       styles["popover-wrapper"]
                     }
@@ -416,7 +418,7 @@ function LatestCourses() {
                       >
 
                     <div>
-                          <Link href="/CourseDetails">
+                          <Link href="/course">
                             <div
                             className={
                               styles["latest-courses__popover-container__title"]
@@ -455,10 +457,10 @@ function LatestCourses() {
                             "latest-courses__popover-container__what-you-will-learn-title"
                           ]
                         }
-                      >
+                      > 
                         ماذا ستتعلم في الدورة؟
                       </div>
-                      { course.key_points.slice(0,6).map((kp:string,i:number)=>{
+                      { course.key_points?.slice(0,6).map((kp:string,i:number)=>{
                         return(
                       <div key={i}
                         className={
@@ -484,7 +486,7 @@ function LatestCourses() {
                     
                         {
                         course.key_points.length > 6 ?
-                        <Link href="/CourseDetails">
+                        <Link href="/course">
 
                           <div className={styles["latest-courses__show-more-link"]}>
                             اعرض المزيد
@@ -496,7 +498,7 @@ function LatestCourses() {
                   
                       <div className={styles["latest-courses__popover-container__btns"]}>
 
-                            <Link href="/CourseDetails">
+                            <Link href="/course">
                               <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
                             </Link>
                             <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
@@ -521,7 +523,7 @@ function LatestCourses() {
                         {course.categories[0].title} 
                         </div>
 
-                        <Link href="/CourseDetails">
+                        <Link href="/course">
 
                         <Card.Img
                           variant="top"
@@ -568,7 +570,7 @@ function LatestCourses() {
                                 ]
                               }
                             >
-                          <Link href="/CourseDetails">
+                          <Link href="/course">
                                 <h1 
                               title={course.title}
                                   className={
@@ -738,11 +740,11 @@ export default withAuth(LatestCourses);
 if(course.is_in_favorites == false){
 
         axiosInstance
-        .post(`users/favorites/?country_code=eg`, {"course_id" : course.id})
+        .post(`users/favorites/?country_code=${localStorage.getItem("countryCode")}`, {"course_id" : course.id})
         .then((response:any) => {
           console.log("Response",response);
           axiosInstance
-          .get("home/?country_code=eg")
+          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })
@@ -755,11 +757,11 @@ if(course.is_in_favorites == false){
         });
       }else{
         axiosInstance
-        .delete(`users/favorites/?country_code=eg`, { data:{"course_id" : course.id}})
+        .delete(`users/favorites/?country_code=${localStorage.getItem("countryCode")}`, { data:{"course_id" : course.id}})
         .then((response:any) => {
           console.log("Response",response);
           axiosInstance
-          .get("home/?country_code=eg")
+          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })
@@ -781,7 +783,7 @@ if(course.is_in_favorites == false){
 
 
         axiosInstance
-        .post(`users/cart/?country_code=eg`, {"item_ids" : JSON.stringify([course.id])})
+        .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"item_ids" : JSON.stringify([course.id])})
         .then((response:any) => {
          const totalItems:any = [];
           console.log("add to cart response",response);
@@ -793,7 +795,7 @@ if(course.is_in_favorites == false){
           
          dispatch(setCartItems(totalItems));
           axiosInstance
-          .get("home/?country_code=eg")
+          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })
@@ -810,7 +812,7 @@ if(course.is_in_favorites == false){
 
       }else{
         axiosInstance
-        .delete(`users/cart/?country_code=eg`, { data:{"item_id" : course.id}})
+        .delete(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, { data:{"item_id" : course.id}})
         .then((response:any) => {
          const totalItems:any = [];
           console.log("Response",response);
@@ -821,7 +823,7 @@ if(course.is_in_favorites == false){
           dispatch(setCartItems(totalItems));
 
           axiosInstance
-          .get("home/?country_code=eg")
+          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })

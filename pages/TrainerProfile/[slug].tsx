@@ -5,21 +5,30 @@ import { Container } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainerProfileData } from "configurations/redux/actions/trainerProfileData"; 
+import { Trainer } from "_models/Trainer";
+import { useRouter } from 'next/router';
 
 export default function TrainerProfile() {
   const dispatch = useDispatch();
+  const Router = useRouter();
+  const { slug } = Router.query;
 
   useEffect(() => {
-      axiosInstance
-      .get(`trainers/10253/?country_code=eg`)
-      .then(function (response:any) {
-          dispatch(setTrainerProfileData(response.data.data));
-      })
-      .catch(function (error) {
-        console.log(error); 
-      });
+
+    if(Router.query.slug){
+
+        axiosInstance
+        .get(`trainers/${slug}/?country_code=${localStorage.getItem("countryCode")}`)
+        .then(function (response:any) {
+          const data:Trainer = response.data.data;
+            dispatch(setTrainerProfileData(data));
+        })
+        .catch(function (error) {
+          console.log(error); 
+        });
+    }
       
-    }, []);
+    }, [Router.query]);
 
   return (
     <>
