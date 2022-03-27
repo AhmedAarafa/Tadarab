@@ -23,6 +23,7 @@ export interface Course{
         level: Number,
         price: Number,
         discounted_price: Number,
+        discounted_price_usd: Number,
         currency_code: String,
         subscribers_count?: Number,
         duration: Number,

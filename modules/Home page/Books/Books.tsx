@@ -8,6 +8,7 @@ import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon,DownloadIcon}  from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
+import useInView from "react-cool-inview";
 
 export default function Books() {
     SwiperCore.use([Navigation]);
@@ -27,12 +28,20 @@ export default function Books() {
       // setBooks(homePageData.data.books);
       // if(homePageData !== {}){
         setBooks(homePageData.data?.books || []);
+        
       // }
     }, [homePageData]);
+
+    useEffect(() => {
+      console.log("Books Comp. in viewport");
+    }, []);
+
 
   return (
     <>
       <Row className={styles["books__row"]}>
+    
+
         <Col xs={{span:12 ,order:1}} sm={{span:8 ,order:1}} className={styles["books__title"]}>
           <div>
             <span>الكتب و</span>
@@ -104,6 +113,7 @@ export default function Books() {
           
         </Swiper>
         </Col>
+      
       </Row>
     </>
   );

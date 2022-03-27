@@ -11,7 +11,7 @@
 }
 
 .course-details__course-card__title {
-  font-size: 1.25rem;
+  font-size: 1.0625rem;
   font-weight: 800;
   color: var(--dark-black);
 }
@@ -21,12 +21,12 @@
 }
 
 .course-details__course-card__price-box__price {
-  font-size: 1.688rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
 .course-details__course-card__price-box__currency {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 700;
 }
 
@@ -53,11 +53,14 @@
 }
 
 .course-details__course-card__old-price-box__price {
-  font-size: 1.063rem;
+  font-size: 1rem;
   font-weight: 800;
 }
 
-.course-details__course-card__old-price-box__currency,
+.course-details__course-card__old-price-box__currency {
+  font-size: 1rem;
+}
+
 .course-details__course-card__old-price-box__discount {
   font-size: 0.813rem;
 }
@@ -207,7 +210,7 @@
 }
 
 .course-details__course-card__details-list__item span {
-  font-size: 0.938rem;
+  font-size: 0.875rem;
   color: var(--dark-black);
   margin-right: 1rem;
 }
@@ -315,13 +318,13 @@
     position: static !important;
   }
   .course-details__course-card__title {
-    font-size: 3.125rem;
+    font-size: 2.65625rem;
   }
   .course-details__course-card__price-box__price {
-    font-size: 4.22rem;
+    font-size: 3.75rem;
   }
   .course-details__course-card__price-box__currency {
-    font-size: 2.8125rem;
+    font-size: 3.125rem;
   }
   .course-details__course-card__old-price-box--line-through {
     display: -webkit-box;
@@ -341,9 +344,11 @@
     margin-top: -1rem;
   }
   .course-details__course-card__old-price-box__price {
-    font-size: 2.6575rem;
+    font-size: 2.5rem;
   }
-  .course-details__course-card__old-price-box__currency,
+  .course-details__course-card__old-price-box__currency {
+    font-size: 2.5rem;
+  }
   .course-details__course-card__old-price-box__discount {
     font-size: 2.0325rem;
   }
@@ -483,7 +488,7 @@
     margin-bottom: 1.75rem;
   }
   .course-details__course-card__details-list__item span {
-    font-size: 2.345rem;
+    font-size: 2.1875rem;
     margin-right: 2.5rem;
   }
   .course-details__course-card__details-list__item svg, .course-details__course-card__details-list__item img {

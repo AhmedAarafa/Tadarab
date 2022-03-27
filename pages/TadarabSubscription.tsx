@@ -9,6 +9,8 @@ import { Container } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setHomePageData } from "configurations/redux/actions/homePageData"; 
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 
 export default function TadarabSubscription() {
 
@@ -21,6 +23,8 @@ export default function TadarabSubscription() {
         .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
         .then(function (response:any) {
             dispatch(setHomePageData(response.data.data));
+            FBPixelEventsHandler(response.data.fb_tracking_events,null);
+
         })
         .catch(function (error) {
           console.log(error); 

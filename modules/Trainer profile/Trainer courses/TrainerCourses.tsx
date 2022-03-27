@@ -43,8 +43,8 @@ export default function TrainerCourses() {
 
     const handleCartActionBtn = (course: any): any => {
 
-        if (userStatus?.isUserAuthenticated == true) {
-            const handleCartResponse: any = handleCart(course, `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, true);
+        // if (userStatus?.isUserAuthenticated == true) {
+            const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
             handleCartResponse.then(function (firstresponse: any) {
                 firstresponse.resp.then(function (response: any) {
                     setTrainerProfile(response.data.data);
@@ -54,25 +54,25 @@ export default function TrainerCourses() {
                 })
                 //  setLocalCartItems(response.totalItems);
             })
-        }
-        else {
-            const handleCartResponse: any = handleCart(course, `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
-            handleCartResponse.then(function (response: any) {
-                dispatch(setCartItems(response.data.data));
-                let newArray:any = trainerProfile.courses;
-                response.data.data?.forEach((element:any) => {
-                newArray.forEach((ele:any) => {
-                    if(element.id === ele.id){
-                        // console.log(ele);
-                        ele.is_in_cart = true;
-                    }
-                });
-            });
-            setTrainerProfile({...trainerProfile,courses:newArray});
+        // }
+        // else {
+        //     const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
+        //     handleCartResponse.then(function (response: any) {
+        //         dispatch(setCartItems(response.data.data));
+        //         let newArray:any = trainerProfile.courses;
+        //         response.data.data?.forEach((element:any) => {
+        //         newArray.forEach((ele:any) => {
+        //             if(element.id === ele.id){
+        //                 // console.log(ele);
+        //                 ele.is_in_cart = true;
+        //             }
+        //         });
+        //     });
+        //     setTrainerProfile({...trainerProfile,courses:newArray});
             
-            })
+        //     })
 
-        }
+        // }
         // setLatestCourses([...latestCourses]);
     }
 
@@ -87,8 +87,18 @@ export default function TrainerCourses() {
                 <div className={styles["trainer-courses-box__trainer-courses"]}>
                     {trainerProfile !== undefined && trainerProfile.courses?.map((course: any, i: number) => {
                         return (
-                            <Card
+                            <Card data-isvisible={false} data-coursedetails={JSON.stringify({
+                                name:course.title,
+                                id:course.id,
+                                price:course.discounted_price_usd,
+                                brand:"Tadarab",
+                                category: "Recorded Course",
+                                variant: "Single Course",
+                                list: "suggetion",
+                                position: i+1
+                              })}
                                 key={i}
+                                id={`trainer-courses__course-card${i}`}
                                 className={
                                     styles["trainer-courses-box__trainer-courses__course-card"]
                                 }

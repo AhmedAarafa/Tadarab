@@ -1,13 +1,23 @@
 /* eslint-disable @next/next/link-passhref */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./failed-state.module.css";
 import { TransactionErrorIcon,RetryIcon } from "common/Icons/Icons";
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
+import TadarabGA from "modules/_Shared/utils/ga";
 
 export default function FailedState() {
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
+    let tadarabGA = new TadarabGA();
+    useEffect(() => {
+        if(invoiceDetails){
+            tadarabGA.tadarab_fire_traking_GA_code("payment_fail",
+            {type:invoiceDetails?.data?.transaction_details.payment_method,
+                reason:invoiceDetails?.data?.transaction_details.status});
+        }
+    }, [invoiceDetails])
+    
 
     return (
         <>

@@ -27,7 +27,8 @@ import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { json } from "stream/consumers";
-
+import TadarabGA from "modules/_Shared/utils/ga";
+import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents"
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
@@ -74,39 +75,43 @@ function LatestCourses() {
 
   const handleCartActionBtn = (course:any):any =>{
     
-    if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,true);
+    // if(userStatus?.isUserAuthenticated == true){
+      
+      const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
       handleCartResponse.then(function(firstresponse:any) {
+        // console.log("handleCartResponse",firstresponse);
         firstresponse.resp.then(function(response:any){
+          // console.log(response);
            setLatestCourses(response.data.data.best_seller_courses);
            dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
       })
-    }
-    else{
-      const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
-      handleCartResponse.then(function(response:any) {
-        // console.log(response.data.data);
-          dispatch(setCartItems(response.data.data));
-          let newArray:any = latestCourses; 
-         response.data.data?.forEach((element:any) => {
-          newArray.forEach((ele:any) => {
-              if(element.id === ele.id){
-                // console.log(ele);
-                ele.is_in_cart = true;
-            }
-        });
-    });
-    setLatestCourses([...newArray]);
+    // }
+    // else{
+    //   const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+    //   handleCartResponse.then(function(response:any) {
+    //     // console.log(response.data.data);
+    //       dispatch(setCartItems(response.data.data));
+    //       let newArray:any = latestCourses; 
+    //      response.data.data?.forEach((element:any) => {
+    //       newArray.forEach((ele:any) => {
+    //           if(element.id === ele.id){
+    //             // console.log(ele);
+    //             ele.is_in_cart = true;
+    //         }
+    //     });
+    // });
+    // setLatestCourses([...newArray]);
        
-      })
-    }
+    //   })
+    // }
   }
 
   useEffect(() => {
 
       setLatestCourses(homePageData.data?.best_seller_courses || []);
+      
       const localStorageItems:any = localStorage.getItem("cart");
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
 
@@ -131,7 +136,7 @@ function LatestCourses() {
         .catch(function (error) {
           console.log(error); 
         });
-      }
+      }//
 
   }, [homePageData]);
 
@@ -192,6 +197,24 @@ function LatestCourses() {
 
     }
   }
+
+  //  const GAEventHandler = (eventType:string,course:any,order:number,courseType:string)=> {
+  //    console.log("GAEventHandler Clicked");
+     
+  //     let tadarabGA = new TadarabGA();
+  //     tadarabGA.tadarab_fire_traking_GA_code("product_click",{
+  //       products: [{
+  //         name: course.title,
+  //         id: course.id,
+  //         price: course.discounted_price_usd,
+  //         brand: "Tadarab",
+  //         category: courseType,
+  //         variant: "Single Course",
+  //         position: order+1
+  //      }],
+  //      list:""
+  //     });
+  //  }
   
 
   
@@ -261,7 +284,17 @@ function LatestCourses() {
                 return (
                   <SwiperSlide key={i}>
                     
-                    <Card onMouseMove={()=>{
+                    <Card data-isvisible={false} data-coursedetails={JSON.stringify({
+                      name:course.title,
+                      id:course.id,
+                      price:course.discounted_price_usd,
+                      brand:"Tadarab",
+                      category: "Recorded Course",
+                      variant: "Single Course",
+                      list: "homepage",
+                      position: i+1
+                    })} 
+                    onClick={()=>{GAProductClickEventHandler(course,i)}} onMouseMove={()=>{
                         handleZindex("low");
                         handlePlacement();
                       }} onMouseOut={()=>{handleZindex("high")}}

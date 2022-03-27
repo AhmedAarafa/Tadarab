@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 
 export default function TransactionInProgress() {
   const router = useRouter();
@@ -16,7 +17,6 @@ export default function TransactionInProgress() {
   useEffect(() => {
     console.log('router.query : ',router.query);
     if(router.query["cko-session-id"] !== undefined){
-      // console.log("visa");
       
       axiosInstance
       .get(`payments/details?payment_method=visamaster&checkout_session_id=${router.query["cko-session-id"]}`)
@@ -26,21 +26,18 @@ export default function TransactionInProgress() {
         if(JSON.stringify(response.status).startsWith("2")){
 
             let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-            let tadarabFbPixel = new TadarabFBPixel();
-            response.data.fb_tracking_events.forEach((ev:any)=>{
-              tadarabFbPixel.setEventId(ev.event_id);
-              tadarabFbPixel.eventHandler(ev.event_name, customData);
-            })
+            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+
 
 
           response?.data?.data?.is_successful == true ?
           dispatch(setTransactionStatus(true))
           :
           dispatch(setTransactionStatus(false));
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}Checkout`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
         }else{
           dispatch(setTransactionStatus(false));
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}Checkout`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
           setServerResponse("حدث خطأ الرجاء المحاولة مره أخري");
         }
       })
@@ -48,7 +45,6 @@ export default function TransactionInProgress() {
         console.log(error); 
       });
     }else if(router.query["payment_method"] !== undefined){
-      // console.log("msh visa");
 
       axiosInstance
       .get(`payments/details?payment_method=${router.query["payment_method"]}&payment_id=${router.query["payment_id"]}`)
@@ -58,20 +54,16 @@ export default function TransactionInProgress() {
         if(JSON.stringify(response.status).startsWith("2")){
           
           let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-            let tadarabFbPixel = new TadarabFBPixel();
-            response.data.fb_tracking_events.forEach((ev:any)=>{
-              tadarabFbPixel.setEventId(ev.event_id);
-              tadarabFbPixel.eventHandler(ev.event_name, customData);
-            })
+          FBPixelEventsHandler(response.data.fb_tracking_events,customData);
 
           response?.data?.data?.is_successful == true ?
           dispatch(setTransactionStatus(true))
           :
           dispatch(setTransactionStatus(false));
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}Checkout`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
         }else{
           dispatch(setTransactionStatus(false));
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}Checkout`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
           setServerResponse("حدث خطأ الرجاء المحاولة مره أخري");
         }
       })

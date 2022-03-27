@@ -109,27 +109,24 @@ export default function SignInPage() {
                   })
                 .then((response:any) => {
                   console.log("Response.message",response);
-                  // setResponse(response.data);
-                  // console.log("Response",response);
                   if(JSON.stringify(response.status).startsWith("2")){
                     console.log("success");
                     if(response.data.data !== null){
                       localStorage.setItem("token" , response.data.data.token);
                     }
-
-                    if(localStorage.getItem("cart")){
-
+                    // cart  cart_items
+                    if(localStorage.getItem("cart_items")){
+                      let localStorageItems:any = localStorage.getItem("cart_items");
                       axiosInstance
-                      .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"item_ids" : localStorage.getItem("cart")?.replace(/[\[\]']+/g,'')})
+                      .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"items" : localStorageItems})
                       .then((response:any) => {
-                      //  console.log("response",response);
                        const totalItems:any = [];
-                      //  console.log("response.data",response.data);
-                       response.data.data.forEach((item:any)=>{
+                       response.data.data.courses.forEach((item:any)=>{
                         totalItems.push(item.id);
                       });
                       localStorage.setItem("cart" , JSON.stringify(totalItems));
-                      dispatch(setCartItems(response.data.data));
+                      localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
+                      dispatch(setCartItems(response.data.data.courses));
                      
                       })
                       .catch((error:any)=>{

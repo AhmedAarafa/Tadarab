@@ -28,6 +28,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData"; 
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -153,12 +154,7 @@ function CourseDetails() {
       
         dispatch(setCourseDetailsData(response?.data?.data));
 
-                let tadarabFbPixel = new TadarabFBPixel();
-            response.data.fb_tracking_events.forEach((ev:any)=>{
-
-              tadarabFbPixel.setEventId(ev.event_id);
-              tadarabFbPixel.eventHandler(ev.event_name, null);
-            })
+        FBPixelEventsHandler(response.data.fb_tracking_events,null);
   
     })
     .catch(function (error) {

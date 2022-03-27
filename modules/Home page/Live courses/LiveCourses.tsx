@@ -71,8 +71,8 @@ export default function LiveCourses() {
     }
     const handleCartActionBtn = (course:any):any =>{
     
-      if(userStatus?.isUserAuthenticated == true){
-        const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,true);
+      // if(userStatus?.isUserAuthenticated == true){
+        const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
         handleCartResponse.then(function(firstresponse:any) {
           firstresponse.resp.then(function(response:any){
             setLiveCourses(response.data.data.live_courses);
@@ -80,24 +80,24 @@ export default function LiveCourses() {
           })
         //  setLocalCartItems(response.totalItems);
         })
-      }
-      else{
-        const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
-        handleCartResponse.then(function(response:any) {
-            dispatch(setCartItems(response.data.data));
-            let newArray:any = liveCourses;
-            response.data.data?.forEach((element:any) => {
-             newArray.forEach((ele:any) => {
-                 if(element.id === ele.id){
-                   // console.log(ele);
-                   ele.is_in_cart = true;
-               }
-           });
-       });
-       setLiveCourses([...newArray]);
+      // }
+      // else{
+      //   const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+      //   handleCartResponse.then(function(response:any) {
+      //       dispatch(setCartItems(response.data.data));
+      //       let newArray:any = liveCourses;
+      //       response.data.data?.forEach((element:any) => {
+      //        newArray.forEach((ele:any) => {
+      //            if(element.id === ele.id){
+      //              // console.log(ele);
+      //              ele.is_in_cart = true;
+      //          }
+      //      });
+      //  });
+      //  setLiveCourses([...newArray]);
           
-        })
-      }
+      //   })
+      // }
       // setLatestCourses([...latestCourses]);
     }
 

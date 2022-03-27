@@ -28,8 +28,11 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData"; 
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import TadarabGA from "modules/_Shared/utils/ga";
+import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents"
 import { useRouter } from 'next/router';
 import { Course } from "_models/Course";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -39,9 +42,20 @@ function CourseDetails() {
   const Router = useRouter();
   const { slug } = Router.query;
 
+  useEffect(() => {
+    window.addEventListener("scroll" , ()=>{
+      GAProductimpressionEventHandler("course-subscribers__course-card");
+    })
+    
+    return () => {
+      window.removeEventListener("scroll", ()=>{
+        return;
+      })
+    }
+  }, [])
 
   useEffect(() => {
-    console.log('Router.query',Router.query);
+    // console.log('Router.query',Router.query);
         
     const rootFontSize = parseFloat(
       window
@@ -150,6 +164,7 @@ function CourseDetails() {
           mobileCheckoutBar.style.cssText=`display:none`;
           }
         }
+
       });
       }
     });
@@ -164,13 +179,40 @@ function CourseDetails() {
                 
           dispatch(setCourseDetailsData(data));
   
-                  let tadarabFbPixel = new TadarabFBPixel();
-              response.data.fb_tracking_events.forEach((ev:any)=>{
-                console.table("ev",ev);
+              let tadarabGA = new TadarabGA();
+              let referrer = "";
+              console.log('Router.query',Router);
+              console.log('document.referrer',document.referrer);
+              
+              if(document.referrer.includes("localhost")){
+                console.log("document.referrer.replace('http://localhost:3000/','').split('/')[0]",
+                document.referrer.replace('http://localhost:3000/','').split('/')[0] == "");
                 
-                tadarabFbPixel.setEventId(ev.event_id);
-                tadarabFbPixel.eventHandler(ev.event_name, null);
-              })
+                document.referrer.replace('http://localhost:3000/','').split('/')[0] == ""
+                ?
+                referrer = "homepage"
+                :
+                referrer = document.referrer.replace('http://localhost:3000/','').split('/')[0]
+
+              }else{
+                referrer = "homepage" ;
+              }
+
+              tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
+              {
+                products: [{
+                name:data.title,
+                id:data.id,
+                price:data.discounted_price_usd,
+                brand:"Tadarab",
+                category:data.categories[0].title,
+                variant:"Single Course"
+              }],
+                list:referrer
+              });
+
+              FBPixelEventsHandler(response.data.fb_tracking_events,null);
+
     
       })
       .catch(function (error) {

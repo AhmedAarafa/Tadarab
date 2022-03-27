@@ -29,6 +29,22 @@ module.exports = {
         destination: '/Checkout',
       },
       {
+        source: '/checkout/payment',
+        destination: '/Checkout',
+      },
+      {
+        source: '/checkout/auth',
+        destination: '/Checkout',
+      },
+      {
+        source: '/checkout/success',
+        destination: '/Checkout',
+      },
+      {
+        source: '/checkout/failed',
+        destination: '/Checkout',
+      },
+      {
         source: '/search',
         destination: '/SearchResults',
       },

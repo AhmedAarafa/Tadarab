@@ -13,7 +13,7 @@ import {
   Popover,
   Offcanvas
 } from "react-bootstrap";
-import { popoverHandler ,closeBtnHandler} from "./utils";
+import { popoverHandler } from "./utils";
 import {TadarabLogo,NextIcon,BackIcon,DarkModeIcon,DropDownIcon,SearchIcon,
   FavouriteIcon,CartIcon,AccountIcon,ThreeDotsIcon,CertificateIcon,LessonPlayIcon} from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,6 +51,7 @@ function Navbar() {
   const handleLogout = () =>{
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
+    localStorage.removeItem("cart_items");
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null}));
@@ -71,7 +72,54 @@ function Navbar() {
 
   useEffect(() => {
     // popoverHandler();
-    closeBtnHandler();
+    // closeBtnHandler();
+    window.addEventListener("click" , (e:any)=>{
+      if(e.target.className == "btn-close" ||
+       e.target.className == ("fade offcanvas-backdrop show") ||
+       e.target.className == ("fade offcanvas-backdrop") 
+       ){
+        const closeBtn:any=document.getElementsByClassName(`btn-close`)[0];
+        closeBtn.style.cssText=` display:none !important`;
+        const discoverSidebar:any = document.getElementById("offcanvasNavbar2");
+        discoverSidebar ?
+          discoverSidebar.style.cssText=`
+        transform: translateX(100%);
+        visibility:hidden;
+        transition: all 0.3s ease-in-out;
+        `
+         : 
+        null ;
+         setExpanded(false);
+      }
+  
+      if(e.target.id == "back-btn" ||
+       e.target.id == "back" ||
+       e.target.id == "back-btn-text" ||
+       e.target.id == "Path_12841"
+       ){
+        const discoverSidebar:any = document.getElementById("offcanvasNavbar2");
+        discoverSidebar.style.cssText=`
+        transform: translateX(100%);
+        visibility:hidden;
+        transition: all 0.3s ease-in-out;
+        `
+        // return setExpanded(false);
+      }
+  
+      if(e.target.id == "discover" ||
+       e.target.id == "next" ||
+       e.target.id == "Path_12841" 
+       ){
+        const discoverSidebar:any = document.getElementById("offcanvasNavbar2");
+        discoverSidebar ?  discoverSidebar.style.cssText=`
+        transform: none;
+        visibility:visible;
+        ` : null ;
+        // return setExpanded(true);
+      }
+    });
+
+
    const searchBar:any = document.getElementById("search-bar");
 
       if(userStatus.isUserAuthenticated){
@@ -146,9 +194,8 @@ function Navbar() {
         axiosInstance
         .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
-          // console.log("not logged in",response.data.data);
-          // dispatch(setCartItems(response?.data?.data));
-          setLocalStateCartItems(cartItems?.data);
+          dispatch(setCartItems(response?.data?.data));
+          // setLocalStateCartItems(cartItems?.data);
         })
         .catch(function (error) {
           console.log(error); 
@@ -174,10 +221,9 @@ function Navbar() {
         axiosInstance
         .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
-          // console.log("not logged in",response.data.data);
           // dispatch(setCartItems(response.data.data));
-          
-          setLocalStateCartItems(cartItems?.data);
+          setLocalStateCartItems(response.data.data);
+          // setLocalStateCartItems(cartItems?.data);
         })
         .catch(function (error) {
           console.log(error); 
@@ -188,6 +234,7 @@ function Navbar() {
       }
 
 }, [cartItems])
+
 
   useResize((
     ()=>{
@@ -210,8 +257,8 @@ const sendSearchQuery = (e:any)=>{
       console.log("متخمش يسطا");
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}SearchResults`,
-        query: { search_query: searchQuery }
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
+        query: { q: searchQuery }
       });
       const searchBar:any = document.getElementById("search-field");
       const responsiveSearchBar:any = document.getElementById("responsive-search-field");
@@ -705,7 +752,7 @@ const searchBoxToggler = (action:any) =>{
                         styles["navbar__cart-popover__checkout-box__cart-btn"]
                       }
                     >
-                    <Link href="/Checkout">
+                    <Link href="/checkout">
 
                       <Button>إذهب للسلة</Button>
                     </Link>
@@ -716,7 +763,7 @@ const searchBoxToggler = (action:any) =>{
             >       
            <div className={styles["navbar__cart-icon-container"]}>
                 <CartIcon color="#222"/>
-                <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length ||  localStateCartItems?.length  || ""}</Badge>
+                <Badge className={styles["navbar__cart-icon__badge"]}>{localStateCartItems?.length ||   ""}</Badge>
                 {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
               
               </div>    

@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter } from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
-
+import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents"
 
 export default function SearchResultsPage() {
   const [searchResults, setSearchResults] = useState<any>([]);
@@ -36,8 +36,8 @@ export default function SearchResultsPage() {
 
   const handleCartActionBtn = (course:any):any =>{
     
-    if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,true);
+    // if(userStatus?.isUserAuthenticated == true){
+      const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             setSearchResults(response.data.data.best_seller_courses);
@@ -45,34 +45,34 @@ export default function SearchResultsPage() {
         })
       //  setLocalCartItems(response.totalItems);
       })
-    }
-    else{
-      const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
-      handleCartResponse.then(function(response:any) {
-        // console.log(response.data.data);
-          dispatch(setCartItems(response.data.data));
-          let newArray:any = searchResults; 
-         response.data.data?.forEach((element:any) => {
-          newArray.forEach((ele:any) => {
-              if(element.id === ele.id){
-                // console.log(ele);
-                ele.is_in_cart = true;
-            }
-        });
-    });
-    setSearchResults([...newArray]);
+    // }
+    // else{
+    //   const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+    //   handleCartResponse.then(function(response:any) {
+    //     // console.log(response.data.data);
+    //       dispatch(setCartItems(response.data.data));
+    //       let newArray:any = searchResults; 
+    //      response.data.data?.forEach((element:any) => {
+    //       newArray.forEach((ele:any) => {
+    //           if(element.id === ele.id){
+    //             // console.log(ele);
+    //             ele.is_in_cart = true;
+    //         }
+    //     });
+    // });
+    // setSearchResults([...newArray]);
        
-      })
-    }
+    //   })
+    // }
   }
 
   useEffect(() => {
     setCurrentPage("1");
-    if (router.query && router.query.search_query) {
-        // console.log("router.query.search_query",router.query.search_query);
+    if (router.query && router.query.q) {
+        // console.log("router.query.q",router.query.q);
         
         axiosInstance
-          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&keyword=${router.query.search_query}&page=1&limit=16`)
+          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&keyword=${router.query.q}&page=1&limit=16`)
           .then(function (response:any) {
          console.log(response);
          setSearchResults(response?.data)
@@ -89,7 +89,7 @@ const handlePageClick = (pgNo:any)=>{
     window.scrollTo({top: 0, behavior: "smooth"});
     setCurrentPage(pgNo);
     axiosInstance
-        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&keyword=${router?.query?.search_query}&page=${pgNo}&limit=16`)
+        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&keyword=${router?.query?.q}&page=${pgNo}&limit=16`)
         .then(function (response:any) {
        console.log(response);
        setSearchResults(response?.data)
@@ -120,7 +120,7 @@ const handlePageClick = (pgNo:any)=>{
                         {searchResults?.data?.courses?.map((course:any , i:number)=>{
                             return(
 
-                                <Card key={i} className={styles["search-results__course-card"]}>
+                                <Card onClick={()=>{GAProductClickEventHandler(course,i)}} key={i} className={styles["search-results__course-card"]}>
                                     {course.categories !== undefined &&
                                         <div
                                             className={

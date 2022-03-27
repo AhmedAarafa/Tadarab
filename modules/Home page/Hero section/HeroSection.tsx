@@ -19,7 +19,7 @@ export default function HeroSection() {
       
         Router.push({
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
-          query: { search_query: tagsSearchQuery.value }
+          query: { q: tagsSearchQuery.value }
         })
 
     }else if(tagsSearchQuery.status == false){
@@ -29,7 +29,7 @@ export default function HeroSection() {
       }else{
         Router.push({
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
-          query: { search_query: searchQuery }
+          query: { q: searchQuery }
         })
       }
       const searchBar:any = document.getElementById("search-field");

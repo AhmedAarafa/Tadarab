@@ -5,12 +5,28 @@ import { TransactionSuccessIcon, ArrowLeftIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from 'configurations/redux/actions/cartItems';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import TadarabGA from "modules/_Shared/utils/ga";
 
 export default function SuccessState() {
  const dispatch = useDispatch();
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
     const cartItems = useSelector((state:any) => state.cartItems);
 
+    let tadarabGA = new TadarabGA();
+    useEffect(() => {
+        if(invoiceDetails){
+            tadarabGA.tadarab_fire_traking_GA_code("purchase",
+            {
+            id: invoiceDetails?.data?.transaction_details.invoice_no,
+            revenue: invoiceDetails?.data?.transaction_details.amount_usd,
+            coupon:invoiceDetails?.data?.transaction_details.coupon,
+            products: invoiceDetails?.data?.transaction_details.transaction_items,
+            uid:invoiceDetails?.data?.ga_tracking.uid,
+            cid:invoiceDetails?.data?.ga_tracking.cid,
+            user_email:invoiceDetails?.data?.transaction_details.email
+        });
+        }
+    }, [invoiceDetails])
     
     useEffect(() => {
       localStorage.setItem("cart" , "[]");

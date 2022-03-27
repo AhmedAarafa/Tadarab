@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Button, Form, Card } from "react-bootstrap";
 import styles from "./checkout-page.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,9 +21,12 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import TadarabGA from "modules/_Shared/utils/ga";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 
 
-function CheckoutPage() {
+function CheckoutPage(props:any) {
   SwiperCore.use([Navigation]);
   const router = useRouter();
   const [step, setStep] = useState("added-courses");
@@ -37,6 +40,7 @@ function CheckoutPage() {
   const [serverResponse, setServerResponse] = useState("");
   const [relatedCourses, setRelatedCourses] = useState<any>([]);
   const [checkoutTransactionDetails, setCheckoutTransactionDetails] = useState<any>(null);
+//   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
  const dispatch = useDispatch();
  const cartItems = useSelector((state:any) => state.cartItems);
  const userStatus = useSelector((state:any) => state.userAuthentication);
@@ -56,9 +60,8 @@ useEffect(() => {
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     // const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
     stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
-    // console.log("navbar.offsetHeight",navbar.offsetHeight);
     const localStorageItems:any = localStorage.getItem("cart");
-
+    
     axiosInstance
         .get(`users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
@@ -70,7 +73,6 @@ useEffect(() => {
                         axiosInstance
                         .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
                         .then(function (resp:any) {
-                            // console.log(resp.data.data);
                             // setLocalStateCartItems(resp.data.data);
                         let newArray:any = response.data.data;
                         if(resp.data.data !== undefined){
@@ -97,7 +99,6 @@ useEffect(() => {
         .catch(function (error) {
           console.log(error); 
         });
-        // console.log(transactionStatus);
         
 
         if(transactionStatus.data == true){
@@ -203,7 +204,6 @@ useEffect(() => {
     }
 
     window.addEventListener("resize" ,()=>{
-        // console.log("navbar.offsetHeight",navbar.offsetHeight);
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
         const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
@@ -307,19 +307,27 @@ useEffect(() => {
       switch (e.target.id) {
         case "added-courses":
           setStep("added-courses");
+          Router.replace("/checkout");
           break;
         case "payment-types":
           setStep("payment-types");
+          Router.replace("/checkout/payment");
           break;
         case "begin-learning":
           setStep("begin-learning");
+          isTransactionSucceeded ?
+          Router.replace("/checkout/success")
+          :
+          Router.replace("/checkout/failed");
           break;
         default:
           break;
       }
     });
 
-    
+    let tadarabGA = new TadarabGA();
+
+    tadarabGA.tadarab_fire_traking_GA_code('view_cart',"");
 
 
     return () => {
@@ -345,8 +353,6 @@ useEffect(() => {
   
 
   useEffect(() => {
-      console.log("cartItems");
-      
     //   if(userStatus.isUserAuthenticated === true){
     //       setLocalStateCartItems(cartItems.data);
           
@@ -362,11 +368,7 @@ useEffect(() => {
             .then(function (response:any) {
               setLocalStateCartItems(response?.data?.data);
 
-              let tadarabFbPixel = new TadarabFBPixel();
-              response.data.fb_tracking_events.forEach((ev:any)=>{
-                tadarabFbPixel.setEventId(ev.event_id);
-                tadarabFbPixel.eventHandler(ev.event_name, null);
-              })
+              FBPixelEventsHandler(response.data.fb_tracking_events,null);
         })
         .catch(function (error) {
           console.log(error); 
@@ -391,6 +393,8 @@ useEffect(() => {
             firstStepBox.innerHTML = '1';
             secondStepBox.innerHTML = '2';
             thirdStepBox.innerHTML = '3';
+            Router.replace("/checkout");
+
           break;
         case "payment-types":
                 firstStepBox.style.cssText=`pointer-events: all`;
@@ -411,7 +415,9 @@ useEffect(() => {
                 .catch(function (error) {
                 console.log(error);
                 });
-           
+                Router.replace("/checkout/payment");
+
+
           break;
         case "begin-learning":
             firstStepBox.style.cssText=`pointer-events: none`;
@@ -430,12 +436,71 @@ useEffect(() => {
           `;
           thirdStepBox.style.cssText=`pointer-events: none`;
             thirdStepBox.innerHTML = `3`;
+            isTransactionSucceeded ?
+            Router.replace("/checkout/success")
+            :
+            Router.replace("/checkout/failed");
+
+
           break;
         default:
           break;
       }
   }, [step,userStatus])
 
+
+  useEffect(() => {
+      let isExecuted:boolean = false;
+      
+        if(JSON.stringify(localStateCartItems) !== "[]" &&
+         localStateCartItems !== null &&
+          localStateCartItems !== undefined &&
+          JSON.stringify(localStateCartItems) !== "" ){
+                  
+                let tadarabGA = new TadarabGA();
+               
+                let Products : any[] = [];
+                let checkout_steps:any = {
+                    products:[],
+                    step:1,
+                    label:""
+                };
+                let Step= 1;
+                let Label= "checkout-step-1";
+                 
+                 if(step == "added-courses"){
+                     Step = 1;
+                     Label= "checkout-step-1";
+                 }else if(step == "payment-types"){
+                     Step = 2;
+                     Label= "checkout-step-2";
+                 }
+         
+                 localStateCartItems?.forEach((item:any,key:any,localStateCartItems:any)=>{
+                     Products[key]={
+                         id: item.id,
+                         name: item.title,
+                         price: item.discounted_price_usd,
+                         brand: "Tadarab",
+                         category: item.categories['0'].title,
+                         variant: 'Single Course',
+                         quantity:1
+                     };
+
+                    if((key === localStateCartItems.length -1) && isExecuted == false){
+
+                        checkout_steps.products = Products;
+                        checkout_steps.step = Step; // 1/2
+                        checkout_steps.label = Label; // checkout-step-1 OR  checkout-step-2
+                        tadarabGA.tadarab_fire_traking_GA_code('checkout_steps', checkout_steps);
+                        isExecuted = true;
+                    }
+                 })
+        }
+
+    
+  }, [step,localStateCartItems])
+  
 
   const radioBtnsHandler = ()=>{
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
@@ -522,53 +587,9 @@ useEffect(() => {
         `:null;
   };
 
-//   const removeFromCart = (course:any)=>{
-//     const localStorageItems:any = localStorage.getItem("cart");
-
-//     if (userStatus?.isUserAuthenticated == true) {
-//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, true);
-//         handleCartResponse.then(function (firstresponse: any) {
-//             firstresponse?.resp.then(function (response: any) {
-//                 // setTrainerProfile(response.data.data);
-//             console.log("response.data.data",response.data.data);
-//             dispatch(setCartItems(firstresponse.cartResponse));
-//             setLocalStateCartItems(firstresponse.cartResponse);
-//             setRelatedCourses(response.data.data);
-//             })
-//             //  setLocalCartItems(response.totalItems);
-//         })
-//     }
-//     else {
-//         const handleCartResponse: any = handleCart(course, `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`, false);
-//         handleCartResponse.then(function (response: any) {
-            
-//             // dispatch(setCartItems(response));
-//             console.log('response',response);
-//             setLocalStateCartItems(response.data.data);
-//              dispatch(setCartItems(response.data.data));
-
-//           let newArray:any = relatedCourses;
-//           response.data.data?.forEach((element:any) => {
-//            newArray.forEach((ele:any) => {
-//                if(element.id === ele.id){
-//                  console.log(ele);
-//                  ele.is_in_cart = true;
-//              }
-//          });
-//      });
-//      setRelatedCourses([...newArray]);
-   
-//             // setTrainerProfile(trainerProfile);
-//         })
-
-//     }
-//     // setLatestCourses([...latestCourses]);
-//   }
-
   const promoCodeHandler = (e:any)=>{
       e.preventDefault();
     const localStorageItems:any = localStorage.getItem("cart");
-    // console.log(e.target[0].value == "");
     if(e.target[0].value == "" || e.target[0].value == null){
         setErrorMessage("الرجاء إدخال الكوبون");
     }else{
@@ -578,9 +599,14 @@ useEffect(() => {
              console.log(response);
              if(response.status.toString().startsWith("2")){
                  setIsCouponApplied({status:true,discounted_amount:response.data.data.total_discount_amount,value:e.target[0].value})
+                 localStorage.setItem("coupon_code",e.target[0].value)
+                 let tadarabGA = new TadarabGA();
+                 tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
+                    {coupon_name:e.target[0].value});
+                
                  setErrorMessage("");
     
-             }else if(response.status.toString().startsWith("4") || response.status.toString().startsWith("5")){
+             }else {
                 setErrorMessage(response.data.message);
                 console.log('response.data.message',response.data.message);
                 
@@ -608,7 +634,7 @@ useEffect(() => {
     }else{
       Router.push({
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-        query: { from: "/Checkout" }
+        query: { from: "/checkout" }
       })
     }
   }
@@ -627,10 +653,9 @@ useEffect(() => {
       url = `users/cart/related-courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')},${course.id}`;
     }
     
-    if(userStatus?.isUserAuthenticated == true){
-        console.log('url',url);
+    // if(userStatus?.isUserAuthenticated == true){
         
-      const handleCartResponse:any =  handleCart(course,url,true);
+      const handleCartResponse:any =  handleCart([course],url,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             setRelatedCourses(response.data.data || []);
@@ -638,95 +663,38 @@ useEffect(() => {
         })
       //  setLocalCartItems(response.totalItems);
       })
-    }
-    else{
-      const handleCartResponse:any =  handleCart(course,url,false);
-      handleCartResponse.then(function(response:any) {
-          dispatch(setCartItems(response.data.data));
+    // }
+    // else{
+    //   const handleCartResponse:any =  handleCart([course],url,false);
+    //   handleCartResponse.then(function(response:any) {
+    //       dispatch(setCartItems(response.data.data));
 
-          let newArray:any = relatedCourses;
-          response.data.data?.forEach((element:any) => {
-           newArray.forEach((ele:any) => {
-               if(element.id === ele.id){
-                 console.log(ele);
-                 ele.is_in_cart = true;
-             }
-         });
-     });
-     setRelatedCourses([...newArray]);
+    //       let newArray:any = relatedCourses;
+    //       response.data.data?.forEach((element:any) => {
+    //        newArray.forEach((ele:any) => {
+    //            if(element.id === ele.id){
+    //              console.log(ele);
+    //              ele.is_in_cart = true;
+    //          }
+    //      });
+    //  });
+    //  setRelatedCourses([...newArray]);
    
-      })
-    }
+    //   })
+    // }
     // setLatestCourses([...latestCourses]);
   }
 
 
 
-
-// creates a paypal order
-// const createOrder = (data:any, actions:any) => {
-//     console.log("data",data);
-//     console.log("actions",actions);
-//     return actions.order
-//       .create({
-//         purchase_units: [
-//           {
-//             amount: {
-//               // charge users $499 per order
-//               value: 499,
-//             },
-//           },
-//         ],
-//         // remove the applicaiton_context object if you need your users to add a shipping address
-//         application_context: {
-//           shipping_preference: "NO_SHIPPING",
-//         },
-//       })
-//       .then((orderID:any) => {
-//         setOrderID(orderID);
-//         return orderID;
-//       });
-//   };
-
-//   // handles when a payment is confirmed for paypal
-//   const onApprove = (data:any, actions:any) => {
-//     //   setInterval(() => {
-          
-//           console.log("checkoutTransactionDetails5_55",checkoutTransactionDetails);
-//           console.log("billingDetails1212",billingDetails);
-//           //   }, 2000);
-          
-//           return actions.order.capture().then(function (details:any) {
-//               const {payer} = details;
-//               setBillingDetails(payer);
-//               setSucceeded(true);
-//               console.log("details",details);
-//               console.log("data",data);
-//               console.log("billingDetails",billingDetails);
-//       console.log("checkoutTransactionDetails",checkoutTransactionDetails);
-//       axiosInstance
-//         .get(`payments/details?payment_method=paypal&
-//         checkout_transaction_id=${checkoutTransactionDetails.checkout_transaction_id}&
-//         order_id=${data.orderID}&
-//         payment_id=${checkoutTransactionDetails.payment_id}&
-//         paypal_status=${details.status}`)
-//         .then(function (response:any) {
-//             console.log('responseresponse',response);
-//             localStorage.removeItem("checkoutTransactionId");
-//             localStorage.removeItem("paymentId");
-//         })
-//         .catch(function (error) {
-//           console.log(error); 
-//         });
-//     })
-//   };
-  
 // handles payment errors
 const onError = (data:any,actions:any)=>{
    setPaypalErrorMessage("Something went wrong with your payment");
 }
 
   return (
+    <PayPalScriptProvider options={{ "client-id": "AeLqJFQeNFqlkkFkdnwMPpKQb9gkBag-B-34Rym8Pndoi_5u0W305sZzses1NIcyZYENmZjpyKQYxKMu" }}>
+ 
     <>
     <Head>
         <script async src="https://cdn.checkout.com/js/framesv2.min.js"></script>
@@ -868,14 +836,16 @@ const onError = (data:any,actions:any)=>{
                         }}
                         cardSubmitted={() => {}}
                         cardTokenized={(e:any) => {
-                        const localStorageItems:any = localStorage.getItem("cart");
+                        const localStorageItems:any = localStorage.getItem("cart_items");
 
-                            alert(e.token);
+                            // alert(e.token);
                             axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                              "action": "web",
                               "checkout_token": e.token,
-                              "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
-                              "coupon_code": isCouponApplied.value,
-                              "payment_method":"visamaster"
+                              "items": localStorageItems,
+                              "coupon_code": localStorage.getItem("coupon_code"),
+                              "payment_method":"visamaster",
+                              "checkout_type":"cart"
                             })
                             .then((response:any) => {
                               if(JSON.stringify(response.status).startsWith("2")){
@@ -903,7 +873,8 @@ const onError = (data:any,actions:any)=>{
                         <CardNumber />
                         <ExpiryDate />
                         <Cvv />
-                    </Frames>}
+                    </Frames>
+                    }
                     </div>
                 </div>
                 <div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
@@ -1074,8 +1045,9 @@ const onError = (data:any,actions:any)=>{
                      :
                      Router.push({
                         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-                        query: { from: "/Checkout" }
-                      })
+                        query: { from: "/checkout" }
+                      },
+                      `/checkout/auth`)
                     }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                   
                   الدفع
@@ -1085,10 +1057,16 @@ const onError = (data:any,actions:any)=>{
                 <div className="position-relative">
                   <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>  
 
-                    { paymentMethod == "VISA" &&   <Button style={{pointerEvents:"none",opacity:"0.7"}} id="paynow_button" onClick={() => {
-                        // Frames.submitCard();
-                        Frames.isCardValid() ?  Frames.submitCard() : console.log("ay7aga");
-                        
+                    { paymentMethod == "VISA" &&   <Button style={{pointerEvents:"none",opacity:"0.7"}} id="paynow_button"
+                     onClick={() => {
+                        Frames.isCardValid() ?
+                        Frames.submitCard().then(function(data:any) {
+                           let tadarabGA = new TadarabGA();
+                           console.log(data);
+                           tadarabGA.tadarab_fire_traking_GA_code('checkout_option',{label:data.scheme,option:"visamaster"})
+                       })
+                        :
+                        null;
                     }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                         إتمام الشراء (VISA)
@@ -1107,16 +1085,18 @@ const onError = (data:any,actions:any)=>{
                         layout: "horizontal",
                         }}
                         createOrder={(data:any, actions:any):any => {
-                            const localStorageItems:any = localStorage.getItem("cart");
+                            const localStorageItems:any = localStorage.getItem("cart_items");
                             let usdAmount:any = "";
                             let checkoutDetails:any = {};
 
                             return(async function(){
                                 await axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                                    "action": "web",
                                     "checkout_token": "",
-                                    "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
-                                    "coupon_code": isCouponApplied.value,
-                                    "payment_method":"paypal"
+                                    "items": localStorageItems,
+                                    "coupon_code": localStorage.getItem("coupon_code"),
+                                    "payment_method":"paypal",
+                                    "checkout_type":"cart"
                                   })
                                   .then((response:any) => {
                                       if(JSON.stringify(response.status).startsWith("2")){
@@ -1159,18 +1139,13 @@ const onError = (data:any,actions:any)=>{
                             })()
                           }}
                         onApprove={(data:any, actions:any) => {
-                            //   setInterval(() => {
-                                  
-                                  console.log("checkoutTransactionDetails5_55",checkoutTransactionDetails);
-                                  //   }, 2000);
+                          
                                   
                                   return actions.order.capture().then(function (details:any) {
                                       const {payer} = details;
                                       setBillingDetails(payer);
                                       setSucceeded(true);
-                                      console.log("details",details);
-                                      console.log("data",data);
-                                      console.log("checkoutTransactionDetails",checkoutTransactionDetails);
+                                     
                                     axiosInstance
                                     .get(`payments/details?payment_method=paypal&
                                     checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
@@ -1184,13 +1159,8 @@ const onError = (data:any,actions:any)=>{
                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                             dispatch(setInvoiceDetails(response.data.data));
 
-
                                             let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                            let tadarabFbPixel = new TadarabFBPixel();
-                                                    response.data.fb_tracking_events.forEach((ev:any)=>{
-                                                      tadarabFbPixel.setEventId(ev.event_id);
-                                                      tadarabFbPixel.eventHandler(ev.event_name, customData);
-                                                    })
+                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
 
 
                                             localStorage.setItem("cart" , "[]");
@@ -1212,10 +1182,6 @@ const onError = (data:any,actions:any)=>{
 
                     {
                      paymentMethod == "KNET" &&  <Button  style={{pointerEvents:"none",opacity:"0.7"}}
-                    onClick={() => {
-                        // Frames.submitCard();
-                        // Frames.isCardValid() ?  Frames.submitCard() : console.log("ay7aga");
-                    }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                         إتمام الشراء (KNET)
                     </Button>
@@ -1261,7 +1227,8 @@ const onError = (data:any,actions:any)=>{
               
               return(
 
-                <div key={i} className={styles["checkout__cards-outer-box__card"]}>
+                <div  key={i} className={styles["checkout__cards-outer-box__card"]}>
+
                         <div className={styles["checkout__cards-outer-box__card__course-img"]}>
                             <img src={it?.image && it.image } alt="course image" />
                             <div style={{backgroundColor:`${it.categories !== undefined && it.categories[0].color}`}}
@@ -1448,8 +1415,9 @@ const onError = (data:any,actions:any)=>{
                     :
                     Router.push({
                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-                       query: { from: "/Checkout" }
-                     })
+                       query: { from: "/checkout" }
+                     },
+                     `/checkout/auth`)
                    }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                   
                   الدفع
@@ -1460,9 +1428,14 @@ const onError = (data:any,actions:any)=>{
                   <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>  
                     { paymentMethod == "VISA" &&  <Button  style={{pointerEvents:"none",opacity:"0.7"}} id="paynow_button"
                     onClick={() => {
-                        // Frames.submitCard();
-                        Frames.isCardValid() ?  Frames.submitCard() : console.log("ay7aga");
-
+                        Frames.isCardValid() ?
+                        Frames.submitCard().then(function(data:any) {
+                           let tadarabGA = new TadarabGA();
+                           console.log(data);
+                           tadarabGA.tadarab_fire_traking_GA_code('checkout_option',{label:data.scheme,option:"visamaster"})
+                       })
+                        :
+                        null;
                     }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                         إتمام الشراء (VISA)
@@ -1479,16 +1452,18 @@ const onError = (data:any,actions:any)=>{
                         layout: "horizontal",
                         }}
                         createOrder={(data:any, actions:any):any => {
-                            const localStorageItems:any = localStorage.getItem("cart");
+                            const localStorageItems:any = localStorage.getItem("cart_items");
                             let usdAmount:any = "";
                             let checkoutDetails:any = {};
 
                             return(async function(){
                                 await axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                                    "action": "web",
                                     "checkout_token": "",
-                                    "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
-                                    "coupon_code": isCouponApplied.value,
-                                    "payment_method":"paypal"
+                                    "items": localStorageItems,
+                                    "coupon_code": localStorage.getItem("coupon_code"),
+                                    "payment_method":"paypal",
+                                    "checkout_type":"cart"
                                   })
                                   .then((response:any) => {
                                       if(JSON.stringify(response.status).startsWith("2")){
@@ -1536,9 +1511,7 @@ const onError = (data:any,actions:any)=>{
                                       const {payer} = details;
                                       setBillingDetails(payer);
                                       setSucceeded(true);
-                                      console.log("details",details);
-                                      console.log("data",data);
-                                      console.log("checkoutTransactionDetails",checkoutTransactionDetails);
+                                  
                                     axiosInstance
                                     .get(`payments/details?payment_method=paypal&
                                     checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
@@ -1551,11 +1524,8 @@ const onError = (data:any,actions:any)=>{
                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                             dispatch(setInvoiceDetails(response.data.data));
                                             let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                            let tadarabFbPixel = new TadarabFBPixel();
-                                                    response.data.fb_tracking_events.forEach((ev:any)=>{
-                                                      tadarabFbPixel.setEventId(ev.event_id);
-                                                      tadarabFbPixel.eventHandler(ev.event_name, customData);
-                                                    })
+                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+
                                             localStorage.setItem("cart" , "[]");
                                             dispatch(setCartItems([]));
                                         }else{
@@ -1575,13 +1545,15 @@ const onError = (data:any,actions:any)=>{
 
                 { paymentMethod == "KNET" &&  <Button 
                     onClick={() => {
-                        const localStorageItems:any = localStorage.getItem("cart");
+                        const localStorageItems:any = localStorage.getItem("cart_items");
 
                         axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                            "action": "web",
                             "checkout_token": "",
-                            "course_ids": `${localStorageItems?.replace(/[\[\]']+/g,'')}`,
-                            "coupon_code": isCouponApplied.value,
-                            "payment_method":"knet-direct"
+                            "items": localStorageItems,
+                            "coupon_code": localStorage.getItem("coupon_code"),
+                            "payment_method":"knet-direct",
+                            "checkout_type":"cart"
                         })
                           .then((response:any) => {
                               if(JSON.stringify(response.status).startsWith("2")){
@@ -1652,7 +1624,17 @@ const onError = (data:any,actions:any)=>{
                 return(
 
                     <SwiperSlide key={i}>
-                        <Card
+                        <Card data-isvisible={false} data-coursedetails={JSON.stringify({
+                                name:course.title,
+                                id:course.id,
+                                price:course.discounted_price_usd,
+                                brand:"Tadarab",
+                                category: "Recorded Course",
+                                variant: "Single Course",
+                                list: "suggetion",
+                                position: i+1
+                              })}
+                              id={`checkout-related-courses__courses-card${i}`}
                             className={
                                 styles["checkout__similar-courses__cards-carousel__course-card"]
                             }
@@ -1804,7 +1786,12 @@ const onError = (data:any,actions:any)=>{
                                         ]
                                     }
                                     >
-                                    <div onClick={()=>{handleCartActionBtn(course)}} 
+                                    <div onClick={()=>{
+                                        handleCartActionBtn(course);
+                                        let tadarabGA = new TadarabGA();
+                                        const product =[{ name:course.title, id:course.id, price:course.discounted_price }];
+                                        tadarabGA.tadarab_fire_traking_GA_code('remove_from_cart', product );
+                                    }} 
                                      className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                     {
                                         course.is_in_cart ? 
@@ -1853,51 +1840,9 @@ const onError = (data:any,actions:any)=>{
       { step == "begin-learning" && ( isTransactionSucceeded ? <SuccessState/> : <FailedState/>)}
       
     </>
+  </PayPalScriptProvider>
   );
 }
 
 
 export default withAuth(CheckoutPage);
-
- /* <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
-                    <div className="d-flex align-items-center">
-                    <input onClick={()=> radioBtnsHandler()} type="radio" id="visa" name="payment-type" value="VISA" className="form-check-input"/>
-                    <label htmlFor="visa">
-                        <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                            <img className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/Visa_Inc.png" alt="VISA" />
-                            <img className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
-                        </div>
-                        <div className={styles["checkout__payment-method-box__payment-method__text"]}>
-                            بطاقات الائتمان / الخصم المباشر
-                        </div>
-
-                    </label>
-                    </div>
-
-                    <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
-                        <div>
-                        <Form.Label>رقم البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-number-field"]}  type="number" placeholder="XXXX XXXX XXXX XXXX" />
-                        </div>
-                        
-                        <div className="d-flex align-items-center">
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date-box"]}>
-                        <Form.Label>تاريخ انتهاء البطاقة</Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-exp-date"]} type="number" placeholder="MM / YY" />
-                        </div>
-                        
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv-box"]}>
-                        <Form.Label> الرقم السري (CVV) </Form.Label>
-                        <Form.Control className={styles["checkout__payment-method-box__payment-method__card-info__card-cvv"]}  type="number" placeholder="XXX" />
-                        </div>
-
-                        </div>
-
-                        <div className={styles["checkout__payment-method-box__payment-method__card-info__save-card-info"]}>
-                            <input className="form-check-input" type="checkbox" name="save-your-card-info" id="save-your-card-info" />
-                            <span >
-                            احتفظ بمعلومات البطاقة للمرة القادمة
-                            </span>
-                        </div>
-                    </div>
-                </div> */

@@ -935,12 +935,12 @@
 }
 
 .navbar__cart-popover__cart-items-wrapper::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #aaaaaa;
   border-radius: 0.625rem;
 }
 
 .navbar__cart-popover__cart-items-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #7b7a7a;
+  background: #969696;
 }
 
 @media (max-width: 575px) {

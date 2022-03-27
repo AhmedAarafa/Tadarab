@@ -21,7 +21,9 @@ import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon,MobileIcon,NameFieldIcon } from "common/Icons/Icons";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 
 interface SignUpFormValues {
   name: string;
@@ -174,18 +176,16 @@ export default function SignupPage() {
               // setResponse(response.data);
               console.log("Response",response);
               if(JSON.stringify(response.status).startsWith("2")){
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`);
-
                 let customData = {email: values.email, phone: values.phoneNumber};
-                let tadarabFbPixel = new TadarabFBPixel();
-            response.data.fb_tracking_events.forEach((ev:any)=>{
-
-              tadarabFbPixel.setEventId(ev.event_id);
-              tadarabFbPixel.eventHandler(ev.event_name, null);
+                FBPixelEventsHandler(response.data.fb_tracking_events,customData).then(()=>{
+              Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`);
             })
 
                 
               }else {
+                let tadarabGA = new TadarabGA();
+                tadarabGA.tadarab_fire_traking_GA_code("signup",{traking_email:values.email,traking_uid:response.data.data.id});
+           
                 // console.log("error 4xx or 5xx");
                 setErrorMessage(response.data.message);
                 // setTimeout(() => {

@@ -38,8 +38,8 @@ export default function CourseSubscribers() {
 
   const handleCartActionBtn = (course:any):any =>{
     
-    if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart(course,`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,true);
+    // if(userStatus?.isUserAuthenticated == true){
+      const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             // console.log("response.data.data",response.data.data);
@@ -49,26 +49,26 @@ export default function CourseSubscribers() {
         })
       //  setLocalCartItems(response.totalItems);
       })
-    }
-    else{
-      const handleCartResponse:any =  handleCart(course,`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
-      handleCartResponse.then(function(response:any) {
-          dispatch(setCartItems(response.data.data));
+    // }
+    // else{
+    //   const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
+    //   handleCartResponse.then(function(response:any) {
+    //       dispatch(setCartItems(response.data.data));
 
-          let newArray:any = courseDetails;
-         response.data.data?.forEach((element:any) => {
-          newArray.forEach((ele:any) => {
-              if(element.id === ele.id){
-                console.log(ele);
-                ele.is_in_cart = true;
-            }
-        });
-    });
-    setCourseDetails([...newArray]);
+    //       let newArray:any = courseDetails;
+    //      response.data.data?.forEach((element:any) => {
+    //       newArray.forEach((ele:any) => {
+    //           if(element.id === ele.id){
+    //             console.log(ele);
+    //             ele.is_in_cart = true;
+    //         }
+    //     });
+    // });
+    // setCourseDetails([...newArray]);
   
-      })
+    //   })
 
-    }
+    // }
   }
 
   useEffect(() => {
@@ -140,7 +140,17 @@ export default function CourseSubscribers() {
             {courseDetails?.map((course:any,i:number)=>{
                 return(
                     <SwiperSlide key={i}>
-                        <Card
+                        <Card data-isvisible={false} data-coursedetails={JSON.stringify({
+                                name:course.title,
+                                id:course.id,
+                                price:course.discounted_price_usd,
+                                brand:"Tadarab",
+                                category: "Recorded Course",
+                                variant: "Single Course",
+                                list: "single",
+                                position: i+1
+                              })}
+                              id={`course-subscribers__course-card${i}`}
                             className={
                                 styles["course-subscribers__cards-carousel__course-card"]
                             }

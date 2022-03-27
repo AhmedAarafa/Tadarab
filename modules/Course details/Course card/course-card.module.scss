@@ -12,7 +12,7 @@
 }
 
 .course-details__course-card__title {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     font-weight: 800;
     color: var(--dark-black);
 }
@@ -22,12 +22,12 @@
 }
 
 .course-details__course-card__price-box__price {
-    font-size: 1.688rem;
+    font-size: 1.5rem;
     font-weight: 800;
 }
 
 .course-details__course-card__price-box__currency {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     font-weight: 700;
 }
 
@@ -43,11 +43,13 @@
 }
 
 .course-details__course-card__old-price-box__price {
-    font-size: 1.063rem;
+    font-size: 1rem;
     font-weight: 800;
 }
 
-.course-details__course-card__old-price-box__currency,
+.course-details__course-card__old-price-box__currency{
+    font-size: 1rem;
+}
 .course-details__course-card__old-price-box__discount {
     font-size: 0.813rem;
 }
@@ -118,7 +120,7 @@
     margin-bottom: 0.7rem;
 
     span {
-        font-size: 0.938rem;
+        font-size: 0.875rem;
         color: var(--dark-black);
         margin-right: 1rem;
     }
@@ -205,15 +207,15 @@
     }
 
     .course-details__course-card__title {
-        font-size: 1.25rem*2.5;
+        font-size: 1.0625rem*2.5;
     }
 
     .course-details__course-card__price-box__price {
-        font-size: 1.688rem*2.5;
+        font-size: 1.5rem*2.5;
     }
 
     .course-details__course-card__price-box__currency {
-        font-size: 1.125rem*2.5;
+        font-size: 1.25rem*2.5;
     }
 
     .course-details__course-card__old-price-box--line-through {
@@ -226,10 +228,12 @@
     }
 
     .course-details__course-card__old-price-box__price {
-        font-size: 1.063rem*2.5;
+        font-size: 1rem*2.5;
     }
-
-    .course-details__course-card__old-price-box__currency,
+    
+    .course-details__course-card__old-price-box__currency{
+        font-size: 1rem*2.5;
+    }
     .course-details__course-card__old-price-box__discount {
         font-size: 0.813rem*2.5;
     }
@@ -307,7 +311,7 @@
         margin-bottom: 0.7rem*2.5;
 
         span {
-            font-size: 0.938rem*2.5;
+            font-size: 0.875rem*2.5;
             margin-right: 1rem*2.5;
         }
 

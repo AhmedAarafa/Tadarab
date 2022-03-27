@@ -156,7 +156,6 @@ export default function CourseCard() {
           {courseDetails.course_details?.key_features?.map((kf:any,i:number)=>{
 
             return(
-
               <div key={i}
                 className={
                   styles["course-details__course-card__details-list__item"]
