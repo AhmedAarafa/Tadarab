@@ -86,7 +86,7 @@ useEffect(() => {
                         });
                         setRelatedCourses([...newArray]);
                         }
-                
+                FBPixelEventsHandler(response.data.fb_tracking_events,null);
                     })
                     .catch(function (error) {
                         console.log(error); 
@@ -368,7 +368,7 @@ useEffect(() => {
             .then(function (response:any) {
               setLocalStateCartItems(response?.data?.data);
 
-              FBPixelEventsHandler(response.data.fb_tracking_events,null);
+              
         })
         .catch(function (error) {
           console.log(error); 
