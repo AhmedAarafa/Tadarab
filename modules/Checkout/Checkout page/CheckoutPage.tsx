@@ -86,7 +86,7 @@ useEffect(() => {
                         });
                         setRelatedCourses([...newArray]);
                         }
-                FBPixelEventsHandler(response.data.fb_tracking_events,null);
+                
                     })
                     .catch(function (error) {
                         console.log(error); 
@@ -367,7 +367,7 @@ useEffect(() => {
             .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
             .then(function (response:any) {
               setLocalStateCartItems(response?.data?.data);
-
+              FBPixelEventsHandler(response.data.fb_tracking_events,null);
               
         })
         .catch(function (error) {
