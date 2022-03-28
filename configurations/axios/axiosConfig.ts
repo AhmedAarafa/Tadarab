@@ -18,18 +18,18 @@ axiosInstance.interceptors.request.use(
     // config.params['auth'] = 'token';
     // console.log(config);
     toggleLoader("show");
-//     function randomString(length:any, chars:any) {
-//       let result = '';
-//       for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
-//       return result;
-//   }
-//   if(localStorage.getItem("X-Session-Id")){
-//     config.headers['X-Session-Id'] =  `${localStorage.getItem("X-Session-Id")}`;
-//   }else{
-//     let rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
-//     config.headers['X-Session-Id'] =  rString;
-//     localStorage.setItem("X-Session-Id",rString);
-//   }
+    function randomString(length:any, chars:any) {
+      let result = '';
+      for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+      return result;
+  }
+  if(localStorage.getItem("X-Session-Id")){
+    config.headers['X-Session-Id'] =  `${localStorage.getItem("X-Session-Id")}`;
+  }else{
+    let rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    config.headers['X-Session-Id'] =  rString;
+    localStorage.setItem("X-Session-Id",rString);
+  }
 
     if(localStorage.getItem("token")){
       config.headers.Authorization =  `Bearer ${localStorage.getItem("token")}`;
