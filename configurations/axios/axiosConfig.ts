@@ -22,10 +22,7 @@ axiosInstance.interceptors.request.use(
       for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
       return result;
   }
-<<<<<<< HEAD
 
-=======
->>>>>>> 45a9251f6a252fedf313679ad8dac7f2ee404309
   if(localStorage.getItem("X-Session-Id")){
     config.headers['X-Session-Id'] =  `${localStorage.getItem("X-Session-Id")}`;
   }else{
