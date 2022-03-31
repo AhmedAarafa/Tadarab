@@ -377,9 +377,15 @@ useEffect(() => {
           await  axiosInstance
             .get(`users/cart/?country_code=${localStorage.getItem("countryCode")}`)
             .then(function (response:any) {
+<<<<<<< HEAD
               setLocalStateCartItems(response?.data?.data.courses);
               FBPixelEventsHandler(response.data.fb_tracking_events,null);
 
+=======
+              setLocalStateCartItems(response?.data?.data);
+              FBPixelEventsHandler(response.data.fb_tracking_events,null);
+              
+>>>>>>> 45a9251f6a252fedf313679ad8dac7f2ee404309
         })
         .catch(function (error) {
           console.log(error); 
