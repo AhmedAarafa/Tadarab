@@ -105,6 +105,7 @@ export default function HeroSection() {
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}
           />
+          {/* <video autoPlay src="/images/final.mp4"></video> */}
         </Col>
 
         <Col xs={0} sm={12} className={styles["categories-cards-col"]}>

@@ -169,6 +169,7 @@
   height: 9%;
   -webkit-transform: scale(-1, 1);
           transform: scale(-1, 1);
+  display: none;
 }
 
 .comments-section__comments-tree__box li:first-child::after {
@@ -179,6 +180,7 @@
   width: 1.25rem;
   -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
+  display: none;
 }
 
 .comments-section__comments-tree__comment-box__replies li:last-of-type .comments-section__comments-tree__comment-box .comments-section__comments-tree__comment-box__comment-details {

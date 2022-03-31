@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from 'configurations/redux/actions/cartItems';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function SuccessState() {
- const dispatch = useDispatch();
+
+    const dispatch = useDispatch();
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
     const cartItems = useSelector((state:any) => state.cartItems);
 
@@ -33,7 +35,12 @@ export default function SuccessState() {
       dispatch(setCartItems(null));
       console.log("success state",invoiceDetails);
       
-    }, [])
+      return () => {
+          console.log("setCheckoutType dispatched");
+          dispatch(setCheckoutType("cart"));
+      }
+    }, []);
+    
     
     return (
         <>

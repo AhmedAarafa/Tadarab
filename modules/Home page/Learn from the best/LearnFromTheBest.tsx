@@ -50,7 +50,7 @@ export default function LearnFromTheBest() {
 
 
           </Button>
-        </Col>
+        </Col> 
 
         <Col xs={{span:12 ,order:2}} sm={{span:12 ,order:3}} className={styles["learn-from-the-best__cards-carousel"]}>
         <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
@@ -74,13 +74,16 @@ export default function LearnFromTheBest() {
             { trainers?.map((trainer:any, i:number)=>{
               return(
                   <SwiperSlide key={i}> 
-                 <Link href="/trainer">
+                 <Link href={`/trainer/${trainer?.slug}`}>
                     <Card className={styles["learn-from-the-best__cards-carousel__card"]} 
                     style={{backgroundImage: `url("${trainer.image}")`}}
                       >
                           <div className={styles["learn-from-the-best__cards-carousel__card__card-body"]}>
                               <div className="text-center">
+                              <Link href={`/trainer/${trainer?.slug}`}>
+
                                   <div className={styles["learn-from-the-best__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
+                              </Link>
                                   <div className={styles["learn-from-the-best__cards-carousel__card__job-title"]}>{trainer.title}</div>
                                   <div className={styles["learn-from-the-best__cards-carousel__card__job-history"]}>{trainer.bio} </div>
                               </div>

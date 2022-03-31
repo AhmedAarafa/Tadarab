@@ -12,6 +12,7 @@ import Router from "next/router";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function LiveCourses() {
     SwiperCore.use([Navigation]);
@@ -70,6 +71,7 @@ export default function LiveCourses() {
       setLiveCourses([...liveCourses]);
     }
     const handleCartActionBtn = (course:any):any =>{
+      dispatch(setCheckoutType("cart"));
     
       // if(userStatus?.isUserAuthenticated == true){
         const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
@@ -205,7 +207,7 @@ export default function LiveCourses() {
                               <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
                                       <h1 title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
-                                      <div title={lc.trainer.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer.name_ar}</div>
+                                      <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
                                   </div>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
                                   {lc.details}

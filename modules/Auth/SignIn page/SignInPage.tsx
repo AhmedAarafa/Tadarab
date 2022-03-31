@@ -18,7 +18,7 @@ import {
 import * as Yup from "yup";
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon } from "common/Icons/Icons";
 import { signinValidationRules } from "validation rules/signin";
-
+import Link from "next/link";
 interface SignInFormValues {
   email:string;
   password:string;
@@ -31,7 +31,7 @@ export default function SignInPage() {
     const [fieldBlur, setFieldBlur] = useState({email:"",password:""});
 
     const router:any = useRouter();
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
   const showHidePasswordHandler = () => {
       const passwordField: any = document.getElementById("password-field");
@@ -238,7 +238,9 @@ export default function SignInPage() {
 
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]}>
                       <span> ليس لديك حساب؟ </span>
-                      <span> انشاء حساب جديد </span>
+                      <Link href="/signin">
+                           <span> انشاء حساب جديد </span>
+                      </Link>
                   </div>
 
               </Form>

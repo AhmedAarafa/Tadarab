@@ -1,6 +1,7 @@
+@charset "UTF-8";
 .unlimited-courses {
   margin: 4.3rem 0 0 0;
-  background-image: url("/images/7 final without text.jpg");
+  background-image: url("/images/7 final ان شاء الله.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 89vh;
@@ -29,16 +30,66 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   padding: 1rem;
   width: 100%;
   height: 100%;
 }
 
+.unlimited-courses__subscribe-btn {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  width: 16rem;
+  font-size: 0.97rem;
+}
+
+.unlimited-courses__subscribe-btn:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unlimited-courses__subscribe-btn:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unlimited-courses__subscribe-btn:hover, .unlimited-courses__subscribe-btn:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.unlimited-courses__exp-days {
+  font-size: 0.625rem;
+  color: white;
+  margin-top: 0.3rem;
+}
+
+.unlimited-courses__logo {
+  margin-bottom: 1.5rem;
+}
+
+.unlimited-courses__logo img {
+  width: 14rem;
+}
+
 .unlimited-courses__title {
   font-size: 1.75rem;
-  font-weight: 800;
+  font-weight: 700;
   color: white;
+  text-align: center;
+  width: 60%;
+  margin: 0 0 2rem 0;
 }
 
 .unlimited-courses__title span {
@@ -185,12 +236,30 @@
 }
 
 @media (max-width: 575px) {
+  .unlimited-courses__logo {
+    margin-bottom: 3.3rem;
+  }
+  .unlimited-courses__logo img {
+    width: 35rem;
+  }
+  .unlimited-courses__subscribe-btn {
+    padding: 0.9375rem 1.875rem;
+    border-radius: 1.5625rem;
+    width: 40rem;
+    font-size: 2.425rem;
+    margin-top: 3rem;
+  }
+  .unlimited-courses__exp-days {
+    font-size: 1.5625rem;
+    color: white;
+    margin-top: 0.75rem;
+  }
   .unlimited-courses {
     margin: 8.1rem 0 0 0;
-    background-image: url("/images/7 mobile app without text.jpg");
+    background-image: url("/images/7 mobile app without text Final.png");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    height: 90vh;
+    background-size: cover;
+    height: 65vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -222,6 +291,7 @@
   .unlimited-courses__title {
     font-size: 4.025rem;
     text-align: center;
+    width: 100%;
   }
   .unlimited-courses__title span {
     margin: 0 0.23rem;

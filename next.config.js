@@ -34,7 +34,7 @@ module.exports = {
       },
       {
         source: '/checkout/auth',
-        destination: '/Checkout',
+        destination: '/SignIn',
       },
       {
         source: '/checkout/success',
@@ -47,6 +47,34 @@ module.exports = {
       {
         source: '/search',
         destination: '/SearchResults',
+      },
+      {
+        source: '/category/:path*',
+        destination: '/Category',
+      },
+      {
+        source: '/subcategory/:path*',
+        destination: '/SubCategory',
+      },
+      {
+        source: '/forgetpassword',
+        destination: '/ForgetPassword',
+      },
+      {
+        source: '/joinusasatrainer',
+        destination: '/JoinAsATrainer',
+      },
+      {
+        source: '/resetpassword',
+        destination: '/ResetPassword',
+      },
+      {
+        source: '/subscription',
+        destination: '/TadarabSubscription',
+      },
+      {
+        source: '/transactioninprogress',
+        destination: '/TransactionInProgress',
       },
     ]
   },

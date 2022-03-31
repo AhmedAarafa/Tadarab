@@ -25,7 +25,7 @@ export default function HowToStart() {
             <Row className={styles["how-to-start__marketing-boxes"]}>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
-                        <img src="/images/Photography.png" alt="discriptive image" />
+                        <img src="/images/photographyAndDirecting.jpg" alt="discriptive image" />
                     </div>
                 </Col>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
@@ -56,10 +56,10 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]}  d-flex justify-content-end`}>
-                        <img src="/images/montage.png" alt="discriptive image" />
+                        <img src="/images/montageAndGraphic.png" alt="discriptive image" />
                     </div>
                 </Col>
-                <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
+                {/* <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
                         <img src="/images/Photography.png" alt="discriptive image" />
                     </div>
@@ -76,7 +76,7 @@ export default function HowToStart() {
                             قم بالتسجيل الآن
                         </Button>
                     </div>
-                </Col>
+                </Col> */}
             </Row>
 
         </>

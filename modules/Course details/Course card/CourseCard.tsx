@@ -37,7 +37,7 @@ export default function CourseCard() {
                 styles["course-details__course-card__price-box__price"]
               }
             >
-              {courseDetails.course_details?.price}
+              {courseDetails.course_details?.discounted_price}
             </span>
             <span
               className={
@@ -61,7 +61,7 @@ export default function CourseCard() {
                   styles["course-details__course-card__old-price-box__price"]
                 }
               >
-                2800
+                {courseDetails.course_details?.price}
               </span>
               <span
                 className={
@@ -69,7 +69,7 @@ export default function CourseCard() {
                 }
               >
                 {" "}
-                جنية مصري{" "}
+                {courseDetails.course_details?.currency_code}{" "}
               </span>
             </div>
             <span

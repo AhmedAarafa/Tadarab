@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React from 'react';
+import React,{ useEffect,useState } from 'react';
 import styles from "./join-us.module.css";
 import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,10 +7,21 @@ import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import Link from 'next/link';
 import { ChevronLeftIcon } from "common/Icons/Icons";
+import { useDispatch, useSelector } from "react-redux";
+import Router from "next/router";
 
 
 export default function JoinUs() {
   SwiperCore.use([Navigation]);
+  const homePageData = useSelector((state:any) => state.homePageData);
+
+  const [trainers, setTrainers] = useState([]);
+
+  useEffect(() => {
+   
+      setTrainers(homePageData.data?.trainers || []);
+
+  }, [homePageData]); 
 
   return (
     <Row className={styles["join-us"]}>
@@ -44,140 +55,36 @@ export default function JoinUs() {
 
         }} className="mySwiper">
            
-                  <SwiperSlide> 
-                 <Link href="/trainer">
+           {
+             trainers?.map((trainer:any, i:number)=>{
+               return(
+
+                  <SwiperSlide key={i}> 
+                 <Link href={`/trainer/${trainer?.slug}`}>
                     <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
+                    style={{backgroundImage: `url("${trainer.image}")`}}
                       >
                           <div className={styles["join-us__cards-carousel__card__card-body"]}>
                               <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
+                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
+                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>{trainer.title}</div>
+                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>{trainer.bio}</div>
                               </div>
                           </div>
                       
                     </Card> 
                   </Link>
                   </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
-                  <SwiperSlide> 
-                 <Link href="/trainer">
-                    <Card className={styles["join-us__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("/images/Abdul Aziz Al Saygh.png")`}}
-                      >
-                          <div className={styles["join-us__cards-carousel__card__card-body"]}>
-                              <div className="text-center">
-                                  <div className={styles["join-us__cards-carousel__card__trainer"]}>د. حسين محمود</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-title"]}>مستشار تطوير الأعمال</div>
-                                  <div className={styles["join-us__cards-carousel__card__job-history"]}>مستشار تطوير أعمال ، و صاحب تجربة 18 عام في عالم الوظائف بالمؤسسات المحلية الكبيرة منها والمتوسطة. </div>
-                              </div>
-                          </div>
-                      
-                    </Card> 
-                  </Link>
-                  </SwiperSlide>
+               )
+             })
+           }
+               
            
         </Swiper>
         </Col>
 
         <Col xs={12} className={styles["join-us__start-now"]}>
-            <Button>
+            <Button onClick={()=>{Router.push("https://app.tadarab.com/selfhosted")}}>
             ابدأ الآن مجاناَ 
             </Button>
         </Col>

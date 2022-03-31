@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React ,{ useState,useEffect } from "react";
 import styles from "./course-subscribers.module.css";
@@ -12,6 +13,9 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import  {ChevronLeftIcon,LearnersIcon,TickIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { handleFav } from "modules/_Shared/utils/handleFav";
+import Link from 'next/link';
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+
 
 export default function CourseSubscribers() {
   SwiperCore.use([Navigation]);
@@ -37,6 +41,7 @@ export default function CourseSubscribers() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
       const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
@@ -165,16 +170,19 @@ export default function CourseSubscribers() {
                             > 
                                 {course.categories[0].title} 
                             </div>
-                            <Card.Img
-                                variant="top"
-                                src={course.image}
-                                alt="course image"
-                                className={
-                                styles[
-                                    "course-subscribers__cards-carousel__course-card__course-img"
-                                ]
-                                }
-                            />
+                            <Link href={`/course/${course.slug}`}>
+
+                              <Card.Img
+                                  variant="top"
+                                  src={course.image}
+                                  alt="course image"
+                                  className={
+                                  styles[
+                                      "course-subscribers__cards-carousel__course-card__course-img"
+                                  ]
+                                  }
+                              />
+                            </Link>
                             <Card.Body
                                 className={
                                 styles[
@@ -196,10 +204,14 @@ export default function CourseSubscribers() {
                                     ]
                                     }
                                 >
-                                    <img
-                                    src={course.trainer.image}
-                                    alt="trainer image"
-                                    />
+                                  <Link href={`/trainer/${course.trainer?.slug}`}>
+
+                                      <img
+                                      src={course.trainer.image}
+                                      alt="trainer image"
+                                      />
+
+                                  </Link>
                                 </div>
                                 <div
                                     className={
@@ -208,24 +220,31 @@ export default function CourseSubscribers() {
                                     ]
                                     }
                                 >
-                                    <h1 title={course.title}
-                                    className={
-                                        styles[
-                                        "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
-                                        ]
-                                    }
-                                    >
-                                   {course.title}
-                                    </h1>
-                                    <div title={course.trainer.name_ar}
-                                    className={
-                                        styles[
-                                        "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author"
-                                        ]
-                                    }
-                                    >
-                                   {course.trainer.name_ar}
-                                    </div>
+                                  <Link href={`/course/${course.slug}`}>
+
+                                      <h1 title={course.title}
+                                      className={
+                                          styles[
+                                          "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
+                                          ]
+                                      }
+                                      >
+                                    {course.title}
+                                      </h1>
+
+                                  </Link>
+                                  <Link href={`/trainer/${course.trainer?.slug}`}>
+
+                                      <div title={course.trainer.name_ar}
+                                      className={
+                                          styles[
+                                          "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author"
+                                          ]
+                                      }
+                                      >
+                                    {course.trainer.name_ar}
+                                      </div>
+                                  </Link>
                                 </div>
                                 </div>
 
@@ -328,7 +347,7 @@ export default function CourseSubscribers() {
 
                                         {
                                         course.is_in_favorites ?
-                                        <AddedToFavouriteIcon />
+                                        <AddedToFavouriteIcon color="af151f"/>
                                         : 
                                         <FavouriteIcon color="#222"/>
                                         }

@@ -19,6 +19,12 @@ export default function FAQ() {
     });
     
   }, []);
+
+  const contactUsHandler = ()=>{
+    const contactUsForm:any = document.getElementById("contact-us-form");
+    contactUsForm.focus();
+    contactUsForm.select();
+  }
  
   return (
     <>
@@ -53,7 +59,7 @@ export default function FAQ() {
 
         <div className={styles["faq__contact-us"]}>
           <span> هل لديك سؤال؟ </span>
-          <span> تواصل معنا </span>
+          <span onClick={()=>{contactUsHandler()}}> تواصل معنا </span>
         </div>
       
       </div>

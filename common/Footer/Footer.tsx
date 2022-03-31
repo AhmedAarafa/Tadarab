@@ -27,6 +27,7 @@ export default function FooterSection() {
           </div>
           <div >
             <Form.Control
+              id="contact-us-form"
               type="text"
               placeholder="ارسل استفسارك هنا..."
               className={styles["footer__inquiry-field"]}

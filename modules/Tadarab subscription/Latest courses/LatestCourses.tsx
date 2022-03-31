@@ -27,6 +27,7 @@ import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents"
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
@@ -73,6 +74,7 @@ function LatestCourses() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
       const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
@@ -359,12 +361,10 @@ function LatestCourses() {
         </Col>
 
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
-        <Link href="/course">
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
           </Button>
-        </Link>
         </Col>
 
         <Col xs={{span:12 , order:2}} className={styles["latest-courses__cards-carousel"]}>
@@ -418,7 +418,7 @@ function LatestCourses() {
                       >
 
                     <div>
-                          <Link href="/course">
+                         <Link href={`/course/${course.slug}`}>
                             <div
                             className={
                               styles["latest-courses__popover-container__title"]
@@ -486,7 +486,7 @@ function LatestCourses() {
                     
                         {
                         course.key_points.length > 6 ?
-                        <Link href="/course">
+                        <Link href={`/course/${course.slug}`}>
 
                           <div className={styles["latest-courses__show-more-link"]}>
                             اعرض المزيد
@@ -498,7 +498,7 @@ function LatestCourses() {
                   
                       <div className={styles["latest-courses__popover-container__btns"]}>
 
-                            <Link href="/course">
+                      <Link href={`/course/${course.slug}`}>
                               <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
                             </Link>
                             <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
@@ -523,7 +523,7 @@ function LatestCourses() {
                         {course.categories[0].title} 
                         </div>
 
-                        <Link href="/course">
+                        <Link href={`/course/${course.slug}`}>
 
                         <Card.Img
                           variant="top"
@@ -558,10 +558,13 @@ function LatestCourses() {
                                 ]
                               }
                             >
-                              <img
-                                src={course.trainer.image}
-                                alt="trainer image"
-                              />
+                              <Link href={`/trainer/${course.trainer?.slug}`}>
+
+                                <img
+                                  src={course.trainer.image}
+                                  alt="trainer image"
+                                />
+                              </Link>
                             </div>
                             <div
                               className={
@@ -570,7 +573,7 @@ function LatestCourses() {
                                 ]
                               }
                             >
-                          <Link href="/course">
+                          <Link href={`/course/${course.slug}`}>
                                 <h1 
                               title={course.title}
                                   className={
@@ -582,6 +585,8 @@ function LatestCourses() {
                                   {course.title}
                                 </h1>
                           </Link>
+                          <Link href={`/trainer/${course.trainer?.slug}`}>
+
                               <div title={course.trainer.name_ar}
                                 className={
                                   styles[
@@ -591,6 +596,7 @@ function LatestCourses() {
                               >
                                 {course.trainer.name_ar}
                               </div>
+                          </Link>
                             </div>
                           </div>
 
@@ -705,7 +711,7 @@ function LatestCourses() {
                                 className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                  {
                                   course.is_in_favorites ?
-                                  <AddedToFavouriteIcon />
+                                  <AddedToFavouriteIcon color="af151f"/>
                                    : 
                                   <FavouriteIcon color="#222"/>
                                    }

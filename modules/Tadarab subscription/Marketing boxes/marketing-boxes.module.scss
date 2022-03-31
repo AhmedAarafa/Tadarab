@@ -11,17 +11,16 @@
     &:nth-of-type(1){
         padding-right: 8.75rem;
     }
-    &:nth-of-type(4){
+    &:nth-of-type(3){
         padding-right: 8.75rem;
-
     }
-    &:nth-of-type(5){
+    &:nth-of-type(4){
         padding-left: 8.75rem;
     }
-    &:nth-of-type(7){
+    &:nth-of-type(6){
         padding-right: 8.75rem;
     }
-    &:nth-of-type(8){
+    &:nth-of-type(7){
         padding-left: 8.75rem;
     }
 }
@@ -66,8 +65,9 @@
         @include flex;
         &>div:nth-of-type(1),
         &>div:nth-of-type(2),
+        &>div:nth-of-type(3),
         &>div:nth-of-type(4),
-        &>div:nth-of-type(5),
+        &>div:nth-of-type(6),
         &>div:nth-of-type(7),
         &>div:nth-of-type(8){
             padding: 0 5rem;
@@ -89,13 +89,13 @@
             order: 5;
         }
         &>div:nth-of-type(6){
-            order: 6;
+            order: 7;
         }
         &>div:nth-of-type(7){
-            order: 8;
+            order: 6;
         }
         &>div:nth-of-type(8){
-            order: 7;
+            order: 8;
         }
     }
 
@@ -108,7 +108,7 @@
     .marketing-boxes__image {
         img {
             width: 100%;
-            height: 15.625rem*2.3;
+            height: 29.6rem;
             border-radius: 1.25rem*2.3;
         }
     }

@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from "react-redux";  
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { handleCart } from "modules/_Shared/utils/handleCart";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function SpecialOffer() {
     const [specialBundleData, setSpecialBundleData] = useState<any>();
@@ -117,6 +118,8 @@ export default function SpecialOffer() {
     }
 
     const handleCartActionBtn = (courses:any):any =>{
+    dispatch(setCheckoutType("cart"));
+
     
           const handleCartResponse:any =  handleCart(courses,`courses/35990/special-bundle/?country_code=${localStorage.getItem("countryCode")}`,true);
           handleCartResponse.then(function(firstresponse:any) {

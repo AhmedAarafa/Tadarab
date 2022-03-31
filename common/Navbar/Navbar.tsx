@@ -26,7 +26,6 @@ import { setHomePageData } from "configurations/redux/actions/homePageData";
 import { setMyCourseNavigator } from "configurations/redux/actions/myCourseNavigator";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { withRouter } from 'next/router';
-import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import useResize from "custom hooks/useResize";
 
 function Navbar() {
@@ -379,7 +378,7 @@ const searchBoxToggler = (action:any) =>{
           </div>
           <Link href="/signup">
           <Button className={styles["sidebar-list__register-btn"]}>
-          {
+            {
               userStatus.isUserAuthenticated ? 
               "حسابي"
               :

@@ -101,7 +101,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                     const resp:any =  getData(endPoint).then(function(response) {
                       return response ;
                     });
-                    // console.log("rr",{resp,cartResponse});
+                    console.log("rr",{resp,cartResponse});
                     
                     return ({resp,cartResponse});
                   })

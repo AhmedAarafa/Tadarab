@@ -38,8 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     TagManager.initialize({ gtmId: 'GTM-WVQP3JV' });
 
-    // localStorage.setItem("theme", "dark");
-    // document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "light");
     document.body.setAttribute("data-theme", "light");
 
   }, []);

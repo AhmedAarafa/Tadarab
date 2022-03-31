@@ -13,7 +13,7 @@ import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import Router from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
-
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function TrainerCourses() {
     const dispatch = useDispatch();
@@ -42,6 +42,7 @@ export default function TrainerCourses() {
     }
 
     const handleCartActionBtn = (course: any): any => {
+        dispatch(setCheckoutType("cart"));
 
         // if (userStatus?.isUserAuthenticated == true) {
             const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
@@ -278,7 +279,7 @@ export default function TrainerCourses() {
 
                                                     {
                                                     course.is_in_favorites ?
-                                                    <AddedToFavouriteIcon />
+                                                    <AddedToFavouriteIcon color="af151f"/>
                                                     : 
                                                     <FavouriteIcon color="#222"/>
                                                     }

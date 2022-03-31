@@ -118,6 +118,20 @@
   z-index: 5;
 }
 
+.course-ad__course-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin-top: 1.5rem;
+}
+
+.course-ad__course-description {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--grey);
+  width: 97%;
+}
+
 @media (max-width: 575px) {
   .course-ad {
     margin: 10.5rem 0 0 0;
@@ -223,6 +237,45 @@
     font-size: 2.345rem;
     font-weight: 700;
     cursor: pointer;
+  }
+  .course-ad__details-list {
+    margin-top: 2.6rem;
+    padding-bottom: 2.08rem;
+    border-bottom: 0.13rem solid rgba(34, 34, 34, 0.1);
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .course-ad__details-list__item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    margin-bottom: 1.04rem;
+  }
+  .course-ad__details-list__item span {
+    font-size: 2.275rem;
+    color: var(--dark-black);
+    margin-right: 2.6rem;
+  }
+  .course-ad__details-list__item svg {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .course-ad__course-title {
+    font-size: 2.65625rem;
+    margin-top: 1.5rem;
+  }
+  .course-ad__course-description {
+    font-size: 2.1875rem;
+    font-weight: 400;
+    color: var(--grey);
   }
 }
 /*# sourceMappingURL=course-advertisement.module.css.map */

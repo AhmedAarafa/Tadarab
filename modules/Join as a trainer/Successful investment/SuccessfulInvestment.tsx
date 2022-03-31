@@ -18,7 +18,7 @@ export default function SuccessfulInvestment() {
 
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/bestProfitRate.png" alt="discriptive image" />
+                        <img src="/images/bestReturnRate.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     أفضل نسبة أرباح وعوائد شهرية في الوطن العربي
@@ -26,7 +26,7 @@ export default function SuccessfulInvestment() {
                 </div>
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/goViral.png" alt="discriptive image" />
+                        <img src="/images/reach.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     انتشار ووصول لشريحة أكبر من الطلاب والمتدربين
@@ -34,7 +34,7 @@ export default function SuccessfulInvestment() {
                 </div>
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/toolsToHelp.png" alt="discriptive image" />
+                        <img src="/images/toolsToHelpU.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     نظام متكامل وأدوات تساعدك على تقديم تجربة تدريب فريدة
@@ -42,7 +42,7 @@ export default function SuccessfulInvestment() {
                 </div>
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/establishingYourName.png" alt="discriptive image" />
+                        <img src="/images/deepenYourName.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     ترسيخ أسمك ومحتواك ضمن أكبر المدربين

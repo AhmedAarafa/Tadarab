@@ -86,7 +86,7 @@
     
     
     .what-you-will-learn__title{
-        font-size: 1.5rem*2.4;
+        font-size: 1.5rem*2.1;
         font-weight: 800;
         color: var(--dark-black);
         margin-bottom: 1.5rem*2.5;
@@ -99,7 +99,7 @@
         @include flex(center);
         margin-bottom: 1rem*2.5;
         span{
-            font-size: 1rem*2.5;
+            font-size: 0.875rem*2.5;
             color: var(--grey);
             margin-right: 0.8rem*2.5;
         }

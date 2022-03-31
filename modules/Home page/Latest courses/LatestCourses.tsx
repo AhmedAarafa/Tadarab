@@ -29,6 +29,8 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { json } from "stream/consumers";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents"
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
@@ -63,7 +65,7 @@ function LatestCourses() {
     if(userStatus.isUserAuthenticated == true){
     const handleFavResponse:any =  handleFav(course,`home/?country_code=${localStorage.getItem("countryCode")}`);
     handleFavResponse.then(function(response:any) {
-     setLatestCourses(response.data.data.best_seller_courses);
+     setLatestCourses(response.data.data.latest_courses);
     })
     }else{
       Router.push({
@@ -74,6 +76,7 @@ function LatestCourses() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
       
@@ -82,7 +85,7 @@ function LatestCourses() {
         // console.log("handleCartResponse",firstresponse);
         firstresponse.resp.then(function(response:any){
           // console.log(response);
-           setLatestCourses(response.data.data.best_seller_courses);
+           setLatestCourses(response.data.data.latest_courses);
            dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
@@ -110,7 +113,7 @@ function LatestCourses() {
 
   useEffect(() => {
 
-      setLatestCourses(homePageData.data?.best_seller_courses || []);
+      setLatestCourses(homePageData.data?.latest_courses || []);
       
       const localStorageItems:any = localStorage.getItem("cart");
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
@@ -119,7 +122,7 @@ function LatestCourses() {
           .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
           .then(function (response:any) {
             // console.log(response);
-            let newArray:any = homePageData.data?.best_seller_courses;
+            let newArray:any = homePageData.data?.latest_courses;
            response.data.data.forEach((element:any) => {
             newArray.forEach((ele:any) => {
                 if(element.id === ele.id){
@@ -197,26 +200,6 @@ function LatestCourses() {
 
     }
   }
-
-  //  const GAEventHandler = (eventType:string,course:any,order:number,courseType:string)=> {
-  //    console.log("GAEventHandler Clicked");
-     
-  //     let tadarabGA = new TadarabGA();
-  //     tadarabGA.tadarab_fire_traking_GA_code("product_click",{
-  //       products: [{
-  //         name: course.title,
-  //         id: course.id,
-  //         price: course.discounted_price_usd,
-  //         brand: "Tadarab",
-  //         category: courseType,
-  //         variant: "Single Course",
-  //         position: order+1
-  //      }],
-  //      list:""
-  //     });
-  //  }
-  
-
   
 
   return (
@@ -608,7 +591,7 @@ function LatestCourses() {
                                 className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                  {
                                   course.is_in_favorites ?
-                                  <AddedToFavouriteIcon />
+                                  <AddedToFavouriteIcon color="af151f"/>
                                    : 
                                   <FavouriteIcon color="#222"/>
                                    }

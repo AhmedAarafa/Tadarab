@@ -3,17 +3,18 @@ import React from 'react';
 import styles from "./marketing-boxes.module.css";
 import { Row, Col } from "react-bootstrap";
 import LatestCourses from '../Latest courses/LatestCourses';
+import LiveCourses from '../Live courses/LiveCourses';
 import CoursesDepartments from '../Courses departments/CoursesDepartments';
 
-export default function MarketingBoxes() {
+export default function MarketingBoxes() {  
   return (
     <Row className={styles["marketing-boxes"]}>
-        <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
+        <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div  className={`${styles["marketing-boxes__image"]} d-flex justify-content-start`}>
-                <img src="/images/imagePlaceholder.png" alt="discriptive image" />1
+                <img src="/images/imagePlaceholder.png" alt="discriptive image" />
             </div>
         </Col>
-        <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
+        <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={styles["marketing-boxes__title"]}>
                 <div>أكبر محتوى</div>
                 <div> دورات عربى في</div>
@@ -24,7 +25,6 @@ export default function MarketingBoxes() {
             </div>
         </Col>
 
-        <LatestCourses/>
 
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={styles["marketing-boxes__title"]}>
@@ -37,7 +37,7 @@ export default function MarketingBoxes() {
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]}  d-flex justify-content-end`}>
-                <img src="/images/imagePlaceholder.png" alt="discriptive image" />2
+                <img src="/images/discoveringCourses.jpg" alt="discriptive image" />
             </div>
         </Col>
         
@@ -45,7 +45,7 @@ export default function MarketingBoxes() {
 
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]} d-flex justify-content-start`}>
-                <img src="/images/imagePlaceholder.png" alt="discriptive image" />3
+                <img src="/images/trainingCourses.jpg" alt="discriptive image" />
             </div>
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
@@ -57,6 +57,9 @@ export default function MarketingBoxes() {
             أكتسب المهارات والعلم عن طريق الفديوهات التدريبية والتمارين والاختبارات المرفقة مع كل دورة بكل حرية
             </div>
         </Col>
+
+
+        <LiveCourses/>
     </Row>
   )
 }

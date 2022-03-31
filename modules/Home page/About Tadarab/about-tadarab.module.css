@@ -127,7 +127,6 @@
 }
 
 .about-tadarab__cards-carousel__item__container__img {
-  border-radius: 1.375rem;
   width: 26.625rem;
   height: 21.438rem;
   display: inline-block;
@@ -135,7 +134,18 @@
 }
 
 .about-tadarab__cards-carousel__item__container__img img {
+  border-radius: 1.375rem;
   width: 100%;
+}
+
+.black-overlay {
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  border-radius: 1.375rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .about-tadarab__cards-carousel__item__container__course-details-box {
@@ -172,6 +182,7 @@
   font-size: 1.125rem;
   font-weight: 800;
   color: white;
+  width: 16.8rem;
 }
 
 .about-tadarab__cards-carousel__item__container__course-details-box__course-details__author {
@@ -180,13 +191,28 @@
 }
 
 .about-tadarab__cards-carousel__item__container__review-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-color: white;
   width: 46.875rem;
   height: 16.875rem;
   -webkit-box-shadow: 0 0 1.875rem #0000001A;
           box-shadow: 0 0 1.875rem #0000001A;
   border-radius: 1.25rem;
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   padding: 1.7rem 2.5rem;
   position: absolute;
   right: 22.5rem;
@@ -309,7 +335,11 @@
     display: none;
   }
   .about-tadarab__cards-carousel__item__container__img img {
+    border-radius: 3.4375rem;
     width: 100%;
+  }
+  .black-overlay {
+    border-radius: 3.4375rem;
   }
   .about-tadarab__cards-carousel__item__container__course-details-box {
     display: -webkit-box;

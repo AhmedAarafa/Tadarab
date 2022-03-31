@@ -1,212 +1,242 @@
-import React from 'react'
+/* eslint-disable @next/next/no-img-element */
+import React, { useState, useEffect } from 'react'
 import styles from "./monthly-subscription-card.module.css"
 import { Button } from "react-bootstrap";
+import { CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon } from "common/Icons/Icons";
+import { useDispatch, useSelector } from "react-redux";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import Router, { useRouter } from "next/router";
+import useResize from "custom hooks/useResize";
+import { stickyCardHandler } from "./utils";
+import { handleFav } from 'modules/_Shared/utils/handleFav';
+import { handleCart } from 'modules/_Shared/utils/handleCart';
+import { setCartItems } from 'configurations/redux/actions/cartItems';
 
 export default function MonthlySubscriptionCard() {
-    return (
-        <>
-         <div className={styles["monthly-subscription__course-card"]} >
+
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [courseDetails, setCourseDetails] = useState<any>([]);
+  const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
+  const userStatus = useSelector((state: any) => state.userAuthentication);
+  const dispatch = useDispatch();
+  const Router = useRouter();
+  const { slug } = Router.query;
+
+
+  useEffect(() => {
+    setCourseDetails(courseDetailsData.data || []);
+  }, [courseDetailsData]);
+
+  const handleSubscriptionBtn = () => {
+    dispatch(setCheckoutType("subscription"));
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+  }
+  const handleFavActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+      const handleFavResponse: any = handleFav(course, `courses/${slug}/?country_code=${localStorage.getItem("countryCode")}`);
+      handleFavResponse.then(function (response: any) {
+        setCourseDetails(response.data.data);
+      })
+    } else {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
+        query: { from: "/HomePage" }
+      })
+    }
+  }
+
+  const handleCartActionBtn = (course: any): any => {
+    dispatch(setCheckoutType("cart"));
+
+    // if(userStatus?.isUserAuthenticated == true){
+
+    const handleCartResponse: any = handleCart([course], `courses/${slug}/?country_code=${localStorage.getItem("countryCode")}`, false);
+    handleCartResponse.then(function (firstresponse: any) {
+      // console.log("handleCartResponse",firstresponse);
+      firstresponse.resp.then(function (response: any) {
+        // console.log(response);
+        setCourseDetails(response.data.data);
+        dispatch(setCartItems(firstresponse.cartResponse));
+      })
+    })
+
+  }
+  const viewportWidthDetector =()=>{
+    if( window.innerWidth >= 576 ){
+      setIsMobileView(false);
+    }else{
+      setIsMobileView(true);
+    }
+  }
+  useResize(viewportWidthDetector);
+  useResize(stickyCardHandler);
+
+  return (
+    <>
+      <div className={styles["monthly-subscription__course-card"]} id="sub-sticky-card">
         <h5
-         
+
           className={styles["monthly-subscription__course-card__title"]}
         >
-           دورة تعليم الرسم والتلوين 
-        </h5>
-       
+          <div>
+            <span> جرب تدرب    </span>
+            <span>
+              بلا حدود
+            </span>
+          </div>
 
-      <div className={styles["monthly-subscription__subscribe-btn-box"]}>
-          <Button className={styles["monthly-subscription__subscribe-btn-box__btn"]}>
-        <span className={styles["monthly-subscription__subscribe-btn-box__btn__monthly-subscribe"]}> أشترك شهرياً </span>  
-          ( 
-            <div>
-                <span> 200  </span> 
-                <span>  SAR  </span>  
-            </div>
-           ) 
+
+          <div>
+
+            <span>
+              شاهد هذه الدورة + أكثر من ٧٠٠ دورة تدريبية الأفضل مبيعاَ في جميع التخصصات مقدمة من افضل المدربين بالخليج العربي
+            </span>
+
+            <span>
+              اعرف المزيد.
+            </span>
+          </div>
+
+        </h5>
+
+
+        <div className={styles["monthly-subscription__subscribe-btn-box"]}>
+          <Button id="monthly-subscribe-btn" className={styles["monthly-subscription__subscribe-btn-box__btn"]}
+            onClick={() => handleSubscriptionBtn()}>
+            <span className={styles["monthly-subscription__subscribe-btn-box__btn__monthly-subscribe"]}>
+              جرب تدرب بلا حدود مجاناَ
+            </span>
 
           </Button>
-      </div>
-      <div className={styles["monthly-subscription__watch-this-course"]}>
+        </div>
+        <div className={styles["monthly-subscription__subscription-value"]}>
+          ٧ أيام تجربة مجانية ثم ٩ دك شهرياَ
+        </div>
+        {/* <div className={styles["monthly-subscription__watch-this-course"]}>
       شاهد هذه الدورة + 600 دورة اخرى
-      </div>
+      </div> */
+        }
 
-      <div className={styles["monthly-subscription__or-box"]}>
-      أو
-      </div>
+        <div className={styles["monthly-subscription__or-box"]}>
+          أو
+        </div>
 
-      <div>
-          <div className={styles["monthly-subscription__course-card__price-box"]}>
+        <div>
+
+          {/* <div className={styles["monthly-subscription__course-card__price-box"]}>
+            <span className={
+                styles["monthly-subscription__course-card__price-box__price"]
+              }>
+              السعر 
+            </span>
             <span
               className={
                 styles["monthly-subscription__course-card__price-box__price"]
-              }
-            >
-              1600
+              }>
+              {courseDetails.course_details?.discounted_price} 
             </span>
             <span
               className={
                 styles["monthly-subscription__course-card__price-box__currency"]
               }
             >
-              جنية مصري
+              {courseDetails.course_details?.currency_code}
             </span>
-          </div>
-          <div className={styles["monthly-subscription__course-card__old-price-box"]}>
-            <div
-              className={
-                styles[
-                  "monthly-subscription__course-card__old-price-box--line-through"
-                ]
-              }
-            >
-              <span
+          </div> */}
+          {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
+            <div className={styles["monthly-subscription__course-card__old-price-box"]}>
+              <div
                 className={
-                  styles["monthly-subscription__course-card__old-price-box__price"]
+                  styles[
+                  "monthly-subscription__course-card__old-price-box--line-through"
+                  ]
                 }
               >
-                2800
-              </span>
+                <span
+                  className={
+                    styles["monthly-subscription__course-card__old-price-box__price"]
+                  }
+                >
+                  {courseDetails.course_details?.price}
+                </span>
+                <span
+                  className={
+                    styles["monthly-subscription__course-card__old-price-box__currency"]
+                  }
+                >
+                  {" "}
+                  {courseDetails.course_details?.currency_code}{" "}
+                </span>
+              </div>
               <span
                 className={
-                  styles["monthly-subscription__course-card__old-price-box__currency"]
+                  styles["monthly-subscription__course-card__old-price-box__discount"]
                 }
               >
                 {" "}
-                جنية مصري{" "}
+                (خصم {Math.ceil(100 - ((courseDetails.course_details?.discounted_price / courseDetails.course_details?.price) * 100))}%){" "}
               </span>
             </div>
-            <span
-              className={
-                styles["monthly-subscription__course-card__old-price-box__discount"]
-              }
-            >
-              {" "}
-              (خصم 20%){" "}
-            </span>
-          </div>
+          }
         </div>
 
         <div
           className={styles["monthly-subscription__course-card__actions-btns"]}
         >
-          <Button 
+          <Button onClick={() => {
+            handleCartActionBtn(courseDetails.course_details);
+          }} disabled={courseDetails?.course_details?.is_in_cart}
             className={
               styles[
-                "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
+              "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
               ]
             }
           >
-            <svg
-              id="add_to_cart"
-              data-name="add to cart"
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.375rem"
-              height="1.2rem"
-              viewBox="0 0 22 20.135"
-            >
-              <g
-                id="Group_10771"
-                data-name="Group 10771"
-                transform="translate(14.676 14.648)"
-              >
-                <g
-                  id="Group_9975"
-                  data-name="Group 9975"
-                  transform="translate(0 0)"
-                >
-                  <path
-                    id="Path_12759"
-                    data-name="Path 12759"
-                    d="M344.29,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,344.29,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,344.29,366.452Z"
-                    transform="translate(-341.547 -362.612)"
-                    fill="#fff"
-                  />
-                </g>
-              </g>
-              <g id="Group_10770" data-name="Group 10770">
-                <g
-                  id="Group_9977"
-                  data-name="Group 9977"
-                  transform="translate(0 0)"
-                >
-                  <path
-                    id="Path_12760"
-                    data-name="Path 12760"
-                    d="M21.825,25.751a.822.822,0,0,0-.648-.316H5.08l-.741-3.1a.823.823,0,0,0-.8-.632H.823a.823.823,0,1,0,0,1.646H2.889L5.564,34.542a.823.823,0,0,0,.8.632H19.175a.823.823,0,0,0,.8-.625l2-8.092A.824.824,0,0,0,21.825,25.751Zm-3.294,7.776H7.014L5.473,27.082H20.126Z"
-                    transform="translate(0 -21.705)"
-                    fill="#fff"
-                  />
-                </g>
-              </g>
-              <g
-                id="Group_10772"
-                data-name="Group 10772"
-                transform="translate(4.719 14.648)"
-              >
-                <g
-                  id="Group_9979"
-                  data-name="Group 9979"
-                  transform="translate(0 0)"
-                >
-                  <path
-                    id="Path_12761"
-                    data-name="Path 12761"
-                    d="M112.549,362.612a2.743,2.743,0,1,0,2.743,2.743A2.746,2.746,0,0,0,112.549,362.612Zm0,3.84a1.1,1.1,0,1,1,1.1-1.1A1.1,1.1,0,0,1,112.549,366.452Z"
-                    transform="translate(-109.806 -362.612)"
-                    fill="#fff"
-                  />
-                </g>
-              </g>
-            </svg>
-            <span>أضف للسلة</span>
+            <CartIcon color="#222" />
+            <span> امتلك هذه الدورة </span>
           </Button>
-          <Button
+
+
+          <Button onClick={() => {
+            handleFavActionBtn(courseDetails.course_details);
+          }}
             className={
               styles["monthly-subscription__course-card__actions-btns__fav-btn"]
             }
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.688rem"
-              height="1.5rem"
-              viewBox="0 0 27.429 24"
-            >
-              <g id="favorite" transform="translate(0.012 -31.967)" fill="none">
-                <path
-                  d="M24.754,33.608a7.326,7.326,0,0,0-10,.729L13.7,35.424l-1.055-1.087a7.325,7.325,0,0,0-10-.729,7.692,7.692,0,0,0-.53,11.137l10.366,10.7a1.679,1.679,0,0,0,2.427,0l10.366-10.7A7.687,7.687,0,0,0,24.754,33.608Z"
-                  stroke="none"
-                />
-                <path
-                  d="M 7.143587112426758 33.66680145263672 C 5.873798370361328 33.66680145263672 4.701517105102539 34.09383392333984 3.754478454589844 34.90089416503906 C 2.505697250366211 35.96673202514648 1.774187088012695 37.46976470947266 1.694707870483398 39.13312149047852 C 1.61579704284668 40.78439331054688 2.216358184814453 42.39908218383789 3.341678619384766 43.56245422363281 L 13.69974803924561 54.25777053833008 L 24.05815887451172 43.56210327148438 C 25.18575859069824 42.39845275878906 25.78764724731445 40.78421401977539 25.70949745178223 39.13330459594727 C 25.63076782226562 37.47011184692383 24.89948844909668 35.96701431274414 23.6513671875 34.9017333984375 C 22.70332717895508 34.09383392333984 21.53166770935059 33.66680145263672 20.26298904418945 33.66680145263672 C 18.68126678466797 33.66680145263672 17.11963653564453 34.34209442138672 15.97773742675781 35.52031326293945 L 13.70242786407471 37.86492156982422 L 11.42515754699707 35.51829147338867 C 10.28705787658691 34.34164428710938 8.726478576660156 33.66680145263672 7.143587112426758 33.66680145263672 M 7.143590927124023 31.966796875 C 9.140651702880859 31.966796875 11.15360069274902 32.79232406616211 12.64708805084229 34.33639144897461 L 13.70242786407471 35.42387390136719 L 14.75776767730713 34.33639144897461 C 17.45235824584961 31.55608367919922 21.8183479309082 31.10609436035156 24.75400733947754 33.60783386230469 C 28.11823844909668 36.47921371459961 28.29501724243164 41.63268280029297 25.27899742126465 44.74512481689453 L 14.91311740875244 55.44850158691406 C 14.24348926544189 56.13956451416016 13.15600776672363 56.13956451416016 12.48637771606445 55.44850158691406 L 2.120498657226562 44.74512481689453 C -0.8901615142822266 41.63268280029297 -0.7133827209472656 36.47921371459961 2.650848388671875 33.60783386230469 C 3.95616340637207 32.49545669555664 5.544668197631836 31.966796875 7.143590927124023 31.966796875 Z"
-                  stroke="none"
-                  fill="#222"
-                />
-              </g>
-            </svg>
+            {
+              courseDetails?.course_details?.is_in_favorites ?
+                <AddedToFavouriteIcon color="#222" />
+                :
+                <FavouriteIcon color="#222" />
+
+
+            }
           </Button>
           <Button
             className={
               styles["monthly-subscription__course-card__actions-btns__share-btn"]
             }
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="1.25rem"
-              height="1rem"
-              viewBox="0 0 20.341 15.644"
-            >
-              <path
-                id="share"
-                d="M13.641,16.359l7.147-5.132a1.125,1.125,0,0,0,0-1.937L13.641,4.156a1.12,1.12,0,0,0-1.688.968v2c-2.347,0-9.388,0-10.953,12.517a11.652,11.652,0,0,1,10.953-6.258v2a1.122,1.122,0,0,0,1.688.97Z"
-                transform="translate(-1 -4.001)"
-              />
-            </svg>
+            <ShareIcon />
           </Button>
         </div>
+        <div className={styles["monthly-subscription__subscription-value"]}>
+          سعر الدورة
+          <span>
 
-     
-        <div
-       
+            {courseDetails.course_details?.currency_code}
+          </span>
+          <span>
+
+            {courseDetails.course_details?.discounted_price}
+          </span>
+
+        </div>
+
+
+        { !isMobileView && <div
+
           className={styles["monthly-subscription__course-card__details-list"]}
         >
           <div
@@ -465,17 +495,114 @@ export default function MonthlySubscriptionCard() {
 
             <span>شهادة إتمام اون لاين معتمدة</span>
           </div>
-        </div>
+        </div>}
 
         <div
-          
+
           className={styles["monthly-subscription__course-card__promo-code"]}
         >
           <span>هل لديك كوبون خصم؟</span>
           <span> ادخل الكوبون </span>
         </div>
       </div>
-            
-        </>
-    )
+
+
+      <div className={styles["monthly-subscription__sticky-top-course-card"]} id="sub-sticky-top-course-card">
+        <div className={styles["monthly-subscription__sticky-top-course-card__course-details-box"]}>
+
+          <div className={styles["monthly-subscription__sticky-top-course-card__course-img"]}>
+            <img src={courseDetails.course_details?.image} alt="course image" />
+          </div>
+          <div className={styles["monthly-subscription__sticky-top-course-card__course-details"]}>
+            <div >{courseDetails.course_details?.title}</div>
+            <div >{courseDetails.course_details?.trainer.name_ar}</div>
+          </div>
+        </div>
+        <div className={styles["monthly-subscription__sticky-top-course-card__checkout-box"]}>
+          {/* <div >
+            <div className={styles["monthly-subscription__course-card__price-box"]}>
+              <span
+                className={
+                  styles["monthly-subscription__course-card__price-box__price"]
+                }
+              >
+                {courseDetails.course_details?.price}
+              </span>
+              <span
+                className={
+                  styles["monthly-subscription__course-card__price-box__currency"]
+                }
+              >
+                {courseDetails.course_details?.currency_code}
+              </span>
+            </div>
+            {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
+              <div className={styles["monthly-subscription__course-card__old-price-box"]}>
+                <div
+                  className={
+                    styles[
+                    "monthly-subscription__course-card__old-price-box--line-through"
+                    ]
+                  }
+                >
+                  <span
+                    className={
+                      styles["monthly-subscription__course-card__old-price-box__price"]
+                    }
+                  >
+                    {courseDetails.course_details?.discounted_price}
+                  </span>
+                  <span
+                    className={
+                      styles["monthly-subscription__course-card__old-price-box__currency"]
+                    }
+                  >
+                    {" "}
+                    {courseDetails.course_details?.currency_code}{" "}
+                  </span>
+                </div>
+                <span
+                  className={
+                    styles["monthly-subscription__course-card__old-price-box__discount"]
+                  }
+                >
+                  {" "}
+                  (خصم {Math.ceil(100 - ((courseDetails.course_details?.discounted_price / courseDetails.course_details?.price) * 100))}%){" "}
+                </span>
+              </div>}
+          </div> */}
+          <div className={styles["monthly-subscription__course-card__actions-btns"]}
+          >
+            <Button onClick={()=>{handleCartActionBtn(courseDetails?.course_details)}}
+              className={
+                styles[
+                "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
+                ]
+              }
+            >
+              <CartIcon color={"#fff"} />
+              <span>امتلك هذه الدورة</span>
+            </Button>
+            <Button
+              className={
+                styles["monthly-subscription__course-card__actions-btns__fav-btn"]
+              }
+            >
+              <FavouriteIcon color={"#222"} />
+            </Button>
+            <Button
+              className={
+                styles["monthly-subscription__course-card__actions-btns__share-btn"]
+              }
+            >
+              <ShareIcon />
+
+            </Button>
+          </div>
+
+        </div>
+
+      </div>
+    </>
+  )
 }

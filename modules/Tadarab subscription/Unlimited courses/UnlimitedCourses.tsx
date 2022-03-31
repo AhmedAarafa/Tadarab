@@ -3,26 +3,46 @@ import React from 'react';
 import styles from "./unlimited-courses.module.css";
 import { Row,Col,Form,Button } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
+import Router, { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";   
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
 export default function UnlimitedCourses() {
+
+  const dispatch = useDispatch();
+  const Router = useRouter();
+
+  const handleSubscriptionBtn = () => {
+    dispatch(setCheckoutType("subscription"));
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+  }
+
   return (
       <Row className={styles["unlimited-courses"]}>
           <Col xs={12}>
 
+              <div className={styles["unlimited-courses__logo"]}>
+                <img src="/images/TadarabUnlimited.png" alt="TadarabUnlimited" />
+              </div>
+
               <div className={styles["unlimited-courses__title"]}>
                   <div>
-                    دورات تدريبية 
-                    <span>
-                    بلا حدود 
-                    </span>
-
-                  </div>
-                  <div>
-                      من أفضل المدربين العرب       
+                    تعلم مهارات جديدة كل يوم بلا حدود جميع الدورات التدريبية باشتراك شهري واحد.     
                   </div>
               </div>
+              <Button onClick={()=>{handleSubscriptionBtn()}} className={styles["unlimited-courses__subscribe-btn"]}  id="monthly-subscribe-btn"
+              >
+              <span className={styles["monthly-subscription__subscribe-btn-box__btn__monthly-subscribe"]}>
+              جرب تدرب بلا حدود مجاناَ
+              </span>  
+          
+
+              </Button>
+              <div className={styles["unlimited-courses__exp-days"]}>
+              ٧  أيام تجربة مجانية ثم ٩ دك شهرياَ 
+              </div>
               
-              <div className={styles["unlimited-courses__brief"]}>
+              {/* <div className={styles["unlimited-courses__brief"]}>
               تدرب الآن من اي مكان وفي اي وقت
               </div>
 
@@ -45,7 +65,7 @@ export default function UnlimitedCourses() {
               قيمة الاشتراك
               <span>100</span>
               دك/شهرياً
-              </div>
+              </div> */}
 
           </Col>
           {/* <Col xs={12} sm={6}>

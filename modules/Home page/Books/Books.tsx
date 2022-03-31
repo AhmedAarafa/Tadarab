@@ -32,9 +32,9 @@ export default function Books() {
       // }
     }, [homePageData]);
 
-    useEffect(() => {
-      console.log("Books Comp. in viewport");
-    }, []);
+    // useEffect(() => {
+    //   console.log("Books Comp. in viewport");
+    // }, []);
 
 
   return (

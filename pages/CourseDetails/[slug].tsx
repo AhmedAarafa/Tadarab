@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "styles/course-details.module.css";
 import Navbar from "common/Navbar/Navbar";
+import Footer from "common/Footer/Footer";
 import CourseCard from "modules/Course details/Course card/CourseCard";
 import CourseAdvertisement from "modules/Course details/Course Advertisement/CourseAdvertisement";
 import WhatYouWillLearn from "modules/Course details/What you will learn/WhatYouWillLearn";
@@ -33,6 +34,7 @@ import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents"
 import { useRouter } from 'next/router';
 import { Course } from "_models/Course";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
+// import TPlayer from "TPlayer/TPlayer";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -88,7 +90,7 @@ function CourseDetails() {
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
         let addToCartBtn:any = null;
-     addToCartBtn = document.getElementById("add-to-cart-btn");
+     addToCartBtn = document.getElementById("monthly-subscribe-btn");
 
      if(addToCartBtn){
 
@@ -142,7 +144,7 @@ function CourseDetails() {
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
         let addToCartBtn:any = null;
-        addToCartBtn = document.getElementById("add-to-cart-btn");
+        addToCartBtn = document.getElementById("monthly-subscribe-btn");
 
         if(addToCartBtn){
 
@@ -205,7 +207,7 @@ function CourseDetails() {
                 id:data.id,
                 price:data.discounted_price_usd,
                 brand:"Tadarab",
-                category:data.categories[0].title,
+                category: data.categories && data.categories[0].title,
                 variant:"Single Course"
               }],
                 list:referrer
@@ -245,7 +247,7 @@ function CourseDetails() {
         <Col xs={12} sm={8}>
           <CourseAdvertisement />
           {originalCardPlacement == false && 
-          <CourseCard />
+          <MonthlySubscriptionCard />
            }
           <WhatYouWillLearn />
           <CourseDetailsSection />
@@ -261,7 +263,7 @@ function CourseDetails() {
         {
           originalCardPlacement == true &&
         <Col xs={colFullWidth ? 12 : 4} id="card-column">
-         {  originalCardPlacement == true &&  <CourseCard />}
+         {  originalCardPlacement == true &&  <MonthlySubscriptionCard />}
         </Col>
         }
         <PracticalProjects /> 
@@ -279,6 +281,7 @@ function CourseDetails() {
         <CommentsSection />
       </Row>
       {/* <MyCourse/> */}
+      <Footer/>
     </Container>
 
     </>

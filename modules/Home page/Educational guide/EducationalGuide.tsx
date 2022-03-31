@@ -2,6 +2,8 @@
 import React from "react";
 import styles from "./educational-guide.module.css";
 import { Row, Col, Button } from "react-bootstrap";
+import Router from "next/router";
+
 
 export default function EducationalGuide() {
   return (
@@ -20,7 +22,7 @@ export default function EducationalGuide() {
               <div className={styles["educational-guide__container__details-box__breif"]}>
               نظام دعم فني شخصي لكل متدرب لضمان نجاح كل جانب من جوانب تجربة تعلمك علي تدرب لرد علي استفساراتك
               </div>
-              <Button className={styles["educational-guide__container__details-box__btn"]}>
+              <Button onClick={()=>{Router.push("https://api.whatsapp.com/send?phone=96550364308")}} className={styles["educational-guide__container__details-box__btn"]}>
               تواصل معنا
               </Button>
             </div>

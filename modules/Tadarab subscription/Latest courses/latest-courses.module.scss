@@ -232,6 +232,7 @@
         width: 2.5rem;
         height: 2.5rem;
         margin-left: 0.6rem;
+        cursor: pointer;
     }
 }
 
@@ -258,6 +259,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 9.688rem;
+    cursor: pointer;
 
 }
 
@@ -365,7 +367,7 @@
 }
 
 .latest-courses__popover-container__what-you-will-learn {
-    @include flex(center);
+    @include flex(flex-start,flex-start);
     margin-top: 0.5rem;
 
 

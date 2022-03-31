@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 import React, {useState, useEffect} from "react";
@@ -24,7 +25,7 @@ import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
-
+import Link from "next/link";
 interface SignUpFormValues {
   name: string;
   email:string;
@@ -177,9 +178,8 @@ export default function SignupPage() {
               console.log("Response",response);
               if(JSON.stringify(response.status).startsWith("2")){
                 let customData = {email: values.email, phone: values.phoneNumber};
-                FBPixelEventsHandler(response.data.fb_tracking_events,customData).then(()=>{
+                FBPixelEventsHandler(response.data.fb_tracking_events,customData);
               Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`);
-            })
 
                 
               }else {
@@ -363,7 +363,9 @@ export default function SignupPage() {
 
                               <div className={styles["register__register-box__registeration-form-box__do-you-have-acc"]}>
                                   <span> لديك حساب عندنا؟ </span>
-                                  <span> تسجيل الدخول </span>
+                                  <Link href="/signin">
+                                   <span> تسجيل الدخول </span>
+                                  </Link>
                               </div>
 
               </Form>

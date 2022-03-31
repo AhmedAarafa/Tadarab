@@ -1,15 +1,15 @@
 export const stickyCardHandler = () => {
-    let isExist = 0;
+    // let isExist = 0;
     // to get elements concerned to be changed in the full width sticky view
-    const stickyCard: any = document.getElementById("sticky-card");
+    // const stickyCard: any = document.getElementById("sticky-card");
     const projectsSection: any = document.getElementById("practical-projects-section");
     const navbar: any = document.getElementById("nav");
-    const title: any = document.getElementById("course-card__title");
-    const guaranteeBox: any = document.getElementById("course-card__guarantee-card");
-    const detailsList: any = document.getElementById("course-card__details-list");
-    const promoCode: any = document.getElementById("course-card__promo-code");
-    const actionBtns: any = document.getElementById("course-card__action-btns");
-    const pricesBox:any =document.getElementById("course-card__prices-box");
+    // const title: any = document.getElementById("course-card__title");
+    // const guaranteeBox: any = document.getElementById("course-card__guarantee-card");
+    // const detailsList: any = document.getElementById("course-card__details-list");
+    // const promoCode: any = document.getElementById("course-card__promo-code");
+    // const actionBtns: any = document.getElementById("course-card__action-btns");
+    // const pricesBox:any =document.getElementById("course-card__prices-box");
     // to get HTML font size related to the width of the window
     const rootFontSize = parseFloat(
         window

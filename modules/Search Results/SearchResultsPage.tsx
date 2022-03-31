@@ -12,6 +12,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter } from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents"
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function SearchResultsPage() {
   const [searchResults, setSearchResults] = useState<any>([]);
@@ -35,6 +36,7 @@ export default function SearchResultsPage() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
       const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
@@ -307,7 +309,7 @@ const handlePageClick = (pgNo:any)=>{
                                                         className={styles["search-results__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                                         {
                                                             course.is_in_favorites ?
-                                                                <AddedToFavouriteIcon />
+                                                                <AddedToFavouriteIcon color="af151f"/>
                                                                 :
                                                                 <FavouriteIcon color="#222" />
                                                         }
