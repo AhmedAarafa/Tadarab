@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from 'react-player';
 import useResize from 'custom hooks/useResize';
 import TadarabVideoPlayer from "common/TPlayer/TPlayer"; 
-import "video.js/dist/video-js.css";
+// import "video.js/dist/video-js.css";
 
 
 export default function CourseAdvertisement() {
