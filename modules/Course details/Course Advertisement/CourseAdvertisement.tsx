@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import styles from "./course-advertisement.module.css";
 import { useDispatch, useSelector } from "react-redux";
 // import videojs from  "node_modules/videojs-playlist/dist/videojs-playlist.js";
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
 import useResize from 'custom hooks/useResize';
 import TadarabVideoPlayer from "common/TPlayer/TPlayer"; 
 // import "video.js/dist/video-js.css";
