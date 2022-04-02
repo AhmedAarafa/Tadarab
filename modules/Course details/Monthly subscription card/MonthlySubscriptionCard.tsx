@@ -79,7 +79,7 @@ export default function MonthlySubscriptionCard() {
           className={styles["monthly-subscription__course-card__title"]}
         >
           <div>
-            <span> جرب تدرب    </span>
+            <span> اشترك في تدرب    </span>
             <span>
               بلا حدود
             </span>
@@ -367,7 +367,7 @@ export default function MonthlySubscriptionCard() {
               styles["monthly-subscription__course-card__details-list__item"]
             }
           >
-            <svg
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width="1.25rem"
               height="1.25rem"
@@ -400,7 +400,7 @@ export default function MonthlySubscriptionCard() {
                 </g>
               </g>
             </svg>
-            <span>امتلاك الدورة مدى الحياة</span>
+            <span>امتلاك الدورة مدى الحياة</span> */}
           </div>
           <div
             className={

@@ -566,7 +566,7 @@ input,
 
 .loading-indicator:before {
   content: '';
-  background: #000000dc;
+  background: #d3d3d3;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -576,13 +576,13 @@ input,
 }
 
 .loading-indicator:after {
-  content: '...Loading';
+  content: 'جاري التحميل...';
   position: fixed;
   width: 100%;
   top: 50%;
   left: 0;
   z-index: 1001;
-  color:white;
+  color:black;
   text-align:center;
   font-weight:bold;
   font-size:1.5rem;        
@@ -1227,6 +1227,11 @@ input:-webkit-autofill:active{
   
   }
 }
+
+.navbar-nav{
+  align-items:center !important;
+}
+
 @media (max-width:565px) {
   html {
     font-size: 59%;

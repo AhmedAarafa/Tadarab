@@ -255,6 +255,10 @@
   color: var(--dark-black);
   text-align: center;
   margin: 1rem 0 0 0;
+}
+
+.sign-in__sign-in-box__sign-in-form-box__forget-password a:hover {
+  color: var(--dark-black) !important;
   cursor: pointer;
 }
 

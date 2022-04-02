@@ -1,7 +1,9 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./how-to-learn-on-tadarab.module.css";
+import Link from "next/link";
 
 export default function HowToLearnOnTadarab() {
     return (
@@ -27,10 +29,11 @@ export default function HowToLearnOnTadarab() {
                         <div>
                             أكتسب المهارات والعلم عن طريق الفديوهات التدريبية والتمارين والاختبارات المرفقة مع كل دورة بكل حرية أكتسب المهارات والعلم عن طريق الفديوهات التدريبية والتمارين والاختبارات المرفقة
                         </div>
-
-                        <Button>
-                        ابدأ التعلم الآن
-                        </Button>
+                        <Link href="/courses?filter_type=all">
+                            <Button>
+                            ابدأ التعلم الآن
+                            </Button>
+                        </Link>
                     </div>
                 </Col>
             </Row>

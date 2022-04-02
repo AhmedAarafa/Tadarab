@@ -115,18 +115,7 @@ useEffect(() => {
             setIsTransactionSucceeded(false);
         }
         
-        if(Router.query && Router.query.checkout_type == "subscription"){
-            console.log("onInit if");
-            dispatch(setCheckoutType("subscription"));
-            // Router.replace("/checkout/payment/?checkout_type=subscription");
-            setStep("payment-types");
-        }
-        else{
-            console.log("onInit else");
-            setStep("added-courses");
-            dispatch(setCheckoutType("cart"));
-            // Router.replace("/checkout/payment");
-        }
+       
 
         // if(checkoutType == "subscription"){
         //     setStep("payment-types");
@@ -338,24 +327,9 @@ useEffect(() => {
           break;
         case "payment-types":
           setStep("payment-types");
-          if(Router.query && Router.query.checkout_type == "subscription"){
-              console.log("onInit click event if");
-            dispatch(setCheckoutType("subscription"));
-              
-              Router.replace("/checkout/payment/?checkout_type=subscription");
-            }
-            else{
-            dispatch(setCheckoutType("cart"));
-                console.log("onInit click event else");
-              Router.replace("/checkout/payment");
-          }
           break;
         case "begin-learning":
           setStep("begin-learning");
-          isTransactionSucceeded ?
-          Router.replace("/checkout/success")
-          :
-          Router.replace("/checkout/failed");
           break;
         default:
           break;
@@ -380,7 +354,7 @@ useEffect(() => {
 
   useEffect(() => {
     
-    if(Router.query && Router.query.checkout_type == "subscription"){
+    if(router.query && router.query.checkout_type == "subscription"){
         console.log("dispatch useEffect if");
         dispatch(setCheckoutType("subscription"));
         // Router.replace("/checkout/payment/?checkout_type=subscription");
@@ -393,20 +367,9 @@ useEffect(() => {
         // Router.replace("/checkout/payment");
 
     }
-  }, [dispatch,Router.query]);
+  }, [dispatch,router.query]);
 
 
-//   useEffect(() => {
-    
-//     if(checkoutType == "subscription"){
-//         console.log("switch4");
-//         Router.replace("/checkout/payment/?checkout_type=subscription");
-//     }
-//     else{
-//         console.log("switch else4");
-//         Router.replace("/checkout/payment");
-//     }
-//   }, [checkoutType])
   
 
   useEffect(() => {
@@ -461,7 +424,17 @@ useEffect(() => {
             firstStepBox ? firstStepBox.innerHTML = '1' : null;
             secondStepBox.innerHTML = `${checkoutType == "subscription" ? "1" : "2"}`;
             thirdStepBox.innerHTML = `${checkoutType == "subscription" ? "2" : "3"}`;
-            Router.replace("/checkout");
+            // Router.replace("/checkout");
+             if(Router.query && Router.query.checkout_type == "subscription"){
+                    console.log("2switch2");
+                    dispatch(setCheckoutType("subscription"));
+                    Router.replace("/checkout/payment/?checkout_type=subscription");
+                }
+                else{
+                    console.log("switch 2 else2");
+                    dispatch(setCheckoutType("cart"));
+                    Router.replace("/checkout");
+                }
             console.log("2");
             
 
@@ -1539,10 +1512,12 @@ const onError = (data:any,actions:any)=>{
 
                 </div>
                 }
-
+ 
                 {step == "added-courses" &&  <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                     <span>
+                    <Link href="/courses?filter_type=all">
                     اكمل البحث عن دورات أخرى
+                    </Link>
                     </span>
                     <ArrowLeftIcon color="#af151f"/>
 
@@ -2079,7 +2054,9 @@ const onError = (data:any,actions:any)=>{
 
                 { step == "added-courses" &&  <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                     <span>
+                    <Link href="/courses?filter_type=all">
                     اكمل البحث عن دورات أخرى
+                    </Link>
                     </span>
                     <ArrowLeftIcon color="#af151f"/>
 

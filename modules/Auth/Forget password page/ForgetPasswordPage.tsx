@@ -124,7 +124,7 @@ interface ForgetPasswordFormValues {
 
             </Col>
             <Col xs={{span:12 , order:1}} sm={{span:5 , order:2}} className={styles["forget-password__img"]}>
-                <img src="/images/forget password.png" alt="forget password" />
+                <img src="/images/foregetPassword.png" alt="نسيت كلمة المرور" />
             </Col>
 
         </Row>

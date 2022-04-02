@@ -227,7 +227,9 @@ export default function SignInPage() {
                   { validationAfterSubmit.password &&  <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
                   
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__forget-password"]}>
-                  هل نسيت كلمة المرور؟
+                    <Link href="/forgetpassword">
+                     هل نسيت كلمة المرور؟
+                    </Link>
                   </div>
 
                   <div className="position-relative">

@@ -8,15 +8,17 @@ import { SendIcon, LikeIcon,CommentIcon } from "common/Icons/Icons";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";  
 
-export default function CommentsSection() {
+export default function CommentsSection(props:{id:string}) {
     const [courseComments, setCourseComments] = useState<any>([]);
     const [replyTo, setReplyTo] = useState(0);
     const [isCommentTextAreaEmpty, setIsCommentTextAreaEmpty] = useState(true);
     const userStatus = useSelector((state:any) => state.userAuthentication);
 
     useEffect(() => {
-        axiosInstance
-        .get(`courses/1540/comments`)
+        
+      if(props.id && props.id !== ""){
+           axiosInstance
+        .get(`courses/${props.id}/comments`)
         .then(function (response:any) {
             setCourseComments(response.data.data);
             
@@ -75,6 +77,7 @@ export default function CommentsSection() {
         .catch(function (error) { 
         console.log(error); 
         });
+    }
 
 
         return () => {
@@ -82,7 +85,7 @@ export default function CommentsSection() {
                 null;
             })
           }
-    }, [])
+    }, [props])
     
 
     const handleLikes = (commentId:number)=>{
@@ -321,7 +324,7 @@ export default function CommentsSection() {
             <div id="tree-box-container" className={styles["comments-section__comments-tree"]}>
 
                 {
-                    courseComments.filter((comm:any) => {
+                    courseComments?.filter((comm:any) => {
                         return comm.reply_to_comment_id == 0
                       }).map((comment:any,i:number)=>{
                         return(

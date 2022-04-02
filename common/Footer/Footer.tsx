@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./footer.module.css";
 import  {ChevronLeftIcon,DownloadIcon,FacebookIcon,YoutubeIcon,InstagramIcon,TwitterIcon}  from "common/Icons/Icons";
+import Link from "next/link";
 
 export default function FooterSection() {
   return(
@@ -11,7 +13,7 @@ export default function FooterSection() {
 
    <Row className={styles["footer"]}>
 
-     <Col xs={{span:12,order:4}} sm={{span:5,order:1}}>
+     <Col xs={{span:12,order:3}} sm={{span:6,order:1}}>
           <div  className={styles[ "footer__inquiries-box"]}>
             <div  className={ styles[ "footer__inquiries-box__trainer-img"]}>
               <img src="/images/Alaa.HEIC" alt="trainer image" />
@@ -49,20 +51,38 @@ export default function FooterSection() {
            <Button className={styles["footer__send-btn"]}>ارسل الآن</Button>
           </div>
      </Col>
-     <Col xs={{span:12,order:2}} sm={{span:2,order:2}}>
+     <Col xs={{span:12,order:2}} sm={{span:3,order:2}}>
        <ul className={styles["footer__training-courses-list"]}>
-         <li>الدورات التدريبية</li>
+        <Link href="/courses?filter_type=all">
+          <li>دورات تدريبية</li>
+        </Link>
+        <Link href="/courses?filter_type=best-seller">
          <li>الأكثر مبيعاً</li>
-         <li>العروض</li>
+        </Link>
+        <Link href="/courses?filter_type=latest">
          <li>أحدث الدورات</li>
-         <li>الفنون</li>
-         <li>الصحة</li>
-         <li>التدريب</li>
-         <li>الإستشارات</li>
-         <li>المدربين</li>
+        </Link>
+         {/* <li>العروض</li> */}
+         <Link href="/topic/family-2">
+          <li>الاسرة</li>
+          </Link>
+          <Link href="/topic/talents">
+          <li>فن وهوايات</li>
+          </Link>
+          <Link href="/topic/health">
+          <li>الصحة</li>
+          </Link>
+          <Link href="/topic/technology">
+          <li>تكنولوجيا</li>
+          </Link>
+          <Link href="/topic/business">
+          <li>ريادة الأعمال</li>
+          </Link>
+         {/* <li>الإستشارات</li> */}
+         {/* <li>المدربين</li> */}
        </ul>
      </Col>
-     <Col xs={{span:12,order:3}} sm={{span:2,order:3}}>
+     {/* <Col xs={{span:12,order:3}} sm={{span:2,order:3}}>
        <ul className={styles["footer__about-tadarab-list"]}>
          <li>عن تدرب</li>
          <li>من نحن؟</li>
@@ -74,7 +94,7 @@ export default function FooterSection() {
          <li>تواصل معانا</li>
          <li>الأخبار</li>
        </ul>
-     </Col>
+     </Col> */}
      <Col xs={{span:12,order:1}} sm={{span:3,order:4}}>
        <div className={styles["footer__communications-box"]}>
 

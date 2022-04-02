@@ -28,6 +28,7 @@ export default function CourseRequirements() {
                     {courseDetails.course_details?.level == 1 && "مستوى مبتدئ" }
                     {courseDetails.course_details?.level == 2 && "مستوى متوسط" }
                     {courseDetails.course_details?.level == 3 && "مستوى محترف" }
+                    {courseDetails.course_details?.level == 4 && "كل المستويات" }
                 </span>
 
             </div>

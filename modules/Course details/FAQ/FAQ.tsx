@@ -22,6 +22,7 @@ export default function FAQ() {
 
   const contactUsHandler = ()=>{
     const contactUsForm:any = document.getElementById("contact-us-form");
+    window.scrollTo({top: 10000000000000 , behavior: "smooth"});
     contactUsForm.focus();
     contactUsForm.select();
   }

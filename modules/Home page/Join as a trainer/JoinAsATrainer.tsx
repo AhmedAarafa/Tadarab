@@ -1,6 +1,9 @@
+/* eslint-disable @next/next/link-passhref */
 import React from 'react'
 import styles from "./join-as-a-trainer.module.css";
 import { Row, Col, Button } from "react-bootstrap";
+import Link from "next/link";
+
 
 export default function JoinAsATrainer() {
     return (
@@ -15,9 +18,12 @@ export default function JoinAsATrainer() {
                     <div className={styles["join-as-a-trainer__para"]}>
                     منصة تدرب هي الخيار الأمثل للاستفادة من أفضل المدربين والخبراء في الوطن العربي
                         </div>
-                    <Button className={styles["join-as-a-trainer__btn"]}>
-                    انضم إلينا الآن
-                    </Button> 
+                        <Link href="/joinusasatrainer">
+                            <Button className={styles["join-as-a-trainer__btn"]}>
+                                    انضم إلينا الآن 
+
+                            </Button> 
+                        </Link>
                 </Col>
             </Row>
         </>

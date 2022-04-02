@@ -39,6 +39,7 @@ import TPlayer from "common/TPlayer/TPlayer";
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
+  const [courseId, setCourseId] = useState("");
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state:any) => state.homePageData);
   const Router = useRouter();
@@ -178,6 +179,7 @@ function CourseDetails() {
       .get(`courses/${slug}/?country_code=${localStorage.getItem("countryCode")}`)
       .then(function (response:any) {
         const data:Course = response?.data?.data ;
+        setCourseId(response?.data?.data?.course_details.id)
                 
           dispatch(setCourseDetailsData(data));
   
@@ -278,7 +280,7 @@ function CourseDetails() {
         <TadarabBusiness />
       </Row>
       <Row className={styles["course-details__comments-section"]}>
-        <CommentsSection />
+        <CommentsSection id={courseId}/>
       </Row>
       {/* <MyCourse/> */}
       <Footer/>

@@ -178,6 +178,7 @@ function LatestCourses() {
                     relatedWrapper.style.cssText=`left: 100% ;
                      top: -${((element.offsetHeight - relatedWrapper.offsetHeight)/2)}px`;
                   }
+                  relatedPopover.classList.remove(styles["latest-courses__popover-container--left"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
                 } else if (cardRightBoundary < cardLeftBoundary) {
                   
@@ -193,6 +194,7 @@ function LatestCourses() {
                   }
                    
                   relatedPopover.style.cssText=`left: 0%;`;
+                  relatedPopover.classList.remove(styles["latest-courses__popover-container--right"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--left"]);
                 }
         }
@@ -293,7 +295,8 @@ function LatestCourses() {
                       list: "homepage",
                       position: i+1
                     })} 
-                    onClick={()=>{GAProductClickEventHandler(course,i)}} onMouseMove={()=>{
+                    onClick={()=>{GAProductClickEventHandler(course,i)}} 
+                    onMouseMove={()=>{
                         handleZindex("low");
                         handlePlacement();
                       }} onMouseOut={()=>{handleZindex("high")}}
@@ -356,7 +359,7 @@ function LatestCourses() {
                         >
                           ماذا ستتعلم في الدورة؟
                         </div>
-                        { course?.key_points?.slice(0,6).map((kp:string,i:number)=>{
+                        { course?.key_points?.slice(0,5).map((kp:string,i:number)=>{
                           return(
                         <div key={i}
                           className={
@@ -371,7 +374,7 @@ function LatestCourses() {
                           </div>
 
 
-                          <span>{kp}</span>
+                          <span title={kp}>{kp}</span>
                         </div>
 
                           )
@@ -381,7 +384,7 @@ function LatestCourses() {
                       </div>
                       
                           {
-                          course.key_points?.length > 6 ?
+                          course.key_points?.length > 5 ?
                           <Link href={`/course/${course.slug}`}>
 
                             <div className={styles["latest-courses__show-more-link"]}>

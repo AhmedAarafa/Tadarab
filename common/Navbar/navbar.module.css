@@ -207,7 +207,7 @@
   width: 2.75rem;
   height: 2.75rem;
   margin: 0 1.0625rem 0 0;
-  display: none;
+  display: none !important;
 }
 
 .navbar__dark-mode-icon svg {
@@ -347,6 +347,9 @@
           align-items: center;
   position: relative;
   cursor: pointer;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
 .navbar__cart-icon-container svg {
@@ -416,9 +419,12 @@
   list-style-type: none;
   font-size: 1rem;
   font-weight: 700;
-  padding: 1.5rem 0 1rem 4.375rem;
+  padding: 1.5rem 0 0rem 4.375rem;
   margin-right: 2rem;
-  height: 80%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-bottom: 0 !important;
 }
 
 .navbar__discover-popover__list > li {

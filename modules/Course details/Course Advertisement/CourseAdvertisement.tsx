@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactPlayer from 'react-player';
 import useResize from 'custom hooks/useResize';
 import TadarabVideoPlayer from "common/TPlayer/TPlayer"; 
-import "video.js/dist/video-js.css";
+// import "video.js/dist/video-js.css";
 
 
 export default function CourseAdvertisement() {
@@ -208,7 +208,7 @@ export default function CourseAdvertisement() {
                     styles["course-ad__details-list__item"]
                   }
                 >
-                  <svg
+                  {/* <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="1.25rem"
                     height="1.25rem"
@@ -241,7 +241,7 @@ export default function CourseAdvertisement() {
                       </g>
                     </g>
                   </svg>
-                  <span>امتلاك الدورة مدى الحياة</span>
+                  <span>امتلاك الدورة مدى الحياة</span> */}
                 </div>
                 <div
                   className={

@@ -226,6 +226,9 @@
 
 
 @media (max-width:575px) {
+    .footer__name-email-fields-box{
+        width: 100%;
+    }
     .footer {
         padding: 9rem 3rem 30rem 3rem;
     }
@@ -292,7 +295,7 @@
         height: 5.5rem;
         font-size: 1.8rem;
         border-radius: 1.3rem;
-        margin: 0 0 1.875rem 0;
+        margin: 0 0 1.875rem 0.75rem;
 
         &:active,
         &:focus {

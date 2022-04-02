@@ -62,7 +62,7 @@ export default function WhyTadarab() {
                 </div>
                
             </Col>
-            <Col xs={12}>
+            {/* <Col xs={12}>
                 <div className={styles["tadarab-for-companies"]}>
 
                     <div>
@@ -81,7 +81,7 @@ export default function WhyTadarab() {
                     </div>
                     
                 </div> 
-            </Col>
+            </Col> */}
         </Row>
             
         </>

@@ -331,31 +331,61 @@ const searchBoxToggler = (action:any) =>{
               </Offcanvas.Header>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
-                <li>تنمية بشرية</li>
-                <li>تربية الأطفال</li>
-                <li>فنون</li>
-                <li>حياة</li>
-                <li>بيزنس</li>
-                <li>تنمية بشرية</li>
-                <li>تربية الأطفال</li>
-                <li>فنون</li>
-                <li>حياة</li>
+                <Link href="/topic/family-2">
+                      <li>الاسرة</li>
+                      </Link>
+                      <Link href="/topic/self-development">
+                      <li>التنمية الذاتية</li>
+                      </Link>
+                      <Link href="/topic/health">
+                      <li>الصحة</li>
+                      </Link>
+                      <Link href="/topic/human-recourses">
+                      <li>الموارد البشرية</li>
+                      </Link>
+                      <Link href="/topic/office">
+                      <li>برامج الأوفيس</li>
+                      </Link>
+                      <Link href="/topic/family-and-educational-skills">
+                      <li>تربية الأبناء</li>
+                      </Link>
+                      <Link href="/topic/technology">
+                      <li>تكنولوجيا</li>
+                      </Link>
+                      <Link href="/topic/business">
+                      <li>ريادة الأعمال</li>
+                      </Link>
+                      <Link href="/topic/language-and-sciences">
+                      <li>علوم ولغات</li>
+                      </Link>
+                      <Link href="/topic/talents">
+                      <li>فن وهوايات</li>
+                      </Link>
+                      <Link href="/topic/home">
+                      <li>منزل</li>
+                      </Link>
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>الأقسام</div></div>
+                <Link href="/courses?filter_type=all">
+                  
                   <li>دورات تدريبية</li>
+                </Link>
+                <Link href="/courses?filter_type=live">
+
                   <li>دورات مباشرة</li>
-                  <li>الاستشارات</li>
+                </Link>
+                  {/* <li>الاستشارات</li>
                   <li>كتيبات وملخصات</li>
-                  <li>مقالات</li>
+                  <li>مقالات</li> */}
               </ul>
-              <ul className={styles["sidebar-list__discover-sidebar__list"]}>
+              {/* <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>أخري</div></div>
                   <li>عروض</li>
                   <li>المدربين</li>
                   <li>عن تدرب</li>
                   <li>تواصل معنا</li>
-              </ul>
+              </ul> */}
             </Offcanvas>
             <li className={styles["sidebar-list__item"]}>تدرب للشركات</li>
             <li className={styles["sidebar-list__item"]}>انضم كمدرب</li>
@@ -424,15 +454,39 @@ const searchBoxToggler = (action:any) =>{
                         التخصصات
                       </div>
                       <ul className={styles["navbar__discover-popover__list"]}>
-                        <li>تنمية بشرية</li>
-                        <li>تربية الأطفال</li>
-                        <li>فنون</li>
-                        <li>حياة</li>
-                        <li>بيزنس</li>
-                        <li>تنمية بشرية</li>
-                        <li>تربية الأطفال</li>
-                        <li>فنون</li>
-                        <li>حياة</li>
+                      <Link href="/topic/family-2">
+                      <li>الاسرة</li>
+                      </Link>
+                      <Link href="/topic/self-development">
+                      <li>التنمية الذاتية</li>
+                      </Link>
+                      <Link href="/topic/health">
+                      <li>الصحة</li>
+                      </Link>
+                      <Link href="/topic/human-recourses">
+                      <li>الموارد البشرية</li>
+                      </Link>
+                      <Link href="/topic/office">
+                      <li>برامج الأوفيس</li>
+                      </Link>
+                      <Link href="/topic/family-and-educational-skills">
+                      <li>تربية الأبناء</li>
+                      </Link>
+                      <Link href="/topic/technology">
+                      <li>تكنولوجيا</li>
+                      </Link>
+                      <Link href="/topic/business">
+                      <li>ريادة الأعمال</li>
+                      </Link>
+                      <Link href="/topic/language-and-sciences">
+                      <li>علوم ولغات</li>
+                      </Link>
+                      <Link href="/topic/talents">
+                      <li>فن وهوايات</li>
+                      </Link>
+                      <Link href="/topic/home">
+                      <li>منزل</li>
+                      </Link>
                       </ul>
                     </div>
                     <div className={styles["navbar__discover-popover__box"]}>
@@ -440,14 +494,20 @@ const searchBoxToggler = (action:any) =>{
                       الأقسام
                       </div>
                       <ul className={styles["navbar__discover-popover__list"]}>
-                          <li>دورات تدريبية</li>
-                          <li>دورات مباشرة</li>
-                          <li>الاستشارات</li>
+                      <Link href="/courses?filter_type=all">
+                        
+                        <li>دورات تدريبية</li>
+                      </Link>
+                      <Link href="/courses?filter_type=live">
+
+                        <li>دورات مباشرة</li>
+                      </Link>
+                          {/* <li>الاستشارات</li>
                           <li>كتيبات وملخصات</li>
-                          <li>مقالات</li>
+                          <li>مقالات</li> */}
                       </ul>
                     </div>
-                    <div className={styles["navbar__discover-popover__box"]}>
+                    {/* <div className={styles["navbar__discover-popover__box"]}>
                       <div className={styles["navbar__discover-popover__caption"]}>
                       أخري
                       </div>
@@ -457,7 +517,7 @@ const searchBoxToggler = (action:any) =>{
                           <li>عن تدرب</li>
                           <li>تواصل معنا</li>
                       </ul>
-                    </div>
+                    </div> */}
                   </div>
               </div>
 
