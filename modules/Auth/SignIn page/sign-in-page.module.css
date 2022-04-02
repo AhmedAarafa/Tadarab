@@ -1,7 +1,7 @@
 .sign-in__img img {
   width: 39rem;
   height: 24.75rem;
-  margin: 10.25rem 2.75rem 0 0;
+  margin: 7rem 2.75rem 0 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -10,9 +10,6 @@
 
 .sign-in__sign-in-box {
   padding: 6.313rem 12.5rem 0 0;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 }
 
 .sign-in__sign-in-box__title div:nth-of-type(1) {
@@ -37,6 +34,7 @@
       -ms-flex-pack: start;
           justify-content: flex-start;
   margin-top: 1.25rem;
+  display: none !important;
 }
 
 .sign-in__sign-in-box__sign-in-with div {
@@ -78,6 +76,7 @@
   text-align: center;
   margin: 1.5625rem 0 0 0;
   position: relative;
+  display: none !important;
 }
 
 .sign-in__sign-in-box__sign-in-with-email:before {

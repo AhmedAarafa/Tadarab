@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Navbar from "common/Navbar/Navbar";
 import { Container } from "react-bootstrap";
 import StartTraining from "modules/Join as a trainer/Start training/StartTraining";

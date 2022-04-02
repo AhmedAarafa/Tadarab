@@ -14,6 +14,26 @@ export default function HeroSection() {
     setSearchQuery(e.target.value);
   }
 
+  const sendSearchQueryOnEnterClicked = (e:any)=>{
+
+    if (e.key === 'Enter' || e.keyCode === 13 ) {
+      if(searchQuery == ""){
+        console.log("متخمش يسطا");
+      }else{
+        Router.push({
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
+          query: { q: searchQuery }
+        });
+        const searchBar:any = document.getElementById("search-field");
+        const responsiveSearchBar:any = document.getElementById("responsive-search-field");
+        searchBar.value = "";
+        searchBar.blur();
+        responsiveSearchBar.value = "";
+        responsiveSearchBar.blur();
+      }
+  }
+  }
+
   const sendSearchQuery = (tagsSearchQuery:{status:boolean,value:string})=>{
     if(tagsSearchQuery.status == true){
       
@@ -25,7 +45,7 @@ export default function HeroSection() {
     }else if(tagsSearchQuery.status == false){
 
       if(searchQuery == ""){
-        console.log("متخمش يسطا");
+        console.log("متخمش يسطا"); 
       }else{
         Router.push({
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
@@ -64,6 +84,7 @@ export default function HeroSection() {
                 <Form.Control
                 id="search-field"
                 onChange={()=> handleSearchBarEntries(event)}
+                onKeyUp={()=>{sendSearchQueryOnEnterClicked(event)}}
                   type="text"
                   placeholder="ماذا تريد أن تتعلم اليوم؟"
                   className={
@@ -101,11 +122,11 @@ export default function HeroSection() {
         </Col>
         <Col xs={{ span: 12, order: 'first' }}  sm={5} className={styles["hero-section__col"]}>
           <img
-            src="/images/AbdElAzeezElMosa.png"
+            src="/images/Final Graphics- colored.png"
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}
           />
-          {/* <video autoPlay src="/images/final.mp4"></video> */}
+          {/* <video autoPlay controls src="/images/final 22.mp4"></video> */}
         </Col>
 
         <Col xs={0} sm={12} className={styles["categories-cards-col"]}>

@@ -179,7 +179,10 @@ export default function SignupPage() {
               if(JSON.stringify(response.status).startsWith("2")){
                 let customData = {email: values.email, phone: values.phoneNumber};
                 FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-              Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`);
+                if(response.data.data !== null){
+                  localStorage.setItem("token" , response.data.data.token);
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                }
 
                 
               }else {

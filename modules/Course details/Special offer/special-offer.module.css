@@ -230,6 +230,7 @@
   -webkit-box-pack: unset;
       -ms-flex-pack: unset;
           justify-content: unset;
+  display: none;
 }
 
 .special-offer__cards-outer-box__card__rating-box span:nth-of-type(1) {

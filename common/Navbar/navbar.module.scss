@@ -26,7 +26,8 @@
     font-size: 1rem;
     margin-right: 0.6rem;
     background-color: white;
-    width: 28rem;
+    width: 31.75rem;
+    // width: 28rem;
     height: 3rem;
     @include flex(center);
 }
@@ -159,6 +160,7 @@
     width: 2.75rem;
     height: 2.75rem;
     margin: 0 1.0625rem 0 0;
+    display: none;
 
     svg {
         width: 1.5rem;
@@ -552,6 +554,7 @@
 .sidebar-list__dark-mode-box {
     @include flex(center, space-between);
     margin-top: 2.5rem;
+    display: none;
 
     span {
         font-size: 2.656rem;
@@ -840,7 +843,7 @@
     }
 
     .navbar__search-bar-container {
-        width: calc(100vw - 54.5rem);
+        width: calc(100vw - 50.75rem);
     }
 
     .navbar__purchased-course-nav{

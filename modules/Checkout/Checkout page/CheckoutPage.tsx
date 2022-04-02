@@ -115,10 +115,24 @@ useEffect(() => {
             setIsTransactionSucceeded(false);
         }
         
-        if(checkoutType == "subscription"){
+        if(Router.query && Router.query.checkout_type == "subscription"){
+            console.log("onInit if");
+            dispatch(setCheckoutType("subscription"));
+            // Router.replace("/checkout/payment/?checkout_type=subscription");
             setStep("payment-types");
-
         }
+        else{
+            console.log("onInit else");
+            setStep("added-courses");
+            dispatch(setCheckoutType("cart"));
+            // Router.replace("/checkout/payment");
+        }
+
+        // if(checkoutType == "subscription"){
+        //     setStep("payment-types");
+        // }else if(Router.query && Router.query.checkout_type == "subscription"){
+        //     setStep("payment-types");
+        // }
 
     if(document.documentElement.clientWidth <= 576){
     stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
@@ -319,10 +333,22 @@ useEffect(() => {
         case "added-courses":
           setStep("added-courses");
           Router.replace("/checkout");
+          console.log("1");
+          
           break;
         case "payment-types":
           setStep("payment-types");
-          Router.replace("/checkout/payment");
+          if(Router.query && Router.query.checkout_type == "subscription"){
+              console.log("onInit click event if");
+            dispatch(setCheckoutType("subscription"));
+              
+              Router.replace("/checkout/payment/?checkout_type=subscription");
+            }
+            else{
+            dispatch(setCheckoutType("cart"));
+                console.log("onInit click event else");
+              Router.replace("/checkout/payment");
+          }
           break;
         case "begin-learning":
           setStep("begin-learning");
@@ -353,6 +379,37 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
+    
+    if(Router.query && Router.query.checkout_type == "subscription"){
+        console.log("dispatch useEffect if");
+        dispatch(setCheckoutType("subscription"));
+        // Router.replace("/checkout/payment/?checkout_type=subscription");
+        setStep("payment-types");
+    }
+    else{
+        console.log("dispatch useEffect else");
+        setStep("added-courses");
+        dispatch(setCheckoutType("cart"));
+        // Router.replace("/checkout/payment");
+
+    }
+  }, [dispatch,Router.query]);
+
+
+//   useEffect(() => {
+    
+//     if(checkoutType == "subscription"){
+//         console.log("switch4");
+//         Router.replace("/checkout/payment/?checkout_type=subscription");
+//     }
+//     else{
+//         console.log("switch else4");
+//         Router.replace("/checkout/payment");
+//     }
+//   }, [checkoutType])
+  
+
+  useEffect(() => {
     if(transactionStatus.data == true){
         setStep("begin-learning");
         setIsTransactionSucceeded(true);
@@ -377,15 +434,9 @@ useEffect(() => {
           await  axiosInstance
             .get(`users/cart/?country_code=${localStorage.getItem("countryCode")}`)
             .then(function (response:any) {
-<<<<<<< HEAD
               setLocalStateCartItems(response?.data?.data.courses);
               FBPixelEventsHandler(response.data.fb_tracking_events,null);
 
-=======
-              setLocalStateCartItems(response?.data?.data);
-              FBPixelEventsHandler(response.data.fb_tracking_events,null);
-              
->>>>>>> 45a9251f6a252fedf313679ad8dac7f2ee404309
         })
         .catch(function (error) {
           console.log(error); 
@@ -411,6 +462,8 @@ useEffect(() => {
             secondStepBox.innerHTML = `${checkoutType == "subscription" ? "1" : "2"}`;
             thirdStepBox.innerHTML = `${checkoutType == "subscription" ? "2" : "3"}`;
             Router.replace("/checkout");
+            console.log("2");
+            
 
           break;
         case "payment-types":
@@ -434,13 +487,21 @@ useEffect(() => {
                 axiosInstance
                 .get("payments/settings",{ headers: {"X-Settings-Key" : `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG`} })
                 .then(function (response:any) {
-                    console.log("second step[");
                     setPaymentSettings(response?.data?.data);
                 })
                 .catch(function (error) {
                 console.log(error);
                 });
-                Router.replace("/checkout/payment");
+                // if(Router.query && Router.query.checkout_type == "subscription"){
+                //     console.log("switch2");
+                //     dispatch(setCheckoutType("subscription"));
+                //     Router.replace("/checkout/payment/?checkout_type=subscription");
+                // }
+                // else{
+                //     console.log("switch else2");
+                //     dispatch(setCheckoutType("cart"));
+                //     Router.replace("/checkout/payment");
+                // }
 
 
           break;
@@ -910,7 +971,9 @@ const onError = (data:any,actions:any)=>{
                     <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
                       
                      { !(paymentSettings == null) && !(paymentSettings == undefined) && 
-                    
+                    <>
+                    {console.log("paymentSettings",paymentSettings)
+                    }
                      <Frames 
                         config={{
                             debug: true,
@@ -921,6 +984,7 @@ const onError = (data:any,actions:any)=>{
                                 expiryYearPlaceholder: '(MM) شهر ',
                                 cvvPlaceholder: ' الرقم السري (CVV)',
                             },
+                            environment: 'sandbox',
                             style: {
                                 base: {
                                     fontSize: '1.2em',
@@ -969,33 +1033,37 @@ const onError = (data:any,actions:any)=>{
                             }
                             
                         }}
-                        cardSubmitted={() => {}}
-                        cardTokenized={(e:any) => {
-                        const localStorageItems:any = localStorage.getItem("cart_items");
-
-                            // alert(e.token);
-                            axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
-                              "action": "web",
-                              "checkout_token": e.token,
-                              "items": localStorageItems,
-                              "coupon_code": localStorage.getItem("coupon_code"),
-                              "payment_method":"visamaster",
-                              "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
-                            })
-                            .then((response:any) => {
-                              if(JSON.stringify(response.status).startsWith("2")){
-                                localStorage.setItem("successUrl" , response.data.data.success_url);
-                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                Router.push(response.data.data.redirect_url);
-                              }else{
-                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                              }
-                             
-                            })
-                            .catch((error:any)=>{
-                              console.log("error", error);
-                            })
+                        cardSubmitted={(e:any) => {
+                            console.log("DGFDDDFGDGDGFDGFDG:");
+                            console.log(e);
                         }}
+                        cardTokenized={(e:any) => {
+                        // const localStorageItems:any = localStorage.getItem("cart_items");
+
+                        //     console.log(e);
+                        //     axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                        //       "action": "web",
+                        //       "checkout_token": e.token,
+                        //       "items": localStorageItems,
+                        //       "coupon_code": localStorage.getItem("coupon_code"),
+                        //       "payment_method":"visamaster",
+                        //       "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                        //     })
+                        //     .then((response:any) => {
+                        //       if(JSON.stringify(response.status).startsWith("2")){
+                        //         localStorage.setItem("successUrl" , response.data.data.success_url);
+                        //         localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                        //         Router.push(response.data.data.redirect_url);
+                        //       }else{
+                        //         setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                        //       }
+                             
+                        //     })
+                        //     .catch((error:any)=>{
+                        //       console.log("error", error);
+                        //     })
+                        }
+                    }
                         cardTokenizationFailed={(e:any) => {
                             console.log("cardTokenizationFailed");
                             
@@ -1009,6 +1077,7 @@ const onError = (data:any,actions:any)=>{
                         <ExpiryDate />
                         <Cvv />
                     </Frames>
+                    </>
                     }
                     </div>
                 </div>
@@ -1257,6 +1326,31 @@ const onError = (data:any,actions:any)=>{
                      onClick={() => {
                         Frames.isCardValid() ?
                         Frames.submitCard().then(function(data:any) {
+
+                            const localStorageItems:any = localStorage.getItem("cart_items");
+                            console.log(data);
+                            alert(data.token);                          
+                            axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                              "action": "web",
+                              "checkout_token": data.token,
+                              "items": localStorageItems,
+                              "coupon_code": localStorage.getItem("coupon_code"),
+                              "payment_method":"visamaster",
+                              "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                            })
+                            .then((response:any) => {
+                              if(JSON.stringify(response.status).startsWith("2")){
+                                localStorage.setItem("successUrl" , response.data.data.success_url);
+                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                Router.push(response.data.data.redirect_url);
+                              }else{
+                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                              }
+                             
+                            })
+                            .catch((error:any)=>{
+                              console.log("error", error);
+                            })
                            let tadarabGA = new TadarabGA();
                            console.log(data);
                            tadarabGA.tadarab_fire_traking_GA_code('checkout_option',{label:data.scheme,option:"visamaster"})
@@ -1265,7 +1359,8 @@ const onError = (data:any,actions:any)=>{
                         null;
                     }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                        إتمام الشراء (VISA)
+                        {/* إتمام الشراء (VISA) */}
+                        إتمام الشراء
                     
                     </Button>}
 
@@ -1437,7 +1532,8 @@ const onError = (data:any,actions:any)=>{
                     {
                      paymentMethod == "KNET" &&  <Button  style={{pointerEvents:"none",opacity:"0.7"}}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                        إتمام الشراء (KNET)
+                        إتمام الشراء 
+                        {/* إتمام الشراء (KNET) */}
                     </Button>
                     }      
 
@@ -1751,15 +1847,40 @@ const onError = (data:any,actions:any)=>{
                     onClick={() => {
                         Frames.isCardValid() ?
                         Frames.submitCard().then(function(data:any) {
+
+                            const localStorageItems:any = localStorage.getItem("cart_items");
+                            console.log(data);
+                            alert(data.token);                          
+                            axiosInstance.post(`payments/payouts/?country_code=${localStorage.getItem("countryCode")}`, {
+                              "action": "web",
+                              "checkout_token": data.token,
+                              "items": localStorageItems,
+                              "coupon_code": localStorage.getItem("coupon_code"),
+                              "payment_method":"visamaster",
+                              "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                            })
+                            .then((response:any) => {
+                              if(JSON.stringify(response.status).startsWith("2")){
+                                localStorage.setItem("successUrl" , response.data.data.success_url);
+                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                Router.push(response.data.data.redirect_url);
+                              }else{
+                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                              }
+                             
+                            })
+                            .catch((error:any)=>{
+                              console.log("error", error);
+                            })
                            let tadarabGA = new TadarabGA();
-                           console.log(data);
                            tadarabGA.tadarab_fire_traking_GA_code('checkout_option',{label:data.scheme,option:"visamaster"})
                        })
                         :
                         null;
                     }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                        إتمام الشراء (VISA)
+                        إتمام الشراء
+                        {/* إتمام الشراء (VISA) */}
                     </Button>}
                     { paymentMethod == "PAYPAL" && 
                     <div className={styles["checkout__cart-sticky-card__paypal"]}>
@@ -1949,7 +2070,8 @@ const onError = (data:any,actions:any)=>{
                         })
                     }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                        إتمام الشراء (KNET)
+                        إتمام الشراء 
+                        {/* إتمام الشراء (KNET) */}
                     </Button>
                     }
                 </div>

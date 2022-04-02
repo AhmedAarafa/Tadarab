@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter } from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
-import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents"
+import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function SearchResultsPage() {
@@ -133,7 +133,7 @@ const handlePageClick = (pgNo:any)=>{
                                             {course?.categories[0]?.title}
                                         </div>}
 
-                                    <Link href="/course">
+                                    <Link href={`/course/${course.slug}`}>
 
                                         <Card.Img
                                             variant="top"
@@ -168,10 +168,12 @@ const handlePageClick = (pgNo:any)=>{
                                                     ]
                                                 }
                                             >
-                                                <img
+                                                <Link href={`/trainer/${course.trainer?.slug}`}>
+                                                    <img
                                                     src={course.trainer?.image}
                                                     alt="trainer image"
-                                                />
+                                                    />
+                                                </Link>
                                             </div>
                                             <div
                                                 className={
@@ -180,7 +182,7 @@ const handlePageClick = (pgNo:any)=>{
                                                     ]
                                                 }
                                             >
-                                                <Link href="/course">
+                                                <Link href={`/course/${course.slug}`}>
                                                     <h1
                                                         title={course.title}
                                                         className={
@@ -192,6 +194,7 @@ const handlePageClick = (pgNo:any)=>{
                                                         {course.title}
                                                     </h1>
                                                 </Link>
+                                                <Link href={`/trainer/${course.trainer?.slug}`}>
                                                 <div title={course.trainer?.name_ar}
                                                     className={
                                                         styles[
@@ -201,6 +204,7 @@ const handlePageClick = (pgNo:any)=>{
                                                 >
                                                     {course.trainer?.name_ar}
                                                 </div>
+                                                </Link>
                                             </div>
                                         </div>
 

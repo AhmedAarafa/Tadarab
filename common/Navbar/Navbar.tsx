@@ -126,7 +126,8 @@ function Navbar() {
           if(window.innerWidth > 1960){
             searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           } else{
-            searchBar.style.cssText=`width:28rem`;
+            // searchBar.style.cssText=`width:28rem`;
+            searchBar.style.cssText=`width:31.75rem`;
           }
         }
         window.addEventListener("resize" , ()=>{
@@ -135,7 +136,8 @@ function Navbar() {
           if(window.innerWidth > 1960){
             searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           } else{
-            searchBar.style.cssText=`width:28rem`;
+            // searchBar.style.cssText=`width:28rem`;
+            searchBar.style.cssText=`width:31.75rem`;
           }
         }
         });
@@ -148,6 +150,7 @@ function Navbar() {
           if(window.innerWidth > 1960){
             searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           } else{
+            // searchBar.style.cssText=`width:34.5rem`;
             searchBar.style.cssText=`width:32.5rem`;
           }
         }
@@ -158,6 +161,7 @@ function Navbar() {
           if(window.innerWidth > 1960){
             searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           } else if(window.innerWidth <= 1960){
+            // searchBar.style.cssText=`width:34.5rem`;
             searchBar.style.cssText=`width:32.5rem`;
           }
         }

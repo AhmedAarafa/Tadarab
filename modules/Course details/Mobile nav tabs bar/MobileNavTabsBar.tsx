@@ -17,27 +17,27 @@ export default function MobileCheckoutBar() {
       .getPropertyValue("font-size")
     );
     
-    window.addEventListener("scroll",()=>{
+    // window.addEventListener("scroll",()=>{
      
-      if(window.scrollY <= ((whatYouWillLearnSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
-        setSectionSelection("");
+    //   if(window.scrollY <= ((whatYouWillLearnSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
+    //     setSectionSelection("");
 
-      }else if(window.scrollY >= ((whatYouWillLearnSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))  && window.scrollY <= ((courseContentSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
-        setSectionSelection("what-you-will-learn");
+    //   }else if(window.scrollY >= ((whatYouWillLearnSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))  && window.scrollY <= ((courseContentSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
+    //     setSectionSelection("what-you-will-learn");
         
-      }else if(window.scrollY >= ((courseContentSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2)) && window.scrollY <= ((trainerInfoSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
-        setSectionSelection("course-content");
+    //   }else if(window.scrollY >= ((courseContentSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2)) && window.scrollY <= ((trainerInfoSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
+    //     setSectionSelection("course-content");
         
-      }else if(window.scrollY >= ((trainerInfoSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2)) && window.scrollY <= ((reviewsSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
-        setSectionSelection("trainer-info");
+    //   }else if(window.scrollY >= ((trainerInfoSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2)) && window.scrollY <= ((reviewsSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
+    //     setSectionSelection("trainer-info");
         
-      }else if(window.scrollY >= ((reviewsSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
-        setSectionSelection("reviews-section");
+    //   }else if(window.scrollY >= ((reviewsSection.getBoundingClientRect().top)+window.scrollY-(navbar.offsetHeight * 2))){
+    //     setSectionSelection("reviews-section");
         
-      }else{
-        setSectionSelection("");
-      }
-    })
+    //   }else{
+    //     setSectionSelection("");
+    //   }
+    // })
    
   
     return () => {

@@ -1,0 +1,239 @@
+[
+	{
+		"sources": [
+			{
+				"label":"1080P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652554/rendition/1080p?loc=external&signature=90de00962cb66a0721d3b8d52a07d3b25aef363c51869c7c30c4d9884ce048de",
+				"type": "video/mp4"
+			},{
+				"label":"720P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652554/rendition/720p?loc=external&signature=bf4ab8964484a5914edcfcfe766ef0d2272e5876891131ea72ceca4ba2117005",
+				"type": "video/mp4",
+				"selected":true
+			},{
+				"label":"480P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652554/rendition/540p?loc=external&signature=021631ce496946d3730288ddbb276b1e5b8d5f8dc1452df21e5270f6cbb76906",
+				"type": "video/mp4"
+			},{
+				"label":"360P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652554/rendition/360p?loc=external&signature=6d854c8ab0e916641a619cb465172094da0937d361f054c8e7f1506a06b1792e",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Promotion video",
+		"description": "Promotion video is free",
+		"is_free": true,
+		"is_paid": false,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"1080P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652141/rendition/720p?loc=external&signature=125bcf36cf38e2aca4722e433f7c9728ebce8c3990d5f67c16e99931515d9f52",
+				"type": "video/mp4"
+			},{
+				"label":"720P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652141/rendition/720p?loc=external&signature=125bcf36cf38e2aca4722e433f7c9728ebce8c3990d5f67c16e99931515d9f52",
+				"type": "video/mp4",
+				"selected":true
+			},{
+				"label":"480P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652141/rendition/540p?loc=external&signature=fec9cad540ebd9fe0f630d2aba635b0b711c689c1fa16a986a353778bfdc4305",
+				"type": "video/mp4"
+			},{
+				"label":"360P",
+				"src": "https://player.vimeo.com/progressive_redirect/playback/396652141/rendition/360p?loc=external&signature=980dea1ae8e5f5cb8a2c3d0418f5fd16099412b79190e4658159b67daa1d2f95",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 01.01",
+		"description": "First chapter 01 lession is free",
+		"is_free": true,
+		"is_paid": false,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221454843.sd.mp4?s=da95e67a8f1b68440b8a1fd0d78a782685480074&profile_id=164",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 01.02",
+		"description": "First chapter 02 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+			"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/311104581.sd.mp4?s=7d3fd8524efd56afeb417ed07323a42fdde0ce0f&profile_id=164",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 01.03",
+		"description": "First chapter 03 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221630829.sd.mp4?s=cdf5643c4f8bb639aa97555012138c5ff92f0f7a&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 01.04",
+		"description": "First chapter 04 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221504458.sd.mp4?s=86f1a67b198842c9e218724d9d9a88d0aecf4628&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 02.01",
+		"description": "Second chapter 01 lession is free",
+		"is_free": false,
+		"is_paid": false,
+		"isView": false,
+		"viewPr": 10
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221453776.sd.mp4?s=d1a7d44e0005b91c5cf73bb1dbfe61138bb6d823&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 02.02",
+		"description": "Second chapter 02 lession is free",
+		"is_free": false,
+		"is_paid": false,
+		"isView": false,
+		"viewPr": 40
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221454499.sd.mp4?s=cd562bc312aa2daf9a43de2dbd2fea26771c53af&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 02.03",
+		"description": "Second chapter 03 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221454843.sd.mp4?s=da95e67a8f1b68440b8a1fd0d78a782685480074&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 02.04",
+		"description": "Second chapter 04 lession is paid",
+		"is_free": true,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221456143.sd.mp4?s=ba8202c1d3b6303f4e3b4a24d429eb1b84936323&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 02.05",
+		"description": "Second chapter 05 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221456627.sd.mp4?s=3fc36a3306cabca3b9a150ecf95448153a961f9f&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 02.06",
+		"description": "Second chapter 06 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221457935.sd.mp4?s=ab2da8a7d72a0bd7619bde2310b35af05f1aa71f&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 03.01",
+		"description": "Third chapter 01 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221458230.sd.mp4?s=982ba2bcc0e1b7c961924e0ece0a65cff5ba49c4&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 03.02",
+		"description": "Third chapter 02 lession is paid",
+		"is_free": false,
+		"is_paid": true,
+		"isView": false,
+		"viewPr": 0
+	},{
+		"sources": [
+			{
+				"label":"720P",
+				"src": "https://player.vimeo.com/external/221459031.sd.mp4?s=94ada9e34ba7a614c6c0411d2dbbc209bba524f7&profile_id=164&oauth2_token_id=1363788732",
+				"type": "video/mp4"
+			}
+		],
+		"poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+		"title": "Lession 03.03",
+		"description": "Third chapter 03 lession is free",
+		"is_free": false,
+		"is_paid": false,
+		"isView": false,
+		"viewPr": 80
+	}
+]

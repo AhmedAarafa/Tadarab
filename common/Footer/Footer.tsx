@@ -82,7 +82,7 @@ export default function FooterSection() {
          <img src="/images/logo.svg" alt="Tadarab logo" />
        </div>
        <div className={styles["footer__cross-platforms"]}>
-         <div>متاح الآن علي أجهزة الانرويد والايفون</div>
+         <div>قريباً علي أجهزة الانرويد والايفون</div>
          <img src="/images/app-store.png" alt="App store" />
          <img src="/images/google-play.png" alt="Google play" />
        </div>
@@ -98,13 +98,24 @@ export default function FooterSection() {
 
      <Col xs={{span:12,order:5}} className={styles["footer__contacts-box"]}>
        <div className={styles["footer__contacts-box__contacts"]}>
+         <a rel="noreferrer" href="https://www.instagram.com/tadarab/" target="_blank">
+
          <InstagramIcon color="#fff"/>
+         </a>
+         <a rel="noreferrer" href="https://www.youtube.com/c/Tadarab" target="_blank">
 
          <YoutubeIcon color="#fff"/>
+        </a>
+        <a rel="noreferrer" href="https://www.facebook.com/tadarabonline" target="_blank">    
 
          <FacebookIcon color="#fff"/>
+        </a>
 
+        <a rel="noreferrer" href="https://twitter.com/tadarab" target="_blank">    
          <TwitterIcon color="#fff"/>
+
+        </a>
+
 
        </div>
        <div className={styles["footer__contacts-box__all-rights-reserved"]}>

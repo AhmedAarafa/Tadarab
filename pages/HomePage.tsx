@@ -102,7 +102,7 @@ function HomePage() {
               { inView && <Books />}
             </div>
              } */}
-            <Books />
+            {/* <Books /> */}
             <Statistics/>
             <WhyTadarab/>
             <LearnFromTheBest/>

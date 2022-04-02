@@ -34,7 +34,7 @@
   font-size: 1rem;
   margin-right: 0.6rem;
   background-color: white;
-  width: 28rem;
+  width: 31.75rem;
   height: 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -207,6 +207,7 @@
   width: 2.75rem;
   height: 2.75rem;
   margin: 0 1.0625rem 0 0;
+  display: none;
 }
 
 .navbar__dark-mode-icon svg {
@@ -739,6 +740,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 2.5rem;
+  display: none;
 }
 
 .sidebar-list__dark-mode-box span {
@@ -1152,7 +1154,7 @@
     max-width: 100vw;
   }
   .navbar__search-bar-container {
-    width: calc(100vw - 54.5rem);
+    width: calc(100vw - 50.75rem);
   }
   .navbar__purchased-course-nav {
     margin: 0 calc(100vw - 64rem) 0 0;

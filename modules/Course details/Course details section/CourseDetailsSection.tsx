@@ -54,7 +54,7 @@ export default function CourseDetailsSection() {
       <div id="course-details" className={styles["course-details-section"]}>
         <div className={styles["course-details-section__title"]}>تفاصيل الدورة</div>
         <p className={styles["course-details-section__para"]} 
-        dangerouslySetInnerHTML={{__html: courseDetailsData.data?.course_details?.description}}
+        dangerouslySetInnerHTML={{__html: courseDetailsData.data?.course_details?.description}}  
         >
         </p>
         <div className={styles["course-details-section__read-more"]} onClick={showMoreHandler}>

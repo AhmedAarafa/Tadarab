@@ -34,7 +34,7 @@ import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents"
 import { useRouter } from 'next/router';
 import { Course } from "_models/Course";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
-// import TPlayer from "TPlayer/TPlayer";
+import TPlayer from "common/TPlayer/TPlayer";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -253,7 +253,7 @@ function CourseDetails() {
           <CourseDetailsSection />
           <CourseKeywords />
           <CourseRequirements />
-          <CourseContent />
+          {/* <CourseContent /> */}
           <TrainerInfo />
           <GuaranteeCard />
           <CourseCertificate />
@@ -266,7 +266,7 @@ function CourseDetails() {
          {  originalCardPlacement == true &&  <MonthlySubscriptionCard />}
         </Col>
         }
-        <PracticalProjects /> 
+        {/* <PracticalProjects />  */}
       </Row>
       <Row className={styles["course-details__course-reviews"]}>
         <CourseReview />

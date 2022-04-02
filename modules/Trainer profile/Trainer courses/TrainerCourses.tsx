@@ -11,24 +11,36 @@ import {
 } from "common/Icons/Icons";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function TrainerCourses() {
     const dispatch = useDispatch();
+  const router = useRouter();
+
 
     const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
     const [trainerProfile, setTrainerProfile] = useState<any>({});
     const userStatus = useSelector((state:any) => state.userAuthentication);
-
+    const [trainerSlug, setTrainerSlug] = useState<any>("");
+    
     useEffect(() => {
         setTrainerProfile(trainerProfileData.data || {});
     }, [trainerProfileData]);
+    
+    useEffect(() => {
+        const { slug } = router.query;
+        if(router.query.slug){
+            setTrainerSlug(router.query.slug);
+        }
+      
+    }, [router.query])
+    
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`);
+            const handleFavResponse: any = handleFav(course, `trainers/${trainerSlug}/?country_code=${localStorage.getItem("countryCode")}`);
             handleFavResponse.then(function (response: any) {
                 setTrainerProfile(response.data.data);
                 console.log("response.data.data",response.data.data);
@@ -45,7 +57,7 @@ export default function TrainerCourses() {
         dispatch(setCheckoutType("cart"));
 
         // if (userStatus?.isUserAuthenticated == true) {
-            const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
+            const handleCartResponse: any = handleCart([course], `trainers/${trainerSlug}/?country_code=${localStorage.getItem("countryCode")}`, false);
             handleCartResponse.then(function (firstresponse: any) {
                 firstresponse.resp.then(function (response: any) {
                     setTrainerProfile(response.data.data);
@@ -109,9 +121,9 @@ export default function TrainerCourses() {
                                         styles[
                                         "trainer-courses-box__trainer-courses__course-card__category-chip"
                                         ]
-                                    } style={{ backgroundColor: `${course.categories[0].color}` }}
+                                    } style={{ backgroundColor: `${(course?.categories[0]) !== undefined && course?.categories[0].color}` }}
                                 >
-                                    {course.categories[0].title}
+                                    {(course?.categories[0]) !== undefined && course.categories[0].title}
                                 </div>
                                 <Card.Img
                                     variant="top"

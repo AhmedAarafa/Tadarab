@@ -4,7 +4,8 @@
 .trainer-accounts-card {
     padding: 2rem 1.625rem;
     width: 22rem;
-    height: 28.125rem;
+    height: fit-content;
+    // height: 28.125rem;
     box-shadow: 0rem 0rem 1.25rem #0000001A;
     border-radius: 1.25rem;
     margin: 0 2.9375rem 0 0;
@@ -28,7 +29,7 @@
 }
 
 .trainer-accounts-card__no-accounts{
-    text-align: center;
+    text-align: right;
     font-size: 1.25rem;
     font-weight: 700;
 }
@@ -70,6 +71,7 @@
     text-align: center;
     margin: 1.5625rem 0 0 0;
     position: relative;
+    display: none;
 
     &:before {
         content: '';
@@ -94,6 +96,7 @@
 
 .trainer-accounts-card__action-btns {
     margin: 1.4688rem 0 0 0;
+    display: none;
 
     button {
         width: 100%;

@@ -65,7 +65,7 @@ function LatestCourses() {
     if(userStatus.isUserAuthenticated == true){
     const handleFavResponse:any =  handleFav(course,`home/?country_code=${localStorage.getItem("countryCode")}`);
     handleFavResponse.then(function(response:any) {
-     setLatestCourses(response.data.data.latest_courses);
+     setLatestCourses(response.data.data.best_seller_courses);
     })
     }else{
       Router.push({
@@ -85,7 +85,7 @@ function LatestCourses() {
         // console.log("handleCartResponse",firstresponse);
         firstresponse.resp.then(function(response:any){
           // console.log(response);
-           setLatestCourses(response.data.data.latest_courses);
+           setLatestCourses(response.data.data.best_seller_courses);
            dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
@@ -113,7 +113,7 @@ function LatestCourses() {
 
   useEffect(() => {
 
-      setLatestCourses(homePageData.data?.latest_courses || []);
+      setLatestCourses(homePageData.data?.best_seller_courses || []);
       
       const localStorageItems:any = localStorage.getItem("cart");
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
@@ -122,7 +122,7 @@ function LatestCourses() {
           .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
           .then(function (response:any) {
             // console.log(response);
-            let newArray:any = homePageData.data?.latest_courses;
+            let newArray:any = homePageData.data?.best_seller_courses;
            response.data.data.forEach((element:any) => {
             newArray.forEach((ele:any) => {
                 if(element.id === ele.id){
@@ -170,12 +170,28 @@ function LatestCourses() {
               
                 if (cardRightBoundary > cardLeftBoundary) {
                   // setPlacement("right");
-                  relatedWrapper.style.cssText=`left: 100% ;
-                   bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                  if((relatedWrapper.offsetHeight - element.offsetHeight) > 0){
+                    
+                    relatedWrapper.style.cssText=`left: 100% ;
+                     top: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`
+                  }else{
+                    relatedWrapper.style.cssText=`left: 100% ;
+                     top: -${((element.offsetHeight - relatedWrapper.offsetHeight)/2)}px`;
+                  }
                   relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
                 } else if (cardRightBoundary < cardLeftBoundary) {
-                  relatedWrapper.style.cssText=`right: 100%;
-                   bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                  
+
+                   if((relatedWrapper.offsetHeight - element.offsetHeight) > 0){
+
+                    relatedWrapper.style.cssText=`right: 100%;
+                   top: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                  }else{
+                    console.log(relatedWrapper.offsetHeight,element.offsetHeight);
+                    relatedWrapper.style.cssText=`right: 100%;
+                    top: -${((element.offsetHeight - relatedWrapper.offsetHeight)/2)}px`;
+                  }
+                   
                   relatedPopover.style.cssText=`left: 0%;`;
                   relatedPopover.classList.add(styles["latest-courses__popover-container--left"]);
                 }
@@ -222,10 +238,10 @@ function LatestCourses() {
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>
               أحدث الدورات
             </li>
-            <li onClick={()=>{handleFilterType("most-viewed")}} 
+            {/* <li onClick={()=>{handleFilterType("most-viewed")}} 
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "most-viewed" && styles["latest-courses__departments-list__item--active"]}`}>
               الأكثر زيارة
-            </li>
+            </li> */}
           </ul>
         </Col>
 

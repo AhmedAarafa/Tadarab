@@ -5,14 +5,14 @@
     img {
         width: 39rem;
         height: 26rem;
-        margin: 10.25rem 2.75rem 0 0;
+        margin: 7rem 2.75rem 0 0; 
         user-select: none;
     }
 }
 
 .register__register-box {
     padding: 6.313rem 12.5rem 0 0;
-    width: fit-content;
+    // width: fit-content;
 }
 
 .register__register-box__title {
@@ -31,6 +31,7 @@
 .register__register-box__register-with {
     @include flex(center, flex-start);
     margin-top: 1.25rem;
+    display: none !important;
 
     div {
         font-size: 1.063rem;
@@ -63,6 +64,7 @@
     text-align: center;
     margin: 1.5625rem 0 0 0;
     position: relative;
+    display: none !important;
 
     &:before {
         content: '';

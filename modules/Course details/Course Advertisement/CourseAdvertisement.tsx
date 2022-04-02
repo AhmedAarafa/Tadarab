@@ -2,12 +2,13 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
 import styles from "./course-advertisement.module.css";
-import VideoPlayer from 'react-video-js-player';
-import VideoJS from './videojs'
 import { useDispatch, useSelector } from "react-redux";
 // import videojs from  "node_modules/videojs-playlist/dist/videojs-playlist.js";
 import ReactPlayer from 'react-player';
 import useResize from 'custom hooks/useResize';
+import TadarabVideoPlayer from "common/TPlayer/TPlayer"; 
+import "video.js/dist/video-js.css";
+
 
 export default function CourseAdvertisement() {
 
@@ -59,6 +60,8 @@ export default function CourseAdvertisement() {
 
   }, [courseDetailsData]);
 
+
+
   return (
     <>
       <div className={styles["course-ad"]}>
@@ -93,35 +96,15 @@ export default function CourseAdvertisement() {
           <>
 
             <div className={styles["course-ad__course-ad-video"]}>
-              {/* <div className={styles["course-ad__course-ad-video__text"]}>شاهد إعلان الدورة</div> */}
 
-              <VideoJS id="videoPlayer" options={{
-                autoplay: false,
-                controls: true,
-                responsive: true,
-                fluid: true,
-                sources: [{
-                  src: courseDetailsData.data?.promo_video_url,
-                }]
-              }} onReady={handlePlayerReady} />
-              {/* <ReactPlayer playIcon={<img src="/images/play.svg"/>}
-              config={{
-                file: { 
-                  attributes: { 
-                    poster: courseDetailsData.data.course_details.image
-                  } 
-                } 
-              }}
-                pip={true} controls={true} url={[
-                  "https://player.vimeo.com/external/457959992.hd.mp4?s=fc37002109188d47df8e7312dc5ec664e703ace6&profile_id=174",
-                  "https://player.vimeo.com/external/457959992.hd.mp4?s=fc37002109188d47df8e7312dc5ec664e703ace6&profile_id=174"
-                ]} /> */}
+                <TadarabVideoPlayer dataPlaylist={true} accessPlaylist={false}/>
+
             </div>
 
-              <div className={styles["course-ad__course-title"]}>
+              <h1 className={styles["course-ad__course-title"]}>
               
                 {courseDetailsData?.data?.course_details?.title}
-              </div>
+              </h1>
               <div className={styles["course-ad__course-description"]}>
               {courseDetailsData?.data?.course_details?.details}
               </div>

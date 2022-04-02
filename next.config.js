@@ -21,6 +21,10 @@ module.exports = {
         destination: '/CourseDetails/:path*',
       },
       {
+        source: '/courses',
+        destination: '/AllCourses',
+      },
+      {
         source: '/trainer/:path*',
         destination: '/TrainerProfile/:path*',
       },
@@ -49,11 +53,11 @@ module.exports = {
         destination: '/SearchResults',
       },
       {
-        source: '/category/:path*',
+        source: '/topic/:path*',
         destination: '/Category',
       },
       {
-        source: '/subcategory/:path*',
+        source: '/topic/:path*',
         destination: '/SubCategory',
       },
       {

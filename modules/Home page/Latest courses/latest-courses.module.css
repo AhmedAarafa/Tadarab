@@ -135,6 +135,15 @@
   transition: opacity 0.3s;
   width: 22.5rem;
   height: 28rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
 }
 
 .latest-courses__popover-container,
@@ -239,6 +248,7 @@
   display: inline-block;
   background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
   border-radius: 0.75rem;
+  pointer-events: none;
 }
 
 .latest-courses__cards-carousel__course-card__category-chip {
@@ -296,6 +306,7 @@
 
 .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
   display: inline-block;
+  font-size: 0.5rem;
 }
 
 .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
@@ -418,6 +429,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 19rem;
+  margin-bottom: 1rem;
 }
 
 .latest-courses__popover-container__learners {
@@ -493,7 +505,7 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  margin-top: 0.5rem;
+  margin: 1rem 0 0 0;
 }
 
 .latest-courses__popover-container__btns__details-btn {
@@ -724,6 +736,7 @@
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
     display: inline-block;
+    font-size: 0.635rem;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;
@@ -945,6 +958,7 @@
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
     display: inline-block;
+    font-size: 0.835rem;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;
@@ -1193,6 +1207,7 @@
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
     display: inline-block;
+    font-size: 1.46rem;
   }
   .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;

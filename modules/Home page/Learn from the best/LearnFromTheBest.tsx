@@ -29,7 +29,9 @@ export default function LearnFromTheBest() {
     // if(homePageData !== {}){
       setTrainers(homePageData.data?.trainers || []);
     // }
-    // setTrainers(homePageData.data.trainers); 
+    // setTrainers(homePageData.data.trainers);
+    console.log("homePageData.data?.trainer",homePageData.data?.trainers);
+     
 
   }, [homePageData]);
 

@@ -40,9 +40,13 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "swiper": "^7.3.1",
-    "video.js": "^7.17.0",
+    "react-scripts": "5.0.0",
+    "video.js": "^7.18.1",
     "videojs-playlist": "^5.0.0",
-    "videojs-qualityselector": "^0.0.4",
+    "videojs-playlist-ui": "^4.0.1",
+    "videojs-seek-buttons": "^2.2.0",
+    "@silvermine/videojs-quality-selector": "^1.2.5",
+    "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "devDependencies": {

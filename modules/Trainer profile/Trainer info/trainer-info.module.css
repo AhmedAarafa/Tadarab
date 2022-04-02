@@ -49,6 +49,7 @@
   font-weight: 800;
   color: var(--dark-black);
   margin: 0.2rem 0 0.3rem 0;
+  width: 29rem;
 }
 
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-info div:nth-of-type(2) {
@@ -149,7 +150,7 @@
   background-color: white;
   color: #AF151F;
   position: absolute;
-  bottom: 0.2rem;
+  bottom: 0rem;
   right: 0;
   padding: 0.8rem 0rem 1rem 0;
   cursor: pointer;
@@ -218,6 +219,7 @@
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-info h1 {
     font-size: 2.71875rem;
     margin: 0.32rem 0 0.48rem 0;
+    width: 29.5rem;
   }
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-info div:nth-of-type(2) {
     font-size: 1.8125rem;

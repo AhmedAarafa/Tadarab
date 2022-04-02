@@ -19,19 +19,20 @@ export default function TrainerInfo() {
       const fadeOut:any = document.getElementById("fadeout2");
       const briefAboutTrainer:any = document.getElementById("brief-about-trainer");
 
-      setShowMore(!showMore);
       if(showMore == true){
-          showMoreIcon ? showMoreIcon.style.cssText=`transform:rotate(180deg) ; transition:all 0.4s ease`:null;
-          fadeOut ? fadeOut.style.cssText ="display:none": null;
-          briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:fit-content ; overflow:visible `:null;
+        showMoreIcon ? showMoreIcon.style.cssText=`transform:rotate(180deg) ; transition:all 0.4s ease`:null;
+        fadeOut ? fadeOut.style.cssText ="display:none": null;
+        briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:fit-content ; overflow:visible `:null;
+        setShowMore(!showMore);
       } else{
-          showMoreIcon ? showMoreIcon.style.cssText=`transform:none ; transition:all 0.4s ease`:null;
-          fadeOut ? fadeOut.style.cssText ="display:block": null;
-          if(screen.width <= 576){
-              briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:25.6rem ; overflow:hidden `:null;
-          }else{
-              briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:16rem ; overflow:hidden `:null;
-          }
+        showMoreIcon ? showMoreIcon.style.cssText=`transform:none ; transition:all 0.4s ease`:null;
+        fadeOut ? fadeOut.style.cssText ="display:block": null;
+        if(screen.width <= 576){
+          briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:25.6rem ; overflow:hidden `:null;
+        }else{
+          briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:16rem ; overflow:hidden `:null;
+        }
+        setShowMore(!showMore);
       }
 
   }
@@ -76,7 +77,7 @@ export default function TrainerInfo() {
 
      if(lines > 9 ){
       setIsTooMuchContent(true);
-      if(showMore == true){
+      if(showMore == false){
           showMoreIcon ? showMoreIcon.style.cssText=`transform:rotate(180deg) ; transition:all 0.4s ease`:null;
           fadeOut ? fadeOut.style.cssText ="display:none": null;
           briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:fit-content ; overflow:visible `:null;
@@ -122,7 +123,7 @@ export default function TrainerInfo() {
 
       if(lines > 9 ){
         setIsTooMuchContent(true);
-        if(showMore == true){
+        if(showMore == false){
             showMoreIcon ? showMoreIcon.style.cssText=`transform:rotate(180deg) ; transition:all 0.4s ease`:null;
             fadeOut ? fadeOut.style.cssText ="display:none": null;
             briefAboutTrainer ? briefAboutTrainer.style.cssText=`height:fit-content ; overflow:visible `:null;
@@ -165,7 +166,7 @@ export default function TrainerInfo() {
            <CoursesNumberIcon color="#af151f"/>
             <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses"]}>
                 <div>عدد الدورات</div>
-                <div>{trainerProfileData.data?.courses.length}</div>
+                <div>{trainerProfileData.data?.courses?.length}</div>
             </div>
           </div>
           <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics"]}>
@@ -189,8 +190,9 @@ export default function TrainerInfo() {
 
           <div id="brief-about-trainer" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer"]}>
           <div className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title"]}>نبذة عن المدرب</div>
-          <p id="bio" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para"]}>
-          {trainerProfileData.data?.bio}
+          <p id="bio" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para"]}
+          dangerouslySetInnerHTML={{__html: trainerProfileData.data?.bio}}>
+          {/* {trainerProfileData.data?.bio} */}
           </p>
           { isTooMuchContent &&
           <>

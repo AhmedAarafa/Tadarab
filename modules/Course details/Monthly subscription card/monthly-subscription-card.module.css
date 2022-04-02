@@ -478,6 +478,39 @@
   margin: 0 0.1rem 0 0;
 }
 
+.course-details__course-card__guarantee-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  margin-top: 1.3rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+}
+
+.course-details__course-card__guarantee-box__text-box {
+  margin-right: 0.8rem;
+}
+
+.course-details__course-card__guarantee-box__icon svg {
+  width: 1.1rem;
+  height: 1.3rem;
+}
+
+.course-details__course-card__guarantee-box__text-box__major {
+  font-size: 0.813rem;
+  color: var(--dark-black);
+}
+
+.course-details__course-card__guarantee-box__text-box__major {
+  font-weight: 700;
+}
+
 @media (max-width: 575px) {
   .monthly-subscription__course-card {
     margin: 0 -3rem 0 0;
@@ -490,6 +523,9 @@
   }
   .monthly-subscription__course-card__title {
     font-size: 3.125rem;
+  }
+  .monthly-subscription__course-card__title > div:nth-of-type(1) {
+    margin: 0 0 1.5rem 0;
   }
   .monthly-subscription__course-card__title > div:nth-of-type(2) {
     font-size: 2.025rem;
@@ -771,6 +807,30 @@
   }
   .monthly-subscription__subscription-value span:nth-of-type(2) {
     margin-right: 0.5rem;
+  }
+  .course-details__course-card__guarantee-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: unset;
+        -ms-flex-pack: unset;
+            justify-content: unset;
+    margin-top: 3.25rem;
+    padding-bottom: 3.25rem;
+    border-bottom: 0.125rem solid rgba(34, 34, 34, 0.1);
+  }
+  .course-details__course-card__guarantee-box svg {
+    width: 3.4375rem;
+    height: 3.75rem;
+  }
+  .course-details__course-card__guarantee-box__text-box {
+    margin-right: 2rem;
+  }
+  .course-details__course-card__guarantee-box__text-box__major {
+    font-size: 2.0325rem;
   }
 }
 /*# sourceMappingURL=monthly-subscription-card.module.css.map */

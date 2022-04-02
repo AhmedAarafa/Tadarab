@@ -14,7 +14,7 @@ export default function TrainersOpinions() {
         <div className={styles["trainers-opinions__video"]}>
 
          {/* <img src="/images/VideoPlaceholder2.png" alt="promo video" /> */}
-          <video controls src="https://vod-progressive.akamaized.net/exp=1648819861~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4314%2F25%2F646574244%2F2965661658.mp4~hmac=97f669f166bfbb2335452d66bead3aabc1f80122c90f0d1c3f14c038ab67e2f5/vimeo-prod-skyfire-std-us/01/4314/25/646574244/2965661658.mp4"></video>
+          <video controls src="https://player.vimeo.com/progressive_redirect/playback/646574244/rendition/1080p?loc=external&signature=7e0eb8fac56302d1b36a911d8a64b0fb2a57fc9b19935abbffac1b38a5a96283"></video>
         </div>
         <div className={styles["trainers-opinions__inquiries-section"]}>
           <div>تحتاج مساعدة أو استفسار؟</div>

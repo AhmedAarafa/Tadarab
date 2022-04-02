@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, {useState, useEffect} from "react";
 import { Row, Col, Button,  Dropdown, DropdownButton } from "react-bootstrap";
@@ -238,7 +239,7 @@ export default function SignInPage() {
 
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]}>
                       <span> ليس لديك حساب؟ </span>
-                      <Link href="/signin">
+                      <Link href="/signup">
                            <span> انشاء حساب جديد </span>
                       </Link>
                   </div>

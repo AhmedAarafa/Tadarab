@@ -53,7 +53,7 @@ export default function TransactionInProgress() {
         dispatch(setInvoiceDetails(response?.data?.data));
         if(JSON.stringify(response.status).startsWith("2")){
           
-          let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+          let customData = {value: response.data?.transaction_details?.amount_usd, currency: 'USD'};
           FBPixelEventsHandler(response.data.fb_tracking_events,customData);
 
           response?.data?.data?.is_successful == true ?

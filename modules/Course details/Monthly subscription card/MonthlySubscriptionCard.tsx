@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./monthly-subscription-card.module.css"
 import { Button } from "react-bootstrap";
-import { CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon } from "common/Icons/Icons";
+import { CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon,GuaranteeIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
@@ -29,7 +29,7 @@ export default function MonthlySubscriptionCard() {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
   }
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
@@ -232,6 +232,35 @@ export default function MonthlySubscriptionCard() {
             {courseDetails.course_details?.discounted_price}
           </span>
 
+        </div>
+
+        <div
+          id="course-card__guarantee-card"
+          className={styles["course-details__course-card__guarantee-box"]}
+        >
+          <div
+            className={
+              styles["course-details__course-card__guarantee-box__icon"]
+            }
+          >
+            <GuaranteeIcon/>
+          </div>
+          <div
+            className={
+              styles["course-details__course-card__guarantee-box__text-box"]
+            }
+          >
+            <div
+              className={
+                styles[
+                  "course-details__course-card__guarantee-box__text-box__major"
+                ]
+              }
+            >
+              ٣٠ يوم ضمان ذهبي استرداد كامل المبلغ
+            </div>
+           
+          </div>
         </div>
 
 

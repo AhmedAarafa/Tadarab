@@ -6,7 +6,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { setTrainerProfileData } from "configurations/redux/actions/trainerProfileData"; 
 import { Trainer } from "_models/Trainer";
-import { useRouter } from 'next/router';
+import Router,{ useRouter } from 'next/router';
 import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
@@ -14,10 +14,9 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 
 export default function TrainerProfile() {
   const dispatch = useDispatch();
-  const Router = useRouter();
-  const { slug } = Router.query;
-
-
+  const router = useRouter();
+  
+  
   useEffect(() => {
     window.addEventListener("scroll" , ()=>{
       GAProductimpressionEventHandler("trainer-courses__course-card");
@@ -31,8 +30,9 @@ export default function TrainerProfile() {
   }, [])
 
   useEffect(() => {
+    const { slug } = router.query;
 
-    if(Router.query.slug){
+    if(router.query.slug){
 
         axiosInstance
         .get(`trainers/${slug}/?country_code=${localStorage.getItem("countryCode")}`)
@@ -48,7 +48,7 @@ export default function TrainerProfile() {
     }
     
       
-    }, [Router.query]);
+    }, [router.query]);
 
 
     

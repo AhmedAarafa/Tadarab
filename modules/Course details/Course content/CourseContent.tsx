@@ -5,6 +5,8 @@ import { Accordion , Button , ProgressBar} from "react-bootstrap";
 import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
 import { useDispatch, useSelector } from "react-redux";  
 import { UnlockIcon,LessonPlayIcon,ClockIcon,LockIcon,AttachmentsIcon,FileDownloadIcon,CheckCircleIcon } from "common/Icons/Icons";
+import playlistSrc from "common/TPlayer/playlist.json";
+
 
 export default function CourseContent() {
 
@@ -41,6 +43,34 @@ export default function CourseContent() {
     return {h, m, s};
 
     }
+        /** dynamic server side variable **/
+    // let isPurchased	= false;	// Is the """course""" is purchased by the logged-in user 
+    // let isUserLogin	= false;	// if user is logged-in, true elase false
+    // let userId		= false;	// if user is logged-in, true elase false
+    // let courseTitle	= '(اكسر قيدك (الناقد السلبي';	// the current course title
+
+    // function TPlayerPlayList(){
+	// 	// if((TPlayer.dataPlaylist==true)){
+	// 		return(
+	// 			playlistSrc.map((item:any,index:any)=>{
+	// 				var isFree=((item.is_free)?item.is_free:false),
+	// 				//code=((item.share_code)?item.share_code:''),
+	// 				//is_paid=((isPurchased)?true:is_free),
+	// 				is_play=((isPurchased===true)?true:isFree),
+	// 				title=((item.title)?item.title:''),lession_class="lession ",
+	// 				unlock=((isFree&&!isPurchased)?`<div className="tmark"><span className="text" /><i className="unlock" /></div>`:`<div className="tmark"><i className="unlock" /></div>`),
+	// 				tmart=((!is_play)?`<div className="tmark"><i className="lock"></i></div>`:unlock);
+	// 				lession_class+=((!is_play)?'paid':'play');lession_class+=((isFree&&!isPurchased)?' free free-lession':'');
+	// 				return(
+	// 					<a key={index} className={lession_class} data-lession={index} data-play={is_play} onClick={play_video}>
+	// 						<i className="tadarab-icon play"></i><div className="ml10 lession-description"><span className="title">{title}</span></div><div dangerouslySetInnerHTML={{__html:tmart}}></div>
+	// 					</a>
+	// 				)
+	// 			})
+	// 		)
+	// 	// }
+	// }
+    
 
   return (
     <>
@@ -205,13 +235,15 @@ export default function CourseContent() {
                                 return(
                                     <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                         <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
+                                          
                                             <div className={styles["course-content__accordion__body__list-item__icon"]}>
                                                 <AttachmentsIcon />
                                             </div>
+                                            
                                             <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                 <div>{att.title}</div>
-                                              
                                             </div>
+
                                         </div>
 
                                         <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
