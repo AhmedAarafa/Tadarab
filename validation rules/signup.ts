@@ -12,7 +12,7 @@ export const signupValidationRules = {
     ,'البريد الإلكتروني غير مناسب'),
     phoneNumber: Yup.string()
     .required("خانة الرقم مطلوبه")
-    .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي علي حروف او رموز خاصه')
+    .matches(/^\d+$/, 'رقم الهاتف يجب الا يحتوي على حروف او رموز خاصه')
     .min(5, "رقم الهاتف يجب ان يكون 5 أرقام او أكثر")
     .typeError("رقم الهاتف غير مناسب"),
     password: Yup.string()

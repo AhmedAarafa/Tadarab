@@ -111,6 +111,7 @@
     margin: 0 0.1rem;
 }
 
+
 .marketing-boxes__brief {
     margin: 0.2rem 0 0 0;
     width: 30rem;
@@ -128,6 +129,9 @@
     @include flex(flex-start,flex-start);
     div{
         width: fit-content;
+    }
+    span{
+        display: inline-block;
     }
 }
 

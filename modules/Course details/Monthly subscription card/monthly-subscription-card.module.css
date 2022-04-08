@@ -21,17 +21,26 @@
 }
 
 .monthly-subscription__course-card__title > div:nth-of-type(2) {
-  margin-top: 0.4rem;
+  margin-top: 0.8rem;
   font-size: 0.75rem;
   font-weight: 400;
 }
 
-.monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(2) {
+.monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(1) {
+  line-height: 1.2rem !important;
+}
+
+.monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(1) span:nth-of-type(1) {
   margin: 0 0.2rem 0 0;
   color: var(--primary-red);
   font-weight: 700;
   cursor: pointer;
   display: inline-block;
+  line-height: 1.2rem !important;
+}
+
+.monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(1) span:nth-of-type(1) a {
+  color: var(--primary-red) !important;
 }
 
 .monthly-subscription__course-card__price-box {
@@ -354,7 +363,6 @@
 .monthly-subscription__course-card__details-list {
   margin-top: 0.8rem;
   padding-bottom: 0.8rem;
-  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -384,6 +392,7 @@
   text-align: center;
   font-size: 0.938rem;
   padding: 0.9rem 0 1.5rem 0;
+  display: none !important;
 }
 
 .monthly-subscription__course-card__promo-code span:nth-of-type(1) {
@@ -528,7 +537,11 @@
     margin: 0 0 1.5rem 0;
   }
   .monthly-subscription__course-card__title > div:nth-of-type(2) {
+    margin-top: 1.5rem;
     font-size: 2.025rem;
+  }
+  .monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(1) {
+    line-height: 3.3rem !important;
   }
   .monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(2) {
     margin: 0 0.5rem 0 0;
@@ -781,7 +794,6 @@
   .monthly-subscription__course-card__details-list {
     margin-top: 2.5rem;
     padding-bottom: 2rem;
-    border-bottom: 0.125rem solid rgba(34, 34, 34, 0.1);
   }
   .monthly-subscription__course-card__details-list__item {
     margin-bottom: 1rem;

@@ -1,0 +1,93 @@
+.tadarab-player{width:100%;max-width:100%;display:flex;}
+/*.tadarab-player .video-js.vjs-fluid{height:450px !important;}*/
+@keyframes fade-in-up {
+  0% { opacity:0;}
+  100% { transform:translateX(0);opacity:1;}
+}
+
+.tadarab-player > .tplayer > .player-asset {
+	position:absolute;
+	top:0;left:0;right:0;bottom:0;
+	overflow-y:scroll;
+}
+
+.tplayer.stuck{
+	position:fixed;
+	top:0px;
+	left:0;width:100%;z-index:9;
+}
+
+.vjs-button > .vjs-icon-placeholder:before,.vjs-control.vjs-button:before{font-size:1.8em;}
+.video-js .vjs-fullscreen-control,.video-js .vjs-picture-in-picture-control,.video-js .vjs-playback-rate,.video-js .vjs-quality-selector{position:absolute !important;}
+.video-js .vjs-fullscreen-control{right:0}
+.video-js .vjs-picture-in-picture-control{right:50px}
+.video-js .vjs-playback-rate{right:100px}
+.video-js .vjs-quality-selector{right:200px}
+.video-js .vjs-quality-selector span.vjs-icon-placeholder{right:200px}
+
+.vjs-quality-selector .vjs-icon-placeholder:before {content: '\f114' !important;}
+.vjs-quality-selector.vjs-hover .vjs-menu-button span.vjs-icon-placeholder:before,.vjs-quality-selector .vjs-menu-button[aria-expanded=true] span.vjs-icon-placeholder:before,.vjs-playback-rate.vjs-hover .vjs-menu-button,.vjs-playback-rate .vjs-menu-button[aria-expanded=true]{
+	/*-webkit-transform: rotateZ(30deg);transform: rotateZ(30deg);*/
+	border-bottom:2px solid #bf1e2e;
+}
+
+.video-js .vjs-modal-dialog{background:rgba(0,0,0,0.25) !important;font-family:tadarab-ar-rg,serif!important}
+.tplayer-dialog .modal-header, .tplayer-dialog .modal-body, .tplayer-dialog .modal-footer{text-align:center !important;padding:12px 0px !important;display:block;border:none;}
+.tplayer-dialog .modal-body{color:#CCC;font-weight:normal;}
+.tplayer-dialog .modal-header{font-size:21px !important;}
+.tplayer-dialog .modal-header h1{display:inline-block !important;border-bottom:1px solid #828282 !important;padding:5px !important;font-size:28px;}
+.tplayer-dialog .modal-header p{padding:0px !important;font-size:15px;margin:0px;}
+.tplayer-dialog .vjs-modal-dialog-content{display:table;}
+.vjs-modal-dialog .tplayer-dialog-el{display:table-cell;vertical-align:middle;}
+.list-content{direction:rtl !important;}
+.lessons-list a.active,.lessons-list a.active svg.icon-playlist,.lessons-list a:hover,.lessons-list a:hover svg.icon-playlist,
+.lessons-list a.active,.lessons-list a.active i.icon-playlist,.lessons-list a:hover,.lessons-list a:hover i.icon-playlist{color:#000;fill:#000;}
+.lessons-list svg.icon-playlist,i.icon-playlist{font-size:21px;fill:#888;color:#888;vertical-align:middle;padding:5px 5px 5px 15px;}
+.lessons-list a .tmark{padding:0px 10px;}
+.lessons-list a .tmark i,.lessons-list a .tmark svg{width:12px;height:12px;}
+.section-heading{display:flex;}
+.tsvgicon.unlock{fill:green}
+a.lesson.free-lesson{background:#f7f8fa;}
+a.lesson.free .tmark{margin-left:36px;}
+a.lesson.free .tmark span.text{font-size:10px;padding:0px 10px}
+
+a.lesson.free-lesson.active,a.lesson.free-lesson:hover{background:#f7faff;}
+.total_lesson.tmark{font-family:monospace;padding-left:10px;}
+.lessons-list a[aria-expanded=true] .tsvgicon.toggle{transform:rotate(180deg);}
+.lessons-list a[data-toggle=collapse]{border-top:1px solid #CCC;background-color:#fafbf6}
+.lessons-list .list-title{font-size:12px;}
+
+.lessons-list svg.icon-playlist{width:30px;height:30px;}
+.tplayer-dialog.tplayer-overlay{cursor:pointer;}
+
+/*.tplayer-overlay-btn{color:#ababab;font-size:50px;cursor:pointer;line-height:1;}*/
+button.vjs-big-play-button.tplayer-overlay-btn{margin-top:0px !important;}
+.tplayer-overlay-btn{font-size:21px !important;border:2px solid #FFF !important;}
+.tplayer-overlay-btn span.vjs-icon-placeholder::before{font-size:24px;line-height:1.6;}
+.tplayer-dialog.tplayer-overlay:hover .tplayer-overlay-btn{color:#FFF !important}
+.tplayer-dialog .vjs-close-button.vjs-control{display:none !important;opacity:0 !important;}
+.tplayer-dialog.is_close_show .vjs-close-button.vjs-control{display:block !important;opacity:1 !important;}
+.tadarab-player .tplayer,.tadarab-player .tlist{display:inline-block;background:#FFF;}
+
+.tadarab-player .tlist{width:40%;}
+.tplayer-dialog p{padding:0px;margin:0px;}
+.video-btn-text{font-size:14px;margin:0px;padding:0px;color:#ffffff;text-align:center;}
+.video-js .vjs-dock-title{color:red;font-size:1.5em;}
+.video-js .vjs-dock-description{color:yellow;font-size:1.0em;}
+
+.tplay-timeload{position:absolute;width:100%;height:100%;top:0;left:0}
+#halfclip{width:50%;height:100%;right:0px;position:absolute;overflow:hidden;transform-origin:left center;}
+.tplay-timeload.activering #halfclip{animation:cliprotate 5s 1;transform:rotate(180deg);} 
+.halfcircle{box-sizing:border-box;height:100%;right:0px;position:absolute;border:solid 4px transparent;border-top-color:#af151f;border-left-color:#af151f;border-radius:50%;}
+#clipped{width:200%; transform:rotate(-45deg); }
+.tplay-timeload.activering #clipped {transform:rotate(135deg); animation:rotate 2.5s linear 2; }
+
+#fixed {width:100%; transform:rotate(135deg); opacity:0; }
+.tplay-timeload.activering #fixed {opacity:1; animation:showfixed 5s 1; }
+
+@keyframes cliprotate{ 0% {transform:rotate(0deg);} 50% {transform:rotate(0deg);} 50.01% {transform:rotate(180deg);} 100% {transform:rotate(180deg);}}
+@keyframes rotate {0% {transform:rotate(-45deg);} 100% {transform:rotate(135deg);} }
+@keyframes showfixed {0% {opacity:0;} 49.99% {opacity:0;} 50% {opacity:1;} 100% {opacity:1;} }
+video::-webkit-media-controls-panel,video::-webkit-media-controls-panel-container,video::-webkit-media-controls-start-playback-button{display:none !important;-webkit-appearance:none;}
+@media(max-width:768px){.tadarab-player{display:inline;}.tadarab-player .tplayer,.tadarab-player .tlist{width:100%;}.vjs-modal-dialog .vjs-modal-dialog-content{padding:10px 24px}.tplayer-dialog .modal-header h1{font-size:20px;}.tplayer-dialog .modal-header p{font-size:14px;}a.lesson.free .tmark{margin-left:0;}}
+@media(max-width:480px){.video-js .vjs-control-bar{font-size:12px;}.video-js .vjs-big-play-button{font-size:1rem}}

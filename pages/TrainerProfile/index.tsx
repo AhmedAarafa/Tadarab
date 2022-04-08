@@ -12,7 +12,7 @@ export default function TrainerProfile() {
 
   useEffect(() => {
       axiosInstance
-      .get(`trainers/10253/?country_code=${localStorage.getItem("countryCode")}`)
+      .get(`trainers/10253/?country_code=null`)
       .then(function (response:any) {
         const data:Trainer = response.data.data;
           dispatch(setTrainerProfileData(data));

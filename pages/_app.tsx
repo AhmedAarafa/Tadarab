@@ -18,23 +18,23 @@ function MyApp({ Component, pageProps }: AppProps) {
   
   useEffect(() => {
 
-    if (localStorage.getItem("countryCode")) {
+    // if (localStorage.getItem("countryCode")) {
 
-    } else {
-      axiosInstance
-        .get("https://ipapi.co/json/")
-        .then(function (response: any) {
-          if (response == undefined) {
-            localStorage.setItem("countryCode", "kw");
-          } else {
-            localStorage.setItem("countryCode", response?.data.country.toLowerCase());
-          }
-        })
-        .catch(function (error) {
-          localStorage.setItem("countryCode", "kw");
-          console.log(error);
-        });
-    }
+    // } else {
+    //   axiosInstance
+    //     .get("https://ipapi.co/json/")
+    //     .then(function (response: any) {
+    //       if (response == undefined) {
+    //         localStorage.setItem("countryCode", "kw");
+    //       } else {
+    //         localStorage.setItem("countryCode", response?.data.country.toLowerCase());
+    //       }
+    //     })
+    //     .catch(function (error) {
+    //       localStorage.setItem("countryCode", "kw");
+    //       console.log(error);
+    //     });
+    // }
 
     TagManager.initialize({ gtmId: 'GTM-WVQP3JV' });
 
@@ -52,13 +52,23 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
 
       <Head>
-       
-       {/* <script dangerouslySetInnerHTML={{__html: `<!-- Google Tag Manager -->(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M2TKMK7');<!-- End Google Tag Manager -->`}}/> */}
-        {/* <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WVQP3JV');` }} /> */}
-        {/* <noscript dangerouslySetInnerHTML={{ __html: `<img height="1" width="1" 
-            src="https://www.facebook.com/tr?id=387170448377801&ev=PageView
-            &noscript=1"/>` }}
-          /> */}
+        <title> كورسات دورات اون لاين عن بعد مجانية و معتمدة | تدرب</title>
+        <meta name="description" content="نقدم لك عبر موقع تدرب افضل الدورات المعتمدة عن بعد مع خبراء مختصين في مختلف المجالات. سجل في الدورات التدريبية المجانية لدينا اون لاين لتطوير مهاراتك مع شهادات معتمدة."/>
+        <meta property="og:locale" content="ar_AR" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="كورسات دورات اون لاين عن بعد مجانية و معتمدة | تدرب" />
+        <meta property="og:description" content="نقدم لك عبر موقع تدرب افضل الدورات المعتمدة عن بعد مع خبراء مختصين في مختلف المجالات. سجل في الدورات التدريبية المجانية لدينا اون لاين لتطوير مهاراتك مع شهادات معتمدة." />
+        <meta property="og:site_name" content="Tadarab" />
+        <meta property="og:image" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" />
+        <meta property="og:image:secure_url" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" />
+        <meta property="og:image:width" content="600" />
+        <meta property="og:image:height" content="314" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:description" content="نقدم لك عبر موقع تدرب افضل الدورات المعتمدة عن بعد مع خبراء مختصين في مختلف المجالات. سجل في الدورات التدريبية المجانية لدينا اون لاين لتطوير مهاراتك مع شهادات معتمدة." />
+        <meta name="twitter:title" content="كورسات دورات اون لاين عن بعد مجانية و معتمدة | تدرب" />
+        <meta name="twitter:site" content="@tadarab_" />
+        <meta name="twitter:image" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" />
+        <meta name="twitter:creator" content="@tadarab_" />
       </Head>
        <body>
           <Script id="google-analytics-script" dangerouslySetInnerHTML={{__html:`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

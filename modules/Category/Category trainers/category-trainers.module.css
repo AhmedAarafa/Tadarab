@@ -30,6 +30,7 @@
   color: white;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

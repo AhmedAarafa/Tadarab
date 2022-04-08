@@ -12,12 +12,12 @@ export default class TadarabFBPixel {
         let fbc = this.getCookie('_fbc');
         fbq('track', eventName, customData, {eventID: this.eventId}, { fbp: fbp, fbc: fbc});
         // console.log('trackkk',fbq('track', eventName, customData, {eventID: this.eventId}, { fbp: fbp, fbc: fbc}));
-        console.log(fbp,fbc,customData,eventName,this.eventId);
+        // console.log(fbp,fbc,customData,eventName,this.eventId);
     }
     
     setEventId(eventId) {
         this.eventId = eventId;
-        console.log('eventId',this.eventId,eventId);
+        // console.log('eventId',this.eventId,eventId);
         this.eventIdAlreadyExists = true;
     }    
     getEventId() { return this.eventId; }

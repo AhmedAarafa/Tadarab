@@ -47,6 +47,7 @@
   color: var(--dark-black);
   -webkit-text-decoration: underline 0.15rem var(--pale-red);
           text-decoration: underline 0.15rem var(--pale-red);
+  text-underline-offset: 0.2rem;
 }
 
 .latest-courses__see-more-btn-col {
@@ -171,6 +172,7 @@
   top: 50%;
   border-width: 0.5625rem;
   border-style: solid;
+  border-color: transparent  transparent  transparent transparent;
 }
 
 .latest-courses__popover-container--left::after {
@@ -611,6 +613,16 @@
   cursor: pointer;
 }
 
+.watch-subscribed-course {
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  padding: 0.5rem 1rem;
+  border-radius: 0.7rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--dark-black);
+  cursor: pointer;
+}
+
 @media (max-width: 1024px) {
   .popover-wrapper {
     display: none;
@@ -842,6 +854,11 @@
     height: 1.42875rem;
     margin: 0.65rem 0.575rem 0.65rem 0.575rem;
   }
+  .watch-subscribed-course {
+    font-size: 1.143rem !important;
+    padding: 0.635rem 1.27rem;
+    border-radius: 0.889rem;
+  }
 }
 
 @media (max-width: 980px) {
@@ -1064,6 +1081,11 @@
     height: 1.87875rem;
     margin: 0.88rem 0.88rem 0.88rem 0.88rem;
   }
+  .watch-subscribed-course {
+    font-size: 1.503rem !important;
+    padding: 0.835rem 1.67rem;
+    border-radius: 1.169rem;
+  }
 }
 
 @media (max-width: 575px) {
@@ -1099,6 +1121,9 @@
   }
   .latest-courses__departments-list li::before {
     padding-left: 1.46rem;
+  }
+  .latest-courses__departments-list__item--active {
+    text-underline-offset: 0.584rem;
   }
   .latest-courses__cards-carousel {
     margin: 0.5rem 0 0 0;
@@ -1340,6 +1365,11 @@
     width: 1.25rem;
     height: 2.1875rem;
     margin: 0.2rem 2.063rem 0 0;
+  }
+  .watch-subscribed-course {
+    font-size: 2.25rem !important;
+    padding: 1.25rem 2.5rem;
+    border-radius: 1.75rem;
   }
 }
 /*# sourceMappingURL=latest-courses.module.css.map */

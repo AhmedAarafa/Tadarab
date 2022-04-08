@@ -8,7 +8,7 @@ export default function JoinUs() {
       <Row className={styles["join-us-row"]}>
         <Col xs={12} className={styles["join-us"]}>
           <div className={styles["join-us__title"]}>
-          انضم لتصلك أحدث الدورات التدريبية والعروض
+          انضم لتستفيد من أكبر مكتبة إلكترونية في الخليج والوطن العربي
           </div>
           <div className="d-flex justify-content-center">
 
@@ -19,7 +19,7 @@ export default function JoinUs() {
               className={styles["join-us__subscribe-bar-box__email-field"]}
             />
             <Button className={styles["join-us__subscribe-bar-box__btn"]}>
-            إشترك
+            اشترك
             </Button>
           </div>
           </div>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect , useState } from "react";
 import styles from "./courses-departments.module.css";
@@ -18,7 +19,7 @@ export default function CoursesDepartments() {
 
     useEffect(() => {
       // axiosInstance
-      // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+      // .get(`home/?country_code=null`)
       // .then(function (response:any) {
       //   setCategories(response.data.data.categories);
       // })
@@ -62,12 +63,14 @@ export default function CoursesDepartments() {
             },
             "981": {
               slidesPerView: 7,
-            },
+            }, 
         }} className="mySwiper">
           
             { categories?.map((cat:any,i:any)=>{
               return(
-                <SwiperSlide key={i}>
+                <SwiperSlide key={i} style={{cursor:"pointer"}}>
+                   <Link  href={`/topic/${cat.slug}`}>
+                     
                   <div className={styles["courses-departments__cards-carousel__departments-card"]}>
                                 <div>
 
@@ -76,7 +79,7 @@ export default function CoursesDepartments() {
                                         <div className={styles["courses-departments__cards-carousel__departments-card__img-box"]}
                                         style={{backgroundColor:cat.color}}>
                                             
-                                            <img src={`/images/${cat.icon}.svg`} alt={cat.icon} />
+                                            <img src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
                                           
 
                                         </div>
@@ -87,6 +90,7 @@ export default function CoursesDepartments() {
                                     </div>
                                 </div>
                   </div>
+                   </Link>
 
                 </SwiperSlide>
               )

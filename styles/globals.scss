@@ -14,7 +14,7 @@
   --grey:#777777;
   --lightgrey: rgba(0, 0, 0, 0.05);
   --tadarab-bg: #fff;
-  --pale-red:#F7E7E8;
+  --pale-red: #EF798A;
   --drop-shadow: 0 0 1.25rem #0000001A;
   --icons-green:#198754;
   --borders-grey:#707070; 
@@ -60,6 +60,9 @@ a {
   font-family: 'Almarai', sans-serif !important;
   letter-spacing: 0 !important;
 }
+
+
+/* video player styles */
 
 
 /* video player styles */
@@ -566,7 +569,10 @@ input,
 
 .loading-indicator:before {
   content: '';
-  background: #d3d3d3;
+  background-image: url("/images/Loader-Desktop-View.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -575,18 +581,18 @@ input,
   z-index: 1000;
 }
 
-.loading-indicator:after {
-  content: 'جاري التحميل...';
-  position: fixed;
-  width: 100%;
-  top: 50%;
-  left: 0;
-  z-index: 1001;
-  color:black;
-  text-align:center;
-  font-weight:bold;
-  font-size:1.5rem;        
-}
+// .loading-indicator:after {
+//   content: 'جاري التحميل...';
+//   position: fixed;
+//   width: 100%;
+//   top: 50%;
+//   left: 0;
+//   z-index: 1001;
+//   color:black;
+//   text-align:center;
+//   font-weight:bold;
+//   font-size:1.5rem;        
+// }
 
 .accordion-button:not(.collapsed){
   &::after{
@@ -926,6 +932,11 @@ input:-webkit-autofill:active{
   
   }
 
+  .btn:disabled {
+    pointer-events: none !important;
+    opacity: 0.9 !important; 
+}
+
 
 @media(min-width: 1400px){
   .container-xxl{
@@ -1225,6 +1236,10 @@ input:-webkit-autofill:active{
     }
 
   
+  }
+
+  .loading-indicator:before {
+    background-image: url("/images/Loader-Mobile-view.png");
   }
 }
 

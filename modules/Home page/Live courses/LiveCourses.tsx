@@ -31,7 +31,7 @@ export default function LiveCourses() {
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+            .get(`home/?country_code=null`)
             .then(function (response:any) {
               setLiveCourses(response.data.data.live_courses);
             })
@@ -48,7 +48,7 @@ export default function LiveCourses() {
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+            .get(`home/?country_code=null`)
             .then(function (response:any) {
               setLiveCourses(response.data.data.live_courses);
             })
@@ -63,8 +63,8 @@ export default function LiveCourses() {
         }
       }else{
         Router.push({
-          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-          query: { from: "/HomePage" }
+          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+          query: { from: "homepage" }
         })
   
       }
@@ -74,7 +74,7 @@ export default function LiveCourses() {
       dispatch(setCheckoutType("cart"));
     
       // if(userStatus?.isUserAuthenticated == true){
-        const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+        const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
         handleCartResponse.then(function(firstresponse:any) {
           firstresponse.resp.then(function(response:any){
             setLiveCourses(response.data.data.live_courses);
@@ -84,7 +84,7 @@ export default function LiveCourses() {
         })
       // }
       // else{
-      //   const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+      //   const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
       //   handleCartResponse.then(function(response:any) {
       //       dispatch(setCartItems(response.data.data));
       //       let newArray:any = liveCourses;
@@ -110,7 +110,7 @@ export default function LiveCourses() {
         const localStorageItems:any = localStorage.getItem("cart");
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
         axiosInstance
-          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+          .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
           .then(function (response:any) {
             // console.log(response);
             let newArray:any = homePageData.data?.live_courses;
@@ -146,7 +146,9 @@ export default function LiveCourses() {
         </Col>
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["live-courses__see-more-btn-col"]}>
 
-          <Button className={styles["live-courses__see-more-btn"]}>
+          <Button className={styles["live-courses__see-more-btn"]}
+          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?filter_type=live`)}}
+          >
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
 
@@ -176,16 +178,19 @@ export default function LiveCourses() {
                 <SwiperSlide key={i}> 
                   <Card className={`${ lc.price == 0 ? styles["live-courses__cards-carousel__card"] : styles["live-courses__cards-carousel__card--paid"] } 
                   `}>
+                    { lc.categories[0] !== undefined && lc.categories[0].title !== null && lc.categories[0].title !== ""  &&
+                    
                       <div
                         className={
                           styles[
                             "live-courses__cards-carousel__course-card__category-chip"
                           ]
                         }
-                        style={{backgroundColor:lc.categories[0]?.color}}
+                        style={{backgroundColor:`${lc.categories[0] !== undefined && lc.categories[0].color}`}}
                       >
-                          {lc.categories[0]?.title}
+                           {lc.categories[0] !== undefined && lc.categories[0].title} 
                       </div>
+                    }
                       <div
                         className={
                           styles[

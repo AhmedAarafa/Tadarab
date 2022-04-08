@@ -20,20 +20,41 @@
     &>div:nth-of-type(1){
         span:nth-of-type(2){
             color: var(--primary-red);
+          
         }
         
     }
     &>div:nth-of-type(2){
-        margin-top: 0.4rem;
+        margin-top: 0.8rem;
         font-size: 0.75rem;
         font-weight: 400;
-        span:nth-of-type(2){
-            margin: 0 0.2rem 0 0;
-            color: var(--primary-red);
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-block;
+        span:nth-of-type(1){
+            line-height: 1.2rem !important;
+            span:nth-of-type(1){
+                margin: 0 0.2rem 0 0;
+                color: var(--primary-red);
+                font-weight: 700;
+                cursor: pointer;
+                display: inline-block;
+                line-height: 1.2rem !important;
+    
+                a{
+                    color: var(--primary-red) !important;
+                }
+            }
         }
+        // span:nth-of-type(2){
+        //     margin: 0 0.2rem 0 0;
+        //     color: var(--primary-red);
+        //     font-weight: 700;
+        //     cursor: pointer;
+        //     display: inline-block;
+        //     line-height: 1.2rem !important;
+
+        //     a{
+        //         color: var(--primary-red) !important;
+        //     }
+        // }
     }
 }
 
@@ -244,7 +265,7 @@
 .monthly-subscription__course-card__details-list {
     margin-top: 0.8rem;
     padding-bottom: 0.8rem;
-    border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+    // border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
     flex-direction: column;
 
 }
@@ -264,6 +285,7 @@
     text-align: center;
     font-size: 0.938rem;
     padding: 0.9rem 0 1.5rem 0;
+    display: none !important;
 
     span:nth-of-type(1) {
         color: var(--grey);
@@ -385,6 +407,10 @@
             margin: 0 0 1.5rem 0;
         }
         &>div:nth-of-type(2){
+        margin-top: 1.5rem;
+            span:nth-of-type(1){
+                line-height: 3.3rem !important;
+            }
             font-size: 0.75rem*2.7;
             span:nth-of-type(2){
                 margin: 0 0.2rem*2.5 0 0;
@@ -573,7 +599,7 @@
     .monthly-subscription__course-card__details-list {
         margin-top: 1rem*2.5;
         padding-bottom: 0.8rem*2.5;
-        border-bottom: 0.05rem*2.5 solid rgba(34, 34, 34, 0.1);
+        // border-bottom: 0.05rem*2.5 solid rgba(34, 34, 34, 0.1);
     
     }
     

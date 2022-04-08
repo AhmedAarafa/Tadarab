@@ -9,7 +9,7 @@ export default function CourseCertificate() {
             <div>سوف تحصل على </div>
             <div>شهادة من تدرب بعد إتمام الدورة</div>
             <div>
-                <img src="/images/certificate.png" alt="course certificate" />
+                <img src="/images/BlankCretifacte.png" alt="course certificate" />
             </div>
         </div>
             

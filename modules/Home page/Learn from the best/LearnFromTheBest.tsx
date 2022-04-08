@@ -19,7 +19,7 @@ export default function LearnFromTheBest() {
 
   useEffect(() => {
     // axiosInstance
-    // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+    // .get(`home/?country_code=null`)
     // .then(function (response:any) {
     //   setTrainers(response.data.data.trainers);
     // })
@@ -30,7 +30,6 @@ export default function LearnFromTheBest() {
       setTrainers(homePageData.data?.trainers || []);
     // }
     // setTrainers(homePageData.data.trainers);
-    console.log("homePageData.data?.trainer",homePageData.data?.trainers);
      
 
   }, [homePageData]);
@@ -46,12 +45,12 @@ export default function LearnFromTheBest() {
         </Col>
 
         <Col xs={{span:12 ,order:3}} sm={{span:3 ,order:1}} className={styles["learn-from-the-best__see-more-btn-col"]}>
-          <Button className={styles["learn-from-the-best__see-more-btn"]}>
-              اعرض كل المدربين 
-              <ChevronLeftIcon color="#af151f"/>
-
-
-          </Button>
+          <Link href="/trainers">
+            <Button className={styles["learn-from-the-best__see-more-btn"]}>
+                اعرض كل المدربين 
+                <ChevronLeftIcon color="#af151f"/>
+            </Button>
+          </Link>
         </Col> 
 
         <Col xs={{span:12 ,order:2}} sm={{span:12 ,order:3}} className={styles["learn-from-the-best__cards-carousel"]}>

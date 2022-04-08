@@ -5,7 +5,7 @@ import React, {useState, useEffect} from "react";
 import { Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./sign-up-page.module.css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import {
   Formik,
   FormikHelpers,
@@ -16,8 +16,6 @@ import {
   ErrorMessage
 } from 'formik';
 import * as Yup from "yup";
-// import Countries from  "../../../node_modules/country-codes/node_modules/country-data/data/countries.json";
-// import  "../../../node_modules/country-codes/node_modules/country-data/data/countries2.json";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon,MobileIcon,NameFieldIcon } from "common/Icons/Icons";
@@ -55,6 +53,8 @@ export default function SignupPage() {
     });
     
     const [phoneFieldEvent, setPhoneFieldEvent] = useState<any>();
+    const router:any = useRouter();
+
    
   
     const updateValue =(e:any)=>{
@@ -180,9 +180,25 @@ export default function SignupPage() {
                 let customData = {email: values.email, phone: values.phoneNumber};
                 FBPixelEventsHandler(response.data.fb_tracking_events,customData);
                 if(response.data.data !== null){
-                  localStorage.setItem("token" , response.data.data.token);
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                  const totalItems:any = [];
+                  response?.data?.data?.courses?.forEach((item:any)=>{
+                   totalItems.push(item.id);
+                 });
+                 localStorage.setItem("token" , response.data.data.token);
+                 localStorage.setItem("cart" , JSON.stringify(totalItems));
+                 localStorage.setItem("cart_items" , JSON.stringify([...new Set(response.data.data.cart_items)]));
+                 
+                  // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                  if (router.query && router.query.from) {
+                    // router.push(router.back());
+                    Router.back();
+                  }else if(router.query && router.query.from_subscription){
+                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/${Router.query.from_subscription}`);
+                 }else{
+                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                 }
                 }
+
 
                 
               }else {
@@ -366,7 +382,7 @@ export default function SignupPage() {
 
                               <div className={styles["register__register-box__registeration-form-box__do-you-have-acc"]}>
                                   <span> لديك حساب عندنا؟ </span>
-                                  <Link href="/signin">
+                                  <Link href="/sign-in">
                                    <span> تسجيل الدخول </span>
                                   </Link>
                               </div>

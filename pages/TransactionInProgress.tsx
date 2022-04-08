@@ -9,6 +9,7 @@ import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 
+
 export default function TransactionInProgress() {
   const router = useRouter();
  const dispatch = useDispatch();

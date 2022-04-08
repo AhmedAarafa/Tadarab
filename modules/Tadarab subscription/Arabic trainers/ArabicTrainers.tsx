@@ -32,7 +32,7 @@ export default function ArabicTrainers() {
                 مدربين عرب
                 </span>
                 </div>
-            <div className={styles["arabic-trainers__brief"]}>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما لتدريب افراد شركتك</div>
+            <div className={styles["arabic-trainers__brief"]}>أكثر من 500 مدرب محترف في مجاله، يساعدونك على تحقيق أهدافك من خلال دوراتهم في جميع المجالات.</div>
         </Col>
 
         <Col xs={12} className={styles["arabic-trainers__cards-carousel"]}>
@@ -80,8 +80,8 @@ export default function ArabicTrainers() {
         </Swiper>
         </Col>
 
-        <Col xs={12} className={styles["arabic-trainers__subscribe-box"]}>
-            <div>للاشتراك الشهري على منصة تدرب سجل ايميلك وسجل حسابك</div>
+        {/* <Col xs={12} className={styles["arabic-trainers__subscribe-box"]}>
+            <div>للاشتراك الشهري على منصة تدرب، سجل إيميلك وانشئ حسابك.</div>
             <div>
             <div className={styles["arabic-trainers__search-bar-container"]}>
               
@@ -98,7 +98,7 @@ export default function ArabicTrainers() {
               </Button>
             </div>
             </div>
-        </Col>
+        </Col> */}
     </Row>
   )
 }

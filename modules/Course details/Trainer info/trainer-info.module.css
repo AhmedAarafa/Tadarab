@@ -72,6 +72,13 @@
   margin: 1.3rem 0 0.8rem 0;
 }
 
+.trainer-info-section__view-trainer-account {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
 .trainer-info-section__view-trainer-account span {
   font-size: 1rem;
   color: var(--primary-red);

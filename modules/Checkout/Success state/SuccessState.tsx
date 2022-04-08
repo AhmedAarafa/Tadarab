@@ -7,12 +7,15 @@ import { setCartItems } from 'configurations/redux/actions/cartItems';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import Router, { useRouter }  from "next/router";
+
 
 export default function SuccessState() {
 
     const dispatch = useDispatch();
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
     const cartItems = useSelector((state:any) => state.cartItems);
+    const checkoutType = useSelector((state:any) => state.checkoutType);
 
     let tadarabGA = new TadarabGA();
     useEffect(() => {
@@ -40,6 +43,25 @@ export default function SuccessState() {
           dispatch(setCheckoutType("cart"));
       }
     }, []);
+
+    useEffect(() => {
+
+        if(Router.query && Router.query.checkout_type == "subscription"){
+            dispatch(setCheckoutType("subscription"));
+            // Router.replace("/checkout/payment/?checkout_type=subscription");
+        }
+        else if(JSON.stringify(Router.query) == "{}"){
+            console.log("Router",Router.query);
+            dispatch(setCheckoutType("cart"));
+            // Router.replace("/checkout/payment");
+        }
+    
+      return () => {
+        console.log("setCheckoutType dispatched");
+        dispatch(setCheckoutType("cart"));
+      }
+    }, [Router.query])
+    
     
     
     return (
@@ -53,9 +75,9 @@ export default function SuccessState() {
             <div className={styles["success-state__purchasing-done"]}> 
             ممتاز! لقد تمت عملية الشراء بنجاح، نتمنى لك وقت ممتع ومفيد على تدرب.
              </div>
-            <div className={styles["success-state__begin-learning"]}>
+            { checkoutType == "cart" && <div className={styles["success-state__begin-learning"]}>
                  رضائك يهمنا نقدم لك ٣٠ يوم ضمان ذهبي على جميع الدورات لأن هدفنا هو إفادتك من كل دورة تمتلكها على تدرب.
-                  </div>
+                  </div>}
             <Button className={styles["success-state__btn"]}>
                 <span> اذهب لدوراتي </span>
                 <ArrowLeftIcon color="#fff"/>

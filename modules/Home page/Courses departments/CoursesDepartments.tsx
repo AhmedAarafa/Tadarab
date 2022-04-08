@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect , useState } from "react";
 import styles from "./courses-departments.module.css";
@@ -18,7 +19,7 @@ export default function CoursesDepartments() {
 
     useEffect(() => {
       // axiosInstance
-      // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+      // .get(`home/?country_code=null`)
       // .then(function (response:any) {
       //   setCategories(response.data.data.categories);
       // })
@@ -67,28 +68,30 @@ export default function CoursesDepartments() {
           
             { categories?.map((cat:any,i:any)=>{
               return(
-                <SwiperSlide key={i}>
-                  <div className={styles["courses-departments__cards-carousel__departments-card"]}>
-                                <div>
+                <SwiperSlide  key={i}  style={{cursor:"pointer"}}>
 
-                                    <div className="d-flex justify-content-center">
+                      <Link  href={`/topic/${cat.slug}`}>
+                      <div className={styles["courses-departments__cards-carousel__departments-card"]}>
+                                    <div> 
 
-                                        <div className={styles["courses-departments__cards-carousel__departments-card__img-box"]}
-                                        style={{backgroundColor:cat.color}}>
-                                            
-                                            <img src={`/images/${cat.icon}.svg`} alt={cat.icon} />
-                                          
+                                        <div className="d-flex justify-content-center">
 
+                                            <div className={styles["courses-departments__cards-carousel__departments-card__img-box"]}
+                                            style={{backgroundColor:cat.color}}>
+                                                <img src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]}/>
+                                              
+
+                                            </div>
+                                        </div>
+                                        <div className={styles["courses-departments__cards-carousel__departments-card__department"]}>{cat.title}</div>
+                                        <div className={styles["courses-departments__cards-carousel__departments-card__learners-number"]}>
+                                        {cat.buyers_count} متعلم 
                                         </div>
                                     </div>
-                                    <div className={styles["courses-departments__cards-carousel__departments-card__department"]}>{cat.title}</div>
-                                    <div className={styles["courses-departments__cards-carousel__departments-card__learners-number"]}>
-                                    {cat.buyers_count} متعلم 
-                                    </div>
-                                </div>
-                  </div>
+                      </div>
+               </Link>
 
-                </SwiperSlide>
+                    </SwiperSlide>
               )
             }) 
             }

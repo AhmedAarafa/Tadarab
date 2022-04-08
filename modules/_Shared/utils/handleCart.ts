@@ -52,7 +52,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
         id:course.id,
         price: course.discounted_price_usd,
         brand: 'Tadarab',
-        category: course.categories[0].title,
+        category: course.categories !== undefined && course.categories[0].title,
         variant:'Single Course',
         coupon:''});
 
@@ -65,11 +65,11 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
               const LSItems:any = localStorage.getItem("cart_items");
               const LSItemsIds:any = localStorage.getItem("cart");
               
-              LSItems ? 
+              LSItems && JSON.stringify(LSItems) !== "[]" ? 
               localStorageItemsArray.push(JSON.parse(LSItems)) 
               : null;
               
-              LSItemsIds ? 
+              LSItemsIds && JSON.stringify(LSItemsIds) !== "[]" ? 
               localStorageItemsIdsArray.push(JSON.parse(LSItemsIds)) 
               : null;
               // console.log("LSItems",LSItems);
@@ -77,10 +77,8 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
               // localStorage.setItem("cart_items",JSON.stringify(localStorageItemsArray));
 
               if(course.is_in_cart == false){
-                console.log("localStorageItemsArray",localStorageItemsArray);
-            
                   return (axiosInstance
-                  .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`,
+                  .post(`users/cart/?country_code=null`,
                    {"items" : JSON.stringify([...new Set(localStorageItemsArray.flat())])})
                   .then((response:any) => {
                    const totalItems:any = [];
@@ -110,7 +108,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                   }))
                 }else{
                   return (axiosInstance
-                  .delete(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, { data:{"item_id" : course.id}})
+                  .delete(`users/cart/?country_code=null`, { data:{"item_id" : course.id}})
                   .then((response:any) => {
                    const totalItems:any = [];
                     console.log("Response",response);
@@ -157,7 +155,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
 //         //   setLatestCourses([...latestCourses]);
       
 //         return (axiosInstance
-//           .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${JSON.stringify(uniqeStoredCartCourses)?.replace(/[\[\]']+/g,'')}`)
+//           .get(`courses/?country_code=null&course_ids=${JSON.stringify(uniqeStoredCartCourses)?.replace(/[\[\]']+/g,'')}`)
 //           .then(function (response:any) {
 //             console.log(response.data.data);
 //             return response;
@@ -179,7 +177,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
 //           });
 //           localStorage.setItem("cart" , JSON.stringify(resultedItems));
 //           return (axiosInstance
-//           .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${JSON.stringify(resultedItems)?.replace(/[\[\]']+/g,'')}`)
+//           .get(`courses/?country_code=null&course_ids=${JSON.stringify(resultedItems)?.replace(/[\[\]']+/g,'')}`)
 //           .then(function (response:any) {
 //             console.log(response.data.data);
 //             return response;

@@ -20,7 +20,7 @@ export default function TrainerAccountsCard() {
         <div className={styles["trainer-accounts-card"]}>
             <div className={styles["trainer-accounts-card__title"]}>
                 <div>حسابات المدرب</div>
-                <div>تابع المدرب علي السوشيال ميديا</div>
+                <div>تابع المدرب على السوشيال ميديا</div>
             </div>
 
             {

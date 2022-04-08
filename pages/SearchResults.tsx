@@ -1,8 +1,11 @@
 import React from 'react'
-import Navbar from "common/Navbar/Navbar";
+// import Navbar from "common/Navbar/Navbar";
+// import SearchResultsPage from "modules/Search Results/SearchResultsPage";
 import { Container } from "react-bootstrap";
-import SearchResultsPage from "modules/Search Results/SearchResultsPage";
 
+import dynamic from 'next/dynamic';
+const Navbar = dynamic(() => import("common/Navbar/Navbar"));
+const SearchResultsPage = dynamic(() => import("modules/Search Results/SearchResultsPage"));
 
 export default function SearchResults() {
   return (

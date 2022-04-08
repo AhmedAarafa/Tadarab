@@ -2,8 +2,11 @@ import React from 'react';
 import styles from "./faq.module.css";
 import { Row,Col,Accordion } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
+import Router from "next/router";
+import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 export default function Faq() {
+
   return (
     <Row className={styles["faq__row"]}>
         <Col xs={12} className={styles["faq"]}>
@@ -23,11 +26,16 @@ export default function Faq() {
                 </Accordion.Header>
                 <Accordion.Body  className={styles["faq__accordion__body"]}>
                   <div>
-                تدرب بلا حدود هو نظام إشتراك شهري يتيح للمشترك من خلاله الاستفادة من محتوى المنصة المدفوع عن من مئات الدورات التدريبية الافضل مبيعاَ في الخليج والوطن العربي ومقدمة من أفضل المدربين والخبراء في مجالاتهم.
+                    
+                  تدرب بلا حدود هو نظام اشتراك شهري بقيمة رمزية، يتيح لك الاستفادة من محتوى المنصة بالكامل
+                  ومتابعة مئات الدورات الأكثر طلبًا ومبيعًا في الخليج، يقدمها أكفأ المدربين في مختلف المجالات
+                  على مستوى الوطن العربي، بالإضافة إلى إمكانية حضور جميع دورات البث المباشر التفاعلية
+                  أو متابعتها مسجلة في أي وقت يناسبك.
+
                   </div>
-                  <div>
+                  {/* <div>
                   بالاضافة لحضور الدورات المباشرة خلال البث المباشر او مشاهدنا مسجلة في اي وقت مناسب لك. 
-                  </div>
+                  </div> */}
 
                   </Accordion.Body>
               </Accordion.Item>
@@ -52,7 +60,7 @@ export default function Faq() {
                 هل سأتمكن من إلغاء الاشتراك في أي وقت؟
                 </Accordion.Header>
                 <Accordion.Body  className={styles["faq__accordion__body"]}>
-                نعم بكل تأكيد يمكنك إلغاء اشتراكك في تدرب بلا حدود في اي وقت يناسبك
+                نعم بكل تأكيد، يمكنك إلغاء اشتراكك في تدرب بلا حدود في أي وقت تريده.
                 </Accordion.Body>
               </Accordion.Item>
 
@@ -61,10 +69,10 @@ export default function Faq() {
                 className={styles["faq__accordion__item"]}
               >
                 <Accordion.Header className={styles["faq__accordion__header"]}>
-                هل هناك ضمان استرداد على إشتراك تدرب بلا حدود؟
+                هل يوجد ضمان استرداد على اشتراك تدرب بلا حدود؟
                 </Accordion.Header>
                 <Accordion.Body  className={styles["faq__accordion__body"]}>
-                تدرب بلا حدود نظام إشتراك شهري لا يتوفر به نظام الاسترداد. 
+                تدرب بلا حدود نظام اشتراك شهري لا يتوفر به نظام الاسترداد. 
                 </Accordion.Body>
               </Accordion.Item>
 
@@ -97,7 +105,7 @@ export default function Faq() {
 
         <div className={styles["faq__contact-us"]}>
           <span> هل لديك سؤال؟ </span>
-          <span> تواصل معنا </span>
+          <span onClick={()=>{ contactUsHandler()  }}> تواصل معنا </span>
         </div>
         </Col>
     </Row>

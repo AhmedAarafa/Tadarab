@@ -2,8 +2,11 @@ import React from 'react';
 import styles from "./faq.module.css";
 import { Row,Col,Accordion } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
+import Router from "next/router";
+import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 export default function Faq() {
+
   return (
     <Row className={styles["faq__row"]}>
         <Col xs={12} className={styles["faq"]}>
@@ -46,7 +49,7 @@ export default function Faq() {
                 هل يمكنني إنشاء دورتي التدريبية ورفعها على المنصة بنفسي؟
                 </Accordion.Header>
                 <Accordion.Body  className={styles["faq__accordion__body"]}>
-                نعم نوفر لوحة تحكم مميزة للمدربين يمكن من خلالها إنشاء دورة تدريبية ورفع جميع الفيديوهات والمرفقات والمحتوى وتسعير الدورة وإرسالها للمراجعة من قبل فريق الجودة لنشرها على المنصة او ارسال بعض الملاحظات عليها ليتم نشرها. 
+                نعم نوفر لوحة تحكم مميزة للمدربين يمكن من خلالها إنشاء دورة تدريبية ورفع جميع الفيديوهات والمرفقات والمحتوى وتسعير الدورة وإرسالها للمراجعة من قبل فريق الجودة لنشرها على المنصة أو إرسال بعض الملاحظات عليها ليتم نشرها. 
                   </Accordion.Body>
               </Accordion.Item>
 
@@ -71,14 +74,14 @@ export default function Faq() {
                 كيف يمكنني التواصل معكم؟
                 </Accordion.Header>
                 <Accordion.Body  className={styles["faq__accordion__body"]}>
-                يمكنك التواصل معنا عن طريق ارسال ايميل على info@tadarab.com او مراسلتنا على رقم الواتساب 0096599002199
+                يمكنك التواصل معنا عن طريق إرسال إيميل على info@tadarab.com او مراسلتنا على رقم الواتساب 0096599002199
                   </Accordion.Body>
               </Accordion.Item>
         </Accordion>
 
         <div className={styles["faq__contact-us"]}>
           <span> هل لديك سؤال؟ </span>
-          <span> تواصل معنا </span>
+          <span onClick={()=>{ contactUsHandler() }}> تواصل معنا </span>
         </div>
         </Col>
     </Row>

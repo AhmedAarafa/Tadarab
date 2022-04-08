@@ -28,9 +28,9 @@ export default function JoinUs() {
 
         <Col xs={12} >
             <div className={styles["join-us__title"]}>
-                 انضم لتدرب وكن واحد من 
+                 انضم لتدرب وكن واحدًا من 
                 <div>
-                مدربيننا 
+                مدربينا 
                 </div>
                 </div>
             <div className={styles["join-us__brief"]}>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما لتدريب افراد شركتك</div>

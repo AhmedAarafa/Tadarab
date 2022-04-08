@@ -28,12 +28,15 @@ export default function MarketingBoxes() {
 
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={styles["marketing-boxes__title"]}>
-                <div className={styles["marketing-boxes__title--important"]}>حرية الإختيار</div>
-                <div > واسكتشاف الدورات</div>
+                <div className={styles["marketing-boxes__title--important"]}>حرية الاختيار</div>
+                <div > واستكشاف الدورات</div>
             </div>
             <div className={styles["marketing-boxes__brief"]}>
-            نمنحك حرية إحتيار واستكشاف الدورات المناسبة لك من مئات الدورات لا داعي للتقيد بدورة محددة ولا مدرب واحد
-            </div>
+            لا داعِ للتقيد بعدد معين من الدورات الموجودة في حسابك فقط،
+مع تدرب بلا حدود يمكنك مشاهدة أي دورة من مئات الدورات في مختلف المجالات
+ومتابعتها في أي وقت خلال فترة الاشتراك.
+                
+                </div>
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]}  d-flex justify-content-end`}>
@@ -54,7 +57,9 @@ export default function MarketingBoxes() {
                 <div> لوضعك على بداية الطريق</div>
             </div>
             <div className={styles["marketing-boxes__brief"]}>
-            أكتسب المهارات والعلم عن طريق الفديوهات التدريبية والتمارين والاختبارات المرفقة مع كل دورة بكل حرية
+            اكتسب العلم والمهارت المختلفة عن طريق الفيديوهات التدريبية
+            والتمارين والاختبارات المرفقة مع كل دورة بحرية تامة.
+
             </div>
         </Col>
 

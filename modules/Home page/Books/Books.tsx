@@ -18,7 +18,7 @@ export default function Books() {
 
     useEffect(() => {
       // axiosInstance
-      // .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+      // .get(`home/?country_code=null`)
       // .then(function (response:any) {
       //   setBooks(response.data.data.books);
       // })

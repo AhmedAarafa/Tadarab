@@ -37,6 +37,7 @@
     border-radius: 0.75rem;
     margin-left: 3rem;
     @include flex(center, space-around);
+    // display: none !important;
 
     &:hover,
     &:active {

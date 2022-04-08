@@ -10,18 +10,18 @@ export default function Statistics() {
 
   useEffect(() => {
     const stasticsSection:any = document.getElementById("animated-stastics-section") ;
-    const rootFontSize = parseFloat(
-      window
-      .getComputedStyle(document.getElementsByTagName("html")[0]) 
-      .getPropertyValue("font-size")
-    );
+    // const rootFontSize = parseFloat(
+    //   window
+    //   .getComputedStyle(document.getElementsByTagName("html")[0]) 
+    //   .getPropertyValue("font-size")
+    // );
     
-    window.addEventListener("scroll" , ()=>{
-      if((window.scrollY + (15*rootFontSize)) >= (stasticsSection?.offsetTop) ){
-        setStartCounter(true);
-      }
+    // window.addEventListener("scroll" , ()=>{
+    //   if((window.scrollY + (15*rootFontSize)) >= (stasticsSection?.offsetTop) ){
+    //     setStartCounter(true);
+    //   }
       
-    })
+    // })
   
     return () => {
       window.removeEventListener("scroll" , ()=>{
@@ -56,7 +56,7 @@ export default function Statistics() {
                               </div>
                             </div>
                         <div className={styles["statistics__details__counter"]}>
-                            <span id="users-count">+{ startCounter ? animateValue("users-count",0,2,5000) : ""}</span>
+                            <span id="users-count">+2.6</span>
                             <span>مليون</span>
                         </div>
                         <div className={styles["statistics__details__unit"]}>مستخدم</div>
@@ -70,7 +70,7 @@ export default function Statistics() {
 
                             </div>
                         <div className={styles["statistics__details__counter"]}>
-                            <span id="edu-courses-count">+{ startCounter ? animateValue("edu-courses-count",0,500,5000) : "0"}</span>
+                            <span id="edu-courses-count">+750</span>
                         </div>
                         <div className={styles["statistics__details__unit"]}>دورة تدريبية</div>
                     </div>
@@ -82,7 +82,7 @@ export default function Statistics() {
 
                             </div>
                         <div className={styles["statistics__details__counter"]}>
-                            <span id="trainers-count">+{ startCounter ? animateValue("trainers-count",0,400,5000) : "0"}</span>
+                            <span id="trainers-count">+400</span>
                         </div>
                         <div className={styles["statistics__details__unit"]}>خبير ومدرب</div>
                     </div>
@@ -96,7 +96,7 @@ export default function Statistics() {
 
                              </div>
                         <div className={styles["statistics__details__counter"]}>
-                            <span id="exp-years-count">+{ startCounter ? animateValue("exp-years-count",0,10,5000) : "0"}</span>
+                            <span id="exp-years-count">+10</span>
                         </div>
                         <div className={styles["statistics__details__unit"]}>سنوات خبرة</div>
                     </div>

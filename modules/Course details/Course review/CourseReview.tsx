@@ -11,28 +11,33 @@ import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ReviewStartIcon, PlusIcon, GiftIcon, CartIcon } from "common/Icons/Icons";
 
-export default function CourseReview() { 
+export default function CourseReview(props:any) { 
     SwiperCore.use([Navigation]);
   const [courseReviews, setCourseReviews] = useState<any>([]);
   const [reviewsSlicer, setReviewsSlicer] = useState<any>(1);
 
     useEffect(() => {
-       scrollspyHandler("reviews-section");
-       axiosInstance
-        .get(`courses/1540/reviews/?country_code=${localStorage.getItem("countryCode")}`)
-        .then(function (response:any) {
-            setCourseReviews(response.data.data);
-        })
-        .catch(function (error) { 
-        console.log(error); 
-        });
 
-       return () => {
-        window.removeEventListener("resize", () => {
-          null;
-        });
-      }
-      }, []);
+        if(props.Cid() !== ""){
+
+            scrollspyHandler("reviews-section");
+            axiosInstance
+             .get(`course/${props.Cid()}/reviews/?country_code=null`)
+             .then(function (response:any) {
+                 setCourseReviews(response.data.data);
+             })
+             .catch(function (error) { 
+             console.log(error); 
+             });
+     
+            return () => {
+             window.removeEventListener("resize", () => {
+               null;
+             });
+           }
+
+        }
+      }, [props.Cid()]);
 
       function timerHandler(date:any) {
         
@@ -58,7 +63,11 @@ export default function CourseReview() {
 
     }
 
+    
     return (
+        <>
+        {
+        courseReviews &&
         <>
         <Col  xs={12} className={styles["course-review"]}>
     <div id="reviews-section" className={styles["course-review__scrollspy-helper"]}></div>
@@ -370,6 +379,9 @@ export default function CourseReview() {
           
         </Swiper>
         </Col>
+        </>
+      
+        }
             
         </>
     )

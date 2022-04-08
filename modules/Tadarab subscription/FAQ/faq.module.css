@@ -107,6 +107,7 @@
 
 .faq__contact-us span:nth-of-type(2) {
   color: var(--primary-red);
+  cursor: pointer;
 }
 
 @media (max-width: 575px) {

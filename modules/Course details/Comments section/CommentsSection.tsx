@@ -8,17 +8,17 @@ import { SendIcon, LikeIcon,CommentIcon } from "common/Icons/Icons";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";  
 
-export default function CommentsSection(props:{id:string}) {
+export default function CommentsSection(props:any) {
     const [courseComments, setCourseComments] = useState<any>([]);
     const [replyTo, setReplyTo] = useState(0);
     const [isCommentTextAreaEmpty, setIsCommentTextAreaEmpty] = useState(true);
     const userStatus = useSelector((state:any) => state.userAuthentication);
 
-    useEffect(() => {
+    useEffect(() => { 
         
-      if(props.id && props.id !== ""){
+      if(props.Cid() !== ""){
            axiosInstance
-        .get(`courses/${props.id}/comments`)
+        .get(`course/${props.Cid()}/comments`)
         .then(function (response:any) {
             setCourseComments(response.data.data);
             
@@ -78,24 +78,22 @@ export default function CommentsSection(props:{id:string}) {
         console.log(error); 
         });
     }
-
-
         return () => {
             window.removeEventListener("resize" , ()=>{
                 null;
             })
           }
-    }, [props])
+    }, [props.Cid()])
     
 
     const handleLikes = (commentId:number)=>{
         if(userStatus.isUserAuthenticated == true){
 
             axiosInstance
-            .post(`courses/comments/${commentId}/likes`)
+            .post(`course/comments/${commentId}/likes`)
             .then((response:any) => {
                 axiosInstance
-                .get(`courses/1540/comments`)
+                .get(`course/${props.Cid()}/comments`)
                 .then(function (response:any) {
                     setCourseComments(response.data.data);
         
@@ -116,7 +114,7 @@ export default function CommentsSection(props:{id:string}) {
                         let commentsTree:any = document.getElementById(`tree-box${index}`);
                         let commentsBox:any = document.getElementById(`comment-box${index}`);
                         let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
-                        console.log("sdsdsd",(parseInt(getComputedStyle( commentsBox ).getPropertyValue('height'))) * -0.25);
+                        // console.log("sdsdsd",(parseInt(getComputedStyle( commentsBox ).getPropertyValue('height'))) * -0.25);
                         
                         
                         window.addEventListener("resize" , ()=>{
@@ -162,8 +160,8 @@ export default function CommentsSection(props:{id:string}) {
 
         }else{
             Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-                query: { from: "/HomePage" }
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "course" }
               })
         }
       
@@ -177,8 +175,8 @@ export default function CommentsSection(props:{id:string}) {
         if(userStatus.isUserAuthenticated == true){
         }else{
             Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-                query: { from: "/HomePage" }
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "course" }
               })
         }
         
@@ -190,7 +188,7 @@ export default function CommentsSection(props:{id:string}) {
         
 
         axiosInstance
-        .post(`courses/1540/comments`,{comment:e.target['0'].value ,reply_to_comment_id:replyTo})
+        .post(`course/${props.Cid()}/comments`,{comment:e.target['0'].value ,reply_to_comment_id:replyTo})
         .then((response:any) => {
             const CommentTextBox:any = document.querySelector('[name="commentTextArea"]');
             CommentTextBox.value ="";
@@ -207,7 +205,7 @@ export default function CommentsSection(props:{id:string}) {
             });
 
             axiosInstance
-            .get(`courses/1540/comments`)
+            .get(`course/${props.Cid()}/comments`)
             .then(function (response:any) {
 
                 setCourseComments(response.data.data);

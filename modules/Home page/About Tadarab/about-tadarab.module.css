@@ -298,6 +298,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    text-align: center;
   }
   .about-tadarab__title span:nth-of-type(2) {
     margin-right: 0.3rem;

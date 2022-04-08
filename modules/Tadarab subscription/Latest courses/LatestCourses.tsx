@@ -46,8 +46,8 @@ function LatestCourses() {
   const handleFilterType = (type:string)=>{
     setFilterType(type);
     axiosInstance
-    .get(`home/courses/?country_code=${localStorage.getItem("countryCode")}&type=${type}`)
-    /* home/courses/?country_code=${localStorage.getItem("countryCode")}&type=${type} */
+    .get(`home/courses/?country_code=null&type=${type}`)
+    /* home/courses/?country_code=null&type=${type} */
     .then(function (response:any) {
       setLatestCourses(response.data.data);
       // console.log("response.data.data.courses",response.data.data.courses);
@@ -60,14 +60,14 @@ function LatestCourses() {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,`home/?country_code=${localStorage.getItem("countryCode")}`);
+    const handleFavResponse:any =  handleFav(course,`home/?country_code=null`);
     handleFavResponse.then(function(response:any) {
      setLatestCourses(response.data.data.best_seller_courses);
     })
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-        query: { from: "/TadarabSubscription" }
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "subscription" }
       })
     }
 
@@ -77,7 +77,7 @@ function LatestCourses() {
     dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+      const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
            setLatestCourses(response.data.data.best_seller_courses);
@@ -87,7 +87,7 @@ function LatestCourses() {
       })
   //   }
   //   else{
-  //     const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+  //     const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
   //     handleCartResponse.then(function(response:any) {
   //         dispatch(setCartItems(response));
   //       //  setLocalCartItems(response);
@@ -116,7 +116,7 @@ function LatestCourses() {
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
 
         axiosInstance
-        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           // console.log(response);
           let newArray:any = homePageData.data?.best_seller_courses;
@@ -280,35 +280,21 @@ function LatestCourses() {
             window.innerWidth - element.getClientRects()[0].left;
           const cardLeftBoundary =
             element.getClientRects()[0].left;
-            // if (relatedPopover) {
-  
-                //  obs.disconnect();
               
                 if (cardRightBoundary > cardLeftBoundary) {
-                  // setPlacement("right");
                   console.log("right");
                   relatedWrapper.style.cssText=`left: 100% ;
                    bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
-                  // relatedWrapper.style.cssText=`bottom: -${relatedWrapper.offsetHeight/6}px`;
+                  relatedPopover.classList.remove(styles["latest-courses__popover-container--left"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
-                  // relatedPopover.style.cssText=`left: 100%;`
                 } else if (cardRightBoundary < cardLeftBoundary) {
-                  // setPlacement("left");
                   console.log("left");
                   relatedWrapper.style.cssText=`right: 100%;
                    bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
-                  // relatedWrapper.style.cssText=`bottom: -${relatedWrapper.offsetHeight/6}px`;
                   relatedPopover.style.cssText=`left: 0%;`;
+                  relatedPopover.classList.remove(styles["latest-courses__popover-container--right"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--left"]);
                 }
-                // return;
-              // }
-              // });
-            
-              // observer.observe(document, {
-              //   childList: true,
-              //   subtree: true
-              // });
         }
         });
   
@@ -337,8 +323,8 @@ function LatestCourses() {
     <>
       <Row className={styles["latest-courses"]}>
         <Col xs={12} className={styles["latest-courses__title"]}>
-          <span>الدورات </span>
-          <span>المسجلة</span>
+          <span>استكشف </span>
+          <span>الدورات</span>
         </Col>
         <Col
            xs={{span:12 , order:1}} sm={9}
@@ -353,15 +339,16 @@ function LatestCourses() {
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>
               أحدث الدورات
             </li>
-            <li onClick={()=>{handleFilterType("most-viewed")}} 
+            {/* <li onClick={()=>{handleFilterType("most-viewed")}} 
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "most-viewed" && styles["latest-courses__departments-list__item--active"]}`}>
               الأكثر زيارة
-            </li>
+            </li> */}
           </ul>
         </Col>
 
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
-          <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
+          <Button className={styles["latest-courses__see-more-btn"]} id="see-more" 
+          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?filter_type=all`)}}>
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
           </Button>
@@ -399,7 +386,7 @@ function LatestCourses() {
                 return (
                   <SwiperSlide key={i}>
 
-                    <Card onClick={()=>{GAProductClickEventHandler(course,i)}}  onMouseMove={()=>{
+                    <Card   onMouseMove={()=>{
                         handleZindex("low");
                         handlePlacement();
                       }} onMouseOut={()=>{handleZindex("high")}}
@@ -460,7 +447,7 @@ function LatestCourses() {
                       > 
                         ماذا ستتعلم في الدورة؟
                       </div>
-                      { course.key_points?.slice(0,6).map((kp:string,i:number)=>{
+                      { course.key_points?.slice(0,5).map((kp:string,i:number)=>{
                         return(
                       <div key={i}
                         className={
@@ -485,7 +472,7 @@ function LatestCourses() {
                     </div>
                     
                         {
-                        course.key_points.length > 6 ?
+                        course.key_points.length > 5 ?
                         <Link href={`/course/${course.slug}`}>
 
                           <div className={styles["latest-courses__show-more-link"]}>
@@ -505,12 +492,15 @@ function LatestCourses() {
                             <CartIcon color="#fff"/>
                             <span> أضف للسلة </span>  
                               </Button>
-                        </div> 
+                        </div>  
 
                   
                       </div>
 
                      </div>
+
+                     {
+                       course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== ""  &&
 
                         <div
                           className={
@@ -518,23 +508,29 @@ function LatestCourses() {
                               "latest-courses__cards-carousel__course-card__category-chip"
                             ]
                           }
-                          style={{backgroundColor:course.categories[0].color}}
+                          style={{backgroundColor:`${course.categories[0] !== undefined && course.categories[0].color}`}}
                         > 
-                        {course.categories[0].title} 
+                      {course.categories[0] !== undefined && course.categories[0].title} 
                         </div>
 
-                        <Link href={`/course/${course.slug}`}>
+                     }
 
-                        <Card.Img
-                          variant="top"
-                          src={course.image}
-                          alt="course image"
-                          className={
-                            styles[
-                              "latest-courses__cards-carousel__course-card__course-img"
-                            ]
-                          }
-                        />
+
+                        <Link href={`/course/${course.slug}`}>
+                          <a onClick={()=>{GAProductClickEventHandler(course,i)}}>
+
+                            <Card.Img
+                              variant="top"
+                              src={course.image}
+                              alt="course image"
+                              className={
+                                styles[
+                                  "latest-courses__cards-carousel__course-card__course-img"
+                                ]
+                              }
+                            />
+
+                          </a>
                         </Link>
 
                         <Card.Body
@@ -544,7 +540,7 @@ function LatestCourses() {
                             ]
                           }
                         >
-                          <div
+                          <div style={{borderBottom: course.is_in_user_subscription && "none" }}
                             className={
                               styles[
                                 "latest-courses__cards-carousel__course-card__card-body__card-header"
@@ -574,7 +570,7 @@ function LatestCourses() {
                               }
                             >
                           <Link href={`/course/${course.slug}`}>
-                                <h1 
+                                <h1  onClick={()=>{GAProductClickEventHandler(course,i)}}
                               title={course.title}
                                   className={
                                     styles[
@@ -622,7 +618,7 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                 {course.currency_code}
+                                 { !course.is_in_user_subscription && course.currency_code}
                                 </span>}
 
                                 <span
@@ -632,9 +628,18 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                   {course.is_purchased && "تم الشراء"}
+                                   {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
                                   {
-                                    !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                    !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                  }
+                                  {
+                                    course.is_in_user_subscription && 
+                                    <Link href={`/course/${course.slug}`}>
+                                    <span className={styles["watch-subscribed-course"]}>
+                                      شاهد الدورة
+                                    </span>
+                                    </Link>
+
                                   }
                                 </span>
                                
@@ -674,7 +679,7 @@ function LatestCourses() {
                             </div>
 
                             <div >
-                              { !course.is_purchased &&  <Button disabled={course.is_in_cart} variant={""}
+                              { !course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -711,7 +716,7 @@ function LatestCourses() {
                                 className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                  {
                                   course.is_in_favorites ?
-                                  <AddedToFavouriteIcon color="af151f"/>
+                                  <AddedToFavouriteIcon color="#af151f"/>
                                    : 
                                   <FavouriteIcon color="#222"/>
                                    }
@@ -746,11 +751,11 @@ export default withAuth(LatestCourses);
 if(course.is_in_favorites == false){
 
         axiosInstance
-        .post(`users/favorites/?country_code=${localStorage.getItem("countryCode")}`, {"course_id" : course.id})
+        .post(`users/favorites/?country_code=null`, {"course_id" : course.id})
         .then((response:any) => {
           console.log("Response",response);
           axiosInstance
-          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+          .get(`home/?country_code=null`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })
@@ -763,11 +768,11 @@ if(course.is_in_favorites == false){
         });
       }else{
         axiosInstance
-        .delete(`users/favorites/?country_code=${localStorage.getItem("countryCode")}`, { data:{"course_id" : course.id}})
+        .delete(`users/favorites/?country_code=null`, { data:{"course_id" : course.id}})
         .then((response:any) => {
           console.log("Response",response);
           axiosInstance
-          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+          .get(`home/?country_code=null`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })
@@ -789,7 +794,7 @@ if(course.is_in_favorites == false){
 
 
         axiosInstance
-        .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"item_ids" : JSON.stringify([course.id])})
+        .post(`users/cart/?country_code=null`, {"item_ids" : JSON.stringify([course.id])})
         .then((response:any) => {
          const totalItems:any = [];
           console.log("add to cart response",response);
@@ -801,7 +806,7 @@ if(course.is_in_favorites == false){
           
          dispatch(setCartItems(totalItems));
           axiosInstance
-          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+          .get(`home/?country_code=null`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })
@@ -818,7 +823,7 @@ if(course.is_in_favorites == false){
 
       }else{
         axiosInstance
-        .delete(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, { data:{"item_id" : course.id}})
+        .delete(`users/cart/?country_code=null`, { data:{"item_id" : course.id}})
         .then((response:any) => {
          const totalItems:any = [];
           console.log("Response",response);
@@ -829,7 +834,7 @@ if(course.is_in_favorites == false){
           dispatch(setCartItems(totalItems));
 
           axiosInstance
-          .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
+          .get(`home/?country_code=null`)
           .then(function (response:any) {
             setLatestCourses(response.data.data.latest_courses);
           })

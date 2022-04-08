@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Form, Card } from "react-bootstrap";
@@ -7,13 +8,14 @@ import {
     CartIcon,
     FavouriteIcon,
     AddedToCartIcon,
-    AddedToFavouriteIcon
+    AddedToFavouriteIcon 
 } from "common/Icons/Icons";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import Router, { useRouter } from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import Link from 'next/link';
 
 export default function TrainerCourses() {
     const dispatch = useDispatch();
@@ -40,15 +42,15 @@ export default function TrainerCourses() {
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `trainers/${trainerSlug}/?country_code=${localStorage.getItem("countryCode")}`);
+            const handleFavResponse: any = handleFav(course, `trainers/${trainerSlug}/?country_code=null`);
             handleFavResponse.then(function (response: any) {
                 setTrainerProfile(response.data.data);
                 console.log("response.data.data",response.data.data);
             })
         } else {
             Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-                query: { from: "/TrainerProfile" }
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "trainer" }
             })
         }
     }
@@ -57,7 +59,7 @@ export default function TrainerCourses() {
         dispatch(setCheckoutType("cart"));
 
         // if (userStatus?.isUserAuthenticated == true) {
-            const handleCartResponse: any = handleCart([course], `trainers/${trainerSlug}/?country_code=${localStorage.getItem("countryCode")}`, false);
+            const handleCartResponse: any = handleCart([course], `trainers/${trainerSlug}/?country_code=null`, false);
             handleCartResponse.then(function (firstresponse: any) {
                 firstresponse.resp.then(function (response: any) {
                     setTrainerProfile(response.data.data);
@@ -69,7 +71,7 @@ export default function TrainerCourses() {
             })
         // }
         // else {
-        //     const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=${localStorage.getItem("countryCode")}`, false);
+        //     const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=null`, false);
         //     handleCartResponse.then(function (response: any) {
         //         dispatch(setCartItems(response.data.data));
         //         let newArray:any = trainerProfile.courses;
@@ -116,6 +118,10 @@ export default function TrainerCourses() {
                                     styles["trainer-courses-box__trainer-courses__course-card"]
                                 }
                             >
+                                {
+                                  (course?.categories[0]) !== undefined &&  course.categories[0].title !== null && course.categories[0].title !== ""  &&
+
+
                                 <div
                                     className={
                                         styles[
@@ -125,16 +131,21 @@ export default function TrainerCourses() {
                                 >
                                     {(course?.categories[0]) !== undefined && course.categories[0].title}
                                 </div>
-                                <Card.Img
-                                    variant="top"
-                                    src={course.image}
-                                    alt="course image"
-                                    className={
-                                        styles[
-                                        "trainer-courses-box__trainer-courses__course-card__course-img"
-                                        ]
-                                    }
-                                />
+                                }
+                           <Link href={`/course/${course.slug}`}>
+                                    <a>
+                                        <Card.Img
+                                            variant="top"
+                                            src={course.image}
+                                            alt="course image"
+                                            className={
+                                                styles[
+                                                "trainer-courses-box__trainer-courses__course-card__course-img"
+                                                ]
+                                            }
+                                        />
+                                    </a>
+                                </Link>
                                 <Card.Body
                                     className={
                                         styles[
@@ -142,7 +153,7 @@ export default function TrainerCourses() {
                                         ]
                                     }
                                 >
-                                    <div
+                                    <div style={{borderBottom: course.is_in_user_subscription && "none" }}
                                         className={
                                             styles[
                                             "trainer-courses-box__trainer-courses__course-card__card-body__card-header"
@@ -156,7 +167,11 @@ export default function TrainerCourses() {
                                                 ]
                                             }
                                         >
-                                            <img src={course.trainer.image} alt="trainer image" />
+                                            <Link href={`/trainer/${course.trainer?.slug}`}>
+
+                                              <img src={course?.trainer?.image} alt="trainer image" />
+
+                                            </Link>
                                         </div>
                                         <div
                                             className={
@@ -165,16 +180,19 @@ export default function TrainerCourses() {
                                                 ]
                                             }
                                         >
-                                            <h1
-                                                className={
-                                                    styles[
-                                                    "trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__title"
-                                                    ]
-                                                }
-                                                title={course.title}
-                                            >
-                                                {course.title}
-                                            </h1>
+                                            <Link href={`/course/${course.slug}`}>
+
+                                                <h1
+                                                    className={
+                                                        styles[
+                                                        "trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__title"
+                                                        ]
+                                                    }
+                                                    title={course.title}
+                                                >
+                                                    {course.title}
+                                                </h1>
+                                            </Link>
                                             <div title={course.trainer.name_ar}
                                                 className={
                                                     styles[
@@ -209,9 +227,18 @@ export default function TrainerCourses() {
                                                         ]
                                                     }
                                                 >
-                                                    {course.is_purchased && "تم الشراء"}
+                                                    {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
                                                     {
-                                                        !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                                        !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                                    }
+                                                      {
+                                                        course.is_in_user_subscription && 
+                                                        <Link href={`/course/${course.slug}`}>
+                                                        <span className={styles["watch-subscribed-course"]}>
+                                                        شاهد الدورة
+                                                        </span>
+                                                        </Link>
+
                                                     }
                                                 </span>
                                                 {
@@ -223,7 +250,7 @@ export default function TrainerCourses() {
                                                         ]
                                                     }
                                                 >
-                                                    {course.currency_code}
+                                                    {!course.is_in_user_subscription && course.currency_code}
                                                 </span>
                                                 }
 
@@ -261,7 +288,7 @@ export default function TrainerCourses() {
                                         </div>
 
                                         <div className="d-inline-block">
-                                            { !course.is_purchased && <Button disabled={course.is_in_cart} variant={""}
+                                            { !course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
                                                 className={
                                                     styles[
                                                     "trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn"
@@ -291,7 +318,7 @@ export default function TrainerCourses() {
 
                                                     {
                                                     course.is_in_favorites ?
-                                                    <AddedToFavouriteIcon color="af151f"/>
+                                                    <AddedToFavouriteIcon color="#af151f"/>
                                                     : 
                                                     <FavouriteIcon color="#222"/>
                                                     }

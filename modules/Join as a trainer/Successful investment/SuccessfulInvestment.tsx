@@ -9,7 +9,7 @@ export default function SuccessfulInvestment() {
     <Row className={styles["successful-investment"]}>
         <Col xs={12} >
             <div className={styles["successful-investment__title"]}>
-            لماذا التدريب على تدرب يعد استثمار ناجح؟
+            لماذا التدريب على تدرب يعد استثمارًا ناجحًا؟
             </div>
 
         </Col>

@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 // import Navbar from 'common/Navbar/Navbar';
 // import HeroSection from 'modules/Home page/Hero section/HeroSection';
@@ -19,14 +19,15 @@ import { Container } from "react-bootstrap";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
-import { setHomePageData } from "configurations/redux/actions/homePageData"; 
+import { setHomePageData } from "configurations/redux/actions/homePageData";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { GetStaticProps } from 'next';
 import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents";
 import useInView from "react-cool-inview";
-import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 // import ReactPixel from 'react-facebook-pixel';
+import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const HeroSection = dynamic(() => import("modules/Home page/Hero section/HeroSection"));
@@ -48,34 +49,37 @@ const Footer = dynamic(() => import("common/Footer/Footer"));
 
 
 function HomePage() {
+  toggleLoader("show");
   const dispatch = useDispatch();
-  const homePageData = useSelector((state:any) => state.homePageData);
-  
-  useEffect(() => {
-      const countryCode:any = localStorage.getItem("countryCode");
-        axiosInstance
-        .get(`home/?country_code=${localStorage.getItem("countryCode")}`)
-        .then(function (response:any) {
-            dispatch(setHomePageData(response.data.data));
-            
-            FBPixelEventsHandler(response.data.fb_tracking_events,null);
+  const homePageData = useSelector((state: any) => state.homePageData);
 
-        })
-        .catch(function (error) {
-          console.log(error); 
-        });
+  useEffect(() => {
+    const countryCode: any = localStorage.getItem("countryCode");
+    axiosInstance
+      .get(`home/?country_code=null`)
+      .then(function (response: any) {
+        dispatch(setHomePageData(response.data.data));
+        FBPixelEventsHandler(response.data.fb_tracking_events, null);
+        toggleLoader("hide");
         
         
-    window.addEventListener("scroll" , ()=>{
+      })
+      .catch(function (error) {
+        toggleLoader("hide");
+        console.log(error);
+      });
+
+
+    window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("latest-courses-card");
     })
 
     return () => {
-      window.removeEventListener("scroll", ()=>{
+      window.removeEventListener("scroll", () => {
         return;
       })
     }
-    
+
   }, []);
 
 
@@ -88,33 +92,36 @@ function HomePage() {
   });
 
 
-    return (
-        <>
-        <Container fluid="xxl" >
-            <Navbar/>
-            <HeroSection/>
-            <LatestCourses />
-            <CoursesDepartments/>
-            <LiveCourses/>
-            <HowToLearnOnTadarab/>
-            {/* <Consultation/> */}
-            {/* { <div  ref={observe} >
+  return (
+    <>
+      <MetaTagsGenerator title={homePageData?.data?.seo_title}
+        description={homePageData?.data?.seo_metadesc}
+        img={homePageData?.data?.seo_image} />
+      <Container fluid="xxl" >
+        <Navbar />
+        <HeroSection />
+        <LatestCourses />
+        <CoursesDepartments />
+        <LiveCourses />
+        <HowToLearnOnTadarab />
+        {/* <Consultation/> */}
+        {/* { <div  ref={observe} >
               { inView && <Books />}
             </div>
              } */}
-            {/* <Books /> */}
-            <Statistics/>
-            <WhyTadarab/>
-            <LearnFromTheBest/>
-            <JoinAsATrainer/>
-            <EducationalGuide/>
-            <AboutTadarab/>
-            <JoinUs/>
-            <Footer/>
-        </Container>
-            
-        </>
-    )
+        {/* <Books /> */}
+        <Statistics />
+        <WhyTadarab />
+        <LearnFromTheBest />
+        <JoinAsATrainer />
+        <EducationalGuide />
+        <AboutTadarab />
+        <JoinUs />
+        <Footer />
+      </Container>
+
+    </>
+  )
 };
 
 

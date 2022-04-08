@@ -247,6 +247,7 @@
         font-size: 4.688rem;
         padding: 5.25rem 0 2.344rem 0;
         @include flex(center, center);
+        text-align: center;
     
         span:nth-of-type(2) {
             margin-right: 0.3rem;

@@ -3,16 +3,17 @@ import React from "react";
 import styles from "./educational-guide.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Router from "next/router";
-
+import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 export default function EducationalGuide() {
+
   return (
     <>
       <Row>
         <Col xs={12} className={styles["educational-guide"]}>
           <div className={styles["educational-guide__container"]}>
             <div className={styles["educational-guide__container__img"]}>
-                <img src="/images/Alaa.HEIC" alt="guide" />
+                <img src="/images/hams.png" alt="guide" />
             </div>
             <div className={styles["educational-guide__container__details-box"]}>
               <div className={styles["educational-guide__container__details-box__title"]}>
@@ -20,9 +21,9 @@ export default function EducationalGuide() {
                   <span> التعليمي </span>
               </div>
               <div className={styles["educational-guide__container__details-box__breif"]}>
-              نظام دعم فني شخصي لكل متدرب لضمان نجاح كل جانب من جوانب تجربة تعلمك علي تدرب لرد علي استفساراتك
+              نظام دعم فني شخصي لكل متدرب لضمان نجاح كل جانب من جوانب تجربة تعلمك على تدرب لرد على استفساراتك
               </div>
-              <Button onClick={()=>{Router.push("https://api.whatsapp.com/send?phone=96550364308")}} className={styles["educational-guide__container__details-box__btn"]}>
+              <Button onClick={()=>{ contactUsHandler() }} className={styles["educational-guide__container__details-box__btn"]}>
               تواصل معنا
               </Button>
             </div>

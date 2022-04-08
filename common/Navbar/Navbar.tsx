@@ -27,6 +27,7 @@ import { setMyCourseNavigator } from "configurations/redux/actions/myCourseNavig
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { withRouter } from 'next/router';
 import useResize from "custom hooks/useResize";
+import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
@@ -58,7 +59,7 @@ function Navbar() {
     setLocalStateCartItems(null);
 
     axiosInstance
-        .get(`home/?country_code=${localStorage.getItem("countryCode")}`,{ headers: {"Authorization" : ``} })
+        .get(`home/?country_code=null`,{ headers: {"Authorization" : ``} })
         .then(function (response:any) {
           dispatch(setHomePageData(response.data.data))
         })
@@ -195,12 +196,15 @@ function Navbar() {
         if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
 
         axiosInstance
-        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           dispatch(setCartItems(response?.data?.data));
           // setLocalStateCartItems(cartItems?.data);
+          // toggleLoader("hide");
+
         })
         .catch(function (error) {
+          // toggleLoader("hide");
           console.log(error); 
         });
         
@@ -222,7 +226,7 @@ function Navbar() {
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
           
         axiosInstance
-        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           // dispatch(setCartItems(response.data.data));
           setLocalStateCartItems(response.data.data);
@@ -288,7 +292,6 @@ const searchBoxToggler = (action:any) =>{
   }
 }
 
-
   
 
   return (
@@ -331,7 +334,7 @@ const searchBoxToggler = (action:any) =>{
               </Offcanvas.Header>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
-                <Link href="/topic/family-2">
+                <Link href="/topic/family">
                       <li>الاسرة</li>
                       </Link>
                       <Link href="/topic/self-development">
@@ -387,9 +390,18 @@ const searchBoxToggler = (action:any) =>{
                   <li>تواصل معنا</li>
               </ul> */}
             </Offcanvas>
-            <li className={styles["sidebar-list__item"]}>تدرب للشركات</li>
+            <Link href="/subscription">
+            <li className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
+            </Link>
+
+            <Link href="/join-us-as-a-trainer">
             <li className={styles["sidebar-list__item"]}>انضم كمدرب</li>
-            { userStatus.isUserAuthenticated && <li className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>}
+            </Link>
+            { userStatus.isUserAuthenticated &&
+             <Link href="/my-account">
+             <li className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
+             </Link>
+             }
             <li id="curriculum" className={styles["sidebar-list__item"]}
             onClick={()=>{dispatch(setMyCourseNavigator("curriculum"));
             setExpanded(false);
@@ -410,7 +422,7 @@ const searchBoxToggler = (action:any) =>{
             </div>
 
           </div>
-          <Link href="/signup">
+          <Link href="/sign-up">
           <Button className={styles["sidebar-list__register-btn"]}>
             {
               userStatus.isUserAuthenticated ? 
@@ -420,7 +432,7 @@ const searchBoxToggler = (action:any) =>{
             }
           </Button>
           </Link>   
-          <Link href="/signin">
+          <Link href="/sign-in">
           <Button onClick={()=>{
             userStatus.isUserAuthenticated ? 
             handleLogout() :
@@ -454,7 +466,7 @@ const searchBoxToggler = (action:any) =>{
                         التخصصات
                       </div>
                       <ul className={styles["navbar__discover-popover__list"]}>
-                      <Link href="/topic/family-2">
+                      <Link href="/topic/family">
                       <li>الاسرة</li>
                       </Link>
                       <Link href="/topic/self-development">
@@ -463,7 +475,7 @@ const searchBoxToggler = (action:any) =>{
                       <Link href="/topic/health">
                       <li>الصحة</li>
                       </Link>
-                      <Link href="/topic/human-recourses">
+                      <Link href="/topic/human-resources">
                       <li>الموارد البشرية</li>
                       </Link>
                       <Link href="/topic/office">
@@ -536,11 +548,12 @@ const searchBoxToggler = (action:any) =>{
                 className={styles["navbar__search-bar-container__search-bar"]}
               />
             </div>
+              <Nav.Link onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`)}}  className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>
 
-            <Nav.Link className={styles["navbar__links"]}>تدرب للشركات</Nav.Link>
-
-            <Nav.Link className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
-            { userStatus.isUserAuthenticated && <Nav.Link className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>}
+            <Nav.Link onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-us-as-a-trainer`)}}  className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
+            { userStatus.isUserAuthenticated && 
+            <Nav.Link onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`)}} className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>
+            }
         </>
           }
           
@@ -585,11 +598,11 @@ const searchBoxToggler = (action:any) =>{
 
            
 
-            { userStatus.isUserAuthenticated == false &&  <Link href="/signup">
+            { userStatus.isUserAuthenticated == false &&  <Link href="/sign-up">
              <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
           </Link>  
           }
-         { userStatus.isUserAuthenticated == false && <Link href="/signin">
+         { userStatus.isUserAuthenticated == false && <Link href="/sign-in">
             <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
           </Link> }
 
@@ -634,14 +647,14 @@ const searchBoxToggler = (action:any) =>{
               </div>
             </div>
 
-            { (!isCoursePurchased || isMobileView) && <OverlayTrigger
+            { (!isCoursePurchased || isMobileView) && <OverlayTrigger 
             trigger='click'
             rootClose
               placement="bottom-start"
               overlay={
-                <div className={styles["navbar__cart-popover"]} 
+                <div className={styles["navbar__cart-popover"]}  
                 style={{display: (JSON.stringify(localStateCartItems) == "[]" || localStateCartItems == null) ?  "none" : "" }}
-                id="cart-popover">
+                id="cart-popover" >
                   <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
 
                     {
@@ -679,12 +692,16 @@ const searchBoxToggler = (action:any) =>{
                                   ]
                                 }
                               >
+                              { item.discounted_price == 0  ?
+                               "مجانًا"
+                               :
+                              <>
                                 <span
                                   className={
                                     styles["navbar__cart-popover__course-details__price"]
                                   }
                                 >
-                                  {item.price}
+                                  {item.discounted_price}
                                 </span>
                                 <span
                                   className={
@@ -695,6 +712,8 @@ const searchBoxToggler = (action:any) =>{
                                 >
                                   {item?.currency_code}
                                 </span>
+                              </>
+                              }
                               </div>
                               {item.price > item.discounted_price && 
                               <div
@@ -711,7 +730,7 @@ const searchBoxToggler = (action:any) =>{
                                     ]
                                   }
                                 >
-                                {item.discounted_price}
+                                {item.price}
                                 </span>
                                 <span
                                   className={
@@ -824,7 +843,7 @@ const searchBoxToggler = (action:any) =>{
                 </div>
               }
             >       
-           <div className={styles["navbar__cart-icon-container"]}>
+           <div className={styles["navbar__cart-icon-container"]} id="carticon" >
                 <CartIcon color="#222"/>
                 <Badge className={styles["navbar__cart-icon__badge"]}>{localStateCartItems?.length ||   ""}</Badge>
                 {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
@@ -836,7 +855,7 @@ const searchBoxToggler = (action:any) =>{
             {
              userStatus.isUserAuthenticated && 
              <>
-                <OverlayTrigger trigger="click" placement="bottom-start" rootClose arrow-props={false} overlay={
+                <OverlayTrigger trigger="click" placement="bottom-start" rootClose  overlay={
                 <div className={styles["navbar__account-icon__dropdown"]}>
                     <Button onClick={()=>handleLogout()}
                      className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>

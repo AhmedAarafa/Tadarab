@@ -113,51 +113,62 @@ export default function SignInPage() {
                   if(JSON.stringify(response.status).startsWith("2")){
                     console.log("success");
                     if(response.data.data !== null){
-                      localStorage.setItem("token" , response.data.data.token);
-                    }
-                    // cart  cart_items
-                    if(localStorage.getItem("cart_items")){
-                      let localStorageItems:any = localStorage.getItem("cart_items");
-                      axiosInstance
-                      .post(`users/cart/?country_code=${localStorage.getItem("countryCode")}`, {"items" : localStorageItems})
-                      .then((response:any) => {
-                       const totalItems:any = [];
+                      const totalItems:any = [];
                        response.data.data.courses.forEach((item:any)=>{
                         totalItems.push(item.id);
                       });
+                      localStorage.setItem("token" , response.data.data.token);
                       localStorage.setItem("cart" , JSON.stringify(totalItems));
-                      localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
-                      dispatch(setCartItems(response.data.data.courses));
-                     
-                      })
-                      .catch((error:any)=>{
-                        console.log("error", error);
-                      });
-                    }else{
-                      axiosInstance
-                      .get(`users/cart/?country_code=${localStorage.getItem("countryCode")}`)
-                      .then(function (response:any) {
-                        console.log("login response",response);
-                        const totalItems:any = [];
-                        // console.log("response.data",response.data);
-                        response.data.data.forEach((item:any)=>{
-                         totalItems.push(item.id);
-                       });
-                       localStorage.setItem("cart" , JSON.stringify(totalItems));
-                      dispatch(setCartItems(response.data.data));
-                    
-                      })
-                      .catch(function (error) {
-                        console.log(error);
-                      });
+                      localStorage.setItem("cart_items" , JSON.stringify([...new Set(response.data.data.cart_items)]));
+                      
                     }
+                    // cart  cart_items
+                    // if(localStorage.getItem("cart_items")){
+                    //   let localStorageItems:any = localStorage.getItem("cart_items");
+                    //   axiosInstance
+                    //   .post(`users/cart/?country_code=null`, {"items" : localStorageItems})
+                    //   .then((response:any) => {
+                    //    const totalItems:any = [];
+                    //    response.data.data.courses.forEach((item:any)=>{
+                    //     totalItems.push(item.id);
+                    //   });
+                    //   localStorage.setItem("cart" , JSON.stringify(totalItems));
+                    //   localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
+                    //   dispatch(setCartItems(response.data.data.courses));
+                     
+                    //   })
+                    //   .catch((error:any)=>{
+                    //     console.log("error", error);
+                    //   });
+                    // }else{
+                    //   axiosInstance
+                    //   .get(`users/cart/?country_code=null`)
+                    //   .then(function (response:any) {
+                    //     console.log("login response",response);
+                    //     const totalItems:any = [];
+                    //     response.data.data.courses.forEach((item:any)=>{
+                    //      totalItems.push(item.id);
+                    //    });
+                    //    localStorage.setItem("cart" , JSON.stringify(totalItems));
+                    //    localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
+                    //   dispatch(setCartItems(response.data.data));
+                    
+                    //   })
+                    //   .catch(function (error) {
+                    //     console.log(error);
+                    //   });
+                    // }
                     
                     
 
-
+                    console.log("router.query",router.query.from);
+                    
                     if (router.query && router.query.from) {
                       // router.push(router.back());
                       Router.back();
+                      
+                    }else if(router.query && router.query.from_subscription){
+                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/${router.query.from_subscription}`);
                    }else{
                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                    }
@@ -227,7 +238,7 @@ export default function SignInPage() {
                   { validationAfterSubmit.password &&  <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
                   
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__forget-password"]}>
-                    <Link href="/forgetpassword">
+                    <Link href="/forget-password">
                      هل نسيت كلمة المرور؟
                     </Link>
                   </div>
@@ -241,7 +252,7 @@ export default function SignInPage() {
 
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]}>
                       <span> ليس لديك حساب؟ </span>
-                      <Link href="/signup">
+                      <Link href="/sign-up">
                            <span> انشاء حساب جديد </span>
                       </Link>
                   </div>
@@ -253,7 +264,7 @@ export default function SignInPage() {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["sign-in__img"]}>
-          <img src="/images/register.png" alt="sign-in now" />
+          <img src="/images/sign in.png" alt="sign-in now" />
         </Col>
       </Row>
     </>

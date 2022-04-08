@@ -31,6 +31,7 @@
     color: white;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
     @include flex(unset,flex-end);
     display: inline-flex;
     background: transparent url('/images/trainer img.png') no-repeat padding-box;

@@ -1,12 +1,14 @@
+/* eslint-disable @next/next/link-passhref */
 import React from 'react'
 import { Row, Col, Button,Card } from "react-bootstrap";
 import styles from "./category-trainers.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
+import Link from 'next/link';
 import "swiper/css";
 
 
-export default function CategoryTrainers() {
+export default function CategoryTrainers(props:any) {
   SwiperCore.use([Navigation]);
     return (
         <>
@@ -14,7 +16,7 @@ export default function CategoryTrainers() {
 
 
             <Col xs={12} className={styles["category-trainer__title"]}>
-            أشهر المدربين في الفنون
+            أشهر المدربين في {props?.data?.title}
             </Col>
 
 
@@ -34,162 +36,31 @@ export default function CategoryTrainers() {
             slidesPerView: 4.7,
           },
         }} className="mySwiper">
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
+
+            { props?.data?.trainers?.map((trainer:any, i:number)=>{
+              return(
+
+            <SwiperSlide key={i}>  
+              <Link href={`/trainer/${trainer.slug}`}>
+
+              <Card className={styles["category-trainer__cards-carousel__card"]} style={{background: `transparent url(${trainer?.image}) no-repeat padding-box` , 
+                    backgroundSize: "contain" }}
                 >
                     <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
                         <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
+                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
+                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>{trainer?.title}</div>
+                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>{trainer?.bio}</div>
                         </div>
-                    </div>
-                
+                    </div>                
               </Card> 
+              </Link>
             </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
-            <SwiperSlide> 
-              <Card className={styles["category-trainer__cards-carousel__card"]}
-                >
-                    <div className={styles["category-trainer__cards-carousel__card__card-body"]}>
-                        <div className="text-center">
-                            <div className={styles["category-trainer__cards-carousel__card__trainer"]}>د. حسين عبدالكريم</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-title"]}>مستشار عقاري</div>
-                            <div className={styles["category-trainer__cards-carousel__card__job-history"]}>مؤسس شركه إعمار </div>
-                        </div>
-                    </div>
-                
-              </Card> 
-            </SwiperSlide>
+
+              )
+            })
+            }
+            
         </Swiper>
         </Col>
             

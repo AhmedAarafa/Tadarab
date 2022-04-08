@@ -57,7 +57,9 @@ export default function MyCourse() {
 
                 <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
 
+                    {console.log(" courseDetailsData.data", courseDetailsData.data)}
                     {
+                        
                         courseDetailsData.data?.syllabus?.map((syl:any,i:number)=>{
                             return(
 

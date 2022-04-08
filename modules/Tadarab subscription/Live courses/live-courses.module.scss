@@ -74,7 +74,7 @@
 .live-courses__cards-carousel__card,
 .live-courses__cards-carousel__card--paid {
     width: 18.75rem*0.8;
-    height: 21.0625rem;
+    height: 14rem;
     padding-bottom: 1rem*0.8;
     box-shadow: 0 0.5rem*0.8 1.313rem*0.8 #0000001A;
     border-radius: 0.85rem*0.8;
@@ -132,6 +132,9 @@
     font-weight: 700;
     color: var(--dark-black);
     @include flex;
+    span{
+        color: white;
+    }
 
     &>div {
 
@@ -161,7 +164,8 @@
     position: relative;
     margin-top: 0.8rem*0.8;
     padding: 0 0 1rem 0;
-    border-bottom: 0.05rem*0.8 solid rgba(34, 34, 34, 0.1);
+    // border-bottom: 0.05rem*0.8 solid rgba(34, 34, 34, 0.1);
+    border-bottom: none !important;
 
     // &:before {
     //     content: "";
@@ -209,6 +213,7 @@
 .live-courses__cards-carousel__card__card-body__checkout-details {
     margin-top: 0.8rem*0.8;
     @include flex(center, space-between);
+    display: none !important;
 }
 
 .live-courses__cards-carousel__card__card-body__checkout-details__price {
@@ -361,7 +366,7 @@
     .live-courses__cards-carousel__card,
     .live-courses__cards-carousel__card--paid {
         width: 18.75rem*1.04;
-        height: 26rem;
+        height: 18.5rem;
         padding-bottom: 1rem*1.04;
         box-shadow: 0 0.5rem*1.04 1.313rem*1.04 #0000001A;
         border-radius: 0.85rem*1.04;
@@ -447,7 +452,8 @@
         position: relative;
         margin-top: 0.8rem*1.04;
         padding: 0 0 1rem*1.04 0;
-        border-bottom: 0.05rem*1.04 solid rgba(34, 34, 34, 0.1);
+        // border-bottom: 0.05rem*1.04 solid rgba(34, 34, 34, 0.1);
+        border-bottom: none !important;
 
     }
 
@@ -597,7 +603,7 @@
     .live-courses__cards-carousel__card,
     .live-courses__cards-carousel__card--paid {
         width: 18.75rem*1.35;
-        height: 34rem;
+        height: 24rem;
         padding-bottom: 1rem*1.35;
         box-shadow: 0 0.5rem*1.35 1.313rem*1.35 #0000001A;
         border-radius: 0.85rem*1.35;
@@ -683,7 +689,8 @@
         position: relative;
         margin-top: 0.8rem*1.35;
         padding: 0 0 1rem*1.35 0;
-        border-bottom: 0.05rem*1.35 solid rgba(34, 34, 34, 0.1);
+        // border-bottom: 0.05rem*1.35 solid rgba(34, 34, 34, 0.1);
+        border-bottom: none !important;
 
     }
 
@@ -848,7 +855,7 @@
     .live-courses__cards-carousel__card,
     .live-courses__cards-carousel__card--paid {
         width: 18.75rem*2.4;
-        height: 60rem;
+        height: 43rem;
         padding-bottom: 1rem*2.4;
         box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
         border-radius: 0.85rem*2.4;
@@ -932,7 +939,8 @@
         position: relative;
         margin-top: 0.8rem*2.4;
         padding: 0 0 1rem*2.4 0;
-        border-bottom: 0.05rem*2.4 solid rgba(34, 34, 34, 0.1);
+        // border-bottom: 0.05rem*2.4 solid rgba(34, 34, 34, 0.1);
+        border-bottom: none !important;
 
     }
 

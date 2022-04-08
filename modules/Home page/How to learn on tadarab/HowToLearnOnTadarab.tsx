@@ -11,7 +11,7 @@ export default function HowToLearnOnTadarab() {
             <Row className={styles["how-to-learn-on-tadarab"]}>
                 <Col sm={{span:7 , order:1}} xs={{span:12 , order:2}} >
                     <div className={styles["how-to-learn-on-tadarab__img"]}>
-                        <img src="/images/How to learn Section4.png" alt="كيف تتعلم علي تدرب" />
+                        <img src="/images/How to learn Section4.png" alt="كيف تتعلم على منصة تدرب" />
                     </div>
                 </Col>
                 <Col sm={{span:5 , order:2}} xs={{span:12 , order:1}}>
@@ -19,15 +19,17 @@ export default function HowToLearnOnTadarab() {
                         <div>
                             كيف تتعلم على
                             <div>
-
-                             منصة
+                             منصة تدرب 
                             <span>
-                                تدرب التعليمية؟
+                            للتعلم أون لاين؟
                             </span>
                             </div>
                         </div>
+                        <div className={styles["how-to-learn-on-tadarab__img--responsive"]}>
+                            <img src="/images/How to learn Section4.png" alt="كيف تتعلم على منصة تدرب" />
+                        </div>
                         <div>
-                            أكتسب المهارات والعلم عن طريق الفديوهات التدريبية والتمارين والاختبارات المرفقة مع كل دورة بكل حرية أكتسب المهارات والعلم عن طريق الفديوهات التدريبية والتمارين والاختبارات المرفقة
+                        يمكنك متابعة الدورات التدريبية المختلفة في جميع المجالات والمقسمة إلى فيديوهات تستطيع متابعتها بسهولة من أي مكان وفي أي وقت وعلى أي جهاز، تستطيع أيضًا تحميل المرفقات الورقية للتطبيق والمتابعة وزيادة الاستفادة.
                         </div>
                         <Link href="/courses?filter_type=all">
                             <Button>

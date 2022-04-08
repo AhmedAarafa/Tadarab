@@ -16,7 +16,7 @@ axiosInstance.interceptors.request.use(
     // show loader
     // config.params = config.params || {};
     // config.params['auth'] = 'token';
-    toggleLoader("show");
+    // toggleLoader("show");
     function randomString(length:any, chars:any) {
       let result = '';
       for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
@@ -38,7 +38,7 @@ axiosInstance.interceptors.request.use(
   },
   function (error: any) {
     // Do something with request error
-    toggleLoader("show");
+    // toggleLoader("show");
 
     return Promise.reject(error);
   }
@@ -52,19 +52,19 @@ axiosInstance.interceptors.response.use(
     // hide loader
     // console.log("response", response);
     // response.data.push("test")
-    toggleLoader("hide");
+    // toggleLoader("hide");
 
 
     return response;
   },
   function (error: any) {
     // console.log(error.response.data);
-    toggleLoader("hide");
+    // toggleLoader("hide");
 
   
     return error.response;
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    // return Promise.reject(error);
+    // return Promise.reject(error); 
   }
 );

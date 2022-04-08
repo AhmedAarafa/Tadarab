@@ -101,6 +101,7 @@
 }
 
 .course-subscribers__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.5rem*0.77;
     img {
 
         border-radius: 50%;
@@ -198,6 +199,15 @@
 
 }
 
+.watch-subscribed-course{
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    padding: 0.5rem 1rem;
+    border-radius: 0.7rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--dark-black);
+    cursor: pointer;
+}
 
 @media (max-width:1200px){
     .course-subscribers__cards-carousel{
@@ -275,6 +285,7 @@
     }
     
     .course-subscribers__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+        font-size: 0.5rem*1.03;
         img {
             border-radius: 50%;
             width: 2.5rem*1.03;
@@ -349,6 +360,11 @@
             height: 1.225rem*1.06;
         }
     
+    }
+    .watch-subscribed-course{
+        font-size: 0.9rem*1.06 !important;
+        padding: 0.5rem*1.06 1rem*1.06;
+        border-radius: 0.7rem*1.06;
     }
 }
 
@@ -430,6 +446,7 @@
     }
     
     .course-subscribers__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+        font-size: 0.5rem*1.37;
         img {
     
             border-radius: 50%;
@@ -507,6 +524,11 @@
             height: 1.225rem*1.4;
         }
     
+    }
+    .watch-subscribed-course{
+        font-size: 0.9rem*1.4 !important;
+        padding: 0.5rem*1.4 1rem*1.4;
+        border-radius: 0.7rem*1.4;
     }
 }
 @media (max-width:575px){
@@ -597,6 +619,7 @@
     }
     
     .course-subscribers__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+        font-size: 0.5rem*2.31;
         img {
     
             border-radius: 50%;
@@ -674,5 +697,10 @@
             height: 1.225rem*2.5;
         }
     
+    }
+    .watch-subscribed-course{
+        font-size: 0.9rem*2.5 !important;
+        padding: 0.5rem*2.5 1rem*2.5;
+        border-radius: 0.7rem*2.5;
     }
 }

@@ -16,7 +16,7 @@ export default function StartTraining() {
           </div>
 
           <div className={styles["start-training__brief"]}>
-            أصبح مدرب الآن واصنع التأثير وساعد في نقل المهارات بين الناس عن طريق التدريب
+          كن مدربًا واصنع التأثير لتساعد على نقل المهارات بين الناس عن طريق التدريب
           </div>
 
           <Button onClick={()=>{Router.push("https://app.tadarab.com/selfhosted")}} className={styles["start-training__btn"]}>

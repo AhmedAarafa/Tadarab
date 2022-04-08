@@ -10,15 +10,15 @@ import { Container } from "react-bootstrap";
 export default function Category() {
     return (
         <>
-    <Container fluid="xxl">
-         <Navbar />
-         <CategoryDescription />
-         <CategoryCourses />
-         <CategoryTopics />
-         <CategoryTrainers />
-         <TrainingCourses />
-    </Container>            
-            
+            <Container fluid="xxl">
+                <Navbar />
+                <CategoryDescription />
+                <CategoryCourses />
+                <CategoryTopics />
+                <CategoryTrainers />
+                <TrainingCourses />
+            </Container>
+
         </>
     )
 }

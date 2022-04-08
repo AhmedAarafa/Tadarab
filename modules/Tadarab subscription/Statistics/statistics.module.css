@@ -154,6 +154,10 @@
   width: fit-content;
 }
 
+.marketing-boxes__brief__list-item span {
+  display: inline-block;
+}
+
 @media (max-width: 575px) {
   .statistics {
     margin: 20rem 5rem 0 5rem;

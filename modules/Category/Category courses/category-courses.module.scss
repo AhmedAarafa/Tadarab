@@ -45,7 +45,7 @@
 .category-courses__filter-list__item--active {
     font-weight: 800;
     color: var(--dark-black);
-    text-decoration: underline 0.150rem var(--pale-red);
+    text-decoration: underline 0.150rem $pale-red;
 }
 
 
@@ -140,6 +140,7 @@
 }
 
 .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.5rem;
     img {
 
         border-radius: 50%;
@@ -301,6 +302,8 @@
     }
     
     .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.5rem*1.03;
+
         img {
             border-radius: 50%;
             width: 2.5rem*1.03;
@@ -447,6 +450,8 @@
     }
     
     .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.5rem*1.35;
+
         img {
     
             border-radius: 50%;
@@ -634,6 +639,8 @@
     }
     
     .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.5rem*2.45;
+
         img {
     
             border-radius: 50%;

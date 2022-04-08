@@ -31,9 +31,24 @@
   margin: 0 0 0 1.125rem;
 }
 
-.category-description__img svg {
+.category-description__img img {
   width: 3rem;
   height: 3.125rem;
+}
+
+#human-resources {
+  width: 5rem !important;
+  height: 5rem !important;
+}
+
+#office {
+  width: 6rem !important;
+  height: 6rem !important;
+}
+
+#language-and-sciences {
+  width: 5rem !important;
+  height: 5rem !important;
 }
 
 .category-description__info div:nth-of-type(1) {
@@ -105,9 +120,21 @@
             justify-content: center;
     margin: 0 0 0 2.5875rem;
   }
-  .category-description__img svg {
+  .category-description__img img {
     width: 6.9rem;
     height: 7.1875rem;
+  }
+  #human-resources {
+    width: 11.5rem !important;
+    height: 11.5rem !important;
+  }
+  #office {
+    width: 13.8rem !important;
+    height: 13.8rem !important;
+  }
+  #language-and-sciences {
+    width: 11.5rem !important;
+    height: 11.5rem !important;
   }
   .category-description__info div:nth-of-type(1) {
     width: 9.775rem;

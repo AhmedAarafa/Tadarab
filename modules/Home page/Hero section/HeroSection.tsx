@@ -160,7 +160,7 @@ export default function HeroSection() {
 
               </div>
               <div className={styles["categories-cards-container__category"]}>
-              مباشر علي تدرب
+              مباشر على تدرب
               </div>
             </div>
             <div className={styles["categories-cards-container__card"]}>

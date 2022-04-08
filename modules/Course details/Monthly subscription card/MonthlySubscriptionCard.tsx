@@ -11,6 +11,8 @@ import { stickyCardHandler } from "./utils";
 import { handleFav } from 'modules/_Shared/utils/handleFav';
 import { handleCart } from 'modules/_Shared/utils/handleCart';
 import { setCartItems } from 'configurations/redux/actions/cartItems';
+import Link from "next/link";
+
 
 export default function MonthlySubscriptionCard() {
 
@@ -29,18 +31,26 @@ export default function MonthlySubscriptionCard() {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+     if(userStatus){
+
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    }else{
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+      })
+    }
   }
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `courses/${slug}/?country_code=${localStorage.getItem("countryCode")}`);
+      const handleFavResponse: any = handleFav(course, `courses/${slug}/?country_code=null`);
       handleFavResponse.then(function (response: any) {
         setCourseDetails(response.data.data);
       })
     } else {
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-        query: { from: "/HomePage" }
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "/course" }
       })
     }
   }
@@ -50,7 +60,7 @@ export default function MonthlySubscriptionCard() {
 
     // if(userStatus?.isUserAuthenticated == true){
 
-    const handleCartResponse: any = handleCart([course], `courses/${slug}/?country_code=${localStorage.getItem("countryCode")}`, false);
+    const handleCartResponse: any = handleCart([course], `courses/${slug}/?country_code=null`, false);
     handleCartResponse.then(function (firstresponse: any) {
       // console.log("handleCartResponse",firstresponse);
       firstresponse.resp.then(function (response: any) {
@@ -89,12 +99,15 @@ export default function MonthlySubscriptionCard() {
           <div>
 
             <span>
-              شاهد هذه الدورة + أكثر من ٧٠٠ دورة تدريبية الأفضل مبيعاَ في جميع التخصصات مقدمة من افضل المدربين بالخليج العربي
-            </span>
-
+            شاهد هذه الدورة + أكثر من 750 دورة تدريبية في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي
             <span>
+              <Link href="/subscription">
+
               اعرف المزيد.
+              </Link>
             </span>
+              </span>
+
           </div>
 
         </h5>
@@ -547,6 +560,8 @@ export default function MonthlySubscriptionCard() {
             <div >{courseDetails.course_details?.trainer.name_ar}</div>
           </div>
         </div>
+
+
         <div className={styles["monthly-subscription__sticky-top-course-card__checkout-box"]}>
           {/* <div >
             <div className={styles["monthly-subscription__course-card__price-box"]}>
@@ -603,6 +618,7 @@ export default function MonthlySubscriptionCard() {
           <div className={styles["monthly-subscription__course-card__actions-btns"]}
           >
             <Button onClick={()=>{handleCartActionBtn(courseDetails?.course_details)}}
+            disabled={courseDetails?.course_details?.is_in_cart}
               className={
                 styles[
                 "monthly-subscription__course-card__actions-btns__add-to-cart-btn"

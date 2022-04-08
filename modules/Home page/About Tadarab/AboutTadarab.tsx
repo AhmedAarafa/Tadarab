@@ -15,11 +15,11 @@ export default function AboutTadarab() {
         <Row className={styles["about-tadarab"]}>
           
             <Col xs={12} className={styles["about-tadarab__title"]}>
-                    <span> ماذا </span>
-                    <span>  قالوا عن تدرب  </span>
+                    <span> ماذا قال المتدربون عن دورات تدرب </span>
+                    {/* <span>  قالوا عن تدرب  </span> */}
             </Col>
             <Col xs={12} className={styles["about-tadarab__breif"]}>
-            آراء المتعلمين علي منصة تدرب في الدورات والمدربين
+            آراء المتعلمين على منصة تدرب في الدورات والمدربين
             </Col>
             <Col xs={12} className={styles["about-tadarab__cards-carousel-container"]}>
             <Swiper dir="rtl" slidesPerView={1} navigation={true} pagination={{"clickable": true}} 

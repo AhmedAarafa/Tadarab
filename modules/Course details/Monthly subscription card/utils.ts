@@ -3,12 +3,14 @@ export const stickyCardHandler = () => {
     // to get elements concerned to be changed in the full width sticky view
     // const stickyCard: any = document.getElementById("sub-sticky-card");
     const projectsSection: any = document.getElementById("practical-projects-section");
+    const reviewsSection: any = document.getElementById("reviews-section");
+    const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
     const navbar: any = document.getElementById("nav");
     // const title: any = document.getElementById("course-card__title");
     // const guaranteeBox: any = document.getElementById("course-card__guarantee-card");
     // const detailsList: any = document.getElementById("course-card__details-list");
     // const promoCode: any = document.getElementById("course-card__promo-code");
-    // const actionBtns: any = document.getElementById("course-card__action-btns");
+    // const actionBtns: any = document.getElementById("course-card__action-btns"); 
     // const pricesBox:any =document.getElementById("course-card__prices-box");
     // to get HTML font size related to the width of the window
     const rootFontSize = parseFloat(
@@ -18,8 +20,12 @@ export const stickyCardHandler = () => {
       );
 
       if(window.innerWidth >= 576){
+        
+        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
+        window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
+        window.scrollY >= courseSubscribersSection?.offsetTop
+        ) {
 
-        if (window.scrollY >= projectsSection?.offsetTop) {
             // hide un-wanted elements in the full width sticky view
             // and change the remained ones properties to fit to the new view
             const stickyCard: any = document.getElementById("sub-sticky-card");
@@ -33,7 +39,10 @@ export const stickyCardHandler = () => {
                  `:null;
     
            
-        }else if(window.scrollY < projectsSection?.offsetTop){
+        }else if(window.scrollY < projectsSection?.offsetTop || 
+          window.scrollY < reviewsSection?.offsetTop || 
+          window.scrollY < courseSubscribersSection?.offsetTop){
+
             // const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");
             const stickyCard: any = document.getElementById("sub-sticky-card");
             const stickyTopCourseCard: any = document.getElementById("sub-sticky-top-course-card");
@@ -47,7 +56,12 @@ export const stickyCardHandler = () => {
           window.addEventListener("scroll", function () {
            // check if the user scroll to the "practical projects" section (the section that the card turns to full width sticky at)
            if(window.innerWidth >= 576){
-             if (window.scrollY >= projectsSection?.offsetTop) {
+
+             if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
+              window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
+              window.scrollY >= courseSubscribersSection?.offsetTop
+              ) {
+
                   const stickyCard: any = document.getElementById("sub-sticky-card");
                   const stickyTopCourseCard: any = document.getElementById("sub-sticky-top-course-card");
                    stickyCard ? stickyCard.style.cssText = `display:none`:null;
@@ -56,7 +70,10 @@ export const stickyCardHandler = () => {
                    position:fixed;
                    top:${navbar.offsetHeight}px;
                    `:null;
-              }else if(window.scrollY < projectsSection?.offsetTop){
+              }else if(window.scrollY < projectsSection?.offsetTop || 
+                window.scrollY < reviewsSection?.offsetTop || 
+                window.scrollY < courseSubscribersSection?.offsetTop){
+
                 // const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");
                 const stickyCard: any = document.getElementById("sub-sticky-card");
                 const stickyTopCourseCard: any = document.getElementById("sub-sticky-top-course-card");

@@ -28,7 +28,7 @@ import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { json } from "stream/consumers";
 import TadarabGA from "modules/_Shared/utils/ga";
-import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents"
+import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 
@@ -49,8 +49,8 @@ function LatestCourses() {
   const handleFilterType = (type:string)=>{
     setFilterType(type);
     axiosInstance
-    .get(`home/courses/?country_code=${localStorage.getItem("countryCode")}&type=${type}`)
-    /* home/courses/?country_code=${localStorage.getItem("countryCode")}&type=${type} */
+    .get(`home/courses/?country_code=null&type=${type}`)
+    /* home/courses/?country_code=null&type=${type} */
     .then(function (response:any) {
       setLatestCourses(response.data.data);
       // console.log("response.data.data.courses",response.data.data.courses);
@@ -63,14 +63,14 @@ function LatestCourses() {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,`home/?country_code=${localStorage.getItem("countryCode")}`);
+    const handleFavResponse:any =  handleFav(course,`home/?country_code=null`);
     handleFavResponse.then(function(response:any) {
      setLatestCourses(response.data.data.best_seller_courses);
     })
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-        query: { from: "/HomePage" }
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "homepage" }
       })
     }
   }
@@ -80,7 +80,7 @@ function LatestCourses() {
     
     // if(userStatus?.isUserAuthenticated == true){
       
-      const handleCartResponse:any =  handleCart([course],`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+      const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
       handleCartResponse.then(function(firstresponse:any) {
         // console.log("handleCartResponse",firstresponse);
         firstresponse.resp.then(function(response:any){
@@ -92,7 +92,7 @@ function LatestCourses() {
       })
     // }
     // else{
-    //   const handleCartResponse:any =  handleCart(course,`home/?country_code=${localStorage.getItem("countryCode")}`,false);
+    //   const handleCartResponse:any =  handleCart(course,`home/?country_code=null`,false);
     //   handleCartResponse.then(function(response:any) {
     //     // console.log(response.data.data);
     //       dispatch(setCartItems(response.data.data));
@@ -119,7 +119,7 @@ function LatestCourses() {
       if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
 
         axiosInstance
-          .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+          .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
           .then(function (response:any) {
             // console.log(response);
             let newArray:any = homePageData.data?.best_seller_courses;
@@ -188,7 +188,7 @@ function LatestCourses() {
                     relatedWrapper.style.cssText=`right: 100%;
                    top: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
                   }else{
-                    console.log(relatedWrapper.offsetHeight,element.offsetHeight);
+                  
                     relatedWrapper.style.cssText=`right: 100%;
                     top: -${((element.offsetHeight - relatedWrapper.offsetHeight)/2)}px`;
                   }
@@ -248,7 +248,9 @@ function LatestCourses() {
         </Col>
 
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
-          <Button className={styles["latest-courses__see-more-btn"]} id="see-more">
+          <Button className={styles["latest-courses__see-more-btn"]} id="see-more"
+          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?filter_type=all`)}}
+          >
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
           </Button>
@@ -295,14 +297,14 @@ function LatestCourses() {
                       list: "homepage",
                       position: i+1
                     })} 
-                    onClick={()=>{GAProductClickEventHandler(course,i)}} 
+                     
                     onMouseMove={()=>{
                         handleZindex("low");
                         handlePlacement();
                       }} onMouseOut={()=>{handleZindex("high")}}
                         id={`latest-courses-card${i}`}
                         className={
-                          styles["latest-courses__cards-carousel__course-card"]
+                          styles["latest-courses__cards-carousel__course-card"] 
                         }
                       >
 
@@ -398,35 +400,41 @@ function LatestCourses() {
                         <div className={styles["latest-courses__popover-container__btns"]}>
 
                               <Link href={`/course/${course.slug}`}>
-                                <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
+                                <Button style={{width: course.is_in_user_subscription ? "100%" : "6.875rem"}} 
+                                className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
                               </Link>
-                              <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]} 
+                              { !course.is_in_user_subscription &&
+                                <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]} 
                               onClick={()=>handleCartActionBtn(course)} disabled={course.is_in_cart}>
                                 <CartIcon color="#fff"/>
                                 <span> أضف للسلة </span>  
                               </Button>
+                              }
                           </div> 
 
                     
                         </div>
                      </div>
+                            {
+                             course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== ""  &&
 
-                        {course.categories !== undefined &&
-                          <div
-                          className={
-                            styles[
-                              "latest-courses__cards-carousel__course-card__category-chip"
-                            ]
-                          }
-                          style={{backgroundColor:course.categories[0].color}}
-                        > 
-                        {course.categories[0].title} 
-                        </div>}
+                              <div
+                              className={
+                                styles[
+                                  "latest-courses__cards-carousel__course-card__category-chip"
+                                ]
+                              }
+                              style={{backgroundColor:`${course.categories[0] !== undefined && course.categories[0].color}`}}
+                            > 
+                            {course.categories[0] !== undefined && course.categories[0].title} 
+                            </div>
+                            }
 
                         <Link href={`/course/${course.slug}`}>
+                          <a onClick={()=>{GAProductClickEventHandler(course,i)}}>
 
                         <Card.Img
-                          variant="top"
+                          variant="top" 
                           src={course.image}
                           alt="course image"
                           className={
@@ -435,6 +443,7 @@ function LatestCourses() {
                             ]
                           }
                         />
+                          </a>
                         </Link>
 
                         <Card.Body
@@ -444,7 +453,7 @@ function LatestCourses() {
                             ]
                           }
                         >
-                          <div
+                          <div style={{borderBottom: course.is_in_user_subscription && "none" }}
                             className={
                               styles[
                                 "latest-courses__cards-carousel__course-card__card-body__card-header"
@@ -473,7 +482,7 @@ function LatestCourses() {
                               }
                             >
                           <Link href={`/course/${course.slug}`}>
-                                <h1 
+                                <h1  onClick={()=>{GAProductClickEventHandler(course,i)}}
                               title={course.title}
                                   className={
                                     styles[
@@ -520,7 +529,7 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                 {course.currency_code}
+                                 {!course.is_in_user_subscription && course.currency_code}
                                 </span>}
 
                                 <span
@@ -530,9 +539,18 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                  {course.is_purchased && "تم الشراء"}
+                                  {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
                                   {
-                                    !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                    !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                  }
+                                  {
+                                    course.is_in_user_subscription && 
+                                    <Link href={`/course/${course.slug}`}>
+                                    <span className={styles["watch-subscribed-course"]}>
+                                      شاهد الدورة
+                                    </span>
+                                    </Link>
+
                                   }
                                 </span>
                                
@@ -572,7 +590,7 @@ function LatestCourses() {
                             </div>
 
                               <div >
-                              { !course.is_purchased && <Button disabled={course.is_in_cart} variant={""}
+                              { !course.is_purchased  && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -589,7 +607,7 @@ function LatestCourses() {
                                     
                                   } */}
                                   {
-                                  course.is_in_cart ?
+                                  (course.is_in_cart) ?
                                   <AddedToCartIcon color="#222"/>
                                    : 
                                    <CartIcon color="#222"/>
@@ -610,7 +628,7 @@ function LatestCourses() {
                                 className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
                                  {
                                   course.is_in_favorites ?
-                                  <AddedToFavouriteIcon color="af151f"/>
+                                  <AddedToFavouriteIcon color="#af151f"/>
                                    : 
                                   <FavouriteIcon color="#222"/>
                                    }

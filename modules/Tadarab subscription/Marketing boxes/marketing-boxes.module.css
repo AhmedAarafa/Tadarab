@@ -78,8 +78,7 @@
   .marketing-boxes > div:nth-of-type(3),
   .marketing-boxes > div:nth-of-type(4),
   .marketing-boxes > div:nth-of-type(6),
-  .marketing-boxes > div:nth-of-type(7),
-  .marketing-boxes > div:nth-of-type(8) {
+  .marketing-boxes > div:nth-of-type(7) {
     padding: 0 5rem;
   }
   .marketing-boxes > div:nth-of-type(1) {

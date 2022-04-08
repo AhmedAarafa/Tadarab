@@ -5,13 +5,13 @@
 .category-courses__title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: var(--dark-black);
+  color: #222222;
 }
 
 .category-courses__filter-list {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--grey);
+  color: #777777;
   padding: 1rem 0 0 0;
   margin: 0;
 }
@@ -35,14 +35,14 @@
 .category-courses__filter-list li::before {
   content: "-";
   padding-left: 0.5rem;
-  color: var(--grey);
+  color: #777777;
 }
 
 .category-courses__filter-list__item--active {
   font-weight: 800;
-  color: var(--dark-black);
-  -webkit-text-decoration: underline 0.15rem var(--pale-red);
-          text-decoration: underline 0.15rem var(--pale-red);
+  color: #222222;
+  -webkit-text-decoration: underline 0.15rem #F7E7E8;
+          text-decoration: underline 0.15rem #F7E7E8;
 }
 
 .category-courses__cards-carousel {
@@ -167,6 +167,10 @@
   border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
 }
 
+.category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+  font-size: 0.5rem;
+}
+
 .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
   border-radius: 50%;
   width: 1.925rem;
@@ -181,7 +185,7 @@
 .category-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
   font-size: 0.77rem;
   font-weight: 800;
-  color: var(--dark-black);
+  color: #222222;
   margin: 0;
   width: 10.5rem;
   text-overflow: ellipsis;
@@ -191,7 +195,7 @@
 
 .category-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
   font-size: 0.62601rem;
-  color: var(--grey);
+  color: #777777;
 }
 
 .category-courses__cards-carousel__course-card__card-body__checkout-details {
@@ -209,13 +213,13 @@
 .category-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
   font-size: 0.9625rem;
   font-weight: 800;
-  color: var(--dark-black);
+  color: #222222;
 }
 
 .category-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
   font-size: 0.62601rem;
   font-weight: 700;
-  color: var(--dark-black);
+  color: #222222;
 }
 
 .category-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
@@ -227,12 +231,12 @@
 .category-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
   font-size: 0.5775rem;
   font-weight: 800;
-  color: var(--grey);
+  color: #777777;
 }
 
 .category-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
   font-size: 0.48125rem;
-  color: var(--grey);
+  color: #777777;
 }
 
 .category-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
@@ -359,6 +363,9 @@
     position: relative;
     padding: 0 0 0.80474rem 0;
     border-bottom: 0.0515rem solid rgba(34, 34, 34, 0.1);
+  }
+  .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.515rem;
   }
   .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;
@@ -526,6 +533,9 @@
     padding: 0 0 1.05476rem 0;
     border-bottom: 0.0675rem solid rgba(34, 34, 34, 0.1);
   }
+  .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 0.675rem;
+  }
   .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;
     width: 3.375rem;
@@ -621,7 +631,7 @@
   .category-courses__filter-list {
     font-size: 2.64375rem;
     font-weight: 700;
-    color: var(--grey);
+    color: #777777;
     padding: 1rem 0 0 0;
     margin: 0 3rem 0 0;
   }
@@ -641,7 +651,7 @@
   .category-courses__filter-list li::before {
     content: "-";
     padding-left: 1.175rem;
-    color: var(--grey);
+    color: #777777;
   }
   .category-courses__cards-carousel {
     margin: 2.156rem 0 0 0;
@@ -727,6 +737,9 @@
             justify-content: unset;
     padding: 0 0 1.91419rem 0;
     border-bottom: 0.1225rem solid rgba(34, 34, 34, 0.1);
+  }
+  .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
+    font-size: 1.225rem;
   }
   .category-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;

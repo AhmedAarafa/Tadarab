@@ -27,11 +27,19 @@
           justify-content: unset;
 }
 
+.educational-guide__container__img {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 5rem;
+  border-radius: 1rem;
+  background-color: white;
+}
+
 .educational-guide__container__img img {
   width: 16.25rem;
   height: 16.25rem;
   border-radius: 1.875rem;
-  margin-right: 5rem;
 }
 
 .educational-guide__container__details-box {
@@ -125,11 +133,17 @@
         -ms-flex-direction: column;
             flex-direction: column;
   }
+  .educational-guide__container__img {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    border-radius: 2.5rem;
+    margin: 5.5rem 0rem 6.719rem 0;
+  }
   .educational-guide__container__img img {
     width: 41rem;
     height: 41rem;
     border-radius: 1.875rem;
-    margin: 5.5rem 0rem 6.719rem 0;
   }
   .educational-guide__container__details-box {
     text-align: center;

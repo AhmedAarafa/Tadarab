@@ -9,15 +9,19 @@ module.exports = {
         destination: '/HomePage',
       },
       {
-        source: '/signup',
+        source: '/sign-up',
         destination: '/SignUp',
       },
       {
-        source: '/signin',
+        source: '/sign-in',
         destination: '/SignIn',
       },
       {
         source: '/course/:path*',
+        destination: '/CourseDetails/:path*',
+      },
+      {
+        source: '/webinar/:path*',
         destination: '/CourseDetails/:path*',
       },
       {
@@ -54,22 +58,18 @@ module.exports = {
       },
       {
         source: '/topic/:path*',
-        destination: '/Category',
+        destination: '/Category/:path*',
       },
       {
-        source: '/topic/:path*',
-        destination: '/SubCategory',
-      },
-      {
-        source: '/forgetpassword',
+        source: '/forget-password',
         destination: '/ForgetPassword',
       },
       {
-        source: '/joinusasatrainer',
+        source: '/join-us-as-a-trainer',
         destination: '/JoinAsATrainer',
       },
       {
-        source: '/resetpassword',
+        source: '/reset-password',
         destination: '/ResetPassword',
       },
       {
@@ -77,8 +77,16 @@ module.exports = {
         destination: '/TadarabSubscription',
       },
       {
-        source: '/transactioninprogress',
+        source: '/transaction-in-progress',
         destination: '/TransactionInProgress',
+      },
+      {
+        source: '/my-account',
+        destination: '/MyAccount',
+      },
+      {
+        source: '/trainers',
+        destination: '/AllTrainers',
       },
     ]
   },

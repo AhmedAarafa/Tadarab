@@ -11,10 +11,20 @@ export default function UnlimitedCourses() {
 
   const dispatch = useDispatch();
   const Router = useRouter();
+  const userStatus = useSelector((state:any) => state.userAuthentication.isUserAuthenticated);
+
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    if(userStatus){
+
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    }else{
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+      })
+    }
   }
 
   return (
@@ -27,7 +37,8 @@ export default function UnlimitedCourses() {
 
               <div className={styles["unlimited-courses__title"]}>
                   <div>
-                    تعلم مهارات جديدة كل يوم بلا حدود جميع الدورات التدريبية باشتراك شهري واحد.     
+              تعلم كل يوم مهارة جديدة في جميع المجالات باشتراك شهري واحد.
+  
                   </div>
               </div>
               <Button onClick={()=>{handleSubscriptionBtn()}} className={styles["unlimited-courses__subscribe-btn"]}  id="monthly-subscribe-btn"

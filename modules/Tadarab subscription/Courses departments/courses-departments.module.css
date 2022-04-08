@@ -154,6 +154,21 @@
   height: 2rem;
 }
 
+#human-resources {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+#office {
+  width: 3.5rem;
+  height: 5rem;
+}
+
+#language-and-sciences {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
 .courses-departments__cards-carousel__departments-card__department {
   font-size: 1rem;
   font-weight: 700;
@@ -296,6 +311,18 @@
     width: 2.8rem;
     height: 2.8rem;
   }
+  #human-resources {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  #office {
+    width: 4.9rem;
+    height: 7rem;
+  }
+  #language-and-sciences {
+    width: 3.92rem;
+    height: 3.92rem;
+  }
   .courses-departments__cards-carousel__departments-card__department {
     font-size: 1.4rem;
     font-weight: 700;
@@ -378,6 +405,18 @@
   .courses-departments__cards-carousel__departments-card__img-box img {
     width: 4.4rem;
     height: 4.4rem;
+  }
+  #human-resources {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+  #office {
+    width: 7.7rem;
+    height: 11rem;
+  }
+  #language-and-sciences {
+    width: 6.16rem;
+    height: 6.16rem;
   }
   .courses-departments__cards-carousel__departments-card__department {
     font-size: 2.2rem;

@@ -57,6 +57,8 @@
 }
 
 .trainer-info-section__view-trainer-account{
+    width: fit-content;
+    cursor: pointer;
     span{
         font-size: 1rem;
         color: var(--primary-red);

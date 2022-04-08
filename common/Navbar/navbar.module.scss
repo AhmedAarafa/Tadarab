@@ -242,8 +242,8 @@
 .navbar__cart-icon__badge {
     position: absolute;
     background-color: var(--primary-red) !important;
-    top: 0.125rem;
-    right: -0.625rem;
+    top: -0.4rem;
+    right: -0.6rem;
     border-radius: 50%;
     font-size: 0.75rem;
     padding: 0.25rem 0.45rem;
@@ -601,7 +601,7 @@
 
 .navbar__account-icon__dropdown {
     @include popover;
-    top: 1rem !important;
+    top: 1.25rem !important;
     height: 4rem;
     width: fit-content;
     padding: 0 1.5rem;

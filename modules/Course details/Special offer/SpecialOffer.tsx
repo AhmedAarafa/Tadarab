@@ -10,7 +10,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
-export default function SpecialOffer() {
+export default function SpecialOffer(props:any) {
     const [specialBundleData, setSpecialBundleData] = useState<any>();
     // const [dateToCompare, setDateToCompare] = useState(0);
     const [toDisplayValues, setToDisplayValues] = useState<any>([]);
@@ -21,66 +21,75 @@ export default function SpecialOffer() {
 
     useEffect(() => {
 
-            axiosInstance
-            .get(`courses/35990/special-bundle/?country_code=${localStorage.getItem("countryCode")}`)
-            .then(function (response:any) {
-              setSpecialBundleData(response?.data?.data);
+      if(props.Cid() !== ""){
 
-              response?.data?.data?.courses?.forEach((course:any)=>{
-                if(course.is_in_cart || course.is_purchased){
-                    setDisabled(true);
-                    return;
-                }
-              })
-              // console.log("response.data.courses",response?.data?.data);
-            
-              if (document.cookie.indexOf('timer') > -1 ) {
-                document.cookie.split('; ').reduce((prev:any, current:any) => {
-                    const [name, ...value] = current.split('=');
-                    prev[name] = value.join('=');
-                    
-                    if(prev.timer < (Math.floor(Date.now() / 1000))){
-                        
-                        let now = new Date();
-                        let time = now.getTime();
-                          time += response?.data?.data.countdown * 3600 * 1000;
-                          now.setTime(time);
-                          document.cookie = 
-                          'timer=' + ((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60)) + 
-                          '; expires=' + (new Date(now)).toUTCString() + 
-                          '; path=/';
-                          
-                          timerHandler((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60));
-                   
-                      }else{
-                          if(prev.timer){
-                             timerHandler(prev.timer);
-                          } 
-                      }
-                      return prev;
-                    }, {});
-  
-              }else{
-                  
-                  let now = new Date();
-                  let time = now.getTime();
-                  time += response?.data?.data.countdown * 3600 * 1000;
-                  now.setTime(time);
-                  document.cookie = 
-                  'timer=' + ((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60)) + 
-                  '; expires=' + (new Date(now)).toUTCString() + 
-                  '; path=/';
-                  timerHandler((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60));
+          axiosInstance
+          .get(`course/${props.Cid()}/special-bundle/?country_code=null`)
+          .then(function (response:any) {
+            setSpecialBundleData(response?.data?.data);
+    
+            response?.data?.data?.courses?.forEach((course:any)=>{
+              if(course.is_in_cart || course.is_purchased){
+                  setDisabled(true);
+                  return;
               }
             })
-            .catch(function (error) {
-              console.log(error);
-            });
+            // console.log("response.data.courses",response?.data?.data);
+          
+            if (document.cookie.indexOf('timer') > -1 ) {
+              document.cookie.split('; ').reduce((prev:any, current:any) => {
+                  const [name, ...value] = current.split('=');
+                  prev[name] = value.join('=');
+                  
+                  if(prev.timer < (Math.floor(Date.now() / 1000))){
+                      
+                      let now = new Date();
+                      let time = now.getTime();
+                        time += response?.data?.data.countdown * 3600 * 1000;
+                        now.setTime(time);
+                        document.cookie = 
+                        'timer=' + ((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60)) + 
+                        '; expires=' + (new Date(now)).toUTCString() + 
+                        '; path=/';
+                        
+                        timerHandler((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60));
+                        console.log("response?.data?.data?.countdown",response?.data?.data?.countdown);
+                        
+                        
+                    }else{
+                        if(prev.timer){
+                            timerHandler(prev.timer);
+                            console.log("prev.timer",prev.timer);
+                        } 
+                    }
+                    return prev;
+                  }, {});
+    
+            }else{
+                
+                let now = new Date();
+                let time = now.getTime();
+                time += response?.data?.data.countdown * 3600 * 1000;
+                now.setTime(time);
+                document.cookie = 
+                'timer=' + ((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60)) + 
+                '; expires=' + (new Date(now)).toUTCString() + 
+                '; path=/';
+                timerHandler((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60));
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
-        }, []);
+      }
+
+
+        }, [props.Cid()]);
 
 
     function timerHandler(dateAfter:any) {
+        
         setInterval(() => {
             // get total seconds between the times
             let delta:any = Math.abs(dateAfter - (Math.floor(Date.now() / 1000)));
@@ -121,7 +130,7 @@ export default function SpecialOffer() {
     dispatch(setCheckoutType("cart"));
 
     
-          const handleCartResponse:any =  handleCart(courses,`courses/35990/special-bundle/?country_code=${localStorage.getItem("countryCode")}`,true);
+          const handleCartResponse:any =  handleCart(courses,`courses/${props.Cid()}/special-bundle/?country_code=null`,true);
           handleCartResponse.then(function(firstresponse:any) {
             // console.log("handleCartResponse",firstresponse);
             firstresponse.resp.then(function(response:any){
@@ -137,7 +146,7 @@ export default function SpecialOffer() {
     
   return (
     <>
-    {specialBundleData !== null &&
+    {specialBundleData &&
      JSON.stringify(specialBundleData) !== "{}" &&
      specialBundleData?.courses !== null &&
      JSON.stringify(specialBundleData?.courses) !== "[]" &&
@@ -156,13 +165,18 @@ export default function SpecialOffer() {
             {
                 specialBundleData?.courses?.map((course:any,i:number)=>{
                     return(
-                        <>
-                            <div key={i} className={styles["special-offer__cards-outer-box__card"]}>
+                        <div key={i}>
+                            <div  className={styles["special-offer__cards-outer-box__card"]}>
                                 <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
                                     <img src={course.image} alt="course image" />
-                                    <div className={styles["special-offer__cards-outer-box__card__category-chip"]}>
-                                        فنون
-                                    </div>
+                                    {
+                                       course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== ""  &&
+
+                                        <div className={styles["special-offer__cards-outer-box__card__category-chip"]}
+                                        style={{backgroundColor:`${course.categories[0] !== undefined && course.categories[0].color}`}}>
+                                            {course.categories[0] !== undefined && course.categories[0].title}
+                                        </div>
+                                    }
                                 </div>
 
                                 <div className={styles["special-offer__cards-outer-box__card__trainer-info-box-container"]}>
@@ -215,13 +229,13 @@ export default function SpecialOffer() {
                                     </div>
                                 </div>
                             </div>
-                            <div className={styles["special-offer__cards-outer-box__plus"]}>
+                            <div  className={styles["special-offer__cards-outer-box__plus"]}>
                                 <div>
 
                                 <PlusIcon/>
                                 </div>
                             </div>
-                        </>
+                        </div>
                     )
                 })
             }
@@ -254,7 +268,7 @@ export default function SpecialOffer() {
                         </div>
 
                         <div className={styles["special-offer__cards-outer-box__card__checkout-box__prices-box__discount"]}>
-                        هتوفر
+                       ستوفر
                         <span> {Math.ceil(100-((specialBundleData?.discounted_price/specialBundleData?.price)*100))} % </span>
                         من خلال العرض
                         </div>

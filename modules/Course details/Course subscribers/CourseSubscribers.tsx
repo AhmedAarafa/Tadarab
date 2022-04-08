@@ -15,6 +15,7 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import Link from 'next/link';
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import { useRouter } from 'next/router';
 
 
 export default function CourseSubscribers() {
@@ -25,17 +26,19 @@ export default function CourseSubscribers() {
   const [courseSubscribers, setCourseSubscribers] = useState([]);
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
+  const Router = useRouter();
+  const { slug } = Router.query;
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,`courses/1540/?country_code=${localStorage.getItem("countryCode")}`);
+    const handleFavResponse:any =  handleFav(course,`courses/${slug}/?country_code=null`);
     handleFavResponse.then(function(response:any) {
       setCourseDetails(response.data.data?.related_courses);
     })
     }else{
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-        query: { from: "/CourseDetails" }
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "course" }
       })
     }
   }
@@ -44,7 +47,7 @@ export default function CourseSubscribers() {
     dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
+      const handleCartResponse:any =  handleCart([course],`courses/${slug}/?country_code=null`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             // console.log("response.data.data",response.data.data);
@@ -56,7 +59,7 @@ export default function CourseSubscribers() {
       })
     // }
     // else{
-    //   const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=${localStorage.getItem("countryCode")}`,false);
+    //   const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=null`,false);
     //   handleCartResponse.then(function(response:any) {
     //       dispatch(setCartItems(response.data.data));
 
@@ -80,31 +83,31 @@ export default function CourseSubscribers() {
 
     setCourseDetails(courseDetailsData.data?.related_courses || []);
     
-    const localStorageItems:any = localStorage.getItem("cart");
-    if(localStorageItems !== "undefined" && localStorageItems !== "null" && localStorageItems !== "[]" ){
+    // const localStorageItems:any = localStorage.getItem("cart");
+    // if(localStorageItems !== "undefined" && localStorageItems !== "null" && localStorageItems !== "[]" ){
         
-        axiosInstance
-        .get(`courses/?country_code=${localStorage.getItem("countryCode")}&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-        .then(function (response:any) {
+    //     axiosInstance
+    //     .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+    //     .then(function (response:any) {
          
-          let newArray:any = courseDetailsData.data?.related_courses;
-         response.data.data.forEach((element:any) => {
-          newArray.forEach((ele:any) => {
-              if(element.id === ele.id){
-                // console.log(ele);
-                ele.is_in_cart = true;
-                // newArray.ele.is_in_cart = true;
-                // console.log("newArray",newArray);
-                setCourseDetails([...newArray]);
-              }
-            });
-          });
+    //       let newArray:any = courseDetailsData.data?.related_courses;
+    //      response.data.data.forEach((element:any) => {
+    //       newArray.forEach((ele:any) => {
+    //           if(element.id === ele.id){
+    //             // console.log(ele);
+    //             ele.is_in_cart = true;
+    //             // newArray.ele.is_in_cart = true;
+    //             // console.log("newArray",newArray);
+    //             setCourseDetails([...newArray]);
+    //           }
+    //         });
+    //       });
     
-      })
-      .catch(function (error) {
-        console.log(error); 
-      });
-    }
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error); 
+    //   });
+    // }
 
     
     // (courseDetailsData.data?.latest_courses || []).forEach((item:any) => {
@@ -119,7 +122,7 @@ export default function CourseSubscribers() {
 
   return (
     <>
-      <Col xs={12} className={styles["course-subscribers"]}>
+      <Col id="course-subscribers-section" xs={12} className={styles["course-subscribers"]}>
         <div className={styles["course-subscribers__title"]}>
             <div>مشتركين هذه الدورة</div>
             <div>امتلكوا الدورات التالية أيضاً</div>
@@ -160,28 +163,34 @@ export default function CourseSubscribers() {
                                 styles["course-subscribers__cards-carousel__course-card"]
                             }
                             >
+                              {
+                              course.categories[0] !== undefined &&  course.categories[0].title !== null && course.categories[0].title !== ""  &&
+
                             <div
                                 className={
                                 styles[
                                     "course-subscribers__cards-carousel__course-card__category-chip"
                                 ]
                                 }
-                                style={{backgroundColor:`${course.categories[0].color}`}}
+                                style={{backgroundColor:`${course.categories[0] !== undefined && course.categories[0].color}`}}
                             > 
-                                {course.categories[0].title} 
+                                {course.categories[0] !== undefined && course.categories[0].title} 
                             </div>
+                              }
                             <Link href={`/course/${course.slug}`}>
+                                  <a>
+                                    <Card.Img
+                                        variant="top"
+                                        src={course.image}
+                                        alt="course image"
+                                        className={
+                                        styles[
+                                            "course-subscribers__cards-carousel__course-card__course-img"
+                                        ]
+                                        }
+                                    />
 
-                              <Card.Img
-                                  variant="top"
-                                  src={course.image}
-                                  alt="course image"
-                                  className={
-                                  styles[
-                                      "course-subscribers__cards-carousel__course-card__course-img"
-                                  ]
-                                  }
-                              />
+                                  </a>
                             </Link>
                             <Card.Body
                                 className={
@@ -190,7 +199,7 @@ export default function CourseSubscribers() {
                                 ]
                                 }
                             >
-                                <div
+                                <div style={{borderBottom: course.is_in_user_subscription && "none" }}
                                 className={
                                     styles[
                                     "course-subscribers__cards-carousel__course-card__card-body__card-header"
@@ -270,9 +279,18 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        {course.is_purchased && "تم الشراء"}
+                                        {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
                                   {
-                                    !course.is_purchased && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                    !course.is_purchased &&  !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                  }
+                                   {
+                                    course.is_in_user_subscription && 
+                                    <Link href={`/course/${course.slug}`}>
+                                    <span className={styles["watch-subscribed-course"]}>
+                                      شاهد الدورة
+                                    </span>
+                                    </Link>
+
                                   }
                                     </span>
                                    { course.discounted_price !== 0 && !course.is_purchased &&   <span
@@ -282,7 +300,7 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course.currency_code}
+                                        { !course.is_in_user_subscription && course.currency_code}
                                     </span>}
                                     </div>
 
@@ -318,7 +336,7 @@ export default function CourseSubscribers() {
                                 </div>
 
                                 <div className="d-inline-block">
-                                     { !course.is_purchased && <Button onClick={()=>handleCartActionBtn(course)}  disabled={course.is_in_cart} variant={""}
+                                     { !course.is_purchased && !course.is_in_user_subscription && <Button onClick={()=>handleCartActionBtn(course)}  disabled={course.is_in_cart} variant={""}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -347,7 +365,7 @@ export default function CourseSubscribers() {
 
                                         {
                                         course.is_in_favorites ?
-                                        <AddedToFavouriteIcon color="af151f"/>
+                                        <AddedToFavouriteIcon color="#af151f"/>
                                         : 
                                         <FavouriteIcon color="#222"/>
                                         }
