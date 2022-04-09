@@ -294,7 +294,6 @@ function CourseDetails() {
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
-                <CourseAdvertisement />
                 {originalCardPlacement == false &&
                   <MonthlySubscriptionCard />
                 }
@@ -302,7 +301,6 @@ function CourseDetails() {
                 <CourseDetailsSection />
                 <CourseKeywords />
                 <CourseRequirements />
-                <CourseContent />
                 <TrainerInfo />
                 <GuaranteeCard />
                 <CourseCertificate />
