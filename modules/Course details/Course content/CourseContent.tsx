@@ -1,119 +1,91 @@
 import React, { useState, useEffect } from "react";
 import styles from "./course-content.module.css";
-import { Accordion , Button , ProgressBar} from "react-bootstrap";
+import { Accordion, Button, ProgressBar } from "react-bootstrap";
 // import {scrollspyHandler} from "./utils"
-import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
-import { useDispatch, useSelector } from "react-redux";  
-import { UnlockIcon,LessonPlayIcon,ClockIcon,LockIcon,AttachmentsIcon,FileDownloadIcon,CheckCircleIcon } from "common/Icons/Icons";
-import {TPlayerPlayList} from "common/TPlayer/TPlayer";
+import { scrollspyHandler } from "../../_Shared/utils/scrollSpy"
+import { useDispatch, useSelector } from "react-redux";
+import { UnlockIcon, LessonPlayIcon, ClockIcon, LockIcon, AttachmentsIcon, FileDownloadIcon, CheckCircleIcon } from "common/Icons/Icons";
+import { TPlayerPlayList } from "common/TPlayer/TPlayer";
 
 export default function CourseContent() {
 
     const [courseDetails, setCourseDetails] = useState<any>([]);
-    const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
-    const userStatus = useSelector((state:any) => state.userAuthentication);
+    const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
+    const userStatus = useSelector((state: any) => state.userAuthentication);
 
     useEffect(() => {
         setCourseDetails(courseDetailsData.data || []);
         // return () => {
         //     setCourseDetails([])
         //   }
-      }, [courseDetailsData]);
+    }, [courseDetailsData]);
 
 
     useEffect(() => {
-       scrollspyHandler("course-content");
-       return () => {
-        window.removeEventListener("resize", () => {
-          return;
-        });
-        setCourseDetails([])
+        scrollspyHandler("course-content");
+        return () => {
+            window.removeEventListener("resize", () => {
+                return;
+            });
+            setCourseDetails([])
 
-      }
-      }, []);
+        }
+    }, []);
 
-      function durationCalculator(time:any) {
-        
-        time = Number(time);
-        let h = Math.floor(time / 3600);
-        let m = Math.floor(time % 3600 / 60);
-        let s = Math.floor(time % 3600 % 60);
+    //   function durationCalculator(time:any) {
 
-    return {h, m, s};
+    //     time = Number(time);
+    //     let h = Math.floor(time / 3600);
+    //     let m = Math.floor(time % 3600 / 60);
+    //     let s = Math.floor(time % 3600 % 60);
 
-    }
-        /** dynamic server side variable **/
-    // let isPurchased	= false;	// Is the """course""" is purchased by the logged-in user 
-    // let isUserLogin	= false;	// if user is logged-in, true elase false
-    // let userId		= false;	// if user is logged-in, true elase false
-    // let courseTitle	= '(اكسر قيدك (الناقد السلبي';	// the current course title
+    // return {h, m, s};
 
-    // function TPlayerPlayList(){
-	// 	// if((TPlayer.dataPlaylist==true)){
-	// 		return(
-	// 			playlistSrc.map((item:any,index:any)=>{
-	// 				var isFree=((item.is_free)?item.is_free:false),
-	// 				//code=((item.share_code)?item.share_code:''),
-	// 				//is_paid=((isPurchased)?true:is_free),
-	// 				is_play=((isPurchased===true)?true:isFree),
-	// 				title=((item.title)?item.title:''),lession_class="lession ",
-	// 				unlock=((isFree&&!isPurchased)?`<div className="tmark"><span className="text" /><i className="unlock" /></div>`:`<div className="tmark"><i className="unlock" /></div>`),
-	// 				tmart=((!is_play)?`<div className="tmark"><i className="lock"></i></div>`:unlock);
-	// 				lession_class+=((!is_play)?'paid':'play');lession_class+=((isFree&&!isPurchased)?' free free-lession':'');
-	// 				return(
-	// 					<a key={index} className={lession_class} data-lession={index} data-play={is_play} onClick={play_video}>
-	// 						<i className="tadarab-icon play"></i><div className="ml10 lession-description"><span className="title">{title}</span></div><div dangerouslySetInnerHTML={{__html:tmart}}></div>
-	// 					</a>
-	// 				)
-	// 			})
-	// 		)
-	// 	// }
-	// }
-    
+    // }
 
-  return (
-    <>
-    <div oncl className={styles["course-content"]}>
-    <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
+    return (
+        <>
+            <div className={styles["course-content"]}>
+                <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
 
-        <div className={styles["course-content__title"]}>
-        محتوي الدورة التدريبية
-        </div>
-        
-        <div className={styles["course-content__course-duration-box"]}>
-						<div className={styles["course-content__course-duration-box__courses-number"]}>
-							<LessonPlayIcon color="#999" opacity="0.7"/>
-                            
-							<span> {courseDetailsData?.data?.total_lectures} </span>
-							<span> درس </span>
+                <div className={styles["course-content__title"]}>
+                    محتوي الدورة التدريبية
+                </div>
 
-						</div>
-						-
-						<div className={styles["course-content__course-duration-box__duration"]}>
-						<ClockIcon color="#999" opacity="0.7"/>
-							{
-								courseDetailsData?.data?.total_time?.h !== 0 &&
-									<>
-								<span> {courseDetailsData?.data?.total_time?.h} </span>
-								<span> س: </span>
-								</>
-							}
-							{
-								courseDetailsData?.data?.total_time?.m !== 0 &&
-									<>
-								<span> {courseDetailsData?.data?.total_time?.m} </span>
-								<span> د </span>
-								</>
-							}
-						
+                <div className={styles["course-content__course-duration-box"]}>
+                    <div className={styles["course-content__course-duration-box__courses-number"]}>
+                        <LessonPlayIcon color="#999" opacity="0.7" />
 
-						</div>
-					</div>
+                        <span> {courseDetailsData?.data?.total_lectures} </span>
+                        <span> درس </span>
 
-        <TPlayerPlayList />
- 
+                    </div>
+                    -
+                    <div className={styles["course-content__course-duration-box__duration"]}>
+                        <ClockIcon color="#999" opacity="0.7" />
+                        {
+                            courseDetailsData?.data?.total_time?.h !== 0 &&
+                            <>
+                                <span> {courseDetailsData?.data?.total_time?.h} </span>
+                                <span> س: </span>
+                            </>
+                        }
+                        {
+                            courseDetailsData?.data?.total_time?.m !== 0 &&
+                            <>
+                                <span> {courseDetailsData?.data?.total_time?.m} </span>
+                                <span> د </span>
+                            </>
+                        }
 
-          {/* <div className={styles["purchased-course-playlist"]}>
+
+                    </div>
+                </div>
+
+                <TPlayerPlayList />
+
+
+                {/* <div className={styles["purchased-course-playlist"]}>
               <div className={styles["purchased-course-playlist__progress-box"]}>
                   <span>  منهج الدورة  </span>
                   <span>  ( 32% مكتمل )  </span>
@@ -175,11 +147,11 @@ export default function CourseContent() {
             </Accordion>
           </div> */}
 
-      <Button className={styles["course-content__show-more-btn"]}>
-      أعرض المزيد من الدروس
-      </Button>
+                <Button className={styles["course-content__show-more-btn"]}>
+                    أعرض المزيد من الدروس
+                </Button>
 
-    </div>
-    </>
-  );
+            </div>
+        </>
+    );
 }

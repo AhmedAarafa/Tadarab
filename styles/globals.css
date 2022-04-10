@@ -12951,6 +12951,11 @@ input:focus,
   font-weight: 700;
 }
 
+.loading-indicator {
+  pointer-events: all !important;
+  position: fixed !important;
+}
+
 .loading-indicator:before {
   content: '';
   background-image: url("/images/Loader-Desktop-View.png");
@@ -12963,6 +12968,7 @@ input:focus,
   top: 0;
   left: 0;
   z-index: 1000;
+  pointer-events: all !important;
 }
 
 .accordion-button:not(.collapsed)::after {
@@ -13585,6 +13591,9 @@ input:-webkit-autofill:active {
   }
   .loading-indicator:before {
     background-image: url("/images/Loader-Mobile-view.png");
+  }
+  .navbar-brand {
+    margin-right: 3rem !important;
   }
 }
 

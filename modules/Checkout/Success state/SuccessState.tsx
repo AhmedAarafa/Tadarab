@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Button, Form, Card } from "react-bootstrap";
 import styles from "./success-state.module.css";
@@ -8,7 +9,7 @@ import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import Router, { useRouter }  from "next/router";
-
+import Link from "next/link";
 
 export default function SuccessState() {
 
@@ -78,10 +79,12 @@ export default function SuccessState() {
             { checkoutType == "cart" && <div className={styles["success-state__begin-learning"]}>
                  رضائك يهمنا نقدم لك ٣٠ يوم ضمان ذهبي على جميع الدورات لأن هدفنا هو إفادتك من كل دورة تمتلكها على تدرب.
                   </div>}
-            <Button className={styles["success-state__btn"]}>
-                <span> اذهب لدوراتي </span>
-                <ArrowLeftIcon color="#fff"/>
-            </Button>
+                  <Link href='/my-account'>
+                    <Button className={styles["success-state__btn"]}>
+                        <span> اذهب لدوراتي </span>
+                        <ArrowLeftIcon color="#fff"/>
+                    </Button>
+                  </Link>
 
             </Col>
             <Col sm={6} xs={12}>

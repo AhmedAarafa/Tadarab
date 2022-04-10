@@ -93,7 +93,9 @@ export default function Books() {
                           className={styles["books__cards-carousel__card__card-body"]}
                           >
                               <h1 className={styles["books__cards-carousel__card__card-body__title"]}>{book.title}</h1>
-                              <div className={styles["books__cards-carousel__card__card-body__category"]}>{book.categories[0]?.title}</div>
+                              <div className={styles["books__cards-carousel__card__card-body__category"]}>{
+                                book.categories[0] !== undefined && book.categories[0].title !== null && book.categories[0].title !== "" &&
+                              book.categories[0]?.title}</div>
                               <div className="w-100">
                                   <Button className={styles["books__cards-carousel__card__download-btn"]}>
                                       

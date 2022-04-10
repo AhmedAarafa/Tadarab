@@ -57,7 +57,16 @@ export default function FailedState() {
             <div className={styles["failed-state__purchasing-failed-brief"]}> لقد حدث خطأ. حاول مرة أخرى لإكمال عملية الشراء </div>
 
             <Button className={styles["failed-state__btn"]} onClick={()=>{
-                location.reload();
+                if(Router.query && Router.query.checkout_type == "subscription" 
+                && (Router.router?.asPath.includes('failed'))){
+                    dispatch(setCheckoutType("subscription"));
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`)
+                }
+                else if(JSON.stringify(Router.query) == "{}"){
+                    dispatch(setCheckoutType("cart"));
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                }
+                // location.reload();
                 }}>
                 <RetryIcon/>
                 <span> حاول الدفع مرة آخرى </span>
