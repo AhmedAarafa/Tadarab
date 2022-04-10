@@ -73,7 +73,7 @@ export default function CourseContent() {
 
   return (
     <>
-    <div oncl className={styles["course-content"]}>
+    <div className={styles["course-content"]}>
     <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
 
         <div className={styles["course-content__title"]}>
