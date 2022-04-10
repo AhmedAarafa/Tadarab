@@ -25,9 +25,15 @@ export default function FooterSection() {
             "message": e.target[0].value
           })
         .then((response: any) => {
-          setError({ status: false, msg: "تم ارسال استفسارك بنجاح" });
-          const form:any = document.getElementById("contactusform");
-          form.reset();
+          console.log(response);
+          if(JSON.stringify(response.status).startsWith("2")){
+
+            setError({ status: false, msg: "تم ارسال استفسارك بنجاح" });
+            const form:any = document.getElementById("contactusform");
+            form.reset();
+          }else{
+            setError({ status: true, msg:response?.data?.data?.message});
+          }
 
         })
         .catch((error: any) => {
@@ -55,7 +61,7 @@ export default function FooterSection() {
 
         <Row className={styles["footer"]}>
 
-          <Col xs={{ span: 12, order: 3 }} sm={{ span: 6, order: 1 }}>
+          <Col xs={{ span: 12, order: 4 }} sm={{ span: 5, order: 1 }}>
             <div className={styles["footer__inquiries-box"]}>
               <div className={styles["footer__inquiries-box__trainer-img"]}>
                 <img src="/images/hams.png" alt="trainer image" />
@@ -103,7 +109,7 @@ export default function FooterSection() {
               }
             </Form>
           </Col>
-          <Col xs={{ span: 12, order: 2 }} sm={{ span: 3, order: 2 }}>
+          <Col xs={{ span: 12, order: 2 }} sm={{ span: 2, order: 2 }}>
             <ul className={styles["footer__training-courses-list"]}>
               <Link href="/courses?filter_type=all">
                 <li>دورات تدريبية</li>
@@ -134,19 +140,27 @@ export default function FooterSection() {
               {/* <li>المدربين</li> */}
             </ul>
           </Col>
-          {/* <Col xs={{span:12,order:3}} sm={{span:2,order:3}}>
+          <Col xs={{span:12,order:3}} sm={{span:2,order:3}}>
        <ul className={styles["footer__about-tadarab-list"]}>
          <li>عن تدرب</li>
-         <li>من نحن؟</li>
+         <Link href="/join-us-as-a-trainer">
          <li>انضم كمدرب</li>
+        </Link>
+         <Link href="/my-account">
+         <li>تدرب بلا حدود</li>
+        </Link>
+        <Link href="/terms">
          <li>الشروط والأحكام</li>
-         <li>الأسئلة الشائعة</li>
-         <li>حقوق الملكية</li>
+        </Link>
+        <Link href="/privacy">
+         <li>السياسات والخصوصية</li>
+        </Link>   
+         {/* <li>حقوق الملكية</li>
          <li>الدعم الفني</li>
          <li>تواصل معانا</li>
-         <li>الأخبار</li>
+         <li>الأخبار</li> */}
        </ul>
-     </Col> */}
+     </Col>
           <Col xs={{ span: 12, order: 1 }} sm={{ span: 3, order: 4 }}>
             <div className={styles["footer__communications-box"]}>
 
@@ -163,6 +177,7 @@ export default function FooterSection() {
                 <img src="/images/Mastercard.png" alt="Master card" />
                 <img src="/images/visa.png" alt="Visa" />
                 <img src="/images/knet.png" alt="Knet" />
+                <img src="/images/paypal3.png" alt="Paypal" />
               </div>
             </div>
           </Col>

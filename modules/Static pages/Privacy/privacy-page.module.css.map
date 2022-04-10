@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,eAAe,CAAA;EACX,OAAO,EAAE,IAAI;CAChB;;AAID,MAAM,EAAE,SAAS,EAAE,KAAK;EAEpB,AAAA,eAAe,CAAA;IACX,OAAO,EAAE,UAAU;GACtB",
+    "sources": [
+        "privacy-page.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "privacy-page.module.css"
+}

@@ -355,7 +355,7 @@
   }
   .courses-departments__cards-carousel {
     margin-top: 2rem;
-    margin-bottom: 0;
+    margin-bottom: 10rem;
   }
   .courses-departments__cards-carousel > div {
     padding: 3.3rem 4.4rem !important;
@@ -471,6 +471,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    display: none;
   }
   .courses-departments__container__show-all-btn:hover {
     -webkit-box-shadow: none;

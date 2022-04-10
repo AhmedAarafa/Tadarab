@@ -97,12 +97,12 @@ export default function Books() {
                                 book.categories[0] !== undefined && book.categories[0].title !== null && book.categories[0].title !== "" &&
                               book.categories[0]?.title}</div>
                               <div className="w-100">
-                                  <Button className={styles["books__cards-carousel__card__download-btn"]}>
+                                  {/* <Button className={styles["books__cards-carousel__card__download-btn"]}>
                                       
                                       <DownloadIcon color="#af151f"/>
                                       
                                       <span>  تحميل مجاني </span>
-                                  </Button>
+                                  </Button> */}
                               </div>
                           </Card.Body>
                       </Card> 

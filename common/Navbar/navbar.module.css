@@ -701,6 +701,7 @@
 
 .sidebar-list__discover-sidebar__list li {
   margin-bottom: 3rem;
+  cursor: pointer;
 }
 
 .sidebar-list__discover-sidebar__title {

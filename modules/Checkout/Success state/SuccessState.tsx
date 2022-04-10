@@ -79,12 +79,12 @@ export default function SuccessState() {
             { checkoutType == "cart" && <div className={styles["success-state__begin-learning"]}>
                  رضائك يهمنا نقدم لك ٣٠ يوم ضمان ذهبي على جميع الدورات لأن هدفنا هو إفادتك من كل دورة تمتلكها على تدرب.
                   </div>}
-                  <Link href='/my-account'>
-                    <Button className={styles["success-state__btn"]}>
+                  {/* <Link href='/my-account'> */}
+                    <Button onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);}} className={styles["success-state__btn"]}>
                         <span> اذهب لدوراتي </span>
                         <ArrowLeftIcon color="#fff"/>
                     </Button>
-                  </Link>
+                  {/* </Link> */}
 
             </Col>
             <Col sm={6} xs={12}>

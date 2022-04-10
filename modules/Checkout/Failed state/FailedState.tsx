@@ -60,11 +60,15 @@ export default function FailedState() {
                 if(Router.query && Router.query.checkout_type == "subscription" 
                 && (Router.router?.asPath.includes('failed'))){
                     dispatch(setCheckoutType("subscription"));
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`)
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+                    console.log("pushed to checkout/payment/?checkout_type=subscription");
+                    
                 }
                 else if(JSON.stringify(Router.query) == "{}"){
                     dispatch(setCheckoutType("cart"));
                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                    console.log("pushed to checkout ");
+
                 }
                 // location.reload();
                 }}>

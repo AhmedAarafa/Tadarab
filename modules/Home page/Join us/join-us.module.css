@@ -88,6 +88,30 @@
   border: 0.125rem solid #9d151e !important;
 }
 
+.join-us__info-msg--success,
+.join-us__info-msg--error {
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  position: absolute;
+  bottom: -3rem;
+  border-radius: 0.7rem;
+  margin-right: calc(calc(100% - 12.1875rem)/2);
+}
+
+.join-us__info-msg--success {
+  color: green;
+  background-color: #C7F6B6;
+}
+
+.join-us__info-msg--error {
+  color: red;
+  background-color: #fcaaac;
+}
+
+.join-us__newsletter-form {
+  position: relative;
+}
+
 @media (max-width: 575px) {
   .join-us {
     text-align: center;
@@ -157,6 +181,14 @@
   .join-us__subscribe-bar-box__btn:hover, .join-us__subscribe-bar-box__btn:active {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
+  }
+  .join-us__info-msg--success,
+  .join-us__info-msg--error {
+    font-size: 2.3rem;
+    padding: 1.25rem 5rem;
+    bottom: -7.5rem;
+    border-radius: 1.75rem;
+    margin-right: calc(calc(100% - 12.1875rem*2.5)/2);
   }
 }
 /*# sourceMappingURL=join-us.module.css.map */

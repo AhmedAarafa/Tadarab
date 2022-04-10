@@ -73,7 +73,7 @@
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
 
@@ -87,7 +87,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 2rem 0 0rem 0;
+  padding: 2rem 0 5rem 0;
 }
 
 @media (max-width: 1200px) {

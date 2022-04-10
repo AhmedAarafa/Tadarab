@@ -43,6 +43,7 @@ function Navbar() {
   const userStatus = useSelector((state:any) => state.userAuthentication);
   const cartItems = useSelector((state:any) => state.cartItems);
   const myCourseNavigator = useSelector((state:any) => state.myCourseNavigator);
+  const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
 
 
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
-    
+    setExpanded(false);
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null,id:0}));
     dispatch(setCartItems(null));
@@ -559,7 +560,7 @@ const searchBoxToggler = (action:any) =>{
              userStatus.isUserAuthenticated && isCoursePurchased &&
              <>
              <div className={styles["navbar__purchased-course-name"]}>
-             دورة التسويق الفعال للمشروعات الصغيرة
+             {courseDetailsData?.data?.course_details?.title}
              </div>
              <div className={styles["navbar__purchased-course-nav"]}>
                <div className={`${styles["navbar__purchased-course-nav__curriculum"]}

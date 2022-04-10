@@ -1170,9 +1170,128 @@ const onError = (data:any,actions:any)=>{
                                     
                              </div>
 
-                            <Button>
-                            ابدأ التعلم الآن
-                            </Button>
+                             {
+                                
+                                paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined && 
+                           
+                                    <PayPalButtons
+                                    style={{
+                                    color: "blue",
+                                    shape: "pill",
+                                    label: "subscribe",
+                                    tagline: false,
+                                    layout: "horizontal",
+                                    }}
+                                  
+                                      createSubscription={(data:any,actions:any):any =>{
+                                        return(
+                                            axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                                "action": "web",
+                                                "payment_method":"paypal",
+                                                "checkout_type": "subscription",
+                                                'page_id':courseDetailsData?.data?.course_details?.id,
+                                              })
+                                              .then((response:any) => {
+                                                  if(JSON.stringify(response.status).startsWith("2")){
+                                                      localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
+                                                      localStorage.setItem("paymentId" , response.data.data.payment_id);
+                                                      setCheckoutTransactionDetails(response.data.data);
+    
+                                                      return actions.subscription.create({
+                                                        plan_id:"P-1VE83386SG308245LMJCAKQA",
+                                                        purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
+                                                    });
+                
+                                                }else{
+                                                  setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                }
+                                                
+                                            }).catch((error:any)=>{
+                                                  setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                console.log("error", error);
+                                            })
+                                        )
+                                          
+                                      
+                                      }}
+                                    onApprove={(data:any, actions:any):any => {
+                                                  console.log(actions)
+                                                  setSucceeded(true);
+                                              
+                                                axiosInstance
+                                                .get(`payments/details?payment_method=paypal&
+                                                checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+                                                paypal_order_id=${data.orderID}&
+                                                subscription_id=${data.subscriptionID}&
+                                                facil_atoken=${data.facilitatorAccessToken}&
+                                                page_id=${courseDetailsData?.data?.course_details?.id}&
+                                                checkout_type=subscription&
+                                                payment_id=${localStorage.getItem("paymentId")}`)
+                                                .then(function (response:any) {
+                                                    if(response.status.toString().startsWith("2")){
+                                                        console.log(response);
+                                                        
+                                                        localStorage.removeItem("checkoutTransactionId");
+                                                        localStorage.removeItem("paymentId");
+                                                        dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                        dispatch(setInvoiceDetails(response.data.data));
+                                                        let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                        FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+            
+                                                        localStorage.setItem("cart" , "[]");
+                                                        dispatch(setCartItems([]));
+                                                    }else{
+                                                        dispatch(setTransactionStatus(false));
+                                                        dispatch(setInvoiceDetails({}));
+                                                    }
+            
+                                                })
+                                                .catch(function (error) {
+                                                 console.log(error);
+                                                });
+                                      }}
+                                   />
+                            }
+                                 {
+                                 paymentMethod == "VISA" &&  <Button  style={{pointerEvents:"none",opacity:"0.7"}} id="paynow_button"
+                                onClick={() => {
+                                    Frames.isCardValid() ?
+                                    Frames.submitCard().then(function(data:any) {
+            
+                                        const localStorageItems:any = localStorage.getItem("cart_items");
+                                        // console.log(data);
+                                        // alert(data.token);                          
+                                        axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                          "action": "web",
+                                          "checkout_token": data.token,
+                                          "payment_method":"visamaster",
+                                          "checkout_type": "subscription",
+                                          'page_id':courseDetailsData?.data?.course_details?.id,
+                                        })
+                                        .then((response:any) => {
+                                          if(JSON.stringify(response.status).startsWith("2")){
+                                            localStorage.setItem("successUrl" , response.data.data.success_url);
+                                            localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                            Router.push(response.data.data.redirect_url);
+                                          }else{
+                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                          }
+                                         
+                                        })
+                                        .catch((error:any)=>{
+                                          console.log("error", error);
+                                        })
+                                       let tadarabGA = new TadarabGA();
+                                       tadarabGA.tadarab_fire_traking_GA_code('checkout_option',{label:data.scheme,option:"visamaster"})
+                                   })
+                                    :
+                                    null;
+                                }}
+                                className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                                    إتمام الشراء
+                                </Button>
+                                }
+
                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
                             يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
 
@@ -1489,13 +1608,39 @@ const onError = (data:any,actions:any)=>{
                     </div> 
                     }
 
-                    {
-                     paymentMethod == "KNET" &&  <Button  style={{pointerEvents:"none",opacity:"0.7"}}
+                    { paymentMethod == "KNET" &&  <Button  
+                    onClick={() => {
+                        const localStorageItems:any = localStorage.getItem("cart_items");
+
+                        axiosInstance.post(`payments/payouts/?country_code=null`, {
+                            "action": "web",
+                            "checkout_token": "",
+                            "items": localStorageItems,
+                            "coupon_code": localStorage.getItem("coupon_code"),
+                            "payment_method":"knet-direct",
+                            "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                        })
+                        .then((response:any) => {
+                            if(JSON.stringify(response.status).startsWith("2")){
+                                localStorage.setItem("successUrl" , response.data.data.success_url);
+                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                console.log("response",response);
+                                Router.push(response.data.data.redirect_url);
+
+                            }else{
+                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            }
+                            
+                        }).catch((error:any)=>{
+                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            console.log("error", error);
+                        })
+                    }}
                     className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                         إتمام الشراء 
                         {/* إتمام الشراء (KNET) */}
                     </Button>
-                    }      
+                    }     
 
                 </div>
                 }
@@ -1687,7 +1832,6 @@ const onError = (data:any,actions:any)=>{
                                             })
                                         )
                                           
-                                        //   req to get plan id and prod id
                                       
                                       }}
                                     onApprove={(data:any, actions:any):any => {
@@ -1701,6 +1845,7 @@ const onError = (data:any,actions:any)=>{
                                                 subscription_id=${data.subscriptionID}&
                                                 facil_atoken=${data.facilitatorAccessToken}&
                                                 page_id=${courseDetailsData?.data?.course_details?.id}&
+                                                checkout_type=subscription&
                                                 payment_id=${localStorage.getItem("paymentId")}`)
                                                 .then(function (response:any) {
                                                     if(response.status.toString().startsWith("2")){
@@ -1727,16 +1872,45 @@ const onError = (data:any,actions:any)=>{
                                       }}
                                    />
                             }
-                            {
-                                paymentMethod == "VISA" &&
-                                <Button className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                             {
+                                 paymentMethod == "VISA" &&  <Button  style={{pointerEvents:"none",opacity:"0.7"}} id="paynow_button"
+                                onClick={() => {
+                                    Frames.isCardValid() ?
+                                    Frames.submitCard().then(function(data:any) {
+            
+                                        const localStorageItems:any = localStorage.getItem("cart_items");
+                                        // console.log(data);
+                                        // alert(data.token);                          
+                                        axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                          "action": "web",
+                                          "checkout_token": data.token,
+                                          "payment_method":"visamaster",
+                                          "checkout_type": "subscription",
+                                          'page_id':courseDetailsData?.data?.course_details?.id,
+                                        })
+                                        .then((response:any) => {
+                                          if(JSON.stringify(response.status).startsWith("2")){
+                                            localStorage.setItem("successUrl" , response.data.data.success_url);
+                                            localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                            Router.push(response.data.data.redirect_url);
+                                          }else{
+                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                          }
+                                         
+                                        })
+                                        .catch((error:any)=>{
+                                          console.log("error", error);
+                                        })
+                                       let tadarabGA = new TadarabGA();
+                                       tadarabGA.tadarab_fire_traking_GA_code('checkout_option',{label:data.scheme,option:"visamaster"})
+                                   })
+                                    :
+                                    null;
+                                }}
+                                className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                                     إتمام الشراء
                                 </Button>
-
-                            }
-                            {/* <Button>
-                            ابدأ التعلم الآن
-                            </Button> */}
+                                }
                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
                             يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
 
@@ -1945,62 +2119,8 @@ const onError = (data:any,actions:any)=>{
                     { paymentMethod == "PAYPAL" && 
                     <div className={styles["checkout__cart-sticky-card__paypal"]}>
 
-                        {checkoutType == "subscription" ?
 
-                        <PayPalButtons
-                        style={{
-                        color: "blue",
-                        shape: "pill",
-                        label: "subscribe",
-                        tagline: false,
-                        layout: "horizontal",
-                        }}
-                      
-                          createSubscription={(data:any,actions:any)=>{
-                            //   req to get plan id and prod id
-                            return actions.subscription.create({
-                                plan_id:{planid:'P-1VE83386SG308245LMJCAKQA'},
-                                purchase_units:[{amount:{value:29}}],
-                            });
-                          }}
-                        onApprove={(data:any, actions:any) => {
-                                  
-                                  return actions.order.capture().then(function (details:any) {
-                                      const {payer} = details;
-                                      setBillingDetails(payer);
-                                      setSucceeded(true);
-                                  
-                                    axiosInstance
-                                    .get(`payments/details?payment_method=paypal&
-                                    checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
-                                    paypal_order_id=${data.orderID}&
-                                    subscription_id=${data.subscriptionID}&
-                                    facil_atoken=${data.facilitatorAccessToken}&
-                                    payment_id=${localStorage.getItem("paymentId")}`)
-                                    .then(function (response:any) {
-                                        if(response.status.toString().startsWith("2")){
-                                            localStorage.removeItem("checkoutTransactionId");
-                                            localStorage.removeItem("paymentId");
-                                            dispatch(setTransactionStatus(response.data.data.is_successful));
-                                            dispatch(setInvoiceDetails(response.data.data));
-                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-
-                                            localStorage.setItem("cart" , "[]");
-                                            dispatch(setCartItems([]));
-                                        }else{
-                                            dispatch(setTransactionStatus(false));
-                                            dispatch(setInvoiceDetails({}));
-                                        }
-
-                                    })
-                                    .catch(function (error) {
-                                     console.log(error);
-                                    });
-                            })
-                          }}
-                       />
-                       :
+                   
                         <PayPalButtons
                         style={{
                         color: "blue",
@@ -2097,11 +2217,10 @@ const onError = (data:any,actions:any)=>{
                             })
                           }}
                        />
-                    }
                     </div>
                     }
 
-                { paymentMethod == "KNET" &&  <Button 
+                { paymentMethod == "KNET" &&  <Button  
                     onClick={() => {
                         const localStorageItems:any = localStorage.getItem("cart_items");
 

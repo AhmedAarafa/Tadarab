@@ -297,6 +297,11 @@
   height: 1.5rem;
 }
 
+.footer__pay-box img:nth-of-type(4) {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
 .footer__contacts-box {
   text-align: center;
 }
@@ -547,6 +552,10 @@
   .footer__pay-box img:nth-of-type(3) {
     width: 6.72rem;
     height: 3.75rem;
+  }
+  .footer__pay-box img:nth-of-type(4) {
+    width: 4rem;
+    height: 4rem;
   }
   .footer__contacts-box {
     text-align: center;

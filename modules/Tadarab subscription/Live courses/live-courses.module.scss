@@ -36,6 +36,7 @@
     @include flex(center, space-around);
 
     &:hover,
+    &:focus,
     &:active {
         background-color: white !important;
         color: var(--primary-red) !important;
@@ -132,7 +133,8 @@
     font-weight: 700;
     color: var(--dark-black);
     @include flex;
-    span{
+
+    span {
         color: white;
     }
 
@@ -469,7 +471,7 @@
         font-size: 0.813rem*1.04;
         color: var(--grey);
         width: 17.5rem;
-        
+
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -803,7 +805,7 @@
     .live-courses__see-more-btn-col {
         @include flex(center, center);
         padding: 5rem 0 0 0;
-        display: none;
+        // display: none;
     }
 
     .live-courses__see-more-btn {
@@ -817,8 +819,11 @@
         margin: 0 7.3rem 0 7.3rem;
 
         &:hover,
+        &:focus,
         &:active {
             border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+            background-color: white !important;
+            color: var(--primary-red) !important;
         }
 
         svg {

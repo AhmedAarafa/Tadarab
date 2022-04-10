@@ -1,0 +1,12 @@
+@import "../../../styles/mixins";
+
+.terms-and-conditions{
+    padding: 8rem;
+}
+
+
+@media (max-width: 575px) {
+    .terms-and-conditions{
+        padding: 12rem 5rem;
+    }
+}

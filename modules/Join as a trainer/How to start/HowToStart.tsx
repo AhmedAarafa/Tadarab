@@ -39,7 +39,7 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-end`}>
-                        <img src="/images/contentPreparation.jpg" alt="اعداد المحتوي" />
+                        <img src="/images/contentPreparation.png" alt="اعداد المحتوي" />
                     </div>
                 </Col>
              

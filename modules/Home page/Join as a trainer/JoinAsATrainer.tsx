@@ -16,7 +16,7 @@ export default function JoinAsATrainer() {
                         <span>  كمدرب؟   </span>
                     </div>
                     <div className={styles["join-as-a-trainer__para"]}>
-                    منصة تدرب هي الخيار الأمثل للاستفادة من أفضل المدربين والخبراء في الوطن العربي
+                    نساعدك على تقديم دورة مميزة لإثراء المحتوى العربي بشيءٍ جديدٍ ذي قيمة.
                         </div>
                         <Link href="/join-us-as-a-trainer">
                             <Button className={styles["join-as-a-trainer__btn"]}>

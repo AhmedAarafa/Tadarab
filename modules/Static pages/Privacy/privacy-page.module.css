@@ -1,0 +1,10 @@
+.privacy-policy {
+  padding: 8rem;
+}
+
+@media (max-width: 575px) {
+  .privacy-policy {
+    padding: 12rem 5rem;
+  }
+}
+/*# sourceMappingURL=privacy-page.module.css.map */

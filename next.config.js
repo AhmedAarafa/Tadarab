@@ -88,6 +88,14 @@ module.exports = {
         source: '/trainers',
         destination: '/AllTrainers',
       },
+      {
+        source: '/terms',
+        destination: '/Terms',
+      },
+      {
+        source: '/privacy',
+        destination: '/Privacy',
+      },
     ]
   },
 }

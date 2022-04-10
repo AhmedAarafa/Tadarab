@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,qBAAqB,CAAA;EACjB,OAAO,EAAE,IAAI;CAChB;;AAGD,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,qBAAqB,CAAA;IACjB,OAAO,EAAE,UAAU;GACtB",
+    "sources": [
+        "terms-page.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "terms-page.module.css"
+}

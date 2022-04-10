@@ -85,7 +85,7 @@
   border: 0.125rem solid var(--primary-red) !important;
 }
 
-.live-courses__see-more-btn:hover, .live-courses__see-more-btn:active {
+.live-courses__see-more-btn:hover, .live-courses__see-more-btn:focus, .live-courses__see-more-btn:active {
   background-color: white !important;
   color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -950,7 +950,6 @@
         -ms-flex-pack: center;
             justify-content: center;
     padding: 5rem 0 0 0;
-    display: none;
   }
   .live-courses__see-more-btn {
     -webkit-box-shadow: none !important;
@@ -998,8 +997,10 @@
     color: white !important;
     border: 0.125rem solid var(--primary-red) !important;
   }
-  .live-courses__see-more-btn:hover, .live-courses__see-more-btn:active {
+  .live-courses__see-more-btn:hover, .live-courses__see-more-btn:focus, .live-courses__see-more-btn:active {
     border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;
+    background-color: white !important;
+    color: var(--primary-red) !important;
   }
   .live-courses__see-more-btn svg {
     width: 1.25rem;

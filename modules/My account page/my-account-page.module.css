@@ -217,7 +217,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 2rem 0 0rem 0;
+  padding: 2rem 0 5rem 0;
 }
 
 .disabled {
@@ -408,7 +408,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    padding: 2.5rem 0 0rem 0;
+    padding: 2.5rem 0 6.25rem 0;
   }
   .watch-subscribed-course {
     font-size: 1.125rem !important;
@@ -584,7 +584,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    padding: 3.6rem 0 0rem 0;
+    padding: 3.6rem 0 9rem 0;
   }
   .watch-subscribed-course {
     font-size: 1.62rem !important;
