@@ -41,7 +41,7 @@ export default function CategoryTrainers(props:any) {
               return(
 
             <SwiperSlide key={i}>  
-              <Link href={`/trainer/${trainer.slug}`}>
+              <Link href={`/trainer/${trainer?.slug}`}>
 
               <Card className={styles["category-trainer__cards-carousel__card"]} style={{background: `transparent url(${trainer?.image}) no-repeat padding-box` , 
                     backgroundSize: "contain" }}

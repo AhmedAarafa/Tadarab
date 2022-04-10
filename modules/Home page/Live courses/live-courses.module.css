@@ -967,7 +967,6 @@
         -ms-flex-pack: center;
             justify-content: center;
     padding: 5rem 0 0 0;
-    display: none;
   }
   .live-courses__see-more-btn {
     -webkit-box-shadow: none !important;

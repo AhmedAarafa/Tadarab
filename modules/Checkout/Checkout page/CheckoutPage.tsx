@@ -71,7 +71,9 @@ useEffect(() => {
     stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
     const localStorageItems:any = localStorage.getItem("cart");
     
-    if(JSON.stringify(Router.query) == "{}"){
+    if(JSON.stringify(Router.query) == "{}" && !localStorageItems  && JSON.stringify(localStorageItems) == "[]"){
+        console.log("entered" ,JSON.stringify(Router.query) == "{}", localStorageItems , JSON.stringify(localStorageItems) !== "[]");
+        
         axiosInstance
             .get(`users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
             .then(function (response:any) {
@@ -413,10 +415,12 @@ useEffect(() => {
             .then(function (response:any) {
               setLocalStateCartItems(response?.data?.data.courses);
               FBPixelEventsHandler(response.data.fb_tracking_events,null);
+              toggleLoader("hide");
 
         })
         .catch(function (error) {
           console.log(error); 
+          toggleLoader("hide");
         });
     }else{
         setLocalStateCartItems([]);
@@ -435,6 +439,7 @@ useEffect(() => {
     
     switch (step) {
         case "added-courses":
+            toggleLoader("hide");
             firstStepBox ? firstStepBox.innerHTML = '1' : null;
             secondStepBox.innerHTML = `${checkoutType == "subscription" ? "1" : "2"}`;
             thirdStepBox.innerHTML = `${checkoutType == "subscription" ? "2" : "3"}`;
@@ -462,6 +467,7 @@ useEffect(() => {
 
           break;
         case "payment-types":
+            toggleLoader("hide");
             !(userStatus.isUserAuthenticated) &&
                      Router.push({
                         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
@@ -495,9 +501,10 @@ useEffect(() => {
                 .get(`payments/settings/?checkout_type=${checkoutType}`,{ headers: {"X-Settings-Key" : `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG`} })
                 .then(function (response:any) {
                     setPaymentSettings(response?.data?.data);
-                    toggleLoader("hide")
+                    toggleLoader("hide");
                 })
                 .catch(function (error) {
+                    toggleLoader("hide");
                 console.log(error);
                 });
                 
@@ -1656,8 +1663,8 @@ const onError = (data:any,actions:any)=>{
                                             axiosInstance.post(`payments/payouts/?country_code=null`, {
                                                 "action": "web",
                                                 "payment_method":"paypal",
-                                                "checkout_type": checkoutType == "subscription" ? "subscription" : "cart",
-                                                'page_id':courseDetailsData?.data?.course_details?.id
+                                                "checkout_type": "subscription",
+                                                'page_id':courseDetailsData?.data?.course_details?.id,
                                               })
                                               .then((response:any) => {
                                                   if(JSON.stringify(response.status).startsWith("2")){

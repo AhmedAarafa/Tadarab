@@ -53,6 +53,8 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+    console.log("logged out ");
+    
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null,id:0}));
     dispatch(setCartItems(null));
