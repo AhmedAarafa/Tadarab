@@ -53,7 +53,6 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
-    console.log("logged out ");
     
 
     dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null,id:0}));
@@ -63,9 +62,11 @@ function Navbar() {
     axiosInstance
         .get(`home/?country_code=null`,{ headers: {"Authorization" : ``} })
         .then(function (response:any) {
-          dispatch(setHomePageData(response.data.data))
+          dispatch(setHomePageData(response.data.data));
+          toggleLoader("hide");
         })
         .catch(function (error) {
+          toggleLoader("hide");
           console.log(error);
         });
     
@@ -419,7 +420,7 @@ const searchBoxToggler = (action:any) =>{
             </div>
 
           </div>
-          <Link href="/sign-up">
+          <Link href={ userStatus.isUserAuthenticated ? "/my-account" : "/sign-up"}>
           <Button className={styles["sidebar-list__register-btn"]}>
             {
               userStatus.isUserAuthenticated ? 
@@ -429,7 +430,7 @@ const searchBoxToggler = (action:any) =>{
             }
           </Button>
           </Link>   
-          <Link href="/sign-in">
+          <Link href={ userStatus.isUserAuthenticated ? "/" : "/sign-in"}>
           <Button onClick={()=>{
             userStatus.isUserAuthenticated ? 
             handleLogout() :

@@ -77,8 +77,6 @@ export default function MyAccountPage() {
     <>
       <Row>
         <Col xs={12} className={styles["my-account"]}>
-          {console.log(courseListing?.data)
-          }
           {courseListing?.data?.length == 0 &&
             <div className={styles["my-account__you-have-no-courses"]}>
               لا يوجد دورات في حسابك
