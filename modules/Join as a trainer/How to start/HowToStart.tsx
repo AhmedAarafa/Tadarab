@@ -17,16 +17,35 @@ export default function HowToStart() {
                         التدريب على تدرب؟
                     </div>
                     <div className={styles["how-to-start__title-box__brief"]}>
-                    خطوتان لتبدأ رحلتك في التدريب على منصة تدرب
+                     3 خطوات لتبدأ رحلة التدريب على منصة تدرب
                     </div>
 
                 </Col>
             </Row>
 
             <Row className={styles["how-to-start__marketing-boxes"]}>
+                <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
+                    <div className={styles["how-to-start__title"]}>
+                    إعداد المحتوى
+                    </div>
+                    <div className={styles["how-to-start__brief"]}>{`
+                    "المحتوى هو الملك" هكذا نقول دائمًا عندما نتحدث عن عوامل نجاح الدورة التدريبية.. لذلك تساعدك تدرب على إعداد محتوى دورتك من خلال فريق متخصص في إعداد وصناعة المحتوى لتكون دورتك دورة مميزة تُقدم قيمة عالية لمتدربيك.
+                    `}</div>
+                    <div className={styles["how-to-start__btn"]}>
+                        <Button onClick={()=>{Router.push("https://app.tadarab.com/selfhosted")}}>
+                        سجِّل الآن
+                        </Button>
+                    </div>
+                </Col>
+                <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
+                    <div className={`${styles["how-to-start__image"]} d-flex justify-content-end`}>
+                        <img src="/images/contentPreparation.jpg" alt="اعداد المحتوي" />
+                    </div>
+                </Col>
+             
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
-                        <img src="/images/photographyAndDirecting.jpg" alt="discriptive image" />
+                        <img src="/images/photographyAndDirecting.jpg" alt="التصوير والاخراج" />
                     </div>
                 </Col>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
@@ -58,7 +77,7 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]}  d-flex justify-content-end`}>
-                        <img src="/images/montageAndGraphic.png" alt="discriptive image" />
+                        <img src="/images/montageAndGraphic.png" alt="المونتاج والجرافيك" />
                     </div>
                 </Col>
                 {/* <Col xs={12} sm={6} className={styles["how-to-start__box"]}>

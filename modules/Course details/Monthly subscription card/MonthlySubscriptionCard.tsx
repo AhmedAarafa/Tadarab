@@ -37,7 +37,7 @@ export default function MonthlySubscriptionCard() {
     }else{
       Router.push({
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+        query: { from_subscription: `checkout/payment/?checkout_type=subscription` }
       })
     }
   }
@@ -625,7 +625,7 @@ export default function MonthlySubscriptionCard() {
                 ]
               }
             >
-              <CartIcon color={"#fff"} />
+              <CartIcon color="#222" />
               <span>امتلك هذه الدورة</span>
             </Button>
             <Button
@@ -633,7 +633,7 @@ export default function MonthlySubscriptionCard() {
                 styles["monthly-subscription__course-card__actions-btns__fav-btn"]
               }
             >
-              <FavouriteIcon color={"#222"} />
+              <FavouriteIcon color="#222" />
             </Button>
             <Button
               className={

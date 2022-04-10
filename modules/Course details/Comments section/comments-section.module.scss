@@ -252,8 +252,10 @@
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__likes,
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
     @include flex(center);
+    display: inline-flex;
     margin-left: 1.875rem;
     color: var(--grey);
+    height: 2.2rem;
 }
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
   span,svg{
@@ -515,6 +517,8 @@
     .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
         @include flex(center);
         margin-left: 1.875rem*2;
+    height: 2.2rem*2;
+
     }
 
     .comments-section__comments-tree__comment-box__comment-details__reactions-box__likes {

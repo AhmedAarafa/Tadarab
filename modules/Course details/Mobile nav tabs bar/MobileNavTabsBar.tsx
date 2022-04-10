@@ -28,25 +28,24 @@ export default function MobileCheckoutBar() {
         setReviewsSectionExist(false);
       }
 
-      if (window.scrollY <= ((whatYouWillLearnSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2))) {
+      if (window.scrollY <= ((whatYouWillLearnSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("");
         
 
-      } else if (window.scrollY >= ((whatYouWillLearnSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2)) && window.scrollY <= ((courseContentSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2))) {
+      } else if (window.scrollY >= ((whatYouWillLearnSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2)) && window.scrollY <= ((courseContentSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("what-you-will-learn");
-        console.log("what-you-will-learn");
+        // console.log("what-you-will-learn");
 
 
-      } else if (window.scrollY >= ((courseContentSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2)) && window.scrollY <= ((trainerInfoSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2))) {
+      } else if (window.scrollY >= ((courseContentSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2)) && window.scrollY <= ((trainerInfoSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("course-content");
-        console.log("course-content");
+        // console.log("course-content");
 
 
-      } else if (window.scrollY >= ((trainerInfoSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2)) && window.scrollY <= ((reviewsSection?.getBoundingClientRect().top == 0 ? 999999 : reviewsSection?.getBoundingClientRect().top ) + window.scrollY - (navbar.offsetHeight * 2))) {
+      } else if (window.scrollY >= ((trainerInfoSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2)) && window.scrollY <= ((reviewsSection?.getBoundingClientRect().top == 0 ? 999999 : reviewsSection?.getBoundingClientRect().top ) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("trainer-info");
-        console.log("trainer-info");
 
-      } else if ((window.scrollY >= ((reviewsSection?.getBoundingClientRect().top) + window.scrollY - (navbar.offsetHeight * 2))) &&
+      } else if ((window.scrollY >= ((reviewsSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) &&
       !reviewsSectionExist ) {
         setSectionSelection("reviews-section");
 

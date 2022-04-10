@@ -194,19 +194,24 @@ export default function CommentsSection(props:any) {
             CommentTextBox.value ="";
             setIsCommentTextAreaEmpty(true);
             setReplyTo(0);
-            const replyIcons:any = document.querySelector(`[id^="reply-icon-box"] > svg > path`);
-            const replyTexts:any = document.querySelector(`[id^="reply-icon-box"] > span`);
+            const replyIcons:any = document.querySelectorAll(`[id^="reply-icon-box"] > svg > path`);
+            const replyTexts:any = document.querySelectorAll(`[id^="reply-icon-box"] > span`);
+            console.log("replyIcons",replyIcons);
+            console.log("replyTexts",replyTexts);
+            
 
-            replyIcons.forEach((icon:any) => {
+            replyIcons?.forEach((icon:any) => {
                 icon.style.cssText=`fill:#ccc`;
             });
-            replyTexts.forEach((text:any) => {
+            replyTexts?.forEach((text:any) => {
                 text.style.cssText=`color:#777`;
             });
 
             axiosInstance
             .get(`course/${props.Cid()}/comments`)
             .then(function (response:any) {
+                console.log("gettttttttt");
+                
 
                 setCourseComments(response.data.data);
     
@@ -222,46 +227,46 @@ export default function CommentsSection(props:any) {
                     return comm.reply_to_comment_id == 0
                   }) ;
     
-                  for (let index = 0; index < noOfComments.length; index++) {
+                //   for (let index = 0; index < noOfComments.length; index++) {
                   
-                    let commentsTree:any = document.getElementById(`tree-box${index}`);
-                    let commentsBox:any = document.getElementById(`comment-box${index}`);
-                    let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
-                    console.log("sdsdsd",(parseInt(getComputedStyle( commentsBox ).getPropertyValue('height'))) * -0.25);
+                //     let commentsTree:any = document.getElementById(`tree-box${index}`);
+                //     let commentsBox:any = document.getElementById(`comment-box${index}`);
+                //     let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
+                //     console.log("sdsdsd",(parseInt(getComputedStyle( commentsBox ).getPropertyValue('height'))) * -0.25);
                     
                     
-                    window.addEventListener("resize" , ()=>{
-                        rootFontSize = parseFloat(
-                                window
-                                .getComputedStyle(document.getElementsByTagName("html")[0])
-                                .getPropertyValue("font-size")
-                              );
-                          if(window.innerWidth < 576){
+                //     window.addEventListener("resize" , ()=>{
+                //         rootFontSize = parseFloat(
+                //                 window
+                //                 .getComputedStyle(document.getElementsByTagName("html")[0])
+                //                 .getPropertyValue("font-size")
+                //               );
+                //           if(window.innerWidth < 576){
             
-                            document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
-                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);                      }else{
+                //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
+                //           document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);                      }else{
             
-                            document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
-                            document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-                        }
-                    })
+                //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
+                //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                //         }
+                //     })
             
-                    const resize_ob:any = new ResizeObserver(function(entries):any {
-                        if(window.innerWidth < 576){
+                //     const resize_ob:any = new ResizeObserver(function(entries):any {
+                //         if(window.innerWidth < 576){
             
-                            document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
-                          document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-                        }else{
+                //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
+                //           document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                //         }else{
             
-                            document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
-                            document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-                        }
-                    });
+                //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
+                //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                //         }
+                //     });
                     
-                    // start observing for resize
-                    resize_ob.observe(commentsTree);
+                //     // start observing for resize
+                //     resize_ob.observe(commentsTree);
             
-                }
+                // }
             })
             .catch(function (error) { 
             console.log(error); 

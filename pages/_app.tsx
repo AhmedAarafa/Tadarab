@@ -12,6 +12,7 @@ import TransactionInProgress from "./TransactionInProgress";
 import Head from "next/head";
 import TagManager from 'react-gtm-module';
 import Script from "next/script";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
@@ -92,7 +93,6 @@ function MyApp({ Component, pageProps }: AppProps) {
             />
       <noscript dangerouslySetInnerHTML={{ __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXX"
       height="0" width="0" style="display:none;visibility:hidden"></iframe>`}}></noscript> 
-
       <Provider store={store}> <Component {...pageProps} /></Provider>
        </body> 
      

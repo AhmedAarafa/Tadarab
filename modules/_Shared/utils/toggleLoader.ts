@@ -3,8 +3,7 @@ export const toggleLoader = (status: string) => {
   if (typeof window === "object") {
       // Check if document is finally loaded
           
-      console.log("Finished loading",window.document.body.className);
-        //   document.addEventListener("DOMContentLoaded", function () {
+      // console.log("Finished loading");
           switch (status) {
             case "show":
               document.body.classList.add("loading-indicator");
@@ -20,6 +19,5 @@ export const toggleLoader = (status: string) => {
               break;
           }
     
-        // });
   }
 };

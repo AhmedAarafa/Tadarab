@@ -24,6 +24,9 @@ import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import Link from "next/link";
+import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
+import { useDispatch, useSelector } from "react-redux";  
+
 interface SignUpFormValues {
   name: string;
   email:string;
@@ -54,7 +57,9 @@ export default function SignupPage() {
     
     const [phoneFieldEvent, setPhoneFieldEvent] = useState<any>();
     const router:any = useRouter();
-
+    const dispatch = useDispatch();
+    const userAuthState = useSelector((state:any) => state.userAuthentication);
+    
    
   
     const updateValue =(e:any)=>{
@@ -187,6 +192,9 @@ export default function SignupPage() {
                  localStorage.setItem("token" , response.data.data.token);
                  localStorage.setItem("cart" , JSON.stringify(totalItems));
                  localStorage.setItem("cart_items" , JSON.stringify([...new Set(response.data.data.cart_items)]));
+                 dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,
+                  token:response.data.data.token,
+                  id:response.data.data.id}));
                  
                   // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                   if (router.query && router.query.from) {

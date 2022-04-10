@@ -15,7 +15,7 @@
   margin-top: 1.25rem;
 }
 
-.course-keywords__tags span {
+.course-keywords__tags div {
   font-size: 0.75rem;
   color: var(--grey);
   border-radius: 0.938rem;
@@ -24,7 +24,8 @@
   width: fit-content;
   padding: 0.5rem 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
-  margin-left: 0.5rem;
+  margin: 0 0 0.5rem 0.3rem;
+  display: inline-block;
 }
 
 @media (max-width: 575px) {
@@ -39,16 +40,14 @@
   .course-keywords__tags {
     margin-top: 3.125rem;
   }
-  .course-keywords__tags span {
-    font-size: 1.875rem;
+  .course-keywords__tags div {
+    font-size: 1.65rem;
     border-radius: 2.345rem;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     padding: 1.25rem 1.875rem;
-    margin-left: 1.25rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
+    margin: 0 0 1.25rem 0.75rem;
   }
 }
 /*# sourceMappingURL=course-keywords.module.css.map */

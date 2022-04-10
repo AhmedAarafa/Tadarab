@@ -29,7 +29,7 @@ export const stickyCardHandler = () => {
             stickyTopCourseCard ? stickyTopCourseCard.style.cssText = `
                  display:flex;
                  position:fixed;
-                 top:${navbar.offsetHeight}px;
+                 top:${navbar?.offsetHeight}px;
                  `:null;
     
            
@@ -54,7 +54,7 @@ export const stickyCardHandler = () => {
                    stickyTopCourseCard ? stickyTopCourseCard.style.cssText = `
                    display:flex;
                    position:fixed;
-                   top:${navbar.offsetHeight}px;
+                   top:${navbar?.offsetHeight}px;
                    `:null;
               }else if(window.scrollY < projectsSection?.offsetTop){
                 const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");

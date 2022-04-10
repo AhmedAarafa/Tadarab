@@ -170,27 +170,27 @@ function LatestCourses() {
               
                 if (cardRightBoundary > cardLeftBoundary) {
                   // setPlacement("right");
-                  if((relatedWrapper.offsetHeight - element.offsetHeight) > 0){
+                  if((relatedWrapper?.offsetHeight - element?.offsetHeight) > 0){
                     
                     relatedWrapper.style.cssText=`left: 100% ;
-                     top: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`
+                     top: -${((relatedWrapper?.offsetHeight - element?.offsetHeight)/2)}px`
                   }else{
                     relatedWrapper.style.cssText=`left: 100% ;
-                     top: -${((element.offsetHeight - relatedWrapper.offsetHeight)/2)}px`;
+                     top: -${((element?.offsetHeight - relatedWrapper?.offsetHeight)/2)}px`;
                   }
                   relatedPopover.classList.remove(styles["latest-courses__popover-container--left"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
                 } else if (cardRightBoundary < cardLeftBoundary) {
                   
 
-                   if((relatedWrapper.offsetHeight - element.offsetHeight) > 0){
+                   if((relatedWrapper?.offsetHeight - element?.offsetHeight) > 0){
 
                     relatedWrapper.style.cssText=`right: 100%;
-                   top: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                   top: -${((relatedWrapper?.offsetHeight - element?.offsetHeight)/2)}px`;
                   }else{
                   
                     relatedWrapper.style.cssText=`right: 100%;
-                    top: -${((element.offsetHeight - relatedWrapper.offsetHeight)/2)}px`;
+                    top: -${((element?.offsetHeight - relatedWrapper?.offsetHeight)/2)}px`;
                   }
                    
                   relatedPopover.style.cssText=`left: 0%;`;

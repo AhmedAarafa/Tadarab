@@ -46,15 +46,15 @@ export default function SuccessState() {
 
     useEffect(() => {
 
-        if(Router.query && Router.query.checkout_type == "subscription"){
-            dispatch(setCheckoutType("subscription"));
-            // Router.replace("/checkout/payment/?checkout_type=subscription");
-        }
-        else if(JSON.stringify(Router.query) == "{}"){
-            console.log("Router",Router.query);
-            dispatch(setCheckoutType("cart"));
-            // Router.replace("/checkout/payment");
-        }
+        // if(Router.query && Router.query.checkout_type == "subscription"){
+        //     dispatch(setCheckoutType("subscription"));
+        //     // Router.replace("/checkout/payment/?checkout_type=subscription");
+        // }
+        // else if(JSON.stringify(Router.query) == "{}"){
+        //     console.log("Router",Router.query);
+        //     dispatch(setCheckoutType("cart"));
+        //     // Router.replace("/checkout/payment");
+        // }
     
       return () => {
         console.log("setCheckoutType dispatched");

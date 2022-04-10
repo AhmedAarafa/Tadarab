@@ -284,13 +284,13 @@ function LatestCourses() {
                 if (cardRightBoundary > cardLeftBoundary) {
                   console.log("right");
                   relatedWrapper.style.cssText=`left: 100% ;
-                   bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                   bottom: -${((relatedWrapper?.offsetHeight - element?.offsetHeight)/2)}px`;
                   relatedPopover.classList.remove(styles["latest-courses__popover-container--left"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
                 } else if (cardRightBoundary < cardLeftBoundary) {
                   console.log("left");
                   relatedWrapper.style.cssText=`right: 100%;
-                   bottom: -${((relatedWrapper.offsetHeight - element.offsetHeight)/2)}px`;
+                   bottom: -${((relatedWrapper?.offsetHeight - element?.offsetHeight)/2)}px`;
                   relatedPopover.style.cssText=`left: 0%;`;
                   relatedPopover.classList.remove(styles["latest-courses__popover-container--right"]);
                   relatedPopover.classList.add(styles["latest-courses__popover-container--left"]);

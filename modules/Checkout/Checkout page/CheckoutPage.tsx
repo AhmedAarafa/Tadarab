@@ -45,12 +45,15 @@ function CheckoutPage(props:any) {
   const [serverResponse, setServerResponse] = useState("");
   const [relatedCourses, setRelatedCourses] = useState<any>([]);
   const [checkoutTransactionDetails, setCheckoutTransactionDetails] = useState<any>(null);
+
 //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
  const dispatch = useDispatch();
  const cartItems = useSelector((state:any) => state.cartItems);
  const userStatus = useSelector((state:any) => state.userAuthentication);
  const transactionStatus = useSelector((state:any) => state.transactionStatus);
  const checkoutType = useSelector((state:any) => state.checkoutType);
+ const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
+
 
  const [succeeded, setSucceeded] = useState(false);
 const [paypalErrorMessage, setPaypalErrorMessage] = useState("");
@@ -65,50 +68,52 @@ useEffect(() => {
     const list: any = document.getElementsByTagName("ol")[0];
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     // const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-    stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+    stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
     const localStorageItems:any = localStorage.getItem("cart");
     
-    axiosInstance
-        .get(`users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
-        .then(function (response:any) {
-
-            // setRelatedCourses(response.data.data);
-            
-            if(response.data.data !== undefined){
-                if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
-                        axiosInstance
-                        .get(`users/cart/?country_code=null`)
-                        .then(function (resp:any) {
-                            // setLocalStateCartItems(resp.data.data);
-                        let newArray:any = response.data.data;
-                        if(resp.data.data !== undefined){
-            
-                            resp?.data?.data?.courses.forEach((element:any) => {
-                            newArray?.forEach((ele:any) => {
-                                if(element.id === ele.id){
-                                    ele.is_in_cart = true;
-                                }
+    if(JSON.stringify(Router.query) == "{}"){
+        axiosInstance
+            .get(`users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+            .then(function (response:any) {
+    
+                // setRelatedCourses(response.data.data);
+                
+                if(response.data.data !== undefined){
+                    if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined"){
+                            axiosInstance
+                            .get(`users/cart/?country_code=null`)
+                            .then(function (resp:any) {
+                                // setLocalStateCartItems(resp.data.data);
+                            let newArray:any = response.data.data;
+                            if(resp.data.data !== undefined){
+                
+                                resp?.data?.data?.courses.forEach((element:any) => {
+                                newArray?.forEach((ele:any) => {
+                                    if(element.id === ele.id){
+                                        ele.is_in_cart = true;
+                                    }
+                                });
                             });
+                            setRelatedCourses([...newArray]);
+                            }
+                            
+                            toggleLoader("hide");
+                            
+                            
+                        })
+                        .catch(function (error) {
+                            toggleLoader("hide");
+                            console.log(error); 
                         });
-                        setRelatedCourses([...newArray]);
-                        }
-                        
-                        toggleLoader("hide");
-                        
-                        
-                    })
-                    .catch(function (error) {
-                        toggleLoader("hide");
-                        console.log(error); 
-                    });
-            }
-
-
-            }
-        })
-        .catch(function (error) {
-          console.log(error); 
-        });
+                }
+    
+    
+                }
+            })
+            .catch(function (error) {
+              console.log(error); 
+            });
+    }
         
 
         if(transactionStatus.data == true){
@@ -128,7 +133,7 @@ useEffect(() => {
         // }
 
     if(document.documentElement.clientWidth <= 576){
-    stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+    stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         setMobileView(true);
@@ -173,7 +178,7 @@ useEffect(() => {
 
 
     }else{
-    stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+    stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         setMobileView(false);
@@ -224,10 +229,10 @@ useEffect(() => {
     window.addEventListener("resize" ,()=>{
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
         const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-        stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+        stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
         if(document.documentElement.clientWidth <= 576){
             setMobileView(true);
-            stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+            stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
 
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
@@ -270,7 +275,7 @@ useEffect(() => {
             }
 
         }else{
-        stepperBox.style.cssText = `top:${navbar.offsetHeight}px`;
+        stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
             setMobileView(false);
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
@@ -427,7 +432,8 @@ useEffect(() => {
             secondStepBox.innerHTML = `${checkoutType == "subscription" ? "1" : "2"}`;
             thirdStepBox.innerHTML = `${checkoutType == "subscription" ? "2" : "3"}`;
             // Router.replace("/checkout");
-             if(Router.query && Router.query.checkout_type == "subscription"){
+             if(Router.query && Router.query.checkout_type == "subscription"
+             && !(Router.router?.asPath.includes('success')) && !(Router.router?.asPath.includes('failed'))){
                     console.log("2switch2");
                     dispatch(setCheckoutType("subscription"));
                     setStep("payment-types");
@@ -461,23 +467,28 @@ useEffect(() => {
               ` : null ;
                 secondStepBox.innerHTML = `${checkoutType == "subscription" ? "1" : "2"}`;
                 thirdStepBox.innerHTML = `${checkoutType == "subscription" ? "2" : "3"}`;
+                if(Router.query && Router.query.checkout_type == "subscription"
+                 && !(Router.router?.asPath.includes('success')) && !(Router.router?.asPath.includes('failed')) ){
+                    dispatch(setCheckoutType("subscription"));
+                    // Router.replace("/checkout/payment/?checkout_type=subscription");
+                    console.log("Router",Router);
+                }
+                else if(JSON.stringify(Router.query) == "{}"){
+                    console.log("Router",Router);
+                    dispatch(setCheckoutType("cart"));
+                    Router.replace("/checkout/payment");
+                }
+
                 axiosInstance
-                .get("payments/settings",{ headers: {"X-Settings-Key" : `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG`} })
+                .get(`payments/settings/?checkout_type=${checkoutType}`,{ headers: {"X-Settings-Key" : `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG`} })
                 .then(function (response:any) {
                     setPaymentSettings(response?.data?.data);
+                    toggleLoader("hide")
                 })
                 .catch(function (error) {
                 console.log(error);
                 });
-                if(Router.query && Router.query.checkout_type == "subscription"){
-                    dispatch(setCheckoutType("subscription"));
-                    // Router.replace("/checkout/payment/?checkout_type=subscription");
-                }
-                else if(JSON.stringify(Router.query) == "{}"){
-                    console.log("Router",Router.query);
-                    dispatch(setCheckoutType("cart"));
-                    Router.replace("/checkout/payment");
-                }
+                
 
 
           break;
@@ -513,8 +524,10 @@ useEffect(() => {
                 :
                 Router.replace("/checkout/failed");
             }
-
-
+            // isTransactionSucceeded ?
+            // Router.replace("/checkout/success")
+            // :
+            // Router.replace("/checkout/failed");
 
           break;
         default:
@@ -556,7 +569,7 @@ useEffect(() => {
                          name: item.title,
                          price: item.discounted_price_usd,
                          brand: "Tadarab",
-                         category: item.categories['0'].title,
+                         category: item.categories[0] !== undefined && item.categories[0].title,
                          variant: 'Single Course',
                          quantity:1
                      };
@@ -766,7 +779,7 @@ const onError = (data:any,actions:any)=>{
 }
 
   return (
-    <PayPalScriptProvider options={{ "client-id": "AeLqJFQeNFqlkkFkdnwMPpKQb9gkBag-B-34Rym8Pndoi_5u0W305sZzses1NIcyZYENmZjpyKQYxKMu" }}>
+    <PayPalScriptProvider options={{ vault:true  ,components: 'buttons', "client-id": "AQjkwATj2FuMAGsbdcFfjwRkQ5LEbT8Nu5jqF__E3aR4SwdjTvHWQIvvg0WtPsAGA9TypmbkNiF_N_Ac" }}>
  
     <>
     <Head>
@@ -943,7 +956,7 @@ const onError = (data:any,actions:any)=>{
                     <input onClick={()=> radioBtnsHandler()} type="radio" id="visa" name="payment-type" value="VISA" className="form-check-input"/>
                     <label htmlFor="visa">
                         <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                            <img className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/Visa_Inc.png" alt="VISA" />
+                            <img className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/visa.png" alt="VISA" />
                             <img className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
                         </div>
                         <div className={styles["checkout__payment-method-box__payment-method__text"]}>
@@ -1349,64 +1362,8 @@ const onError = (data:any,actions:any)=>{
 
                     { paymentMethod == "PAYPAL" && 
                     <div className={styles["checkout__cart-sticky-card__paypal"]}>
-                        
-
-                    { checkoutType == "subscription" ? 
                     
-                    <PayPalButtons
-                        style={{
-                        color: "blue",
-                        shape: "pill",
-                        label: "subscribe",
-                        tagline: false,
-                        layout: "horizontal",
-                        }}
-                      
-                          createSubscription={(data:any,actions:any)=>{
-                            //   req to get plan id and prod id
-                            return actions.subscription.create({
-                                plan_id:{planid:'P-1VE83386SG308245LMJCAKQA'},
-                                purchase_units:[{amount:{value:29}}],
-                            });
-                          }}
-                        onApprove={(data:any, actions:any) => {
-                                  
-                                  return actions.order.capture().then(function (details:any) {
-                                      const {payer} = details;
-                                      setBillingDetails(payer);
-                                      setSucceeded(true);
-                                  
-                                    axiosInstance
-                                    .get(`payments/details?payment_method=paypal&
-                                    checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
-                                    paypal_order_id=${data.orderID}&
-                                    subscription_id=${data.subscriptionID}&
-                                    facil_atoken=${data.facilitatorAccessToken}&
-                                    payment_id=${localStorage.getItem("paymentId")}`)
-                                    .then(function (response:any) {
-                                        if(response.status.toString().startsWith("2")){
-                                            localStorage.removeItem("checkoutTransactionId");
-                                            localStorage.removeItem("paymentId");
-                                            dispatch(setTransactionStatus(response.data.data.is_successful));
-                                            dispatch(setInvoiceDetails(response.data.data));
-                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-
-                                            localStorage.setItem("cart" , "[]");
-                                            dispatch(setCartItems([]));
-                                        }else{
-                                            dispatch(setTransactionStatus(false));
-                                            dispatch(setInvoiceDetails({}));
-                                        }
-
-                                    })
-                                    .catch(function (error) {
-                                     console.log(error);
-                                    });
-                            })
-                          }}
-                       />
-                       :
+                   
                        <PayPalButtons
                        style={{
                        color: "blue",
@@ -1508,7 +1465,6 @@ const onError = (data:any,actions:any)=>{
                            })
                          }}
                       />
-                       }
                     </div> 
                     }
 
@@ -1664,10 +1620,101 @@ const onError = (data:any,actions:any)=>{
                                       </div>
                                     
                              </div>
+                             {
+                                console.log(window?.paypal?.Buttons)
+                             }
+                                {console.log("paymentSettings",paymentSettings)}
+                            {
+                                
+                                paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined && 
+                                <PayPalButtons
+                                style={{
+                                color: "blue",
+                                shape: "pill",
+                                label: "subscribe",
+                                tagline: false,
+                                layout: "horizontal",
+                                }}
+                              
+                                  createSubscription={(data:any,actions:any):any =>{
+                                    return(
+                                        axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                            "action": "web",
+                                            "payment_method":"paypal",
+                                            "checkout_type": checkoutType == "subscription" ? "subscription" : "cart",
+                                            'page_id':courseDetailsData?.data?.course_details?.id
+                                          })
+                                          .then((response:any) => {
+                                              if(JSON.stringify(response.status).startsWith("2")){
+                                                  localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
+                                                  localStorage.setItem("paymentId" , response.data.data.payment_id);
+                                                  setCheckoutTransactionDetails(response.data.data);
 
-                            <Button>
+                                                  return actions.subscription.create({
+                                                    plan_id:"P-1VE83386SG308245LMJCAKQA",
+                                                    purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
+                                                });
+            
+                                            }else{
+                                              setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                            }
+                                            
+                                        }).catch((error:any)=>{
+                                              setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                            console.log("error", error);
+                                        })
+                                    )
+                                      
+                                    //   req to get plan id and prod id
+                                  
+                                  }}
+                                onApprove={(data:any, actions:any):any => {
+                                              console.log(actions)
+                                              setSucceeded(true);
+                                          
+                                            axiosInstance
+                                            .get(`payments/details?payment_method=paypal&
+                                            checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+                                            paypal_order_id=${data.orderID}&
+                                            subscription_id=${data.subscriptionID}&
+                                            facil_atoken=${data.facilitatorAccessToken}&
+                                            page_id=${courseDetailsData?.data?.course_details?.id}&
+                                            payment_id=${localStorage.getItem("paymentId")}`)
+                                            .then(function (response:any) {
+                                                if(response.status.toString().startsWith("2")){
+                                                    console.log(response);
+                                                    
+                                                    localStorage.removeItem("checkoutTransactionId");
+                                                    localStorage.removeItem("paymentId");
+                                                    dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                    dispatch(setInvoiceDetails(response.data.data));
+                                                    let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                    FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+        
+                                                    localStorage.setItem("cart" , "[]");
+                                                    dispatch(setCartItems([]));
+                                                }else{
+                                                    dispatch(setTransactionStatus(false));
+                                                    dispatch(setInvoiceDetails({}));
+                                                }
+        
+                                            })
+                                            .catch(function (error) {
+                                             console.log(error);
+                                            });
+                                  }}
+                               />
+                            }
+                            {
+                                paymentMethod == "VISA" &&
+                                <Button className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                                    إتمام الشراء
+                                </Button>
+
+                            }
+                            {/* <Button>
                             ابدأ التعلم الآن
-                            </Button>
+                            </Button> */}
                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
                             يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
 

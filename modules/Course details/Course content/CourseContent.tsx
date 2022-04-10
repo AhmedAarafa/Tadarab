@@ -73,50 +73,42 @@ export default function CourseContent() {
 
   return (
     <>
-    <div  className={styles["course-content"]}>
+    <div oncl className={styles["course-content"]}>
     <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
 
         <div className={styles["course-content__title"]}>
         محتوي الدورة التدريبية
         </div>
+        
         <div className={styles["course-content__course-duration-box"]}>
-            <div className={styles["course-content__course-duration-box__courses-number"]}>
-                <LessonPlayIcon color="#999" opacity="0.7"/>
-                {/* <span> {courseDetailsData.data?.syllabus?.map((item:any)=> item.lectures.length).reduce((prev:any, curr:any) => prev + curr, 0)} </span> */}
-                <span> درس </span>
+						<div className={styles["course-content__course-duration-box__courses-number"]}>
+							<LessonPlayIcon color="#999" opacity="0.7"/>
+                            
+							<span> {courseDetailsData?.data?.total_lectures} </span>
+							<span> درس </span>
 
-            </div>
-            -
-            {/* <div className={styles["course-content__course-duration-box__duration"]}>
-               <ClockIcon color="#999" opacity="0.7"/>
-                {
-                    durationCalculator(
-                        courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
-                        ).h !== 0 &&
-                        <>
-                    <span> {durationCalculator(
-                    courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
-                    ).h
-                    } </span>
-                    <span> س: </span>
-                    </>
-                }
-                {
-                    durationCalculator(
-                        courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
-                        ).m !== 0 &&
-                        <>
-                    <span> {durationCalculator(
-                    courseDetailsData.data?.syllabus?.map((item:any)=> item.total_duration).reduce((prev:any, curr:any) => prev + curr, 0)
-                    ).m
-                    } </span>
-                    <span> د </span>
-                    </>
-                }
-               
+						</div>
+						-
+						<div className={styles["course-content__course-duration-box__duration"]}>
+						<ClockIcon color="#999" opacity="0.7"/>
+							{
+								courseDetailsData?.data?.total_time?.h !== 0 &&
+									<>
+								<span> {courseDetailsData?.data?.total_time?.h} </span>
+								<span> س: </span>
+								</>
+							}
+							{
+								courseDetailsData?.data?.total_time?.m !== 0 &&
+									<>
+								<span> {courseDetailsData?.data?.total_time?.m} </span>
+								<span> د </span>
+								</>
+							}
+						
 
-            </div> */}
-        </div>
+						</div>
+					</div>
 
         <TPlayerPlayList />
  

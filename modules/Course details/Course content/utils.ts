@@ -8,5 +8,5 @@ export{}
 //      .getComputedStyle(document.getElementsByTagName("html")[0])
 //      .getPropertyValue("font-size")
 //    );
-//      scrollspyHelper.style.cssText=`top:-${(navbar.offsetHeight * 2) + 2*rootFontSize}px`
+//      scrollspyHelper.style.cssText=`top:-${(navbar?.offsetHeight * 2) + 2*rootFontSize}px`
 //  }

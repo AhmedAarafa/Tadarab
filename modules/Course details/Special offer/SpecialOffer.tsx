@@ -130,7 +130,7 @@ export default function SpecialOffer(props:any) {
     dispatch(setCheckoutType("cart"));
 
     
-          const handleCartResponse:any =  handleCart(courses,`courses/${props.Cid()}/special-bundle/?country_code=null`,true);
+          const handleCartResponse:any =  handleCart(courses,`course/${props.Cid()}/special-bundle/?country_code=null`,true);
           handleCartResponse.then(function(firstresponse:any) {
             // console.log("handleCartResponse",firstresponse);
             firstresponse.resp.then(function(response:any){
@@ -142,7 +142,7 @@ export default function SpecialOffer(props:any) {
             })
           })
        
-      }
+    }
     
   return (
     <>

@@ -72,7 +72,18 @@ export default function SearchResultsPage() {
 
     useEffect(() => {
         toggleLoader("show");
-    }, [])
+
+        return () => {
+          const searchBar:any = document.getElementById("search-field");
+          const responsiveSearchBar:any = document.getElementById("responsive-search-field");
+          searchBar.value = "";
+          searchBar.blur();
+          responsiveSearchBar.value = "";
+          responsiveSearchBar.blur();
+          }
+    }, []);
+
+    
 
     useEffect(() => {
         setCurrentPage("1");

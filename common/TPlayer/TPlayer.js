@@ -36,30 +36,33 @@ var overlayM,errorM,buynowM;	// player modal dilog
 /**
 *	Start player playing
 */
-function startPlaying(){playbtn_on=true;tplayer_video_progress('play');}
+function startPlaying(){
+	const gradientLayer = document.getElementById("video-player-container");
+    gradientLayer.classList.remove("course-advertisement_video-player-gradient__4ZVgD");
+	playbtn_on=true;tplayer_video_progress('play');
+}
 
 /**
 *	pause player playing
 */
-function pausePlaying(){if(playbtn_on){tplayer.bigPlayButton.show();}tplayer_video_progress('pause');}
+function pausePlaying(){if(playbtn_on){tplayer?.bigPlayButton.show();}tplayer_video_progress('pause');}
 
 /** 
 *	handle error
 */
-function handleOnError() {const err=tplayer.error();if((err)&&(err.code===4)){tplayer.errorDisplay.hide();tplayer.bigPlayButton.hide();overlayM.current.close();buynowM.current.close();errorM.current.open();}}
+function handleOnError() {const err=tplayer?.error();if((err)&&(err.code===4)){tplayer?.errorDisplay.hide();tplayer?.bigPlayButton.hide();overlayM.current.close();buynowM.current.close();errorM.current.open();}}
 
 /** 
 *	play video
 */
 function play_video(e){
 	var playId=parseInt(e.currentTarget.getAttribute("data-lession"));
-
-	//sel=document.scrollingElement||document.documentElement;scrollTo(sel,0,100);
-	if((tplayer.playlist()[playId].is_free)&&(playId>free_limit)&&(isUserLogin!==1)){
+	window.scrollTo(0, 100);
+	if((tplayer?.playlist()[playId].is_free)&&(playId>free_limit)&&(isUserLogin!==1)){
 		free_lession(playId);
 	}else{
 		if(is_playable_next(playId)){
-			tplayer.playlist.currentItem(playId);tplayer_dialog('hide');tplayer.play();pudate_playlist_active(e.currentTarget);
+			tplayer?.playlist.currentItem(playId);tplayer_dialog('hide');tplayer?.play();pudate_playlist_active(e.currentTarget);
 		}else{
 			tplayer_dialog('show');
 		}
@@ -77,36 +80,36 @@ function tplayer_video_progress(type){
 	var playbackInterval;
 	if((playbackInterval)&&(typeof playbackInterval!==undefined)){clearInterval(playbackInterval);}
 	if(type==='play'){
-		var id=tplayer.playlist.currentItem(),
-		//is_view=(tplayer.playlist()[id].sources[0].isView),
-		//view_pr=(tplayer.playlist()[id].sources[0].viewPr),
-		duration=tplayer.duration(),current=tplayer.currentTime(),
+		var id=tplayer?.playlist.currentItem(),
+		//is_view=(tplayer?.playlist()[id].sources[0].isView),
+		//view_pr=(tplayer?.playlist()[id].sources[0].viewPr),
+		duration=tplayer?.duration(),current=tplayer?.currentTime(),
 		perc=(current/duration*100).toFixed(2);
-		if((Math.floor(perc)<=0)&&(tplayer.playlist()[id].viewPr<1)){
+		if((Math.floor(perc)<=0)&&(tplayer?.playlist()[id].viewPr<1)){
 			tplayer.playlist()[id].viewPr=1;
-			tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,0,current);
+			tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,0,current);
 			console.log("0% start reached");
 		}
 		playbackInterval=setInterval(function(){
-			id=tplayer.playlist.currentItem();current=tplayer.currentTime();perc=(current/duration*100).toFixed(2);
-			if((Math.floor(perc)>=25)&&(tplayer.playlist()[id].viewPr<25)){
+			id=tplayer?.playlist.currentItem();current=tplayer? tplayer.currentTime() : null;  perc=(current/duration*100).toFixed(2);
+			if((Math.floor(perc)>=25)&&(tplayer?.playlist()[id].viewPr<25)){
 				tplayer.playlist()[id].viewPr=25;
-				tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,25,current);
+				tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,25,current);
 				console.log("25% reached");
 			}
-			if((Math.floor(perc)>=50)&&(tplayer.playlist()[id].viewPr<50)){
+			if((Math.floor(perc)>=50)&&(tplayer?.playlist()[id].viewPr<50)){
 				tplayer.playlist()[id].viewPr=50;
-				tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,50,current);
+				tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,50,current);
 				console.log("50% reached");
 			}
-			if((Math.floor(perc)>=75)&&(tplayer.playlist()[id].viewPr<75)){
+			if((Math.floor(perc)>=75)&&(tplayer?.playlist()[id].viewPr<75)){
 				tplayer.playlist()[id].viewPr=75;
-				tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,75,current);
+				tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,75,current);
 				console.log("75% reached");
 			}
-			if((Math.floor(perc)>=99)&&(tplayer.playlist()[id].viewPr<99)){
+			if((Math.floor(perc)>=99)&&(tplayer?.playlist()[id].viewPr<99)){
 				tplayer.playlist()[id].viewPr=100;clearInterval(playbackInterval);
-				tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,100,current);
+				tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,100,current);
 				console.log("100% reached");
 			}
 
@@ -118,7 +121,7 @@ function tplayer_video_progress(type){
 					*	- courseId (corrent course id)
 					*	- userId (logged-in user id)
 					*	- id (the playlist item id integer (playlist index))
-					*	- title (the playlist item title (you can use `tplayer.playlist()[id].title` ))
+					*	- title (the playlist item title (you can use `tplayer?.playlist()[id].title` ))
 					*	- PR (percentage of the complete video (you can use `(Math.floor(perc))` ))
 					*	- seconds (the complate viwed seconds (you can use `(Math.floor(current))` ))
 					*	- counter (counter for the call each number of seconds (you can use `seconds_counter` ))
@@ -173,6 +176,8 @@ function tplayer_videotimeloader(id){
 	var loadtime=setInterval(function(){timeleft--;if(timeleft<=0){clearInterval(loadtime);var elements=document.getElementsByClassName("tplay-timeload");if(elements.length>0){elements[0].parentNode.removeChild(elements[0]);}pudate_playlist_active(document.querySelector('a[data-lession="'+id+'"].lession'));}},1000);
 }
 
+
+
 /* function tplayer_videotimeloader(id){
 	var timeleft=wait_time,play_btn=document.getElementsByClassName('vjs-big-play-button');
 	play_btn[0].innerHTML=play_btn[0].innerHTML+`<div class='tplay-timeload activering'><div id='halfclip'><div class='halfcircle' id='clipped'></div></div><div class='halfcircle' id='fixed'></div></div>`;
@@ -192,9 +197,9 @@ function tplayer_videotimeloader(id){
 */
 function is_playable_next(id){
 	var is_able=false;
-	if(tplayer.playlist()[id]){
-		var play_src=((tplayer.playlist()[id].sources[0].src)?tplayer.playlist()[id].sources[0].src:''),
-		isFree=((tplayer.playlist()[id].is_free)?tplayer.playlist()[id].is_free:false),
+	if(tplayer?.playlist()[id]){
+		var play_src=((tplayer?.playlist()[id].sources[0].src)?tplayer?.playlist()[id].sources[0].src:''),
+		isFree=((tplayer?.playlist()[id].is_free)?tplayer?.playlist()[id].is_free:false),
 		is_play=((isPurchased===true)?true:isFree);
 		if((play_src!=='')&&(is_play)){is_able=true;}
 	}
@@ -206,7 +211,7 @@ function is_playable_next(id){
 */
 function tplayer_dialog(action){
 	overlayM.current.close();errorM.current.close();
-	if(action==='show'){buynowM.current.open();playbtn_on=true;tplayer.bigPlayButton.hide();}else if(action==='hide'){buynowM.current.close();playbtn_on=false;}
+	if(action==='show'){buynowM.current.open();playbtn_on=true;tplayer?.bigPlayButton.hide();}else if(action==='hide'){buynowM.current.close();playbtn_on=false;}
 }
 
 /**
@@ -223,33 +228,31 @@ function duration_calculator(time) {
 *	@param {API DATA} api_data
 *	@returns Playlist array structure same as videojs player required.
 */
-function tplayer_make_playlist(api_data){
-	var livePlayList = api_data?.syllabus,promoLecture=api_data?.promo,allLectures=[],freeLectures=[],sectionLecture=[];
-	if(promoLecture){promoLecture=Object.values(promoLecture);freeLectures=freeLectures.concat(promoLecture);}
-	if(livePlayList){
-		livePlayList=Object.values(livePlayList);
-		promoLecture = promoLecture.filter(function(item){return item;});
-		livePlayList = livePlayList.filter(function(item){return item.lectures!== undefined;}).map(function({lectures}){return lectures;});
-		if(typeof(livePlayList)){
-			for(var s in livePlayList){
-				var lecture=livePlayList[s];
-				for(var l in lecture){
-					if(lecture[l].is_free){
-						freeLectures.push(lecture[l]);
-					}
-					allLectures.push(lecture[l]);
-				}
-			}
-		}
-	}
-	return freeLectures.concat(allLectures);
-}
 
-function TPlayer(){return (<div></div>)}
+const handleSubscriptionBtn = () => {
+    dispatch(setCheckoutType("subscription"));
+     if(userStatus){
+
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    }else{
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from_subscription: `checkout/payment/?checkout_type=subscription` }
+      })
+    }
+  }
+
+function TPlayer(){
+	return (
+		<div></div>
+	)
+}
 
 export function TPlayerPlayList (TPlayer){
 	const [courseDetails, setCourseDetails] = useState([]);var playlistHTML;
     const courseDetailsData = useSelector((state) => state.courseDetailsData);
+	const dispatch = useDispatch();
+
 	useEffect(() => {setCourseDetails(courseDetailsData.data || []);}, [courseDetailsData]);
 	if(typeof(courseDetailsData.data)!=='undefined'){
 		//playlistSrc=tplayer_make_playlist(courseDetailsData.data);
@@ -257,83 +260,92 @@ export function TPlayerPlayList (TPlayer){
 		var livePlayList = courseDetailsData.data?.syllabus,promoLecture=courseDetailsData.data?.promo,allLectures=[],freeLectures=[],sectionLecture=[];
 		if(promoLecture){promoLecture=Object.values(promoLecture);freeLectures=freeLectures.concat(promoLecture);}
 		if(livePlayList){
-			livePlayList=Object.values(livePlayList); var allLectures=[],freeLectures=[],sectionLecture=[];
+			livePlayList=Object.values(livePlayList);
 			promoLecture = promoLecture.filter(function(item){return item;});
+
 			livePlayList = livePlayList.filter(function(item){return item.lectures!== undefined;}).map(function({id,name,total_duration,lectures}){return {id,name,total_duration,lectures};});
 			if(typeof(livePlayList)){
 				playlistHTML=livePlayList.map(function(items,sindex){
 					var s_duration=items.total_duration,lectures=(items.lectures);lectures=Object.values(lectures);
 
 					return (
-						<Accordion key={sindex} defaultActiveKey="" className={styles["course-content__accordion"]}>
-							<Accordion.Item eventKey={JSON.stringify(sindex)}  className={styles["course-content__accordion__item"]}>
-								{/* SECTION */}
-								<Accordion.Header className={styles["course-content__accordion__header"]}>
-									<div className={styles["course-content__accordion__header__details-box"]}>
-										<div className={styles["course-content__accordion__header__group-number"]}>{items.name}</div> {/* Section Title */}
-										<div className={styles["course-content__accordion__header__details"]}>
-											<span className={styles["course-content__accordion__header__details__lessons-number"]}>
-												<span> {items.lectures.length} </span><span> دروس </span> {/* Section Length */}
-											</span>
-											<span className={styles["course-content__accordion__header__details__duration"]}>
-												(
-													{/* Section time duration */}
-													<span> {duration_calculator(s_duration).h !== 0 && duration_calculator(s_duration).h} </span>  
-													{duration_calculator(s_duration).h !== 0 && " س : "}
-													<span> {duration_calculator(s_duration).m !== 0 && duration_calculator(s_duration).m} </span>{duration_calculator(s_duration).m !== 0 && " د "}
-												)
-											</span>
+						<>
+							<Accordion key={sindex} defaultActiveKey="" className={styles["course-content__accordion"]}>
+								<Accordion.Item eventKey={JSON.stringify(sindex)}  className={styles["course-content__accordion__item"]}>
+									{/* SECTION */}
+									<Accordion.Header className={styles["course-content__accordion__header"]}>
+										<div className={styles["course-content__accordion__header__details-box"]}>
+											<div className={styles["course-content__accordion__header__group-number"]}>{items.name}</div> {/* Section Title */}
+											<div className={styles["course-content__accordion__header__details"]}>
+												<span className={styles["course-content__accordion__header__details__lessons-number"]}>
+													<span> {items.lectures.length} </span><span> دروس </span> {/* Section Length */}
+												</span>
+												<span className={styles["course-content__accordion__header__details__duration"]}>
+													(
+														{/* Section time duration */}
+														<span> {duration_calculator(s_duration).h !== 0 && duration_calculator(s_duration).h} </span>  
+														{duration_calculator(s_duration).h !== 0 && " س : "}
+														<span> {duration_calculator(s_duration).m !== 0 && duration_calculator(s_duration).m} </span>{duration_calculator(s_duration).m !== 0 && " د "}
+													)
+												</span>
+											</div>
 										</div>
-									</div>
-								</Accordion.Header>
+									</Accordion.Header>
 
-								{/* LECTURE */}
-								<Accordion.Body className={styles["course-content__accordion__body"]}>
-									{
-										lectures.map((lec, lindex)=>{
-											var isFree=((lec.is_free)?lec.is_free:false),is_play=((isPurchased===true)?true:isFree),title=((lec.title)?lec.title:''),lession_class="lession ";
-											lession_class+=((!is_play)?'paid':'play');lession_class+=((isFree&&!isPurchased)?' free free-lession':'');
-											if(lec.is_free){freeLectures.push(lec);}
-											allLectures.push(lec);
+									{/* LECTURE */}
+									<Accordion.Body className={styles["course-content__accordion__body"]}>
+										{
+											lectures.map((lec, lindex)=>{
+												var isFree=((lec.is_free)?lec.is_free:false),is_play=((isPurchased===true)?true:isFree),title=((lec.title)?lec.title:''),lession_class="lession ";
+												lession_class+=((!is_play)?'paid':'play');lession_class+=((isFree&&!isPurchased)?' free free-lession':'');
+												//if(lec.is_free){freeLectures.push(lec);}
+												allLectures.push(lec);
 
-											return(
-												<a key={lindex} className={lession_class} data-lession={lindex} data-play={is_play} onClick={play_video}>
-													<div key={lindex} className={styles["course-content__accordion__body__list-item"]}>
-														<div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
-															<div className={styles["course-content__accordion__body__list-item__icon"]}><LessonPlayIcon color="#be1622" opacity="1"/></div>
-															<div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
-																<div>{lec.title}</div> {/* Lecture Title */}
-																{/* Lecture time duration */}
-																<div>
-																	{duration_calculator(lec.duration).h !==0 && (duration_calculator(lec.duration).h.toString().length == 1 ? `0${duration_calculator(lec.duration).h}:`:`${duration_calculator(lec.duration).h}:`)}
-																	{duration_calculator(lec.duration).m !==0 && (duration_calculator(lec.duration).m.toString().length == 1 ? `0${duration_calculator(lec.duration).m}:` :`${duration_calculator(lec.duration).m}:`)}
-																	{duration_calculator(lec.duration).s !==0 && (duration_calculator(lec.duration).s.toString().length == 1 ?`0${duration_calculator(lec.duration).s}` :`${duration_calculator(lec.duration).s}`)}
+												return(
+													<a key={lindex} className={lession_class} data-lession={lindex} data-play={is_play} onClick={play_video}>
+														<div key={lindex} className={styles["course-content__accordion__body__list-item"]}>
+															<div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
+																<div className={styles["course-content__accordion__body__list-item__icon"]}><LessonPlayIcon color="#be1622" opacity="1"/></div>
+																<div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
+																	<div>{lec.title}</div> {/* Lecture Title */}
+																	{/* Lecture time duration */}
+																	<div>
+																		{duration_calculator(lec.duration).h !==0 && (duration_calculator(lec.duration).h.toString().length == 1 ? `0${duration_calculator(lec.duration).h}:`:`${duration_calculator(lec.duration).h}:`)}
+																		{duration_calculator(lec.duration).m !==0 && (duration_calculator(lec.duration).m.toString().length == 1 ? `0${duration_calculator(lec.duration).m}:` :`${duration_calculator(lec.duration).m}:`)}
+																		{duration_calculator(lec.duration).s !==0 && (duration_calculator(lec.duration).s.toString().length == 1 ?`0${duration_calculator(lec.duration).s}` :`${duration_calculator(lec.duration).s}`)}
+																	</div>
 																</div>
 															</div>
+															
+															{/* Lecture access lock & unlock icon */}
+															<div className={styles["course-content__accordion__body__list-item__watch-free"]}>
+																{lec.is_free && JSON.parse(lec.is_free) == true ?<><span> شاهد مجاناً </span><UnlockIcon color="#af151f"/></>:<LockIcon/>}
+															</div>
 														</div>
-														
-														{/* Lecture access lock & unlock icon */}
-														<div className={styles["course-content__accordion__body__list-item__watch-free"]}>
-															{lec.is_free && JSON.parse(lec.is_free) == true ?<><span> شاهد مجاناً </span><UnlockIcon color="#af151f"/></>:<LockIcon/>}
-														</div>
-													</div>
-												</a>
-											)
-										})
-									}
-								</Accordion.Body>
-							</Accordion.Item>
-						</Accordion>
+													</a>
+												)
+											})
+										}
+									</Accordion.Body>
+								</Accordion.Item>
+							</Accordion>
+						</>
 					);
 				});
 				playlistSrc=freeLectures.concat(allLectures);
 				console.log("playlistSrc :",playlistSrc);
-				return(playlistHTML)
+				return (
+					playlistHTML
+				);
 			}
 		}
 	}
-	return(playlistHTML)
+	//return(playlistHTML)
+	return (
+        <div>Here comes JSX !</div>
+    );
 };
+
 
 export function TadarabVideoPlayer (TPlayer){
 	const ioverlayM=React.useRef(null);const ierrorM=React.useRef(null);const ibuynowM=React.useRef(null);
@@ -359,8 +371,8 @@ export function TadarabVideoPlayer (TPlayer){
 		player.playlist.autoadvance(wait_time);
 		player.autoplay(false);
 		tplayer=player;overlayM=ioverlayM;errorM=ierrorM;buynowM=ibuynowM;
-		tplayer.seekButtons({forward:8,forwardIndex:3});
-		//tplayer.bigPlayButton.show();
+		tplayer?.seekButtons({forward:8,forwardIndex:3});
+		//tplayer?.bigPlayButton.show();
 		// Modal variables
 		var overlay ={
 			label:'Click to play',
@@ -387,8 +399,8 @@ export function TadarabVideoPlayer (TPlayer){
 		const NextButton = videojs.extend(Button,{
 			constructor: function(){Button.apply(this,arguments);this.addClass("vjs-icon-next-item");},
 			handleClick: function(props){
-				var nid=(tplayer.playlist.currentItem()+1);
-				if((tplayer.playlist()[nid])&&(tplayer.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!==1)){free_lession(nid);}else{if(is_playable_next(nid)){pudate_playlist_active(document.querySelector('a[data-lession="'+nid+'"].lession'));tplayer_dialog('hide');tplayer.playlist.next();}else{tplayer_dialog('show');return false;}}
+				var nid=(tplayer?.playlist.currentItem()+1);
+				if((tplayer?.playlist()[nid])&&(tplayer?.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!==1)){free_lession(nid);}else{if(is_playable_next(nid)){pudate_playlist_active(document.querySelector('a[data-lession="'+nid+'"].lession'));tplayer_dialog('hide');tplayer?.playlist.next();}else{tplayer_dialog('show');return false;}}
 			}
 		});
 
@@ -396,38 +408,38 @@ export function TadarabVideoPlayer (TPlayer){
 		const PrevButton = videojs.extend(Button, {
 			constructor: function(){Button.apply(this,arguments);this.addClass("vjs-icon-previous-item");this.addClass("hide");},
 			handleClick: function(props){
-				var nid=(tplayer.playlist.currentItem()-1);
-				if((tplayer.playlist()[nid])&&(tplayer.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!==1)){free_lession(nid); }else{if(is_playable_next(nid)){pudate_playlist_active(document.querySelector('a[data-lession="'+nid+'"].lession'));tplayer_dialog('hide');tplayer.playlist.previous();}else{tplayer_dialog('show');return false;}}
+				var nid=(tplayer?.playlist.currentItem()-1);
+				if((tplayer?.playlist()[nid])&&(tplayer?.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!==1)){free_lession(nid); }else{if(is_playable_next(nid)){pudate_playlist_active(document.querySelector('a[data-lession="'+nid+'"].lession'));tplayer_dialog('hide');tplayer?.playlist.previous();}else{tplayer_dialog('show');return false;}}
 			}
 		});
 
 		//videojs.registerComponent("PrevButton",PrevButton);
 		videojs.registerComponent("NextButton",NextButton);
 
-		//tplayer.getChild("controlBar").addChild("PrevButton",{},0);
-		tplayer.getChild("controlBar").addChild("NextButton",{},2);
+		//tplayer?.getChild("controlBar").addChild("PrevButton",{},0);
+		tplayer?.getChild("controlBar").addChild("NextButton",{},2);
 
-		tplayer.on("play", startPlaying);
-		tplayer.on("pause", pausePlaying);
-		tplayer.on("error", handleOnError);
-		tplayer.on('contextmenu',function(e){
+		tplayer?.on("play", startPlaying);
+		tplayer?.on("pause", pausePlaying);
+		tplayer?.on("error", handleOnError);
+		tplayer?.on('contextmenu',function(e){
 			e.preventDefault();this.addClass('vjs-contextmenu-ui');
 		});
-		tplayer.on('touchend',function(e){
+		tplayer?.on('touchend',function(e){
 			if(playbtn_on){
 				if(e.target.nodeName==='VIDEO'){
 					//player.bigPlayButton.show();
-					if(tplayer.paused()){
-						tplayer.play();
+					if(tplayer?.paused()){
+						tplayer?.play();
 					}else{
-						tplayer.pause();
+						tplayer?.pause();
 					}
 				}
 			}
 		});
-		tplayer.on('ended',function(e){
-			var nid=(tplayer.playlist.currentItem()+1);
-			if((tplayer.playlist()[nid])&&(tplayer.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!==1)){free_lession(nid);playbtn_on=true;}else{if(is_playable_next(nid)){tplayer_videotimeloader(nid);}else{tplayer.playlist.autoadvance(0);tplayer_dialog('show')}}
+		tplayer?.on('ended',function(e){
+			var nid=(tplayer?.playlist.currentItem()+1);
+			if((tplayer?.playlist()[nid])&&(tplayer?.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!==1)){free_lession(nid);playbtn_on=true;}else{if(is_playable_next(nid)){tplayer_videotimeloader(nid);}else{tplayer?.playlist.autoadvance(0);tplayer_dialog('show')}}
 		});
 		overlayM.current=overlay_modal(overlay,ModalDialog);
 		buynowM.current=buynow_popup(buynow,ModalDialog);
@@ -444,21 +456,21 @@ export function TadarabVideoPlayer (TPlayer){
 		overlayEl.className='tplayer-dialog-el';
 		var overlay_option={label:options.label,content:overlayEl,temporary:false},
 		overlayM=new modal(tplayer,overlay_option);
-		overlayM.addClass('tplayer-dialog');if(options.close===true){overlayM.addClass('is_close_show');}overlayM.addClass('tplayer-overlay');tplayer.addChild(overlayM);overlayM.open();
-		overlayM.on("click",function(e){overlayM.close();tplayer.play();});return overlayM;
+		overlayM.addClass('tplayer-dialog');if(options.close===true){overlayM.addClass('is_close_show');}overlayM.addClass('tplayer-overlay');tplayer?.addChild(overlayM);overlayM.open();
+		overlayM.on("click",function(e){overlayM.close();tplayer?.play();});return overlayM;
 	}
 
 	/** Buy now popup **/
 	const buynow_popup = function(options,modal){
 		//var buybtn=((options.buybtn)?('<a class="tadarab-btn '+options.buybtn.class+'" '+options.buybtn.attr+'>'+options.buybtn.text+'</a>'):''),
-		var buybtn=((options.buybtn)?('<button type="button" id="monthly-subscribe-btn" class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__yzr2X btn btn-primary"><span class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__monthly-subscribe__rRgIg">جرب تدرب بلا حدود مجاناَ</span></button>'):''),
+		var buybtn=((options.buybtn)?('<button type="button" style="width:60%;"  class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__yzr2X btn btn-primary"><span class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__monthly-subscribe__rRgIg">جرب تدرب بلا حدود مجاناَ</span></button>'):''),
 		closebtn=((options.clsbtn)?('<a class="tadarab-btn small secondary-btn tplayer-close '+options.clsbtn.class+'" id="tplayer-close">'+options.clsbtn.text+'</a>'):''),
 		buynow_content=((options.head)?('<div class="modal-header">'+options.head+'</div>'):'')+((options.body)?('<div class="modal-body">'+options.body+'</div>'):'')+('<div class="modal-footer btn-box">'+buybtn+closebtn+'</div>'),
 		buynowEl=document.createElement('div');
 		buynowEl.innerHTML=buynow_content;
 		buynowEl.className='tplayer-dialog-el';
 		var buynow_option={label:options.label,content:buynowEl,temporary:false},buynowM=new modal(tplayer,buynow_option);
-		buynowM.addClass('tplayer-dialog');if(options.close===true){buynowM.addClass('is_close_show');}tplayer.addChild(buynowM);if(options.clsbtn){document.getElementById('tplayer-close').addEventListener("click",function(e){buynowM.close();tplayer.play();});}return buynowM;
+		buynowM.addClass('tplayer-dialog');if(options.close===true){buynowM.addClass('is_close_show');}tplayer?.addChild(buynowM);if(options.clsbtn){document.getElementById('tplayer-close').addEventListener("click",function(e){buynowM.close();tplayer?.play();});}return buynowM;
 	}
 
 	/** Play error popup **/
@@ -468,12 +480,12 @@ export function TadarabVideoPlayer (TPlayer){
 		errorEl.innerHTML=error_content;
 		errorEl.className='tplayer-dialog-el';
 		var error={label:'Tadarab Player Error',content:errorEl,temporary:true},errorM=new modal(tplayer,error);
-		errorM.addClass('tplayer-dialog');if(options.close===true){errorM.addClass('is_close_show');}tplayer.addChild(errorM);return errorM;
+		errorM.addClass('tplayer-dialog');if(options.close===true){errorM.addClass('is_close_show');}tplayer?.addChild(errorM);return errorM;
 	}
 
 	/** Free lession limit alert **/
 	const free_lession = function(id){
-		tplayer.bigPlayButton.hide();alert("Login first");
+		tplayer?.bigPlayButton.hide();alert("Login first");
 	}
 
 	return (

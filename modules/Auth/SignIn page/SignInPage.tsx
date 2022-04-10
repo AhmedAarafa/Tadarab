@@ -7,6 +7,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter }  from "next/router";
 import { useDispatch, useSelector } from "react-redux";  
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import {
   Formik,
   FormikHelpers,
@@ -30,6 +31,7 @@ export default function SignInPage() {
     const [errorMessage, setErrorMessage] = useState("");
     const [validationAfterSubmit, setValidationAfterSubmit] = useState({email:false,password:false});
     const [fieldBlur, setFieldBlur] = useState({email:"",password:""});
+    const userAuthState = useSelector((state:any) => state.userAuthentication);
 
     const router:any = useRouter();
     const dispatch = useDispatch();
@@ -120,6 +122,10 @@ export default function SignInPage() {
                       localStorage.setItem("token" , response.data.data.token);
                       localStorage.setItem("cart" , JSON.stringify(totalItems));
                       localStorage.setItem("cart_items" , JSON.stringify([...new Set(response.data.data.cart_items)]));
+                      dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,
+                        token:response.data.data.token,
+                        id:response.data.data.id}));
+
                       
                     }
                     // cart  cart_items

@@ -6,17 +6,41 @@ import { TransactionErrorIcon,RetryIcon } from "common/Icons/Icons";
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import TadarabGA from "modules/_Shared/utils/ga";
+import Router, { useRouter }  from "next/router";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 
 export default function FailedState() {
+    const dispatch = useDispatch();
+
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
     let tadarabGA = new TadarabGA();
     useEffect(() => {
+
         if(invoiceDetails){
             tadarabGA.tadarab_fire_traking_GA_code("payment_fail",
             {type:invoiceDetails?.data?.transaction_details.payment_method,
                 reason:invoiceDetails?.data?.transaction_details.status});
         }
     }, [invoiceDetails])
+
+
+    // useEffect(() => {
+
+    //     if(Router.query && Router.query.checkout_type == "subscription"){
+    //         dispatch(setCheckoutType("subscription"));
+    //         // Router.replace("/checkout/payment/?checkout_type=subscription");
+    //     }
+    //     else if(JSON.stringify(Router.query) == "{}"){
+    //         console.log("Router failed",Router.query);
+    //         dispatch(setCheckoutType("cart"));
+    //         // Router.replace("/checkout/payment");
+    //     }
+    
+    //   return () => {
+    //     console.log("setCheckoutType dispatched");
+    //     dispatch(setCheckoutType("cart"));
+    //   }
+    // }, [Router.query])
     
 
     return (
@@ -55,35 +79,35 @@ export default function FailedState() {
 
                     <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> رقم العملية </div>
-                                <div> {invoiceDetails?.data?.transaction_details.response_code} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.response_code} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> طريقة الدفع </div>
-                                <div> {invoiceDetails?.data?.transaction_details.payment_method} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.payment_method} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> حالة العملية </div>
-                                <div> {invoiceDetails?.data?.transaction_details.status} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.status} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> رقم العملية </div>
-                                <div> {invoiceDetails?.data?.transaction_details.transaction_id} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.transaction_id} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> Track ID </div>
-                                <div> {invoiceDetails?.data?.transaction_details.payment_id} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.payment_id} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> البريد الإلكتروني </div>
-                                <div> {invoiceDetails?.data?.transaction_details.email ? invoiceDetails?.data?.transaction_details.email : ""} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.email ? invoiceDetails?.data?.transaction_details?.email : ""} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> اجمالي المبلغ المدفوع </div>
-                                <div> {invoiceDetails?.data?.transaction_details.amount} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.amount} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> التاريخ </div>
-                                <div> {invoiceDetails?.data?.transaction_details.date} </div>
+                                <div> {invoiceDetails?.data?.transaction_details?.date} </div>
                             </div>
                     
                     </div>

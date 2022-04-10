@@ -6,12 +6,14 @@ const userAuthentication = (
   state = {
     isUserAuthenticated: false,
     token: null,
+    id: 0,
   },
   action: {
     type: string;
     payload: {
       isUserAuthenticated: boolean;
       token: string | null;
+      id:number | null;
     };
   }
 ) => {
@@ -21,6 +23,7 @@ const userAuthentication = (
         ...state,
         isUserAuthenticated: action.payload.isUserAuthenticated,
         token: action.payload.token,
+        id: action.payload.id,
       };
     default:
       return state;

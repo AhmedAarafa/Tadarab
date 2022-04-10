@@ -227,6 +227,18 @@
     margin: 0 0 0 0.4rem !important;
 }
 
+.monthly-subscription__subscribe-btn-box__btn--video-player{
+    @include contained-button;
+    width: 50%;
+    height: 3.125rem;
+    font-size: 1rem;
+    font-weight: 700;
+
+    span:nth-of-type(1) {
+        margin: 0 0.1rem;
+    }
+}
+
 .monthly-subscription__watch-this-course,
 .monthly-subscription__or-box{
     font-size: 0.938rem;
@@ -350,7 +362,7 @@
     text-align: center;
     // font-weight: 700;
     color: var(--grey);
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
     span{
         margin: 0 0.1rem 0 0 ;
 
@@ -624,7 +636,7 @@
 
     .monthly-subscription__subscription-value{
         font-size: 0.75rem*2.5;
-        margin-top: 0.1rem*2.5;
+        margin-top: 0.3rem*2.5;
         span:nth-of-type(1){
             margin-right: 0.5rem;
         }

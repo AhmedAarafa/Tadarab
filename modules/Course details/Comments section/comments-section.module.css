@@ -253,8 +253,12 @@
   -webkit-box-pack: unset;
       -ms-flex-pack: unset;
           justify-content: unset;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   margin-left: 1.875rem;
   color: var(--grey);
+  height: 2.2rem;
 }
 
 .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies span, .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies svg {
@@ -485,6 +489,7 @@
         -ms-flex-pack: unset;
             justify-content: unset;
     margin-left: 3.75rem;
+    height: 4.4rem;
   }
   .comments-section__comments-tree__comment-box__comment-details__reactions-box__likes span:nth-of-type(2) {
     font-size: 2.126rem;

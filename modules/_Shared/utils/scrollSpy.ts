@@ -11,7 +11,7 @@ export const scrollspyHandler = (helperId:any) => {
      .getComputedStyle(document.getElementsByTagName("html")[0])
      .getPropertyValue("font-size")
    );
-   scrollspyHelper ? scrollspyHelper.style.cssText=`top:-${(navbar.offsetHeight * 2) + 2*rootFontSize}px`:null;
+   scrollspyHelper ? scrollspyHelper.style.cssText=`top:-${(navbar?.offsetHeight * 2) + 2*rootFontSize}px`:null;
      
     });
     
@@ -23,6 +23,6 @@ export const scrollspyHandler = (helperId:any) => {
      .getComputedStyle(document.getElementsByTagName("html")[0])
      .getPropertyValue("font-size")
    );
-   scrollspyHelper && navbar ? scrollspyHelper.style.cssText=`top:-${(navbar.offsetHeight * 2) + 2*rootFontSize}px`:null;
+   scrollspyHelper && navbar ? scrollspyHelper.style.cssText=`top:-${(navbar?.offsetHeight * 2) + 2*rootFontSize}px`:null;
 
  }

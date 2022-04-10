@@ -116,7 +116,7 @@ export default function TrainerInfo() {
           //   .getPropertyValue("font-size")
           // );
           let el:any = document.getElementById('bio');
-          let divHeight = el.offsetHeight;
+          let divHeight = el?.offsetHeight;
           let lines = Math.ceil(divHeight / 24);
           // console.log("Lines: " + lines);
       // console.log("IsTooMuchContent",isTooMuchContent);

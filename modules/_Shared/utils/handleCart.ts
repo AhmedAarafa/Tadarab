@@ -52,7 +52,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
         id:course.id,
         price: course.discounted_price_usd,
         brand: 'Tadarab',
-        category: course.categories !== undefined && course.categories[0].title,
+        category: course.categories[0] !== undefined && course.categories[0].title,
         variant:'Single Course',
         coupon:''});
 

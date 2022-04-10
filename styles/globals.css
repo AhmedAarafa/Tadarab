@@ -12005,7 +12005,7 @@ a {
   letter-spacing: 0 !important;
 }
 
-/* video player styles */
+/**************************/
 /* video player styles */
 .video-js .vjs-menu-button-inline.vjs-slider-active, .video-js .vjs-menu-button-inline:focus, .video-js .vjs-menu-button-inline:hover, .video-js.vjs-no-flex .vjs-menu-button-inline {
   width: 10em !important;
@@ -12205,16 +12205,15 @@ a {
 }
 
 .video-js .vjs-big-play-button {
-  top: 50% !important;
+  top: 45% !important;
   left: 50% !important;
   margin-left: -1em !important;
   margin-top: -1em !important;
-  width: 2em !important;
-  height: 2em !important;
+  width: 3em !important;
+  height: 3em !important;
   line-height: 2em !important;
   border: none !important;
   color: #fff !important;
-  background-color: rgba(163, 85, 85, 0.45) !important;
   font-size: 1.8em !important;
   border-radius: 50% !important;
   -webkit-transition: border-color .4s,outline .4s,background-color .4s !important;
@@ -12245,7 +12244,7 @@ a {
 }
 
 .video-js .vjs-big-play-button:active, .video-js .vjs-big-play-button:focus, .video-js:hover .vjs-big-play-button {
-  background-color: rgba(191, 30, 46, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .video-js .vjs-loading-spinner {
@@ -12350,7 +12349,7 @@ a {
 }
 
 .video-js .vjs-quality-selector {
-  right: 200px !important;
+  right: 140px !important;
 }
 
 .video-js .vjs-quality-selector span.vjs-icon-placeholder {
@@ -12359,12 +12358,16 @@ a {
 
 .video-js .vjs-playback-rate-value {
   right: 50px !important;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-box-pack: center !important;
-      -ms-flex-pack: center !important;
-          justify-content: center !important;
+  line-height: 1.5 !important;
+  font-size: 1.5em !important;
+}
+
+.video-js .vjs-playback-rate .vjs-menu {
+  left: 0 !important;
+}
+
+.video-js .vjs-playback-rate .vjs-menu .vjs-menu-content {
+  right: 0px !important;
 }
 
 .video-js .vjs-time-divider {
@@ -12381,14 +12384,7 @@ a {
 }
 
 .vjs-quality-selector.vjs-hover .vjs-menu-button span.vjs-icon-placeholder:before, .vjs-quality-selector .vjs-menu-button[aria-expanded=true] span.vjs-icon-placeholder:before, .vjs-playback-rate.vjs-hover .vjs-menu-button, .vjs-playback-rate .vjs-menu-button[aria-expanded=true] {
-  /*-webkit-transform: rotateZ(30deg);transform: rotateZ(30deg);*/
   border-bottom: 2px solid #bf1e2e !important;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-box-align: center !important;
-      -ms-flex-align: center !important;
-          align-items: center !important;
 }
 
 .video-js .vjs-modal-dialog {
@@ -12517,10 +12513,7 @@ a.lesson.free-lesson.active, a.lesson.free-lesson:hover {
 }
 
 /*.tplayer-overlay-btn{color:#ababab;font-size:50px;cursor:pointer;line-height:1;}*/
-button.vjs-big-play-button.tplayer-overlay-btn {
-  margin-top: 0px !important;
-}
-
+/*button.vjs-big-play-button.tplayer-overlay-btn{margin-top:0px !important;}*/
 .tplayer-overlay-btn {
   font-size: 21px !important;
   border: 2px solid #FFF !important;
@@ -12766,6 +12759,7 @@ video::-webkit-media-controls-panel, video::-webkit-media-controls-panel-contain
 }
 
 /*  */
+/**************************/
 .row {
   --bs-gutter-x: 0 !important;
 }
@@ -13093,7 +13087,7 @@ div[id^='popover-latest-courses-card'] {
 }
 
 #offcanvasNavbar1 .btn-close {
-  background-image: url(/images/close.svg) !important;
+  background-image: url("/images/close.svg") !important;
   border-radius: 1.5rem !important;
   background-size: 2.5rem 2.5rem;
   padding: 4rem 1.9rem 1.9rem 3.8rem !important;
@@ -13133,7 +13127,7 @@ div[id^='popover-latest-courses-card'] {
 }
 
 #offcanvasNavbar3 .btn-close {
-  background-image: url(/images/close.svg) !important;
+  background-image: url("/images/close.svg") !important;
   border-radius: 1.5rem !important;
   background-size: 2.5rem 2.5rem;
   padding: 4rem 1.9rem 1.9rem 3.8rem !important;
@@ -13204,7 +13198,7 @@ input:-webkit-autofill:active {
 
 .vjs-big-play-button .vjs-icon-placeholder::before {
   content: "" !important;
-  background-image: url("/images/play.svg") !important;
+  background-image: url("/images/1- Play button on the outer poster.png") !important;
   background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
 }

@@ -5,7 +5,7 @@
 .category-topics__title {
   font-size: 1.75rem;
   font-weight: 800;
-  color: #222222;
+  color: var(--dark-black);
   margin: 0 0 1.8438rem 0;
 }
 

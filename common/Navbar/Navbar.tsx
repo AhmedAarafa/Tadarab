@@ -54,7 +54,7 @@ function Navbar() {
     localStorage.removeItem("cart_items");
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
 
-    dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null}));
+    dispatch(setIsUserAuthenticated({...userStatus,isUserAuthenticated:false,token:null,id:0}));
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
@@ -267,12 +267,7 @@ const sendSearchQuery = (e:any)=>{
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
         query: { q: searchQuery }
       });
-      const searchBar:any = document.getElementById("search-field");
-      const responsiveSearchBar:any = document.getElementById("responsive-search-field");
-      searchBar.value = "";
-      searchBar.blur();
-      responsiveSearchBar.value = "";
-      responsiveSearchBar.blur();
+      
     }
 }
 }
@@ -843,7 +838,8 @@ const searchBoxToggler = (action:any) =>{
                 </div>
               }
             >       
-           <div className={styles["navbar__cart-icon-container"]} id="carticon" >
+           <div className={styles["navbar__cart-icon-container"]} id="carticon" 
+           onClick={()=>{isMobileView ? Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`) : null }}>
                 <CartIcon color="#222"/>
                 <Badge className={styles["navbar__cart-icon__badge"]}>{localStateCartItems?.length ||   ""}</Badge>
                 {/* cartItems?.data?.length ||  localStateCartItems?.length || */}

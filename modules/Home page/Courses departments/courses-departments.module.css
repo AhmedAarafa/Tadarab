@@ -35,6 +35,7 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
   padding: 3rem 0 0 3rem;
+  display: none !important;
 }
 
 .courses-departments__container__show-all-btn {

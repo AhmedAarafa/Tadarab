@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React ,{ useState,useEffect } from "react";
 import styles from "./trainer-info.module.css";
@@ -27,13 +28,18 @@ export default function TrainerInfo() {
       <div  className={styles["trainer-info-section"]}>
         <div id="trainer-info" className={styles["trainer-info-section__scrollspy-helper"]}></div>
         <div className={styles["trainer-info-section__trainer-box"]}>
+          <Link href={`/trainer/${courseDetailsData.data?.course_details?.trainer?.slug}`}>
           <div className={styles["trainer-info-section__trainer-img"]}>
             <img src={courseDetailsData.data?.course_details?.trainer.image} alt="trainer image" />
           </div>
+          </Link>
           <div className={styles["trainer-info-section__trainer-info"]}>
+          <Link href={`/trainer/${courseDetailsData.data?.course_details?.trainer?.slug}`}>
+
             <div className={styles["trainer-info-section__trainer-info__name"]}>
               {courseDetailsData.data?.course_details?.trainer.name_ar}
             </div>
+          </Link>
             <div
               className={styles["trainer-info-section__trainer-info__title"]}
             >
