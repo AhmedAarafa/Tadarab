@@ -43,17 +43,11 @@ export default function CourseContent() {
 
     // }
 
-<<<<<<< HEAD
-    return (
-        <>
-            <div className={styles["course-content"]}>
-                <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
-=======
+
   return (
     <>
     <div className={styles["course-content"]}>
     <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
->>>>>>> d37a558318b8b0a5e338923110f747abd4a52412
 
                 <div className={styles["course-content__title"]}>
                     محتوي الدورة التدريبية
