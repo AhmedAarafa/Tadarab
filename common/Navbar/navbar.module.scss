@@ -171,6 +171,7 @@
 .navbar__fav-icon {
     @include flex (center, center);
     margin: 0 1.875rem 0 0.75rem;
+    display: none !important;
 
     svg {
         width: 1.8875rem;
@@ -846,7 +847,8 @@
     }
 
     .navbar__search-bar-container {
-        width: calc(100vw - 50.75rem);
+        // width: calc(100vw - 50.75rem);
+        width: calc(100vw - 46.31rem);
     }
 
     .navbar__purchased-course-nav{

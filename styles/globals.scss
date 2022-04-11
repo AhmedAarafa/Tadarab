@@ -573,7 +573,7 @@ input,
 
 .loading-indicator:before {
   content: '';
-  background-image: url("/images/Loader-Desktop-View.png");
+  background-image: url("/images/Loader-Desktop-View1.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -584,6 +584,20 @@ input,
   left: 0;
   z-index: 1000;
   pointer-events: all !important;
+
+}
+.loading-indicator:after {
+  content: '';
+    background-image: url(/images/ezgif.com-gif-maker.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    pointer-events: all !important;
 
 }
 
@@ -1245,7 +1259,7 @@ input:-webkit-autofill:active{
   }
 
   .loading-indicator:before {
-    background-image: url("/images/Loader-Mobile-view.png");
+    background-image: url("/images/Loader-Mobile-view1.png");
   }
 
   .navbar-brand{

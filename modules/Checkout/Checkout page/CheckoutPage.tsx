@@ -28,6 +28,7 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import Link from "next/link";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
 
 function CheckoutPage(props:any) {
@@ -500,7 +501,10 @@ useEffect(() => {
                 axiosInstance
                 .get(`payments/settings/?checkout_type=${checkoutType}`,{ headers: {"X-Settings-Key" : `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG`} })
                 .then(function (response:any) {
-                    setPaymentSettings(response?.data?.data);
+                    if(tokenValidationCheck(response)){
+                        setPaymentSettings(response?.data?.data);
+                        toggleLoader("hide");
+                    }
                     toggleLoader("hide");
                 })
                 .catch(function (error) {
@@ -801,7 +805,7 @@ const onError = (data:any,actions:any)=>{
 }
 
   return (
-    <PayPalScriptProvider options={{ vault:true  ,components: 'buttons', "client-id": "AQjkwATj2FuMAGsbdcFfjwRkQ5LEbT8Nu5jqF__E3aR4SwdjTvHWQIvvg0WtPsAGA9TypmbkNiF_N_Ac" }}>
+    <PayPalScriptProvider options={{ vault:true  ,components: 'buttons', "client-id": paymentSettings?.paypal?.client_id }}>
     <>
     <Head>
         <script async src="https://cdn.checkout.com/js/framesv2.min.js"></script>
@@ -1192,18 +1196,21 @@ const onError = (data:any,actions:any)=>{
                                                 'page_id':courseDetailsData?.data?.course_details?.id,
                                               })
                                               .then((response:any) => {
-                                                  if(JSON.stringify(response.status).startsWith("2")){
-                                                      localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
-                                                      localStorage.setItem("paymentId" , response.data.data.payment_id);
-                                                      setCheckoutTransactionDetails(response.data.data);
-    
-                                                      return actions.subscription.create({
-                                                        plan_id:"P-1VE83386SG308245LMJCAKQA",
-                                                        purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
-                                                    });
-                
-                                                }else{
-                                                  setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                if(tokenValidationCheck(response)){
+
+                                                    if(JSON.stringify(response.status).startsWith("2")){
+                                                        localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
+                                                        localStorage.setItem("paymentId" , response.data.data.payment_id);
+                                                        setCheckoutTransactionDetails(response.data.data);
+      
+                                                        return actions.subscription.create({
+                                                          plan_id:paymentSettings?.paypal.planid,
+                                                          purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
+                                                      });
+                  
+                                                  }else{
+                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                  }
                                                 }
                                                 
                                             }).catch((error:any)=>{
@@ -1228,21 +1235,24 @@ const onError = (data:any,actions:any)=>{
                                                 checkout_type=subscription&
                                                 payment_id=${localStorage.getItem("paymentId")}`)
                                                 .then(function (response:any) {
-                                                    if(response.status.toString().startsWith("2")){
-                                                        console.log(response);
-                                                        
-                                                        localStorage.removeItem("checkoutTransactionId");
-                                                        localStorage.removeItem("paymentId");
-                                                        dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                        dispatch(setInvoiceDetails(response.data.data));
-                                                        let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                                        FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-            
-                                                        localStorage.setItem("cart" , "[]");
-                                                        dispatch(setCartItems([]));
-                                                    }else{
-                                                        dispatch(setTransactionStatus(false));
-                                                        dispatch(setInvoiceDetails({}));
+                                                    if(tokenValidationCheck(response)){
+
+                                                        if(response.status.toString().startsWith("2")){
+                                                            console.log(response);
+                                                            
+                                                            localStorage.removeItem("checkoutTransactionId");
+                                                            localStorage.removeItem("paymentId");
+                                                            dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+                
+                                                            localStorage.setItem("cart" , "[]");
+                                                            dispatch(setCartItems([]));
+                                                        }else{
+                                                            dispatch(setTransactionStatus(false));
+                                                            dispatch(setInvoiceDetails({}));
+                                                        }
                                                     }
             
                                                 })
@@ -1269,13 +1279,16 @@ const onError = (data:any,actions:any)=>{
                                           'page_id':courseDetailsData?.data?.course_details?.id,
                                         })
                                         .then((response:any) => {
-                                          if(JSON.stringify(response.status).startsWith("2")){
-                                            localStorage.setItem("successUrl" , response.data.data.success_url);
-                                            localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                            Router.push(response.data.data.redirect_url);
-                                          }else{
-                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                          }
+                                            if(tokenValidationCheck(response)){
+
+                                                if(JSON.stringify(response.status).startsWith("2")){
+                                                  localStorage.setItem("successUrl" , response.data.data.success_url);
+                                                  localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                                  Router.push(response.data.data.redirect_url);
+                                                }else{
+                                                  setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                }
+                                            }
                                          
                                         })
                                         .catch((error:any)=>{
@@ -1476,13 +1489,16 @@ const onError = (data:any,actions:any)=>{
                               "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
                             })
                             .then((response:any) => {
-                              if(JSON.stringify(response.status).startsWith("2")){
-                                localStorage.setItem("successUrl" , response.data.data.success_url);
-                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                Router.push(response.data.data.redirect_url);
-                              }else{
-                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                              }
+                                if(tokenValidationCheck(response)){
+
+                                    if(JSON.stringify(response.status).startsWith("2")){
+                                      localStorage.setItem("successUrl" , response.data.data.success_url);
+                                      localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                      Router.push(response.data.data.redirect_url);
+                                    }else{
+                                      setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                    }
+                                }
                              
                             })
                             .catch((error:any)=>{
@@ -1527,17 +1543,20 @@ const onError = (data:any,actions:any)=>{
                                    "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
                                  })
                                  .then((response:any) => {
-                                     if(JSON.stringify(response.status).startsWith("2")){
-                                         localStorage.setItem("successUrl" , response.data.data.success_url);
-                                         localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                         localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
-                                         localStorage.setItem("paymentId" , response.data.data.payment_id);
-                                         usdAmount = response.data.data.amount_usd;
-                                         setCheckoutTransactionDetails(response.data.data);
-   
-                                   }else{
-                                     setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                   }
+                                        if(tokenValidationCheck(response)){
+
+                                            if(JSON.stringify(response.status).startsWith("2")){
+                                                localStorage.setItem("successUrl" , response.data.data.success_url);
+                                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                                localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
+                                                localStorage.setItem("paymentId" , response.data.data.payment_id);
+                                                usdAmount = response.data.data.amount_usd;
+                                                setCheckoutTransactionDetails(response.data.data);
+          
+                                          }else{
+                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                          }
+                                        }
                                    
                                }).catch((error:any)=>{
                                      setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
@@ -1580,23 +1599,26 @@ const onError = (data:any,actions:any)=>{
                                    paypal_order_id=${data.orderID}&
                                    payment_id=${localStorage.getItem("paymentId")}`)
                                    .then(function (response:any) {
-                                       if(response.status.toString().startsWith("2")){
-                                        //    console.log('responseresponse',response);
-                                           localStorage.removeItem("checkoutTransactionId");
-                                           localStorage.removeItem("paymentId");
-                                           dispatch(setTransactionStatus(response.data.data.is_successful));
-                                           dispatch(setInvoiceDetails(response.data.data));
-
-                                           let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                           FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-
-
-                                           localStorage.setItem("cart" , "[]");
-                                           dispatch(setCartItems([]));
-                                       }else{
-                                           dispatch(setTransactionStatus(false));
-                                           dispatch(setInvoiceDetails({}));
-                                       }
+                                        if(tokenValidationCheck(response)){
+                                            
+                                            if(response.status.toString().startsWith("2")){
+                                             //    console.log('responseresponse',response);
+                                                localStorage.removeItem("checkoutTransactionId");
+                                                localStorage.removeItem("paymentId");
+                                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                dispatch(setInvoiceDetails(response.data.data));
+     
+                                                let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+     
+     
+                                                localStorage.setItem("cart" , "[]");
+                                                dispatch(setCartItems([]));
+                                            }else{
+                                                dispatch(setTransactionStatus(false));
+                                                dispatch(setInvoiceDetails({}));
+                                            }
+                                        }
 
                                    })
                                    .catch(function (error) {
@@ -1621,14 +1643,17 @@ const onError = (data:any,actions:any)=>{
                             "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
                         })
                         .then((response:any) => {
-                            if(JSON.stringify(response.status).startsWith("2")){
-                                localStorage.setItem("successUrl" , response.data.data.success_url);
-                                localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                console.log("response",response);
-                                Router.push(response.data.data.redirect_url);
-
-                            }else{
-                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            if(tokenValidationCheck(response)){
+                        
+                                if(JSON.stringify(response.status).startsWith("2")){
+                                    localStorage.setItem("successUrl" , response.data.data.success_url);
+                                    localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                    console.log("response",response);
+                                    Router.push(response.data.data.redirect_url);
+    
+                                }else{
+                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                }
                             }
                             
                         }).catch((error:any)=>{
@@ -1812,18 +1837,21 @@ const onError = (data:any,actions:any)=>{
                                                 'page_id':courseDetailsData?.data?.course_details?.id,
                                               })
                                               .then((response:any) => {
-                                                  if(JSON.stringify(response.status).startsWith("2")){
-                                                      localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
-                                                      localStorage.setItem("paymentId" , response.data.data.payment_id);
-                                                      setCheckoutTransactionDetails(response.data.data);
-    
-                                                      return actions.subscription.create({
-                                                        plan_id:"P-1VE83386SG308245LMJCAKQA",
-                                                        purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
-                                                    });
-                
-                                                }else{
-                                                  setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                if(tokenValidationCheck(response)){
+                                                    
+                                                    if(JSON.stringify(response.status).startsWith("2")){
+                                                        localStorage.setItem("checkoutTransactionId" , response.data.data.checkout_transaction_id);
+                                                        localStorage.setItem("paymentId" , response.data.data.payment_id);
+                                                        setCheckoutTransactionDetails(response.data.data);
+      
+                                                        return actions.subscription.create({
+                                                          plan_id: paymentSettings?.paypal.planid,
+                                                          purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
+                                                      });
+                  
+                                                  }else{
+                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                  }
                                                 }
                                                 
                                             }).catch((error:any)=>{
@@ -1848,21 +1876,24 @@ const onError = (data:any,actions:any)=>{
                                                 checkout_type=subscription&
                                                 payment_id=${localStorage.getItem("paymentId")}`)
                                                 .then(function (response:any) {
-                                                    if(response.status.toString().startsWith("2")){
-                                                        console.log(response);
-                                                        
-                                                        localStorage.removeItem("checkoutTransactionId");
-                                                        localStorage.removeItem("paymentId");
-                                                        dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                        dispatch(setInvoiceDetails(response.data.data));
-                                                        let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                                        FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-            
-                                                        localStorage.setItem("cart" , "[]");
-                                                        dispatch(setCartItems([]));
-                                                    }else{
-                                                        dispatch(setTransactionStatus(false));
-                                                        dispatch(setInvoiceDetails({}));
+                                                    if(tokenValidationCheck(response)){
+                        
+                                                        if(response.status.toString().startsWith("2")){
+                                                            console.log(response);
+                                                            
+                                                            localStorage.removeItem("checkoutTransactionId");
+                                                            localStorage.removeItem("paymentId");
+                                                            dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+                
+                                                            localStorage.setItem("cart" , "[]");
+                                                            dispatch(setCartItems([]));
+                                                        }else{
+                                                            dispatch(setTransactionStatus(false));
+                                                            dispatch(setInvoiceDetails({}));
+                                                        }
                                                     }
             
                                                 })
@@ -1889,13 +1920,16 @@ const onError = (data:any,actions:any)=>{
                                           'page_id':courseDetailsData?.data?.course_details?.id,
                                         })
                                         .then((response:any) => {
-                                          if(JSON.stringify(response.status).startsWith("2")){
-                                            localStorage.setItem("successUrl" , response.data.data.success_url);
-                                            localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                            Router.push(response.data.data.redirect_url);
-                                          }else{
-                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                          }
+                                            if(tokenValidationCheck(response)){
+                        
+                                                if(JSON.stringify(response.status).startsWith("2")){
+                                                  localStorage.setItem("successUrl" , response.data.data.success_url);
+                                                  localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                                  Router.push(response.data.data.redirect_url);
+                                                }else{
+                                                  setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                }
+                                            }
                                          
                                         })
                                         .catch((error:any)=>{
@@ -2195,19 +2229,22 @@ const onError = (data:any,actions:any)=>{
                                     paypal_order_id=${data.orderID}&
                                     payment_id=${localStorage.getItem("paymentId")}`)
                                     .then(function (response:any) {
-                                        if(response.status.toString().startsWith("2")){
-                                            localStorage.removeItem("checkoutTransactionId");
-                                            localStorage.removeItem("paymentId");
-                                            dispatch(setTransactionStatus(response.data.data.is_successful));
-                                            dispatch(setInvoiceDetails(response.data.data));
-                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-
-                                            localStorage.setItem("cart" , "[]");
-                                            dispatch(setCartItems([]));
-                                        }else{
-                                            dispatch(setTransactionStatus(false));
-                                            dispatch(setInvoiceDetails({}));
+                                        if(tokenValidationCheck(response)){
+                        
+                                            if(response.status.toString().startsWith("2")){
+                                                localStorage.removeItem("checkoutTransactionId");
+                                                localStorage.removeItem("paymentId");
+                                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                dispatch(setInvoiceDetails(response.data.data));
+                                                let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+    
+                                                localStorage.setItem("cart" , "[]");
+                                                dispatch(setCartItems([]));
+                                            }else{
+                                                dispatch(setTransactionStatus(false));
+                                                dispatch(setInvoiceDetails({}));
+                                            }
                                         }
 
                                     })
@@ -2233,14 +2270,17 @@ const onError = (data:any,actions:any)=>{
                             "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
                         })
                           .then((response:any) => {
-                              if(JSON.stringify(response.status).startsWith("2")){
-                                  localStorage.setItem("successUrl" , response.data.data.success_url);
-                                  localStorage.setItem("failureUrl" , response.data.data.failure_url);
-                                  console.log("response",response);
-                                  Router.push(response.data.data.redirect_url);
-
-                            }else{
-                              setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            if(tokenValidationCheck(response)){
+                        
+                                if(JSON.stringify(response.status).startsWith("2")){
+                                    localStorage.setItem("successUrl" , response.data.data.success_url);
+                                    localStorage.setItem("failureUrl" , response.data.data.failure_url);
+                                    console.log("response",response);
+                                    Router.push(response.data.data.redirect_url);
+  
+                              }else{
+                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                              }
                             }
                             
                         }).catch((error:any)=>{

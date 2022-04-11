@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setErrorText } from "../redux/actions/errorText";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 
@@ -11,6 +11,7 @@ export const axiosInstance = axios.create({
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
+
   function (config: any) {
     // Do something before request is sent
     // show loader
@@ -25,14 +26,17 @@ axiosInstance.interceptors.request.use(
 
   if(localStorage.getItem("X-Session-Id")){
     config.headers['X-Session-Id'] =  `${localStorage.getItem("X-Session-Id")}`;
+    config.headers['X-User-Id'] =  0;
   }else{
     let rString = randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
     config.headers['X-Session-Id'] =  rString;
     localStorage.setItem("X-Session-Id",rString);
+    config.headers['X-User-Id'] =  0;
   }
 
     if(localStorage.getItem("token")){
       config.headers.Authorization =  `Bearer ${localStorage.getItem("token")}`;
+      config.headers['X-User-Id'] =  localStorage.getItem("user_id");
     }
     return config;
   },

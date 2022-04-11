@@ -10,6 +10,7 @@ import TadarabGA from "modules/_Shared/utils/ga";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import Router, { useRouter }  from "next/router";
 import Link from "next/link";
+import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 
 export default function SuccessState() {
 
@@ -42,6 +43,7 @@ export default function SuccessState() {
       return () => {
           console.log("setCheckoutType dispatched");
           dispatch(setCheckoutType("cart"));
+          dispatch(setTransactionStatus(null));
       }
     }, []);
 

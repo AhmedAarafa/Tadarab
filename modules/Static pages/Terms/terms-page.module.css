@@ -2,9 +2,23 @@
   padding: 8rem;
 }
 
+.terms-and-conditions * {
+  font-size: 1rem !important;
+}
+
+.terms-and-conditions h4 {
+  font-size: 1.5rem !important;
+}
+
 @media (max-width: 575px) {
   .terms-and-conditions {
     padding: 12rem 5rem;
+  }
+  .terms-and-conditions * {
+    font-size: 1.8rem !important;
+  }
+  .terms-and-conditions h4 {
+    font-size: 2.7rem !important;
   }
 }
 /*# sourceMappingURL=terms-page.module.css.map */

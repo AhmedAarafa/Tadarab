@@ -13,6 +13,9 @@ export default function JoinUs() {
 
     } else {
       setError({ status: false, msg: "تم إرسال بريدك الالكتروني" });
+      const form: any = document.getElementById("newsletter-form");
+      form.reset();
+      
       axiosInstance
         .post(`newsletters`,
           {
@@ -40,12 +43,12 @@ export default function JoinUs() {
 
   useEffect(() => {
 
-    if(error.msg !== ""){
+    if (error.msg !== "") {
       setTimeout(() => {
         setError({ status: false, msg: "" });
       }, 7000);
     }
-    
+
   }, [error])
 
 
@@ -69,12 +72,12 @@ export default function JoinUs() {
                 </Button>
               </div>
 
-              { error.msg !== "" && 
-              <div className={`${ error.status ? styles["join-us__info-msg--error"]  : styles["join-us__info-msg--success"] }`}>
-                {error.msg}
-              </div>
+              {error.msg !== "" &&
+                <div className={`${error.status ? styles["join-us__info-msg--error"] : styles["join-us__info-msg--success"]}`}>
+                  {error.msg}
+                </div>
               }
-              
+
             </Form>
           </div>
         </Col>

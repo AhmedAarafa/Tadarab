@@ -15,6 +15,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
 export default function MyAccountPage() {
   const [courseListing, setCourseListing] = useState<any>([]);
@@ -59,8 +60,12 @@ export default function MyAccountPage() {
     axiosInstance
       .get(`users/purchased/?country_code=eg`)
       .then(function (response: any) {
-        setCourseListing(response?.data);
-        FBPixelEventsHandler(response.data.fb_tracking_events, null);
+        if(tokenValidationCheck(response)){
+
+          setCourseListing(response?.data);
+          FBPixelEventsHandler(response.data.fb_tracking_events, null);
+          toggleLoader("hide");
+        }
         toggleLoader("hide");
         
       })

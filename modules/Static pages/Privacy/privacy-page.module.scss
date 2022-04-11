@@ -2,6 +2,10 @@
 
 .privacy-policy{
     padding: 8rem;
+
+    *{
+        font-size: 1rem !important;
+    }
 }
 
 
@@ -10,5 +14,8 @@
     
     .privacy-policy{
         padding: 12rem 5rem;
+        *{
+            font-size: 1rem*2 !important;
+        }
     }
 }

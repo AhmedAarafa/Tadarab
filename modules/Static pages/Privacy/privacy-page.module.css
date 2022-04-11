@@ -2,9 +2,16 @@
   padding: 8rem;
 }
 
+.privacy-policy * {
+  font-size: 1rem !important;
+}
+
 @media (max-width: 575px) {
   .privacy-policy {
     padding: 12rem 5rem;
+  }
+  .privacy-policy * {
+    font-size: 2rem !important;
   }
 }
 /*# sourceMappingURL=privacy-page.module.css.map */

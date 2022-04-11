@@ -51,6 +51,7 @@ function Navbar() {
 
   const handleLogout = () =>{
     localStorage.removeItem("token");
+    localStorage.removeItem("user-id");
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
@@ -129,20 +130,24 @@ function Navbar() {
       if(userStatus.isUserAuthenticated){
         if(searchBar){
           if(window.innerWidth > 1960){
-            searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+            // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+            searchBar.style.cssText=`width: calc(100vw - 54.6rem)`;
           } else{
             // searchBar.style.cssText=`width:28rem`;
-            searchBar.style.cssText=`width:31.75rem`;
+            // searchBar.style.cssText=`width:31.75rem`;
+            searchBar.style.cssText=`width:36rem`;
           }
         }
         window.addEventListener("resize" , ()=>{
         if(searchBar){
 
           if(window.innerWidth > 1960){
-            searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+            // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+            searchBar.style.cssText=`width: calc(100vw - 54.6rem)`;
           } else{
             // searchBar.style.cssText=`width:28rem`;
-            searchBar.style.cssText=`width:31.75rem`;
+            // searchBar.style.cssText=`width:31.75rem`;
+            searchBar.style.cssText=`width:36rem`;
           }
         }
         });
@@ -153,10 +158,12 @@ function Navbar() {
         if(searchBar){
 
           if(window.innerWidth > 1960){
-            searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+            // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+            searchBar.style.cssText=`width: calc(100vw - 50rem)`;
           } else{
             // searchBar.style.cssText=`width:34.5rem`;
             searchBar.style.cssText=`width:32.5rem`;
+            // searchBar.style.cssText=`width:36.8rem`;
           }
         }
 
@@ -164,10 +171,12 @@ function Navbar() {
         if(searchBar){
 
           if(window.innerWidth > 1960){
-            searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+            // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+            searchBar.style.cssText=`width: calc(100vw - 50rem)`;
           } else if(window.innerWidth <= 1960){
             // searchBar.style.cssText=`width:34.5rem`;
             searchBar.style.cssText=`width:32.5rem`;
+            // searchBar.style.cssText=`width:36.8rem`;
           }
         }
         });

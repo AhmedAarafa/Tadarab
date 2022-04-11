@@ -3,6 +3,7 @@ import { getData } from "./getData"
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
+import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
 export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
   let tadarabGA = new TadarabGA();
@@ -76,32 +77,35 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
 
               // localStorage.setItem("cart_items",JSON.stringify(localStorageItemsArray));
 
-              if(course.is_in_cart == false){
+              if(course.is_in_cart == false){ 
                   return (axiosInstance
                   .post(`users/cart/?country_code=null`,
                    {"items" : JSON.stringify([...new Set(localStorageItemsArray.flat())])})
                   .then((response:any) => {
-                   const totalItems:any = [];
-                   console.log("response.data.data",response);
-                   const cartResponse:any = response.data.data.courses;
-                   
-                    response.data.data?.courses?.forEach((item:any)=>{
-                      totalItems.push(item.id);
-                    });
-                    localStorage.setItem("cart" , JSON.stringify(totalItems));
-                    localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
-            
-                    
-                    GAHandler('add',GAProductsArray,localStorageItemsIdsArray);
-                    
-                    FBPixelEventsHandler(response.data.fb_tracking_events,null);
-            
-                    const resp:any =  getData(endPoint).then(function(response) {
-                      return response ;
-                    });
-                    console.log("rr",{resp,cartResponse});
-                    
-                    return ({resp,cartResponse});
+                    if(tokenValidationCheck(response)){
+                      
+                      const totalItems:any = [];
+                      console.log("response.data.data",response);
+                      const cartResponse:any = response.data.data.courses;
+                      
+                       response.data.data?.courses?.forEach((item:any)=>{
+                         totalItems.push(item.id);
+                       });
+                       localStorage.setItem("cart" , JSON.stringify(totalItems));
+                       localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
+               
+                       
+                       GAHandler('add',GAProductsArray,localStorageItemsIdsArray);
+                       
+                       FBPixelEventsHandler(response.data.fb_tracking_events,null);
+               
+                       const resp:any =  getData(endPoint).then(function(response) {
+                         return response ;
+                       });
+                       console.log("rr",{resp,cartResponse});
+                       
+                       return ({resp,cartResponse});
+                    };
                   })
                   .catch((error:any)=>{
                     console.log("error", error);
@@ -110,21 +114,24 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                   return (axiosInstance
                   .delete(`users/cart/?country_code=null`, { data:{"item_id" : course.id}})
                   .then((response:any) => {
-                   const totalItems:any = [];
-                    console.log("Response",response);
-                   const cartResponse:any = response.data.data.courses;
-            
-                    response?.data?.data?.courses?.forEach((item:any)=>{
-                    totalItems.push(item.id);
-                    });
-                    localStorage.setItem("cart" , JSON.stringify(totalItems));
-                    localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
-                    GAHandler("remove",GAProductsArray,localStorageItemsIdsArray);
-                    const resp:any =  getData(endPoint).then(function(response) {
-                      return response ;
-                    })
-                    
-                    return ({resp,cartResponse})
+                    if(tokenValidationCheck(response)){
+                      
+                      const totalItems:any = [];
+                       console.log("Response",response);
+                      const cartResponse:any = response.data.data.courses;
+               
+                       response?.data?.data?.courses?.forEach((item:any)=>{
+                       totalItems.push(item.id);
+                       });
+                       localStorage.setItem("cart" , JSON.stringify(totalItems));
+                       localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
+                       GAHandler("remove",GAProductsArray,localStorageItemsIdsArray);
+                       const resp:any =  getData(endPoint).then(function(response) {
+                         return response ;
+                       })
+                       
+                       return ({resp,cartResponse})
+                    };
             
                   })
                   .catch((error:any)=>{
@@ -138,57 +145,3 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
   });
   return val ;
 }
-
-// }
-// else{
-//     if(course.is_in_cart == false){
-//         course.is_in_cart = true;
-//         GAHandler("add");
-
-//         return ((async function (){ 
-//         // await  setCartItems([...new Set(cartItems),course.id]);
-//         const storedCartCourses:any = await localStorage.getItem("cart");
-      
-//         const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
-//         localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
-//         //   dispatch(setCartItems(uniqeStoredCartCourses));
-//         //   setLatestCourses([...latestCourses]);
-      
-//         return (axiosInstance
-//           .get(`courses/?country_code=null&course_ids=${JSON.stringify(uniqeStoredCartCourses)?.replace(/[\[\]']+/g,'')}`)
-//           .then(function (response:any) {
-//             console.log(response.data.data);
-//             return response;
-//         })
-//       .catch(function (error) {
-//         console.log(error); 
-//       }));
-
-//       })())
-//       }else{
-//         course.is_in_cart = false;
-//         GAHandler("remove");
-
-//         return((async function(){
-
-//             const localStorageItems:any = await localStorage.getItem("cart");
-//            const resultedItems:any = JSON.parse(localStorageItems).filter(function(ele:any){ 
-//               return ele != course.id; 
-//           });
-//           localStorage.setItem("cart" , JSON.stringify(resultedItems));
-//           return (axiosInstance
-//           .get(`courses/?country_code=null&course_ids=${JSON.stringify(resultedItems)?.replace(/[\[\]']+/g,'')}`)
-//           .then(function (response:any) {
-//             console.log(response.data.data);
-//             return response;
-//         })
-//         .catch(function (error) {
-//           console.log(error); 
-//         }));
-//         })())
-//     //   dispatch(setCartItems(resultedItems));
-
-//     //   setLatestCourses([...latestCourses]);
-
-//       }
-// }

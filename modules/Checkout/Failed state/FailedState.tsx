@@ -2,95 +2,89 @@
 import React, { useEffect } from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./failed-state.module.css";
-import { TransactionErrorIcon,RetryIcon } from "common/Icons/Icons";
+import { TransactionErrorIcon, RetryIcon } from "common/Icons/Icons";
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import TadarabGA from "modules/_Shared/utils/ga";
-import Router, { useRouter }  from "next/router";
-import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import Router, { useRouter } from "next/router";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 
 export default function FailedState() {
     const dispatch = useDispatch();
 
-    const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
+    const invoiceDetails = useSelector((state: any) => state.invoiceDetails);
     let tadarabGA = new TadarabGA();
     useEffect(() => {
 
-        if(invoiceDetails){
+        if (invoiceDetails) {
             tadarabGA.tadarab_fire_traking_GA_code("payment_fail",
-            {type:invoiceDetails?.data?.transaction_details.payment_method,
-                reason:invoiceDetails?.data?.transaction_details.status});
+                {
+                    type: invoiceDetails?.data?.transaction_details.payment_method,
+                    reason: invoiceDetails?.data?.transaction_details.status
+                });
         }
     }, [invoiceDetails])
 
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     if(Router.query && Router.query.checkout_type == "subscription"){
-    //         dispatch(setCheckoutType("subscription"));
-    //         // Router.replace("/checkout/payment/?checkout_type=subscription");
-    //     }
-    //     else if(JSON.stringify(Router.query) == "{}"){
-    //         console.log("Router failed",Router.query);
-    //         dispatch(setCheckoutType("cart"));
-    //         // Router.replace("/checkout/payment");
-    //     }
-    
-    //   return () => {
-    //     console.log("setCheckoutType dispatched");
-    //     dispatch(setCheckoutType("cart"));
-    //   }
-    // }, [Router.query])
-    
+        return () => {
+            dispatch(setTransactionStatus(null));
+          console.log("setTransactionStatus dispatched");
+        }
+    }, [])
+
+
 
     return (
         <>
-         <Row className={styles["failed-state-row"]}>
-            <Col sm={6} xs={12} className={styles["failed-state"]}>
-                <div className={styles["failed-state__img"]}>
+            <Row className={styles["failed-state-row"]}>
+                <Col sm={6} xs={12} className={styles["failed-state"]}>
+                    <div className={styles["failed-state__img"]}>
 
-                <TransactionErrorIcon/>
-                </div>
-
-
-            <div className={styles["failed-state__purchasing-failed"]}> حدث خطأ اثناء عملية الدفع </div>
-            <div className={styles["failed-state__purchasing-failed-brief"]}> لقد حدث خطأ. حاول مرة أخرى لإكمال عملية الشراء </div>
-
-            <Button className={styles["failed-state__btn"]} onClick={()=>{
-                if(Router.query && Router.query.checkout_type == "subscription" 
-                && (Router.router?.asPath.includes('failed'))){
-                    dispatch(setCheckoutType("subscription"));
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-                    console.log("pushed to checkout/payment/?checkout_type=subscription");
-                    
-                }
-                else if(JSON.stringify(Router.query) == "{}"){
-                    dispatch(setCheckoutType("cart"));
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
-                    console.log("pushed to checkout ");
-
-                }
-                // location.reload();
-                }}>
-                <RetryIcon/>
-                <span> حاول الدفع مرة آخرى </span>
-
-            </Button>
-
-        <Link href="/">
-            <div className={styles["failed-state__back-to-main-page"]} > اذهب للصفحة الرئيسية </div>
-        </Link>
-            
-
-            </Col>
-            <Col sm={6} xs={12}>
-                <div className={styles["failed-state-row__invoice-box"]}>
-                    <div className={styles["failed-state-row__invoice-box__title"]}>
-                    تفاصيل عملية الدفع
+                        <TransactionErrorIcon />
                     </div>
-                    <div className={styles["failed-state-row__invoice-box__details-box"]}>
 
-                    <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
+
+                    <div className={styles["failed-state__purchasing-failed"]}> حدث خطأ اثناء عملية الدفع </div>
+                    <div className={styles["failed-state__purchasing-failed-brief"]}> لقد حدث خطأ. حاول مرة أخرى لإكمال عملية الشراء </div>
+
+                    <Button className={styles["failed-state__btn"]} onClick={() => {
+                        if (Router.query && Router.query.checkout_type == "subscription"
+                            && (Router.router?.asPath.includes('failed'))) {
+                            dispatch(setCheckoutType("subscription"));
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+                            console.log("pushed to checkout/payment/?checkout_type=subscription");
+
+                        }
+                        else if (JSON.stringify(Router.query) == "{}") {
+                            dispatch(setCheckoutType("cart"));
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                            console.log("pushed to checkout ");
+
+                        }
+                        // location.reload();
+                    }}>
+                        <RetryIcon />
+                        <span> حاول الدفع مرة آخرى </span>
+
+                    </Button>
+
+                    <Link href="/">
+                        <div className={styles["failed-state__back-to-main-page"]} > اذهب للصفحة الرئيسية </div>
+                    </Link>
+
+
+                </Col>
+                <Col sm={6} xs={12}>
+                    <div className={styles["failed-state-row__invoice-box"]}>
+                        <div className={styles["failed-state-row__invoice-box__title"]}>
+                            تفاصيل عملية الدفع
+                        </div>
+                        <div className={styles["failed-state-row__invoice-box__details-box"]}>
+
+                            <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> رقم العملية </div>
                                 <div> {invoiceDetails?.data?.transaction_details?.response_code} </div>
                             </div>
@@ -122,12 +116,12 @@ export default function FailedState() {
                                 <div> التاريخ </div>
                                 <div> {invoiceDetails?.data?.transaction_details?.date} </div>
                             </div>
-                    
+
+                        </div>
                     </div>
-                </div>
-            </Col>
-        </Row>
-            
+                </Col>
+            </Row>
+
         </>
     )
 }

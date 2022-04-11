@@ -120,6 +120,7 @@ export default function SignInPage() {
                         totalItems.push(item.id);
                       });
                       localStorage.setItem("token" , response.data.data.token);
+                      localStorage.setItem("user_id" , response.data.data.id);
                       localStorage.setItem("cart" , JSON.stringify(totalItems));
                       localStorage.setItem("cart_items" , JSON.stringify([...new Set(response.data.data.cart_items)]));
                       dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,

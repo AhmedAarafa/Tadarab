@@ -76,6 +76,16 @@ function LatestCourses() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    // const LSItems:any = localStorage.getItem("cart_items");
+    // const LSItemsIds:any = localStorage.getItem("cart");
+
+    // localStorage.setItem("cart" , JSON.stringify(JSON.parse(LSItemsIds).push(course.id))) ;
+    // localStorage.setItem("cart_items" , JSON.stringify(JSON.parse(LSItems).push({id:course.id,is_special:false,coupon_code:localStorage.getItem("coupon_code") || "" }))) ;
+    // // localStorage.setItem("cart" , JSON.stringify(totalItems));
+    // // localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
+    // dispatch(setCartItems(course));
+
+
     dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
