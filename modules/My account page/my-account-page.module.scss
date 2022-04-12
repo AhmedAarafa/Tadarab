@@ -183,6 +183,11 @@
     font-weight: 800;
 }
 
+.my-account__pagination{
+    @include flex(center,center);
+    padding: 2rem 0 5rem 0;
+}
+
 @media (max-width: 1200px) {
 
     .my-account {

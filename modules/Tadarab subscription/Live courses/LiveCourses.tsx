@@ -13,6 +13,7 @@ import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
 export default function LiveCourses() {
     SwiperCore.use([Navigation]);
@@ -29,15 +30,18 @@ export default function LiveCourses() {
           axiosInstance
           .post(`users/live-subscriptions`, {"course_id" : course.id})
           .then((response:any) => {
-            console.log("Response",response);
-            axiosInstance
-            .get(`home/?country_code=null`)
-            .then(function (response:any) {
-              setLiveCourses(response.data.data.live_courses);
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
+            if(tokenValidationCheck(response)){
+
+              console.log("Response",response);
+              axiosInstance
+              .get(`home/?country_code=null`)
+              .then(function (response:any) {
+                setLiveCourses(response.data.data.live_courses);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+            }
           })
           .catch((error:any)=>{
             console.log("error", error);

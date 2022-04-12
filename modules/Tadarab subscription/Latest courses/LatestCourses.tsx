@@ -418,7 +418,7 @@ function LatestCourses() {
 
                         { course.subscribers_count !== null ? 
                         <div className={styles["latest-courses__popover-container__learners"]}>
-                          <LearnersIcon color="#af151f"/>
+                          <LearnersIcon color="#777"/>
                           <span>{course.subscribers_count}</span>
                           <span>متعلم</span>
                         </div>
@@ -429,7 +429,7 @@ function LatestCourses() {
                           className={
                             styles["latest-courses__popover-container__brief"]
                           }
-                        >
+                          title={course.details}>
                           {course.details}
                         </div>
 
@@ -447,7 +447,7 @@ function LatestCourses() {
                       > 
                         ماذا ستتعلم في الدورة؟
                       </div>
-                      { course.key_points?.slice(0,5).map((kp:string,i:number)=>{
+                      { course.key_points?.slice(0,4).map((kp:string,i:number)=>{
                         return(
                       <div key={i}
                         className={
@@ -472,7 +472,7 @@ function LatestCourses() {
                     </div>
                     
                         {
-                        course.key_points.length > 5 ?
+                        course.key_points.length > 4 ?
                         <Link href={`/course/${course.slug}`}>
 
                           <div className={styles["latest-courses__show-more-link"]}>

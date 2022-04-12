@@ -93,6 +93,10 @@ module.exports = {
         destination: '/Terms',
       },
       {
+        source: '/instructor-terms',
+        destination: '/InstructorTerms',
+      },
+      {
         source: '/privacy',
         destination: '/Privacy',
       },

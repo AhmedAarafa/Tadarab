@@ -377,14 +377,13 @@ useEffect(() => {
         dispatch(setCheckoutType("subscription"));
         // Router.replace("/checkout/payment/?checkout_type=subscription");
         setStep("begin-learning");
-    }
-    // else{
-    //     console.log("dispatch useEffect else");
-    //     setStep("added-courses");
-    //     dispatch(setCheckoutType("cart"));
-    //     // Router.replace("/checkout/payment");
+    } else if (JSON.stringify(Router.query) == "{}"){
+        console.log("dispatch useEffect else");
+        setStep("added-courses");
+        dispatch(setCheckoutType("cart"));
+        // Router.replace("/checkout/payment");
 
-    // }
+    }
   }, [dispatch,router.query]);
 
   

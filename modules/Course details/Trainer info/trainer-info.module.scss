@@ -44,7 +44,7 @@
     font-size: 0.938rem;
 
     span {
-        font-weight: 700;
+        font-weight: 700; 
     }
 
     svg {
@@ -59,6 +59,12 @@
 .trainer-info-section__para {
     font-size: 1rem;
     margin: 1.3rem 0 0.8rem 0;
+    width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 
 }
 
@@ -138,7 +144,7 @@
         display: -webkit-box;
         overflow: hidden;
         text-overflow: ellipsis;
-        -webkit-line-clamp: 5;
+        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
 
     }

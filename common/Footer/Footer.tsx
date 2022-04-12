@@ -152,8 +152,11 @@ export default function FooterSection() {
         <Link href="/terms">
          <li>الشروط والأحكام</li>
         </Link>
+        {/* <Link href="/instructor-terms">
+         <li> الشروط والأحكام للمدرب</li>
+        </Link> */}
         <Link href="/privacy">
-         <li>السياسات والخصوصية</li>
+         <li>السياسات والخصوصية</li> 
         </Link>   
          {/* <li>حقوق الملكية</li>
          <li>الدعم الفني</li>

@@ -343,48 +343,48 @@ const searchBoxToggler = (action:any) =>{
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
                 <Link href="/topic/family">
-                      <li>الاسرة</li>
+                      <li onClick={()=>{setExpanded(false)}}>الاسرة</li>
                       </Link>
                       <Link href="/topic/self-development">
-                      <li>التنمية الذاتية</li>
+                      <li onClick={()=>{setExpanded(false)}}>التنمية الذاتية</li>
                       </Link>
                       <Link href="/topic/health">
-                      <li>الصحة</li>
+                      <li onClick={()=>{setExpanded(false)}}>الصحة</li>
                       </Link>
                       <Link href="/topic/human-recourses">
-                      <li>الموارد البشرية</li>
+                      <li onClick={()=>{setExpanded(false)}}>الموارد البشرية</li>
                       </Link>
                       <Link href="/topic/office">
-                      <li>برامج الأوفيس</li>
+                      <li onClick={()=>{setExpanded(false)}}>برامج الأوفيس</li>
                       </Link>
                       <Link href="/topic/family-and-educational-skills">
-                      <li>تربية الأبناء</li>
+                      <li onClick={()=>{setExpanded(false)}}>تربية الأبناء</li>
                       </Link>
                       <Link href="/topic/technology">
-                      <li>تكنولوجيا</li>
+                      <li onClick={()=>{setExpanded(false)}}>تكنولوجيا</li>
                       </Link>
                       <Link href="/topic/business">
-                      <li>ريادة الأعمال</li>
+                      <li onClick={()=>{setExpanded(false)}}>ريادة الأعمال</li>
                       </Link>
                       <Link href="/topic/language-and-sciences">
-                      <li>علوم ولغات</li>
+                      <li onClick={()=>{setExpanded(false)}}>علوم ولغات</li>
                       </Link>
                       <Link href="/topic/talents">
-                      <li>فن وهوايات</li>
+                      <li onClick={()=>{setExpanded(false)}}>فن وهوايات</li>
                       </Link>
                       <Link href="/topic/home">
-                      <li>منزل</li>
+                      <li onClick={()=>{setExpanded(false)}}>منزل</li>
                       </Link>
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>الأقسام</div></div>
                 <Link href="/courses?filter_type=all">
                   
-                  <li>دورات تدريبية</li>
+                  <li onClick={()=>{setExpanded(false)}}>دورات تدريبية</li>
                 </Link>
                 <Link href="/courses?filter_type=live">
 
-                  <li>دورات مباشرة</li>
+                  <li onClick={()=>{setExpanded(false)}}>دورات مباشرة</li>
                 </Link>
                   {/* <li>الاستشارات</li>
                   <li>كتيبات وملخصات</li>
@@ -399,15 +399,15 @@ const searchBoxToggler = (action:any) =>{
               </ul> */}
             </Offcanvas>
             <Link href="/subscription">
-            <li className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
+            <li onClick={()=>{setExpanded(false)}} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
             </Link>
 
             <Link href="/join-us-as-a-trainer">
-            <li className={styles["sidebar-list__item"]}>انضم كمدرب</li>
+            <li onClick={()=>{setExpanded(false)}} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
             </Link>
             { userStatus.isUserAuthenticated &&
              <Link href="/my-account">
-             <li className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
+             <li onClick={()=>{setExpanded(false)}} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
              </Link>
              }
             <li id="curriculum" className={styles["sidebar-list__item"]}
@@ -431,7 +431,7 @@ const searchBoxToggler = (action:any) =>{
 
           </div>
           <Link href={ userStatus.isUserAuthenticated ? "/my-account" : "/sign-up"}>
-          <Button className={styles["sidebar-list__register-btn"]}>
+          <Button onClick={()=>{setExpanded(false)}} className={styles["sidebar-list__register-btn"]}>
             {
               userStatus.isUserAuthenticated ? 
               "حسابي"
@@ -442,6 +442,8 @@ const searchBoxToggler = (action:any) =>{
           </Link>   
           <Link href={ userStatus.isUserAuthenticated ? "/" : "/sign-in"}>
           <Button onClick={()=>{
+            setExpanded(false);
+            
             userStatus.isUserAuthenticated ? 
             handleLogout() :
             null

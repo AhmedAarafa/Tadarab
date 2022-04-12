@@ -58,9 +58,10 @@ export default function MyCourse() {
                 <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
 
                     {console.log(" courseDetailsData.data", courseDetailsData.data)}
+                    {/* {console.log(   " sssss",((JSON.stringify(courseDetailsData.data?.syllabus)).replace(/^\{/, "[").replace(/.$/,"."))   )} */}
                     {
                         
-                        courseDetailsData.data?.syllabus?.map((syl:any,i:number)=>{
+                        (Object.keys(courseDetailsData.data?.syllabus)).map((syl:any,i:number)=>{
                             return(
 
                                 <Accordion.Item key={i} eventKey={JSON.stringify(i)}  className={styles["purchased-course-content__accordion__item"]}>

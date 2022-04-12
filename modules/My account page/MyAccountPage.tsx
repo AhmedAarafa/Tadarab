@@ -19,6 +19,7 @@ import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck
 
 export default function MyAccountPage() {
   const [courseListing, setCourseListing] = useState<any>([]);
+  const [currentPage, setCurrentPage] = useState("1");
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -54,20 +55,34 @@ export default function MyAccountPage() {
 
   }
 
+  const handlePageClick = (pgNo: any) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setCurrentPage(pgNo);
+    axiosInstance
+      .get(`users/purchased/?country_code=eg&limit=16&page=${pgNo}`)
+      .then(function (response: any) {
+        console.log(response);
+        setCourseListing(response?.data)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   useEffect(() => {
     toggleLoader("show");
 
     axiosInstance
-      .get(`users/purchased/?country_code=eg`)
+      .get(`users/purchased/?country_code=eg&limit=16&page=1`)
       .then(function (response: any) {
-        if(tokenValidationCheck(response)){
+        if (tokenValidationCheck(response)) {
 
           setCourseListing(response?.data);
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
         }
         toggleLoader("hide");
-        
+
       })
       .catch(function (error) {
         toggleLoader("hide");
@@ -87,7 +102,7 @@ export default function MyAccountPage() {
               لا يوجد دورات في حسابك
             </div>
           }
-          {courseListing?.data?.map((course: any, i: number) => {
+          {courseListing?.data?.data?.map((course: any, i: number) => {
 
             return (
               <Card key={i} className={styles["my-account__course-card"]}>
@@ -312,6 +327,50 @@ export default function MyAccountPage() {
               </Card>
             )
           })}
+        </Col>
+
+        <Col xs={12} className={styles["my-account__pagination"]}>
+
+          {
+            courseListing?.pagination?.count > 16 && <Pagination>
+              <Pagination.Prev
+                onClick={() => {
+                  handlePageClick(courseListing?.pagination?.current - 1)
+                }}
+                className={`${currentPage == "1" && styles["disabled"]}`} />
+
+              <Pagination.Item
+                style={{ display: courseListing?.pagination?.previous ? "" : "none" }}
+                active={currentPage == courseListing?.pagination?.previous}
+                onClick={() => {
+                  handlePageClick(courseListing?.pagination?.previous)
+                }}>
+                {courseListing?.pagination?.previous}
+              </Pagination.Item>
+              <Pagination.Item
+                active={currentPage == courseListing?.pagination?.current}
+                onClick={() => {
+                  handlePageClick(courseListing?.pagination?.current);
+                }}>
+                {courseListing?.pagination?.current}
+              </Pagination.Item>
+              <Pagination.Item
+                style={{ display: courseListing?.pagination?.next ? "" : "none" }}
+                active={currentPage == courseListing?.pagination?.next}
+                onClick={() => {
+                  handlePageClick(courseListing?.pagination?.next)
+                }}>
+                {courseListing?.pagination?.next}
+              </Pagination.Item>
+
+              <Pagination.Next
+                onClick={() => {
+                  handlePageClick(courseListing?.pagination?.current + 1)
+                }}
+                className={`${currentPage == courseListing?.pagination?.pages && styles["disabled"]}`} />
+            </Pagination>
+          }
+
         </Col>
 
 

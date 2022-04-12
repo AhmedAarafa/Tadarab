@@ -15,11 +15,12 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
-    const [currentPage, setCurrentPage] = useState("1");
+    const [currentPage, setCurrentPage] = useState(1);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const dispatch = useDispatch();
     const router = useRouter();
@@ -62,15 +63,18 @@ export default function CourseListing() {
                 axiosInstance
                     .post(`users/live-subscriptions`, { "course_id": course.id })
                     .then((response: any) => {
-                        console.log("Response", response);
-                        axiosInstance
-                            .get(`home/?country_code=null`)
-                            .then(function (response: any) {
-                                setCourseListing(response.data.data.live_courses);
-                            })
-                            .catch(function (error) {
-                                console.log(error);
-                            });
+                        if (tokenValidationCheck(response)) {
+
+                            console.log("Response", response);
+                            axiosInstance
+                                .get(`home/?country_code=null`)
+                                .then(function (response: any) {
+                                    setCourseListing(response.data.data.live_courses);
+                                })
+                                .catch(function (error) {
+                                    console.log(error);
+                                });
+                        }
                     })
                     .catch((error: any) => {
                         console.log("error", error);
@@ -132,7 +136,7 @@ export default function CourseListing() {
                 .then(function (response: any) {
                     setCourseListing(response?.data);
                     toggleLoader("hide");
-                    
+
                 })
                 .catch(function (error) {
                     toggleLoader("hide");
@@ -501,12 +505,16 @@ export default function CourseListing() {
                 <Col xs={12} className={styles["course-listing__pagination"]}>
 
 
-                    {!(courseListing?.pagination?.count < 16) && <Pagination>
+                    {!(courseListing?.pagination?.count < 16) && 
+                    <Pagination>
                         <Pagination.Prev
                             onClick={() => {
                                 handlePageClick(courseListing?.pagination?.current - 1)
                             }}
-                            className={`${currentPage == "1" && styles["disabled"]}`} />
+                            className={`${currentPage == 1 && styles["disabled"]}`} />
+
+
+
                         <Pagination.Item
                             style={{ display: courseListing?.pagination?.previous ? "" : "none" }}
                             active={currentPage == courseListing?.pagination?.previous}
@@ -530,6 +538,9 @@ export default function CourseListing() {
                             }}>
                             {courseListing?.pagination?.next}
                         </Pagination.Item>
+
+
+
                         <Pagination.Next
                             onClick={() => {
                                 handlePageClick(courseListing?.pagination?.current + 1)
