@@ -10,7 +10,7 @@ export default function InstructorTerms() {
         <>
             <Container fluid="xxl">
                 <Navbar />
-                <InstructorTerms />
+                <InstructorTermsPage />
             </Container>
         </>
     )
