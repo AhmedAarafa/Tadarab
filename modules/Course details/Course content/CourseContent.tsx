@@ -41,27 +41,12 @@ export default function CourseContent() {
             hours=(duration_calculator(total_duration).h),minutes=(duration_calculator(total_duration).m);
     }
 
-<<<<<<< HEAD
+
     return (
         <>
             <div className={styles["course-content"]}>
                 <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
-=======
-    //     time = Number(time);
-    //     let h = Math.floor(time / 3600);
-    //     let m = Math.floor(time % 3600 / 60);
-    //     let s = Math.floor(time % 3600 % 60);
 
-    // return {h, m, s};
-
-    // }
-
-
-  return (
-    <>
-    <div className={styles["course-content"]}>
-    <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
->>>>>>> d068eda8a38b4b4b63c789d604ebc4126470c7eb
 
                 {/* Course lecture heading */}
                 <div className={styles["course-content__title"]}>
