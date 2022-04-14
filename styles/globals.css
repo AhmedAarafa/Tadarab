@@ -6,7 +6,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url(e:\Desktop\Tadarab Development\tadarab-development\node_modules\normalize.css\normalize.css);
+@import url(c:\Users\User\OneDrive\Desktop\Tadarab Development v5.0.0\v-1.0.0\node_modules\normalize.css\normalize.css);
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12402,6 +12402,7 @@ a {
 .tplayer-dialog .modal-body {
   color: #CCC !important;
   font-weight: normal !important;
+  /*  margin: 4rem 1rem 0 0 !important; */
 }
 
 .tplayer-dialog .modal-header {
@@ -12973,7 +12974,7 @@ input:focus,
 
 .loading-indicator:after {
   content: '';
-  background-image: url(/images/ezgif.com-gif-maker.gif);
+  background-image: url("/images/loader.gif");
   background-repeat: no-repeat;
   background-position: center center;
   position: fixed;
@@ -13308,7 +13309,7 @@ input:-webkit-autofill:active {
 
 .btn:disabled {
   pointer-events: none !important;
-  opacity: 0.9 !important;
+  opacity: 0.85 !important;
 }
 
 @media (min-width: 1400px) {
@@ -13607,7 +13608,7 @@ input:-webkit-autofill:active {
     background-image: url("/images/Loader-Mobile-view1.png");
   }
   .navbar-brand {
-    margin-right: 3rem !important;
+    margin-right: 4.5rem !important;
   }
 }
 

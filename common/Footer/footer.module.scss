@@ -4,6 +4,7 @@
 .footer {
     padding: 5rem 5rem 2rem 5rem;
     background-color: #0E0B1D;
+    margin-top: 5rem;
 }
 
 .footer__logo {
@@ -166,10 +167,10 @@
     margin-right: 3rem;
 }
 
+
+
 .footer__cross-platforms {
-    img {
-        cursor: pointer;
-    }
+    width: 110%;
 }
 
 .footer__cross-platforms,
@@ -183,7 +184,7 @@
     }
 
     img {
-        width: 7.188rem;
+        width: 8rem;
         height: 2.5rem;
         margin-left: 0.4rem;
     }
@@ -267,6 +268,8 @@
 
     .footer {
         padding: 9rem 3rem 30rem 3rem;
+        margin-top: 5rem*2.5;
+
     }
 
     .footer__logo {
@@ -408,7 +411,7 @@
     }
 
     .footer__cross-platforms {
-        width: fit-content;
+        width: 100%;
         margin-bottom: 4.063rem;
 
         img {
@@ -450,6 +453,7 @@
             width: 6.72rem;
             height: 3.75rem;
         }
+
         img:nth-of-type(4) {
             width: 4rem;
             height: 4rem;
@@ -496,5 +500,7 @@
         position: static;
         bottom: 0;
         margin: 0 calc((1978px - 100vw)/2);
+        margin-top: 5rem;
+
     }
 }

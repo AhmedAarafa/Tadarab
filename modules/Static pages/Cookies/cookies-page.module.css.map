@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,cAAc,CAAA;EACV,OAAO,EAAE,IAAI;CAOhB;;AARD,AAEI,cAFU,CAEV,CAAC,CAAA;EACG,SAAS,EAAE,eAAe;CAC7B;;AAJL,AAKI,cALU,CAKV,EAAE,CAAA;EACE,SAAS,EAAE,iBAAiB;CAC/B;;AAIL,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,cAAc,CAAA;IACV,OAAO,EAAE,UAAU;GAOtB;EARD,AAEI,cAFU,CAEV,CAAC,CAAA;IACG,SAAS,EAAE,MAAQ,CAAC,UAAU;GACjC;EAJL,AAKI,cALU,CAKV,EAAE,CAAA;IACE,SAAS,EAAE,MAAU,CAAC,UAAU;GACnC",
+    "sources": [
+        "cookies-page.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "cookies-page.module.css"
+}

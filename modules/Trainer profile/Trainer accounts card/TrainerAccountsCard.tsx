@@ -12,7 +12,7 @@ export default function TrainerAccountsCard() {
     const userStatus = useSelector((state:any) => state.userAuthentication);
 
     useEffect(() => {
-        setTrainerProfile(trainerProfileData.data || {});
+        setTrainerProfile(trainerProfileData?.data?.data || {});
     }, [trainerProfileData]);
 
     return (
@@ -24,53 +24,53 @@ export default function TrainerAccountsCard() {
             </div>
 
             {
-             trainerProfileData.data?.social_link_facebook == "" &&
-             trainerProfileData.data?.social_link_twitter == "" &&
-             trainerProfileData.data?.social_link_instagram == "" &&
-             trainerProfileData.data?.social_link_linkedin == "" &&
-             trainerProfileData.data?.social_link_snapchat == "" &&
-             trainerProfileData.data?.social_link_youtube == "" &&
+             trainerProfile.social_link_facebook == "" &&
+             trainerProfile.social_link_twitter == "" &&
+             trainerProfile.social_link_instagram == "" &&
+             trainerProfile.social_link_linkedin == "" &&
+             trainerProfile.social_link_snapchat == "" &&
+             trainerProfile.social_link_youtube == "" &&
             <div className={styles["trainer-accounts-card__no-accounts"]}>
                  لا يوجد حسابات  لهذا المدرب
             </div>}
             <div className={styles["trainer-accounts-card__accounts-btns"]}>
-                { trainerProfileData.data?.social_link_facebook !== "" 
+                { trainerProfile.social_link_facebook !== "" 
                 &&
-                 <Button href={trainerProfileData.data?.social_link_facebook} target="_blank">
+                 <Button href={trainerProfile.social_link_facebook} target="_blank">
                 <FbIcon color="#222"/>
                     <span>فيسبوك</span>
                 </Button>}
 
-                { trainerProfileData.data?.social_link_twitter !== "" 
-                &&  <Button href={trainerProfileData.data?.social_link_twitter} target="_blank">
+                { trainerProfile.social_link_twitter !== "" 
+                &&  <Button href={trainerProfile.social_link_twitter} target="_blank">
                 <TwitterIcon color="#222"/>
                     <span>تويتر</span>
                 </Button>}
 
-                {trainerProfileData.data?.social_link_instagram !== "" 
+                {trainerProfile.social_link_instagram !== "" 
                 &&
-                <Button href={trainerProfileData.data?.social_link_instagram} target="_blank">
+                <Button href={trainerProfile.social_link_instagram} target="_blank">
                 <InstagramIcon color="#222"/>
                     <span>انستجرام</span>
                 </Button>}
 
-                {trainerProfileData.data?.social_link_linkedin !== "" 
+                {trainerProfile.social_link_linkedin !== "" 
                 &&
-                 <Button href={trainerProfileData.data?.social_link_linkedin} target="_blank">
+                 <Button href={trainerProfile.social_link_linkedin} target="_blank">
                 <LinkedinIcon color="#222"/>
                     <span>لينكدان</span>
                 </Button>}
 
-                {trainerProfileData.data?.social_link_snapchat !== "" 
+                {trainerProfile.social_link_snapchat !== "" 
                 &&
-                 <Button href={trainerProfileData.data?.social_link_snapchat} target="_blank">
+                 <Button href={trainerProfile.social_link_snapchat} target="_blank">
                 <SnapChatIcon color="#222"/>
                     <span>سناب شات</span>
                 </Button>}
 
-                {trainerProfileData.data?.social_link_youtube !== "" 
+                {trainerProfile.social_link_youtube !== "" 
                 &&
-                 <Button href={trainerProfileData.data?.social_link_youtube} target="_blank">
+                 <Button href={trainerProfile.social_link_youtube} target="_blank">
                 <YoutubeIcon color="#222"/>
                     <span>يوتيوب</span>
                 </Button>}

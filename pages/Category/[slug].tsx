@@ -27,6 +27,7 @@ const TrainingCourses = dynamic(() => import("modules/Category/Training courses/
 export default function Category() {
   const router = useRouter()
   const [category, setCategory] = useState<any>({});
+  const [pagination, setPagination] = useState<any>({});
   const Router = useRouter();
   const { slug } = Router.query;
 
@@ -35,12 +36,12 @@ export default function Category() {
   }, [])
   
   useEffect(() => {
-    console.log(Router.query.slug);
     if (Router.query.slug) {
       axiosInstance
-        .get(`categories/${slug}/?country_code=null`)
+        .get(`categories/${slug}/?country_code=null&page=1&limit=12`)
         .then(function (response: any) {
           setCategory(response.data.data);
+          setPagination(response.data.pagination);
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
         })
@@ -64,7 +65,7 @@ export default function Category() {
         {/* <CategoryCourses data={category} />  */}
         {/* <CategoryTopics data={category} /> */}
         <CategoryTrainers data={category} />
-        <TrainingCourses data={category} />
+        <TrainingCourses data={category} pagination={pagination}/>
         <Footer />
       </Container>
     </>

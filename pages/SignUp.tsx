@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import dynamic from 'next/dynamic';
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const SignupPage = dynamic(() => import("modules/Auth/SignUp page/SignupPage"));
+const Footer = dynamic(() => import("common/Footer/Footer"));
 
 
 export default function SignUp() {
@@ -14,6 +15,7 @@ export default function SignUp() {
       <Container fluid="xxl">
         <Navbar />
         <SignupPage />
+        <Footer />
       </Container>
     </>
   );

@@ -1130,6 +1130,7 @@
 
     .latest-courses__see-more-btn-col {
         @include flex(center, center);
+        margin-bottom: 18rem;
     }
 
     .latest-courses__see-more-btn {

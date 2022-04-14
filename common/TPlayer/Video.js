@@ -31,6 +31,7 @@ export const VideoJS = ( props ) => {
 		const player = playerRef.current;
 		return () => {
 			if (player) {
+				player.reset();
 				player.dispose();
 				playerRef.current = null;
 			}

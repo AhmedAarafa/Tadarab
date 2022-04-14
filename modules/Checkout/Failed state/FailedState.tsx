@@ -55,16 +55,16 @@ export default function FailedState() {
                             && (Router.router?.asPath.includes('failed'))) {
                             dispatch(setCheckoutType("subscription"));
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+                            location.reload();
                             console.log("pushed to checkout/payment/?checkout_type=subscription");
-
                         }
                         else if (JSON.stringify(Router.query) == "{}") {
                             dispatch(setCheckoutType("cart"));
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                            location.reload();
                             console.log("pushed to checkout ");
 
                         }
-                        // location.reload();
                     }}>
                         <RetryIcon />
                         <span> حاول الدفع مرة آخرى </span>

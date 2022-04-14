@@ -230,14 +230,14 @@ function CourseDetails() {
 
           let tadarabGA = new TadarabGA();
           let referrer = "";
+          let myHost = window.location.host;
+          if (document.referrer.includes(myHost)) {
 
-          if (document.referrer.includes("localhost")) {
-
-            document.referrer.replace('http://localhost:3000/', '').split('/')[0] == ""
+            document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
               ?
               referrer = "homepage"
               :
-              referrer = document.referrer.replace('http://localhost:3000/', '').split('/')[0]
+              referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
 
           } else {
             referrer = "homepage";
@@ -287,14 +287,14 @@ function CourseDetails() {
     img={courseDetailsData?.data?.seo_image} />
       <Container fluid="xxl">
         <Navbar />
-        {!(courseDetailsData?.data?.course_details?.is_purchased) &&
+        {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
           <>
 
             <MobileNavTabsBar />
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
-                {/* <CourseAdvertisement /> */}
+                <CourseAdvertisement />
                 {originalCardPlacement == false &&
                   <MonthlySubscriptionCard />
                 }
@@ -311,7 +311,7 @@ function CourseDetails() {
                  JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
                 <CourseRequirements />
                  }
-                {/* <CourseContent /> */}
+                <CourseContent />
                 <TrainerInfo />
                 <GuaranteeCard />
                 <CourseCertificate />

@@ -417,8 +417,15 @@ function LatestCourses() {
                                 <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]} 
                               onClick={()=>handleCartActionBtn(course)} disabled={course.is_in_cart}>
                                 <CartIcon color="#fff"/>
-                                <span> أضف للسلة </span>  
-                              </Button>
+                                {
+                                  course.is_in_cart ?
+                                  <span> تمت الإضافة </span>  
+                                  :
+                                  <>
+                                    <span> أضف للسلة </span>  
+                                  </>
+                                }
+                                </Button>
                               }
                           </div> 
 

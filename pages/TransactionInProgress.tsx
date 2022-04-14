@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 // import { BabelLoading,LoopCircleLoading } from "react-loadingg";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter } from 'next/router';
-import { TailSpin } from  'react-loader-spinner';
 import { useDispatch, useSelector } from "react-redux";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';

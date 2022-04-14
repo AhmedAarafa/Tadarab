@@ -8,7 +8,6 @@ import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon,DownloadIcon}  from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
-import useInView from "react-cool-inview";
 
 export default function Books() {
     SwiperCore.use([Navigation]);

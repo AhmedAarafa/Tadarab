@@ -5,8 +5,6 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import TrainerCourses from "../Trainer courses/TrainerCourses";
 import { useDispatch, useSelector } from "react-redux";  
 import { LearnersIcon, CoursesNumberIcon,DropDownIcon } from "common/Icons/Icons";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function TrainerInfo() {
   const trainerProfileData = useSelector((state:any) => state.trainerProfileData);
@@ -103,7 +101,7 @@ export default function TrainerInfo() {
   }, []);
 
   useEffect(() => {
-    setTrainerProfile(trainerProfileData.data || {});
+    setTrainerProfile(trainerProfileData?.data?.data || {});
     const briefAboutTrainer:any = document.getElementById("brief-about-trainer");
     const showMoreIcon:any = document.querySelector("#read-more-icon2 > svg");
     const fadeOut:any = document.getElementById("fadeout2");
@@ -151,13 +149,13 @@ export default function TrainerInfo() {
         <div className={styles["trainer-profile__trainer-info-col__trainer-info-box"]}>
 
           <div className={styles["trainer-profile__trainer-info-col__trainer-info-box__trainer-img"]}>
-            <img src={trainerProfileData.data?.image} alt="trainer image" />
+            <img src={trainerProfileData.data?.data?.image} alt="trainer image" />
           </div>
 
           <div className={styles["trainer-profile__trainer-info-col__trainer-info-box__trainer-info"]}>
-            <div>{trainerProfileData.data?.title}</div>
-            <h1>{trainerProfileData.data?.name_ar }</h1>
-            <div>{trainerProfileData.data?.designation}</div>
+            <div>{trainerProfileData.data?.data?.title}</div>
+            <h1>{trainerProfileData.data?.data?.name_ar }</h1>
+            <div>{trainerProfileData.data?.data?.designation}</div>
           </div>
         </div>
 
@@ -166,7 +164,7 @@ export default function TrainerInfo() {
            <CoursesNumberIcon color="#af151f"/>
             <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses"]}>
                 <div>عدد الدورات</div>
-                <div>{trainerProfileData.data?.courses?.length}</div>
+                <div>{trainerProfileData.data?.data?.courses?.length}</div>
             </div>
           </div>
           <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics"]}>
@@ -176,8 +174,8 @@ export default function TrainerInfo() {
                 <div>عدد المتعلمين</div>
                 <div>
                   {
-                  trainerProfileData.data?.courses?.map((item:any)=> item.subscribers_count).reduce((prev:any, curr:any) => prev + curr, 0) +
-                  parseInt(trainerProfileData.data?.buyers_count) 
+                  trainerProfileData.data?.data?.courses?.map((item:any)=> item.subscribers_count).reduce((prev:any, curr:any) => prev + curr, 0) +
+                  parseInt(trainerProfileData.data?.data?.buyers_count) 
                 }
                 </div>
             </div>
@@ -191,8 +189,8 @@ export default function TrainerInfo() {
           <div id="brief-about-trainer" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer"]}>
           <div className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title"]}>نبذة عن المدرب</div>
           <p id="bio" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para"]}
-          dangerouslySetInnerHTML={{__html: trainerProfileData.data?.bio}}>
-          {/* {trainerProfileData.data?.bio} */}
+          dangerouslySetInnerHTML={{__html: trainerProfileData.data?.data?.bio}}>
+          {/* {trainerProfileData.data?.data?.bio} */}
           </p>
           { isTooMuchContent &&
           <>

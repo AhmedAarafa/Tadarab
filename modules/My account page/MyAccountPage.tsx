@@ -20,14 +20,15 @@ import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck
 export default function MyAccountPage() {
   const [courseListing, setCourseListing] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState("1");
+  const [pageNumber, setPageNumber] = useState(1);
   const userStatus = useSelector((state: any) => state.userAuthentication);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const router = useRouter();
 
 
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `users/purchased/?country_code=eg`);
+      const handleFavResponse: any = handleFav(course, `users/purchased/?country_code=eg&limit=16&page=${pageNumber}`);
       handleFavResponse.then(function (response: any) {
         setCourseListing(response?.data);
       })
@@ -42,7 +43,7 @@ export default function MyAccountPage() {
   const handleCartActionBtn = (course: any): any => {
     dispatch(setCheckoutType("cart"));
 
-    const handleCartResponse: any = handleCart([course], `users/purchased/?country_code=eg`, false);
+    const handleCartResponse: any = handleCart([course], `users/purchased/?country_code=eg&limit=16&page=${pageNumber}`, false);
     handleCartResponse.then(function (firstresponse: any) {
       firstresponse.resp.then(function (response: any) {
         console.log("response,", response);
@@ -102,7 +103,7 @@ export default function MyAccountPage() {
               لا يوجد دورات في حسابك
             </div>
           }
-          {courseListing?.data?.data?.map((course: any, i: number) => {
+          {courseListing?.data?.map((course: any, i: number) => {
 
             return (
               <Card key={i} className={styles["my-account__course-card"]}>
@@ -335,6 +336,7 @@ export default function MyAccountPage() {
             courseListing?.pagination?.count > 16 && <Pagination>
               <Pagination.Prev
                 onClick={() => {
+                  setPageNumber(courseListing?.pagination?.current - 1);
                   handlePageClick(courseListing?.pagination?.current - 1)
                 }}
                 className={`${currentPage == "1" && styles["disabled"]}`} />
@@ -343,6 +345,7 @@ export default function MyAccountPage() {
                 style={{ display: courseListing?.pagination?.previous ? "" : "none" }}
                 active={currentPage == courseListing?.pagination?.previous}
                 onClick={() => {
+                  setPageNumber(courseListing?.pagination?.previous);
                   handlePageClick(courseListing?.pagination?.previous)
                 }}>
                 {courseListing?.pagination?.previous}
@@ -350,6 +353,7 @@ export default function MyAccountPage() {
               <Pagination.Item
                 active={currentPage == courseListing?.pagination?.current}
                 onClick={() => {
+                  setPageNumber(courseListing?.pagination?.current);
                   handlePageClick(courseListing?.pagination?.current);
                 }}>
                 {courseListing?.pagination?.current}
@@ -358,6 +362,7 @@ export default function MyAccountPage() {
                 style={{ display: courseListing?.pagination?.next ? "" : "none" }}
                 active={currentPage == courseListing?.pagination?.next}
                 onClick={() => {
+                  setPageNumber(courseListing?.pagination?.next);
                   handlePageClick(courseListing?.pagination?.next)
                 }}>
                 {courseListing?.pagination?.next}
@@ -365,6 +370,7 @@ export default function MyAccountPage() {
 
               <Pagination.Next
                 onClick={() => {
+                  setPageNumber(courseListing?.pagination?.current + 1);
                   handlePageClick(courseListing?.pagination?.current + 1)
                 }}
                 className={`${currentPage == courseListing?.pagination?.pages && styles["disabled"]}`} />

@@ -497,6 +497,11 @@
   cursor: pointer;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
 @media (max-width: 1200px) {
   .course-listing__course-card {
     width: 18.75rem;

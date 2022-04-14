@@ -13,6 +13,7 @@ export default function CommentsSection(props:any) {
     const [replyTo, setReplyTo] = useState(0);
     const [isCommentTextAreaEmpty, setIsCommentTextAreaEmpty] = useState(true);
     const userStatus = useSelector((state:any) => state.userAuthentication);
+    const [commentsSlicer, setCommentsSlicer] = useState<any>(5);
 
     useEffect(() => { 
         
@@ -109,46 +110,46 @@ export default function CommentsSection(props:any) {
                         return comm.reply_to_comment_id == 0
                       }) ;
         
-                      for (let index = 0; index < noOfComments.length; index++) {
+                    //   for (let index = 0; index < noOfComments.length; index++) {
                       
-                        let commentsTree:any = document.getElementById(`tree-box${index}`);
-                        let commentsBox:any = document.getElementById(`comment-box${index}`);
-                        let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
-                        // console.log("sdsdsd",(parseInt(getComputedStyle( commentsBox ).getPropertyValue('height'))) * -0.25);
+                    //     let commentsTree:any = document.getElementById(`tree-box${index}`);
+                    //     let commentsBox:any = document.getElementById(`comment-box${index}`);
+                    //     let firstReply:any = document.querySelector(`#comment-box__replies${index} > li:first-child`);
+                    //     // console.log("sdsdsd",(parseInt(getComputedStyle( commentsBox ).getPropertyValue('height'))) * -0.25);
                         
                         
-                        window.addEventListener("resize" , ()=>{
-                            rootFontSize = parseFloat(
-                                    window
-                                    .getComputedStyle(document.getElementsByTagName("html")[0])
-                                    .getPropertyValue("font-size")
-                                  );
-                              if(window.innerWidth < 576){
+                    //     window.addEventListener("resize" , ()=>{
+                    //         rootFontSize = parseFloat(
+                    //                 window
+                    //                 .getComputedStyle(document.getElementsByTagName("html")[0])
+                    //                 .getPropertyValue("font-size")
+                    //               );
+                    //           if(window.innerWidth < 576){
                 
-                                document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
-                              document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);                      }else{
+                    //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
+                    //           document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);                      }else{
                 
-                                document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
-                                document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-                            }
-                        })
+                    //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
+                    //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                    //         }
+                    //     })
                 
-                        const resize_ob:any = new ResizeObserver(function(entries):any {
-                            if(window.innerWidth < 576){
+                    //     const resize_ob:any = new ResizeObserver(function(entries):any {
+                    //         if(window.innerWidth < 576){
                 
-                                document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
-                              document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-                            }else{
+                    //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (30.3 *rootFontSize))}px`);
+                    //           document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                    //         }else{
                 
-                                document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
-                                document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
-                            }
-                        });
+                    //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`height: ${(parseInt(getComputedStyle( commentsTree ).getPropertyValue('height')) - (14.41*rootFontSize))}px`);
+                    //             document.styleSheets[0].addRule(`#comment-box__replies${index} > li:first-child:after`,`bottom: ${ firstReply && ((parseInt(getComputedStyle( firstReply ).getPropertyValue('height'))) * 0.66) }px`);
+                    //         }
+                    //     });
                         
-                        // start observing for resize
-                        resize_ob.observe(commentsTree);
+                    //     // start observing for resize
+                    //     resize_ob.observe(commentsTree);
                 
-                    }
+                    // }
                 })
                 .catch(function (error) { 
                 console.log(error); 
@@ -184,8 +185,6 @@ export default function CommentsSection(props:any) {
 
     const handleSubmit = (e:any)=>{
         e.preventDefault();
-        console.log("replyTo",replyTo);
-        
 
         axiosInstance
         .post(`course/${props.Cid()}/comments`,{comment:e.target['0'].value ,reply_to_comment_id:replyTo})
@@ -329,7 +328,7 @@ export default function CommentsSection(props:any) {
                 {
                     courseComments?.filter((comm:any) => {
                         return comm.reply_to_comment_id == 0
-                      }).map((comment:any,i:number)=>{
+                      }).slice(0,commentsSlicer).map((comment:any,i:number)=>{
                         return(
                             <ul key={i} id={`tree-box${i}`} className={styles["comments-section__comments-tree__box"]}>
                                 <li id={`comment-container${i}`}>
@@ -424,6 +423,14 @@ export default function CommentsSection(props:any) {
                             </ul>
                         )
                     })
+                }
+
+                {
+                    commentsSlicer < courseComments?.filter((comm:any) => { return comm.reply_to_comment_id == 0}).length && 
+
+                    <Button onClick={()=> setCommentsSlicer(commentsSlicer+5)} className={styles["show-all-comments-btn"]}>
+                        اعرض تعليقات أكثر
+                    </Button>
                 }
               
 

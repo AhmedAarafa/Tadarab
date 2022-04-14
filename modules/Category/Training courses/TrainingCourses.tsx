@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React,{useState,useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";  
-import { Row, Col, Button,Card,Form,Dropdown,DropdownButton,Offcanvas} from "react-bootstrap";
+import { Row, Col, Button,Card, Pagination} from "react-bootstrap";
 import styles from "./training-courses.module.css";
 import  {CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
 import Link from 'next/link';
@@ -13,8 +13,11 @@ import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { useRouter } from 'next/router';
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
+import { axiosInstance } from "configurations/axios/axiosConfig";
 
 export default function TrainingCourses(props:any) {
+    const [currentPage, setCurrentPage] = useState("1");
+    const [pageNumber, setPageNumber] = useState(1);
     const userStatus = useSelector((state:any) => state.userAuthentication);
     const dispatch = useDispatch();
     const Router = useRouter();
@@ -30,7 +33,7 @@ export default function TrainingCourses(props:any) {
     const [filteredCourses, setFilteredCourses] = useState<any>(null); 
 
     useEffect(() => {
-      setFilteredCourses(props?.data?.courses);      
+      setFilteredCourses(props);      
     }, [props])
     
     const showMoreHandler = (order:any)=>{
@@ -148,9 +151,9 @@ export default function TrainingCourses(props:any) {
  
     const handleFavActionBtn = (course:any):any =>{
         if(userStatus.isUserAuthenticated == true){
-        const handleFavResponse:any = handleFav(course,`categories/${slug}/?country_code=null`);
+        const handleFavResponse:any = handleFav(course,`categories/${slug}/?country_code=null&page=${pageNumber}&limit=12`);
         handleFavResponse.then(function(response:any) {
-            setFilteredCourses(response.data?.data?.courses);
+            setFilteredCourses(response.data);
         })
         }else{
           Router.push({
@@ -163,14 +166,27 @@ export default function TrainingCourses(props:any) {
       const handleCartActionBtn = (course:any):any =>{
         dispatch(setCheckoutType("cart"));
                   
-          const handleCartResponse:any = handleCart([course],`categories/${slug}/?country_code=null`,false);
+          const handleCartResponse:any = handleCart([course],`categories/${slug}/?country_code=null&page=${pageNumber}&limit=12`,false);
           handleCartResponse.then(function(firstresponse:any) {
             firstresponse.resp.then(function(response:any){
-                setFilteredCourses(response.data?.data?.courses);
+                setFilteredCourses(response.data);
                dispatch(setCartItems(firstresponse.cartResponse));
             })
           })
 
+      }
+
+      const handlePageClick = (pgNo: any) => {
+        setCurrentPage(pgNo);
+        axiosInstance
+          .get(`categories/${slug}/?country_code=null&page=${pgNo}&limit=12`)
+          .then(function (response: any) {
+            console.log(response.data);
+            setFilteredCourses(response?.data)
+          })
+          .catch(function (error:any) {
+            console.log(error);
+          });
       }
 
     return (
@@ -247,7 +263,7 @@ export default function TrainingCourses(props:any) {
                         <input className="form-check-input" type="checkbox" onChange={()=>{ handleFilters("price","المدفوع","paid", "prices-paid") }}
                              id="prices-paid" name="prices-paid" />
                         <span >
-                        مدفوع
+                        مدفوع 
                         </span>
                     </li>
                     <li>
@@ -261,7 +277,7 @@ export default function TrainingCourses(props:any) {
                 </ul>
                 <ul className={styles["filter-sidebar__filter-list"]}>
                     <div>المستوى</div>
-                    <li>
+                    <li> 
                         <input className="form-check-input" type="checkbox" onClick={()=> handleFilters("level","مبتدئ","1", "level-beginner")} 
                          id="level-beginner" name="level-beginner" />
                         <span >
@@ -373,8 +389,10 @@ export default function TrainingCourses(props:any) {
             </Col> */}
 
             <Col xs={12} className={styles["training-courses__filtered-courses"]}>
+                {console.log(filteredCourses)
+                }
             {
-            filteredCourses?.map((course:any, i:number)=>{
+            filteredCourses?.data?.courses?.map((course:any, i:number)=>{
             return(
 
                 <Card className={styles["training-courses__course-card"]} key={i}
@@ -426,10 +444,13 @@ export default function TrainingCourses(props:any) {
                                 ]
                                 }
                             >
-                                <img
-                                src={course.trainer.image}
-                                alt={course.trainer.name_ar}
-                                />
+                                <Link href={`/trainer/${course.trainer?.slug}`}>
+
+                                    <img
+                                    src={course.trainer.image}
+                                    alt={course.trainer.name_ar}
+                                    />
+                                </Link>
                             </div>
                             <div
                                 className={
@@ -450,15 +471,18 @@ export default function TrainingCourses(props:any) {
                                     {course.title}
                                     </h1>
                                 </Link>
-                                <div
-                                className={
-                                    styles[
-                                    "training-courses__course-card__card-body__card-header__course-details__author"
-                                    ]
-                                }
-                                >
-                                {course.trainer.name_ar}
-                                </div>
+                                <Link href={`/trainer/${course.trainer?.slug}`}>
+
+                                    <div
+                                    className={
+                                        styles[
+                                        "training-courses__course-card__card-body__card-header__course-details__author"
+                                        ]
+                                    }
+                                    >
+                                    {course.trainer.name_ar}
+                                    </div>
+                                </Link>                     
                             </div>
                             </div>
 
@@ -566,7 +590,11 @@ export default function TrainingCourses(props:any) {
                                     ]
                                 }
                                 > 
-                                <div onClick={()=>handleFavActionBtn(course)}
+                                <div onClick={()=>{
+                                        
+                                    handleFavActionBtn(course)
+                                }
+                            }
                                  className={styles["training-courses__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
 
                                     {
@@ -587,6 +615,56 @@ export default function TrainingCourses(props:any) {
             })
             }
             </Col>
+
+            <Col xs={12} className={styles["training-courses__pagination"]}>
+
+                {
+                filteredCourses?.pagination?.count > 12 && <Pagination>
+                    <Pagination.Prev
+                    onClick={() => {
+                        setPageNumber(filteredCourses?.pagination?.current - 1);
+                        handlePageClick(filteredCourses?.pagination?.current - 1)
+                    }}
+                    className={`${currentPage == "1" && styles["disabled"]}`} />
+
+                    <Pagination.Item
+                    style={{ display: filteredCourses?.pagination?.previous ? "" : "none" }}
+                    active={currentPage == filteredCourses?.pagination?.previous}
+                    onClick={() => {
+                        setPageNumber(filteredCourses?.pagination?.previous);
+                        handlePageClick(filteredCourses?.pagination?.previous)
+                    }}>
+                    {filteredCourses?.pagination?.previous}
+                    </Pagination.Item>
+                    <Pagination.Item
+                    active={currentPage == filteredCourses?.pagination?.current}
+                    onClick={() => {
+                        setPageNumber(filteredCourses?.pagination?.current);
+                        handlePageClick(filteredCourses?.pagination?.current);
+                    }}>
+                    {filteredCourses?.pagination?.current}
+                    </Pagination.Item>
+                    <Pagination.Item
+                    style={{ display: filteredCourses?.pagination?.next ? "" : "none" }}
+                    active={currentPage == filteredCourses?.pagination?.next}
+                    onClick={() => {
+                        setPageNumber(filteredCourses?.pagination?.next);
+                        handlePageClick(filteredCourses?.pagination?.next)
+                    }}>
+                    {filteredCourses?.pagination?.next}
+                    </Pagination.Item>
+
+                    <Pagination.Next
+                    onClick={() => {
+                        setPageNumber(filteredCourses?.pagination?.current + 1);
+                        handlePageClick(filteredCourses?.pagination?.current + 1)
+                    }}
+                    className={`${currentPage == filteredCourses?.pagination?.pages && styles["disabled"]}`} />
+                </Pagination>
+                }
+
+            </Col>
+
         </Row>
             
         </>

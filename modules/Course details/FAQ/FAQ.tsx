@@ -32,7 +32,7 @@ export default function FAQ(props:any) {
         faqs &&
         <div className={styles["faq"]}>
           <div className={styles["faq__title"]}>الأسئلة الشائعة عن الدورة</div>
-          <Accordion defaultActiveKey="0" className={styles["faq__accordion"]}>
+          <Accordion defaultActiveKey="" className={styles["faq__accordion"]}>
             {faqs?.map((faq:any,i:any)=>{
               return(
 

@@ -8,6 +8,7 @@ import withAuth from "configurations/auth guard/AuthGuard";
 import dynamic from 'next/dynamic';
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const SignInPage = dynamic(() => import("modules/Auth/SignIn page/SignInPage"));
+const Footer = dynamic(() => import("common/Footer/Footer"));
 
 
 function SignIn() {
@@ -16,6 +17,7 @@ function SignIn() {
       <Container fluid="xxl">
         <Navbar />
         <SignInPage />
+        <Footer />
       </Container>
     </>
   );

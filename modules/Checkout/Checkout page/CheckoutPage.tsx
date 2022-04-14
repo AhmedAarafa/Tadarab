@@ -69,10 +69,10 @@ useEffect(() => {
     const list: any = document.getElementsByTagName("ol")[0];
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     // const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-    stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
+    stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
     const localStorageItems:any = localStorage.getItem("cart");
     
-    if(JSON.stringify(Router.query) == "{}" && !localStorageItems  && JSON.stringify(localStorageItems) == "[]"){
+    if(JSON.stringify(Router.query) == "{}" && localStorageItems  && JSON.stringify(localStorageItems) !== "[]"){
         console.log("entered" ,JSON.stringify(Router.query) == "{}", localStorageItems , JSON.stringify(localStorageItems) !== "[]");
         
         axiosInstance
@@ -97,6 +97,7 @@ useEffect(() => {
                                     }
                                 });
                             });
+                            console.log("newArray",newArray);
                             setRelatedCourses([...newArray]);
                             }
                             
@@ -136,7 +137,7 @@ useEffect(() => {
         // }
 
     if(document.documentElement.clientWidth <= 576){
-    stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
+        stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         setMobileView(true);
@@ -181,7 +182,7 @@ useEffect(() => {
 
 
     }else{
-    stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
+        stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`: null ;
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
     const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         setMobileView(false);
@@ -232,10 +233,10 @@ useEffect(() => {
     window.addEventListener("resize" ,()=>{
         const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
         const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-        stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
+        stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` :null ;
         if(document.documentElement.clientWidth <= 576){
             setMobileView(true);
-            stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
+            stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
 
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
@@ -278,7 +279,7 @@ useEffect(() => {
             }
 
         }else{
-        stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`;
+            stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px`: null;
             setMobileView(false);
             unCheckedRadioBtns.forEach((radBtn:any) => {
                 radBtn.parentElement.parentElement.style.cssText=`
@@ -371,15 +372,15 @@ useEffect(() => {
         // Router.replace("/checkout/payment/?checkout_type=subscription");
         setStep("payment-types");
         return;
-    }else if(router.query && router.query.checkout_type == "subscription" 
-    && (Router.router?.asPath.includes('success')) || (Router.router?.asPath.includes('failed'))){
+    }else if((Router.query && Router.query.checkout_type == "subscription"   && Router.router?.asPath.includes('success'))
+     || (Router.query && Router.query.checkout_type == "subscription"   && Router.router?.asPath.includes('failed'))){
         console.log("dispatch useEffect else if",Router);
         dispatch(setCheckoutType("subscription"));
         // Router.replace("/checkout/payment/?checkout_type=subscription");
         setStep("begin-learning");
     } else if (JSON.stringify(Router.query) == "{}"){
         console.log("dispatch useEffect else");
-        setStep("added-courses");
+        // setStep("added-courses");
         dispatch(setCheckoutType("cart"));
         // Router.replace("/checkout/payment");
 
@@ -804,7 +805,8 @@ const onError = (data:any,actions:any)=>{
 }
 
   return (
-    <PayPalScriptProvider options={{ vault:true  ,components: 'buttons', "client-id": paymentSettings?.paypal?.client_id }}>
+    <PayPalScriptProvider options={{ vault:true  ,components: 'buttons', "client-id": `${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}`}}>
+
     <>
     <Head>
         <script async src="https://cdn.checkout.com/js/framesv2.min.js"></script>
@@ -1204,6 +1206,7 @@ const onError = (data:any,actions:any)=>{
       
                                                         return actions.subscription.create({
                                                           plan_id:paymentSettings?.paypal.planid,
+                                                        //   plan_id:"P-1VE83386SG308245LMJCAKQA",
                                                           purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
                                                       });
                   
@@ -1593,10 +1596,7 @@ const onError = (data:any,actions:any)=>{
                                      setSucceeded(true);
                                     
                                    axiosInstance
-                                   .get(`payments/details?payment_method=paypal&
-                                   checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
-                                   paypal_order_id=${data.orderID}&
-                                   payment_id=${localStorage.getItem("paymentId")}`)
+                                   .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
                                    .then(function (response:any) {
                                         if(tokenValidationCheck(response)){
                                             
@@ -1844,6 +1844,7 @@ const onError = (data:any,actions:any)=>{
                                                         setCheckoutTransactionDetails(response.data.data);
       
                                                         return actions.subscription.create({
+                                                        //   plan_id: "P-1VE83386SG308245LMJCAKQA",
                                                           plan_id: paymentSettings?.paypal.planid,
                                                           purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
                                                       });
@@ -2223,10 +2224,7 @@ const onError = (data:any,actions:any)=>{
                                       setSucceeded(true);
                                   
                                     axiosInstance
-                                    .get(`payments/details?payment_method=paypal&
-                                    checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
-                                    paypal_order_id=${data.orderID}&
-                                    payment_id=${localStorage.getItem("paymentId")}`)
+                                    .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
                                     .then(function (response:any) {
                                         if(tokenValidationCheck(response)){
                         

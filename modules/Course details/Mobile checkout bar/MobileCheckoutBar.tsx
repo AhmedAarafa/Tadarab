@@ -20,7 +20,7 @@ export default function MobileCheckoutBar() {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    if(userStatus){
+    if(userStatus.isUserAuthenticated){
 
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
     }else{

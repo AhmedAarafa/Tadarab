@@ -116,7 +116,7 @@ export default function SignInPage() {
                     console.log("success");
                     if(response.data.data !== null){
                       const totalItems:any = [];
-                       response.data.data.courses.forEach((item:any)=>{
+                       response.data.data.courses.data.forEach((item:any)=>{
                         totalItems.push(item.id);
                       });
                       localStorage.setItem("token" , response.data.data.token);
@@ -175,7 +175,7 @@ export default function SignInPage() {
                       Router.back();
                       
                     }else if(router.query && router.query.from_subscription){
-                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/${router.query.from_subscription}`);
+                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
                    }else{
                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                    }

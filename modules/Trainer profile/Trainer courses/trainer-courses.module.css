@@ -234,6 +234,24 @@
   cursor: pointer;
 }
 
+.trainer-courses-box__pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2rem 0 5rem 0;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+
 @media (max-width: 575px) {
   .trainer-courses-box {
     padding: 6.5625rem 0 0 0;
@@ -393,6 +411,9 @@
     font-size: 2.25rem !important;
     padding: 1.25rem 2.5rem;
     border-radius: 1.75rem;
+  }
+  .trainer-courses-box__pagination {
+    padding: 5rem 0 12.5rem 0;
   }
 }
 /*# sourceMappingURL=trainer-courses.module.css.map */

@@ -23,7 +23,6 @@ import { setHomePageData } from "configurations/redux/actions/homePageData";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { GetStaticProps } from 'next';
 import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents";
-import useInView from "react-cool-inview";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 // import ReactPixel from 'react-facebook-pixel';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
@@ -44,6 +43,7 @@ const JoinAsATrainer = dynamic(() => import("modules/Home page/Join as a trainer
 const EducationalGuide = dynamic(() => import("modules/Home page/Educational guide/EducationalGuide"));
 const AboutTadarab = dynamic(() => import("modules/Home page/About Tadarab/AboutTadarab"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
+const TadarabUnlimited = dynamic(() => import("modules/Home page/Tadarab unlimited/TadarabUnlimited"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 
 
@@ -64,7 +64,7 @@ function HomePage() {
         
         
       })
-      .catch(function (error) {
+      .catch(function (error:any) {
         toggleLoader("hide");
         console.log(error);
       });
@@ -81,17 +81,7 @@ function HomePage() {
     }
 
   }, []);
-
-
-  const { observe, inView } = useInView({
-    unobserveOnEnter: true,
-    onEnter: ({ scrollDirection, entry, observe, unobserve }) => {
-    },
-    onLeave: ({ scrollDirection, entry, observe, unobserve }) => {
-    },
-  });
-
-
+  
   return (
     <>
       <MetaTagsGenerator title={homePageData?.data?.seo_title}
@@ -101,6 +91,7 @@ function HomePage() {
         <Navbar />
         <HeroSection />
         <LatestCourses />
+        <TadarabUnlimited />
         <CoursesDepartments />
         <LiveCourses />
         <HowToLearnOnTadarab />
@@ -110,6 +101,7 @@ function HomePage() {
             </div>
              } */}
         <Books />
+        <TadarabUnlimited />
         <Statistics />
         <WhyTadarab />
         <LearnFromTheBest />

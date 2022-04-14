@@ -71,6 +71,11 @@
     padding: 2rem 0 5rem 0;
 }
 
+.disabled {
+    pointer-events: none;
+    opacity: 0.65;
+}
+
 
 
 @media (max-width: 1200px){

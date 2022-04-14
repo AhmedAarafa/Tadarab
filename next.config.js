@@ -65,7 +65,7 @@ module.exports = {
         destination: '/ForgetPassword',
       },
       {
-        source: '/join-us-as-a-trainer',
+        source: '/join-as-trainer',
         destination: '/JoinAsATrainer',
       },
       {
@@ -99,6 +99,10 @@ module.exports = {
       {
         source: '/privacy',
         destination: '/Privacy',
+      },
+      {
+        source: '/cookies',
+        destination: '/Cookies',
       },
     ]
   },

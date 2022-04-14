@@ -337,8 +337,8 @@ a {
 
 .video-js .vjs-modal-dialog{background:rgba(0,0,0,0.25) !important;font-family:tadarab-ar-rg,serif!important}
 .tplayer-dialog .modal-header, .tplayer-dialog .modal-body, .tplayer-dialog .modal-footer{text-align:center !important;padding:12px 0px !important;display:block !important;border:none !important;}
-.tplayer-dialog .modal-body{color:#CCC !important;font-weight:normal !important;}
-.tplayer-dialog .modal-header{font-size:21px !important;}
+.tplayer-dialog .modal-body{color:#CCC !important;font-weight:normal !important;/*  margin: 4rem 1rem 0 0 !important; */}
+.tplayer-dialog .modal-header{font-size:21px !important; }
 .tplayer-dialog .modal-header h1{display:inline-block !important;border-bottom:1px solid #828282 !important;padding:5px !important;font-size:28px !important;}
 .tplayer-dialog .modal-header p{padding:0px !important;font-size:15px !important;margin:0px !important;}
 .tplayer-dialog .vjs-modal-dialog-content{display:table !important;}
@@ -588,7 +588,7 @@ input,
 }
 .loading-indicator:after {
   content: '';
-    background-image: url(/images/ezgif.com-gif-maker.gif);
+    background-image: url("/images/loader.gif");
     background-repeat: no-repeat;
     background-position: center center;
     position: fixed;
@@ -954,7 +954,7 @@ input:-webkit-autofill:active{
 
   .btn:disabled {
     pointer-events: none !important;
-    opacity: 0.9 !important; 
+    opacity: 0.85 !important; 
 }
 
 
@@ -1263,7 +1263,7 @@ input:-webkit-autofill:active{
   }
 
   .navbar-brand{
-    margin-right: 3rem !important;
+    margin-right: 4.5rem !important;
   }
 }
 

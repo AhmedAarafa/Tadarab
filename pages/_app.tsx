@@ -41,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     localStorage.setItem("theme", "light");
     document.body.setAttribute("data-theme", "light");
+    // console.log = function() {}
 
   }, []);
 
@@ -71,7 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" />
         <meta name="twitter:creator" content="@tadarab_" />
       </Head>
-       <body>
+       {/* <body> */}
           <Script id="google-analytics-script" dangerouslySetInnerHTML={{__html:`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -95,7 +96,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       height="0" width="0" style="display:none;visibility:hidden"></iframe>`}}></noscript> 
    
       <Provider store={store}> <Component {...pageProps} /></Provider>
-       </body> 
+       {/* </body>  */}
      
     </>
   )

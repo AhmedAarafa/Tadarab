@@ -84,6 +84,8 @@ export default function TrainersList() {
                 handlePageClick(trainersList?.pagination?.current - 1)
               }}
               className={`${currentPage == "1" && styles["disabled"]}`} />
+
+
             <Pagination.Item
               style={{ display: trainersList?.pagination?.previous ? "" : "none" }}
               active={currentPage == trainersList?.pagination?.previous}
@@ -107,6 +109,8 @@ export default function TrainersList() {
               }}>
               {trainersList?.pagination?.next}
             </Pagination.Item>
+
+            
             <Pagination.Next
               onClick={() => {
                 handlePageClick(trainersList?.pagination?.current + 1)

@@ -1,6 +1,7 @@
 .footer {
   padding: 5rem 5rem 2rem 5rem;
   background-color: #0E0B1D;
+  margin-top: 5rem;
 }
 
 .footer__logo img {
@@ -255,8 +256,8 @@
   margin-right: 3rem;
 }
 
-.footer__cross-platforms img {
-  cursor: pointer;
+.footer__cross-platforms {
+  width: 110%;
 }
 
 .footer__cross-platforms,
@@ -273,7 +274,7 @@
 
 .footer__cross-platforms img,
 .footer__pay-box img {
-  width: 7.188rem;
+  width: 8rem;
   height: 2.5rem;
   margin-left: 0.4rem;
 }
@@ -350,6 +351,7 @@
   }
   .footer {
     padding: 9rem 3rem 30rem 3rem;
+    margin-top: 12.5rem;
   }
   .footer__logo img {
     width: 18.125rem;
@@ -517,9 +519,7 @@
     border-bottom: 0.03rem solid rgba(119, 119, 119, 0.6);
   }
   .footer__cross-platforms {
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+    width: 100%;
     margin-bottom: 4.063rem;
   }
   .footer__cross-platforms img {
@@ -597,6 +597,7 @@
     position: static;
     bottom: 0;
     margin: 0 calc((1978px - 100vw)/2);
+    margin-top: 5rem;
   }
 }
 /*# sourceMappingURL=footer.module.css.map */

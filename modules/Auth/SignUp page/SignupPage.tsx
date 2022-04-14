@@ -186,7 +186,7 @@ export default function SignupPage() {
                 FBPixelEventsHandler(response.data.fb_tracking_events,customData);
                 if(response.data.data !== null){
                   const totalItems:any = [];
-                  response?.data?.data?.courses?.forEach((item:any)=>{
+                  response?.data?.data?.courses?.data.forEach((item:any)=>{
                    totalItems.push(item.id);
                  });
                  localStorage.setItem("token" , response.data.data.token);
@@ -202,17 +202,20 @@ export default function SignupPage() {
                     // router.push(router.back());
                     Router.back();
                   }else if(router.query && router.query.from_subscription){
-                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/${Router.query.from_subscription}`);
+                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
                  }else{
+                   console.log("homepage");
                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                  }
                 }
 
+                
+                let tadarabGA = new TadarabGA();
+                tadarabGA.tadarab_fire_traking_GA_code("signup",{traking_email:values.email,traking_uid:response.data.data.id});
 
                 
               }else {
-                let tadarabGA = new TadarabGA();
-                tadarabGA.tadarab_fire_traking_GA_code("signup",{traking_email:values.email,traking_uid:response.data.data.id});
+                console.log(response.data.message);
            
                 // console.log("error 4xx or 5xx");
                 setErrorMessage(response.data.message);
@@ -382,7 +385,6 @@ export default function SignupPage() {
                                 { validationAfterSubmit.password && <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
 
                               <div className="position-relative">
-
                                 {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
                                 <Button onClick={handleValidationOnSubmit} type="submit" className={styles["register__register-box__registeration-form-box__make-new-acc-btn"]}>
                                 انشاء حساب جديد

@@ -2,35 +2,34 @@
 import React,{ useState } from 'react';
 import styles from "./trainers-opinions.module.css";
 import { Row,Col,Button } from "react-bootstrap";
-import ReactPlayer from 'react-player';
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
+import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
+
 
 export default function TrainersOpinions() {
-  const [myVideo, setMyVideo] = useState("https://player.vimeo.com/progressive_redirect/playback/646574244/rendition/1080p?loc=external&signature=7e0eb8fac56302d1b36a911d8a64b0fb2a57fc9b19935abbffac1b38a5a96283")
+  var source = 
+    [{
+    src: 'https://player.vimeo.com/progressive_redirect/playback/646574244/rendition/1080p?loc=external&signature=7e0eb8fac56302d1b36a911d8a64b0fb2a57fc9b19935abbffac1b38a5a96283',
+    type: 'video/mp4',
+  }];
+  
+  /* ,
+  "poster": "https://i.vimeocdn.com/video/640539932_1280x720.jpg?r=pad",
+  "title": "Promotion video",
+  "description": "Promotion video is free"; */
+
   // const [myVideo, setMyVideo] = useState("https://www.youtube.com/watch?v=-X4ikwUwxoE")
   return (
     <Row className={styles["trainers-opinions"]}>
-
       <Col xs={12}>
         <div className={styles["trainers-opinions__title"]}>
         شاهد ماذا قال أكبر المدربين بالخليج والوطن العربى عن منصة تدرب
         </div>
+
         <div className={styles["trainers-opinions__video"]}>
-
-         {/* <img src="/images/VideoPlaceholder2.png" alt="promo video" /> */}
-         {/* <video controls autoPlay >
-          <source src={myVideo} type="video/mp4"></source>
-        </video> */}
-        {/* <ReactPlayer playing
-      width="100%" 
-      height="100%"
-      controls={true} url={myVideo} /> */}
-
-      <video controls={true} >
-        <source type="video/mp4" src={myVideo} />
-      </video>
-        
+          <TadarabVideoPlayer Source={source} Poster={"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/join-as-trainer-video.png"} />
         </div>
+
         <div className={styles["trainers-opinions__inquiries-section"]}>
           <div>تحتاج مساعدة أو استفسار؟</div>
           <div>فريق عمل تدرب يساعدك بداية من إعداد المحتوى حتى التسويق لدورتك التدريبية</div>

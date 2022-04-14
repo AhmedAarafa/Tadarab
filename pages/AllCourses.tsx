@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const CourseListing = dynamic(() => import("modules/Course listing/CourseListing"));
+const Footer = dynamic(() => import("common/Footer/Footer"));
 
 export default function AllCourses() {
     return (
@@ -13,6 +14,7 @@ export default function AllCourses() {
             <Container fluid="xxl">
                 <Navbar />
                 <CourseListing />
+                <Footer />
             </Container>
         </>
     )

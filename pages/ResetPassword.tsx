@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import dynamic from 'next/dynamic';
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const ChangePasswordPage = dynamic(() => import("modules/Auth/Change password page/ResetPasswordPage"));
+const Footer = dynamic(() => import("common/Footer/Footer"));
 
 
 export default function ChangePassword() {
@@ -14,6 +15,7 @@ export default function ChangePassword() {
     <Container fluid="xxl">
       <Navbar />
       <ChangePasswordPage />
+      <Footer />
     </Container> 
     </>
   );

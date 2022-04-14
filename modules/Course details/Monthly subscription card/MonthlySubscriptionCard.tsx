@@ -31,7 +31,7 @@ export default function MonthlySubscriptionCard() {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-     if(userStatus){
+     if(userStatus.isUserAuthenticated){
 
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
     }else{
@@ -206,7 +206,12 @@ export default function MonthlySubscriptionCard() {
             }
           >
             <CartIcon color="#222" />
-            <span> امتلك هذه الدورة </span>
+            {
+              courseDetails?.course_details?.is_in_cart ?
+              <span> تمت الإضافة </span>  
+              :
+              <span> امتلك هذه الدورة </span>
+          }  
           </Button>
 
 
@@ -626,7 +631,12 @@ export default function MonthlySubscriptionCard() {
               }
             >
               <CartIcon color="#222" />
-              <span>امتلك هذه الدورة</span>
+              {
+              courseDetails?.course_details?.is_in_cart ?
+              <span> تمت الإضافة </span>  
+              :
+              <span> امتلك هذه الدورة </span>
+          } 
             </Button>
             <Button
               className={

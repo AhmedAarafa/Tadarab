@@ -12,10 +12,10 @@ export default function Faq() {
         <Col xs={12} className={styles["faq"]}>
             <div className={styles["faq__title"]}>
                 <div>الأسئلة الشائعة</div>
-                <div>عن نظام الاشتراك الشهري</div>
+                <div>عن التدريب على منصة تدرب</div>
             </div>
 
-            <Accordion className={styles["faq__accordion"]}>
+            <Accordion defaultActiveKey="" className={styles["faq__accordion"]}>
 
               <Accordion.Item
                 eventKey="0"

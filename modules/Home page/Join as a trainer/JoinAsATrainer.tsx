@@ -18,7 +18,7 @@ export default function JoinAsATrainer() {
                     <div className={styles["join-as-a-trainer__para"]}>
                     نساعدك على تقديم دورة مميزة لإثراء المحتوى العربي بشيءٍ جديدٍ ذي قيمة.
                         </div>
-                        <Link href="/join-us-as-a-trainer">
+                        <Link href="/join-as-trainer">
                             <Button className={styles["join-as-a-trainer__btn"]}>
                                     انضم إلينا الآن 
 

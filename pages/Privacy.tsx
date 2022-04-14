@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const PrivacyPage = dynamic(() => import("modules/Static pages/Privacy/PrivacyPage"));
+const Footer = dynamic(() => import("common/Footer/Footer"));
 
 export default function Privacy() {
     return (
@@ -11,6 +12,7 @@ export default function Privacy() {
             <Container fluid="xxl">
                 <Navbar />
                 <PrivacyPage />
+                <Footer />
             </Container>
         </>
     )

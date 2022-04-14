@@ -39,6 +39,8 @@ export default function SuccessState() {
       localStorage.setItem("cart" , "[]");
       dispatch(setCartItems(null));
       console.log("success state",invoiceDetails);
+      localStorage.setItem("cart",JSON.stringify([]));
+      localStorage.setItem("cart_items",JSON.stringify([]));
       
       return () => {
           console.log("setCheckoutType dispatched");

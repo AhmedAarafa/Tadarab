@@ -1253,6 +1253,7 @@
   font-size: 0.6875rem;
   text-align: center;
   margin-top: 0.2rem;
+  color: var(--grey) !important;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__terms {

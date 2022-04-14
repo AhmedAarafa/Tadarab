@@ -5,6 +5,7 @@ import { Row, Col, Button, Card, Accordion, ProgressBar } from "react-bootstrap"
 import { CheckCircleIcon, AttachmentsIcon, CongratulationsIcon, FileDownloadIcon, ShareIcon } from 'common/Icons/Icons';
 import { useDispatch, useSelector } from "react-redux";  
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import { TadarabVideoPlayer, TPlayerPaidPlayList } from "common/TPlayer/TPlayer";
 
 export default function MyCourse() {
     const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -27,7 +28,7 @@ export default function MyCourse() {
         .then(function (response:any) {
             setUserInfo(response.data.data);
         })
-        .catch(function (error) {
+        .catch(function (error:any) {
           console.log(error); 
         });
       }, []);
@@ -44,126 +45,28 @@ export default function MyCourse() {
             <Row className={styles["my-course"]}>
               { myCourseNavigator == "curriculum" && 
                 <>
-                <Col xs={{span:12 , order:2}} sm={4}>
+                { console.log("courseDetailsData.data :",courseDetailsData.data) }
+                <Col xs={{span:12 , order:2}} sm={{span:4 , order:1}}>
                     <div className={styles["purchased-course-playlist"]}>
-                <div className={styles["purchased-course-playlist__progress-box"]}>
-                    <span>  منهج الدورة  </span>
-                    <span>  ( 32% مكتمل )  </span>
-                    <div className={styles["purchased-course-playlist__progress-box__progress-bar"]}>
-
-                        <ProgressBar now={32} />
-                    </div>
-                </div>
-
-                <Accordion defaultActiveKey="" className={styles["course-content__accordion"]}>
-
-                    {console.log(" courseDetailsData.data", courseDetailsData.data)}
-                    {/* {console.log(   " sssss",((JSON.stringify(courseDetailsData.data?.syllabus)).replace(/^\{/, "[").replace(/.$/,"."))   )} */}
-                    {
-                        
-                        (Object.keys(courseDetailsData.data?.syllabus)).map((syl:any,i:number)=>{
-                            return(
-
-                                <Accordion.Item key={i} eventKey={JSON.stringify(i)}  className={styles["purchased-course-content__accordion__item"]}>
-                                <Accordion.Header className={styles["purchased-course-content__accordion__header"]}>
-
-                                    <div className={styles["course-content__accordion__header__details-box"]}>
-                                        <div className={styles["purchased-course-content__accordion__header__group-number"]}>
-                                        {syl.title}
-                                        <span>(3/5)</span>
-                                        </div>
-                                    
-                                    </div>
-                                </Accordion.Header>
-                                <Accordion.Body className={styles["purchased-course-content__accordion__body"]}>
-                                    {
-                                        syl.lectures?.map((lec:any,i:number)=>{
-                                            return(
-                                                <div key={i} className={styles["purchased-course-content__accordion__body__list-item"]}>
-                                                    <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
-                                                        <div className={styles["purchased-course-content__accordion__body__list-item__icon"]}>
-                                                            <CheckCircleIcon color="#9E9DA4" />
-                                                            
-                                                        </div>
-                                                        <div className={styles["purchased-course-content__accordion__body__list-item__lesson-name"]}>
-                                                            <div>{lec.title}</div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className={styles["purchased-course-content__accordion__body__list-item__duration"]}>
-                                                    01:34
-                                                    </div>
-                                                </div>
-
-                                            )
-                                        })
-                                    }
-                                
-                                </Accordion.Body>
-                                </Accordion.Item>
-
-                            )
-
-                        })
-                    }
-
-                
-                </Accordion>
-
-            </div>
-                <Accordion defaultActiveKey="" 
-                        className={`${styles["course-content__attachments-accordion"]}`}>
-
-                            <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
-                            <Accordion.Header className={styles["course-content__accordion__header"]}>
-
-                                <div className={styles["course-content__accordion__header__details-box"]}>
-                                    <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
-                                    ملفات شرح
-                                    </div>
-                                </div>
-                            </Accordion.Header>
-                            <Accordion.Body className={styles["course-content__accordion__body"]}>
-                                {
-                                    courseDetailsData.data?.attachments?.map((att:any,i:number)=>{
-                                        return(
-                                            <div key={i} className={styles["course-content__accordion__body__list-item"]}>
-                                                <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
-                                                    <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                        <AttachmentsIcon />
-                                                    </div>
-                                                    <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
-                                                        <div>{att.title}</div>
-                                                    
-                                                    </div>
-                                                </div>
-
-                                                <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
-                                                    <FileDownloadIcon color="#af151f"/>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            
-                            </Accordion.Body>
-                            </Accordion.Item>
-
-                        </Accordion>
-                    </Col>
-                    <Col xs={12} sm={8} className="d-sm-none">
-                        <div className={styles["my-course__video-player"]}>
-
-                            <img src="/images/VideoPlaceholder.png" alt="" />
-
+                        <div className={styles["purchased-course-playlist__progress-box"]}>
+                            <span>  منهج الدورة  </span>
+                            <span>  ( 32% مكتمل )  </span>
+                            <div className={styles["purchased-course-playlist__progress-box__progress-bar"]}>
+                                <ProgressBar now={32} />
+                            </div>
                         </div>
+                        <TPlayerPaidPlayList />
+                    </div>
+                </Col>
 
-                        <Accordion defaultActiveKey="" 
-                        className={`${styles["course-content__attachments-accordion"]} d-none`}>
-
-                            <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
+                <Col xs={{span:12 , order:1}} sm={{span:8 , order:2}}>
+                    {/* <div className={styles["my-course__video-player"]}> */}
+                    <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}`}>
+                        <TadarabVideoPlayer />
+                    </div>
+                    <Accordion defaultActiveKey="" className={`${styles["course-content__attachments-accordion"]}`}>
+                        <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
                             <Accordion.Header className={styles["course-content__accordion__header"]}>
-
                                 <div className={styles["course-content__accordion__header__details-box"]}>
                                     <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
                                     ملفات شرح
@@ -171,8 +74,8 @@ export default function MyCourse() {
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body className={styles["course-content__accordion__body"]}>
-                                {
-                                    courseDetailsData.data?.attachments?.map((att:any,i:number)=>{
+                                { courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
+                                    Object.keys(courseDetailsData.data?.attachments)?.map((att:any,i:number)=>{
                                         return(
                                             <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                 <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
@@ -192,16 +95,51 @@ export default function MyCourse() {
                                         )
                                     })
                                 }
-                            
                             </Accordion.Body>
-                            </Accordion.Item>
+                        </Accordion.Item>
 
-                        </Accordion>
+                    </Accordion>
 
+                    {/* <Accordion defaultActiveKey="" 
+                    className={`${styles["course-content__attachments-accordion"]} d-none`}>
 
+                        <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
+                        <Accordion.Header className={styles["course-content__accordion__header"]}>
 
+                            <div className={styles["course-content__accordion__header__details-box"]}>
+                                <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
+                                ملفات شرح
+                                </div>
+                            </div>
+                        </Accordion.Header>
+                        <Accordion.Body className={styles["course-content__accordion__body"]}>
+                            {
+                                courseDetailsData.data?.attachments?.map((att:any,i:number)=>{
+                                    return(
+                                        <div key={i} className={styles["course-content__accordion__body__list-item"]}>
+                                            <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
+                                                <div className={styles["course-content__accordion__body__list-item__icon"]}>
+                                                    <AttachmentsIcon />
+                                                </div>
+                                                <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
+                                                    <div>{att.title}</div>
+                                                
+                                                </div>
+                                            </div>
 
-                    </Col>
+                                            <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
+                                                <FileDownloadIcon color="#af151f"/>
+                                            </div>
+                                        </div>
+                                    )
+                                })
+                            }
+                        
+                        </Accordion.Body>
+                        </Accordion.Item>
+
+                    </Accordion> */}
+                </Col>
                 </>
                 }
 

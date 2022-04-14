@@ -16,6 +16,7 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
+const Footer = dynamic(() => import("common/Footer/Footer"));
 
 
 export default function TrainerProfile() {
@@ -44,10 +45,10 @@ export default function TrainerProfile() {
     if (router.query.slug) {
 
       axiosInstance
-        .get(`trainers/${slug}/?country_code=null`)
+        .get(`trainers/${slug}/?country_code=null&limit=10&page=1`)
         .then(function (response: any) {
           const data: Trainer = response.data.data;
-          dispatch(setTrainerProfileData(data));
+          dispatch(setTrainerProfileData(response.data));
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
           
@@ -66,12 +67,13 @@ export default function TrainerProfile() {
 
   return (
     <>
-      <MetaTagsGenerator title={trainerProfileData?.data?.seo_title}
-        description={trainerProfileData?.data?.seo_metadesc}
-        img={trainerProfileData?.data?.seo_image} />
+      <MetaTagsGenerator title={trainerProfileData?.data?.data?.seo_title}
+        description={trainerProfileData?.data?.data?.seo_metadesc}
+        img={trainerProfileData?.data?.data?.seo_image} />
       <Container fluid="xxl">
         <Navbar />
         <TrainerProfilePage />
+        <Footer />
       </Container>
     </>
   );

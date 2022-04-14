@@ -1,0 +1,27 @@
+Version 1.9.0 (12th April 2022)
+1)	Intigrated player on my course page
+2)	Fixed issue with playpal, visamaster and knet
+3)	Create flow for all payment options.
+4)	Fixed all big issues.
+
+Version 1.4.0 (06th April 2022)
+1)	Intigrated player
+2)	Intigrate player with playlist
+3)	Fixed issues
+
+Version 1.3.0 (04th April 2022)
+1)	Issue fixced with first time data not loaded 
+2)	intigrate new player and change player base playlist endpoints.
+3)	Fixed issues
+
+Version 1.2.0 (04th April 2022)
+1)	Change API call developer to app.tadarab.com
+2)	Base URL last end / issue fixed.
+3)	Fixed issues
+
+Version 1.1.0 (03rd April 2022)
+1)	Fixed some issue
+2)	Change endpoints /courses to /course
+
+Version 1.0.0 (19th March 2022)
+1)	Initial Version

@@ -143,7 +143,7 @@ export default function FooterSection() {
           <Col xs={{span:12,order:3}} sm={{span:2,order:3}}>
        <ul className={styles["footer__about-tadarab-list"]}>
          <li>عن تدرب</li>
-         <Link href="/join-us-as-a-trainer">
+         <Link href="/join-as-trainer">
          <li>انضم كمدرب</li>
         </Link>
          <Link href="/my-account">
@@ -152,9 +152,12 @@ export default function FooterSection() {
         <Link href="/terms">
          <li>الشروط والأحكام</li>
         </Link>
-        {/* <Link href="/instructor-terms">
+        <Link href="/instructor-terms">
          <li> الشروط والأحكام للمدرب</li>
-        </Link> */}
+        </Link>
+        <Link href="/cookies">
+         <li>سياسة ملفات تعريف الارتباط</li> 
+        </Link>   
         <Link href="/privacy">
          <li>السياسات والخصوصية</li> 
         </Link>   
@@ -171,9 +174,9 @@ export default function FooterSection() {
                 <img src="/images/logo.svg" alt="Tadarab logo" />
               </div>
               <div className={styles["footer__cross-platforms"]}>
-                <div>قريباً على أجهزة الانرويد والايفون</div>
-                <img src="/images/app-store.png" alt="App store" />
-                <img src="/images/google-play.png" alt="Google play" />
+                <div>قريباً على أجهزة الاندرويد والايفون</div>
+                <img src="/images/availableOnIos.png" alt="App store" />
+                <img src="/images/availableOnAndroid.png" alt="Google play" />
               </div>
               <div className={styles["footer__pay-box"]}>
                 <div>وسائل الدفع</div>

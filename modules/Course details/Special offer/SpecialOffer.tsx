@@ -48,11 +48,11 @@ export default function SpecialOffer(props:any) {
                         time += response?.data?.data.countdown * 3600 * 1000;
                         now.setTime(time);
                         document.cookie = 
-                        'timer=' + ((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60)) + 
+                        'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown)*60*60)) + 
                         '; expires=' + (new Date(now)).toUTCString() + 
                         '; path=/';
                         
-                        timerHandler((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60));
+                        timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown)*60*60));
                         console.log("response?.data?.data?.countdown",response?.data?.data?.countdown);
                         
                         
@@ -72,10 +72,10 @@ export default function SpecialOffer(props:any) {
                 time += response?.data?.data.countdown * 3600 * 1000;
                 now.setTime(time);
                 document.cookie = 
-                'timer=' + ((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60)) + 
+                'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown)*60*60)) + 
                 '; expires=' + (new Date(now)).toUTCString() + 
                 '; path=/';
-                timerHandler((Math.floor(Date.now() / 1000)) + (response?.data?.data?.countdown*60*60));
+                timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown)*60*60));
             }
           })
           .catch(function (error) {
@@ -325,7 +325,9 @@ export default function SpecialOffer(props:any) {
                         <CartIcon color="#fff"/>
 
                         <span>
-                        احصل على العرض
+                            {disabled ?
+                             "تمت الإضافة" :
+                              "احصل على العرض"}
                         </span>
 
                         </Button>

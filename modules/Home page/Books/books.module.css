@@ -590,6 +590,7 @@
   }
   .books__cards-carousel {
     background-color: white;
+    margin-bottom: 5rem;
   }
   .books__cards-carousel > div {
     padding: 1.55rem 6.2rem !important;
