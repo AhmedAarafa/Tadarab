@@ -41,10 +41,18 @@ export default function CourseContent() {
             hours=(duration_calculator(total_duration).h),minutes=(duration_calculator(total_duration).m);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa0a80a2987edff100736d23988859ee749a1cea
     return (
         <>
             <div className={styles["course-content"]}>
                 <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa0a80a2987edff100736d23988859ee749a1cea
 
                 {/* Course lecture heading */}
                 <div className={styles["course-content__title"]}>
