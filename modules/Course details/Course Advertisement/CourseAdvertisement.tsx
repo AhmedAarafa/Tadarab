@@ -10,8 +10,7 @@ import "video.js/dist/video-js.css";
 import Link from "next/link";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
 
-export default function CourseAdvertisement() {
-
+export default function CourseAdvertisement(theOption: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -51,42 +50,30 @@ export default function CourseAdvertisement() {
                 </Link>
               )
             })
-          }
+          } 
 
         </ul>
-        {/* <div className={styles["course-ad__course-img"]}>
-                <img src="/images/course2cropped.png" alt="course image" />
-                <div className={styles["course-ad__course-img__watch-ad"]}>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="3.125rem" height="3.125rem" viewBox="0 0 50 50">
-                            <g id="play" transform="translate(-1 -1)">
-                                <g id="Group_11421" data-name="Group 11421" transform="translate(1 1)">
-                                <g id="Group_11420" data-name="Group 11420" transform="translate(0 0)">
-                                    <path id="Path_13148" data-name="Path 13148" d="M26,1A25,25,0,1,0,51,26,25,25,0,0,0,26,1Zm9.308,26.378L20.881,35.706a1.424,1.424,0,0,1-2.136-1.234V17.815a1.424,1.424,0,0,1,2.137-1.234L35.309,24.91a1.425,1.425,0,0,1,0,2.467Z" transform="translate(-1 -1)" fill="#fff"/>
-                                </g>
-                                </g>
-                            </g>
-                        </svg>
-
-                    </div>
-                    <div>شاهد إعلان الدورة</div>
-                </div>
-
-            </div> */}
-
-        {courseDetailsData.data == undefined ?
+        {courseDetailsData?.data == undefined ?
           <></>
           :
           <>
 
-            <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]} ${styles["video-player-gradient"]}`}>
-              {/*     const gradientLayer:any = document.getElementById("video-player-container");
-             gradientLayer.classList.remove("video-player-gradient"); */}
-              <TadarabVideoPlayer />
+            <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}
+             ${( (theOption.postType !== 'webinar') ) && styles["video-player-gradient"]}`}>
+              {((theOption) && (theOption.postType === 'webinar') && (theOption.postSrc != '')) ?
+                <>
+                  <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
+                    <iframe src={theOption.postSrc}></iframe>
+                  </div>
+                </>
+                :
+                <>
+                  <TadarabVideoPlayer />
+                </>
+              }
             </div>
 
             <h1 className={styles["course-ad__course-title"]}>
-
               {courseDetailsData?.data?.course_details?.title}
             </h1>
             <div className={styles["course-ad__course-description"]}>
@@ -122,7 +109,8 @@ export default function CourseAdvertisement() {
                   </g>
                 </svg>
 
-                <span>٨ ساعات تدريبية</span>
+                <span>{Math.round(courseDetailsData?.data?.total_duration/60/60)} ساعات تدريبية</span>
+
               </div>
               <div
                 className={

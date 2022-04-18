@@ -896,6 +896,9 @@
 }
 
 .checkout__cart-sticky-card__subscribe-box{
+    iframe{
+        z-index: 0 !important;
+    }
     &>div:nth-of-type(1){
         font-size: 1rem;
         color: var(--grey);
@@ -923,7 +926,11 @@
 }
 
 .checkout__subscription-benefits__sub-benefits{
+    font-size: 1.1rem;
     @include flex(center,flex-start);
+    span{
+        display: inline-block;
+    }
 }
 
 .checkout__cart-sticky-card__subscribe-summary__title{
@@ -968,6 +975,15 @@
     background-color: rgba(0, 0, 0, 0.05);
     color: var(--dark-black);
     cursor: pointer;
+}
+
+.checkout__subscription-benefits__title--important{
+    color: var(--primary-red);
+    display: inline-block;
+    margin: 0 0.1rem;
+    span{
+        display: inline-block;
+    }
 }
 
 
@@ -1447,8 +1463,10 @@
 
         flex-direction: column;
         &::before{
-            left: 64% !important;
+            left: 70% !important;
+            width: 75% !important;
         }
+        width: calc(100vw/2) !important;
     }
 
     .checkout__stepper-box__stepper__item--active {
@@ -2197,6 +2215,10 @@
     font-size: 0.9rem*2.5 !important;
     padding: 0.5rem*2.5 1rem*2.5;
     border-radius: 0.7rem*2.5;
+}
+
+.checkout__subscription-benefits__sub-benefits{
+    font-size: 1.1rem*2.1;
 }
 
 }

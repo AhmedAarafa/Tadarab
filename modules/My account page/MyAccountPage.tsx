@@ -16,13 +16,17 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from 'swiper';
+import "swiper/css";
 
 export default function MyAccountPage() {
+  SwiperCore.use([Navigation]);
   const [courseListing, setCourseListing] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState("1");
   const [pageNumber, setPageNumber] = useState(1);
   const userStatus = useSelector((state: any) => state.userAuthentication);
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const router = useRouter();
 
 
@@ -97,13 +101,66 @@ export default function MyAccountPage() {
   return (
     <>
       <Row>
+
+        <div className={styles['my-account__explore-courses']}> 
+          تصفح الدورات من خلال الأقسام
+        </div>
+
+        <Col xs={12} className={styles['my-account__cards-carousel']}>
+          <Swiper dir="rtl" slidesPerView={7} navigation={true}
+            breakpoints={{
+              "50": {
+                "slidesPerView": 2,
+              },
+              "576": {
+                "slidesPerView": 5,
+              },
+              "981": {
+                "slidesPerView": 7,
+              },
+            }} className="mySwiper">
+
+            {courseListing?.data?.categories?.map((cat: any, i: any) => {
+              return (
+                <SwiperSlide key={i} style={{ cursor: "pointer" }}>
+
+                  <Link href={`/topic/${cat.slug}`}>
+                    <div className={styles["my-account__cards-carousel__departments-card"]}>
+                      <div>
+
+                        <div className="d-flex justify-content-center">
+
+                          <div className={styles["my-account__cards-carousel__departments-card__img-box"]}
+                            style={{ backgroundColor: cat.color }}>
+                            <img src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
+
+
+                          </div>
+                        </div>
+                        <div className={styles["my-account__cards-carousel__departments-card__department"]}>{cat.title}</div>
+                        <div className={styles["my-account__cards-carousel__departments-card__learners-number"]}>
+                          {cat.courses_count} دورة
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+
+                </SwiperSlide>
+              )
+            })
+            }
+
+
+          </Swiper>
+        </Col>
+
         <Col xs={12} className={styles["my-account"]}>
           {courseListing?.data?.length == 0 &&
             <div className={styles["my-account__you-have-no-courses"]}>
               لا يوجد دورات في حسابك
             </div>
           }
-          {courseListing?.data?.map((course: any, i: number) => {
+          {courseListing?.data?.courses?.map((course: any, i: number) => {
 
             return (
               <Card key={i} className={styles["my-account__course-card"]}>
@@ -331,6 +388,8 @@ export default function MyAccountPage() {
         </Col>
 
         <Col xs={12} className={styles["my-account__pagination"]}>
+          {console.log(courseListing)
+          }
 
           {
             courseListing?.pagination?.count > 16 && <Pagination>

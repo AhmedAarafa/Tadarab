@@ -420,7 +420,7 @@ function LatestCourses() {
                         <div className={styles["latest-courses__popover-container__learners"]}>
                           <LearnersIcon color="#777"/>
                           <span>{course.subscribers_count}</span>
-                          <span>متعلم</span>
+                          <span>دورة</span>
                         </div>
                         :
                         null

@@ -18,7 +18,7 @@ interface ForgetPasswordFormValues {
   export default function ForgetPasswordPage() {
       const [fieldBlur, setFieldBlur] = useState({email:""});
       const [validationAfterSubmit, setValidationAfterSubmit] = useState({email:false});
-      const [serverResponse, setServerResponse] = useState({value : "" , color:""});
+      const [serverResponse, setServerResponse] = useState({value : "" , color:"", bgcolor:""});
 
       function validationSchema() {
          return Yup.object().shape({
@@ -59,7 +59,7 @@ interface ForgetPasswordFormValues {
                     validationSchema={validationSchema}
                     onSubmit={(values:any):any =>{
                         if(fieldBlur.email == ""){
-                        setValidationAfterSubmit({email:true})
+                        setValidationAfterSubmit({email:true}) 
                       }
                       axiosInstance
                         .post(`reset-password`, {
@@ -67,9 +67,9 @@ interface ForgetPasswordFormValues {
                         })
                         .then((response:any) => {
                         if(!JSON.stringify(response.status).startsWith("2")){
-                            setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red"});
+                            setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red", bgcolor:"#fcaaac"});
                         }else{
-                            setServerResponse({value: "تم إرسال رابط تغيير كلمة المرور، يرجى فحص بريدك الإلكتروني" , color:"green"})
+                            setServerResponse({value: "تم إرسال رابط تغيير كلمة المرور، يرجى فحص بريدك الإلكتروني" , color:"green", bgcolor:"#C7F6B6"})
                         }
                         
                         })
@@ -90,7 +90,7 @@ interface ForgetPasswordFormValues {
                                     <Field
                                     onKeyPress={ (e:any)=>{
                                         e.stopPropagation();
-                                        setServerResponse({value:"" , color:""});
+                                        setServerResponse({value:"" , color:"", bgcolor:""});
                                         setValidationAfterSubmit({email:false});
                                     } }
                                     onBlur={(e:any) => {
@@ -111,10 +111,10 @@ interface ForgetPasswordFormValues {
                                 </div>
                                     { validationAfterSubmit.email && <ErrorMessage name="email" component="div" className={styles["error-msg"]} />}
                                <div className="position-relative">
-                                {serverResponse.value !== "" && <div style={{color:`${serverResponse.color}`}} className={styles["server-response"]} >{serverResponse.value}</div>}
 
                                 <Button onClick={handleValidationOnSubmit} type="submit" className={styles["forget-password__forget-password-box__send-btn"]}>
                                 إرسال
+                                {serverResponse.value !== "" && <div style={{color:`${serverResponse.color}` , backgroundColor:`${serverResponse.bgcolor}`}} className={styles["server-response"]} >{serverResponse.value}</div>}
                                 </Button>
 
                                </div>

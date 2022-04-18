@@ -21,8 +21,12 @@ module.exports = {
         destination: '/CourseDetails/:path*',
       },
       {
-        source: '/webinar/:path*',
+        source: '/courses/:path*',
         destination: '/CourseDetails/:path*',
+      },
+      {
+        source: '/webinar/:path*',
+        destination: '/CourseDetails/Webinar/:path*',
       },
       {
         source: '/courses',
@@ -61,7 +65,7 @@ module.exports = {
         destination: '/Category/:path*',
       },
       {
-        source: '/forget-password',
+        source: '/forgot-password',
         destination: '/ForgetPassword',
       },
       {

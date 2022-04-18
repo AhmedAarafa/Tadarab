@@ -22,21 +22,30 @@ export default function SuccessState() {
     let tadarabGA = new TadarabGA();
     useEffect(() => {
         if(invoiceDetails){
-            tadarabGA.tadarab_fire_traking_GA_code("purchase",
-            {
-            id: invoiceDetails?.data?.transaction_details.invoice_no,
-            revenue: invoiceDetails?.data?.transaction_details.amount_usd,
-            coupon:invoiceDetails?.data?.transaction_details.coupon,
-            products: invoiceDetails?.data?.transaction_details.transaction_items,
-            uid:invoiceDetails?.data?.ga_tracking.uid,
-            cid:invoiceDetails?.data?.ga_tracking.cid,
-            user_email:invoiceDetails?.data?.transaction_details.email
-        });
+            if(checkoutType == "cart"){
+                tadarabGA.tadarab_fire_traking_GA_code("purchase",
+                    {
+                    id: invoiceDetails?.data?.transaction_details.invoice_no,
+                    revenue: invoiceDetails?.data?.transaction_details.amount_usd,
+                    coupon:invoiceDetails?.data?.transaction_details.coupon,
+                    products: invoiceDetails?.data?.transaction_details.transaction_items,
+                    uid:invoiceDetails?.data?.ga_tracking.uid,
+                    cid:invoiceDetails?.data?.ga_tracking.cid,
+                    user_email:invoiceDetails?.data?.transaction_details.email
+                });
+            }else if(checkoutType=='subscription'){
+                tadarabGA.tadarab_fire_traking_GA_code("subscription",{
+                    user_id: invoiceDetails?.data?.transaction_details.user_id,
+                    date:invoiceDetails?.data?.transaction_details.date_ymd,
+                    cid:invoiceDetails?.data?.ga_tracking.cid,
+                });
+            }
+            
         }
     }, [invoiceDetails])
     
     useEffect(() => {
-      localStorage.setItem("cart" , "[]");
+    //   localStorage.setItem("cart" , "[]");
       dispatch(setCartItems(null));
       console.log("success state",invoiceDetails);
       localStorage.setItem("cart",JSON.stringify([]));

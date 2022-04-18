@@ -1155,6 +1155,10 @@
   color: var(--grey);
 }
 
+.checkout__cart-sticky-card__subscribe-box iframe {
+  z-index: 0 !important;
+}
+
 .checkout__cart-sticky-card__subscribe-box > div:nth-of-type(1) {
   font-size: 1rem;
   color: var(--grey);
@@ -1208,6 +1212,7 @@
 }
 
 .checkout__subscription-benefits__sub-benefits {
+  font-size: 1.1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1217,6 +1222,10 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+.checkout__subscription-benefits__sub-benefits span {
+  display: inline-block;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__title {
@@ -1271,6 +1280,16 @@
   background-color: rgba(0, 0, 0, 0.05);
   color: var(--dark-black);
   cursor: pointer;
+}
+
+.checkout__subscription-benefits__title--important {
+  color: var(--primary-red);
+  display: inline-block;
+  margin: 0 0.1rem;
+}
+
+.checkout__subscription-benefits__title--important span {
+  display: inline-block;
 }
 
 @media (max-width: 1200px) {
@@ -1780,9 +1799,11 @@
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    width: calc(100vw/2) !important;
   }
   .checkout__stepper-box__stepper__item--subscription::before {
-    left: 64% !important;
+    left: 70% !important;
+    width: 75% !important;
   }
   .checkout__stepper-box__stepper__item--active {
     display: -webkit-box;
@@ -2633,6 +2654,9 @@
     font-size: 2.25rem !important;
     padding: 1.25rem 2.5rem;
     border-radius: 1.75rem;
+  }
+  .checkout__subscription-benefits__sub-benefits {
+    font-size: 2.31rem;
   }
 }
 /*# sourceMappingURL=checkout-page.module.css.map */

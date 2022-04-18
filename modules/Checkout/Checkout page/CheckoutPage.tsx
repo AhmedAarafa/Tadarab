@@ -72,7 +72,7 @@ useEffect(() => {
     stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
     const localStorageItems:any = localStorage.getItem("cart");
     
-    if(JSON.stringify(Router.query) == "{}" && localStorageItems  && JSON.stringify(localStorageItems) !== "[]"){
+    if(JSON.stringify(Router.query) == "{}" && !localStorageItems  && JSON.stringify(localStorageItems) == "[]"){
         console.log("entered" ,JSON.stringify(Router.query) == "{}", localStorageItems , JSON.stringify(localStorageItems) !== "[]");
         
         axiosInstance
@@ -97,7 +97,6 @@ useEffect(() => {
                                     }
                                 });
                             });
-                            console.log("newArray",newArray);
                             setRelatedCourses([...newArray]);
                             }
                             
@@ -898,8 +897,34 @@ const onError = (data:any,actions:any)=>{
                 <TickIcon/>
                 </span>
 
+                <span>
 
-                <span className={styles["checkout__subscription-benefits__sub-benefits__text"]}>مشاهدة بلا حدود لأكبر مكتبة دورات بالخليج أكثر من ٧٠٠ دورة تدريبية.</span>
+                مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
+                <span className={styles["checkout__subscription-benefits__title--important"]}>
+                700
+                </span>
+                دورة تدريبية).
+                </span></div>
+                <div
+                className={
+                styles[
+                    "checkout__subscription-benefits__sub-benefits"
+                ]
+                }
+                >
+                <span>
+
+                <TickIcon/>
+                </span>
+
+
+                <span>
+                 <span className={styles["checkout__subscription-benefits__title--important"]}>
+
+               	دورات جديدة
+                 </span>
+                  تضاف شهريًا.
+                  </span>
                 </div>
                 <div
                 className={
@@ -914,8 +939,15 @@ const onError = (data:any,actions:any)=>{
                 </span>
 
 
-                <span className={styles["checkout__subscription-benefits__sub-benefits__text"]}>
-                دورات جديدة تضاف بشكل شهري</span>
+                <span>
+                
+                عدد لا نهائي من
+              <span className={styles["checkout__subscription-benefits__title--important"]}>
+
+               شهادات
+              </span>
+                إتمام الدورات.
+           </span>
                 </div>
                 <div
                 className={
@@ -930,8 +962,15 @@ const onError = (data:any,actions:any)=>{
                 </span>
 
 
-                <span className={styles["checkout__subscription-benefits__sub-benefits__text"]}>
-                عدد لا محدود من شهادات إتمام الدورات</span>
+                <span>
+                
+               	ملخصات
+                 <span className={styles["checkout__subscription-benefits__title--important"]}>
+
+                  كتب إلكترونية
+                 </span>
+                   حصرية.
+              </span>
                 </div>
                 <div
                 className={
@@ -946,8 +985,14 @@ const onError = (data:any,actions:any)=>{
                 </span>
 
 
-                <span className={styles["checkout__subscription-benefits__sub-benefits__text"]}>
-                مشاهدة الدورات من أي جهاز وبأي وقت</span>
+                <span>
+                
+                دورات
+               <span className={styles["checkout__subscription-benefits__title--important"]}>
+               بث مباشر
+              </span>
+                تفاعلية حصرية.
+           </span>
                 </div>
                 <div
                 className={
@@ -962,8 +1007,57 @@ const onError = (data:any,actions:any)=>{
                 </span>
 
 
-                <span className={styles["checkout__subscription-benefits__sub-benefits__text"]}>
-                لا يوجد الترام  يمكنك إلغاء الاشتراك في أي وقت </span>
+                <span>
+                
+                <span>
+               	إمكانية متابعة الدورات من
+                 <span className={styles["checkout__subscription-benefits__title--important"]}>
+                  أي جهاز 
+                 </span>
+                 وبأي وقت.
+              </span>
+                تفاعلية حصرية.
+           </span>
+                </div>
+                <div
+                className={
+                styles[
+                    "checkout__subscription-benefits__sub-benefits"
+                ]
+                }
+                >
+                <span>
+
+                <TickIcon/>
+                </span>
+
+                <span>
+               	إمكانية
+                  <span className={styles["checkout__subscription-benefits__title--important"]}>
+                  تحميل وطباعة المرفقات
+                 </span>
+                   والتمارين لسهولة التطبيق.
+              </span>
+                </div>
+                <div
+                className={
+                styles[
+                    "checkout__subscription-benefits__sub-benefits"
+                ]
+                }
+                >
+                <span>
+
+                <TickIcon/>
+                </span>
+
+                <span>
+               	لا يوجد التزام، يمكنك
+                 <span style={{fontWeight:"700"}} className={styles["checkout__subscription-benefits__title--important"]}>
+                  إلغاء الاشتراك
+                 </span>
+                   في أي وقت.
+              </span>
                 </div>
             </div>}
 
@@ -1006,7 +1100,7 @@ const onError = (data:any,actions:any)=>{
                                 expiryYearPlaceholder: '(MM) شهر ',
                                 cvvPlaceholder: ' الرقم السري (CVV)',
                             },
-                            environment: 'sandbox',
+                            environment: process.env.NEXT_PUBLIC_ENVIRONMENT,
                             style: {
                                 base: {
                                     fontSize: '1.2em',
@@ -1206,7 +1300,6 @@ const onError = (data:any,actions:any)=>{
       
                                                         return actions.subscription.create({
                                                           plan_id:paymentSettings?.paypal.planid,
-                                                        //   plan_id:"P-1VE83386SG308245LMJCAKQA",
                                                           purchase_units:[{amount:{value:paymentSettings.usd_amount}}],
                                                       });
                   

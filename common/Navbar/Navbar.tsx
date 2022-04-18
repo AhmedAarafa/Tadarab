@@ -200,6 +200,12 @@ function Navbar() {
 
 
   useEffect(() => {
+    
+    // if(courseDetailsData?.data?.course_details?.is_in_user_subscription || courseDetailsData?.data?.course_details?.is_purchased){
+    //   setIsCoursePurchased(true);
+    // }else{
+    //   setIsCoursePurchased(false);
+    // }
 
     let localStorageItems: any = localStorage.getItem("cart");
     // console.log("cartItems",cartItems);
@@ -231,6 +237,7 @@ function Navbar() {
 
 
   }, [])
+  
 
   useEffect(() => {
 
@@ -278,6 +285,7 @@ function Navbar() {
       if (searchQuery == "") {
         console.log("متخمش يسطا");
       } else {
+        toggleLoader("show");
         Router.push({
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
           query: { q: searchQuery }

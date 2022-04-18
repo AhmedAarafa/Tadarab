@@ -69,6 +69,21 @@ export default function SignInPage() {
         }
     }
 
+    const handleRedirection = ():any=> {
+      if (router.query && router.query.from) {
+        if(router.query.from == "checkout"){
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=checkout`);
+        }else{
+          Router.back();
+        }
+        
+      }else if(router.query && router.query.from_subscription){
+       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription`);
+     }else{
+       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
+     }
+    }
+
   return (
     <>
       <Row className={styles["sign-in"]}>
@@ -172,7 +187,14 @@ export default function SignInPage() {
                     
                     if (router.query && router.query.from) {
                       // router.push(router.back());
-                      Router.back();
+                      if(router.query.from == "checkout"){
+                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                        console.log("checkout");
+                      }else{
+                        Router.back();
+                        console.log("back");
+                        
+                      }
                       
                     }else if(router.query && router.query.from_subscription){
                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
@@ -245,23 +267,23 @@ export default function SignInPage() {
                   { validationAfterSubmit.password &&  <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
                   
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__forget-password"]}>
-                    <Link href="/forget-password">
+                    <Link href="/forgot-password">
                      هل نسيت كلمة المرور؟
                     </Link>
                   </div>
 
                   <div className="position-relative">
-                    {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
                   <Button onClick={handleValidationOnSubmit} type="submit" className={styles["sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn"]}>
+                    {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
                   تسجيل الدخول
                   </Button>
                      </div>
 
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]}>
                       <span> ليس لديك حساب؟ </span>
-                      <Link href="/sign-up">
-                           <span> انشاء حساب جديد </span>
-                      </Link>
+                      {/* <Link href="/sign-up"> */}
+                           <span onClick={()=>{handleRedirection()}}> انشاء حساب جديد </span>
+                      {/* </Link> */}
                   </div>
 
               </Form>

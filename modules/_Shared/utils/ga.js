@@ -137,6 +137,19 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 			'eventAction':traking_data.action, //'start',
 			'eventLabel':(traking_data.course_name+'|'+traking_data.video_name) //'<course name>|<video name>'
 		});
+	}else if(traking_type=='subscription'){
+		console.log(traking_data);
+		dataLayer = dataLayer || [];
+		dataLayer.push({
+			'event': 'GTMevent',
+			'eventCategory': 'subscription',
+			'eventAction': 'free-trial',
+			'eventLabel': '7-day',
+			'userID': traking_data.user_id,
+			'clientID': traking_data.cid,
+			'start_trial_date': traking_data.date // Date when free-trial occurred (YYYYMMDD)
+		});
+
 	}
 }
 

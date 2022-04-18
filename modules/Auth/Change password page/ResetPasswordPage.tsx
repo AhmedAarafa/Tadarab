@@ -20,7 +20,7 @@ export default function ChangePasswordPage() {
     const [isReEnterPwFieldVisible, setIsReEnterPwFieldVisible] = useState(false);
     const [isOldPwFieldVisible, setIsOldPwFieldVisible] = useState(false);
     const [validationAfterSubmit, setValidationAfterSubmit] = useState({password:false,repeatedPassword:false,oldPassword:false});
-    const [serverResponse, setServerResponse] = useState({value : "" , color:""});
+    const [serverResponse, setServerResponse] = useState({value : "" , color:"" , bgcolor:""});
     const [fieldBlur, setFieldBlur] = useState({password:"",repeatedPassword:"",oldPassword:""});
 
 
@@ -137,9 +137,9 @@ export default function ChangePasswordPage() {
                       })
                       .then((response:any) => {
                       if(!JSON.stringify(response.status).startsWith("2")){
-                          setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red"});
+                          setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red", bgcolor:"#fcaaac"});
                       }else{
-                          setServerResponse({value: "تم تغيير كلمة المرور بنجاح" , color:"green"});
+                          setServerResponse({value: "تم تغيير كلمة المرور بنجاح" , color:"green", bgcolor:"#C7F6B6"});
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                       }
                       
@@ -161,7 +161,7 @@ export default function ChangePasswordPage() {
                               <Field
                                onKeyPress={ (e:any)=>{
                                 e.stopPropagation();
-                                setServerResponse({value:"" , color:""});
+                                setServerResponse({value:"" , color:"", bgcolor:""});
                                 setValidationAfterSubmit({...validationAfterSubmit,oldPassword:false});
                             } }
                             onBlur={(e:any) => {
@@ -201,7 +201,7 @@ export default function ChangePasswordPage() {
                               <Field
                                onKeyPress={ (e:any)=>{
                                 e.stopPropagation();
-                                setServerResponse({value:"" , color:""});
+                                setServerResponse({value:"" , color:"",bgcolor:""});
                                 setValidationAfterSubmit({...validationAfterSubmit,password:false});
                             } }
                             onBlur={(e:any) => {
@@ -242,7 +242,7 @@ export default function ChangePasswordPage() {
                               <Field 
                               onKeyPress={ (e:any)=>{
                                 e.stopPropagation();
-                                setServerResponse({value:"" , color:""});
+                                setServerResponse({value:"" , color:"",bgcolor:""});
                                 setValidationAfterSubmit({...validationAfterSubmit,repeatedPassword:false});
                             } }
                             onBlur={(e:any) => {
@@ -274,10 +274,10 @@ export default function ChangePasswordPage() {
 
 
                           <div className="position-relative">
-                          {serverResponse.value !== "" && <div style={{color:`${serverResponse.color}`}} className={styles["server-response"]} >{serverResponse.value}</div>}
 
                           <Button onClick={handleValidationOnSubmit} type="submit" className={styles["reset-password__reset-password-box__send-btn"]}>
                           تغيير كلمة المرور
+                          {serverResponse.value !== "" && <div style={{color:`${serverResponse.color}`, backgroundColor:`${serverResponse.bgcolor}`}} className={styles["server-response"]} >{serverResponse.value}</div>}
                           </Button>
                           </div>
 

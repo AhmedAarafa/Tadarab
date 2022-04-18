@@ -67,7 +67,7 @@ export default function CourseReview(props:any) {
     return (
         <>
         {
-        courseReviews &&
+        courseReviews && JSON.stringify(courseReviews) !== "[]" &&
         <>
         <Col  xs={12} className={styles["course-review"]}>
     <div id="reviews-section" className={styles["course-review__scrollspy-helper"]}></div>

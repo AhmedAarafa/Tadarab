@@ -35,11 +35,13 @@ interface SignUpFormValues {
 };
 
 
+
 export default function SignupPage() { 
     const [countryFlag, setCountryFlag] = useState("eg.png");
     const [countryCallingCode, setCountryCallingCode] = useState("20");
     const [countryCode, setCountryCode] = useState("EG");
     const [errorMessage, setErrorMessage] = useState("");
+
     // const [response, setResponse] = useState();
     const [isVisible, setIsVisible] = useState(false);
     const [fieldBlur, setFieldBlur] = useState({
@@ -132,6 +134,23 @@ export default function SignupPage() {
       }
 
       
+const handleRedirection = ():any=> {
+  if (router.query && router.query.from) {
+    // router.push(router.back());
+    if(router.query.from == "checkout"){
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth/?from=checkout`);
+    }else{
+      Router.back();
+    }
+    
+  }else if(router.query && router.query.from_subscription){
+   
+   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription`);
+ }else{
+   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
+ }
+}
+      
 
   return (
     <>
@@ -199,8 +218,11 @@ export default function SignupPage() {
                  
                   // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                   if (router.query && router.query.from) {
-                    // router.push(router.back());
-                    Router.back();
+                    if(router.query.from == "checkout"){
+                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                    }else{
+                      Router.back();
+                    }
                   }else if(router.query && router.query.from_subscription){
                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
                  }else{
@@ -385,17 +407,17 @@ export default function SignupPage() {
                                 { validationAfterSubmit.password && <ErrorMessage name="password"  component="div" className={styles["error-msg"]}/>}
 
                               <div className="position-relative">
-                                {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
                                 <Button onClick={handleValidationOnSubmit} type="submit" className={styles["register__register-box__registeration-form-box__make-new-acc-btn"]}>
+                                {errorMessage !== "" && <div className={styles["server-error-msg"]} >{errorMessage}</div>}
                                 انشاء حساب جديد
                                 </Button>
                               </div>
 
                               <div className={styles["register__register-box__registeration-form-box__do-you-have-acc"]}>
                                   <span> لديك حساب عندنا؟ </span>
-                                  <Link href="/sign-in">
-                                   <span> تسجيل الدخول </span>
-                                  </Link>
+                                  {/* <Link href="/sign-in"> */}
+                                   <span onClick={()=>{handleRedirection()}}> تسجيل الدخول </span>
+                                  {/* </Link> */}
                               </div>
 
               </Form>

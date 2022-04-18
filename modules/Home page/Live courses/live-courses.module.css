@@ -150,6 +150,7 @@
   height: 10rem;
   display: inline-block;
   background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.6) 100%);
+  pointer-events: none !important;
 }
 
 .live-courses__cards-carousel__card--paid:after {
@@ -208,6 +209,7 @@
   height: 10rem;
   display: block;
   border-radius: 0.68rem 0.68rem 0 0;
+  cursor: pointer !important;
 }
 
 .live-courses__cards-carousel__card__card-body {
@@ -244,6 +246,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -253,6 +256,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  cursor: pointer !important;
 }
 
 .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -482,6 +486,7 @@
     height: 13rem;
     display: inline-block;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
+    pointer-events: none !important;
   }
   .live-courses__cards-carousel__card--paid:after {
     content: '';

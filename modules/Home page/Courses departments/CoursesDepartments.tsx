@@ -3,7 +3,7 @@
 import React, { useEffect , useState } from "react";
 import styles from "./courses-departments.module.css";
 import { Row, Col, Button } from "react-bootstrap";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react"; 
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import Link from 'next/link';
@@ -85,12 +85,12 @@ export default function CoursesDepartments() {
                                         </div>
                                         <div className={styles["courses-departments__cards-carousel__departments-card__department"]}>{cat.title}</div>
                                         <div className={styles["courses-departments__cards-carousel__departments-card__learners-number"]}>
-                                        {cat.buyers_count} متعلم 
+                                        {cat.courses_count} دورة 
                                         </div>
                                     </div>
                       </div>
                </Link>
-
+ 
                     </SwiperSlide>
               )
             }) 

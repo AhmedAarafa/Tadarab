@@ -114,6 +114,7 @@
     height: 100% !important;
     position: relative;
     height: fit-content !important;
+    opacity: 0;
     // left: 0;
     &::after {
         content: "";
@@ -127,12 +128,14 @@
 }
 
 .latest-courses__popover-container--left {
+    opacity: 100%;
     &::after {
         left: 100%;
         border-color: transparent  transparent  transparent white;
       }
 }
 .latest-courses__popover-container--right {
+    opacity: 100%;
     &::after {
         right: 100%;
         border-color: transparent  white transparent  transparent ;

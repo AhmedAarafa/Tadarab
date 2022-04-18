@@ -62,10 +62,10 @@
         background-size: 100% 91rem;
         width: 100%;
         height: 91rem;
-        display: block;
+        display: block; 
         @include flex(center,center);
         flex-direction: column;
-
+        flex: 1 1 100%;
     }
 
     .tadarab-unlimited__img {

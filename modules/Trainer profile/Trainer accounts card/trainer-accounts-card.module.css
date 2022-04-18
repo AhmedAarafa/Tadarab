@@ -206,7 +206,9 @@
   .trainer-accounts-card {
     padding: 4rem 3.25rem;
     width: 100%;
-    height: 56.25rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     -webkit-box-shadow: 0rem 0rem 2.5rem #0000001A;
             box-shadow: 0rem 0rem 2.5rem #0000001A;
     border-radius: 2.5rem;

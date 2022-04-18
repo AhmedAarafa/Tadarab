@@ -674,11 +674,18 @@
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
     border: 0.1575rem solid var(--dark-black) !important;
-    background-color: white !important;
+    background-color: var(--primary-red) !important;
+    color: white !important;
+  }
+  .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover svg *, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active svg * {
+    fill: white !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn svg {
     width: 3.28125rem;
     height: 2.96875rem;
+  }
+  .monthly-subscription__course-card__actions-btns__add-to-cart-btn svg * {
+    fill: var(--dark-black) !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn span {
     font-size: 2.5rem;

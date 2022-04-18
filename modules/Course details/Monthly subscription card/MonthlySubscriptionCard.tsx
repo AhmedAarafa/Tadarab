@@ -50,7 +50,7 @@ export default function MonthlySubscriptionCard() {
     } else {
       Router.push({
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "/course" }
+        query: { from: "course" }
       })
     }
   }
@@ -242,12 +242,13 @@ export default function MonthlySubscriptionCard() {
         <div className={styles["monthly-subscription__subscription-value"]}>
           سعر الدورة
           <span>
-
-            {courseDetails.course_details?.currency_code}
+            {console.log("courseDetails",courseDetailsData)
+            }
+            {courseDetailsData?.data?.course_details?.currency_code}
           </span>
           <span>
 
-            {courseDetails.course_details?.discounted_price}
+            {courseDetailsData?.data?.course_details?.discounted_price}
           </span>
 
         </div>
@@ -315,7 +316,7 @@ export default function MonthlySubscriptionCard() {
               </g>
             </svg>
 
-            <span>٨ ساعات تدريبية</span>
+            <span>{Math.round(courseDetailsData?.data?.total_duration/60/60)} ساعات تدريبية</span>
           </div>
           <div
             className={
@@ -553,7 +554,7 @@ export default function MonthlySubscriptionCard() {
         </div>
       </div>
 
-
+     { !Router.asPath.includes("webinar") &&
       <div className={styles["monthly-subscription__sticky-top-course-card"]} id="sub-sticky-top-course-card">
         <div className={styles["monthly-subscription__sticky-top-course-card__course-details-box"]}>
 
@@ -657,7 +658,7 @@ export default function MonthlySubscriptionCard() {
 
         </div>
 
-      </div>
+      </div>}
     </>
   )
 }

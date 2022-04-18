@@ -31,7 +31,7 @@ export default function PracticalProjects(props:any) {
   return (
     <>
     {
-      courseProjects &&
+      courseProjects && JSON.stringify(courseProjects) !== "[]" &&
       <>
       
         <Col id="practical-projects-section" xs={12} className={styles["practical-projects"]}>
