@@ -16,26 +16,19 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
-<<<<<<< HEAD
 
-export default function MyAccountPage() {
-=======
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 
 export default function MyAccountPage() {
   SwiperCore.use([Navigation]);
->>>>>>> TestBranch
   const [courseListing, setCourseListing] = useState<any>([]);
   const [currentPage, setCurrentPage] = useState("1");
   const [pageNumber, setPageNumber] = useState(1);
   const userStatus = useSelector((state: any) => state.userAuthentication);
-<<<<<<< HEAD
-  const dispatch = useDispatch(); 
-=======
+
   const dispatch = useDispatch();
->>>>>>> TestBranch
   const router = useRouter();
 
 
