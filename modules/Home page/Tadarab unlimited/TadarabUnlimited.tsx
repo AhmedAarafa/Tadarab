@@ -4,10 +4,14 @@ import React from 'react'
 import styles from "./tadarab-unlimited.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function TadarabUnlimited() {
     return (
         <>
+            <Head>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+            </Head>
         <Row className={styles["tadarab-unlimited"]}>
 
             <Col sm={5} xs={12}>
