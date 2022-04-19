@@ -162,11 +162,8 @@ export default function MyAccountPage() {
               لا يوجد دورات في حسابك
             </div>
           }
-<<<<<<< HEAD
-          {courseListing?.data?.map((course: any, i: number) => {
-=======
+
           {courseListing?.data?.courses?.map((course: any, i: number) => {
->>>>>>> TestBranch
 
             return (
               <Card key={i} className={styles["my-account__course-card"]}>
@@ -267,11 +264,8 @@ export default function MyAccountPage() {
                       styles[
                       "my-account__course-card__card-body__checkout-details"
                       ]
-<<<<<<< HEAD
-                    } 
-=======
+
                     }
->>>>>>> TestBranch
                   >
                     <div >
                       <div
