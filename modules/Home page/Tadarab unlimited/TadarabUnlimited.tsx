@@ -10,12 +10,12 @@ export default function TadarabUnlimited() {
         <>
         <Row className={styles["tadarab-unlimited"]}>
 
-            <Col sm={{span:5 , order:1}} xs={{span:12 , order:1}}>
+            <Col sm={5} xs={12}>
                 <div className={styles["tadarab-unlimited__img"]}>
                     <img src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
                 </div>
             </Col>
-            <Col sm={{span:7 , order:2}} xs={{span:12 , order:2}} className={styles["tadarab-unlimited__brief"]}>
+            <Col sm={7} xs={12} className={styles["tadarab-unlimited__brief"]}>
                 <div>
                     <span> اكتشف </span>
                     <span> تدرب بلا حدود </span>
