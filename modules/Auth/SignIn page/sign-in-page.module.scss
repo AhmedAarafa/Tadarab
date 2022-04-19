@@ -190,10 +190,7 @@
     border-radius: 0.75rem;
     font-size: 1.063rem;
     margin-top: 2.625rem;
-<<<<<<< HEAD
-=======
     position: relative;
->>>>>>> TestBranch
 }
 
 .sign-in__sign-in-box__sign-in-form-box__forget-password {
@@ -240,15 +237,6 @@
 
 .server-error-msg {
     font-size: 0.75rem;
-<<<<<<< HEAD
-    color: red;
-    text-align: center;
-    margin: 2rem 0 0 0;
-    position: absolute;
-    top: -0.5rem;
-    @include flex(unset,center);
-    width: 100%;
-=======
     text-align: center;
     color: red;
     margin: 2rem -0.75rem 0 0;
@@ -258,23 +246,16 @@
     @include flex(unset, center); 
     width: 100%;
     border-radius: 0.7rem;
->>>>>>> TestBranch
 }
 
 
 @media (max-width:575px) {
     .server-error-msg {
-<<<<<<< HEAD
-        font-size: 0.75rem*1.8;
-        margin: 2rem*2.3 0 0 0;
-        top: -0.5rem*2.3;
-=======
         font-size: 0.75rem*2.4;
         margin: 2rem*2.3 -0.75rem 0 0;
         bottom: 3.5rem*2.1;
         padding: 0.3*2.3rem 1.5rem*2.3;
         border-radius: 0.7rem*2.3;
->>>>>>> TestBranch
     }
 
     .error-msg {
