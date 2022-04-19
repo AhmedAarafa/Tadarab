@@ -64,8 +64,9 @@
         height: 91rem;
         display: block; 
         @include flex(center,center);
-        flex-direction: column;
-        flex: 1 1 100%;
+        display: inline-flex !important;
+        flex-direction: column !important;
+        flex: 1 1 100% !important;
     }
 
     .tadarab-unlimited__img {

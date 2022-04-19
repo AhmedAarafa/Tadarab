@@ -31,7 +31,11 @@ export default function PracticalProjects(props:any) {
   return (
     <>
     {
+<<<<<<< HEAD
+      courseProjects &&
+=======
       courseProjects && JSON.stringify(courseProjects) !== "[]" &&
+>>>>>>> TestBranch
       <>
       
         <Col id="practical-projects-section" xs={12} className={styles["practical-projects"]}>

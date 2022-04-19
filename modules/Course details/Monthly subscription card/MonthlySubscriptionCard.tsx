@@ -12,6 +12,7 @@ import { handleFav } from 'modules/_Shared/utils/handleFav';
 import { handleCart } from 'modules/_Shared/utils/handleCart';
 import { setCartItems } from 'configurations/redux/actions/cartItems';
 import Link from "next/link";
+import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
 
 
 export default function MonthlySubscriptionCard() {
@@ -42,8 +43,9 @@ export default function MonthlySubscriptionCard() {
     }
   }
   const handleFavActionBtn = (course: any): any => {
+    
     if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `courses/${slug}/?country_code=null`);
+      const handleFavResponse: any = handleFav(course, `${course.archive_id ? "webinar" : "courses"}/${slug}/?country_code=null`);
       handleFavResponse.then(function (response: any) {
         setCourseDetails(response.data.data);
       })
@@ -57,14 +59,14 @@ export default function MonthlySubscriptionCard() {
 
   const handleCartActionBtn = (course: any): any => {
     dispatch(setCheckoutType("cart"));
-
+    console.log(course);
     // if(userStatus?.isUserAuthenticated == true){
 
-    const handleCartResponse: any = handleCart([course], `courses/${slug}/?country_code=null`, false);
+    const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}/?country_code=null`, false);
     handleCartResponse.then(function (firstresponse: any) {
       // console.log("handleCartResponse",firstresponse);
       firstresponse.resp.then(function (response: any) {
-        // console.log(response);
+        console.log(response.data.data);
         setCourseDetails(response.data.data);
         dispatch(setCartItems(firstresponse.cartResponse));
       })
@@ -205,6 +207,8 @@ export default function MonthlySubscriptionCard() {
               ]
             }
           >
+            {console.log(courseDetails)
+            }
             <CartIcon color="#222" />
             {
               courseDetails?.course_details?.is_in_cart ?
@@ -242,13 +246,11 @@ export default function MonthlySubscriptionCard() {
         <div className={styles["monthly-subscription__subscription-value"]}>
           سعر الدورة
           <span>
-            {console.log("courseDetails",courseDetailsData)
-            }
-            {courseDetailsData?.data?.course_details?.currency_code}
+            {courseDetails?.course_details?.currency_code}
           </span>
           <span>
 
-            {courseDetailsData?.data?.course_details?.discounted_price}
+            {courseDetails?.course_details?.discounted_price}
           </span>
 
         </div>

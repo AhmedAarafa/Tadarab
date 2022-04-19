@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     //     });
     // }
 
-    TagManager.initialize({ gtmId: 'GTM-WVQP3JV' });
+    TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
 
     localStorage.setItem("theme", "light");
     document.body.setAttribute("data-theme", "light");

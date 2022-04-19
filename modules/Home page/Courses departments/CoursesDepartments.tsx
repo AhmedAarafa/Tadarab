@@ -90,6 +90,7 @@ export default function CoursesDepartments() {
                                     </div>
                       </div>
                </Link>
+
  
                     </SwiperSlide>
               )
