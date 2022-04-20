@@ -27,6 +27,7 @@ import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 // import ReactPixel from 'react-facebook-pixel';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import Head from "next/head";
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const HeroSection = dynamic(() => import("modules/Home page/Hero section/HeroSection"));
@@ -84,6 +85,9 @@ function HomePage() {
   
   return (
     <>
+      <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" />
+      </Head>
       <MetaTagsGenerator title={homePageData?.data?.seo_title}
         description={homePageData?.data?.seo_metadesc}
         img={homePageData?.data?.seo_image} />

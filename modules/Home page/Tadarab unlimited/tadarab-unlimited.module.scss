@@ -59,8 +59,8 @@
     .tadarab-unlimited-mobile-view {
         margin: 0;
         background-image: url("/images/tadarab-unlimited-mobile-bg.png");
-        background-size: 100% 91rem;
-        width: 100%;
+        background-size: 100vw 91rem;
+        width: 100vw;
         height: 91rem;
         // @include flex(center,center);
         // display: inline-flex !important;

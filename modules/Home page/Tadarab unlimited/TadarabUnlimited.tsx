@@ -6,6 +6,7 @@ import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import useResize from "custom hooks/useResize";
 
+import Head from "next/head";
 
 export default function TadarabUnlimited() {
   const [isMobileView, setIsMobileView] = useState(false);
