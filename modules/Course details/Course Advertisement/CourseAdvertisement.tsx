@@ -63,7 +63,7 @@ export default function CourseAdvertisement(theOption: any) {
               {((theOption) && (theOption.postType === 'webinar') && (theOption.postSrc != '')) ?
                 <>
                   <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
-                    <iframe src={theOption.postSrc}></iframe>
+                    <iframe src={theOption.postSrc} frameBorder="0" allowFullScreen></iframe>
                   </div>
                 </>
                 :

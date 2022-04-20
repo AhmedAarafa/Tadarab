@@ -31,7 +31,6 @@ export default function PracticalProjects(props:any) {
   return (
     <>
     {
-
       courseProjects && JSON.stringify(courseProjects) !== "[]" &&
       <>
       

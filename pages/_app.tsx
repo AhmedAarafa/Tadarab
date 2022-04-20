@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     localStorage.setItem("theme", "light");
     document.body.setAttribute("data-theme", "light");
     if(process.env.NEXT_PUBLIC_ENVIRONMENT==='sandbox'){
-      // console.log = function() {}
+      console.log = function() {}
     }
 
   }, []);

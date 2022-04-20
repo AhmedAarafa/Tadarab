@@ -16,7 +16,6 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
@@ -27,7 +26,6 @@ export default function MyAccountPage() {
   const [currentPage, setCurrentPage] = useState("1");
   const [pageNumber, setPageNumber] = useState(1);
   const userStatus = useSelector((state: any) => state.userAuthentication);
-
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -162,7 +160,6 @@ export default function MyAccountPage() {
               لا يوجد دورات في حسابك
             </div>
           }
-
           {courseListing?.data?.courses?.map((course: any, i: number) => {
 
             return (
@@ -264,7 +261,6 @@ export default function MyAccountPage() {
                       styles[
                       "my-account__course-card__card-body__checkout-details"
                       ]
-
                     }
                   >
                     <div >

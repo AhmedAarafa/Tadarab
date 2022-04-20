@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React , { useEffect ,useState} from "react";
 import styles from "./live-courses.module.css";
@@ -14,6 +15,7 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
+import Link from 'next/link';
 
 export default function LiveCourses() {
     SwiperCore.use([Navigation]);
@@ -151,7 +153,7 @@ export default function LiveCourses() {
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["live-courses__see-more-btn-col"]}>
 
           <Button className={styles["live-courses__see-more-btn"]}
-          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?filter_type=live`)}}
+          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`)}}
           >
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
@@ -211,13 +213,21 @@ export default function LiveCourses() {
                           { lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> :  <span>{lc.short_date}</span>}
                         </div>
                       </div>
+                      <Link href={`/webinar/${lc.slug}`}>
+
                           <Card.Img variant="top" src={lc.image} alt='trainer image'
                           className={styles["live-courses__cards-carousel__card__trainer-img"]}/>
+                      </Link>
                           <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                               <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
+                              <Link href={`/webinar/${lc.slug}`}>
                                       <h1 title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
+                              </Link>
+                              <Link href={`/trainer/${lc.trainer?.slug}`}>
+
                                       <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
+                              </Link>
                                   </div>
                                   <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
                                   {lc.details}
@@ -226,67 +236,71 @@ export default function LiveCourses() {
 
 
                               <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
-                                <div>
-                                  <div
-                                    className={
-                                      styles[
-                                        "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                      ]
-                                    }
-                                  >
-                                    { lc.discounted_price !== 0 && !lc.is_purchased && <span
-                                      className={
-                                        styles[
-                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                        ]
-                                      }
-                                    >
-                                    {lc.currency_code}
-                                    </span>}
+                              <Link href={`/webinar/${lc.slug}`}>
 
-                                    <span
+                                  <div>
+                                    <div
                                       className={
                                         styles[
-                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
                                         ]
                                       }
                                     >
-                                  {lc.is_purchased && "تم الشراء"}
-
-                                      {!lc.is_purchased && (lc.discounted_price == 0 ? "مجانًا" : lc.discounted_price)}
-                                    </span>
-                                  
-                                  </div>
-                                  { (lc.price > lc.discounted_price) && !lc.is_purchased &&
-                                  <div
-                                    className={
-                                      styles[
-                                        "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                      ]
-                                    }
-                                  >
-                                    <span
-                                      className={
-                                        styles[
-                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                        ]
-                                      }
-                                    >
+                                      { lc.discounted_price !== 0 && !lc.is_purchased && <span
+                                        className={
+                                          styles[
+                                            "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
+                                          ]
+                                        }
+                                      >
                                       {lc.currency_code}
-                                    </span>
-                                    <span
+                                      </span>}
+
+                                      <span
+                                        className={
+                                          styles[
+                                            "live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                          ]
+                                        }
+                                      >
+                                    {lc.is_purchased && "تم الشراء"}
+
+                                        {!lc.is_purchased && (lc.discounted_price == 0 ? "مجانًا" : lc.discounted_price)}
+                                      </span>
+                                    
+                                    </div>
+                                    { (lc.price > lc.discounted_price) && !lc.is_purchased &&
+                                    <div
                                       className={
                                         styles[
-                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
+                                          "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
                                         ]
                                       }
                                     >
-                                      {lc.price}
-                                    </span>
-                                  
+                                      <span
+                                        className={
+                                          styles[
+                                            "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
+                                          ]
+                                        }
+                                      >
+                                        {lc.currency_code}
+                                      </span>
+                                      <span
+                                        className={
+                                          styles[
+                                            "live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
+                                          ]
+                                        }
+                                      >
+                                        {lc.price}
+                                      </span>
+                                    
+                                    </div>
+                                    }
                                   </div>
-                                  }
-                                </div>
+
+                              </Link>
                                   {  !lc.is_purchased &&  <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart} variant={""}>
                                     {lc.price == 0 ? <div onClick={()=>handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon/> : <BellIcon/>} </div>  
                                     :

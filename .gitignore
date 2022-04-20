@@ -10,6 +10,10 @@
 /.next
 /out
 nohup.out
+next-env.d
+*.d
+*.ts
+next-env.d.ts
 
 # production
 /build
@@ -29,6 +33,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 package-lock.json
+package-lock.JSON
 
 # vercel
 .vercel

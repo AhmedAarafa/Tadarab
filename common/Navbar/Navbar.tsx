@@ -390,11 +390,11 @@ function Navbar() {
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>الأقسام</div></div>
-                <Link href="/courses?filter_type=all">
+                <Link href="/courses?type=all">
 
                   <li onClick={() => { setExpanded(false) }}>دورات تدريبية</li>
                 </Link>
-                <Link href="/courses?filter_type=live">
+                <Link href="/courses?type=live">
 
                   <li onClick={() => { setExpanded(false) }}>دورات مباشرة</li>
                 </Link>
@@ -534,11 +534,11 @@ function Navbar() {
                       الأقسام
                     </div>
                     <ul className={styles["navbar__discover-popover__list"]}>
-                      <Link href="/courses?filter_type=all">
+                      <Link href="/courses?type=all">
 
                         <li>دورات تدريبية</li>
                       </Link>
-                      <Link href="/courses?filter_type=live">
+                      <Link href="/courses?type=live">
 
                         <li>دورات مباشرة</li>
                       </Link>

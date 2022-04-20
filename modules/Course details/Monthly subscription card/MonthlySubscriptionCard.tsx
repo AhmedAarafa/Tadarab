@@ -207,8 +207,8 @@ export default function MonthlySubscriptionCard() {
               ]
             }
           >
-            {console.log(courseDetails)
-            }
+            {/* {console.log(courseDetails)
+            } */}
             <CartIcon color="#222" />
             {
               courseDetails?.course_details?.is_in_cart ?

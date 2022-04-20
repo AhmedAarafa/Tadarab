@@ -93,8 +93,8 @@ export default function CourseContent() {
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body className={styles["course-content__accordion__body"]}>
-                                {console.log(courseDetailsData.data?.attachments)
-                                }
+                                {/* {console.log(courseDetailsData.data?.attachments)
+                                } */}
                                 { courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
                                     Object.keys(courseDetailsData.data?.attachments)?.map((att:any,i:number)=>{
                                         return(

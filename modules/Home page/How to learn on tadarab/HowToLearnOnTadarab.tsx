@@ -31,7 +31,7 @@ export default function HowToLearnOnTadarab() {
                         <div>
                         يمكنك متابعة الدورات التدريبية المختلفة في جميع المجالات والمقسمة إلى فيديوهات تستطيع متابعتها بسهولة من أي مكان وفي أي وقت وعلى أي جهاز، تستطيع أيضًا تحميل المرفقات الورقية للتطبيق والمتابعة وزيادة الاستفادة.
                         </div>
-                        <Link href="/courses?filter_type=all">
+                        <Link href="/courses?type=all">
                             <Button>
                             ابدأ التعلم الآن
                             </Button>

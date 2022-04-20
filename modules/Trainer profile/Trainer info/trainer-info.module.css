@@ -12,8 +12,8 @@
 
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-img img {
   width: 9.375rem;
-  height: 9.375rem;
-  border-radius: 50%;
+  height: 10.9rem;
+  border-radius: 1.25rem;
 }
 
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-info {
@@ -190,7 +190,8 @@
   }
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-img img {
     width: 15rem;
-    height: 15rem;
+    height: 17.44rem;
+    border-radius: 2rem;
   }
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-info {
     margin: 0 4.4rem 0 0;

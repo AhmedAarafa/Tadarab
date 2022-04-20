@@ -215,10 +215,10 @@ function CourseDetails() {
     if (Router.query.slug){
       axiosInstance.get(`webinar/${slug}/?country_code=null`).then(function (response:any){
         toggleLoader("hide");
-        const data: Course = response?.data?.data;
-        setCourseId(response?.data?.data?.ID);
+        const data: Course = response?.data?.data?.archive_course;
+        setCourseId(response?.data?.data?.archive_course.course_details.id);
         stream_url = response?.data?.data?.live_stream_url;
-        console.log("data",data);
+        console.log("data",response);
         
         dispatch(setCourseDetailsData(data));
         FBPixelEventsHandler(response.data.fb_tracking_events, null); 
@@ -245,7 +245,7 @@ function CourseDetails() {
         <Navbar />
         {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
           <>
-            {/* <MobileNavTabsBar /> */}
+            <MobileNavTabsBar />
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
@@ -254,6 +254,25 @@ function CourseDetails() {
                 {originalCardPlacement == false &&
                   <MonthlySubscriptionCard />
                 }
+                {courseDetailsData?.data?.course_details?.key_points !== null &&
+                 JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
+                  <WhatYouWillLearn />
+                 }
+                 <CourseDetailsSection />
+                 {courseDetailsData?.data?.course_details?.tags !== null &&
+                 JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
+                <CourseKeywords />
+                 }
+                   {courseDetailsData?.data?.course_details?.requirements !== null &&
+                 JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
+                <CourseRequirements />
+                 }
+                 <CourseContent />
+                <TrainerInfo />
+                <GuaranteeCard />
+                <CourseCertificate />
+                <FAQ Cid={()=>{return courseId}}/>
+                <SpecialOffer Cid={()=>{return courseId}}/>
               </Col> 
               {
                 originalCardPlacement == true &&
@@ -261,6 +280,19 @@ function CourseDetails() {
                   {originalCardPlacement == true && <MonthlySubscriptionCard />}
                 </Col>
               }
+              <PracticalProjects Cid={()=>{return courseId}}/> 
+            </Row>
+            <Row className={styles["course-details__course-reviews"]}>
+              <CourseReview Cid={()=>{return courseId}}/>
+            </Row>
+            <Row className={styles["course-details__course-subscribers"]}>
+              <CourseSubscribers />
+            </Row>
+            {/* <Row className={styles["course-details__tadarab-business"]}>
+              <TadarabBusiness />
+            </Row> */}
+            <Row className={styles["course-details__comments-section"]}>
+              <CommentsSection Cid={()=>{return courseId}}/>
             </Row>
           </>
         }

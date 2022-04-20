@@ -109,11 +109,11 @@ export default function HeroSection() {
                 sendSearchQuery({status:true,value:"الزراعة الداخلية"});
                 }} className={styles["hero-section__chip"]}> الزراعة الداخلية </span>
               <span onClick={()=>{
-                sendSearchQuery({status:true,value:"تنمية بشرية"});
-                }} className={styles["hero-section__chip"]}>تنمية بشرية</span>
+                sendSearchQuery({status:true,value:"تصميم داخلي"});
+                }} className={styles["hero-section__chip"]}>تصميم داخلي </span>
               <span onClick={()=>{
-                sendSearchQuery({status:true,value:"الزراعة الداخلية"});
-                }} className={styles["hero-section__chip"]}> الزراعة الداخلية </span>
+                sendSearchQuery({status:true,value:"استثمار"});
+                }} className={styles["hero-section__chip"]}> استثمار </span>
               <span onClick={()=>{
                 sendSearchQuery({status:true,value:"تنظيم الوقت"});
                 }} className={styles["hero-section__chip"]}>تنظيم الوقت</span>

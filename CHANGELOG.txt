@@ -1,3 +1,9 @@
+Version 1.5.0 (19 April 2022)
+1)	Fixed issues.
+2)	Add rewrite for /trainer and / 
+3)	CSS issue fixed
+4)	Merge issue fixed
+
 Version 1.3.0 (17 April 2022)
 1)	Add rewrite url /courses (work with /course and /courses)
 2)	Add webinar with live stream URL

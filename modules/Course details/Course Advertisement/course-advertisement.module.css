@@ -52,9 +52,7 @@
 
 .course-ad__course-ad-video {
   width: 43rem;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 24rem;
   -webkit-box-shadow: 0 0 1.25rem #0000001A;
           box-shadow: 0 0 1.25rem #0000001A;
   overflow: hidden;
@@ -64,14 +62,12 @@
 
 .course-ad__course-ad-video > div {
   background-color: transparent;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 24rem;
 }
 
 .course-ad__course-ad-video > div > iframe {
   width: 100% !important;
-  height: 24rem;
+  height: 100%;
 }
 
 .course-ad__course-ad-video video {
@@ -197,9 +193,7 @@
   }
   .course-ad__course-ad-video {
     width: calc(100% + 6rem);
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: 32.4rem;
     -webkit-box-shadow: 0 0 1.25rem #0000001A;
             box-shadow: 0 0 1.25rem #0000001A;
     border-radius: 0;
@@ -207,13 +201,11 @@
   }
   .course-ad__course-ad-video > div {
     background-color: transparent;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    height: 32.4rem;
   }
   .course-ad__course-ad-video > div > iframe {
     width: 100% !important;
-    height: 32.4rem !important;
+    height: 100% !important;
   }
   .course-ad__course-ad-video video {
     border-radius: 0;

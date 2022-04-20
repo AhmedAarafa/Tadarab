@@ -143,6 +143,9 @@ export default function LiveCourses() {
 
   return (
     <>
+    {
+      (liveCourses !== null && JSON.stringify(liveCourses) !== "[]") &&
+
       <Row >
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["live-courses__title"]}>
           <div>
@@ -153,7 +156,7 @@ export default function LiveCourses() {
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["live-courses__see-more-btn-col"]}>
 
           <Button className={styles["live-courses__see-more-btn"]}
-            onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?filter_type=live`) }}
+            onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`) }}
           >
             اعرض المزيد
             <ChevronLeftIcon color="#af151f" />
@@ -213,7 +216,7 @@ export default function LiveCourses() {
                       </div>
                     </div>
                     {console.log("lc", lc)
-                    }
+                    } 
                     <Link href={`/webinar/${lc.slug}`}>
                       <Card.Img variant="top" src={lc.image} alt='trainer image'
                         className={styles["live-courses__cards-carousel__card__trainer-img"]} />
@@ -221,7 +224,7 @@ export default function LiveCourses() {
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                       <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                          <Link href={`/webinar/${lc.slug}`}>
+                          <Link href={`/webinar/${lc.slug}`}> 
                             <h1 title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
                           </Link>
                           <Link href={`/trainer/${lc.trainer?.slug}`}>
@@ -324,6 +327,7 @@ export default function LiveCourses() {
           </Swiper>
         </Col>
       </Row>
+    }
     </>
   );
 }

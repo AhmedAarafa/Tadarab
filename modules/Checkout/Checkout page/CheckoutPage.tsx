@@ -1764,7 +1764,7 @@ const onError = (data:any,actions:any)=>{
  
                 {step == "added-courses" &&  <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                     <span>
-                    <Link href="/courses?filter_type=all">
+                    <Link href="/courses?type=all">
                     اكمل البحث عن دورات أخرى
                     </Link>
                     </span>
@@ -2388,7 +2388,7 @@ const onError = (data:any,actions:any)=>{
 
                 { step == "added-courses" &&  <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                     <span>
-                    <Link href="/courses?filter_type=all">
+                    <Link href="/courses?type=all">
                     اكمل البحث عن دورات أخرى
                     </Link>
                     </span>

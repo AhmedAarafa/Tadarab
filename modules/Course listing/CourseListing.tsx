@@ -28,7 +28,7 @@ export default function CourseListing() {
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
             const handleFavResponse: any = handleFav(
-                course, `courses/?country_code=null&page=${currentPage}&limit=16&type=${Router.query.filter_type}`);
+                course, `courses/?country_code=null&page=${currentPage}&limit=16&type=${Router.query.type}`);
             handleFavResponse.then(function (response: any) {
                 setCourseListing(response?.data);
             })
@@ -44,7 +44,7 @@ export default function CourseListing() {
         dispatch(setCheckoutType("cart"));
 
         const handleCartResponse: any = handleCart(
-            [course], `courses/?country_code=null&page=${currentPage}&limit=16&type=${Router.query.filter_type}`, false);
+            [course], `courses/?country_code=null&page=${currentPage}&limit=16&type=${Router.query.type}`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 console.log("response,", response);
@@ -112,7 +112,7 @@ export default function CourseListing() {
         window.scrollTo({ top: 0, behavior: "smooth" });
         setCurrentPage(pgNo);
         axiosInstance
-            .get(`courses/?country_code=null&page=${pgNo}&limit=16&type=${router.query.filter_type}`)
+            .get(`courses/?country_code=null&page=${pgNo}&limit=16&type=${router.query.type}`)
             .then(function (response: any) {
                 setCourseListing(response?.data)
             })
@@ -130,10 +130,11 @@ export default function CourseListing() {
 
 
     useEffect(() => {
-        if (router.query && router.query.filter_type) {
             axiosInstance
-                .get(`courses/?country_code=null&page=1&limit=16&type=${router.query.filter_type}`)
+                .get(`courses/?country_code=null&page=1&limit=16&type=${ (router?.query && router?.query?.type) ? router?.query?.type  : "all"  }`)
                 .then(function (response: any) {
+                    console.log(response);
+                    
                     setCourseListing(response?.data);
                     toggleLoader("hide");
 
@@ -142,7 +143,6 @@ export default function CourseListing() {
                     toggleLoader("hide");
                     console.log(error);
                 });
-        }
 
     }, [router.query]);
 
@@ -156,7 +156,7 @@ export default function CourseListing() {
                     {courseListing?.data?.courses?.map((course: any, i: number) => {
 
                         return (
-                            router.query.filter_type == "live" ?
+                            router.query.type == "live" ?
                                 <Card className={`${course.price == 0 ? styles["course-listing__cards-carousel__card"] : styles["course-listing__cards-carousel__card--paid"]} 
                             `}>
                                     {

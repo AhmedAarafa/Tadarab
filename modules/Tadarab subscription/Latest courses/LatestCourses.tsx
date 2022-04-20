@@ -339,16 +339,16 @@ function LatestCourses() {
             className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>
               أحدث الدورات
             </li>
-            {/* <li onClick={()=>{handleFilterType("most-viewed")}} 
-            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "most-viewed" && styles["latest-courses__departments-list__item--active"]}`}>
-              الأكثر زيارة
-            </li> */}
+            <li onClick={()=>{handleFilterType("free")}} 
+            className={`${styles["latest-courses__departments-list__item"]} ${filterType == "free" && styles["latest-courses__departments-list__item--active"]}`}>
+              الدورات المجانية
+            </li>
           </ul>
         </Col>
 
         <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["latest-courses__see-more-btn-col"]}>
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more" 
-          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?filter_type=all`)}}>
+          onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=all`)}}>
             اعرض المزيد
             <ChevronLeftIcon color="#af151f"/>
           </Button>
