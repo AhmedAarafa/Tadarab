@@ -3,6 +3,7 @@ import React from 'react';
 import styles from "./how-to-start.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Router from "next/router";
+import Image from 'next/image';
 
 export default function HowToStart() {
     return (
@@ -39,13 +40,13 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-end`}>
-                        <img src="/images/contentPreparation.png" alt="اعداد المحتوي" />
+                        <Image src="/images/contentPreparation.png" alt="اعداد المحتوي" />
                     </div>
                 </Col>
              
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
-                        <img src="/images/photographyAndDirecting.jpg" alt="التصوير والاخراج" />
+                        <Image src="/images/photographyAndDirecting.jpg" alt="التصوير والاخراج" />
                     </div>
                 </Col>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
@@ -77,12 +78,12 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]}  d-flex justify-content-end`}>
-                        <img src="/images/montageAndGraphic.png" alt="المونتاج والجرافيك" />
+                        <Image src="/images/montageAndGraphic.png" alt="المونتاج والجرافيك" />
                     </div>
                 </Col>
                 {/* <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
-                        <img src="/images/Photography.png" alt="discriptive image" />
+                        <Image src="/images/Photography.png" alt="discriptive image" />
                     </div>
                 </Col>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>

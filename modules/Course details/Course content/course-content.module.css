@@ -1,5 +1,5 @@
 .course-content {
-  margin-top: 4.375rem;
+  margin-top: 3faqrem;
   width: 43.75rem;
 }
 
@@ -316,7 +316,7 @@
 }
 
 .course-content__show-more-btn {
-  display: none;
+  display: none !important;
 }
 
 .purchased-course-playlist {

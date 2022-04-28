@@ -5,8 +5,7 @@ import styles from "./tadarab-unlimited.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import useResize from "custom hooks/useResize";
-
-import Head from "next/head";
+import Image from 'next/image';
 
 export default function TadarabUnlimited() {
   const [isMobileView, setIsMobileView] = useState(false);
@@ -25,11 +24,9 @@ export default function TadarabUnlimited() {
         {
             !isMobileView ? 
         <Row className={styles["tadarab-unlimited"]}>
-{console.log("desktop")
-}
             <Col xs={5}>
                 <div className={styles["tadarab-unlimited__img"]}>
-                    <img src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
+                    <Image src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
                 </div>
             </Col>
             <Col xs={7} className={styles["tadarab-unlimited__brief"]}>
@@ -55,11 +52,9 @@ export default function TadarabUnlimited() {
             :
 
         <div className={styles["tadarab-unlimited-mobile-view"]}>
-            {console.log("mobile")
-}
             <div>
                 <div className={styles["tadarab-unlimited-mobile-view__img"]}>
-                    <img src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
+                    <Image src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
                 </div>
             </div>
             <div  className={styles["tadarab-unlimited-mobile-view__brief"]}>

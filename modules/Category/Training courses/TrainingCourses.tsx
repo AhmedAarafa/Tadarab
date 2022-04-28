@@ -14,6 +14,7 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { useRouter } from 'next/router';
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import Image from 'next/image';
 
 export default function TrainingCourses(props:any) {
     const [currentPage, setCurrentPage] = useState("1");
@@ -446,7 +447,7 @@ export default function TrainingCourses(props:any) {
                             >
                                 <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                    <img
+                                    <Image
                                     src={course.trainer.image}
                                     alt={course.trainer.name_ar}
                                     />

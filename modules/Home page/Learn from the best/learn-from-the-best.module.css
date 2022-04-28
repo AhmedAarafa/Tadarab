@@ -1,7 +1,7 @@
 .learn-from-the-best__title {
   font-size: 2rem;
   font-weight: 800;
-  padding: 6.25rem 3rem 0 3rem;
+  padding: 4rem 3rem 0 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -350,7 +350,7 @@
 @media (max-width: 575px) {
   .learn-from-the-best__title {
     font-size: 4.688rem;
-    padding: 9.375rem 3rem 0 3rem;
+    padding: 6rem 3rem 0 3rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -395,7 +395,7 @@
     height: 6.6rem;
     border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;
     border-radius: 1.8rem;
-    margin: 6.25rem 7.3rem 0 7.3rem;
+    margin: 5rem 7.3rem 0 7.3rem;
     width: 100%;
     display: -webkit-box;
     display: -ms-flexbox;

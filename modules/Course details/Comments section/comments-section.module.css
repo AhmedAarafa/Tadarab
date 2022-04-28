@@ -322,7 +322,7 @@
 
 @media (max-width: 575px) {
   .comments-section {
-    margin: 10rem 0 12rem 0;
+    margin: 7rem 0 0 0;
   }
   .comments-section__title {
     font-size: 3.3rem;

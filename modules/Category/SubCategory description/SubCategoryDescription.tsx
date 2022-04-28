@@ -2,7 +2,7 @@
 import React, { useEffect,useState }  from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./sub-category-description.module.css";
-
+import Image from 'next/image';
 
 export default function SubCategoryDescription(props:any) {
     console.log('props.subcategories', props?.data);
@@ -26,7 +26,7 @@ export default function SubCategoryDescription(props:any) {
             <Col xs={12} className={styles["category-description"]}>
                 <div className={styles["category-description__description"]}>
                     <div className={styles["category-description__img"]}>
-                    <img src={`/images/${props?.data?.parent_icon}.svg`} alt={props?.data?.parent_icon} id={styles[props?.data?.parent_icon]}
+                    <Image src={`/images/${props?.data?.parent_icon}.svg`} alt={props?.data?.parent_icon} id={styles[props?.data?.parent_icon]}
                     />
 
                     </div>

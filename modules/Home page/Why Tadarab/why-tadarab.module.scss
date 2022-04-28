@@ -3,7 +3,7 @@
 
 .why-tadarab {
     background-color: rgba(0, 20, 37, 0.04);
-    margin-top: 5.313rem;
+    margin-top: 4rem;
 }
 
 .why-tadarab__title {
@@ -162,7 +162,7 @@
     .why-tadarab__title {
         text-align: center;
         font-size: 4.688rem;
-        padding: 12.656rem 3rem 9rem 3rem;
+        padding: 6rem 3rem 9rem 3rem;
     
         // span:nth-of-type(1) {
         // }
@@ -174,7 +174,7 @@
     
     .why-tadarab__advantages-box-container{
         @include flex(center,space-around);
-        padding-bottom: 4.687rem;
+        padding-bottom: 0rem;
     }
     
     .why-tadarab__advantages-box {

@@ -1,7 +1,7 @@
 .live-courses__title {
   font-size: 2rem;
   font-weight: 800;
-  padding: 7rem 3rem 0 3rem;
+  padding: 4rem 3rem 0 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,7 +31,7 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 7rem 3rem 0 3rem;
+  padding: 4rem 3rem 0 3rem;
 }
 
 .live-courses__see-more-btn {
@@ -98,7 +98,7 @@
 
 .live-courses__cards-carousel {
   margin-top: 2rem;
-  margin-bottom: 5.6rem;
+  margin-bottom: 0;
 }
 
 .live-courses__cards-carousel > div {
@@ -950,7 +950,7 @@
   }
   .live-courses__title {
     font-size: 4.688rem;
-    padding: 16rem 0 0 0;
+    padding: 7rem 0 0 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -971,7 +971,7 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    padding: 5rem 0 0 0;
+    padding: 0rem 0 0 0;
   }
   .live-courses__see-more-btn {
     -webkit-box-shadow: none !important;

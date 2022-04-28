@@ -9,12 +9,14 @@ import useResize from 'custom hooks/useResize';
 import "video.js/dist/video-js.css";
 import Link from "next/link";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
+import Image from 'next/image';
 
 export default function CourseAdvertisement(theOption: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [courseDetails, setCourseDetails] = useState<any>([]);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [toDisplayValues, setToDisplayValues] = useState<any>([]);
 
 
   const viewportWidthDetector = () => {
@@ -26,6 +28,54 @@ export default function CourseAdvertisement(theOption: any) {
   }
   useResize(viewportWidthDetector);
 
+
+  
+  useEffect(() => {
+    
+    if(theOption?.liveWebinarDetails?.full_date){
+      
+      // function timerHandler(date: any) {
+    
+        setInterval(() => {
+          // get total seconds between the times
+          let delta: any = Math.abs(theOption?.liveWebinarDetails?.full_date - (Math.floor(Date.now() / 1000)));
+    
+          // calculate (and subtract) whole days
+          let days: any = Math.floor(delta / 86400);
+          delta -= days * 86400;
+    
+          // calculate (and subtract) whole hours
+          let hours: any = Math.floor(delta / 3600) % 24;
+          delta -= hours * 3600;
+    
+          // calculate (and subtract) whole minutes
+          let minutes: any = Math.floor(delta / 60) % 60;
+          delta -= minutes * 60;
+    
+          // what's left is seconds
+          let seconds: any = delta; // in theory the modulus is not required
+    
+          // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
+          // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
+          // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
+          // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
+    
+          days = days.toString().padStart(2, 0);
+          hours = hours.toString().padStart(2, 0);
+          minutes = minutes.toString().padStart(2, 0);
+          seconds = seconds.toString().padStart(2, 0);
+    
+          setToDisplayValues([days, hours, minutes, seconds]);
+    
+          return { days, hours, minutes, seconds }
+        }, 1000);
+    
+    
+      // }
+    }
+ 
+  }, [theOption.liveWebinarDetails])
+  
 
 
   useEffect(() => {
@@ -50,7 +100,7 @@ export default function CourseAdvertisement(theOption: any) {
                 </Link>
               )
             })
-          } 
+          }
 
         </ul>
         {courseDetailsData?.data == undefined ?
@@ -59,12 +109,18 @@ export default function CourseAdvertisement(theOption: any) {
           <>
 
             <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}
-             ${( (theOption.postType !== 'webinar') ) && styles["video-player-gradient"]}`}>
+             ${((theOption.postType !== 'webinar')) && styles["video-player-gradient"]}`}>
               {((theOption) && (theOption.postType === 'webinar') && (theOption.postSrc != '')) ?
                 <>
-                  <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
-                    <iframe src={theOption.postSrc} frameBorder="0" allowFullScreen></iframe>
-                  </div>
+                  {/* {console.log(timerHandler(theOption.liveWebinarDetails.full_date))} */}
+                  {
+                    ((Math.floor(Date.now() / 1000)) < theOption?.liveWebinarDetails?.full_date) ?
+                      <Image src={theOption?.liveWebinarDetails?.image} alt="تدرب في رمضان" />
+                      :
+                      <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
+                        <iframe src={theOption.postSrc} frameBorder="0" allowFullScreen></iframe>
+                      </div>
+                  }
                 </>
                 :
                 <>
@@ -72,6 +128,51 @@ export default function CourseAdvertisement(theOption: any) {
                 </>
               }
             </div>
+            {
+              ((Math.floor(Date.now() / 1000)) > theOption?.liveWebinarDetails?.full_date) &&
+              <div className={styles["live-webinar-countdown"]}>
+                <div className={styles["live-webinar-countdown__offer-available"]}>
+                  <div>بث مباشر</div>
+                  <div>على تدرب</div>
+                </div>
+                <div>
+                  <div className={styles["live-webinar-countdown__countdown-box"]}>
+                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                      <div>يوم</div>
+                      <div>{toDisplayValues[0]}</div>
+                    </div>
+                    <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                      :
+                    </div>
+                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                      <div>ساعة</div>
+                      <div>
+                        {toDisplayValues[1]}
+                      </div>
+                    </div>
+                    <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                      :
+                    </div>
+                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                      <div>دقيقة</div>
+                      <div>
+                        {toDisplayValues[2]}
+                      </div>
+                    </div>
+                    <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                      :
+                    </div>
+                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                      <div>ثانية</div>
+                      <div>
+                        {toDisplayValues[3]}
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            }
 
             <h1 className={styles["course-ad__course-title"]}>
               {courseDetailsData?.data?.course_details?.title}
@@ -109,7 +210,7 @@ export default function CourseAdvertisement(theOption: any) {
                   </g>
                 </svg>
 
-                <span>{Math.round(courseDetailsData?.data?.total_duration/60/60)} ساعات تدريبية</span>
+                <span>{Math.round(courseDetailsData?.data?.total_duration / 60 / 60)} ساعات تدريبية</span>
 
               </div>
               <div

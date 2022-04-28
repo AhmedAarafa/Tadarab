@@ -16,6 +16,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
+import Image from 'next/image';
 
 
 export default function CourseListing() {
@@ -328,7 +329,7 @@ export default function CourseListing() {
                                                 }
                                             >
                                                 <Link href={`/trainer/${course.trainer?.slug}`}>
-                                                    <img
+                                                    <Image
                                                         src={course.trainer?.image}
                                                         alt="trainer image"
                                                     />

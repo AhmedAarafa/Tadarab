@@ -68,6 +68,7 @@ function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   const [courseId, setCourseId] = useState("");
+  const [liveWebinar, setLiveWebinar] = useState({});
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
@@ -221,11 +222,12 @@ function CourseDetails() {
         console.log("data",response);
         
         dispatch(setCourseDetailsData(data));
+        setLiveWebinar(response?.data?.data?.course_details);
         FBPixelEventsHandler(response.data.fb_tracking_events, null); 
       }).catch(function (error){
         toggleLoader("hide");
       });
-    }
+    } 
 
     return () => {
       window.removeEventListener("resize", () => {
@@ -250,7 +252,7 @@ function CourseDetails() {
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
                 {/* courseDetailsData?.data?.live_stream_url "https://vimeo.com/event/2034009/embed" */}
-                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} />
+                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} />
                 {originalCardPlacement == false &&
                   <MonthlySubscriptionCard />
                 }

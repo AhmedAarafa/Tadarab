@@ -4,6 +4,7 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./hero-section.module.css";
 import  {SearchIcon}  from "common/Icons/Icons";
 import Router from "next/router";
+import Image from 'next/image';
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -121,7 +122,7 @@ export default function HeroSection() {
           </div>
         </Col>
         <Col xs={{ span: 12, order: 'first' }}  sm={5} className={styles["hero-section__col"]}>
-          <img
+          <Image
             src="/images/Final Graphics- colored.png"
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}

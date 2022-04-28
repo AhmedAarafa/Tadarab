@@ -4,6 +4,7 @@ import React , { useEffect , useState } from "react";
 import { Row, Col, Button,Card } from "react-bootstrap";
 import styles from "./category-courses.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from 'next/image';
 import SwiperCore, { Navigation } from "swiper";
 import Link from 'next/link';
 import "swiper/css";
@@ -130,7 +131,7 @@ export default function CategoryCourses(props:any) {
                             ]
                             }
                         >
-                            <img
+                            <Image
                             src={course.trainer.image}
                             alt={course.trainer.name_ar}
                             />

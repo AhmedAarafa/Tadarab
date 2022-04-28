@@ -5,6 +5,7 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import TrainerCourses from "../Trainer courses/TrainerCourses";
 import { useDispatch, useSelector } from "react-redux";  
 import { LearnersIcon, CoursesNumberIcon,DropDownIcon } from "common/Icons/Icons";
+import Image from 'next/image';
 
 export default function TrainerInfo() {
   const trainerProfileData = useSelector((state:any) => state.trainerProfileData);
@@ -149,7 +150,7 @@ export default function TrainerInfo() {
         <div className={styles["trainer-profile__trainer-info-col__trainer-info-box"]}>
 
           <div className={styles["trainer-profile__trainer-info-col__trainer-info-box__trainer-img"]}>
-            <img src={trainerProfileData.data?.data?.image} alt="trainer image" />
+            <Image src={trainerProfileData.data?.data?.image} alt="trainer image" />
           </div>
 
           <div className={styles["trainer-profile__trainer-info-col__trainer-info-box__trainer-info"]}>

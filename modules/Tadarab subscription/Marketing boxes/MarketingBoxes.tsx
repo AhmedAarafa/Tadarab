@@ -5,13 +5,14 @@ import { Row, Col } from "react-bootstrap";
 import LatestCourses from '../Latest courses/LatestCourses';
 import LiveCourses from '../Live courses/LiveCourses';
 import CoursesDepartments from '../Courses departments/CoursesDepartments';
+import Image from 'next/image';
 
 export default function MarketingBoxes() {  
   return (
     <Row className={styles["marketing-boxes"]}>
         <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div  className={`${styles["marketing-boxes__image"]} d-flex justify-content-start`}>
-                <img src="/images/imagePlaceholder.png" alt="discriptive image" />
+                <Image src="/images/imagePlaceholder.png" alt="discriptive image" />
             </div>
         </Col>
         <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
@@ -40,7 +41,7 @@ export default function MarketingBoxes() {
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]}  d-flex justify-content-end`}>
-                <img src="/images/discoveringCourses.jpg" alt="discriptive image" />
+                <Image src="/images/discoveringCourses.jpg" alt="discriptive image" />
             </div>
         </Col>
         
@@ -48,7 +49,7 @@ export default function MarketingBoxes() {
 
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]} d-flex justify-content-start`}>
-                <img src="/images/trainingCourses.jpg" alt="discriptive image" />
+                <Image src="/images/trainingCourses.jpg" alt="discriptive image" />
             </div>
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>

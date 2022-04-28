@@ -7,6 +7,7 @@ import {scrollspyHandler} from "../../_Shared/utils/scrollSpy";
 import { useDispatch, useSelector } from "react-redux";  
 import { LearnersIcon, CoursesNumberIcon,ChevronLeftIcon } from "common/Icons/Icons";
 import Link from "next/link";
+import Image from 'next/image';
 
 export default function TrainerInfo() {
   const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
@@ -30,7 +31,7 @@ export default function TrainerInfo() {
         <div className={styles["trainer-info-section__trainer-box"]}>
           <Link href={`/trainer/${courseDetailsData.data?.course_details?.trainer?.slug}`}>
           <div className={styles["trainer-info-section__trainer-img"]}>
-            <img src={courseDetailsData.data?.course_details?.trainer.image} alt="trainer image" />
+            <Image src={courseDetailsData.data?.course_details?.trainer.image} alt="trainer image" />
           </div>
           </Link>
           <div className={styles["trainer-info-section__trainer-info"]}>

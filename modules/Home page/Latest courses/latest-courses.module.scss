@@ -2,7 +2,7 @@
 
 
 .latest-courses__title {
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-size: 2rem;
     font-weight: 800;
     padding: 1rem 3rem 0 3rem;
@@ -148,7 +148,7 @@
   }
 
 .latest-courses__cards-carousel {
-    margin: 1.938rem 0 6.625rem 0;
+    margin: 1.938rem 0 3rem 0;
 
     &>div {
         padding: 9.5rem 2rem !important;
@@ -167,6 +167,9 @@
 
         &>div:nth-child(4) {
             height: fit-content;
+        }
+        &:before{
+            height: 80% !important;
         }
     }
 }
@@ -913,7 +916,7 @@
         font-size: 4.688rem;
         text-align: center;
         padding: 0;
-        margin: 7.344rem 0 3.906rem 0;
+        margin: 6rem 0 3.906rem 0;
     }
 
     .latest-courses__departments-list {
@@ -1133,7 +1136,7 @@
 
     .latest-courses__see-more-btn-col {
         @include flex(center, center);
-        margin-bottom: 18rem;
+        margin-bottom: 10rem;
     }
 
     .latest-courses__see-more-btn {
@@ -1142,7 +1145,7 @@
         height: 2.75rem*2.5;
         border: 0.125rem*2.5 solid rgba(175, 21, 31, 0.2) !important;
         border-radius: 0.75rem*2.5;
-        margin: 3rem 8.5rem 0 8.5rem;
+        margin: 2rem 8.5rem 0 8.5rem;
         @include flex(center, center);
 
         &:hover,

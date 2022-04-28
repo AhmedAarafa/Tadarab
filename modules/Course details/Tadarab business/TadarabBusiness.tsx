@@ -2,13 +2,14 @@
 import React from 'react'
 import styles from "./tadarab-business.module.css"
 import { Col , Button } from "react-bootstrap";
+import Image from 'next/image';
 
 export default function TadarabBusiness() {
     return (
         <>
         <Col xs={12} className={styles["tadarab-business"]}>
             <div className={styles["tadarab-business__img"]}>
-                <img src="/images/LapTop & Phone Alpha (1).gif" alt="Tadarab business" />
+                <Image src="/images/LapTop & Phone Alpha (1).gif" alt="Tadarab business" />
                 {/* <video src="/images/LapTopPhoneAlpha.mp4" autoPlay loop muted></video> */}
             </div>
 

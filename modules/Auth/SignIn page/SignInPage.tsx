@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import { Row, Col, Button,  Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./sign-in-page.module.css"; 
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import Image from 'next/image';
 import Router, { useRouter }  from "next/router";
 import { useDispatch, useSelector } from "react-redux";  
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
@@ -293,7 +294,7 @@ export default function SignInPage() {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["sign-in__img"]}>
-          <img src="/images/sign in.png" alt="sign-in now" />
+          <Image src="/images/sign in.png" alt="sign-in now" />
         </Col>
       </Row>
     </>

@@ -4,6 +4,7 @@ import styles from "./educational-guide.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Router from "next/router";
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
+import Image from 'next/image';
 
 export default function EducationalGuide() {
 
@@ -13,7 +14,7 @@ export default function EducationalGuide() {
         <Col xs={12} className={styles["educational-guide"]}>
           <div className={styles["educational-guide__container"]}>
             <div className={styles["educational-guide__container__img"]}>
-                <img src="/images/hams.png" alt="guide" />
+                <Image src="/images/hams.png" alt="guide" />
             </div>
             <div className={styles["educational-guide__container__details-box"]}>
               <div className={styles["educational-guide__container__details-box__title"]}>

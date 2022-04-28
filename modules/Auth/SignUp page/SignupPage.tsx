@@ -5,6 +5,7 @@ import React, {useState, useEffect} from "react";
 import { Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./sign-up-page.module.css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import Image from 'next/image';
 import Router, { useRouter } from "next/router";
 import {
   Formik,
@@ -427,7 +428,7 @@ const handleRedirection = ():any=> {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["register__img"]}>
-          <img src="/images/signUpDiscImg.png" alt="register now" />
+          <Image src="/images/signUpDiscImg.png" alt="register now" />
         </Col>
       </Row>
     </>

@@ -5,6 +5,7 @@ import { Row, Col} from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation,Pagination } from 'swiper';
 import "swiper/css";
+import Image from 'next/image';
 
 export default function AboutTadarab() {
   SwiperCore.use([Navigation]);
@@ -34,14 +35,14 @@ export default function AboutTadarab() {
                 <div className={styles["about-tadarab__cards-carousel__item__container__img"]}>
                 <div className={styles["black-overlay"]}></div>
 
-                    <img src="/images/الاستثمار بالاسهم خطوة بخطوة.jpg" alt="الاستثمار بالاسهم خطوة بخطوة" />
+                    <Image src="/images/الاستثمار بالاسهم خطوة بخطوة.jpg" alt="الاستثمار بالاسهم خطوة بخطوة" />
                     <div
                       className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box" ]}
                     >
                       <div
                         className={ styles[ "about-tadarab__cards-carousel__item__container__course-details-box__trainer-img"] }
                       >
-                        <img src="/images/FaisalKarkari.png" alt="فيصل كركري" />
+                        <Image src="/images/FaisalKarkari.png" alt="فيصل كركري" />
                       </div>
                       <div
                         className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box__course-details"]}
@@ -89,14 +90,14 @@ export default function AboutTadarab() {
                 <div className={styles["about-tadarab__cards-carousel__item__container__img"]}>
                 <div className={styles["black-overlay"]}></div>
 
-                    <img src="/images/أساسيات التصميم الداخلي و فن الديكور.jpg" alt="أساسيات التصميم الداخلي و فن الديكور" />
+                    <Image src="/images/أساسيات التصميم الداخلي و فن الديكور.jpg" alt="أساسيات التصميم الداخلي و فن الديكور" />
                     <div
                       className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box" ]}
                     >
                       <div
                         className={ styles[ "about-tadarab__cards-carousel__item__container__course-details-box__trainer-img"] }
                       >
-                        <img src="/images/DalalElwehaib.png" alt="دلال الوهيب" />
+                        <Image src="/images/DalalElwehaib.png" alt="دلال الوهيب" />
                       </div>
                       <div
                         className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box__course-details"]}
@@ -145,14 +146,14 @@ export default function AboutTadarab() {
                 <div className={styles["about-tadarab__cards-carousel__item__container__img"]}>
                 <div className={styles["black-overlay"]}></div>
 
-                    <img src="/images/أساسيات التنظيف في المنزل.jpg" alt="أساسيات التنظيف في المنزل" />
+                    <Image src="/images/أساسيات التنظيف في المنزل.jpg" alt="أساسيات التنظيف في المنزل" />
                     <div
                       className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box" ]}
                     >
                       <div
                         className={ styles[ "about-tadarab__cards-carousel__item__container__course-details-box__trainer-img"] }
                       >
-                        <img src="/images/FatmaElqallaf.png" alt="فاطمة القلاف" />
+                        <Image src="/images/FatmaElqallaf.png" alt="فاطمة القلاف" />
                       </div>
                       <div
                         className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box__course-details"]}
@@ -199,14 +200,14 @@ export default function AboutTadarab() {
               <div className={styles["about-tadarab__cards-carousel__item__container"]}>
                 <div className={styles["about-tadarab__cards-carousel__item__container__img"]}>
                   <div className={styles["black-overlay"]}></div>
-                    <img src="/images/التنظيم الفعال للمنزل.jpg" alt="التنظيم الفعال للمنزل" />
+                    <Image src="/images/التنظيم الفعال للمنزل.jpg" alt="التنظيم الفعال للمنزل" />
                     <div
                       className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box" ]}
                     >
                       <div
                         className={ styles[ "about-tadarab__cards-carousel__item__container__course-details-box__trainer-img"] }
                       >
-                        <img src="/images/EbtisamEloumi.png" alt="ابتسام العومي" />
+                        <Image src="/images/EbtisamEloumi.png" alt="ابتسام العومي" />
                       </div>
                       <div
                         className={styles[ "about-tadarab__cards-carousel__item__container__course-details-box__course-details"]}

@@ -2,7 +2,7 @@
 
 
 .my-account {
-    padding: 7rem 9rem 0 9rem;
+    padding: 3rem 9rem 0 9rem;
     @include flex(center, space-evenly);
     flex-wrap: wrap;
 }
@@ -311,7 +311,7 @@
 @media (max-width: 1200px) {
 
     .my-account {
-        padding: 7rem 9rem 0 9rem;
+        padding: 3rem 9rem 0 9rem;
         @include flex(center, space-evenly);
         flex-wrap: wrap;
     }
@@ -494,7 +494,7 @@
 @media (max-width: 980px) {
 
     .my-account {
-        padding: 7rem 9rem 0 9rem;
+        padding: 3rem 9rem 0 9rem;
         @include flex(center, space-evenly);
         flex-wrap: wrap;
     }
@@ -733,7 +733,7 @@
 
 @media (max-width: 575px) {
     .my-account {
-        padding: 7rem*1.7 5rem 0 5rem;
+        padding: 3rem*1.7 5rem 0 5rem;
         @include flex(center, space-evenly);
         flex-wrap: wrap;
     }

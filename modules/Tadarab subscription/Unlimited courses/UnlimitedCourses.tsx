@@ -6,6 +6,7 @@ import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
 import Router, { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";   
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import Image from 'next/image';
 
 export default function UnlimitedCourses() {
 
@@ -32,7 +33,7 @@ export default function UnlimitedCourses() {
           <Col xs={12}>
 
               <div className={styles["unlimited-courses__logo"]}>
-                <img src="/images/TadarabUnlimited.png" alt="TadarabUnlimited" />
+                <Image src="/images/TadarabUnlimited.png" alt="TadarabUnlimited" />
               </div>
 
               <div className={styles["unlimited-courses__title"]}>
@@ -81,7 +82,7 @@ export default function UnlimitedCourses() {
           </Col>
           {/* <Col xs={12} sm={6}>
               <div className={styles["unlimited-courses__video-container"]}>
-                  <img src="/images/VideoPlaceholder.png" alt="promo video" />
+                  <Image src="/images/VideoPlaceholder.png" alt="promo video" />
               </div>
           </Col> */}
       </Row>

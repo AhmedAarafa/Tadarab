@@ -2,6 +2,7 @@
 import React from 'react'
 import styles from "./why-tadarab.module.css";
 import { Row, Col, Button } from "react-bootstrap";
+import Image from 'next/image';
 
 export default function WhyTadarab() { 
     return (
@@ -66,7 +67,7 @@ export default function WhyTadarab() {
                 <div className={styles["tadarab-for-companies"]}>
 
                     <div>
-                        <img src="/images/businesss.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
+                        <Image src="/images/businesss.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
                     </div>
 
                     <div className={styles["tadarab-for-companies__titles-box"]}>

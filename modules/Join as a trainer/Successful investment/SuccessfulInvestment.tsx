@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from "./successful-investment.module.css";
 import { Row,Col } from "react-bootstrap";
+import Image from 'next/image';
 
 
 export default function SuccessfulInvestment() {
@@ -18,7 +19,7 @@ export default function SuccessfulInvestment() {
 
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/bestReturnRate.png" alt="discriptive image" />
+                        <Image src="/images/bestReturnRate.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     أفضل نسبة أرباح وعوائد شهرية في الوطن العربي
@@ -26,7 +27,7 @@ export default function SuccessfulInvestment() {
                 </div>
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/reach.png" alt="discriptive image" />
+                        <Image src="/images/reach.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     انتشار ووصول لشريحة أكبر من الطلاب والمتدربين
@@ -34,7 +35,7 @@ export default function SuccessfulInvestment() {
                 </div>
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/toolsToHelpU.png" alt="discriptive image" />
+                        <Image src="/images/toolsToHelpU.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     نظام متكامل وأدوات تساعدك على تقديم تجربة تدريب فريدة
@@ -42,7 +43,7 @@ export default function SuccessfulInvestment() {
                 </div>
                 <div className={styles["successful-investment__marketing_boxes__box"]}>
                     <div className={styles["successful-investment__marketing_boxes__box__img"]}>
-                        <img src="/images/deepenYourName.png" alt="discriptive image" />
+                        <Image src="/images/deepenYourName.png" alt="discriptive image" />
                     </div>
                     <div className={styles["successful-investment__marketing_boxes__box__text"]}>
                     ترسيخ أسمك ومحتواك ضمن أكبر المدربين

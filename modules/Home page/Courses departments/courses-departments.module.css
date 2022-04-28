@@ -1,5 +1,5 @@
 .courses-departments__container {
-  padding: 3rem 3rem 0 3rem;
+  padding: 1rem 3rem 0 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -339,7 +339,7 @@
 @media (max-width: 575px) {
   .courses-departments__container {
     padding: 0;
-    margin: 18.344rem 0 0 0;
+    margin: 10rem 0 0 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

@@ -30,7 +30,7 @@ import { json } from "stream/consumers";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
-
+import Image from 'next/image';
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
@@ -63,9 +63,9 @@ function LatestCourses() {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,`home/?country_code=null`);
+    const handleFavResponse:any =  handleFav(course,`home/courses/?country_code=null&type=${filterType}`);
     handleFavResponse.then(function(response:any) {
-     setLatestCourses(response.data.data.best_seller_courses);
+     setLatestCourses(response.data.data);
     })
     }else{
       Router.push({
@@ -90,12 +90,12 @@ function LatestCourses() {
     
     // if(userStatus?.isUserAuthenticated == true){
       
-      const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
+      const handleCartResponse:any =  handleCart([course],`home/courses/?country_code=null&type=${filterType}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         // console.log("handleCartResponse",firstresponse);
         firstresponse.resp.then(function(response:any){
           // console.log(response);
-           setLatestCourses(response.data.data.best_seller_courses);
+           setLatestCourses(response.data.data);
            dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
@@ -479,13 +479,12 @@ function LatestCourses() {
                           >
                             <div
                               className={
-                                styles[
-                                  "latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
+                                styles["latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
                                 ]
                               }
                             >
                               <Link href={`/trainer/${course.trainer?.slug}`}>
-                                <img
+                                <Image
                                   src={course.trainer?.image}
                                   alt="trainer image"
                                 />

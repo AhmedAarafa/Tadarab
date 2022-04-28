@@ -4,6 +4,7 @@ import styles from "./monthly-subscription-card.module.css"
 import { Button } from "react-bootstrap";
 import { CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon,GuaranteeIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
+import Image from 'next/image';
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
 import useResize from "custom hooks/useResize";
@@ -136,9 +137,9 @@ export default function MonthlySubscriptionCard() {
           أو
         </div>
 
-        <div>
+        {/* <div>
 
-          {/* <div className={styles["monthly-subscription__course-card__price-box"]}>
+          <div className={styles["monthly-subscription__course-card__price-box"]}>
             <span className={
                 styles["monthly-subscription__course-card__price-box__price"]
               }>
@@ -157,7 +158,7 @@ export default function MonthlySubscriptionCard() {
             >
               {courseDetails.course_details?.currency_code}
             </span>
-          </div> */}
+          </div>
           {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
             <div className={styles["monthly-subscription__course-card__old-price-box"]}>
               <div
@@ -193,7 +194,7 @@ export default function MonthlySubscriptionCard() {
               </span>
             </div>
           }
-        </div>
+        </div> */}
 
         <div
           className={styles["monthly-subscription__course-card__actions-btns"]}
@@ -561,7 +562,7 @@ export default function MonthlySubscriptionCard() {
         <div className={styles["monthly-subscription__sticky-top-course-card__course-details-box"]}>
 
           <div className={styles["monthly-subscription__sticky-top-course-card__course-img"]}>
-            <img src={courseDetails.course_details?.image} alt="course image" />
+            <Image src={courseDetails.course_details?.image} alt="course image" />
           </div>
           <div className={styles["monthly-subscription__sticky-top-course-card__course-details"]}>
             <div >{courseDetails.course_details?.title}</div>

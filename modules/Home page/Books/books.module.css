@@ -5,7 +5,7 @@
 .books__title {
   font-size: 2rem;
   font-weight: 800;
-  padding: 5.688rem 3rem 3.125rem 3rem;
+  padding: 0 3rem 3.125rem 3rem;
   background-color: white;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -128,7 +128,7 @@
 
 .books__cards-carousel__card {
   width: 13.25rem;
-  height: 27.875rem;
+  height: 25rem;
   border-radius: 0.5rem;
   border: 0;
   display: inline-block;
@@ -284,7 +284,7 @@
   }
   .books__cards-carousel__card {
     width: 17.6225rem;
-    height: 37.07375rem;
+    height: 33.25rem;
     border-radius: 0.665rem;
     border: 0;
     display: inline-block;
@@ -417,7 +417,7 @@
   }
   .books__cards-carousel__card {
     width: 17.8875rem;
-    height: 37.63125rem;
+    height: 33.75rem;
     border-radius: 0.675rem;
     border: 0;
     display: inline-block;
@@ -509,7 +509,7 @@
 @media (max-width: 575px) {
   .books__title {
     font-size: 4.688rem;
-    padding: 14.063rem 0 7.969rem 0;
+    padding: 0rem 0 3rem 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -614,7 +614,7 @@
   }
   .books__cards-carousel__card {
     width: 41.075rem;
-    height: 86.4125rem;
+    height: 77.5rem;
     border-radius: 1.55rem;
     border: 0;
     display: inline-block;

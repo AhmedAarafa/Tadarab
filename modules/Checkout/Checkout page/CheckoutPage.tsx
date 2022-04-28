@@ -15,6 +15,7 @@ import { GuaranteeIcon, ArrowLeftIcon, PaySafeIcon, RemoveIcon,TickIcon , CartIc
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import Image from 'next/image';
 import Router, { useRouter }  from "next/router";
 import Head from "next/head";
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
@@ -1076,8 +1077,8 @@ const onError = (data:any,actions:any)=>{
                     <input onClick={()=> radioBtnsHandler()} type="radio"   name="payment-type" value="VISA" className="form-check-input"/>
                     <label htmlFor="visa">
                         <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                            <img className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/visa.png" alt="VISA" />
-                            <img className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
+                            <Image className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/visa.png" alt="VISA" />
+                            <Image className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
                         </div>
                         <div className={styles["checkout__payment-method-box__payment-method__text"]}>
                             بطاقات الائتمان / الخصم المباشر
@@ -1200,7 +1201,7 @@ const onError = (data:any,actions:any)=>{
                     <input onClick={()=> radioBtnsHandler()} type="radio" name="payment-type" value="PAYPAL" className="form-check-input"/>
                     <label htmlFor="paypal">
                         <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                            <img className={styles["checkout__payment-method-box__payment-method__images__paypal"]} src="/images/paypal.png" alt="PAYPAL" />
+                            <Image className={styles["checkout__payment-method-box__payment-method__images__paypal"]} src="/images/paypal.png" alt="PAYPAL" />
                         </div>
                         <div className={styles["checkout__payment-method-box__payment-method__text"]}>
                         الدفع عن طريق باي بال
@@ -1216,7 +1217,7 @@ const onError = (data:any,actions:any)=>{
                     <input onClick={()=> radioBtnsHandler()} type="radio" name="payment-type" value="KNET" className="form-check-input"/>
                     <label htmlFor="knet">
                         <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                            <img className={styles["checkout__payment-method-box__payment-method__images__knet"]} src="/images/knet.png" alt="PAYPAL" />
+                            <Image className={styles["checkout__payment-method-box__payment-method__images__knet"]} src="/images/knet.png" alt="PAYPAL" />
                         </div>
                         <div className={styles["checkout__payment-method-box__payment-method__text"]}>
                         الدفع عن طريق كي - نت
@@ -1809,7 +1810,7 @@ const onError = (data:any,actions:any)=>{
                     <div  key={i} className={styles["checkout__cards-outer-box__card"]}>
 
                             <div className={styles["checkout__cards-outer-box__card__course-img"]}>
-                                <img src={it?.image && it.image } alt="course image" />
+                                <Image src={it?.image && it.image } alt="course image" />
                                 {it.categories[0] !== undefined && it.categories[0].title !== null && it.categories[0].title !== ""  &&
                                 
                                 <div style={{backgroundColor:`${it.categories[0] !== undefined && it.categories[0].color}`}}
@@ -1823,7 +1824,7 @@ const onError = (data:any,actions:any)=>{
 
                                 <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
                                     <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                                        <img src={it.trainer !== undefined && it.trainer.image} alt="trainer image" />
+                                        <Image src={it.trainer !== undefined && it.trainer.image} alt="trainer image" />
                                     </div>
                                     <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
                                         <h1 className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title={it.title}>
@@ -2503,7 +2504,7 @@ const onError = (data:any,actions:any)=>{
                                 >
                                     <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                        <img
+                                        <Image
                                         src={course.trainer.image}
                                         alt="trainer image"
                                         />

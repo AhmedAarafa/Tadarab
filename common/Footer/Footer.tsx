@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
+import Image from 'next/image';
 import styles from "./footer.module.css";
 import { ChevronLeftIcon, DownloadIcon, FacebookIcon, YoutubeIcon, InstagramIcon, TwitterIcon } from "common/Icons/Icons";
 import Link from "next/link";
@@ -64,7 +65,7 @@ export default function FooterSection() {
           <Col xs={{ span: 12, order: 4 }} sm={{ span: 5, order: 1 }}>
             <div className={styles["footer__inquiries-box"]}>
               <div className={styles["footer__inquiries-box__trainer-img"]}>
-                <img src="/images/hams.png" alt="trainer image" />
+                <Image src="/images/hams.png" alt="trainer image" />
               </div>
               <div className={styles["footer__inquiries-box__inquiry"]}>
                 <div className={styles["footer__inquiries-box__inquiry__title"]}>
@@ -171,19 +172,19 @@ export default function FooterSection() {
             <div className={styles["footer__communications-box"]}>
 
               <div className={styles["footer__logo"]}>
-                <img src="/images/logo.svg" alt="Tadarab logo" />
+                <Image src="/images/logo.svg" alt="Tadarab logo" />
               </div>
               <div className={styles["footer__cross-platforms"]}>
                 <div>قريباً على أجهزة الاندرويد والايفون</div>
-                <img src="/images/availableOnIos.png" alt="App store" />
-                <img src="/images/availableOnAndroid.png" alt="Google play" />
+                <Image src="/images/availableOnIos.png" alt="App store" />
+                <Image src="/images/availableOnAndroid.png" alt="Google play" />
               </div>
               <div className={styles["footer__pay-box"]}>
                 <div>وسائل الدفع</div>
-                <img src="/images/Mastercard.png" alt="Master card" />
-                <img src="/images/visa.png" alt="Visa" />
-                <img src="/images/knet.png" alt="Knet" />
-                <img src="/images/paypal3.png" alt="Paypal" />
+                <Image src="/images/Mastercard.png" alt="Master card" />
+                <Image src="/images/visa.png" alt="Visa" />
+                <Image src="/images/knet.png" alt="Knet" />
+                <Image src="/images/paypal3.png" alt="Paypal" />
               </div>
             </div>
           </Col>

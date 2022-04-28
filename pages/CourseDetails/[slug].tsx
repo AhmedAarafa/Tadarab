@@ -282,65 +282,73 @@ function CourseDetails() {
 
   return (
     <>
+   { courseDetailsData?.data !== undefined &&
     <MetaTagsGenerator title={courseDetailsData?.data?.seo_title} 
     description={courseDetailsData?.data?.seo_metadesc} 
-    img={courseDetailsData?.data?.seo_image} />
+    img={courseDetailsData?.data?.seo_image} />}
       <Container fluid="xxl">
         <Navbar />
-        {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
+        {console.log('📘: ' , courseDetailsData?.data)
+        }
+        {
+          courseDetailsData?.data && 
           <>
+            {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
+              <>
 
-            <MobileNavTabsBar />
-            <MobileCheckoutBar />
-            <Row className={styles["course-details-row"]}>
-              <Col xs={12} sm={8}>
-                <CourseAdvertisement />
-                {originalCardPlacement == false &&
-                  <MonthlySubscriptionCard />
-                }
-                {courseDetailsData?.data?.course_details?.key_points !== null &&
-                 JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
-                  <WhatYouWillLearn />
-                 }
-                <CourseDetailsSection />
-                {courseDetailsData?.data?.course_details?.tags !== null &&
-                 JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
-                <CourseKeywords />
-                 }
-                 {courseDetailsData?.data?.course_details?.requirements !== null &&
-                 JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
-                <CourseRequirements />
-                 }
-                <CourseContent />
-                <TrainerInfo />
-                <GuaranteeCard />
-                <CourseCertificate />
-                <FAQ Cid={()=>{return courseId}}/>
-                <SpecialOffer Cid={()=>{return courseId}}/>
-              </Col>
-              {
-                originalCardPlacement == true &&
-                <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                  {originalCardPlacement == true && <MonthlySubscriptionCard />}
-                </Col>
-              }
-              <PracticalProjects Cid={()=>{return courseId}}/> 
-            </Row>
-            <Row className={styles["course-details__course-reviews"]}>
-              <CourseReview Cid={()=>{return courseId}}/>
-            </Row>
-            <Row className={styles["course-details__course-subscribers"]}>
-              <CourseSubscribers />
-            </Row>
-            {/* <Row className={styles["course-details__tadarab-business"]}>
-              <TadarabBusiness />
-            </Row> */}
-            <Row className={styles["course-details__comments-section"]}>
-              <CommentsSection Cid={()=>{return courseId}}/>
-            </Row>
+                <MobileNavTabsBar />
+                <MobileCheckoutBar />
+                <Row className={styles["course-details-row"]}>
+                  <Col xs={12} sm={8}>
+                    <CourseAdvertisement />
+                    {originalCardPlacement == false &&
+                      <MonthlySubscriptionCard />
+                    }
+                    {courseDetailsData?.data?.course_details?.key_points !== null &&
+                    JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
+                      <WhatYouWillLearn />
+                    }
+                    <CourseDetailsSection />
+                    {courseDetailsData?.data?.course_details?.tags !== null &&
+                    JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
+                    <CourseKeywords />
+                    }
+                    {courseDetailsData?.data?.course_details?.requirements !== null &&
+                    JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
+                    <CourseRequirements />
+                    }
+                    <CourseContent />
+                    <TrainerInfo />
+                    <GuaranteeCard />
+                    <CourseCertificate />
+                    <FAQ Cid={()=>{return courseId}}/>
+                    <SpecialOffer Cid={()=>{return courseId}}/>
+                  </Col>
+                  {
+                    originalCardPlacement == true &&
+                    <Col xs={colFullWidth ? 12 : 4} id="card-column">
+                      {originalCardPlacement == true && <MonthlySubscriptionCard />}
+                    </Col>
+                  }
+                  <PracticalProjects Cid={()=>{return courseId}}/> 
+                </Row>
+                <Row className={styles["course-details__course-reviews"]}>
+                  <CourseReview Cid={()=>{return courseId}}/>
+                </Row>
+                <Row className={styles["course-details__course-subscribers"]}>
+                  <CourseSubscribers />
+                </Row>
+                {/* <Row className={styles["course-details__tadarab-business"]}>
+                  <TadarabBusiness />
+                </Row> */}
+                <Row className={styles["course-details__comments-section"]}>
+                  <CommentsSection Cid={()=>{return courseId}}/>
+                </Row>
+              </>
+            }
+            {(courseDetailsData?.data?.course_details?.is_purchased) &&  <MyCourse/>}
           </>
         }
-        {(courseDetailsData?.data?.course_details?.is_purchased) &&  <MyCourse/>}
         <Footer />
       </Container>
 

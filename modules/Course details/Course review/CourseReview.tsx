@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 import {scrollspyHandler} from "../../_Shared/utils/scrollSpy"
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ReviewStartIcon, PlusIcon, GiftIcon, CartIcon } from "common/Icons/Icons";
+import Image from 'next/image';
 
 export default function CourseReview(props:any) { 
     SwiperCore.use([Navigation]);
@@ -105,7 +106,7 @@ export default function CourseReview(props:any) {
                     return(
                           <div key={i} className={styles["course-review__cards-carousel__card"]} >
                                 <div className={styles["course-review__cards-carousel__card__reviewer-img"]}>
-                                    <img src={review.user_image} alt="male avatar" /> 
+                                    <Image src={review.user_image} alt="male avatar" /> 
                                 </div>
                                 <div className={styles["course-review__cards-carousel__card__review-box"]}>
                                     <div>
@@ -253,7 +254,7 @@ export default function CourseReview(props:any) {
                             <div className={styles["course-review__cards-carousel__card"]}
                             style={{ alignItems: review.comment == "" ? 'center': 'flex-start'}}>
                                 <div className={styles["course-review__cards-carousel__card__reviewer-img"]}>
-                                    <img src={review.user_image} alt="male avatar" /> 
+                                    <Image src={review.user_image} alt="male avatar" /> 
                                 </div>
                                 <div className={styles["course-review__cards-carousel__card__review-box"]}>
                                     <div>

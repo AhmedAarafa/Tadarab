@@ -2,6 +2,7 @@
 import React from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./category-description.module.css";
+import Image from 'next/image';
 
 export default function CategoryDescription(props:any) {
 
@@ -11,7 +12,7 @@ export default function CategoryDescription(props:any) {
             <Col xs={12} className={styles["category-description"]}>
                 <div className={styles["category-description__description"]}>
                     <div className={styles["category-description__img"]} style={{backgroundColor : `${(props.data?.color)}`}}>
-                      <img src={`/images/${props.data?.parent_icon || props.data?.icon}.svg`}
+                      <Image src={`/images/${props.data?.parent_icon || props.data?.icon}.svg`}
                        alt={props.data?.parent_icon || props.data?.icon} 
                        id={styles[props.data?.parent_icon || props.data?.icon]}/>
 

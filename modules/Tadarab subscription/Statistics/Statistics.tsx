@@ -5,6 +5,7 @@ import { Row, Col } from "react-bootstrap";
 import { LearnersOutlinedIcon, CoursesIcon, TrainersIcon, ExperienceIcon, TickIcon } from "common/Icons/Icons";
 import { animateValue } from "modules/_Shared/utils/statsticsAnimatedValues";
 import LatestCourses from '../Latest courses/LatestCourses';
+import Image from 'next/image';
 
 export default function Statistics() {
   const [startCounter, setStartCounter] = useState<any>(false);
@@ -165,7 +166,7 @@ export default function Statistics() {
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
           <div className={`${styles["marketing-boxes__image"]}  d-flex justify-content-end`}>
-            <img src="/images/subs.jpg" alt="discriptive image" />
+            <Image src="/images/subs.jpg" alt="discriptive image" />
           </div>
         </Col>
 

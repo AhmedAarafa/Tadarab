@@ -4,6 +4,7 @@ import { Row, Col, Button } from "react-bootstrap";
 import styles from "./forget-password-page.module.css"; 
 import { EnvelopeIcon } from "common/Icons/Icons";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import Image from 'next/image';
 import * as Yup from 'yup';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
@@ -125,7 +126,7 @@ interface ForgetPasswordFormValues {
 
             </Col>
             <Col xs={{span:12 , order:1}} sm={{span:5 , order:2}} className={styles["forget-password__img"]}>
-                <img src="/images/forgetPassword2.png" alt="نسيت كلمة المرور" />
+                <Image src="/images/forgetPassword2.png" alt="نسيت كلمة المرور" />
             </Col>
 
         </Row>

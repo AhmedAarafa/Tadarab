@@ -4,9 +4,11 @@ import { Row, Col, Button } from "react-bootstrap";
 import styles from "./reset-password-page.module.css"; 
 import { LockIcon , EyeIcon} from "common/Icons/Icons";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import Image from 'next/image';
 import * as Yup from 'yup';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter }  from "next/router"; 
+import { useDispatch, useSelector } from "react-redux";
 
 
 interface ResetPasswordFormValues {
@@ -22,21 +24,36 @@ export default function ChangePasswordPage() {
     const [validationAfterSubmit, setValidationAfterSubmit] = useState({password:false,repeatedPassword:false,oldPassword:false});
     const [serverResponse, setServerResponse] = useState({value : "" , color:"" , bgcolor:""});
     const [fieldBlur, setFieldBlur] = useState({password:"",repeatedPassword:"",oldPassword:""});
+    const userStatus = useSelector((state: any) => state.userAuthentication);
 
 
     function validationSchema() {
-       return Yup.object().shape({
-        oldPassword: Yup.string()
-        .required("خانة كلمة المرور القديمه مطلوبه"),
+      if(userStatus.isUserAuthenticated){
 
-        password: Yup.string()
-        .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر")
-        .required("خانة كلمة المرور مطلوبه"),
-        
-        repeatedPassword: Yup.string()
-        .required("خانة إعادة كلمة المرور مطلوبه ")
-        .oneOf([Yup.ref('password'), null], 'كلمة المرور يجب ان تكون متماثله'),
-       });
+        return Yup.object().shape({
+         oldPassword: Yup.string()
+         .required("خانة كلمة المرور القديمه مطلوبه"),
+ 
+         password: Yup.string()
+         .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر")
+         .required("خانة كلمة المرور مطلوبه"),
+         
+         repeatedPassword: Yup.string()
+         .required("خانة إعادة كلمة المرور مطلوبه ")
+         .oneOf([Yup.ref('password'), null], 'كلمة المرور يجب ان تكون متماثله'),
+        });
+      }else if (userStatus.isUserAuthenticated == false){
+        return Yup.object().shape({
+         password: Yup.string()
+         .min(5, "كلمة المرور يجب ان تكون 5 حروف او أكثر")
+         .required("خانة كلمة المرور مطلوبه"),
+         
+         repeatedPassword: Yup.string()
+         .required("خانة إعادة كلمة المرور مطلوبه ")
+         .oneOf([Yup.ref('password'), null], 'كلمة المرور يجب ان تكون متماثله'),
+        });
+
+      }
      }
    
      const initialValues: ResetPasswordFormValues = {  
@@ -48,11 +65,12 @@ export default function ChangePasswordPage() {
     const handleValidationOnSubmit = ():any =>{
       const pwField:any = document.getElementById("password-field");
       const reEnterPwField:any = document.getElementById("re-enter-password-field");
-      
-      if(fieldBlur.oldPassword == ""){
-        const newValidationState = validationAfterSubmit;
-        newValidationState.oldPassword = true;
-        setValidationAfterSubmit(newValidationState);
+      if(userStatus.isUserAuthenticated){
+        if(fieldBlur.oldPassword == ""){
+          const newValidationState = validationAfterSubmit;
+          newValidationState.oldPassword = true;
+          setValidationAfterSubmit(newValidationState);
+        }
       }
 
       if(fieldBlur.password == "" || fieldBlur.password !== reEnterPwField.value){
@@ -111,6 +129,7 @@ export default function ChangePasswordPage() {
         }
  
       };
+     
       
     return (
         <>
@@ -129,68 +148,96 @@ export default function ChangePasswordPage() {
                       //   if(fieldBlur.email == ""){
                       //   setValidationAfterSubmit({email:true})
                       // }
-                      axiosInstance
-                      .put(`change-password`, {
-                      "old_password": values.oldPassword,
-                      "new_password": values.password,
-                      "confirm_new_password": values.repeatedPassword,
-                      })
-                      .then((response:any) => {
-                      if(!JSON.stringify(response.status).startsWith("2")){
-                          setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red", bgcolor:"#fcaaac"});
-                      }else{
-                          setServerResponse({value: "تم تغيير كلمة المرور بنجاح" , color:"green", bgcolor:"#C7F6B6"});
-                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                      if(userStatus.isUserAuthenticated){
+                        axiosInstance
+                        .put(`change-password`, {
+                        "old_password": values.oldPassword,
+                        "new_password": values.password,
+                        "confirm_new_password": values.repeatedPassword,
+                        })
+                        .then((response:any) => {
+                        if(!JSON.stringify(response.status).startsWith("2")){
+                            setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red", bgcolor:"#fcaaac"});
+                        }else{
+                            setServerResponse({value: "تم تغيير كلمة المرور بنجاح" , color:"green", bgcolor:"#C7F6B6"});
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                        }
+                        
+                        })
+                        .catch((error:any)=>{
+                        console.log("error", error);
+                        })
+                      }else if(userStatus.isUserAuthenticated == false){
+                        axiosInstance
+                        .put(`change-forgotten-password`, {
+                          "email":Router.query.email,
+                          "reset_key": Router.query.k,
+                          "new_password": values.password,
+                          "confirm_new_password": values.repeatedPassword,
+                        })
+                        .then((response:any) => {
+                        if(!JSON.stringify(response.status).startsWith("2")){
+                            setServerResponse({value:"حدث خطأ ما برجاء المحاولة مره اخري " , color:"red", bgcolor:"#fcaaac"});
+                        }else{
+                            setServerResponse({value: "تم تغيير كلمة المرور بنجاح" , color:"green", bgcolor:"#C7F6B6"});
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
+                        }
+                        
+                        })
+                        .catch((error:any)=>{
+                        console.log("error", error);
+                        })
+
                       }
-                      
-                      })
-                      .catch((error:any)=>{
-                      console.log("error", error);
-                      })
                   }}
                     >
                       {({ resetForm,errors,handleBlur }) => (
 
                         <Form>
-                          <div className={`${styles["reset-password__reset-password-box__old-password-field-container"]} 
-                          ${( validationAfterSubmit.oldPassword  && errors.oldPassword) && styles["required"]}
-                          `}>
-                              <div className={styles["reset-password__reset-password-box__icon-wrapper"]}>
-                              <LockIcon/>
-                              </div>
-                              <Field
-                               onKeyPress={ (e:any)=>{
-                                e.stopPropagation();
-                                setServerResponse({value:"" , color:"", bgcolor:""});
-                                setValidationAfterSubmit({...validationAfterSubmit,oldPassword:false});
-                            } }
-                            onBlur={(e:any) => {
-                              // if(e.target.value !== "" 
-                              // &&
-                              // e.target.value.length <= 5
-                              // ){
-                              //   setValidationAfterSubmit({...validationAfterSubmit,oldPassword:true});
-                              // }else{
-                              //   setValidationAfterSubmit({...validationAfterSubmit,oldPassword:false});
-                              // } 
+                          {
+                            userStatus.isUserAuthenticated &&
+                            <>
+                            <div className={`${styles["reset-password__reset-password-box__old-password-field-container"]} 
+                            ${( validationAfterSubmit.oldPassword  && errors.oldPassword) && styles["required"]}
+                            `}>
+                                <div className={styles["reset-password__reset-password-box__icon-wrapper"]}>
+                                <LockIcon/>
+                                </div>
+                                <Field
+                                onKeyPress={ (e:any)=>{
+                                  e.stopPropagation();
+                                  setServerResponse({value:"" , color:"", bgcolor:""});
+                                  setValidationAfterSubmit({...validationAfterSubmit,oldPassword:false});
+                              } }
+                              onBlur={(e:any) => {
+                                // if(e.target.value !== "" 
+                                // &&
+                                // e.target.value.length <= 5
+                                // ){
+                                //   setValidationAfterSubmit({...validationAfterSubmit,oldPassword:true});
+                                // }else{
+                                //   setValidationAfterSubmit({...validationAfterSubmit,oldPassword:false});
+                                // } 
+                                
+                                handleBlur(e);
+                                setFieldBlur({...fieldBlur, oldPassword:e.target.value});
+                            }}
+                                name="oldPassword"
+                                type="password" placeholder="كلمة المرور القديمه" 
+                                  id="old-password-field" className={styles["reset-password__reset-password-box__password-field"]}/>
                               
-                              handleBlur(e);
-                              setFieldBlur({...fieldBlur, oldPassword:e.target.value});
-                          }}
-                               name="oldPassword"
-                               type="password" placeholder="كلمة المرور القديمه" 
-                                id="old-password-field" className={styles["reset-password__reset-password-box__password-field"]}/>
-                            
-                            <div className={styles["reset-password__reset-password-box__show-password-icon-wrapper"]}>
+                              <div className={styles["reset-password__reset-password-box__show-password-icon-wrapper"]}>
 
-                              <div onClick={()=>showHidePasswordHandler("old-password-field")}>
+                                <div onClick={()=>showHidePasswordHandler("old-password-field")}>
 
-                              <EyeIcon color={isOldPwFieldVisible ? "#008000" : "#999"}/>
+                                <EyeIcon color={isOldPwFieldVisible ? "#008000" : "#999"}/>
+                                </div>
+                              
+                                </div>
                               </div>
-                            
-                              </div>
-                            </div>
-                              { validationAfterSubmit.oldPassword && <ErrorMessage name="oldPassword" component="div" className={styles["error-msg"]} />}
+                                { validationAfterSubmit.oldPassword && <ErrorMessage name="oldPassword" component="div" className={styles["error-msg"]} />}
+                            </>
+                          }
 
                           <div className={`${styles["reset-password__reset-password-box__password-field-container"]} 
                           ${( validationAfterSubmit.password  && errors.password) && styles["required"]}
@@ -288,7 +335,7 @@ export default function ChangePasswordPage() {
 
             </Col>
             <Col xs={{span:12 , order:1}} sm={{span:5 , order:2}} className={styles["reset-password__img"]}>
-                <img src="/images/reset password.png" alt="reset password" />
+                <Image src="/images/reset password.png" alt="reset password" />
             </Col>
 
         </Row>

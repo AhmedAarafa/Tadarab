@@ -15,6 +15,7 @@ import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import Image from 'next/image';
 
 export default function SearchResultsPage() {
     const [searchResults, setSearchResults] = useState<any>([]);
@@ -197,7 +198,7 @@ export default function SearchResultsPage() {
                                             }
                                         >
                                             <Link href={`/trainer/${course.trainer?.slug}`}>
-                                                <img
+                                                <Image
                                                     src={course.trainer?.image}
                                                     alt="trainer image"
                                                 />

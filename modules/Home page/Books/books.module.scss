@@ -8,7 +8,7 @@
 .books__title {
     font-size: 2rem;
     font-weight: 800;
-    padding: 5.688rem 3rem 3.125rem 3rem;
+    padding: 0 3rem 3.125rem 3rem;
     background-color: white;
     @include flex(center, flex-start);
 
@@ -72,7 +72,8 @@
 
 .books__cards-carousel__card {
     width: 13.25rem;
-    height: 27.875rem;
+    height: 25rem;
+    // height: 27.875rem;
     border-radius: 0.5rem;
     border: 0;
     display: inline-block;
@@ -190,7 +191,8 @@
     
     .books__cards-carousel__card {
         width: 13.25rem*1.33;
-        height: 27.875rem*1.33;
+        height: 25rem*1.33;
+        // height: 27.875rem*1.33;
         border-radius: 0.5rem*1.33;
         border: 0;
         display: inline-block;
@@ -298,7 +300,8 @@
 
 .books__cards-carousel__card {
     width: 13.25rem*1.35;
-    height: 27.875rem*1.35;
+    height: 25rem*1.35;
+    // height: 27.875rem*1.35;
     border-radius: 0.5rem*1.35;
     border: 0;
     display: inline-block;
@@ -375,7 +378,7 @@
 
     .books__title {
         font-size: 4.688rem;
-        padding: 14.063rem 0 7.969rem 0;
+        padding: 0rem 0 3rem 0;
         @include flex(center, center);
 
     }
@@ -431,7 +434,8 @@
 
     .books__cards-carousel__card {
         width: 13.25rem*3.1;
-        height: 27.875rem*3.1;
+        height: 25rem*3.1;
+        // height: 27.875rem*3.1;
         border-radius: 0.5rem*3.1;
         border: 0;
         display: inline-block;

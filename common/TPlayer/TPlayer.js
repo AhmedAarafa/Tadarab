@@ -500,7 +500,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 	//if(!theDefaultOption.Source){
 		const dispatch = useDispatch();
 		const ioverlayM=React.useRef(null);const ierrorM=React.useRef(null);const ibuynowM=React.useRef(null);
-		useEffect(() => {return ()=>{dispatch(setCourseDetailsData([]));playlistSrc=[];}}, []);
+		useEffect(() => {return ()=>{/* dispatch(setCourseDetailsData([])); */playlistSrc=[];}}, []);
 		isUserLogin = useSelector((state) => state.userAuthentication?.isUserAuthenticated);
 	//}
 	// lookup the options in the docs for more options

@@ -15,6 +15,7 @@ export default function MetaTagsGenerator(props:any) {
             <meta property="og:image:secure_url" content={props.img} />
             <meta property="og:image:width" content="600" />
             <meta property="og:image:height" content="314" />
+            
             <meta name="twitter:card" content="summary" />
             <meta name="twitter:description" content={props.description} />
             <meta name="twitter:title" content={props.title} />

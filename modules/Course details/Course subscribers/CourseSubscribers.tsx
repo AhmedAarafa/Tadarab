@@ -6,6 +6,7 @@ import { Col , Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
+import Image from 'next/image';
 import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router from "next/router";
@@ -215,7 +216,7 @@ export default function CourseSubscribers() {
                                 >
                                   <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                      <img
+                                      <Image
                                       src={course.trainer.image}
                                       alt="trainer image"
                                       />

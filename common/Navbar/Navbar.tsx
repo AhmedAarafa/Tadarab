@@ -13,6 +13,7 @@ import {
   Popover,
   Offcanvas
 } from "react-bootstrap";
+import Image from 'next/image';
 import { popoverHandler } from "./utils";
 import {
   TadarabLogo, NextIcon, BackIcon, DarkModeIcon, DropDownIcon, SearchIcon,
@@ -46,7 +47,7 @@ function Navbar() {
   const cartItems = useSelector((state: any) => state.cartItems);
   const myCourseNavigator = useSelector((state: any) => state.myCourseNavigator);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
-
+const router = useRouter();
 
   const dispatch = useDispatch();
 
@@ -201,11 +202,7 @@ function Navbar() {
 
   useEffect(() => {
     
-    // if(courseDetailsData?.data?.course_details?.is_in_user_subscription || courseDetailsData?.data?.course_details?.is_purchased){
-    //   setIsCoursePurchased(true);
-    // }else{
-    //   setIsCoursePurchased(false);
-    // }
+  
 
     let localStorageItems: any = localStorage.getItem("cart");
     // console.log("cartItems",cartItems);
@@ -237,6 +234,19 @@ function Navbar() {
 
 
   }, [])
+  
+  useEffect(() => {
+    if(courseDetailsData?.data && JSON.stringify(courseDetailsData?.data) !== '[]'){
+
+      if((courseDetailsData?.data?.course_details?.is_in_user_subscription || courseDetailsData?.data?.course_details?.is_purchased)
+      && Router.asPath.includes("/course/")){
+        setIsCoursePurchased(true);
+      }else{
+        setIsCoursePurchased(false);
+      }
+    }
+  }, [courseDetailsData,myCourseNavigator,router.asPath])
+  
   
 
   useEffect(() => {
@@ -602,7 +612,8 @@ function Navbar() {
                 </div>
                 <div className={`${styles["navbar__purchased-course-nav__certificate"]} 
                ${myCourseNavigator == "certificate" && styles["navbar__purchased-course-nav--active"]} `}
-                  onClick={() => { dispatch(setMyCourseNavigator("certificate")); }}>
+                  onClick={() => { dispatch(setMyCourseNavigator("certificate"));
+                   }}>
 
                   <CertificateIcon color={myCourseNavigator == "certificate" ? "#af151f" : "#bbbabf"} />
                   <span>شهادة الدورة</span>
@@ -610,9 +621,9 @@ function Navbar() {
                 </div>
 
               </div>
-              <div className={styles["navbar__three-dots-icon"]}>
+              {/* <div className={styles["navbar__three-dots-icon"]}>
                 <ThreeDotsIcon color="#222" />
-              </div>
+              </div> */}
             </>
           }
           {userStatus.isUserAuthenticated && <div className={styles["navbar__dark-mode-icon"]}>
@@ -689,7 +700,7 @@ function Navbar() {
                       return (
 
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                          <img
+                          <Image
                             src={item.image}
                             alt="course image"
                             className={styles["navbar__cart-popover__img"]}
@@ -806,7 +817,7 @@ function Navbar() {
                         }
                       >
                         {
-                          localStateCartItems?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                          localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
                         }
                       </span>
                       <span
@@ -840,7 +851,7 @@ function Navbar() {
                           }
                         >
                           {
-                            localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                            localStateCartItems?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
                           }
                         </span>
                         <span

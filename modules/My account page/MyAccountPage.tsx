@@ -19,6 +19,7 @@ import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
+import Image from 'next/image';
 
 export default function MyAccountPage() {
   SwiperCore.use([Navigation]);
@@ -132,7 +133,7 @@ export default function MyAccountPage() {
 
                           <div className={styles["my-account__cards-carousel__departments-card__img-box"]}
                             style={{ backgroundColor: cat.color }}>
-                            <img src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
+                            <Image src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
 
 
                           </div>
@@ -214,7 +215,7 @@ export default function MyAccountPage() {
                       }
                     >
                       <Link href={`/trainer/${course.trainer?.slug}`}>
-                        <img
+                        <Image
                           src={course.trainer?.image}
                           alt="trainer image"
                         />

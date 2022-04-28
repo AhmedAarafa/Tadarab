@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon}  from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
+import Image from 'next/image';
 
 export default function CoursesDepartments() {
     SwiperCore.use([Navigation]);
@@ -79,7 +80,7 @@ export default function CoursesDepartments() {
                                         <div className={styles["courses-departments__cards-carousel__departments-card__img-box"]}
                                         style={{backgroundColor:cat.color}}>
                                             
-                                            <img src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
+                                            <Image src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
                                           
 
                                         </div>

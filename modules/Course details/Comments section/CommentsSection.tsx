@@ -7,6 +7,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { SendIcon, LikeIcon,CommentIcon } from "common/Icons/Icons";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";  
+import Image from 'next/image';
 
 export default function CommentsSection(props:any) {
     const [courseComments, setCourseComments] = useState<any>([]);
@@ -335,7 +336,7 @@ export default function CommentsSection(props:any) {
                                     <div id={`comment-box${i}`} className={styles["comments-section__comments-tree__comment-box"]}>
 
                                         <div className={styles["comments-section__comments-tree__comment-box__commenter-img"]}>
-                                            <img src={comment.author_image} alt="commenter image" />
+                                            <Image src={comment.author_image} alt="commenter image" />
                                         </div>
                                         <div id="details" className={styles["comments-section__comments-tree__comment-box__comment-details"]}>
                                             <div className={styles["comments-section__comments-tree__comment-box__comment-details__name"]}>
@@ -345,7 +346,7 @@ export default function CommentsSection(props:any) {
                                             <div className={styles["comments-section__comments-tree__comment-box__comment-details__date"]}>
                                                 {
                                                     comment.country_code !== null && comment.country_code !== "" && comment.country_code !== undefined  &&
-                                                <img src={`/images/svg flags/${(comment.country_code)?.toLowerCase()}.svg`} alt="Country flag" />
+                                                <Image src={`/images/svg flags/${(comment.country_code)?.toLowerCase()}.svg`} alt="Country flag" />
                                                 }
                                                 <span>   {comment.date_ar} </span>
                                                 
@@ -385,7 +386,7 @@ export default function CommentsSection(props:any) {
                                                         <div className={styles["comments-section__comments-tree__comment-box"]}>
 
                                                             <div className={styles["comments-section__comments-tree__comment-box__commenter-img"]}>
-                                                                <img src={reply.author_image} alt="male avatar" />
+                                                                <Image src={reply.author_image} alt="male avatar" />
                                                             </div>
                                                             <div id="details" className={styles["comments-section__comments-tree__comment-box__comment-details"]}>
                                                                 <div className={styles["comments-section__comments-tree__comment-box__comment-details__name"]}>

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import Image from 'next/image';
 
 export default function SpecialOffer(props:any) {
     const [specialBundleData, setSpecialBundleData] = useState<any>();
@@ -41,7 +42,7 @@ export default function SpecialOffer(props:any) {
                   const [name, ...value] = current.split('=');
                   prev[name] = value.join('=');
                   
-                  if(prev.timer < (Math.floor(Date.now() / 1000))){
+                  if((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN"){
                       
                       let now = new Date();
                       let time = now.getTime();
@@ -168,7 +169,7 @@ export default function SpecialOffer(props:any) {
                         <div key={i}>
                             <div  className={styles["special-offer__cards-outer-box__card"]}>
                                 <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
-                                    <img src={course.image} alt="course image" />
+                                    <Image src={course.image} alt="course image" />
                                     {
                                        course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== ""  &&
 
@@ -183,7 +184,7 @@ export default function SpecialOffer(props:any) {
 
                                     <div className={styles["special-offer__cards-outer-box__card__trainer-info-box"]}>
                                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                                            <img src={course.trainer.image} alt="trainer image" />
+                                            <Image src={course.trainer.image} alt="trainer image" />
                                         </div>
                                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
                                             <h1 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title={course.title}>

@@ -96,7 +96,7 @@ export default function CourseContent() {
                                 {/* {console.log(courseDetailsData.data?.attachments)
                                 } */}
                                 { courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
-                                    Object.keys(courseDetailsData.data?.attachments)?.map((att:any,i:number)=>{
+                                    (courseDetailsData.data?.attachments)?.map((att:any,i:number)=>{
                                         return(
                                             <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                 <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>

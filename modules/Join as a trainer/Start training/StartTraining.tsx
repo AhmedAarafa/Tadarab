@@ -4,6 +4,7 @@ import styles from "./start-training.module.css";
 import { Row,Col,Form,Button } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
 import Router from "next/router";
+import Image from 'next/image';
 
 export default function StartTraining() {
   return (
@@ -28,7 +29,7 @@ export default function StartTraining() {
         <Col xs={12} sm={6} >
           
           <div className={styles["start-training__img-container"]}>
-            <img src="/images/startTrainingnoww.png" alt="discriptive image" />
+            <Image src="/images/startTrainingnoww.png" alt="discriptive image" />
           </div>
 
         </Col>

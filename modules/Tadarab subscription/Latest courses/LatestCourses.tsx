@@ -28,6 +28,7 @@ import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents"
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
+import Image from 'next/image';
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
@@ -563,7 +564,7 @@ function LatestCourses() {
                             >
                               <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                <img
+                                <Image
                                   src={course.trainer.image}
                                   alt="trainer image"
                                 />

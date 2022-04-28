@@ -4,7 +4,7 @@
 .live-courses__title {
     font-size: 2rem;
     font-weight: 800;
-    padding: 7rem 3rem 0 3rem;
+    padding: 4rem 3rem 0 3rem;
     @include flex(center, space-between);
 
     &>div {
@@ -21,7 +21,7 @@
 
 .live-courses__see-more-btn-col {
     @include flex(center, flex-end);
-    padding: 7rem 3rem 0 3rem;
+    padding: 4rem 3rem 0 3rem;
 }
 
 .live-courses__see-more-btn {
@@ -52,7 +52,7 @@
 
 .live-courses__cards-carousel {
     margin-top: 2.5rem*0.8;
-    margin-bottom: 7rem*0.8;
+    margin-bottom: 0;
 
 
     &>div {
@@ -821,13 +821,13 @@
 
     .live-courses__title {
         font-size: 4.688rem;
-        padding: 16rem 0 0 0;
+        padding: 7rem 0 0 0;
         @include flex(center, center);
     }
 
     .live-courses__see-more-btn-col {
         @include flex(center, center);
-        padding: 5rem 0 0 0;
+        padding: 0rem 0 0 0;
         // display: none;
     }
 

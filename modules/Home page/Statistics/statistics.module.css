@@ -1,5 +1,5 @@
 .statistics {
-  margin-top: 8rem;
+  margin-top: 3rem;
   height: 29.375rem;
   position: relative;
 }
@@ -80,7 +80,7 @@
 
 @media (max-width: 575px) {
   .statistics {
-    margin: 18rem 5rem 0 5rem;
+    margin: 10rem 5rem 0 5rem;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
@@ -125,7 +125,7 @@
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
     margin: 7.813rem 0 0 0;
-    padding-bottom: 8.75rem;
+    padding-bottom: 2rem;
   }
   .statistics__details > div {
     width: 50%;

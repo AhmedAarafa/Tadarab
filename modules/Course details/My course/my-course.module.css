@@ -480,7 +480,7 @@
 }
 
 .my-course__certificate__date {
-  left: 23%;
+  left: calc(calc(100% - 13rem)/3);
   bottom: 18.5%;
 }
 
@@ -488,16 +488,17 @@
   bottom: 31.5%;
   left: 21.5%;
   font-size: 1.1rem;
+  left: calc(calc(100% - 13rem)/2);
 }
 
 .my-course__certificate__trainer-name {
   bottom: 18.5%;
-  left: 58.5%;
+  left: calc(calc(100% - 13rem)/1.1);
 }
 
 .my-course__certificate__learner-name {
   bottom: 49%;
-  left: 32%;
+  left: calc(calc(100% - 13rem)/2.2);
   font-size: 2.5rem;
 }
 

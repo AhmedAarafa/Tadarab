@@ -17,6 +17,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import Image from 'next/image';
 
 export default function TrainerCourses() {
     const dispatch = useDispatch();
@@ -186,7 +187,7 @@ export default function TrainerCourses() {
                                         >
                                             <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                                <img src={course?.trainer?.image} alt="trainer image" />
+                                                <Image src={course?.trainer?.image} alt="trainer image" />
 
                                             </Link>
                                         </div>

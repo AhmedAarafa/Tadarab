@@ -6,13 +6,17 @@ import { CheckCircleIcon, AttachmentsIcon, CongratulationsIcon, FileDownloadIcon
 import { useDispatch, useSelector } from "react-redux";  
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { TadarabVideoPlayer, TPlayerPaidPlayList } from "common/TPlayer/TPlayer";
-
+import { setMyCourseNavigator } from "configurations/redux/actions/myCourseNavigator";
+import Image from 'next/image';
+ 
 export default function MyCourse() {
     const [courseDetails, setCourseDetails] = useState<any>([]);
     const [todaysDate, setTodaysDate] = useState<any>("");
     const [userInfo, setUserInfo] = useState<any>({});
+    const [downloadLink, setDownloadLink] = useState<any>("");
     const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
     const myCourseNavigator = useSelector((state:any) => state.myCourseNavigator);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         let today:any = new Date();
@@ -31,14 +35,42 @@ export default function MyCourse() {
         .catch(function (error:any) {
           console.log(error); 
         });
+
+        return () => {
+            dispatch(setMyCourseNavigator("curriculum"));
+          }
+
       }, []);
 
     useEffect(() => {
-        setCourseDetails(courseDetailsData.data || []);
-        // return () => {
-        //     setCourseDetails([])
-        //   }
+        setCourseDetails(courseDetailsData?.data);
+        return () => {
+            dispatch(setMyCourseNavigator("curriculum"));
+          }
       }, [courseDetailsData]);
+
+
+      const fileToBase64 = (filename:any, filepath:any) => {
+        return new Promise(resolve => {
+          var file = new File([filename], filepath);
+          var reader = new FileReader();
+          // Read file content on file loaded event
+          reader.onload = function(event:any) {
+            resolve(event.target.result);
+          };
+          
+          // Convert data to base64 
+          reader.readAsDataURL(file);
+        });
+
+
+        /* 
+        fileToBase64(`${att.title}.pdf`, att.link).then(result => {
+            // console.log(result);
+            });
+         */
+
+      };
 
     return (
         <>
@@ -74,8 +106,11 @@ export default function MyCourse() {
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body className={styles["course-content__accordion__body"]}>
+                                {console.log(courseDetailsData.data?.attachments)
+                                }
                                 { courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
-                                    Object.keys(courseDetailsData.data?.attachments)?.map((att:any,i:number)=>{
+                                    (courseDetailsData.data?.attachments).map((att:any,i:number)=>{
+                                        
                                         return(
                                             <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                 <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
@@ -87,9 +122,13 @@ export default function MyCourse() {
                                                     
                                                     </div>
                                                 </div>
-
+                                            {/* {console.log(att.link)
+                                            } */}
                                                 <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
-                                                    <FileDownloadIcon color="#af151f"/>
+                                                    <a href={att.link} target="_blank" rel="noreferrer" >
+
+                                                      <FileDownloadIcon color="#af151f"/>
+                                                    </a>
                                                 </div>
                                             </div>
                                         )
@@ -147,7 +186,7 @@ export default function MyCourse() {
                     <>
                         <Col xs={12} sm={8} className={styles["my-course__certificate"]}>
                             <div>
-                                <img src="/images/شهادة3 website.jpg" alt="course certificate" />
+                                <Image src="/images/شهادة3 website.jpg" alt="course certificate" />
                                 <div className={styles["my-course__certificate__date"]}>{todaysDate}</div>
                                 <div className={styles["my-course__certificate__course-name"]}>{courseDetailsData.data?.course_details?.title}</div>
                                 <div className={styles["my-course__certificate__trainer-name"]}>{courseDetailsData.data?.course_details?.trainer?.name_ar}</div>

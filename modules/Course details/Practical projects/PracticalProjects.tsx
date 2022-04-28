@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import { useDispatch, useSelector } from "react-redux";  
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import Image from 'next/image';
 
 export default function PracticalProjects(props:any) {
   const [courseProjects, setCourseProjects] = useState<any>([]);
@@ -52,11 +53,11 @@ export default function PracticalProjects(props:any) {
               <Col key={i} xs={6} className={styles["practical-projects__project-card-col"]}>
                   <div className={styles["practical-projects__project-card"]}>
                       <div className={styles["practical-projects__project-card__project-img"]}>
-                          <img src={project.attachment_url} alt="project image" />
+                          <Image src={project.attachment_url} alt="project image" />
                       </div>
                       <div className={styles["practical-projects__project-card__trainee-details-box"]}>
                           <div className={styles["practical-projects__project-card__trainee-details-box__trainee-img"]}>
-                              <img src={project.user_image} alt="male avatar" />  
+                              <Image src={project.user_image} alt="male avatar" />  
 
                           </div>
                           <div className={styles["practical-projects__project-card__trainee-details-box__details"]}>
@@ -89,11 +90,11 @@ export default function PracticalProjects(props:any) {
                           <SwiperSlide key={i}>
                               <div className={styles["practical-projects__project-card"]}>
                                   <div className={styles["practical-projects__project-card__project-img"]}>
-                                      <img src={project.attachment_url} alt="project image" />
+                                      <Image src={project.attachment_url} alt="project image" />
                                   </div>
                                   <div className={styles["practical-projects__project-card__trainee-details-box"]}>
                                       <div className={styles["practical-projects__project-card__trainee-details-box__trainee-img"]}>
-                                          <img src={project.user_image} alt="male avatar" />  
+                                          <Image src={project.user_image} alt="male avatar" />  
 
                                       </div>
                                       <div className={styles["practical-projects__project-card__trainee-details-box__details"]}>
