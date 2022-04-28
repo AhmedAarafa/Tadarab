@@ -8,6 +8,7 @@ import Image from 'next/image';
 import * as Yup from 'yup';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
+import forgetPassword from "/images/forgetPassword2.png";
 
 interface ForgetPasswordFormValues {
     email:string;
@@ -126,7 +127,7 @@ interface ForgetPasswordFormValues {
 
             </Col>
             <Col xs={{span:12 , order:1}} sm={{span:5 , order:2}} className={styles["forget-password__img"]}>
-                <Image src="/images/forgetPassword2.png" alt="نسيت كلمة المرور" />
+                <Image src={forgetPassword} alt="نسيت كلمة المرور" />
             </Col>
 
         </Row>

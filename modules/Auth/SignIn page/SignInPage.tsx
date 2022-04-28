@@ -22,6 +22,7 @@ import * as Yup from "yup";
 import { EnvelopeIcon, GoogleIcon,FbIcon,AppleIcon,LockIcon,EyeIcon } from "common/Icons/Icons";
 import { signinValidationRules } from "validation rules/signin";
 import Link from "next/link";
+import signIn from "/images/sign in.png";
 interface SignInFormValues {
   email:string;
   password:string;
@@ -294,7 +295,7 @@ export default function SignInPage() {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["sign-in__img"]}>
-          <Image src="/images/sign in.png" alt="sign-in now" />
+          <Image src={signIn} alt="sign-in now" />
         </Col>
       </Row>
     </>
