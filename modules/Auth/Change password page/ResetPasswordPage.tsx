@@ -9,7 +9,6 @@ import * as Yup from 'yup';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter }  from "next/router"; 
 import { useDispatch, useSelector } from "react-redux";
-import resetPassword from "/images/reset password.png";
 
 
 interface ResetPasswordFormValues {
@@ -336,7 +335,7 @@ export default function ChangePasswordPage() {
 
             </Col>
             <Col xs={{span:12 , order:1}} sm={{span:5 , order:2}} className={styles["reset-password__img"]}>
-                <img loading="lazy"   src={resetPassword} alt="reset password" />
+                <img loading="lazy"   src="/images/reset password.png" alt="reset password" />
             </Col>
 
         </Row>

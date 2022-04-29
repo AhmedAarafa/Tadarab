@@ -27,7 +27,6 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import Link from "next/link";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { useDispatch, useSelector } from "react-redux";  
-import signUp from "/images/signUpDiscImg.png";  
 
 interface SignUpFormValues {
   name: string;
@@ -429,7 +428,7 @@ const handleRedirection = ():any=> {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["register__img"]}>
-          <img loading="lazy"   src={signUp} alt="register now" />
+          <img loading="lazy"   src="/images/signUpDiscImg.png" alt="register now" />
         </Col>
       </Row>
     </>
