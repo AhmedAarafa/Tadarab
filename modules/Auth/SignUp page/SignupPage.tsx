@@ -429,7 +429,7 @@ const handleRedirection = ():any=> {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["register__img"]}>
-          <Image src={signUp} alt="register now" />
+          <img loading="lazy"   src={signUp} alt="register now" />
         </Col>
       </Row>
     </>

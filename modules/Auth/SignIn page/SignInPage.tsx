@@ -295,7 +295,7 @@ export default function SignInPage() {
           </div>
         </Col>
         <Col xs={{span:12 , order:1}} sm={{span:6 , order:2}} className={styles["sign-in__img"]}>
-          <Image src={signIn} alt="sign-in now" />
+          <img loading="lazy"   src={signIn} alt="sign-in now" />
         </Col>
       </Row>
     </>

@@ -166,7 +166,7 @@ export default function Statistics() {
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
           <div className={`${styles["marketing-boxes__image"]}  d-flex justify-content-end`}>
-            <Image src="/images/subs.jpg" alt="discriptive image" />
+            <img loading="lazy"   src={"/images/subs.jpg"} alt="discriptive image" />
           </div>
         </Col>
 

@@ -161,7 +161,7 @@ export default function CourseCard() {
                 className={
                   styles["course-details__course-card__details-list__item"]
                 }>
-                <Image src={`/images/${kf.icon}.svg`} alt={`${kf.icon} icon`} />
+                <img loading="lazy"   src={`/images/${kf.icon}.svg`} alt={`${kf.icon} icon`} />
 
                 <span>{kf.text}</span>
               </div>
@@ -185,7 +185,7 @@ export default function CourseCard() {
       <div className={styles["course-details__sticky-top-course-card__course-details-box"]}>
 
       <div className={styles["course-details__sticky-top-course-card__course-img"]}>
-              <Image src={courseDetails.course_details?.image} alt="course image" />
+              <img loading="lazy"   src={courseDetails.course_details?.image} alt="course image" />
       </div>
       <div className={styles["course-details__sticky-top-course-card__course-details"]}>
           <div >{courseDetails.course_details?.title}</div>

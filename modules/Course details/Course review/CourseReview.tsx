@@ -106,7 +106,7 @@ export default function CourseReview(props:any) {
                     return(
                           <div key={i} className={styles["course-review__cards-carousel__card"]} >
                                 <div className={styles["course-review__cards-carousel__card__reviewer-img"]}>
-                                    <Image src={review.user_image} alt="male avatar" /> 
+                                    <img loading="lazy"   src={review.user_image} alt="male avatar" /> 
                                 </div>
                                 <div className={styles["course-review__cards-carousel__card__review-box"]}>
                                     <div>
@@ -254,7 +254,7 @@ export default function CourseReview(props:any) {
                             <div className={styles["course-review__cards-carousel__card"]}
                             style={{ alignItems: review.comment == "" ? 'center': 'flex-start'}}>
                                 <div className={styles["course-review__cards-carousel__card__reviewer-img"]}>
-                                    <Image src={review.user_image} alt="male avatar" /> 
+                                    <img loading="lazy"   src={review.user_image} alt="male avatar" /> 
                                 </div>
                                 <div className={styles["course-review__cards-carousel__card__review-box"]}>
                                     <div>

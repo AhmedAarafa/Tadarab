@@ -14,7 +14,7 @@ export default function EducationalGuide() {
         <Col xs={12} className={styles["educational-guide"]}>
           <div className={styles["educational-guide__container"]}>
             <div className={styles["educational-guide__container__img"]}>
-                <Image src="/images/hams.png" alt="guide" />
+                <img loading="lazy"   src={"/images/hams.png"} alt="guide" />
             </div>
             <div className={styles["educational-guide__container__details-box"]}>
               <div className={styles["educational-guide__container__details-box__title"]}>

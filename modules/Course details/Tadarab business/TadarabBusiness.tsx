@@ -9,7 +9,7 @@ export default function TadarabBusiness() {
         <>
         <Col xs={12} className={styles["tadarab-business"]}>
             <div className={styles["tadarab-business__img"]}>
-                <Image src="/images/LapTop & Phone Alpha (1).gif" alt="Tadarab business" />
+                <img loading="lazy"   src={"/images/LapTop & Phone Alpha (1).gif"} alt="Tadarab business" />
                 {/* <video src="/images/LapTopPhoneAlpha.mp4" autoPlay loop muted></video> */}
             </div>
 

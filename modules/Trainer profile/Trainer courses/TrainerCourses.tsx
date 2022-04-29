@@ -187,7 +187,7 @@ export default function TrainerCourses() {
                                         >
                                             <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                                <Image src={course?.trainer?.image} alt="trainer image" />
+                                                <img loading="lazy"   src={course?.trainer?.image} alt="trainer image" />
 
                                             </Link>
                                         </div>

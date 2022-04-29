@@ -150,7 +150,7 @@ export default function TrainerInfo() {
         <div className={styles["trainer-profile__trainer-info-col__trainer-info-box"]}>
 
           <div className={styles["trainer-profile__trainer-info-col__trainer-info-box__trainer-img"]}>
-            <Image src={trainerProfileData.data?.data?.image} alt="trainer image" />
+            <img loading="lazy"   src={trainerProfileData.data?.data?.image} alt="trainer image" />
           </div>
 
           <div className={styles["trainer-profile__trainer-info-col__trainer-info-box__trainer-info"]}>

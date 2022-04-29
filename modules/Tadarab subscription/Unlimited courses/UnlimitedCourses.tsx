@@ -33,7 +33,7 @@ export default function UnlimitedCourses() {
           <Col xs={12}>
 
               <div className={styles["unlimited-courses__logo"]}>
-                <Image src="/images/TadarabUnlimited.png" alt="TadarabUnlimited" />
+                <img loading="lazy"   src={"/images/TadarabUnlimited.png"} alt="TadarabUnlimited" />
               </div>
 
               <div className={styles["unlimited-courses__title"]}>
@@ -82,7 +82,7 @@ export default function UnlimitedCourses() {
           </Col>
           {/* <Col xs={12} sm={6}>
               <div className={styles["unlimited-courses__video-container"]}>
-                  <Image src="/images/VideoPlaceholder.png" alt="promo video" />
+                  <img loading="lazy"   src="/images/VideoPlaceholder.png" alt="promo video" />
               </div>
           </Col> */}
       </Row>

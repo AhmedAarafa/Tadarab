@@ -12,7 +12,7 @@ export default function CategoryDescription(props:any) {
             <Col xs={12} className={styles["category-description"]}>
                 <div className={styles["category-description__description"]}>
                     <div className={styles["category-description__img"]} style={{backgroundColor : `${(props.data?.color)}`}}>
-                      <Image src={`/images/${props.data?.parent_icon || props.data?.icon}.svg`}
+                      <img loading="lazy"   src={`/images/${props.data?.parent_icon || props.data?.icon}.svg`}
                        alt={props.data?.parent_icon || props.data?.icon} 
                        id={styles[props.data?.parent_icon || props.data?.icon]}/>
 
@@ -24,7 +24,7 @@ export default function CategoryDescription(props:any) {
                             { props.data?.parent_id == 0 &&
                              <>
                             <span> {props.data?.subcategories_count} </span>
-                            مواضيع
+                            مواضيع 
                             -
                             </>
                             }

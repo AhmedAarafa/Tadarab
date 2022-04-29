@@ -447,7 +447,7 @@ export default function TrainingCourses(props:any) {
                             >
                                 <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                    <Image
+                                    <img loading="lazy"  
                                     src={course.trainer.image}
                                     alt={course.trainer.name_ar}
                                     />

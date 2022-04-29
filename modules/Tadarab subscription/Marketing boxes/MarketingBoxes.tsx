@@ -12,7 +12,7 @@ export default function MarketingBoxes() {
     <Row className={styles["marketing-boxes"]}>
         <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div  className={`${styles["marketing-boxes__image"]} d-flex justify-content-start`}>
-                <Image src="/images/imagePlaceholder.png" alt="discriptive image" />
+                <img loading="lazy"   src={"/images/imagePlaceholder.png"} alt="discriptive image" />
             </div>
         </Col>
         <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
@@ -41,7 +41,7 @@ export default function MarketingBoxes() {
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]}  d-flex justify-content-end`}>
-                <Image src="/images/discoveringCourses.jpg" alt="discriptive image" />
+                <img loading="lazy"   src={"/images/discoveringCourses.jpg"} alt="discriptive image" />
             </div>
         </Col>
         
@@ -49,7 +49,7 @@ export default function MarketingBoxes() {
 
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
             <div className={`${styles["marketing-boxes__image"]} d-flex justify-content-start`}>
-                <Image src="/images/trainingCourses.jpg" alt="discriptive image" />
+                <img loading="lazy"   src={"/images/trainingCourses.jpg"} alt="discriptive image" />
             </div>
         </Col>
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>

@@ -12,7 +12,7 @@ export default function HowToLearnOnTadarab() {
             <Row className={styles["how-to-learn-on-tadarab"]}>
                 <Col sm={{span:7 , order:1}} xs={{span:12 , order:2}} >
                     <div className={styles["how-to-learn-on-tadarab__img"]}>
-                        <Image src="/images/How to learn Section4.png" alt="كيف تتعلم على منصة تدرب" />
+                        <img loading="lazy"   src={"/images/How to learn Section4.png"} alt="كيف تتعلم على منصة تدرب" />
                     </div>
                 </Col>
                 <Col sm={{span:5 , order:2}} xs={{span:12 , order:1}}>
@@ -27,7 +27,7 @@ export default function HowToLearnOnTadarab() {
                             </div>
                         </div>
                         <div className={styles["how-to-learn-on-tadarab__img--responsive"]}>
-                            <Image src="/images/How to learn Section4.png" alt="كيف تتعلم على منصة تدرب" />
+                            <img loading="lazy"   src={"/images/How to learn Section4.png"} alt="كيف تتعلم على منصة تدرب" />
                         </div>
                         <div>
                         يمكنك متابعة الدورات التدريبية المختلفة في جميع المجالات والمقسمة إلى فيديوهات تستطيع متابعتها بسهولة من أي مكان وفي أي وقت وعلى أي جهاز، تستطيع أيضًا تحميل المرفقات الورقية للتطبيق والمتابعة وزيادة الاستفادة.

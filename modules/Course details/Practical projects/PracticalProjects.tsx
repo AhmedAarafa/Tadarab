@@ -53,11 +53,11 @@ export default function PracticalProjects(props:any) {
               <Col key={i} xs={6} className={styles["practical-projects__project-card-col"]}>
                   <div className={styles["practical-projects__project-card"]}>
                       <div className={styles["practical-projects__project-card__project-img"]}>
-                          <Image src={project.attachment_url} alt="project image" />
+                          <img loading="lazy"   src={project.attachment_url} alt="project image" />
                       </div>
                       <div className={styles["practical-projects__project-card__trainee-details-box"]}>
                           <div className={styles["practical-projects__project-card__trainee-details-box__trainee-img"]}>
-                              <Image src={project.user_image} alt="male avatar" />  
+                              <img loading="lazy"   src={project.user_image} alt="male avatar" />  
 
                           </div>
                           <div className={styles["practical-projects__project-card__trainee-details-box__details"]}>
@@ -90,11 +90,11 @@ export default function PracticalProjects(props:any) {
                           <SwiperSlide key={i}>
                               <div className={styles["practical-projects__project-card"]}>
                                   <div className={styles["practical-projects__project-card__project-img"]}>
-                                      <Image src={project.attachment_url} alt="project image" />
+                                      <img loading="lazy"   src={project.attachment_url} alt="project image" />
                                   </div>
                                   <div className={styles["practical-projects__project-card__trainee-details-box"]}>
                                       <div className={styles["practical-projects__project-card__trainee-details-box__trainee-img"]}>
-                                          <Image src={project.user_image} alt="male avatar" />  
+                                          <img loading="lazy"   src={project.user_image} alt="male avatar" />  
 
                                       </div>
                                       <div className={styles["practical-projects__project-card__trainee-details-box__details"]}>

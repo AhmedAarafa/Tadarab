@@ -29,7 +29,7 @@ export default function StartTraining() {
         <Col xs={12} sm={6} >
           
           <div className={styles["start-training__img-container"]}>
-            <Image src="/images/startTrainingnoww.png" alt="discriptive image" />
+            <img loading="lazy"   src={"/images/startTrainingnoww.png"} alt="discriptive image" />
           </div>
 
         </Col>

@@ -169,7 +169,7 @@ export default function SpecialOffer(props:any) {
                         <div key={i}>
                             <div  className={styles["special-offer__cards-outer-box__card"]}>
                                 <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
-                                    <Image src={course.image} alt="course image" />
+                                    <img loading="lazy"   src={course.image} alt="course image" />
                                     {
                                        course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== ""  &&
 
@@ -184,7 +184,7 @@ export default function SpecialOffer(props:any) {
 
                                     <div className={styles["special-offer__cards-outer-box__card__trainer-info-box"]}>
                                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                                            <Image src={course.trainer.image} alt="trainer image" />
+                                            <img loading="lazy"   src={course.trainer.image} alt="trainer image" />
                                         </div>
                                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
                                             <h1 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title={course.title}>

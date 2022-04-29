@@ -336,7 +336,7 @@ export default function ChangePasswordPage() {
 
             </Col>
             <Col xs={{span:12 , order:1}} sm={{span:5 , order:2}} className={styles["reset-password__img"]}>
-                <Image src={resetPassword} alt="reset password" />
+                <img loading="lazy"   src={resetPassword} alt="reset password" />
             </Col>
 
         </Row>

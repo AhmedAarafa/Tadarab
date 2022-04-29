@@ -2,6 +2,10 @@
 module.exports = {
   reactStrictMode: true,
   swcMinify: false,
+ 
+  images: {
+    domains: ['s3.me-south-1.amazonaws.com' ]
+  },
 
   async rewrites() {
     return [

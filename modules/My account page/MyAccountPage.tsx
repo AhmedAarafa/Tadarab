@@ -133,7 +133,7 @@ export default function MyAccountPage() {
 
                           <div className={styles["my-account__cards-carousel__departments-card__img-box"]}
                             style={{ backgroundColor: cat.color }}>
-                            <Image src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
+                            <img loading="lazy"   src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
 
 
                           </div>
@@ -215,7 +215,7 @@ export default function MyAccountPage() {
                       }
                     >
                       <Link href={`/trainer/${course.trainer?.slug}`}>
-                        <Image
+                        <img loading="lazy"  
                           src={course.trainer?.image}
                           alt="trainer image"
                         />

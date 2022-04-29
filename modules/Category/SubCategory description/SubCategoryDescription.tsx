@@ -26,7 +26,7 @@ export default function SubCategoryDescription(props:any) {
             <Col xs={12} className={styles["category-description"]}>
                 <div className={styles["category-description__description"]}>
                     <div className={styles["category-description__img"]}>
-                    <Image src={`/images/${props?.data?.parent_icon}.svg`} alt={props?.data?.parent_icon} id={styles[props?.data?.parent_icon]}
+                    <img loading="lazy"   src={`/images/${props?.data?.parent_icon}.svg`} alt={props?.data?.parent_icon} id={styles[props?.data?.parent_icon]}
                     />
 
                     </div>

@@ -65,7 +65,7 @@ export default function FooterSection() {
           <Col xs={{ span: 12, order: 4 }} sm={{ span: 5, order: 1 }}>
             <div className={styles["footer__inquiries-box"]}>
               <div className={styles["footer__inquiries-box__trainer-img"]}>
-                <Image src="/images/hams.png" alt="trainer image" />
+                <img loading="lazy"   src={"/images/hams.png"} alt="trainer image" />
               </div>
               <div className={styles["footer__inquiries-box__inquiry"]}>
                 <div className={styles["footer__inquiries-box__inquiry__title"]}>
@@ -172,19 +172,19 @@ export default function FooterSection() {
             <div className={styles["footer__communications-box"]}>
 
               <div className={styles["footer__logo"]}>
-                <Image src="/images/logo.svg" alt="Tadarab logo" />
+                <img loading="lazy"   src={"/images/logo.svg"} alt="Tadarab logo" />
               </div>
               <div className={styles["footer__cross-platforms"]}>
                 <div>قريباً على أجهزة الاندرويد والايفون</div>
-                <Image src="/images/availableOnIos.png" alt="App store" />
-                <Image src="/images/availableOnAndroid.png" alt="Google play" />
+                <img loading="lazy"   src="/images/availableOnIos.png" alt="App store" />
+                <img loading="lazy"   src="/images/availableOnAndroid.png" alt="Google play" />
               </div>
               <div className={styles["footer__pay-box"]}>
                 <div>وسائل الدفع</div>
-                <Image src="/images/Mastercard.png" alt="Master card" />
-                <Image src="/images/visa.png" alt="Visa" />
-                <Image src="/images/knet.png" alt="Knet" />
-                <Image src="/images/paypal3.png" alt="Paypal" />
+                <img loading="lazy"   src={"/images/Mastercard.png"} alt="Master card" />
+                <img loading="lazy"   src={"/images/visa.png"} alt="Visa" />
+                <img loading="lazy"   src={"/images/knet.png"} alt="Knet" />
+                <img loading="lazy"   src={"/images/paypal3.png"} alt="Paypal" />
               </div>
             </div>
           </Col>

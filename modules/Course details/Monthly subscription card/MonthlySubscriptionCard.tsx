@@ -562,7 +562,7 @@ export default function MonthlySubscriptionCard() {
         <div className={styles["monthly-subscription__sticky-top-course-card__course-details-box"]}>
 
           <div className={styles["monthly-subscription__sticky-top-course-card__course-img"]}>
-            <Image src={courseDetails.course_details?.image} alt="course image" />
+            <img loading="lazy"   src={courseDetails.course_details?.image} alt="course image" />
           </div>
           <div className={styles["monthly-subscription__sticky-top-course-card__course-details"]}>
             <div >{courseDetails.course_details?.title}</div>

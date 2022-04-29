@@ -67,7 +67,7 @@ export default function WhyTadarab() {
                 <div className={styles["tadarab-for-companies"]}>
 
                     <div>
-                        <Image src="/images/businesss.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
+                        <img loading="lazy"   src="/images/businesss.png" alt="manager" className={styles["tadarab-for-companies__img"]}/>
                     </div>
 
                     <div className={styles["tadarab-for-companies__titles-box"]}>

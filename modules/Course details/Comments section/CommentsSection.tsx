@@ -336,7 +336,7 @@ export default function CommentsSection(props:any) {
                                     <div id={`comment-box${i}`} className={styles["comments-section__comments-tree__comment-box"]}>
 
                                         <div className={styles["comments-section__comments-tree__comment-box__commenter-img"]}>
-                                            <Image src={comment.author_image} alt="commenter image" />
+                                            <img loading="lazy"   src={comment.author_image} alt="commenter image" />
                                         </div>
                                         <div id="details" className={styles["comments-section__comments-tree__comment-box__comment-details"]}>
                                             <div className={styles["comments-section__comments-tree__comment-box__comment-details__name"]}>
@@ -346,7 +346,7 @@ export default function CommentsSection(props:any) {
                                             <div className={styles["comments-section__comments-tree__comment-box__comment-details__date"]}>
                                                 {
                                                     comment.country_code !== null && comment.country_code !== "" && comment.country_code !== undefined  &&
-                                                <Image src={`/images/svg flags/${(comment.country_code)?.toLowerCase()}.svg`} alt="Country flag" />
+                                                <img loading="lazy"   src={`/images/svg flags/${(comment.country_code)?.toLowerCase()}.svg`} alt="Country flag" />
                                                 }
                                                 <span>   {comment.date_ar} </span>
                                                 
@@ -386,7 +386,7 @@ export default function CommentsSection(props:any) {
                                                         <div className={styles["comments-section__comments-tree__comment-box"]}>
 
                                                             <div className={styles["comments-section__comments-tree__comment-box__commenter-img"]}>
-                                                                <Image src={reply.author_image} alt="male avatar" />
+                                                                <img loading="lazy"   src={reply.author_image} alt="male avatar" />
                                                             </div>
                                                             <div id="details" className={styles["comments-section__comments-tree__comment-box__comment-details"]}>
                                                                 <div className={styles["comments-section__comments-tree__comment-box__comment-details__name"]}>

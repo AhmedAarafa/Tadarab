@@ -700,7 +700,7 @@ const router = useRouter();
                       return (
 
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                          <Image
+                          <img loading="lazy"  
                             src={item.image}
                             alt="course image"
                             className={styles["navbar__cart-popover__img"]}

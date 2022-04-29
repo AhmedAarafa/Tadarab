@@ -131,7 +131,7 @@ export default function CategoryCourses(props:any) {
                             ]
                             }
                         >
-                            <Image
+                            <img loading="lazy"  
                             src={course.trainer.image}
                             alt={course.trainer.name_ar}
                             />

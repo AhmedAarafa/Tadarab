@@ -115,7 +115,7 @@ export default function CourseAdvertisement(theOption: any) {
                   {/* {console.log(timerHandler(theOption.liveWebinarDetails.full_date))} */}
                   {
                     ((Math.floor(Date.now() / 1000)) < theOption?.liveWebinarDetails?.full_date) ?
-                      <Image src={theOption?.liveWebinarDetails?.image} alt="تدرب في رمضان" />
+                      <img loading="lazy"   src={theOption?.liveWebinarDetails?.image} alt="تدرب في رمضان" />
                       :
                       <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
                         <iframe src={theOption.postSrc} frameBorder="0" allowFullScreen></iframe>

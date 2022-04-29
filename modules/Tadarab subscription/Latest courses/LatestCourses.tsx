@@ -564,7 +564,7 @@ function LatestCourses() {
                             >
                               <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                <Image
+                                <img loading="lazy"  
                                   src={course.trainer.image}
                                   alt="trainer image"
                                 />

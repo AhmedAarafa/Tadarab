@@ -26,7 +26,7 @@ export default function TadarabUnlimited() {
         <Row className={styles["tadarab-unlimited"]}>
             <Col xs={5}>
                 <div className={styles["tadarab-unlimited__img"]}>
-                    <Image src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
+                    <img loading="lazy"   src={"/images/tadarab-unlimited.png"} alt="تدرب بلا حدود" />
                 </div>
             </Col>
             <Col xs={7} className={styles["tadarab-unlimited__brief"]}>
@@ -54,7 +54,7 @@ export default function TadarabUnlimited() {
         <div className={styles["tadarab-unlimited-mobile-view"]}>
             <div>
                 <div className={styles["tadarab-unlimited-mobile-view__img"]}>
-                    <Image src="/images/tadarab-unlimited.png" alt="تدرب بلا حدود" />
+                    <img loading="lazy"   src={"/images/tadarab-unlimited.png"} alt="تدرب بلا حدود" />
                 </div>
             </div>
             <div  className={styles["tadarab-unlimited-mobile-view__brief"]}>

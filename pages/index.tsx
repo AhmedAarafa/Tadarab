@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '387170448377801');` }}
     />
-    <noscript dangerouslySetInnerHTML={{ __html: `<Image height="1" width="1" style="display:none"
+    <noscript dangerouslySetInnerHTML={{ __html: `<img loading="lazy"   height="1" width="1" style="display:none"
       src="https://www.facebook.com/tr?id=387170448377801&ev=PageView&noscript=1" />` }}
     /> */}
       </Head>

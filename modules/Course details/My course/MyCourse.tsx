@@ -186,7 +186,7 @@ export default function MyCourse() {
                     <>
                         <Col xs={12} sm={8} className={styles["my-course__certificate"]}>
                             <div>
-                                <Image src="/images/شهادة3 website.jpg" alt="course certificate" />
+                                <img loading="lazy"   src={"/images/شهادة3 website.jpg"} alt="course certificate" />
                                 <div className={styles["my-course__certificate__date"]}>{todaysDate}</div>
                                 <div className={styles["my-course__certificate__course-name"]}>{courseDetailsData.data?.course_details?.title}</div>
                                 <div className={styles["my-course__certificate__trainer-name"]}>{courseDetailsData.data?.course_details?.trainer?.name_ar}</div>

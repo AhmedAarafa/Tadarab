@@ -40,13 +40,13 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-end`}>
-                        <Image src="/images/contentPreparation.png" alt="اعداد المحتوي" />
+                        <img loading="lazy"   src={"/images/contentPreparation.png"} alt="اعداد المحتوي" />
                     </div>
                 </Col>
              
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
-                        <Image src="/images/photographyAndDirecting.jpg" alt="التصوير والاخراج" />
+                        <img loading="lazy"   src={"/images/photographyAndDirecting.jpg"} alt="التصوير والاخراج" />
                     </div>
                 </Col>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
@@ -78,12 +78,12 @@ export default function HowToStart() {
                 </Col>
                 <Col style={{ backgroundColor: "rgba(14, 11, 29, 0.02)" }} xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]}  d-flex justify-content-end`}>
-                        <Image src="/images/montageAndGraphic.png" alt="المونتاج والجرافيك" />
+                        <img loading="lazy"   src={"/images/montageAndGraphic.png"} alt="المونتاج والجرافيك" />
                     </div>
                 </Col>
                 {/* <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
                     <div className={`${styles["how-to-start__image"]} d-flex justify-content-start`}>
-                        <Image src="/images/Photography.png" alt="discriptive image" />
+                        <img loading="lazy"   src="/images/Photography.png" alt="discriptive image" />
                     </div>
                 </Col>
                 <Col xs={12} sm={6} className={styles["how-to-start__box"]}>
