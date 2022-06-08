@@ -23,7 +23,7 @@ export default function TrainersList() {
         setTrainersList(response?.data);
         FBPixelEventsHandler(response.data.fb_tracking_events, null);
         toggleLoader("hide");
-        
+
       })
       .catch(function (error) {
         toggleLoader("hide");
@@ -33,12 +33,15 @@ export default function TrainersList() {
   }, []);
 
   const handlePageClick = (pgNo: any) => {
+    toggleLoader("show");
     window.scrollTo({ top: 0, behavior: "smooth" });
     setCurrentPage(pgNo);
     axiosInstance
       .get(`trainers/?limit=16&page=${pgNo}`)
       .then(function (response: any) {
         setTrainersList(response?.data);
+        toggleLoader("hide");
+
       })
       .catch(function (error) {
         console.log(error);
@@ -110,7 +113,7 @@ export default function TrainersList() {
               {trainersList?.pagination?.next}
             </Pagination.Item>
 
-            
+
             <Pagination.Next
               onClick={() => {
                 handlePageClick(trainersList?.pagination?.current + 1)

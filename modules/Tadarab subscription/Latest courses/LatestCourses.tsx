@@ -17,7 +17,7 @@ import Tippy from '../../../node_modules/@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; 
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import  {ChevronLeftIcon,LearnersIcon,TickIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
+import  {ChevronLeftIcon,LearnersIcon,TickIcon,CartIcon,TvIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";  
 import Router from "next/router";
 import  useAddToCart  from "custom hooks/useAddToCart";
@@ -26,7 +26,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
-import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents"
+import {GAProductClickEventHandler} from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import Image from 'next/image';
 
@@ -84,29 +84,7 @@ function LatestCourses() {
            setLatestCourses(response.data.data.best_seller_courses);
            dispatch(setCartItems(firstresponse.cartResponse));
         })
-      //  setLocalCartItems(response.totalItems);
       })
-  //   }
-  //   else{
-  //     const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
-  //     handleCartResponse.then(function(response:any) {
-  //         dispatch(setCartItems(response));
-  //       //  setLocalCartItems(response);
-  //       let newArray:any = latestCourses;
-  //       response.data.data?.forEach((element:any) => {
-  //        newArray.forEach((ele:any) => {
-  //            if(element.id === ele.id){
-  //              // console.log(ele);
-  //              ele.is_in_cart = true;
-  //          }
-  //      });
-  //  });
-  //  setLatestCourses([...newArray]);
-      
-  //     })
-
-  //   }
-    // setLatestCourses([...latestCourses]);
   }
 
   useEffect(() => {
@@ -120,8 +98,8 @@ function LatestCourses() {
         .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
         .then(function (response:any) {
           // console.log(response);
-          let newArray:any = homePageData.data?.best_seller_courses;
-         response.data.data.forEach((element:any) => {
+          let newArray:any = homePageData?.data?.best_seller_courses || [];
+         (response?.data?.data || []).forEach((element:any) => {
           newArray.forEach((ele:any) => {
               if(element.id === ele.id){
                 // console.log(ele);
@@ -139,125 +117,7 @@ function LatestCourses() {
       });
       }
 
- 
-
   }, [homePageData]);
-
-  // useEffect(() => {
-  //   const seeMoreBtn:any = document.getElementById("see-more");
-  //   const departmentsList:any = document.getElementById("departments-list");
-
-  //   // to capture all the carousel cards
-  //   const trigger: any = document.querySelectorAll(
-  //     '[id^="latest-courses-card"]'
-  //   );
- 
-  //   // loop over them to control the hover effect per each card
-  //   trigger.forEach((element: any) => {
-  //     element.addEventListener("mouseout" , function(){
-  //       // setTimeout(() => {
-  //         seeMoreBtn.style.cssText=`z-index:5;`
-  //         departmentsList.style.cssText=`z-index:5;`
-  //       // }, 2000);
-  //     })
-  //     element.addEventListener("mouseover", function () {
-  //       seeMoreBtn.style.cssText=`z-index:1;`
-  //       departmentsList.style.cssText=`z-index:1;`
-  //       if(window.innerWidth > 1024){
-
-  //       // to get right and left empty spaces to decide which direction the popover will appear
-  //       const rootFontSize = parseFloat(
-  //         window
-  //         .getComputedStyle(document.getElementsByTagName("html")[0])
-  //         .getPropertyValue("font-size")
-  //       );
-  //       const cardRightBoundary =
-  //         window.innerWidth - element.getClientRects()[0].left;
-  //       const cardLeftBoundary =
-  //         element.getClientRects()[0].left;
-
-          
-  //         const observer = new MutationObserver((mutations, obs) => {
-  //           let relatedPopover:any = document.getElementsByClassName(`popover-${element.id}`)[0];
-  //           if (relatedPopover) {
-  //             relatedPopover.addEventListener("mouseover" , function(){
-  //               seeMoreBtn.style.cssText=`z-index:1;`
-  //               departmentsList.style.cssText=`z-index:1;`
-                
-  //             });
-  //             // setTimeout(() => {
-  //               relatedPopover.addEventListener("mouseout" , function(){
-  //                 seeMoreBtn.style.cssText=`z-index:5;`
-  //                 departmentsList.style.cssText=`z-index:5;`
-  //               });
-  //             // }, 1000);
-  //             // console.log(
-  //             //   "element.getClientRects()[0].right",
-  //             //   element.getClientRects()[0].right
-  //             // );
-  //             // console.log(
-  //             //   "element.getClientRects()[0].left",
-  //             //   element.getClientRects()[0].left
-  //             // );
-  //              obs.disconnect();
-  //             if (cardRightBoundary > cardLeftBoundary) {
-  //               // element.style.right="22rem"
-  //               // console.log(document.getElementById(`popover-${element.id}`));
-  //               // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
-  //               // relatedPopover ?  relatedPopover.style.left=`${(element.getClientRects()[0].right)}px` : null ;
-  //               setPlacement("right");
-  //               // const cardWidth:any = document.getElementById("latest-courses-card1");
-  //               // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
-  //               if(window.innerWidth <= 1200){
-  //               relatedPopover ?  relatedPopover.style.left=`${2.32*(element.offsetWidth)}px` : null ;
-  //               }else if(window.innerWidth > 1200){
-  //               relatedPopover ?  relatedPopover.style.left=`${2.63*(element.offsetWidth)}px` : null ;
-  //               }
-  //               // relatedPopover ?  relatedPopover.style.left=`${2.65*(element.offsetWidth)}px` : null ;
-  //               relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
-  //               // console.log("element.offsetWidth",element.offsetWidth);
-
-  //             } else if (cardRightBoundary < cardLeftBoundary) {
-  //               // element.style.left="22rem"
-  //               // console.log(document.getElementById(`popover-${element.id}`));
-  //               // const relatedPopover:HTMLElement | null = document.getElementById(`popover-${element.id}`);
-  //               // relatedPopover ?  relatedPopover.style.inset=`0px  ${(window.innerWidth - element.getClientRects()[0].left)}px auto auto` : null ;
-  //               setPlacement("left");
-  //               // relatedPopover ?  relatedPopover.style.right=`${(element.getClientRects()[0].left)}px` : null ;
-  //               // relatedPopover ?  relatedPopover.style.right=`auto` : null ;
-  //               //relatedPopover ?  relatedPopover.style.right=`${(window.innerWidth)/5.2}px` : null ;
-  //               // const cardWidth:any = document.getElementById("latest-courses-card1");
-  //               relatedPopover ?  relatedPopover.style.right=`${1.085*(element.offsetWidth)}px` : null ;
-  //               relatedPopover ?  relatedPopover.style.bottom =`${5.5*rootFontSize}px` : null ;
-  //               // console.log("element.offsetWidth",element.offsetWidth);
-
-  //             }
-  //             return;
-  //           }
-  //         });
-          
-  //         observer.observe(document, {
-  //           childList: true,
-  //           subtree: true
-  //         });
-
-  //     }
-  //     });
-  //   });
-
-  //   return () => {
-  //     trigger.forEach((element: any) => {
-  //       element.removeEventListener("mouseout", ()=>{
-  //         return;
-  //       });
-  //       element.removeEventListener("mouseover", ()=>{
-  //         return;
-  //       });
-  //     })
-  //   };
-
-  // },);
-
   const handlePlacement = ()=>{
     
     if(!isFnExecuted){
@@ -490,15 +350,25 @@ function LatestCourses() {
                               <Button className={styles["latest-courses__popover-container__btns__details-btn"]}>التفاصيل</Button>
                             </Link>
                             <Button className={styles["latest-courses__popover-container__btns__add-to-cart-btn"]}>
-                            <CartIcon color="#fff"/>
                             {
-                                  course.is_in_cart ?
-                                  <span> تمت الإضافة </span>  
+                                    course.discounted_price == 0 ?
+                                    <TvIcon color="#fff" />
+                                    :
+                                    <CartIcon color="#fff" />
+                                  }
+                             {
+                                  course.discounted_price == 0 ?
+                                  <span>
+                                    ابدأ الآن مجانًا
+                                  </span>
                                   :
-                                  <>
-                                    <span> أضف للسلة </span>  
-                                  </>
-                                }  
+                                  course.is_in_cart ?
+                                    <span> تمت الإضافة </span>
+                                    :
+                                    <>
+                                      <span> أضف للسلة </span>
+                                    </>
+                                } 
                               </Button>
                         </div>  
 
@@ -704,6 +574,9 @@ function LatestCourses() {
                                     
                                   } */}
                                   {
+                                    course.discounted_price == 0 ?
+                                    <TvIcon color="#222" />
+                                    :
                                   course.is_in_cart ?
                                   <AddedToCartIcon color="#222"/>
                                    : 
@@ -753,141 +626,3 @@ function LatestCourses() {
 
 
 export default withAuth(LatestCourses);
-
-
-/* 
-if(course.is_in_favorites == false){
-
-        axiosInstance
-        .post(`users/favorites/?country_code=null`, {"course_id" : course.id})
-        .then((response:any) => {
-          console.log("Response",response);
-          axiosInstance
-          .get(`home/?country_code=null`)
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-      }else{
-        axiosInstance
-        .delete(`users/favorites/?country_code=null`, { data:{"course_id" : course.id}})
-        .then((response:any) => {
-          console.log("Response",response);
-          axiosInstance
-          .get(`home/?country_code=null`)
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-
-      }
-
-
-
-
-       if(userStatus?.isUserAuthenticated == true){
-      if(course.is_in_cart == false){
-
-
-        axiosInstance
-        .post(`users/cart/?country_code=null`, {"item_ids" : JSON.stringify([course.id])})
-        .then((response:any) => {
-         const totalItems:any = [];
-          console.log("add to cart response",response);
-          response.data.data.forEach((item:any)=>{
-            totalItems.push(item.id);
-          });
-          localStorage.setItem("cart" , JSON.stringify(totalItems));
-          // console.log("totalItems",totalItems);
-          
-         dispatch(setCartItems(totalItems));
-          axiosInstance
-          .get(`home/?country_code=null`)
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-        // const localStorageCartItems:any = localStorage.getItem("cart");
-        // dispatch(setCartItems(JSON.parse(localStorageCartItems)));
-
-
-      }else{
-        axiosInstance
-        .delete(`users/cart/?country_code=null`, { data:{"item_id" : course.id}})
-        .then((response:any) => {
-         const totalItems:any = [];
-          console.log("Response",response);
-          response.data.data.forEach((item:any)=>{
-          totalItems.push(item.id);
-          });
-          localStorage.setItem("cart" , JSON.stringify(totalItems));
-          dispatch(setCartItems(totalItems));
-
-          axiosInstance
-          .get(`home/?country_code=null`)
-          .then(function (response:any) {
-            setLatestCourses(response.data.data.latest_courses);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        })
-        .catch((error:any)=>{
-          console.log("error", error);
-        });
-      //   (async function (){ 
-      //     const storedCartCourses:any = await localStorage.getItem("cart");
-      //    const resultedItems = JSON.parse(storedCartCourses).filter(function(ele:any){ 
-      //       return ele != course.id; 
-      //   });
-      // localStorage.setItem("cart" , JSON.stringify(resultedItems));
-
-
-      //   })();
-
-
-      }
-    }else{
-      if(course.is_in_cart == false){
-        course.is_in_cart = true;
-        (async function (){ 
-        // await  setCartItems([...new Set(cartItems),course.id]);
-        const storedCartCourses:any = await localStorage.getItem("cart");
-        
-        const uniqeStoredCartCourses = [...new Set([...(JSON.parse(storedCartCourses) || []),course.id])];
-        localStorage.setItem("cart" , JSON.stringify((uniqeStoredCartCourses || [])));
-          dispatch(setCartItems(uniqeStoredCartCourses));
-          setLatestCourses([...latestCourses]);
-      })();
-      }else{
-        course.is_in_cart = false;
-        const localStorageItems:any = localStorage.getItem("cart");
-       const resultedItems:any = JSON.parse(localStorageItems).filter(function(ele:any){ 
-          return ele != course.id; 
-      });
-      localStorage.setItem("cart" , JSON.stringify(resultedItems));
-      dispatch(setCartItems(resultedItems));
-
-      setLatestCourses([...latestCourses]);
-
-      }
-    }
-*/

@@ -49,6 +49,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
       coupon_code: localStorage.getItem("coupon_code") || ""
     });
 
+    // for cart stuff (dropdown + cart icon counter)
     localStorageItemsIdsArray.push(course.id);
 
     GAProductsArray.push({name:course.title,
@@ -85,9 +86,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                    {"items" : JSON.stringify([...new Set(localStorageItemsArray.flat())])})
                   .then((response:any) => {
                     if(tokenValidationCheck(response)){
-                      
                       const totalItems:any = [];
-                      console.log("response.data.data",response);
                       const cartResponse:any = response.data.data.courses;
                       
                        response.data.data?.courses?.forEach((item:any)=>{
@@ -96,21 +95,18 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                        localStorage.setItem("cart" , JSON.stringify(totalItems));
                        localStorage.setItem("cart_items" , JSON.stringify(response.data.data.cart_items));
                
-                       
+                       /** Tracking */
                        GAHandler('add',GAProductsArray,localStorageItemsIdsArray);
-                       
                        FBPixelEventsHandler(response.data.fb_tracking_events,null);
                
                        const resp:any =  getData(endPoint).then(function(response) {
                          return response ;
-                       });
-                       console.log("rr",{resp,cartResponse});
-                       
+                       });                       
                        return ({resp,cartResponse});
                     };
                   })
                   .catch((error:any)=>{
-                    console.log("error", error);
+                    //console.log("error", error);
                   }))
                 }else{
                   return (axiosInstance
@@ -119,7 +115,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                     if(tokenValidationCheck(response)){
                       
                       const totalItems:any = [];
-                       console.log("Response",response);
+                      //console.log("Response",response);
                       const cartResponse:any = response.data.data.courses;
                
                        response?.data?.data?.courses?.forEach((item:any)=>{

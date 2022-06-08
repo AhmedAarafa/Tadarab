@@ -1,19 +1,30 @@
 import React from 'react';
 import { Container } from "react-bootstrap";
 import dynamic from 'next/dynamic';
+import MetaTagsGenerator from 'modules/_Shared/utils/MetaTagsGenerator';
 
-const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const TermsPage = dynamic(() => import("modules/Static pages/Terms/TermsPage"));
-const Footer = dynamic(() => import("common/Footer/Footer"));
 
-export default function Terms() {
+export default function Terms(props: any) {
+    const { seoData } = props;
     return (
         <>
+          {seoData && 
+           <MetaTagsGenerator title={seoData?.seo_title}
+           description={seoData?.seo_metadesc}
+           img={seoData?.seo_image} />}
             <Container fluid="xxl">
-                <Navbar />
                 <TermsPage />
-                <Footer />
             </Container>
         </>
     )
 }
+export async function getServerSideProps() {
+    try{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}static/terms`)
+      const seoData = await res.json()
+      return { props: { seoData: seoData.data } }
+    } catch {
+      return { props: { seoData: {} } }
+    }
+  }

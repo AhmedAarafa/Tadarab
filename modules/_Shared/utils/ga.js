@@ -20,8 +20,8 @@ tadarab_get_traking_location(){try{return ga.getAll()[0].get('location');}catch(
 *	@param: 		string $tracking_type is argument of tracking type for event.
 					array tracking_data is needed information for push GA event.
 *	@return: 		void
-*	@since: 		3.0 (tadarab version) 25-September-2018
-*	@modify: 		25-Nov-2021
+*	@since: 		5.0 (tadarab version) 14-April-2022
+*	@modify: 		25-April-2022
 *	@author: 		Sanket Sorathiya
 *	@modify by: 	Sanket Sorathiya
 */

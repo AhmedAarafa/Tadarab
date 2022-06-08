@@ -23,6 +23,7 @@ export default function WhatYouWillLearn() {
         
       }, [courseDetailsData]);
 
+      
     function showMoreHandler(){
         const showMoreIcon:any = document.getElementById("read-more-icon");
         const fadeOut:any = document.getElementById("fadeout");
@@ -65,9 +66,9 @@ export default function WhatYouWillLearn() {
       <div id="what-you-will-learn-list" className={styles["what-you-will-learn"]}>
     <div id="what-you-will-learn" className={styles["what-you-will-learn__scrollspy-helper"]}></div>
 
-        <div className={styles["what-you-will-learn__title"]}>
+        <h2 className={styles["what-you-will-learn__title"]}>
           ماذا سوف تتعلم في الدورة؟
-        </div>
+        </h2>
         {
             courseDetails?.course_details?.key_points?.map((course:any,i:number)=>{
                 return(

@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from 'configurations/redux/actions/cartItems';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import Router, { useRouter }  from "next/router";
 import Link from "next/link";
@@ -17,45 +18,44 @@ export default function SuccessState() {
     const dispatch = useDispatch();
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
     const cartItems = useSelector((state:any) => state.cartItems);
-    const checkoutType = useSelector((state:any) => state.checkoutType);
+    var checkoutType = useSelector((state:any) => state.checkoutType);
 
     let tadarabGA = new TadarabGA();
     useEffect(() => {
         if(invoiceDetails){
+            checkoutType = (invoiceDetails?.data?.transaction_details?.checkout_type);
             if(checkoutType == "cart"){
-                tadarabGA.tadarab_fire_traking_GA_code("purchase",
-                    {
+                tadarabGA.tadarab_fire_traking_GA_code("purchase", {
                     id: invoiceDetails?.data?.transaction_details.invoice_no,
                     revenue: invoiceDetails?.data?.transaction_details.amount_usd,
                     coupon:invoiceDetails?.data?.transaction_details.coupon,
                     products: invoiceDetails?.data?.transaction_details.transaction_items,
                     uid:invoiceDetails?.data?.ga_tracking.uid,
                     cid:invoiceDetails?.data?.ga_tracking.cid,
-                    user_email:invoiceDetails?.data?.transaction_details.email
+                    email:invoiceDetails?.data?.transaction_details.email
                 });
             }else if(checkoutType=='subscription'){
-                tadarabGA.tadarab_fire_traking_GA_code("subscription",{
+                tadarabGA.tadarab_fire_traking_GA_code("subscription", {
                     user_id: invoiceDetails?.data?.transaction_details.user_id,
                     date:invoiceDetails?.data?.transaction_details.date_ymd,
                     cid:invoiceDetails?.data?.ga_tracking.cid,
                 });
             }
-            
         }
     }, [invoiceDetails])
     
     useEffect(() => {
-    //   localStorage.setItem("cart" , "[]");
-      dispatch(setCartItems(null));
-      console.log("success state",invoiceDetails);
-      localStorage.setItem("cart",JSON.stringify([]));
-      localStorage.setItem("cart_items",JSON.stringify([]));
+        //   localStorage.setItem("cart" , "[]");
+        dispatch(setCartItems(null));
+        console.log("success state",invoiceDetails);
+        localStorage.setItem("cart",JSON.stringify([]));
+        localStorage.setItem("cart_items",JSON.stringify([]));
       
-      return () => {
-          console.log("setCheckoutType dispatched");
-          dispatch(setCheckoutType("cart"));
-          dispatch(setTransactionStatus(null));
-      }
+        return () => {
+            console.log("setCheckoutType dispatched");
+            dispatch(setCheckoutType("cart"));
+            dispatch(setTransactionStatus(null));
+        }
     }, []);
 
     useEffect(() => {
@@ -75,8 +75,6 @@ export default function SuccessState() {
         dispatch(setCheckoutType("cart"));
       }
     }, [Router.query])
-    
-    
     
     return (
         <>

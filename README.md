@@ -3,6 +3,17 @@
 
 First, install packages used:
 
+
+REQUIRED:
+```bash
+npm version : 6.14.16
+```
+
+```bash
+node version: 12.22.10
+```
+
+
 ```bash
 npm install
 ```

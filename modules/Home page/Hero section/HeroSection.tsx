@@ -66,11 +66,11 @@ export default function HeroSection() {
         <Col xs={0} sm={{ span: 2, order: 'first' }}></Col>
         <Col xs={12} sm={{ span: 5, order: 'first' }}>
           <div className={styles["hero-section__container"]}>
-            <h4 className={styles["hero-section__title"]}>
-            تعلم أونلاين مع منصة تدرب
-            </h4>
+            <h1 className={styles["hero-section__title"]}>
+              أكبر منصة دورات تدريبية عن بعد
+              </h1>
             <p className={styles["hero-section__para"]}>
-            أكبر منصة عربية متخصصة في التعلم عن بعد بالتعاون مع أفضل المدربين والخبراء
+            انضم لأكبر منصة تعلم أون لاين في الخليج والوطن العربي وابدأ التعلم الآن من أفضل الخبراء العرب
             </p>
             <div className={styles["hero-section__search-bar-container"]}>
               <div

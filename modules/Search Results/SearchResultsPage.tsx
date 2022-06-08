@@ -5,7 +5,7 @@ import styles from "./search-results-page.module.css";
 import { Row, Col, Button, Card, Pagination } from "react-bootstrap";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
-import { AddedToCartIcon, AddedToFavouriteIcon, CartIcon, FavouriteIcon } from "common/Icons/Icons";
+import { AddedToCartIcon, AddedToFavouriteIcon, CartIcon, TvIcon, FavouriteIcon } from "common/Icons/Icons";
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
@@ -16,6 +16,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import Image from 'next/image';
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 export default function SearchResultsPage() {
     const [searchResults, setSearchResults] = useState<any>([]);
@@ -71,20 +72,35 @@ export default function SearchResultsPage() {
         // }
     }
 
+    const handleFreeCoursesActionBtn = (course: any): any => {
+        if (userStatus.isUserAuthenticated == true) {
+            handleFreeCourses(course);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "/search" }
+            })
+        }
+    }
+
     useEffect(() => {
         toggleLoader("show");
 
         return () => {
-          const searchBar:any = document.getElementById("search-field");
-          const responsiveSearchBar:any = document.getElementById("responsive-search-field");
-          searchBar.value = "";
-          searchBar.blur();
-          responsiveSearchBar.value = "";
-          responsiveSearchBar.blur();
-          }
+            const searchBar: any = document.getElementById("search-field");
+            const responsiveSearchBar: any = document.getElementById("responsive-search-field");
+            if (searchBar) {
+                searchBar.value = "";
+                searchBar.blur();
+            }
+            if (responsiveSearchBar) {
+                responsiveSearchBar.value = "";
+                responsiveSearchBar.blur();
+            }
+        }
     }, []);
 
-    
+
 
     useEffect(() => {
         setCurrentPage("1");
@@ -97,8 +113,8 @@ export default function SearchResultsPage() {
                     console.log(response);
                     setSearchResults(response?.data);
                     toggleLoader("hide");
-                    
-                    
+
+
                 })
                 .catch(function (error) {
                     toggleLoader("hide");
@@ -109,13 +125,15 @@ export default function SearchResultsPage() {
     }, [router.query]);
 
     const handlePageClick = (pgNo: any) => {
+        toggleLoader("show");
         window.scrollTo({ top: 0, behavior: "smooth" });
         setCurrentPage(pgNo);
         axiosInstance
             .get(`courses/?country_code=null&keyword=${router?.query?.q}&page=${pgNo}&limit=16`)
             .then(function (response: any) {
                 console.log(response);
-                setSearchResults(response?.data)
+                setSearchResults(response?.data);
+                toggleLoader("hide");
             })
             .catch(function (error) {
                 console.log(error);
@@ -198,7 +216,7 @@ export default function SearchResultsPage() {
                                             }
                                         >
                                             <Link href={`/trainer/${course.trainer?.slug}`}>
-                                                <img loading="lazy"  
+                                                <img loading="lazy"
                                                     src={course.trainer?.image}
                                                     alt="trainer image"
                                                 />
@@ -327,13 +345,20 @@ export default function SearchResultsPage() {
                                                     ]
                                                 }
                                             >
-                                                <div onClick={() => handleCartActionBtn(course)}
+                                                <div onClick={() =>
+                                                    course?.discounted_price == 0 ?
+                                                        handleFreeCoursesActionBtn(course)
+                                                        :
+                                                        handleCartActionBtn(course)}
                                                     className={styles["search-results__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                                     {
-                                                        course.is_in_cart ?
-                                                            <AddedToCartIcon color="#222" />
+                                                        course.discounted_price == 0 ?
+                                                            <TvIcon color="#222" />
                                                             :
-                                                            <CartIcon color="#222" />
+                                                            course.is_in_cart ?
+                                                                <AddedToCartIcon color="#222" />
+                                                                :
+                                                                <CartIcon color="#222" />
                                                     }
                                                 </div>
 

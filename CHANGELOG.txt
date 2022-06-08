@@ -1,3 +1,83 @@
+Version 1.7.1 (03 June 2022)
+1)	PayPal option visible again.
+
+Version 1.7.0 (03 June 2022)
+1)	Change CTA and button text in checkout for subscription
+2)  Add heading free trail text in checkout for subscription
+
+Version 1.6.9 (01 June 2022)
+1)	Change video progress endpoint call 2 seconds to 6 seconds.
+2)  Add trainer login link in sign-in page
+3)  Webinar issue fixed.
+
+Version 1.6.8 (31 May 2022)
+1)	Hide PayPal option from checkout.
+
+Version 1.6.7 (30 May 2022)
+1)	Header breack issue fixed.
+
+Version 1.6.6 (26 May 2022)
+1)	Single ebook added.
+2)	SEO Meta added for images and change title & description.
+3)	Heading tag changes in single course page and trainer profile page.
+4)	Progressbar value added in course view.
+
+Version 1.6.5 (26 May 2022)
+1)	Single ebook added. 
+2)	SEO Meta added for images and change title & description.
+3)	Heading tag changes in single course page and trainer profile page.
+
+Version 1.6.4 (18 May 2022)
+1)	FBP & FBC issue fixed
+2)	GA and Facebook tracking changes
+3)	Login page If loggedin user is subscriber, redirect on my-account page issue fixed.
+
+Version 1.6.3 (15 May 2022)
+1)	FBP & FBC varaible added in front side for Facebook tracking.
+2)	SEO title & description issue fixed for home page & single course page
+3)	Change facebook variable purchase_type to content_type
+
+Version 1.6.1 (11 May 2022)
+1)	SEO title & description issue.
+2)	Yellow header added
+
+Version 1.6.0 (10 May 2022)
+1)	Implementing subscription timer.
+
+Version 1.5.9 (09 May 2022)
+1)	GA tracking add email in purchase event
+
+Version 1.5.8 (05 May 2022)
+1)	FB and google tracking issue fixed with normal purchase.
+
+Version 1.5.7 (02 May 2022)
+1)	Sticky CTA issue fixed in single course page & subscription page.
+
+Version 1.5.6 (01 May 2022)
+1)	Subscription text change
+2)	Redirect issue loggedin user on subscription page.
+
+Version 1.5.5 (28 April 2022)
+1)	Subscription duplicate issue fixed.
+2)	Subscription FB tracking add.
+3)	After subscription redirect to my account page.
+
+Version 1.5.4 (26 April 2022)
+1)	GA Client ID issue fixced on user signup
+2)	Small changes
+
+Version 1.5.3 (24 April 2022)
+1)	Player case issue fixed
+2)	Route changes.
+
+Version 1.5.2 (21 April 2022)
+1)	Fixed webinar page
+2)	Fixed attachment issue.
+
+Version 1.5.1 (20 April 2022)
+1)	Redirection issue fixed for all courses.
+2)	Subscription GA update.
+
 Version 1.5.0 (19 April 2022)
 1)	Fixed issues.
 2)	Add rewrite for /trainer and / 

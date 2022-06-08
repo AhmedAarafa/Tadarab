@@ -6,7 +6,7 @@ import styles from "./course-listing.module.css";
 import Router, { useRouter } from "next/router";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
-import { AddedToCartIcon, AddedToFavouriteIcon, CartIcon, FavouriteIcon, PlayIcon, LiveIcon, ContainedBellIcon, BellIcon } from "common/Icons/Icons";
+import { AddedToCartIcon, AddedToFavouriteIcon, CartIcon, FavouriteIcon, PlayIcon, LiveIcon, ContainedBellIcon, BellIcon, TvIcon } from "common/Icons/Icons";
 import Link from 'next/link';
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
@@ -17,6 +17,7 @@ import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 import Image from 'next/image';
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 
 export default function CourseListing() {
@@ -109,13 +110,26 @@ export default function CourseListing() {
         setCourseListing([...courseListing]);
     }
 
+    const handleFreeCoursesActionBtn = (course: any): any => {
+        if (userStatus.isUserAuthenticated == true) {
+            handleFreeCourses(course);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "/courses" }
+            })
+        }
+    }
+
     const handlePageClick = (pgNo: any) => {
+        toggleLoader("show");
         window.scrollTo({ top: 0, behavior: "smooth" });
         setCurrentPage(pgNo);
         axiosInstance
             .get(`courses/?country_code=null&page=${pgNo}&limit=16&type=${router.query.type}`)
             .then(function (response: any) {
-                setCourseListing(response?.data)
+                setCourseListing(response?.data);
+                toggleLoader("hide");
             })
             .catch(function (error) {
                 console.log(error);
@@ -124,26 +138,25 @@ export default function CourseListing() {
 
     useEffect(() => {
         toggleLoader("show");
-
     }, [])
 
 
 
 
     useEffect(() => {
-            axiosInstance
-                .get(`courses/?country_code=null&page=1&limit=16&type=${ (router?.query && router?.query?.type) ? router?.query?.type  : "all"  }`)
-                .then(function (response: any) {
-                    console.log(response);
-                    
-                    setCourseListing(response?.data);
-                    toggleLoader("hide");
+        axiosInstance
+            .get(`courses/?country_code=null&page=1&limit=16&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
+            .then(function (response: any) {
+                console.log(response);
 
-                })
-                .catch(function (error) {
-                    toggleLoader("hide");
-                    console.log(error);
-                });
+                setCourseListing(response?.data);
+                toggleLoader("hide");
+
+            })
+            .catch(function (error) {
+                toggleLoader("hide");
+                console.log(error);
+            });
 
     }, [router.query]);
 
@@ -268,7 +281,13 @@ export default function CourseListing() {
                                             {!course.is_purchased && <Button className={styles["course-listing__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={course.is_in_cart} variant={""}>
                                                 {course.price == 0 ? <div onClick={() => handleSubscribeBtn(course)}> {course.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
                                                     :
-                                                    <div onClick={() => handleCartActionBtn(course)}> {(course.is_in_cart ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                                                    <div onClick={() =>
+                                                        course?.discounted_price == 0 ?
+                                                        handleFreeCoursesActionBtn(course)
+                                                            :
+                                                            handleCartActionBtn(course)}> {(course.discounted_price == 0 ?
+                                                                <TvIcon color="#222" />
+                                                                : course.is_in_cart ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
                                             </Button>}
                                         </div>
                                     </Card.Body>
@@ -329,7 +348,7 @@ export default function CourseListing() {
                                                 }
                                             >
                                                 <Link href={`/trainer/${course.trainer?.slug}`}>
-                                                    <img loading="lazy"  
+                                                    <img loading="lazy"
                                                         src={course.trainer?.image}
                                                         alt="trainer image"
                                                     />
@@ -460,13 +479,20 @@ export default function CourseListing() {
                                                         ]
                                                     }
                                                 >
-                                                    <div onClick={() => handleCartActionBtn(course)}
+                                                    <div onClick={() =>
+                                                        course?.discounted_price == 0 ?
+                                                        handleFreeCoursesActionBtn(course)
+                                                            :
+                                                            handleCartActionBtn(course)}
                                                         className={styles["course-listing__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                                         {
-                                                            course.is_in_cart ?
-                                                                <AddedToCartIcon color="#222" />
+                                                            course.discounted_price == 0 ?
+                                                                <TvIcon color="#222" />
                                                                 :
-                                                                <CartIcon color="#222" />
+                                                                course.is_in_cart ?
+                                                                    <AddedToCartIcon color="#222" />
+                                                                    :
+                                                                    <CartIcon color="#222" />
                                                         }
                                                     </div>
 
@@ -506,48 +532,48 @@ export default function CourseListing() {
                 <Col xs={12} className={styles["course-listing__pagination"]}>
 
 
-                    {!(courseListing?.pagination?.count < 16) && 
-                    <Pagination>
-                        <Pagination.Prev
-                            onClick={() => {
-                                handlePageClick(courseListing?.pagination?.current - 1)
-                            }}
-                            className={`${currentPage == 1 && styles["disabled"]}`} />
+                    {!(courseListing?.pagination?.count < 16) &&
+                        <Pagination>
+                            <Pagination.Prev
+                                onClick={() => {
+                                    handlePageClick(courseListing?.pagination?.current - 1)
+                                }}
+                                className={`${currentPage == 1 && styles["disabled"]}`} />
 
 
 
-                        <Pagination.Item
-                            style={{ display: courseListing?.pagination?.previous ? "" : "none" }}
-                            active={currentPage == courseListing?.pagination?.previous}
-                            onClick={() => {
-                                handlePageClick(courseListing?.pagination?.previous)
-                            }}>
-                            {courseListing?.pagination?.previous}
-                        </Pagination.Item>
-                        <Pagination.Item
-                            active={currentPage == courseListing?.pagination?.current}
-                            onClick={() => {
-                                handlePageClick(courseListing?.pagination?.current);
-                            }}>
-                            {courseListing?.pagination?.current}
-                        </Pagination.Item>
-                        <Pagination.Item
-                            style={{ display: courseListing?.pagination?.next ? "" : "none" }}
-                            active={currentPage == courseListing?.pagination?.next}
-                            onClick={() => {
-                                handlePageClick(courseListing?.pagination?.next)
-                            }}>
-                            {courseListing?.pagination?.next}
-                        </Pagination.Item>
+                            <Pagination.Item
+                                style={{ display: courseListing?.pagination?.previous ? "" : "none" }}
+                                active={currentPage == courseListing?.pagination?.previous}
+                                onClick={() => {
+                                    handlePageClick(courseListing?.pagination?.previous)
+                                }}>
+                                {courseListing?.pagination?.previous}
+                            </Pagination.Item>
+                            <Pagination.Item
+                                active={currentPage == courseListing?.pagination?.current}
+                                onClick={() => {
+                                    handlePageClick(courseListing?.pagination?.current);
+                                }}>
+                                {courseListing?.pagination?.current}
+                            </Pagination.Item>
+                            <Pagination.Item
+                                style={{ display: courseListing?.pagination?.next ? "" : "none" }}
+                                active={currentPage == courseListing?.pagination?.next}
+                                onClick={() => {
+                                    handlePageClick(courseListing?.pagination?.next)
+                                }}>
+                                {courseListing?.pagination?.next}
+                            </Pagination.Item>
 
 
 
-                        <Pagination.Next
-                            onClick={() => {
-                                handlePageClick(courseListing?.pagination?.current + 1)
-                            }}
-                            className={`${currentPage == courseListing?.pagination?.pages && styles["disabled"]}`} />
-                    </Pagination>}
+                            <Pagination.Next
+                                onClick={() => {
+                                    handlePageClick(courseListing?.pagination?.current + 1)
+                                }}
+                                className={`${currentPage == courseListing?.pagination?.pages && styles["disabled"]}`} />
+                        </Pagination>}
 
                 </Col>
             </Row>

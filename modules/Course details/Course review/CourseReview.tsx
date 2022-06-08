@@ -73,7 +73,7 @@ export default function CourseReview(props:any) {
         <Col  xs={12} className={styles["course-review"]}>
     <div id="reviews-section" className={styles["course-review__scrollspy-helper"]}></div>
 
-            <div className={styles["course-review__title"]}>التقييم العام للدورة</div>
+            <h2 className={styles["course-review__title"]}>التقييم العام للدورة</h2>
             <div className={styles["course-review__review-box"]}>
                 <div className={styles["course-review__review-box__number"]}>{courseReviews?.reviews_average}</div>
                 <div className={styles["course-review__review-box__review"]}>

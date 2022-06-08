@@ -27,10 +27,10 @@ export default class TadarabFBPixel {
     
     getCookie(name) {
         if (typeof document === 'undefined') {
-            console.log('document is undefined.');return;
+            return;
         }
         function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
         var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
-        return match ? match[1] : null;
+        return match ? match[1] : "";
     }
   }

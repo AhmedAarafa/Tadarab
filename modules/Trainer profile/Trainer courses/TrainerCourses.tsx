@@ -8,7 +8,8 @@ import {
     CartIcon,
     FavouriteIcon,
     AddedToCartIcon,
-    AddedToFavouriteIcon
+    AddedToFavouriteIcon,
+    TvIcon
 } from "common/Icons/Icons";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
@@ -18,6 +19,8 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Image from 'next/image';
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 export default function TrainerCourses() {
     const dispatch = useDispatch();
@@ -96,13 +99,27 @@ export default function TrainerCourses() {
         // setLatestCourses([...latestCourses]);
     }
 
+    const handleFreeCoursesActionBtn = (course: any): any => {
+        if (userStatus.isUserAuthenticated == true) {
+            handleFreeCourses(course);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "/trainer" }
+            })
+        }
+    }
+
     const handlePageClick = (pgNo: any) => {
+        toggleLoader("show");
         setCurrentPage(pgNo);
         axiosInstance
             .get(`trainers/${trainerSlug}/?country_code=null&page=${pgNo}&limit=10`)
             .then(function (response: any) {
                 console.log(response.data);
-                setTrainerProfile(response?.data)
+                setTrainerProfile(response?.data);
+                toggleLoader("hide");
+
             })
             .catch(function (error: any) {
                 console.log(error);
@@ -112,13 +129,13 @@ export default function TrainerCourses() {
     return (
         <>
             <div className={styles["trainer-courses-box"]}>
-                <div className={styles["trainer-courses-box__title"]}>
+                <h2 className={styles["trainer-courses-box__title"]}>
                     <span>عدد الدورات </span>
-                    <span>({trainerProfile?.pagination?.count})</span>
-                </div>
+                    <span>{`(${trainerProfile?.pagination?.count})`}</span>
+                </h2>
 
                 <div className={styles["trainer-courses-box__trainer-courses"]}>
-                    {trainerProfile?.data !== undefined && trainerProfile?.data.courses?.map((course: any, i: number) => {
+                    {trainerProfile?.data !== undefined && trainerProfile?.data?.courses?.map((course: any, i: number) => {
                         return (
                             <Card data-isvisible={false} data-coursedetails={JSON.stringify({
                                 name: course.title,
@@ -187,7 +204,7 @@ export default function TrainerCourses() {
                                         >
                                             <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                                <img loading="lazy"   src={course?.trainer?.image} alt="trainer image" />
+                                                <img loading="lazy" src={course?.trainer?.image} alt="trainer image" />
 
                                             </Link>
                                         </div>
@@ -199,8 +216,7 @@ export default function TrainerCourses() {
                                             }
                                         >
                                             <Link href={`/course/${course.slug}`}>
-
-                                                <h1
+                                                <h3
                                                     className={
                                                         styles[
                                                         "trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__title"
@@ -209,7 +225,7 @@ export default function TrainerCourses() {
                                                     title={course.title}
                                                 >
                                                     {course.title}
-                                                </h1>
+                                                </h3>
                                             </Link>
                                             <div title={course.trainer.name_ar}
                                                 className={
@@ -313,14 +329,21 @@ export default function TrainerCourses() {
                                                     ]
                                                 }
                                             >
-                                                <div onClick={() => handleCartActionBtn(course)}
+                                                <div onClick={() =>
+                                                    course?.discounted_price == 0 ?
+                                                    handleFreeCoursesActionBtn(course)
+                                                        :
+                                                        handleCartActionBtn(course)}
                                                     className={styles["trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
 
                                                     {
-                                                        course.is_in_cart ?
-                                                            <AddedToCartIcon color="#222" />
+                                                        course.discounted_price == 0 ?
+                                                            <TvIcon color="#222" />
                                                             :
-                                                            <CartIcon color="#222" />
+                                                            course.is_in_cart ?
+                                                                <AddedToCartIcon color="#222" />
+                                                                :
+                                                                <CartIcon color="#222" />
                                                     }
                                                 </div>
                                             </Button>}

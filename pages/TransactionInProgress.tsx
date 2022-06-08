@@ -15,20 +15,19 @@ export default function TransactionInProgress() {
   const [serverResponse, setServerResponse] = useState("الرجاء الإنتظار حتي تستكمل هذه العملية");
 /* ${router.query["cko-session-id"]} */
   useEffect(() => {
-    console.log('router.query : ',router.query);
     if(router.query["cko-session-id"] !== undefined){
       
       axiosInstance
-      .get(`payments/details?payment_method=visamaster&checkout_session_id=${router.query["cko-session-id"]}`)
+      .get(`payments/details?payment_method=visamaster&checkout_session_id=${router.query["cko-session-id"]}&checkout_type=${router.query["checkout_type"]}`)
       .then(function (response:any) {
-        console.log((response?.data?.data));
         dispatch(setInvoiceDetails(response?.data?.data));
         if(JSON.stringify(response.status).startsWith("2")){
 
-            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-
-
+          let customData = {};
+          if((response.data?.transaction_details?.checkout_type)&&response.data?.transaction_details?.checkout_type!='subscription'){
+            customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_course_purchase'};
+          }
+          FBPixelEventsHandler(response.data.fb_tracking_events,customData);
 
           response?.data?.data?.is_successful == true ?
           dispatch(setTransactionStatus(true))
@@ -47,15 +46,17 @@ export default function TransactionInProgress() {
     }else if(router.query["payment_method"] !== undefined){
 
       axiosInstance
-      .get(`payments/details?payment_method=${router.query["payment_method"]}&payment_id=${router.query["payment_id"]}`)
+      .get(`payments/details?payment_method=${router.query["payment_method"]}&payment_id=${router.query["payment_id"]}&checkout_type=${router.query["checkout_type"]}`)
       .then(function (response:any) {
-        console.log((response?.data?.data));
         dispatch(setInvoiceDetails(response?.data?.data));
         if(JSON.stringify(response.status).startsWith("2")){
           
-          let customData = {value: response.data?.transaction_details?.amount_usd, currency: 'USD'};
+          let customData = {};
+          if((response.data?.data?.transaction_details?.checkout_type)&&response.data?.data?.transaction_details?.checkout_type!='subscription'){
+            customData = {value: response.data?.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_course_purchase'};
+          }
           FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-
+          
           response?.data?.data?.is_successful == true ?
           dispatch(setTransactionStatus(true))
           :

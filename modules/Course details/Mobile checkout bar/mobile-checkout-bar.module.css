@@ -1,6 +1,6 @@
 .mobile-checkout-bar {
   background-color: white;
-  height: 11.5rem;
+  height: 15rem;
   -webkit-box-shadow: 0 -0.781rem 3.281rem #00000014;
           box-shadow: 0 -0.781rem 3.281rem #00000014;
   display: -webkit-box;
@@ -17,6 +17,18 @@
   width: 100%;
   z-index: 8;
   display: none;
+  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(5%, white), color-stop(90%, white), to(white));
+  background: linear-gradient(transparent 0%, white 5%, white 90%, white 100%);
+}
+
+.monthly-subscription__subscription-timer {
+  font-size: 1.875rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.monthly-subscription__subscription-timer span {
+  color: red;
 }
 
 .mobile-checkout-bar__subscribe-btn {
@@ -45,6 +57,10 @@
   width: 50rem;
   height: 6.5rem;
   margin-top: 0.4rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .mobile-checkout-bar__subscribe-btn:hover {
@@ -60,6 +76,10 @@
 .mobile-checkout-bar__subscribe-btn:hover, .mobile-checkout-bar__subscribe-btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
+}
+
+.mobile-checkout-bar__subscribe-btn div:nth-of-type(2) {
+  font-size: 1.59375rem;
 }
 
 .mobile-checkout-bar__subscribe-btn svg {

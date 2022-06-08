@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
-// import Navbar from "common/Navbar/Navbar";
 // import CheckoutPage from "modules/Checkout/Checkout page/CheckoutPage";
 import { Container } from "react-bootstrap";
 import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents";
 import dynamic from 'next/dynamic';
+import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 
-const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const CheckoutPage = dynamic(() => import("modules/Checkout/Checkout page/CheckoutPage"));
-const Footer = dynamic(() => import("common/Footer/Footer"));
 
 export default function Checkout() {
 
   useEffect(() => {
+    subscriptionCounter();
     window.addEventListener("scroll" , ()=>{
       GAProductimpressionEventHandler("checkout-related-courses__courses-card");
     })
@@ -26,9 +25,7 @@ export default function Checkout() {
   return (
     <>
     <Container fluid="xxl">
-      <Navbar />
       <CheckoutPage />
-      <Footer />
     </Container>    
     </>
   );

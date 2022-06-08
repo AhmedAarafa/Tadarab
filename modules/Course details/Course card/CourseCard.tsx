@@ -5,8 +5,10 @@ import { Button } from "react-bootstrap";
 import { stickyCardHandler } from "./utils";
 import  useResize from "custom hooks/useResize";
 import { useDispatch, useSelector } from "react-redux";  
-import { CartIcon,FavouriteIcon,ShareIcon,GuaranteeIcon } from "common/Icons/Icons";
+import { CartIcon,FavouriteIcon,ShareIcon,GuaranteeIcon, TvIcon } from "common/Icons/Icons";
 import Image from 'next/image';
+import {handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
+import Router from "next/router";
 
 export default function CourseCard() {
 
@@ -19,6 +21,17 @@ export default function CourseCard() {
     setCourseDetails(courseDetailsData.data || []);
   
   }, [courseDetailsData]);
+
+  const handleFreeCoursesActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+        handleFreeCourses(course);
+    } else {
+        Router.push({
+            pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+            query: { from: "/course" }
+        })
+    }
+}
   
   useResize(stickyCardHandler);
 
@@ -95,8 +108,20 @@ export default function CourseCard() {
               ]
             }
           >
+            {
+              courseDetails.course_details?.discounted_price == 0 ?
+              <div onClick={()=>{
+                handleFreeCoursesActionBtn(courseDetails?.course_details)
+                }}>
+              <TvIcon color="#fff" />
+               <span>ابدأ الآن مجانًا</span>
+              </div>
+              :
+              <>
            <CartIcon color={"#fff"}/>
             <span>أضف للسلة</span>
+              </>
+            }
           </Button>
           <Button
             className={
@@ -254,8 +279,20 @@ export default function CourseCard() {
                 ]
               }
             >
-               <CartIcon color={"#fff"}/>
-              <span>أضف للسلة</span>
+               {
+              courseDetails.course_details?.discounted_price == 0 ?
+              <div onClick={()=>{
+                handleFreeCoursesActionBtn(courseDetails?.course_details)
+                }}>
+              <TvIcon color="#fff" />
+               <span>ابدأ الآن مجانًا</span>
+              </div>
+              :
+              <>
+           <CartIcon color={"#fff"}/>
+            <span>أضف للسلة</span>
+              </>
+            }
             </Button>
             <Button
               className={

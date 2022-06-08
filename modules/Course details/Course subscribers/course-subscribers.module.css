@@ -7,8 +7,9 @@
   color: var(--dark-black);
 }
 
-.course-subscribers__title div:nth-of-type(2) {
+.course-subscribers__title h2 {
   font-weight: 800;
+  font-size: 1.55rem;
 }
 
 .course-subscribers__cards-carousel {

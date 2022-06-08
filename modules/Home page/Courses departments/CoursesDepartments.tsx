@@ -19,20 +19,8 @@ export default function CoursesDepartments() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-      // axiosInstance
-      // .get(`home/?country_code=null`)
-      // .then(function (response:any) {
-      //   setCategories(response.data.data.categories);
-      // })
-      // .catch(function (error) {
-      //   console.log(error);
-      // });
-        // setCategories(homePageData.data.categories);
-        // console.log("homePageData",homePageData);
-        
-        // if(homePageData !== {}){
+      
           setCategories(homePageData.data?.categories || []);
-        // }
     }, [homePageData]);
   return (
     <>

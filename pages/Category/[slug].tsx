@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 
-// import Navbar from "common/Navbar/Navbar";
-// import Footer from "common/Footer/Footer";
 // import CategoryDescription from "modules/Category/Category description/CategoryDescription";
 // import CategoryCourses from "modules/Category/Category courses/CategoryCourses";
 // import CategoryTopics from "modules/Category/Category topics/CategoryTopics";
@@ -15,21 +13,21 @@ import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 
-const Navbar = dynamic(() => import("common/Navbar/Navbar"));
-const Footer = dynamic(() => import("common/Footer/Footer"));
 const CategoryDescription = dynamic(() => import("modules/Category/Category description/CategoryDescription"));
 const CategoryCourses = dynamic(() => import("modules/Category/Category courses/CategoryCourses"));
 const CategoryTopics = dynamic(() => import("modules/Category/Category topics/CategoryTopics"));
 const CategoryTrainers = dynamic(() => import("modules/Category/Category trainers/CategoryTrainers"));
 const TrainingCourses = dynamic(() => import("modules/Category/Training courses/TrainingCourses"));
+const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 
-export default function Category() {
+export default function Category(props: any) {
   const router = useRouter()
   const [category, setCategory] = useState<any>({});
   const [pagination, setPagination] = useState<any>({});
   const Router = useRouter();
   const { slug } = Router.query;
+  const { seoData } = props;
 
   useEffect(() => {
     toggleLoader("show");
@@ -47,27 +45,34 @@ export default function Category() {
         })
         .catch(function (error) {
           toggleLoader("hide");
-          console.log(error);
         });
     }
 
-  }, [router.query.slug]);
+  }, [Router.query.slug]);
   // [] empty dependency array to be executed once (like onLoad) ... if it is NOT empty, it will execute when the dependencies change.
 
   return (
     <>
-      <MetaTagsGenerator title={category?.seo_title}
-        description={category?.seo_metadesc}
-        img={category?.seo_image} />
+      {seoData && <MetaTagsGenerator title={seoData?.seo_title}
+        description={seoData?.seo_metadesc}
+        img={seoData?.seo_image} />}
       <Container fluid="xxl">
-        <Navbar />
         <CategoryDescription data={category} />
         {/* <CategoryCourses data={category} />  */}
         {/* <CategoryTopics data={category} /> */}
         <CategoryTrainers data={category} />
         <TrainingCourses data={category} pagination={pagination}/>
-        <Footer />
       </Container>
     </>
   )
+}
+
+export async function getServerSideProps(context: any) {
+  try{
+ const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}categories/${context?.params?.slug}/?country_code=null&page=1&limit=12`)
+ const seoData = await res.json()
+  return { props: { seoData: seoData.data } };
+  } catch {
+    return { props: { seoData: {} } };
+  }
 }

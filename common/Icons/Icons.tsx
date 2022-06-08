@@ -1034,9 +1034,9 @@ export function LevelIcon(props: { level: number }) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24">
       <g id="level" transform="translate(-1157 -5536)">
-        <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity={props.level == 3 || props.level == 4  ? '1' : '0.2'} />
+        <rect id="Rectangle_3357" data-name="Rectangle 3357" width="8" height="24" rx="3" transform="translate(1179 5536)" fill="#c1121f" opacity={props.level == 3 || props.level == 4 ? '1' : '0.2'} />
         <rect id="Rectangle_3358" data-name="Rectangle 3358" width="8" height="18" rx="3" transform="translate(1168 5542)" fill="#c1121f" opacity={props.level == 2 || props.level == 3 || props.level == 4 ? '1' : '0.2'} />
-        <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f" opacity={props.level == 1 || props.level == 2 || props.level == 3  || props.level == 4 ? '1' : '0.2'} />
+        <rect id="Rectangle_3359" data-name="Rectangle 3359" width="8" height="10" rx="3" transform="translate(1157 5550)" fill="#c1121f" opacity={props.level == 1 || props.level == 2 || props.level == 3 || props.level == 4 ? '1' : '0.2'} />
       </g>
     </svg>
 
@@ -1352,3 +1352,39 @@ export function CongratulationsIcon() {
 
   );
 }
+
+export function TvIcon(props: { color: string }) {
+  return (
+    <svg fill={props.color} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M938.666667 725.333333 554.666667 725.333333l0 128 213.333333 0c23.466667 0 42.666667 19.2 42.666667 42.666667 0 23.466667-19.2 42.666667-42.666667 42.666667L256 938.666667c-23.466667 0-42.666667-19.2-42.666667-42.666667 0-23.466667 19.2-42.666667 42.666667-42.666667l213.333333 0 0-128L85.333333 725.333333c-46.933333 0-85.333333-38.4-85.333333-85.333333L0 170.666667c0-46.933333 38.4-85.333333 85.333333-85.333333l853.333333 0c46.933333 0 85.333333 38.4 85.333333 85.333333l0 469.333333C1024 686.933333 985.6 725.333333 938.666667 725.333333zM938.666667 192c0-12.8-8.533333-21.333333-21.333333-21.333333L106.666667 170.666667C93.866667 170.666667 85.333333 179.2 85.333333 192l0 426.666667c0 12.8 8.533333 21.333333 21.333333 21.333333l810.666667 0c12.8 0 21.333333-8.533333 21.333333-21.333333L938.666667 192z" /></svg>
+  );
+}
+export function CloseIcon(props: { color: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1.125rem" height="1.125rem" viewBox="0 0 18 18">
+      <path id="close" d="M81.429,79.044,75.31,72.925l6.119-6.119a1.686,1.686,0,0,0-2.385-2.385L72.925,70.54l-6.119-6.119a1.686,1.686,0,0,0-2.385,2.385l6.119,6.119-6.119,6.119a1.686,1.686,0,0,0,2.385,2.385l6.119-6.119,6.119,6.119a1.686,1.686,0,0,0,2.385-2.385Z" transform="translate(-63.925 -63.925)" fill={props.color} opacity="0.8" />
+    </svg>
+  );
+}
+
+
+export function FilterIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width=" 1.5625rem" height="1.6875rem" viewBox="0 0 24.648 27.208">
+      <g id="filter" transform="translate(86.252 -109.198) rotate(90)">
+        <path id="Path_34330" data-name="Path 34330" d="M274.632,73.455V84.894a1.356,1.356,0,0,0,1.39,1.359,1.376,1.376,0,0,0,1.39-1.359V73.455a4.341,4.341,0,0,0,0-8.279V62.964a1.356,1.356,0,0,0-1.39-1.359,1.376,1.376,0,0,0-1.39,1.359v2.212a4.4,4.4,0,0,0-3.034,4.14A4.489,4.489,0,0,0,274.632,73.455Zm-.253-4.14a1.643,1.643,0,1,1,1.643,1.643A1.632,1.632,0,0,1,274.379,69.315Z" transform="translate(-153.236 -0.001)" />
+        <path id="Path_34331" data-name="Path 34331" d="M112.232,82.586v2.307a1.391,1.391,0,0,0,2.781,0V82.586a4.341,4.341,0,0,0,0-8.279V62.963a1.391,1.391,0,0,0-2.781,0V74.307a4.341,4.341,0,0,0,0,8.279Zm-.284-4.14a1.643,1.643,0,1,1,1.643,1.643A1.7,1.7,0,0,1,111.947,78.446Z" />
+        <path id="Path_34332" data-name="Path 34332" d="M437.592,82.586v2.307a1.356,1.356,0,0,0,1.39,1.359,1.376,1.376,0,0,0,1.39-1.359V82.586a4.341,4.341,0,0,0,0-8.279V62.963a1.356,1.356,0,0,0-1.39-1.359,1.376,1.376,0,0,0-1.39,1.359V74.307a4.341,4.341,0,0,0,0,8.279Zm-.284-4.14a1.643,1.643,0,1,1,1.643,1.643A1.632,1.632,0,0,1,437.307,78.446Z" transform="translate(-307)" />
+      </g>
+    </svg>
+  );
+}
+
+export function StarIcon(props: { color: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="17.181" height="16.17" viewBox="0 0 17.181 16.17">
+      <path id="yellowStar" d="M7.687,1.9a1,1,0,0,1,1.807,0l1.438,3.03a1,1,0,0,0,.78.563l3.338.415a1,1,0,0,1,.557,1.725L13.167,9.9a1,1,0,0,0-.3.923l.631,3.262a1,1,0,0,1-1.46,1.068L9.069,13.538a1,1,0,0,0-.957,0L5.144,15.155a1,1,0,0,1-1.46-1.068l.631-3.262a1,1,0,0,0-.3-.923L1.573,7.637A1,1,0,0,1,2.13,5.911L5.469,5.5a1,1,0,0,0,.78-.563Z" fill="#c1121f" />
+    </svg>
+
+  );
+}
+

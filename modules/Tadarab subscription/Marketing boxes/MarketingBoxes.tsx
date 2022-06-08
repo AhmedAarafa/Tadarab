@@ -7,7 +7,7 @@ import LiveCourses from '../Live courses/LiveCourses';
 import CoursesDepartments from '../Courses departments/CoursesDepartments';
 import Image from 'next/image';
 
-export default function MarketingBoxes() {  
+export default function MarketingBoxes() {
   return (
     <Row className={styles["marketing-boxes"]}>
         <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
@@ -63,9 +63,7 @@ export default function MarketingBoxes() {
 
             </div>
         </Col>
-
-
-        <LiveCourses/>
+        {/* <LiveCourses/> */}
     </Row>
   )
 }

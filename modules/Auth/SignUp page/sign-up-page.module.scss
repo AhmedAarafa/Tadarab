@@ -29,9 +29,9 @@
 }
 
 .register__register-box__register-with {
-    @include flex(center, flex-start);
+    @include flex(center, space-between);
     margin-top: 1.25rem;
-    display: none !important;
+    // display: none !important;
 
     div {
         font-size: 1.063rem;
@@ -45,6 +45,9 @@
         @include flex(center, flex-start);
         margin-left: 0.75rem;
         cursor: pointer;
+        button{
+            width: 100%;
+        }
 
         svg {
             width: 1.5rem;
@@ -58,13 +61,23 @@
     }
 }
 
+.register__register-box__register-with-twitter{
+    width: 100%;
+    padding-right: 0 !important;
+    box-shadow: none !important;
+
+    div{
+        width: 100%;
+    }
+}
+
 .register__register-box__register-with-email {
     font-size: 1.0625rem;
     color: var(--grey);
     text-align: center;
     margin: 1.5625rem 0 0 0;
     position: relative;
-    display: none !important;
+    // display: none !important;
 
     &:before {
         content: '';
@@ -353,6 +366,10 @@
     border-radius: 0.7rem;
 }
 
+.disabled {
+    pointer-events: none !important;
+    opacity: 0.7 !important;
+}
 
 
 @media (max-width:575px) {

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import Navbar from "common/Navbar/Navbar";
-// import TrainerProfilePage from "modules/Trainer profile/Trainer profile page/TrainerProfilePage";
 import { Container } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,15 +12,14 @@ import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
-const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
-const Footer = dynamic(() => import("common/Footer/Footer"));
+const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
-
-export default function TrainerProfile() {
+export default function TrainerProfile(props: any) {
   const dispatch = useDispatch();
   const router = useRouter();
   const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
+  const { seoData } = props;
 
 
 
@@ -67,14 +64,22 @@ export default function TrainerProfile() {
 
   return (
     <>
-      <MetaTagsGenerator title={trainerProfileData?.data?.data?.seo_title}
-        description={trainerProfileData?.data?.data?.seo_metadesc}
-        img={trainerProfileData?.data?.data?.seo_image} />
+      {seoData && <MetaTagsGenerator title={seoData?.seo_title}
+        description={seoData?.seo_metadesc}
+        img={seoData?.seo_image} /> }
       <Container fluid="xxl">
-        <Navbar />
         <TrainerProfilePage />
-        <Footer />
       </Container>
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  try{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}trainers/${context?.params?.slug}/?country_code=null&limit=10&page=1`)
+    const seoData = await res.json()
+    return { props: { seoData: seoData.data } }
+  } catch {
+    return { props: { seoData: {} } }
+  }
 }

@@ -106,19 +106,9 @@ export default function TrainerInfo() {
     const briefAboutTrainer:any = document.getElementById("brief-about-trainer");
     const showMoreIcon:any = document.querySelector("#read-more-icon2 > svg");
     const fadeOut:any = document.getElementById("fadeout2");
-     // Function to count total
-        // number of lines
-  
-          // const rootFontSize = parseFloat(
-          //   window
-          //   .getComputedStyle(document.getElementsByTagName("html")[0])
-          //   .getPropertyValue("font-size")
-          // );
           let el:any = document.getElementById('bio');
           let divHeight = el?.offsetHeight;
           let lines = Math.ceil(divHeight / 24);
-          // console.log("Lines: " + lines);
-      // console.log("IsTooMuchContent",isTooMuchContent);
 
       if(lines > 9 ){
         setIsTooMuchContent(true);
@@ -178,9 +168,9 @@ export default function TrainerInfo() {
                   trainerProfileData.data?.data?.courses?.map((item:any)=> item.subscribers_count).reduce((prev:any, curr:any) => prev + curr, 0) +
                   parseInt(trainerProfileData.data?.data?.buyers_count) 
                 }
-                </div>
+                </div> 
             </div>
-          </div>
+          </div> 
 
 
         </div>
@@ -188,9 +178,10 @@ export default function TrainerInfo() {
         <div className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box"]}>
 
           <div id="brief-about-trainer" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer"]}>
-          <div className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title"]}>نبذة عن المدرب</div>
+          <h2 className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title"]}>نبذة عن المدرب</h2>
           <p id="bio" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para"]}
           dangerouslySetInnerHTML={{__html: trainerProfileData.data?.data?.bio}}>
+            
           {/* {trainerProfileData.data?.data?.bio} */}
           </p>
           { isTooMuchContent &&

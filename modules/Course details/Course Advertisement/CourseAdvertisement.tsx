@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useResize from 'custom hooks/useResize';
 import "video.js/dist/video-js.css";
 import Link from "next/link";
+import { PlayIcon } from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
 import Image from 'next/image';
 
@@ -91,6 +92,10 @@ export default function CourseAdvertisement(theOption: any) {
   return (
     <>
       <div className={styles["course-ad"]}>
+        {
+          ((theOption?.liveWebinarDetails?.webinar_type)&&(theOption?.liveWebinarDetails?.webinar_type!='soon')) &&
+          <i className={`${styles["tadarab-icon"]} ${styles["live-white"]}`}></i>
+        }
         <ul className={styles["course-ad__list"]}>
           {
             courseDetailsData?.data?.course_details?.categories.slice(0, 3).map((cat: any, i: number) => {
@@ -101,35 +106,32 @@ export default function CourseAdvertisement(theOption: any) {
               )
             })
           }
-
         </ul>
         {courseDetailsData?.data == undefined ?
           <></>
           :
           <>
-
-            <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}
-             ${((theOption.postType !== 'webinar')) && styles["video-player-gradient"]}`}>
-              {((theOption) && (theOption.postType === 'webinar') && (theOption.postSrc != '')) ?
-                <>
-                  {/* {console.log(timerHandler(theOption.liveWebinarDetails.full_date))} */}
-                  {
-                    ((Math.floor(Date.now() / 1000)) < theOption?.liveWebinarDetails?.full_date) ?
-                      <img loading="lazy"   src={theOption?.liveWebinarDetails?.image} alt="تدرب في رمضان" />
-                      :
-                      <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
-                        <iframe src={theOption.postSrc} frameBorder="0" allowFullScreen></iframe>
-                      </div>
-                  }
-                </>
+            <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]} ${((theOption.postType !== 'webinar')) && styles["video-player-gradient"]}`}>
+              {
+                ((theOption) && (theOption.postType === 'webinar') && (theOption.postSrc != '')) ?
+                  <>
+                    {
+                      ((theOption?.liveWebinarDetails?.webinar_type)&&(theOption?.liveWebinarDetails?.webinar_type=='soon')) ?
+                        <img loading="lazy"   src={theOption?.liveWebinarDetails?.image} alt="تدرب في رمضان" />
+                        :
+                        <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
+                          <iframe src={theOption.liveWebinarDetails.streamUrl} allow="autoplay; fullscreen; picture-in-picture" style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} frameBorder="0" allowFullScreen></iframe>
+                        </div>
+                    }
+                  </>
                 :
-                <>
-                  <TadarabVideoPlayer />
-                </>
+                  <>
+                    <TadarabVideoPlayer />
+                  </>
               }
             </div>
             {
-              ((Math.floor(Date.now() / 1000)) > theOption?.liveWebinarDetails?.full_date) &&
+              ((theOption?.liveWebinarDetails?.webinar_type)&&(theOption?.liveWebinarDetails?.webinar_type=='soon')) &&
               <div className={styles["live-webinar-countdown"]}>
                 <div className={styles["live-webinar-countdown__offer-available"]}>
                   <div>بث مباشر</div>

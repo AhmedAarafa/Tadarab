@@ -43,13 +43,13 @@ export default function CourseContent() {
 
     return (
         <>
-            <div className={styles["course-content"]}>
+            <div className={styles["course-content"]} style={{marginTop:"30px"}}>
                 <div id="course-content" className={styles["course-content__scrollspy-helper"]}></div>
 
                 {/* Course lecture heading */}
-                <div className={styles["course-content__title"]}>
+                <h2 className={styles["course-content__title"]}>
                     محتوي الدورة التدريبية
-                </div>
+                </h2>
 
                 {/* Course total hours & minutes */}
                 <div className={styles["course-content__course-duration-box"]}>
@@ -87,9 +87,9 @@ export default function CourseContent() {
                         <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
                             <Accordion.Header className={styles["course-content__accordion__header"]}>
                                 <div className={styles["course-content__accordion__header__details-box"]}>
-                                    <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
+                                    <h3 style={{color:"#af151f",margin:"0px"}} className={styles["course-content__accordion__header__group-number"]}>
                                     ملفات شرح
-                                    </div>
+                                    </h3>
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body className={styles["course-content__accordion__body"]}>
@@ -113,7 +113,7 @@ export default function CourseContent() {
                                                 cursor : 
                                                 courseDetailsData?.data?.course_details?.is_purchased || courseDetailsData?.data?.course_details?.is_in_user_subscription
                                                 ? "pointer" : "not-allowed"
-                                            }} className={styles["course-content__accordion__body__list-item__download"]}>
+                                                }} className={styles["course-content__accordion__body__list-item__download"]}>
                                                    {
                                                        courseDetailsData?.data?.course_details?.is_purchased || courseDetailsData?.data?.course_details?.is_in_user_subscription
                                                        ?

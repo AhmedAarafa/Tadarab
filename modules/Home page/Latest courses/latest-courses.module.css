@@ -616,6 +616,11 @@
   border: 0.125rem solid #9d151e !important;
 }
 
+.latest-courses__popover-container__btns__add-to-cart-btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .latest-courses__popover-container__btns__add-to-cart-btn span {
   margin-right: 0.438rem;
 }

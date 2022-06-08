@@ -18,19 +18,8 @@ export default function LearnFromTheBest() {
   const [trainers, setTrainers] = useState([]);
 
   useEffect(() => {
-    // axiosInstance
-    // .get(`home/?country_code=null`)
-    // .then(function (response:any) {
-    //   setTrainers(response.data.data.trainers);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    // if(homePageData !== {}){
+  
       setTrainers(homePageData.data?.trainers || []);
-    // }
-    // setTrainers(homePageData.data.trainers);
-     
 
   }, [homePageData]);
 

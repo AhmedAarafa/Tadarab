@@ -394,11 +394,10 @@ a.lesson.free-lesson.active,a.lesson.free-lesson:hover{background:#f7faff !impor
 @keyframes showfixed {0% {opacity:0 !important;} 49.99% {opacity:0 !important;} 50% {opacity:1 !important;} 100% {opacity:1 !important;} }
 video::-webkit-media-controls-panel,video::-webkit-media-controls-panel-container,video::-webkit-media-controls-start-playback-button{display:none !important;-webkit-appearance:none !important;}
 @media(max-width:768px){.tadarab-player{display:inline !important;}.tadarab-player .tplayer,.tadarab-player .tlist{width:100% !important;}.vjs-modal-dialog .vjs-modal-dialog-content{padding:10px 24px !important}.tplayer-dialog .modal-header h1{font-size:20px !important;}.tplayer-dialog .modal-header p{font-size:14px !important;}a.lesson.free .tmark{margin-left:0 !important;}}
-@media(max-width:480px){.video-js .vjs-control-bar{font-size:12px !important;}.video-js .vjs-big-play-button{font-size:1rem !important}}
+@media(max-width:480px){.video-js .vjs-control-bar{font-size:12px !important;}.video-js .vjs-big-play-button{left: 45% !important;}}
 
 /*  */
 /**************************/
-
 
 .row {
   --bs-gutter-x: 0 !important;
@@ -406,7 +405,6 @@ video::-webkit-media-controls-panel,video::-webkit-media-controls-panel-containe
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-   
     -webkit-appearance: none;
 }
 
@@ -874,12 +872,9 @@ input:-webkit-autofill:active{
   .expiry-date-frame,
   .cvv-frame{
     height:3rem;
-   // border: 0.0625rem solid #2222221A;
-   //     border-radius: 0.75rem;
-   //     font-size: 1.0625rem;
-   //     color: var(--dark-black);
-       margin: 1rem 0 ;
+    margin: 1rem 0 ;
   }
+
 
   .pagination{
     padding: 0 !important;

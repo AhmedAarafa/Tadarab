@@ -128,7 +128,7 @@
 
 .books__cards-carousel__card {
   width: 13.25rem;
-  height: 25rem;
+  height: 27.875rem;
   border-radius: 0.5rem;
   border: 0;
   display: inline-block;
@@ -142,6 +142,7 @@
   width: 100%;
   border-radius: 0.5rem;
   height: 18.75rem;
+  cursor: pointer;
 }
 
 .books__cards-carousel__card__book-img:hover {
@@ -160,12 +161,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
 .books__cards-carousel__card__card-body__category {
   font-size: 1rem;
   color: var(--grey);
   width: 13.25rem;
+  cursor: pointer;
 }
 
 .books__cards-carousel__card__download-btn {
@@ -284,7 +287,7 @@
   }
   .books__cards-carousel__card {
     width: 17.6225rem;
-    height: 33.25rem;
+    height: 37.07375rem;
     border-radius: 0.665rem;
     border: 0;
     display: inline-block;
@@ -417,7 +420,7 @@
   }
   .books__cards-carousel__card {
     width: 17.8875rem;
-    height: 33.75rem;
+    height: 37.63125rem;
     border-radius: 0.675rem;
     border: 0;
     display: inline-block;
@@ -614,7 +617,7 @@
   }
   .books__cards-carousel__card {
     width: 41.075rem;
-    height: 77.5rem;
+    height: 86.4125rem;
     border-radius: 1.55rem;
     border: 0;
     display: inline-block;

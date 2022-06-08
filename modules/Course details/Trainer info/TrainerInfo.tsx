@@ -31,7 +31,7 @@ export default function TrainerInfo() {
         <div className={styles["trainer-info-section__trainer-box"]}>
           <Link href={`/trainer/${courseDetailsData.data?.course_details?.trainer?.slug}`}>
           <div className={styles["trainer-info-section__trainer-img"]}>
-            <img loading="lazy"   src={courseDetailsData.data?.course_details?.trainer.image} alt="trainer image" />
+            <img loading="lazy"   src={courseDetailsData.data?.course_details?.trainer?.image} alt="trainer image" />
           </div>
           </Link>
           <div className={styles["trainer-info-section__trainer-info"]}>

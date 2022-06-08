@@ -72,8 +72,8 @@
 
 .books__cards-carousel__card {
     width: 13.25rem;
-    height: 25rem;
-    // height: 27.875rem;
+    // height: 25rem;
+    height: 27.875rem;
     border-radius: 0.5rem;
     border: 0;
     display: inline-block;
@@ -91,6 +91,7 @@
     &:hover{
         transform: scale(1.03);
     }
+    cursor: pointer;
 }
 
 .books__cards-carousel__card__card-body__title {
@@ -104,6 +105,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    cursor: pointer;
     
 }
 
@@ -111,6 +113,7 @@
     font-size: 1rem;
     color: var(--grey);
     width: 13.25rem;
+    cursor: pointer;
 }
 
 .books__cards-carousel__card__download-btn {
@@ -191,8 +194,8 @@
     
     .books__cards-carousel__card {
         width: 13.25rem*1.33;
-        height: 25rem*1.33;
-        // height: 27.875rem*1.33;
+        // height: 25rem*1.33;
+        height: 27.875rem*1.33;
         border-radius: 0.5rem*1.33;
         border: 0;
         display: inline-block;
@@ -300,8 +303,8 @@
 
 .books__cards-carousel__card {
     width: 13.25rem*1.35;
-    height: 25rem*1.35;
-    // height: 27.875rem*1.35;
+    // height: 25rem*1.35;
+    height: 27.875rem*1.35;
     border-radius: 0.5rem*1.35;
     border: 0;
     display: inline-block;
@@ -434,8 +437,8 @@
 
     .books__cards-carousel__card {
         width: 13.25rem*3.1;
-        height: 25rem*3.1;
-        // height: 27.875rem*3.1;
+        // height: 25rem*3.1;
+        height: 27.875rem*3.1;
         border-radius: 0.5rem*3.1;
         border: 0;
         display: inline-block;

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "styles/course-details.module.css";
-import Navbar from "common/Navbar/Navbar";
-import Footer from "common/Footer/Footer";
 import CourseCard from "modules/Course details/Course card/CourseCard";
 import CourseAdvertisement from "modules/Course details/Course Advertisement/CourseAdvertisement";
 import WhatYouWillLearn from "modules/Course details/What you will learn/WhatYouWillLearn";
@@ -38,6 +36,7 @@ import dynamic from 'next/dynamic';
 import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
+import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 
 // const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 // const Footer = dynamic(() => import("common/Footer/Footer"));
@@ -76,6 +75,7 @@ function CourseDetails() {
 
   useEffect(() => {
     toggleLoader("show");
+    subscriptionCounter();
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("course-subscribers__course-card");
     })
@@ -218,16 +218,15 @@ function CourseDetails() {
         toggleLoader("hide");
         const data: Course = response?.data?.data?.archive_course;
         setCourseId(response?.data?.data?.archive_course.course_details.id);
-        stream_url = response?.data?.data?.live_stream_url;
-        console.log("data",response);
-        
+        const webinardetails = response?.data?.data?.course_details;
+        webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
         dispatch(setCourseDetailsData(data));
-        setLiveWebinar(response?.data?.data?.course_details);
+        setLiveWebinar(webinardetails);
         FBPixelEventsHandler(response.data.fb_tracking_events, null); 
       }).catch(function (error){
         toggleLoader("hide");
       });
-    } 
+    }
 
     return () => {
       window.removeEventListener("resize", () => {
@@ -244,14 +243,12 @@ function CourseDetails() {
     description={courseDetailsData?.data?.seo_metadesc} 
     img={courseDetailsData?.data?.seo_image} />
       <Container fluid="xxl">
-        <Navbar />
         {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
           <>
             <MobileNavTabsBar />
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
-              <Col xs={12} sm={8}>
-                {/* courseDetailsData?.data?.live_stream_url "https://vimeo.com/event/2034009/embed" */}
+              <Col xs={12} sm={8}>                
                 <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} />
                 {originalCardPlacement == false &&
                   <MonthlySubscriptionCard />
@@ -298,7 +295,6 @@ function CourseDetails() {
             </Row>
           </>
         }
-        <Footer />
       </Container>
 
     </>

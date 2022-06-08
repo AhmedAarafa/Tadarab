@@ -30,11 +30,10 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-top: 1.25rem;
-  display: none !important;
 }
 
 .register__register-box__register-with div {
@@ -60,6 +59,10 @@
   cursor: pointer;
 }
 
+.register__register-box__register-with div button {
+  width: 100%;
+}
+
 .register__register-box__register-with div svg {
   width: 1.5rem;
   height: 1.5rem;
@@ -70,13 +73,23 @@
   margin-left: 0;
 }
 
+.register__register-box__register-with-twitter {
+  width: 100%;
+  padding-right: 0 !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.register__register-box__register-with-twitter div {
+  width: 100%;
+}
+
 .register__register-box__register-with-email {
   font-size: 1.0625rem;
   color: var(--grey);
   text-align: center;
   margin: 1.5625rem 0 0 0;
   position: relative;
-  display: none !important;
 }
 
 .register__register-box__register-with-email:before {
@@ -420,6 +433,11 @@
           justify-content: center;
   width: 100%;
   border-radius: 0.7rem;
+}
+
+.disabled {
+  pointer-events: none !important;
+  opacity: 0.7 !important;
 }
 
 @media (max-width: 575px) {

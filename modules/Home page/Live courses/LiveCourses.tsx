@@ -23,7 +23,7 @@ export default function LiveCourses() {
 
   const homePageData = useSelector((state: any) => state.homePageData);
   const [liveCourses, setLiveCourses] = useState<any>([]);
-  const userStatus = useSelector((state: any) => state.userAuthentication);
+  const userStatus = useSelector((state: any) => state.userAuthentication); 
 
   const handleSubscribeBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
@@ -119,8 +119,8 @@ export default function LiveCourses() {
         .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
           // console.log(response);
-          let newArray: any = homePageData.data?.live_courses;
-          response.data.data.forEach((element: any) => {
+          let newArray: any = homePageData?.data?.live_courses || [];
+          (response?.data?.data || []).forEach((element: any) => {
             newArray.forEach((ele: any) => {
               if (element.id === ele.id) {
                 // console.log(ele);
@@ -215,8 +215,6 @@ export default function LiveCourses() {
                         {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
                       </div>
                     </div>
-                    {console.log("lc", lc)
-                    } 
                     <Link href={`/webinar/${lc.slug}`}>
                       <Card.Img variant="top" src={lc.image} alt='trainer image'
                         className={styles["live-courses__cards-carousel__card__trainer-img"]} />

@@ -11,13 +11,13 @@
   color: var(--grey);
 }
 
-.course-certificate div:nth-of-type(2) {
+.course-certificate h3 {
   color: var(--dark-black);
   font-weight: 700;
   margin-top: -0.3rem;
 }
 
-.course-certificate div:nth-of-type(3) img {
+.course-certificate div:nth-of-type(2) img {
   width: 40rem;
   height: 28.25rem;
   -webkit-box-shadow: 0 0 1.25rem #0000001A;

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "styles/course-details.module.css";
-import Navbar from "common/Navbar/Navbar";
-import Footer from "common/Footer/Footer";
 import CourseCard from "modules/Course details/Course card/CourseCard";
 import CourseAdvertisement from "modules/Course details/Course Advertisement/CourseAdvertisement";
 import WhatYouWillLearn from "modules/Course details/What you will learn/WhatYouWillLearn";
@@ -22,6 +20,7 @@ import CommentsSection from "modules/Course details/Comments section/CommentsSec
 import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileNavTabsBar";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
 import MyCourse from "modules/Course details/My course/MyCourse";
+import NotificationBar from "common/Notification bar/NotificationBar";
 import MonthlySubscriptionCard from "modules/Course details/Monthly subscription card/MonthlySubscriptionCard";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { Row, Col, Container } from "react-bootstrap";
@@ -39,6 +38,7 @@ import dynamic from 'next/dynamic';
 import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
+import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 
 // const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 // const Footer = dynamic(() => import("common/Footer/Footer"));
@@ -65,7 +65,7 @@ import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 // const MonthlySubscriptionCard = dynamic(() => import("modules/Course details/Monthly subscription card/MonthlySubscriptionCard"));
 
 
-function CourseDetails() {
+function CourseDetails(props: any) {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   const [courseId, setCourseId] = useState("");
@@ -73,9 +73,11 @@ function CourseDetails() {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
   const { slug } = Router.query;
+  const { seoData } = props;
 
   useEffect(() => {
     toggleLoader("show");
+    subscriptionCounter();
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("course-subscribers__course-card");
     })
@@ -86,7 +88,7 @@ function CourseDetails() {
       })
     }
   }, []);
-
+  
   useEffect(() => {
 
     const rootFontSize = parseFloat(
@@ -98,7 +100,6 @@ function CourseDetails() {
     const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
     const navbar: any = document.getElementById("nav");
     let addToCartBtn: any = null;
-
     if (document.documentElement.clientWidth >= 576) {
       let addToCartBtn: any = null;
       setOriginalCardPlacement(true);
@@ -121,8 +122,7 @@ function CourseDetails() {
           setColFullWidth(false);
         }
       });
-    }
-    else {
+    } else {
 
       setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
@@ -130,9 +130,8 @@ function CourseDetails() {
         addToCartBtn = document.getElementById("monthly-subscribe-btn");
 
         if (addToCartBtn) {
-
+          const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
           if (window.scrollY >= addToCartBtn.offsetTop) {
-
             tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `
          display:flex;
          align-items:center;
@@ -155,11 +154,8 @@ function CourseDetails() {
       });
     }
 
-
     window.addEventListener("resize", () => {
-
       if (document.documentElement.clientWidth >= 576) {
-
         let addToCartBtn: any = null;
         setOriginalCardPlacement(true);
         tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
@@ -170,7 +166,7 @@ function CourseDetails() {
 
           const projectsSection: any = document.getElementById("practical-projects-section");
           const reviewsSection: any = document.getElementById("reviews-section");
-    const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
+          const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
           if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
           window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
           window.scrollY >= courseSubscribersSection?.offsetTop
@@ -215,9 +211,9 @@ function CourseDetails() {
       }
     });
 
+    
 
-    if (Router.query.slug) {
-      
+    if (Router.query.slug) {    
       axiosInstance
         .get(`courses/${slug}/?country_code=null`)
         .then(function (response: any) {
@@ -232,7 +228,6 @@ function CourseDetails() {
           let referrer = "";
           let myHost = window.location.host;
           if (document.referrer.includes(myHost)) {
-
             document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
               ?
               referrer = "homepage"
@@ -256,16 +251,15 @@ function CourseDetails() {
               list: referrer
             });
 
-          FBPixelEventsHandler(response.data.fb_tracking_events, null);
-
-
+          FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
         })
         .catch(function (error) {
           toggleLoader("hide");
           console.log(error);
         });
-       
     }
+
+ 
 
     return () => {
       window.removeEventListener("resize", () => {
@@ -280,22 +274,20 @@ function CourseDetails() {
   }, [Router.query]);
 
 
+
   return (
     <>
-   { courseDetailsData?.data !== undefined &&
-    <MetaTagsGenerator title={courseDetailsData?.data?.seo_title} 
-    description={courseDetailsData?.data?.seo_metadesc} 
-    img={courseDetailsData?.data?.seo_image} />}
+   {seoData &&
+    <MetaTagsGenerator title={seoData?.seo_title} 
+    description={seoData?.seo_metadesc} 
+    img={seoData?.seo_image} />}
       <Container fluid="xxl">
-        <Navbar />
-        {console.log('📘: ' , courseDetailsData?.data)
-        }
+
         {
           courseDetailsData?.data && 
           <>
             {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
               <>
-
                 <MobileNavTabsBar />
                 <MobileCheckoutBar />
                 <Row className={styles["course-details-row"]}>
@@ -349,11 +341,20 @@ function CourseDetails() {
             {(courseDetailsData?.data?.course_details?.is_purchased) &&  <MyCourse/>}
           </>
         }
-        <Footer />
       </Container>
 
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  try{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/${context?.params?.slug}/?country_code=null`)
+    const seoData = await res.json()
+    return { props: { seoData: seoData.data } }
+  } catch {
+    return { props: { seoData: {} } }
+  }
 }
 
 export default withAuth(CourseDetails);

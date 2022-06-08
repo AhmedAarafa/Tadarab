@@ -1,0 +1,83 @@
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable @next/next/no-img-element */
+import React, { useState, useEffect } from 'react';
+import styles from "./tadarab-unlimited.module.css";
+import { Row, Col, Button } from "react-bootstrap";
+import Link from "next/link";
+import useResize from "custom hooks/useResize";
+
+
+export default function TadarabUnlimited() {
+    const [isMobileView, setIsMobileView] = useState(false);
+
+    const viewportWidthDetector = () => {
+        if (window.innerWidth >= 576) {
+            setIsMobileView(false);
+        } else {
+            setIsMobileView(true);
+        }
+    }
+    useResize(viewportWidthDetector);
+
+    return (
+        <>
+            {
+                !isMobileView ?
+                    <Row className={styles["tadarab-unlimited"]}>
+                        <Col xs={5}>
+                            <div className={styles["tadarab-unlimited__img"]}>
+                                <img loading="lazy" src={"/images/tadarab-unlimited.png"} alt="تدرب بلا حدود" />
+                            </div>
+                        </Col>
+                        <Col xs={7} className={styles["tadarab-unlimited__brief"]}>
+                            <div>
+                                <span> اكتشف </span>
+                                <span> تدرب بلا حدود </span>
+                            </div>
+                            <div>
+                                تمتع بحرية استكشاف ومشاهدة جميع دورات تدرب أكثر من 750 دورة تدريبية
+                                عربية مسجلة بالإضافة إلى الدورات المباشرة والكتب والملخصات الحصرية
+                                باشتراك شهري واحد.
+
+                            </div>
+                            <Link href="/subscription">
+                                <Button>
+                                    اكتشف الآن
+                                </Button>
+                            </Link>
+                        </Col>
+
+                    </Row>
+
+                    :
+
+                    <div className={styles["tadarab-unlimited-mobile-view"]}>
+                        <div>
+                            <div className={styles["tadarab-unlimited-mobile-view__img"]}>
+                                <img loading="lazy" src={"/images/tadarab-unlimited.png"} alt="تدرب بلا حدود" />
+                            </div>
+                        </div>
+                        <div className={styles["tadarab-unlimited-mobile-view__brief"]}>
+                            <div>
+                                <span> اكتشف </span>
+                                <span> تدرب بلا حدود </span>
+                            </div>
+                            <div>
+                                تمتع بحرية استكشاف ومشاهدة جميع دورات تدرب أكثر من 750 دورة تدريبية
+                                عربية مسجلة بالإضافة إلى الدورات المباشرة والكتب والملخصات الحصرية
+                                باشتراك شهري واحد.
+
+                            </div>
+                            <Link href="/subscription">
+                                <Button>
+                                    اكتشف الآن
+                                </Button>
+                            </Link>
+                        </div>
+
+                    </div>
+            }
+
+        </>
+    )
+}

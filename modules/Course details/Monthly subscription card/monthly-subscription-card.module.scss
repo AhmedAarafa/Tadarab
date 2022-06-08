@@ -131,6 +131,8 @@
     }
 
     svg {
+        width: 24px !important;
+        height: 24px !important;
         * {
             fill: var(--dark-black);
         }
@@ -211,6 +213,16 @@
     margin-top: 1.188rem;
 }
 
+.monthly-subscription__subscription-timer{
+    font-size: 0.75rem;
+    text-align: center;
+    margin-bottom: 0.3rem;
+    span{
+        color: red;
+    }
+}
+
+
 .monthly-subscription__subscribe-btn-box__btn {
     @include contained-button;
     width: 100%;
@@ -218,20 +230,25 @@
     font-size: 1rem;
     font-weight: 700;
 
-    span:nth-of-type(1) {
-        margin: 0 0.1rem;
-    }
+    // span:nth-of-type(1) {
+    //     margin: 0 0.1rem;
+    // }
 
-    span:nth-of-type(2) {
-        font-size: 0.75rem;
+    // span:nth-of-type(2) {
+    //     font-size: 0.75rem;
+    //     font-weight: 400;
+    //     margin: 0 0.1rem;
+    // }
+
+    // div {
+    //     display: inline-flex;
+    //     align-items: center;
+    //     flex-direction: row-reverse;
+    // }
+    div:nth-of-type(2) {
+        font-size: 0.72rem;
         font-weight: 400;
-        margin: 0 0.1rem;
-    }
-
-    div {
-        display: inline-flex;
-        align-items: center;
-        flex-direction: row-reverse;
+        margin-top: -0.2rem;
     }
 }
 
@@ -508,19 +525,13 @@
             background-color: var(--primary-red) !important;
             color: white !important;
 
-            svg {
-                * {
-                    fill: white !important;
-                }
-            }
+         
         }
         
         svg {
             width: 1.3125rem*2.5;
             height: 1.1875rem*2.5;
-            * {
-                fill: var(--dark-black) !important;
-            }
+           
         }
 
 
@@ -595,18 +606,9 @@
         font-size: 1rem*2.5;
         border-radius: 0.625rem*2.5;
 
-        span:nth-of-type(1) {
-            margin: 0 0.1rem*2.5;
-        }
-
-        span:nth-of-type(2) {
-            font-size: 0.75rem*2.5;
-            margin: 0 0.1rem*2.5;
-        }
-        div {
-            display: inline-flex;
-            align-items: center;
-            flex-direction: row-reverse;
+        div:nth-of-type(2) {
+            font-size: 0.72rem*2.5;
+            margin-top: -0.2rem*2.5;
         }
     }
 
@@ -704,5 +706,9 @@
 
     .course-details__course-card__guarantee-box__text-box__major {
         font-size: 0.813rem*2.5;
+    }
+    .monthly-subscription__subscription-timer{
+        font-size: 0.75rem*2.5;
+        margin-bottom: 0.3rem*2.5;
     }
 }

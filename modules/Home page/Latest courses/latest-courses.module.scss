@@ -55,6 +55,8 @@
     text-underline-offset: 0.2rem;
 }
 
+
+
 .latest-courses__see-more-btn-col {
     @include flex(center, flex-end);
 }
@@ -426,12 +428,6 @@
     // border: 0.063rem solid #001425 !important;
     margin-left: 0.8rem;
 
-
-    &:active,
-    &:hover {
-        // background-color: #000f1d !important;
-        // border: 0.063rem solid #001425 !important;
-    }
 }
 
 .latest-courses__popover-container__btns__add-to-cart-btn {
@@ -439,6 +435,10 @@
     @include flex(center, center);
     width: 50%;
     height: 2.5rem;
+    svg{ 
+        width: 1.5rem;
+        height: 1.5rem;
+    }
 
     span {
         margin-right: 0.438rem;

@@ -11,12 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems"; 
-import  {ChevronLeftIcon,LearnersIcon,TickIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon}  from "common/Icons/Icons";
+import  {ChevronLeftIcon,LearnersIcon,TickIcon,CartIcon,FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon, TvIcon}  from "common/Icons/Icons";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import Link from 'next/link';
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import { useRouter } from 'next/router';
+import {handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 
 export default function CourseSubscribers() {
@@ -80,6 +81,17 @@ export default function CourseSubscribers() {
     // }
   }
 
+  const handleFreeCoursesActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+        handleFreeCourses(course);
+    } else {
+        Router.push({
+            pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+            query: { from: "/course" }
+        })
+    }
+}
+
   useEffect(() => {
 
     setCourseDetails(courseDetailsData.data?.related_courses || []);
@@ -120,13 +132,12 @@ export default function CourseSubscribers() {
 
   }, [courseDetailsData]);
 
-
   return (
     <>
       <Col id="course-subscribers-section" xs={12} className={styles["course-subscribers"]}>
         <div className={styles["course-subscribers__title"]}>
             <div>مشتركين هذه الدورة</div>
-            <div>امتلكوا الدورات التالية أيضاً</div>
+            <h2>امتلكوا الدورات التالية أيضاً</h2>
         </div>
       </Col>
       <Col xs={12} className={styles["course-subscribers__cards-carousel"]}>
@@ -182,7 +193,7 @@ export default function CourseSubscribers() {
                                   <a>
                                     <Card.Img
                                         variant="top"
-                                        src={course.image}
+                                        src={course?.image}
                                         alt="course image"
                                         className={
                                         styles[
@@ -217,7 +228,7 @@ export default function CourseSubscribers() {
                                   <Link href={`/trainer/${course.trainer?.slug}`}>
 
                                       <img loading="lazy"  
-                                      src={course.trainer.image}
+                                      src={course.trainer?.image}
                                       alt="trainer image"
                                       />
 
@@ -232,7 +243,7 @@ export default function CourseSubscribers() {
                                 >
                                   <Link href={`/course/${course.slug}`}>
 
-                                      <h1 title={course.title}
+                                      <h3 title={course.title}
                                       className={
                                           styles[
                                           "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -240,7 +251,7 @@ export default function CourseSubscribers() {
                                       }
                                       >
                                     {course.title}
-                                      </h1>
+                                      </h3>
 
                                   </Link>
                                   <Link href={`/trainer/${course.trainer?.slug}`}>
@@ -333,11 +344,15 @@ export default function CourseSubscribers() {
                                     </span>
                                     </div>
                                     }
-                                    
                                 </div>
 
                                 <div className="d-inline-block">
-                                     { !course.is_purchased && !course.is_in_user_subscription && <Button onClick={()=>handleCartActionBtn(course)}  disabled={course.is_in_cart} variant={""}
+                                     { !course.is_purchased && !course.is_in_user_subscription && <Button onClick={()=>
+                                     course.discounted_price == 0 ?
+                                     handleFreeCoursesActionBtn(course)
+                                     :
+                                     handleCartActionBtn(course)
+                                    }  disabled={course.is_in_cart} variant={""}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -347,6 +362,9 @@ export default function CourseSubscribers() {
                                     <div className={styles["course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
 
                                     {
+                                      course.discounted_price == 0 ?
+                                      <TvIcon color="#222" />
+                                      :
                                   course.is_in_cart ?
                                   <AddedToCartIcon color="#222"/>
                                    : 
@@ -371,8 +389,6 @@ export default function CourseSubscribers() {
                                         <FavouriteIcon color="#222"/>
                                         }
                                     </div>
-                                 
-
                                     </Button>
                                 </div>
                                 </div>
@@ -381,10 +397,6 @@ export default function CourseSubscribers() {
                     </SwiperSlide>
                 )
             })}
-
-
-         
-           
         </Swiper>
         </Col>
     </>

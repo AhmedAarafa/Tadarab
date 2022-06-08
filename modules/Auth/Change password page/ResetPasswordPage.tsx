@@ -235,7 +235,7 @@ export default function ChangePasswordPage() {
                               
                                 </div>
                               </div>
-                                { validationAfterSubmit.oldPassword && <ErrorMessage name="oldPassword" component="div" className={styles["error-msg"]} />}
+                                { validationAfterSubmit.oldPassword ? <><ErrorMessage name="oldPassword" component="div" className={styles["error-msg"]} /></> : <><React.Fragment /></> }
                             </>
                           }
 

@@ -11,11 +11,11 @@ import SuccessState from "../Success state/SuccessState";
 import FailedState from "../Failed state/FailedState";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
-import { GuaranteeIcon, ArrowLeftIcon, PaySafeIcon, RemoveIcon,TickIcon , CartIcon, FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon } from "common/Icons/Icons";
+import { GuaranteeIcon, ArrowLeftIcon, PaySafeIcon, RemoveIcon,TickIcon , CartIcon,TvIcon, FavouriteIcon,AddedToCartIcon,AddedToFavouriteIcon } from "common/Icons/Icons";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
-import { setCartItems } from "configurations/redux/actions/cartItems"; 
-import Image from 'next/image';
+// import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import { setCartItems, removeCourseFromCart } from "configurations/redux/actions/cartItems";
 import Router, { useRouter }  from "next/router";
 import Head from "next/head";
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
@@ -30,6 +30,7 @@ import Link from "next/link";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType"; 
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
+import {handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 
 function CheckoutPage(props:any) {
@@ -38,15 +39,17 @@ function CheckoutPage(props:any) {
   const router = useRouter();
   const [step, setStep] = useState("added-courses");
   const [paymentSettings, setPaymentSettings] = useState<any>(null);
-  const [paymentMethod, setPaymentMethod] = useState<any>("");
+  const [paymentMethod, setPaymentMethod] = useState<any>("VISA");
   const [localStateCartItems, setLocalStateCartItems] = useState<any>([]);
   const [mobileView, setMobileView] = useState(false);
   const [isTransactionSucceeded, setIsTransactionSucceeded] = useState(false);
-  const [isCouponApplied, setIsCouponApplied] = useState({status:false,discounted_amount:0,value:""});
+  const [isCouponApplied, setIsCouponApplied] = useState({status:false,discounted_amount:0,value:"",total_payment_amount: 0});
   const [errorMessage, setErrorMessage] = useState("");
   const [serverResponse, setServerResponse] = useState("");
   const [relatedCourses, setRelatedCourses] = useState<any>([]);
   const [checkoutTransactionDetails, setCheckoutTransactionDetails] = useState<any>(null);
+  const [subscriptionTimer, setSubscriptionTimer] = useState(0);
+  const [toDisplayValues, setToDisplayValues] = useState<any>({values:[] , visible:false});
 
 //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
  const dispatch = useDispatch();
@@ -364,6 +367,91 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
+
+    // setSubscriptionTimer
+    document.cookie.split('; ').reduce((prev: any, current: any) => {
+      const [name, ...value] = current.split('=');
+      prev[name] = value.join('=');
+      if((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN"){
+
+      }else{
+
+        setSubscriptionTimer(  prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))  );
+        return prev;
+      }
+      
+  }, {});
+    
+    
+  }, [])
+
+  useEffect(() => {
+    if(subscriptionTimer !== 0){
+      document.cookie.split('; ').reduce((prev: any, current: any) => {
+        const [name, ...value] = current.split('=');
+        prev[name] = value.join('=');
+        
+        setSubscriptionTimer(  prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))  );
+        if(Math.sign( prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))) ) !== -1){
+
+          let interval =  setInterval(() => {
+    
+                // get total seconds between the times
+                let delta: any = Math.sign( prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))) ) !== -1  ? 
+                Math.abs( prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))) )
+                :
+                clearInterval(interval);
+                ;
+          
+                // calculate (and subtract) whole days
+                let days: any = Math.floor(delta / 86400);
+                delta -= days * 86400;
+          
+                // calculate (and subtract) whole hours
+                let hours: any = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+          
+                // calculate (and subtract) whole minutes
+                let minutes: any = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+          
+                // what's left is seconds
+                let seconds: any = delta; // in theory the modulus is not required
+          
+                // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
+                // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
+                // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
+                // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
+          
+                days = days.toString().padStart(2, 0);
+                hours = hours.toString().padStart(2, 0);
+                minutes = minutes.toString().padStart(2, 0);
+                seconds = seconds.toString().padStart(2, 0);
+      
+                if( days == '00' && hours == '00' && minutes == '00' && seconds == '00' ){
+                  setToDisplayValues({values:[days, hours, minutes, seconds],visible:false});
+                  clearInterval(interval);
+                  
+                }else{
+      
+                  setToDisplayValues({values:[days, hours, minutes, seconds],visible:true});
+                  return { days, hours, minutes, seconds }
+                }
+    
+          
+    
+          }, 1000);
+
+        }
+        return prev;
+    }, {});
+
+    }
+  
+  }, [subscriptionTimer])
+
+
+  useEffect(() => {
     
     if(router.query && router.query.checkout_type == "subscription" 
     && !(Router.router?.asPath.includes('success')) && !(Router.router?.asPath.includes('failed'))){
@@ -588,7 +676,7 @@ useEffect(() => {
                      Step = 2;
                      Label= "checkout-step-2";
                  }
-         
+                 
                  localStateCartItems?.forEach((item:any,key:any,localStateCartItems:any)=>{
                      Products[key]={
                          id: item.id,
@@ -614,6 +702,16 @@ useEffect(() => {
     
   }, [step,localStateCartItems])
   
+  const handleFreeCoursesActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+        handleFreeCourses(course);
+    } else {
+        Router.push({
+            pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+            query: { from: "/checkout" }
+        })
+    }
+}
 
   const radioBtnsHandler = ()=>{
     const checkedRadioBtn:any = document.querySelector('input[name="payment-type"]:checked');
@@ -711,7 +809,7 @@ useEffect(() => {
             .then((response:any) => {
              console.log(response);
              if(response.status.toString().startsWith("2")){
-                 setIsCouponApplied({status:true,discounted_amount:response.data.data.total_discount_amount,value:e.target[0].value})
+                 setIsCouponApplied({status:true,discounted_amount:response.data.data.total_discount_amount,value:e.target[0].value, total_payment_amount: response.data.data.total_payment_amount })
                  localStorage.setItem("coupon_code",e.target[0].value)
                  let tadarabGA = new TadarabGA();
                  tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
@@ -732,7 +830,7 @@ useEffect(() => {
   const handleCouponInput = ()=>{
     const couponInputField:any = document.querySelector('[name="couponField"]');
     couponInputField.value = "";
-    setIsCouponApplied({status:false,discounted_amount:0,value:""});
+    setIsCouponApplied({status:false,discounted_amount:0,value:"", total_payment_amount: 0});
   }
 
   const handleFavActionBtn = (course:any):any =>{
@@ -767,12 +865,13 @@ useEffect(() => {
     }
     
     // if(userStatus?.isUserAuthenticated == true){
-        
+     dispatch(removeCourseFromCart(course.id));
+
       const handleCartResponse:any =  handleCart([course],url,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             setRelatedCourses(response.data.data || []);
-            dispatch(setCartItems(firstresponse.cartResponse));
+           // dispatch(setCartItems(firstresponse.cartResponse));
         })
       //  setLocalCartItems(response.totalItems);
       })
@@ -851,7 +950,14 @@ const onError = (data:any,actions:any)=>{
             >
               {`${checkoutType == "subscription" ? "1" : "2"}`}
             </div>
-            <div className={styles["c-stepper__title"]}>وسائل الدفع</div>
+            <div className={styles["c-stepper__title"]}>
+                {
+                    checkoutType == "subscription" ?
+                        "تسجيل البيانات"
+                        :
+                        "وسائل الدفع"
+                }
+            </div>
           </li>
           <li
             className={`
@@ -877,9 +983,14 @@ const onError = (data:any,actions:any)=>{
           </li>
         </ol>
       </div>
-      {(step == "added-courses" || step == "payment-types") && <Row className={styles["checkout"]}>
-        <Col style={{borderBottom: localStateCartItems == null ? "none" : "0.1rem solid rgba(119, 119, 119, 0.2)"}} className={styles["checkout__course-content"]}>
+      <Row className={styles["checkout__start-free"]}>
+                    <div>ابدأ تجربتك المجانية الآن</div>
+                    <div>لا يوجد إلتزام ، إلغاء الإشتراك في أي وقت</div>
 
+                </Row>
+      {(step == "added-courses" || step == "payment-types") && <Row className={styles["checkout"]}>
+        <Col className={styles["checkout__course-content"]}>
+{/* style={{borderBottom: localStateCartItems == null ? "none" : "0.1rem solid rgba(119, 119, 119, 0.2)"}}  */}
             {
                 checkoutType == "subscription" &&
                 <div className={styles["checkout__subscription-benefits"]}>
@@ -1072,6 +1183,7 @@ const onError = (data:any,actions:any)=>{
                     حدد وسيلة الدفع المناسبة لك      
                 </div>
 
+                {/* VisaMaster Payment */}
                 <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
                     <div className="d-flex align-items-center">
                     <input onClick={()=> radioBtnsHandler()} type="radio"   name="payment-type" value="VISA" className="form-check-input"/>
@@ -1195,25 +1307,29 @@ const onError = (data:any,actions:any)=>{
                     }
                     </div>
                 </div>
-                <div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
-                <div className="d-flex align-items-center">
+                {/* VisaMaster Payment end */}
 
-                    <input onClick={()=> radioBtnsHandler()} type="radio" name="payment-type" value="PAYPAL" className="form-check-input"/>
-                    <label htmlFor="paypal">
-                        <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                            <img loading="lazy"   className={styles["checkout__payment-method-box__payment-method__images__paypal"]} src="/images/paypal.png" alt="PAYPAL" />
-                        </div>
-                        <div className={styles["checkout__payment-method-box__payment-method__text"]}>
-                        الدفع عن طريق باي بال
-                        </div>
+                {/* PAYPAL Payment */}
+                {/* {<div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
+                  <div className="d-flex align-items-center">
+                      <input onClick={()=> radioBtnsHandler()} type="radio" name="payment-type" value="PAYPAL" className="form-check-input"/>
+                      <label htmlFor="paypal">
+                          <div className={styles["checkout__payment-method-box__payment-method__images"]}>
+                              <img loading="lazy"   className={styles["checkout__payment-method-box__payment-method__images__paypal"]} src="/images/paypal.png" alt="PAYPAL" />
+                          </div>
+                          <div className={styles["checkout__payment-method-box__payment-method__text"]}>
+                          الدفع عن طريق باي بال
+                          </div>
 
-                    </label>
-                    </div>
-                    
-                </div>
-                {checkoutType !== "subscription" &&   <div id="payment-method3" className={styles["checkout__payment-method-box__payment-method"]}>
-                <div className="d-flex align-items-center">
+                      </label>
+                  </div>
+                </div>} */}
+                {/* PAYPAL Payment end */}
 
+                {/* KNET Payment */}
+                {checkoutType !== "subscription" && 
+                <div id="payment-method3" className={styles["checkout__payment-method-box__payment-method"]}>
+                  <div className="d-flex align-items-center">
                     <input onClick={()=> radioBtnsHandler()} type="radio" name="payment-type" value="KNET" className="form-check-input"/>
                     <label htmlFor="knet">
                         <div className={styles["checkout__payment-method-box__payment-method__images"]}>
@@ -1222,22 +1338,20 @@ const onError = (data:any,actions:any)=>{
                         <div className={styles["checkout__payment-method-box__payment-method__text"]}>
                         الدفع عن طريق كي - نت
                         </div>
-
                     </label>
-                    </div>
-                    
+                  </div>
                 </div>}
-
+                {/* KNET Payment end */}
             </div>}
 
             {mobileView == true && <div className={styles["checkout__cart-sticky-card-div"]}>
 
             { 
             checkoutType == "subscription" ? 
-            <div className={styles["checkout__cart-sticky-card"]}>
+            !mobileView && <div className={styles["checkout__cart-sticky-card"]}>
                 
 
-                        <div className={styles["checkout__cart-sticky-card__subscribe-box"]}>
+                        <div className={styles["checkout__cart-sticky-card__subscribe-box"]}> 
                             {/* <div>
                             قيمة الاشتراك
                             </div>
@@ -1245,30 +1359,35 @@ const onError = (data:any,actions:any)=>{
                                 <span>100</span>
                                 <span>دك/شهرياً</span>
                             </div> */}
-                        <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
-                                ملخص الإشتراك 
-                                </div>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                    <span>
-                                    المبلغ المدفوع اليوم
-                                    </span>
-                                    <span>
-                                     0 دك
-                                    </span>
-                                     </div>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}> بعد ٧ أيام فترة التجربة  </div>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                    <span>
-                                          قيمة الإشتراك 
-                                    </span>
-                                    <span>
-                                    9 دك
+                          <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
+                                                {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                                    <div className={styles["monthly-subscription__subscription-timer"]}>
+                                                        عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
+                                                        <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                                                    </div>}
+                                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
+                                                    ملخص الاشتراك
+                                                </div>
+                                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                                                    <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                        المبلغ المدفوع اليوم
+                                                    </span>
+                                                    <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                        0 KD
+                                                    </span>
+                                                </div>
+                                                {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}> بعد ٧ أيام فترة التجربة  </div> */}
+                                                {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                        <span>
+                              قيمة الإشتراك  بعد ٧ أيام فترة التجربة
+                        </span>
+                        <span>
+                         9 KD
+                        </span>
+                          </div> */}
 
-                                    </span>
-                                      </div>
-                                    
-                             </div>
+                                            </div>
+
 
                              {
                                 
@@ -1334,14 +1453,14 @@ const onError = (data:any,actions:any)=>{
                                                     if(tokenValidationCheck(response)){
 
                                                         if(response.status.toString().startsWith("2")){
-                                                            console.log(response);
+                                                            //console.log(response);
                                                             
                                                             localStorage.removeItem("checkoutTransactionId");
                                                             localStorage.removeItem("paymentId");
                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                                             dispatch(setInvoiceDetails(response.data.data));
-                                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+                                                            //let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                            FBPixelEventsHandler(response.data.fb_tracking_events,{});
                 
                                                             localStorage.setItem("cart" , "[]");
                                                             dispatch(setCartItems([]));
@@ -1397,24 +1516,27 @@ const onError = (data:any,actions:any)=>{
                                     null;
                                 }}
                                 className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                                    إتمام الشراء
-                                </Button>
+                                                    ابدأ تجربتك المجانية الآن
+                                    </Button>
                                 }
 
-                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
-                            يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
+<div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
+                                                <div>
+                                                    تجربة مجانية لمدة ٧ أيام ثم ٩ دك شهرياَ
+                                                </div>
+                                                يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
 
-                            </div>
+                                            </div>
 
                            
                         </div>
                         
 
 
-                { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
+                {/* { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
                     <PaySafeIcon color="#6c757d" />
                     <span> ادفع بأمان وسهولة عبر تدرب </span>
-                </div>}
+                </div>} */}
 
                 <div className={styles["checkout__cart-sticky-card__subscribe-summary__terms"]}>
                 *نظام الإشتراكات يطبق الشروط والاحكام
@@ -1468,13 +1590,13 @@ const onError = (data:any,actions:any)=>{
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
                     السعر الإجمالي
                     </div>
-                    { JSON.stringify(localStateCartItems) !== "[]" &&
+                    { cartItems?.data?.length ?
 
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
-                        <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
-                        <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
+                        <span> {cartItems?.data?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
+                        <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                     </div>
-                    }
+                   : <React.Fragment /> }
 
                 </div>
 
@@ -1532,16 +1654,14 @@ const onError = (data:any,actions:any)=>{
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
                     السعر الإجمالي
                     </div>
-                    { JSON.stringify(localStateCartItems) !== "[]" &&
+                    { !cartItems?.data?.length ?
 
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                    <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0) 
-                    - 
-                    isCouponApplied.discounted_amount
+                    <span> { isCouponApplied.status ? isCouponApplied.total_payment_amount : cartItems?.data?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0) 
                     } </span>
-                        <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
+                        <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                     </div>
-                    }
+                   : <React.Fragment /> }
 
                 </div>
 
@@ -1701,7 +1821,7 @@ const onError = (data:any,actions:any)=>{
                                                 dispatch(setTransactionStatus(response.data.data.is_successful));
                                                 dispatch(setInvoiceDetails(response.data.data));
      
-                                                let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                let customData = {value: response.data?.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_course_purchase'};
                                                 FBPixelEventsHandler(response.data.fb_tracking_events,customData);
      
      
@@ -1779,7 +1899,7 @@ const onError = (data:any,actions:any)=>{
                     <span> ادفع بأمان وسهولة عبر تدرب </span>
                 </div>}
 
-            </div>
+            </div> 
             }
 
             </div>}
@@ -1803,7 +1923,7 @@ const onError = (data:any,actions:any)=>{
                 </div>
             }
 
-            {JSON.stringify(localStateCartItems) !== "[]" && localStateCartItems?.map((it:any,i:number)=>{
+            {cartItems?.data?.length ? cartItems?.data?.map((it:any,i:number)=>{
                 
                 return(
 
@@ -1860,7 +1980,7 @@ const onError = (data:any,actions:any)=>{
                             </div>}
                         </div>
                 )
-            })}
+            }) : <React.Fragment/> }
          </>
           }
 
@@ -1880,34 +2000,34 @@ const onError = (data:any,actions:any)=>{
                                 <span>100</span>
                                 <span>دك/شهرياً</span>
                             </div> */}
-                        <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
-                                ملخص الإشتراك 
-                                </div>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                          <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
+                                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                                <div className={styles["monthly-subscription__subscription-timer"]}>
+                                                    عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
+                                                    <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                                                </div>}
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
+                                                ملخص الاشتراك
+                                            </div>
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                                                <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                    المبلغ المدفوع اليوم
+                                                </span>
+                                                <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                    0 KD
+                                                </span>
+                                            </div>
+                                            {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}> بعد ٧ أيام فترة التجربة  </div> */}
+                                            {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
                                     <span>
-                                    المبلغ المدفوع اليوم
+                                          قيمة الإشتراك  بعد ٧ أيام فترة التجربة
                                     </span>
                                     <span>
-                                     0 دك
-                                    </span>
-                                     </div>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}> بعد ٧ أيام فترة التجربة  </div>
-                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                    <span>
-                                          قيمة الإشتراك 
-                                    </span>
-                                    <span>
-                                    9 دك
+                                        9 KD
+                                         </span>
+                                      </div> */}
 
-                                    </span>
-                                      </div>
-                                    
-                             </div>
-                             {
-                                console.log(window.paypal)
-                             }
-                                {console.log("paymentSettings",paymentSettings)}
+                                        </div>
                             {
                                 
                                 paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined && 
@@ -1979,8 +2099,8 @@ const onError = (data:any,actions:any)=>{
                                                             localStorage.removeItem("paymentId");
                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                                             dispatch(setInvoiceDetails(response.data.data));
-                                                            let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                                            FBPixelEventsHandler(response.data.fb_tracking_events,customData);
+                                                            //let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                                            FBPixelEventsHandler(response.data.fb_tracking_events,{});
                 
                                                             localStorage.setItem("cart" , "[]");
                                                             dispatch(setCartItems([]));
@@ -2036,23 +2156,26 @@ const onError = (data:any,actions:any)=>{
                                     null;
                                 }}
                                 className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                                    إتمام الشراء
-                                </Button>
+                                                    ابدأ تجربتك المجانية الآن
+                                    </Button>
                                 }
-                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
-                            يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
+                               <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
+                                                <div>
+                                                    تجربة مجانية لمدة ٧ أيام ثم ٩ دك شهرياَ
+                                                </div>
+                                                يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
 
-                            </div>
+                                            </div>
 
                            
                         </div>
                         
 
 
-                { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
+                {/* { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
                     <PaySafeIcon color="#6c757d" />
                     <span> ادفع بأمان وسهولة عبر تدرب </span>
-                </div>}
+                </div>} */}
 
                 <div className={styles["checkout__cart-sticky-card__subscribe-summary__terms"]}>
                 *نظام الإشتراكات يطبق الشروط والاحكام
@@ -2105,14 +2228,14 @@ const onError = (data:any,actions:any)=>{
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
                     السعر الإجمالي
                     </div>
-                    { JSON.stringify(localStateCartItems) !== "[]" &&
+                    { cartItems?.data?.length ?
 
                     <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
-                        <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
-                        <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
+                        <span> {cartItems?.data?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0)} </span>
+                        <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                     </div>
                     
-                    }
+                  : <React.Fragment />  }
 
                 </div>
                 
@@ -2125,7 +2248,7 @@ const onError = (data:any,actions:any)=>{
                             </div>
                             <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
                                 <span> {isCouponApplied.discounted_amount}- </span>
-                                <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
+                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                             </div>
 
                         </div>
@@ -2171,16 +2294,14 @@ const onError = (data:any,actions:any)=>{
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
                     السعر النهائي
                     </div>
-                    { JSON.stringify(localStateCartItems) !== "[]" && localStateCartItems !== null && localStateCartItems !== undefined &&
+                    { cartItems?.data?.length ?
 
                     <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                    <span> {localStateCartItems?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0) 
-                    - 
-                    isCouponApplied.discounted_amount
+                    <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : cartItems?.data?.map((item:any)=> item.discounted_price).reduce((prev:any, curr:any) => prev + curr, 0) 
                     } </span>
-                        <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
+                        <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                     </div>
-            }
+           : <React.Fragment /> }
                 </div>
 
                 { step == "added-courses" ?
@@ -2325,11 +2446,10 @@ const onError = (data:any,actions:any)=>{
                                             if(response.status.toString().startsWith("2")){
                                                 localStorage.removeItem("checkoutTransactionId");
                                                 localStorage.removeItem("paymentId");
-                                                dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                dispatch(setInvoiceDetails(response.data.data));
-                                                let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
-                                                FBPixelEventsHandler(response.data.fb_tracking_events,customData);
-    
+                                                dispatch(setTransactionStatus(response?.data?.data?.is_successful));
+                                                dispatch(setInvoiceDetails(response?.data?.data));
+                                                let customData = {value: response?.data?.data?.transaction_details?.amount_usd, currency: 'USD',content_type: 'online_course_purchase'};
+                                                FBPixelEventsHandler(response?.data?.fb_tracking_events,customData);
                                                 localStorage.setItem("cart" , "[]");
                                                 dispatch(setCartItems([]));
                                             }else{
@@ -2632,6 +2752,9 @@ const onError = (data:any,actions:any)=>{
                                     }
                                     >
                                     <div onClick={()=>{
+                                        course.discounted_price == 0 ?
+                                        handleFreeCoursesActionBtn(course)
+                                        :
                                         handleCartActionBtn(course);
                                         let tadarabGA = new TadarabGA();
                                         const product =[{ name:course.title, id:course.id, price:course.discounted_price }];
@@ -2639,6 +2762,9 @@ const onError = (data:any,actions:any)=>{
                                     }} 
                                      className={styles["checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                     {
+                                        course.discounted_price == 0 ?
+                                        <TvIcon color="#222" />
+                                        :
                                         course.is_in_cart ? 
                                         <AddedToCartIcon color="#222"/>
                                         :
@@ -2684,6 +2810,153 @@ const onError = (data:any,actions:any)=>{
 
       { step == "begin-learning" && ( isTransactionSucceeded ? <SuccessState/> : <FailedState/>)}
       
+      <div className={styles["checkout__cart-fixed-card"]}>
+
+
+        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+            <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                المبلغ المدفوع اليوم
+            </span>
+            <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                0 KD
+            </span>
+        </div>
+        {
+
+            paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
+
+            <PayPalButtons
+                style={{
+                    color: "blue",
+                    shape: "pill",
+                    label: "subscribe",
+                    tagline: false,
+                    layout: "horizontal",
+                }}
+
+                createSubscription={(data: any, actions: any): any => {
+                    return (
+                        axiosInstance.post(`payments/payouts/?country_code=null`, {
+                            "action": "web",
+                            "payment_method": "paypal",
+                            "checkout_type": "subscription",
+                            'page_id': courseDetailsData?.data?.course_details?.id,
+                        })
+                            .then((response: any) => {
+                                if (tokenValidationCheck(response)) {
+
+                                    if (JSON.stringify(response.status).startsWith("2")) {
+                                        localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                        localStorage.setItem("paymentId", response.data.data.payment_id);
+                                        setCheckoutTransactionDetails(response.data.data);
+
+                                        return actions.subscription.create({
+                                            plan_id: paymentSettings?.paypal.planid,
+                                            purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
+                                        });
+
+                                    } else {
+                                        setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                    }
+                                }
+
+                            }).catch((error: any) => {
+                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                console.log("error", error);
+                            })
+                    )
+
+
+                }}
+                onApprove={(data: any, actions: any): any => {
+                    setSucceeded(true);
+
+                    axiosInstance
+                        .get(`payments/details?payment_method=paypal&
+        checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+        paypal_order_id=${data.orderID}&
+        subscription_id=${data.subscriptionID}&
+        facil_atoken=${data.facilitatorAccessToken}&
+        page_id=${courseDetailsData?.data?.course_details?.id}&
+        checkout_type=subscription&
+        payment_id=${localStorage.getItem("paymentId")}`)
+                        .then(function (response: any) {
+                            if (tokenValidationCheck(response)) {
+
+                                if (response.status.toString().startsWith("2")) {
+                                    localStorage.removeItem("checkoutTransactionId");
+                                    localStorage.removeItem("paymentId");
+                                    dispatch(setTransactionStatus(response.data.data.is_successful));
+                                    dispatch(setInvoiceDetails(response.data.data));
+                                    //let customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD'};
+                                    FBPixelEventsHandler(response.data.fb_tracking_events, {});
+
+                                    localStorage.setItem("cart", "[]");
+                                    dispatch(setCartItems([]));
+                                } else {
+                                    dispatch(setTransactionStatus(false));
+                                    dispatch(setInvoiceDetails({}));
+                                }
+                            }
+
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }}
+            />
+        }
+        {
+            paymentMethod == "VISA" && <Button style={{ pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
+                onClick={() => {
+                    Frames.isCardValid() ?
+                        Frames.submitCard().then(function (data: any) {
+
+                            const localStorageItems: any = localStorage.getItem("cart_items");
+                            // alert(data.token);                          
+                            axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                "action": "web",
+                                "checkout_token": data.token,
+                                "payment_method": "visamaster",
+                                "checkout_type": "subscription",
+                                'page_id': courseDetailsData?.data?.course_details?.id,
+                            })
+                                .then((response: any) => {
+                                    if (tokenValidationCheck(response)) {
+
+                                        if (JSON.stringify(response.status).startsWith("2")) {
+                                            localStorage.setItem("successUrl", response.data.data.success_url);
+                                            localStorage.setItem("failureUrl", response.data.data.failure_url);
+                                            Router.push(response.data.data.redirect_url);
+                                        } else {
+                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                        }
+                                    }
+
+                                })
+                                .catch((error: any) => {
+                                    console.log("error", error);
+                                })
+                            let tadarabGA = new TadarabGA();
+                            tadarabGA.tadarab_fire_traking_GA_code('checkout_option', { label: data.scheme, option: "visamaster" })
+                        })
+                        :
+                        null;
+                }}
+                className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                ابدأ تجربتك المجانية الآن
+            </Button>
+        }
+
+        <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
+            <div>
+                تجربة مجانية لمدة ٧ أيام ثم ٩ دك شهرياَ
+            </div>
+            يمكنك إلغاء الاشتراك في أي وقت من حسابك على منصة تدرب
+
+        </div>
+
+        </div>
     </>
     </PayPalScriptProvider>
   

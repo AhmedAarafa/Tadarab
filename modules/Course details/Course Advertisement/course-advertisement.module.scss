@@ -211,7 +211,8 @@
 }
 
 
-
+.tadarab-icon{display:inline-block;vertical-align:middle;position:relative;height:24px;width:24px;}
+.tadarab-icon.live-white{background:transparent url('/images/live-stream-red_24X24.png') no-repeat scroll center center/100% auto}
 @media (max-width: 575px) {
     .course-ad {
         margin: 10.5rem 0 0 0;

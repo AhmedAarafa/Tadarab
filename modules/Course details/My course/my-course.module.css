@@ -10,7 +10,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 4rem;
-  margin: 0 0 5rem 0;
+  margin: 3.813rem 0 5rem 0;
 }
 
 .purchased-course-playlist__progress-box {
@@ -638,6 +638,7 @@
   .purchased-course-playlist {
     width: 100%;
     position: static;
+    margin: 0;
   }
   .course-content__attachments-accordion {
     margin: 3rem 0 20rem 0;

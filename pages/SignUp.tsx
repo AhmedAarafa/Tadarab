@@ -1,21 +1,25 @@
 import React from "react";
-// import Navbar from "common/Navbar/Navbar";
-// import SignupPage from "modules/Auth/SignUp page/SignupPage";
 import { Container } from "react-bootstrap";
-
+import Router, { useRouter }  from "next/router";
+import { useEffect } from "react";
+import { useSelector } from "react-redux"; 
 import dynamic from 'next/dynamic';
-const Navbar = dynamic(() => import("common/Navbar/Navbar"));
-const SignupPage = dynamic(() => import("modules/Auth/SignUp page/SignupPage"));
-const Footer = dynamic(() => import("common/Footer/Footer"));
 
+
+const SignupPage = dynamic(() => import("modules/Auth/SignUp page/SignupPage"));
 
 export default function SignUp() {
+
+  // const { isUserAuthenticated } = useSelector((state:any) => state.userAuthentication);
+
+  // useEffect(() => {
+  //   isUserAuthenticated && Router.push(`/my-account`);
+  // },[isUserAuthenticated])
+
   return (
     <>
       <Container fluid="xxl">
-        <Navbar />
         <SignupPage />
-        <Footer />
       </Container>
     </>
   );

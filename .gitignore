@@ -12,7 +12,7 @@
 nohup.out
 next-env.d
 *.d
-*.ts
+next-env.d.ts
 next-env.d.ts
 
 # production

@@ -14,7 +14,7 @@ import {
   Offcanvas
 } from "react-bootstrap";
 import Image from 'next/image';
-import { popoverHandler } from "./utils";
+import { popoverHandler, notificationBarHandler } from "./utils";
 import {
   TadarabLogo, NextIcon, BackIcon, DarkModeIcon, DropDownIcon, SearchIcon,
   FavouriteIcon, CartIcon, AccountIcon, ThreeDotsIcon, CertificateIcon, LessonPlayIcon
@@ -31,6 +31,7 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { withRouter } from 'next/router';
 import useResize from "custom hooks/useResize";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { useGoogleLogout } from 'react-google-login';
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
@@ -47,16 +48,28 @@ function Navbar() {
   const cartItems = useSelector((state: any) => state.cartItems);
   const myCourseNavigator = useSelector((state: any) => state.myCourseNavigator);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
-const router = useRouter();
+  const router = useRouter();
 
   const dispatch = useDispatch();
+  const onLOLogoutSuccess = ():void=>{
+    console.log("logout succeed");
+  }
+  const onLOFailure = ():void=>{
+    console.log("logout failed");
+  }
 
+  const { signOut, loaded } = useGoogleLogout({
+    onFailure: onLOFailure,
+    clientId: `${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`,
+    onLogoutSuccess: onLOLogoutSuccess,
+  })
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("user-id");
+    localStorage.removeItem("user_id");
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
+    signOut();
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
     setExpanded(false);
 
@@ -77,10 +90,13 @@ const router = useRouter();
 
   }
 
+  useEffect(() => {
+    notificationBarHandler();
+  })
+
 
   useEffect(() => {
-    // popoverHandler();
-    // closeBtnHandler();
+
     window.addEventListener("click", (e: any) => {
       if (e.target.className == "btn-close" ||
         e.target.className == ("fade offcanvas-backdrop show") ||
@@ -201,9 +217,6 @@ const router = useRouter();
 
 
   useEffect(() => {
-    
-  
-
     let localStorageItems: any = localStorage.getItem("cart");
     // console.log("cartItems",cartItems);
     // console.log("localStorageItems",localStorageItems);
@@ -234,35 +247,31 @@ const router = useRouter();
 
 
   }, [])
-  
-  useEffect(() => {
-    if(courseDetailsData?.data && JSON.stringify(courseDetailsData?.data) !== '[]'){
 
-      if((courseDetailsData?.data?.course_details?.is_in_user_subscription || courseDetailsData?.data?.course_details?.is_purchased)
-      && Router.asPath.includes("/course/")){
+  useEffect(() => {
+    if (courseDetailsData?.data && JSON.stringify(courseDetailsData?.data) !== '[]') {
+
+      if ((courseDetailsData?.data?.course_details?.is_in_user_subscription || courseDetailsData?.data?.course_details?.is_purchased)
+        && Router.asPath.includes("/course/")) {
         setIsCoursePurchased(true);
-      }else{
+      } else {
         setIsCoursePurchased(false);
       }
     }
-  }, [courseDetailsData,myCourseNavigator,router.asPath])
-  
-  
+  }, [courseDetailsData, myCourseNavigator, router.asPath])
+
+
 
   useEffect(() => {
 
     let localStorageItems: any = localStorage.getItem("cart");
-    // if(userStatus.isUserAuthenticated === true){
-    // setLocalStateCartItems(cartItems?.data);
 
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
 
       axiosInstance
         .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
-          // dispatch(setCartItems(response.data.data));
           setLocalStateCartItems(response.data.data);
-          // setLocalStateCartItems(cartItems?.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -285,13 +294,21 @@ const router = useRouter();
     }
   ))
 
-  const handleSearchBarEntries = (e: ChangeEvent<HTMLInputElement> | Event | undefined) => {
-    e && e.target && setSearchQuery((e.target as HTMLInputElement).value);
+  useResize(notificationBarHandler);
+
+  const handleSearchBarEntries = (e: any) => {
+
+    e && e.target && setSearchQuery(e.target.value);
+
   }
 
   const sendSearchQuery = (e: any) => {
 
-    if (e.key === 'Enter' || e.keyCode === 13 || e.target.id == "responsive-search-field-btn") {
+    if (e.key === 'Enter' ||
+      e.keyCode === 13 ||
+      e.target.id == "responsive-search-field-btn" ||
+      e.target.id == "search-field-icon"
+    ) {
       if (searchQuery == "") {
         console.log("متخمش يسطا");
       } else {
@@ -300,6 +317,8 @@ const router = useRouter();
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
           query: { q: searchQuery }
         });
+        const searchBoxOverlay: any = document.getElementById("search-box-overlay");
+        searchBoxOverlay.style.cssText = `display:none;`;
 
       }
     }
@@ -344,7 +363,7 @@ const router = useRouter();
           placement="end"
         >
           <Offcanvas.Header closeButton >
-            <Offcanvas.Title id="offcanvasNavbarLabel1">القائمة الرئيسة</Offcanvas.Title>
+            <Offcanvas.Title id="offcanvasNavbarLabel1">القائمة الرئيسية</Offcanvas.Title>
           </Offcanvas.Header>
           <ul className={styles["sidebar-list"]}>
             <li id="discover" className={styles["sidebar-list__item"]} onClick={() => { handleDiscoverSidebarShow(true) }}>
@@ -432,7 +451,7 @@ const router = useRouter();
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
-            { Router.router?.asPath.includes("/course/") &&
+            {Router.router?.asPath.includes("/course/") &&
               <>
                 <li id="curriculum" className={styles["sidebar-list__item"]}
                   onClick={() => {
@@ -572,10 +591,13 @@ const router = useRouter();
               </div>
 
               <div id="search-bar" className={styles["navbar__search-bar-container"]}>
-                <div
+                <div id="search-field-icon"
                   className={styles["navbar__search-bar-container__icon-wrapper"]}
+                  onClick={() => {
+                    sendSearchQuery(event);
+                  }}
                 >
-                  <SearchIcon color="#777" />
+                    <SearchIcon color="#777" />
                 </div>
                 <Form.Control
                   id="search-field"
@@ -612,8 +634,9 @@ const router = useRouter();
                 </div>
                 <div className={`${styles["navbar__purchased-course-nav__certificate"]} 
                ${myCourseNavigator == "certificate" && styles["navbar__purchased-course-nav--active"]} `}
-                  onClick={() => { dispatch(setMyCourseNavigator("certificate"));
-                   }}>
+                  onClick={() => {
+                    dispatch(setMyCourseNavigator("certificate"));
+                  }}>
 
                   <CertificateIcon color={myCourseNavigator == "certificate" ? "#af151f" : "#bbbabf"} />
                   <span>شهادة الدورة</span>
@@ -692,15 +715,15 @@ const router = useRouter();
             placement="bottom-start"
             overlay={
               <div className={styles["navbar__cart-popover"]}
-                style={{ display: (JSON.stringify(localStateCartItems) == "[]" || localStateCartItems == null) ? "none" : "" }}
+                style={{ display: !cartItems?.data?.length ? "none" : "" }}
                 id="cart-popover" >
                 <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
                   {
-                   localStateCartItems?.map((item: any, i: number) => {
+                   cartItems?.data?.map((item: any, i: number) => {
                       return (
 
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                          <img loading="lazy"  
+                          <img loading="lazy"
                             src={item.image}
                             alt="course image"
                             className={styles["navbar__cart-popover__img"]}
@@ -817,7 +840,7 @@ const router = useRouter();
                         }
                       >
                         {
-                          localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                          cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
                         }
                       </span>
                       <span
@@ -828,13 +851,13 @@ const router = useRouter();
                         }
                       >
 
-                        {localStateCartItems && localStateCartItems[0]?.currency_code}
+                        {cartItems?.data && cartItems?.data[0]?.currency_code}
                       </span>
                     </div>
                     {
-                      localStateCartItems?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                      cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
                       >
-                      localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                      cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
                       &&
                       <div
                         className={
@@ -851,7 +874,7 @@ const router = useRouter();
                           }
                         >
                           {
-                            localStateCartItems?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                            cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
                           }
                         </span>
                         <span
@@ -861,7 +884,7 @@ const router = useRouter();
                             ]
                           }
                         >
-                          {localStateCartItems[0]?.currency_code}
+                          {cartItems?.data[0]?.currency_code}
                         </span>
                       </div>
 
@@ -882,9 +905,9 @@ const router = useRouter();
             }
           >
             <div className={styles["navbar__cart-icon-container"]} id="carticon"
-              onClick={() => { isMobileView ? Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`) : null }}>
+              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`) }}>
               <CartIcon color="#222" />
-              <Badge className={styles["navbar__cart-icon__badge"]}>{localStateCartItems?.length || ""}</Badge>
+              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
               {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
 
             </div>

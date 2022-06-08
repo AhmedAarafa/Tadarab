@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { TadarabVideoPlayer, TPlayerPaidPlayList } from "common/TPlayer/TPlayer";
 import { setMyCourseNavigator } from "configurations/redux/actions/myCourseNavigator";
-import Image from 'next/image';
- 
+import Link from "next/link";
+
 export default function MyCourse() {
     const [courseDetails, setCourseDetails] = useState<any>([]);
     const [todaysDate, setTodaysDate] = useState<any>("");
@@ -27,13 +27,10 @@ export default function MyCourse() {
         today = dd + '/' + mm + '/' + yyyy;
         setTodaysDate(today);
 
-        axiosInstance
-        .get(`users/profile`)
-        .then(function (response:any) {
+        axiosInstance.get(`users/profile`).then(function (response:any) {
             setUserInfo(response.data.data);
-        })
-        .catch(function (error:any) {
-          console.log(error); 
+        }).catch(function (error:any) {
+          //console.log(error); 
         });
 
         return () => {
@@ -49,53 +46,41 @@ export default function MyCourse() {
           }
       }, [courseDetailsData]);
 
-
-      const fileToBase64 = (filename:any, filepath:any) => {
-        return new Promise(resolve => {
-          var file = new File([filename], filepath);
-          var reader = new FileReader();
-          // Read file content on file loaded event
-          reader.onload = function(event:any) {
-            resolve(event.target.result);
-          };
-          
-          // Convert data to base64 
-          reader.readAsDataURL(file);
-        });
-
-
-        /* 
-        fileToBase64(`${att.title}.pdf`, att.link).then(result => {
-            // console.log(result);
-            });
-         */
-
-      };
-
+    let progress_pr = ((courseDetailsData.data?.progress_percentage)?courseDetailsData.data?.progress_percentage:0);
     return (
         <>
-            <Row className={styles["my-course"]}>
-              { myCourseNavigator == "curriculum" && 
+        <Row className={styles["my-course"]}>
+            { myCourseNavigator == "curriculum" && 
                 <>
-                { console.log("courseDetailsData.data :",courseDetailsData.data) }
                 <Col xs={{span:12 , order:2}} sm={{span:4 , order:1}}>
                     <div className={styles["purchased-course-playlist"]}>
+                        { /** Course progress **/}
+                        
                         <div className={styles["purchased-course-playlist__progress-box"]}>
                             <span>  منهج الدورة  </span>
-                            <span>  ( 32% مكتمل )  </span>
+                            <span>  ( {progress_pr}% مكتمل )  </span>
                             <div className={styles["purchased-course-playlist__progress-box__progress-bar"]}>
-                                <ProgressBar now={32} />
+                                <ProgressBar now={progress_pr} />
                             </div>
                         </div>
+
+                        { /** Course Lesions **/}
                         <TPlayerPaidPlayList />
                     </div>
                 </Col>
 
                 <Col xs={{span:12 , order:1}} sm={{span:8 , order:2}}>
-                    {/* <div className={styles["my-course__video-player"]}> */}
+                    { /** Player section **/}
                     <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}`}>
                         <TadarabVideoPlayer />
                     </div>
+
+                </Col>
+                <Col xs={{span:12 , order:3}} sm={{span:4}}></Col>
+                
+                <Col xs={{span:12 , order:3}} sm={{span:8 , order:3}}>
+                
+                    {/** Attachments **/}
                     <Accordion defaultActiveKey="" className={`${styles["course-content__attachments-accordion"]}`}>
                         <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
                             <Accordion.Header className={styles["course-content__accordion__header"]}>
@@ -106,8 +91,6 @@ export default function MyCourse() {
                                 </div>
                             </Accordion.Header>
                             <Accordion.Body className={styles["course-content__accordion__body"]}>
-                                {console.log(courseDetailsData.data?.attachments)
-                                }
                                 { courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
                                     (courseDetailsData.data?.attachments).map((att:any,i:number)=>{
                                         
@@ -119,16 +102,14 @@ export default function MyCourse() {
                                                     </div>
                                                     <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                         <div>{att.title}</div>
-                                                    
                                                     </div>
                                                 </div>
-                                            {/* {console.log(att.link)
-                                            } */}
                                                 <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
-                                                    <a href={att.link} target="_blank" rel="noreferrer" >
-
+                                                  <Link href={att.link} passHref>
+                                                    <a  target="_blank" rel="noopener">
                                                       <FileDownloadIcon color="#af151f"/>
                                                     </a>
+                                                  </Link> 
                                                 </div>
                                             </div>
                                         )
@@ -136,98 +117,57 @@ export default function MyCourse() {
                                 }
                             </Accordion.Body>
                         </Accordion.Item>
-
                     </Accordion>
-
-                    {/* <Accordion defaultActiveKey="" 
-                    className={`${styles["course-content__attachments-accordion"]} d-none`}>
-
-                        <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
-                        <Accordion.Header className={styles["course-content__accordion__header"]}>
-
-                            <div className={styles["course-content__accordion__header__details-box"]}>
-                                <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
-                                ملفات شرح
-                                </div>
-                            </div>
-                        </Accordion.Header>
-                        <Accordion.Body className={styles["course-content__accordion__body"]}>
-                            {
-                                courseDetailsData.data?.attachments?.map((att:any,i:number)=>{
-                                    return(
-                                        <div key={i} className={styles["course-content__accordion__body__list-item"]}>
-                                            <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
-                                                <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                    <AttachmentsIcon />
-                                                </div>
-                                                <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
-                                                    <div>{att.title}</div>
-                                                
-                                                </div>
-                                            </div>
-
-                                            <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
-                                                <FileDownloadIcon color="#af151f"/>
-                                            </div>
-                                        </div>
-                                    )
-                                })
-                            }
-                        
-                        </Accordion.Body>
-                        </Accordion.Item>
-
-                    </Accordion> */}
                 </Col>
                 </>
-                }
+            }
 
-                { myCourseNavigator == "certificate" && 
-                    <>
-                        <Col xs={12} sm={8} className={styles["my-course__certificate"]}>
-                            <div>
-                                <img loading="lazy"   src={"/images/شهادة3 website.jpg"} alt="course certificate" />
-                                <div className={styles["my-course__certificate__date"]}>{todaysDate}</div>
-                                <div className={styles["my-course__certificate__course-name"]}>{courseDetailsData.data?.course_details?.title}</div>
-                                <div className={styles["my-course__certificate__trainer-name"]}>{courseDetailsData.data?.course_details?.trainer?.name_ar}</div>
-                                <div className={styles["my-course__certificate__learner-name"]}>{userInfo?.first_name}</div>
+            { myCourseNavigator == "certificate" &&
+                <>
+                <Col xs={12} sm={8} className={styles["my-course__certificate"]}>
+                    <div>
+                        <img src="/images/شهادة3 website.jpg" alt="course certificate" />
+                        <div className={styles["my-course__certificate__date"]}>{todaysDate}</div>
+                        <div className={styles["my-course__certificate__course-name"]}>{courseDetailsData.data?.course_details?.title}</div>
+                        <div className={styles["my-course__certificate__trainer-name"]}>{courseDetailsData.data?.course_details?.trainer?.name_ar}</div>
+                        <div className={styles["my-course__certificate__learner-name"]}>{userInfo?.first_name}</div>
 
-                            </div>
-                        </Col>
-                        <Col xs={12} sm={4} className={styles["my-course__actions-box"]}>
-                            <div className={styles["my-course__actions-box__texts"]}>
-                                <CongratulationsIcon/>
-                                <div>شهادة اتمام الدورة</div>
-                                <div>
-                                     مبرووووك يا  
-                                    <span>
-                                      {userInfo?.first_name} 
-                                    </span>
+                    </div>
+                </Col>
+                <Col xs={12} sm={4} className={styles["my-course__actions-box"]}>
+                    <div className={styles["my-course__actions-box__texts"]}>
+                        <CongratulationsIcon/>
+                        <div>شهادة اتمام الدورة</div>
+                        <div>
+                             مبرووووك يا  
+                            <span>
+                              {userInfo?.first_name} 
+                            </span>
 
-                                </div>
-                                <div>لقد فعلتها ! لقد نجحت في إتمام الدورة بنجاح يمكنك الآن تحميل الشهادة ومشاركتها مع أصدقائك</div>
+                        </div>
+                        <div>لقد فعلتها ! لقد نجحت في إتمام الدورة بنجاح يمكنك الآن تحميل الشهادة ومشاركتها مع أصدقائك</div>
 
-                            </div>
-                            <div className={styles["my-course__actions-box__action-btns"]}>
-                                <Button>
-                                    <FileDownloadIcon color="#fff"/>
-                                    <span>
-                                    تحميل الشهادة
-                                    </span>
+                    </div>
+                    <div className={styles["my-course__actions-box__action-btns"]}>
+                        <Button>
+                            <FileDownloadIcon color="#fff"/>
+                            <span>
+                            تحميل الشهادة
+                            </span>
 
-                                </Button>
-                                <Button>
-                                    <ShareIcon />
-                                    <span>
-                                    مشاركة الشهادة
-                                    </span>
+                        </Button>
+                        <Button>
+                            <ShareIcon />
+                            <span>
+                            مشاركة الشهادة
+                            </span>
 
-                                </Button>
-                            </div>
-                        </Col>
-                    </>
-                }
-            </Row>
+                        </Button>
+                    </div>
+                </Col>
+                </>
+            }
+        </Row>
         </>
     )
 }

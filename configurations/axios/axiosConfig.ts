@@ -1,13 +1,15 @@
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
-import { setErrorText } from "../redux/actions/errorText";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
 export const axiosInstance = axios.create({
   // baseURL: "https://developer.tadarab.com/wp-json/api/",
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });
 
+let tadarabFbPixel = new TadarabFBPixel();
+let fbp = tadarabFbPixel.getCookie('_fbp');
+let fbc = tadarabFbPixel.getCookie('_fbc');
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
@@ -24,6 +26,9 @@ axiosInstance.interceptors.request.use(
       return result;
   }
 
+    config.headers['X-Fbp'] =  fbp;
+    config.headers['X-Fbc'] =  fbc;
+
   if(localStorage.getItem("X-Session-Id")){
     config.headers['X-Session-Id'] =  `${localStorage.getItem("X-Session-Id")}`;
     config.headers['X-User-Id'] =  0;
@@ -37,7 +42,9 @@ axiosInstance.interceptors.request.use(
     if(localStorage.getItem("token")){
       config.headers.Authorization =  `Bearer ${localStorage.getItem("token")}`;
       config.headers['X-User-Id'] =  localStorage.getItem("user_id");
+      
     }
+    
     return config;
   },
   function (error: any) {

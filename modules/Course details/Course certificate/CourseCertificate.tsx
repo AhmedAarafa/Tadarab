@@ -8,7 +8,7 @@ export default function CourseCertificate() {
         <>
         <div className={styles["course-certificate"]}>
             <div>سوف تحصل على </div>
-            <div>شهادة من تدرب بعد إتمام الدورة</div>
+            <h3 style={{margin:"0px"}}>شهادة من تدرب بعد إتمام الدورة</h3>
             <div>
                 <img loading="lazy"   src="/images/BlankCretifacte.png" alt="course certificate" />
             </div>

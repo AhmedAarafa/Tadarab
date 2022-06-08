@@ -13,13 +13,12 @@ export const VideoJS = ( props ) => {
 		if (!playerRef.current) {
 			const videoElement = videoRef.current;
 			if (!videoElement) return;
-
 			const player = playerRef.current = videojs(videoElement, options, () => {
-			try{
-			onReady && onReady(player);
-			}catch(e){
-			onReady && onError(player);
-			}
+				try{
+					onReady && onReady(player);
+				}catch(e){
+					onReady && onError(player);
+				}
 			});
 		} else {
 			// you can update player here [update player through props]

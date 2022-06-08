@@ -161,6 +161,7 @@
   height: -webkit-fit-content !important;
   height: -moz-fit-content !important;
   height: fit-content !important;
+  opacity: 0;
 }
 
 .latest-courses__popover-container::after,
@@ -173,9 +174,17 @@
   border-style: solid;
 }
 
+.latest-courses__popover-container--left {
+  opacity: 100%;
+}
+
 .latest-courses__popover-container--left::after {
   left: 100%;
   border-color: transparent  transparent  transparent white;
+}
+
+.latest-courses__popover-container--right {
+  opacity: 100%;
 }
 
 .latest-courses__popover-container--right::after {

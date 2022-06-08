@@ -1,5 +1,4 @@
 import React from 'react';
-// import Navbar from "common/Navbar/Navbar";
 import { Container } from "react-bootstrap";
 // import StartTraining from "modules/Join as a trainer/Start training/StartTraining";
 // import SuccessfulInvestment from "modules/Join as a trainer/Successful investment/SuccessfulInvestment";
@@ -11,7 +10,6 @@ import { Container } from "react-bootstrap";
 // import Footer from 'common/Footer/Footer';
 
 import dynamic from 'next/dynamic';
-const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const StartTraining = dynamic(() => import("modules/Join as a trainer/Start training/StartTraining"));
 const SuccessfulInvestment = dynamic(() => import("modules/Join as a trainer/Successful investment/SuccessfulInvestment"));
 const Statistics = dynamic(() => import("modules/Join as a trainer/Statistics/Statistics"));
@@ -19,14 +17,12 @@ const TrainersOpinions = dynamic(() => import("modules/Join as a trainer/Trainer
 const JoinUs = dynamic(() => import('modules/Join as a trainer/Join us/JoinUs'));
 const HowToStart = dynamic(() => import('modules/Join as a trainer/How to start/HowToStart'));
 const Faq = dynamic(() => import('modules/Join as a trainer/FAQ/Faq'));
-const Footer = dynamic(() => import('common/Footer/Footer'));
 
 
 export default function JoinAsATrainer() {
   return (
     <>
       <Container fluid="xxl">
-        <Navbar />
         <StartTraining />
         <SuccessfulInvestment />
         <Statistics />
@@ -34,7 +30,6 @@ export default function JoinAsATrainer() {
         <JoinUs />
         <HowToStart />
         <Faq />
-        <Footer />
         
       </Container>
     </>

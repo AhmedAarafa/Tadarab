@@ -32,10 +32,10 @@ var isUserLogin		= false;	// if user is logged-in, true elase false
 var courseTitle		= ''; 			// the current course title
 var courseId		= 0; 			// the current course id
 var playbtn_on		= false;
-var free_limit		= 1;		// free course limit after then signup popup
+var free_limit		= 2;		// free course limit after then signup popup
 var seconds_counter = 0;
 var tplayer;					// TADARAB PLAYER GLOBAL OBJECT
-var overlayM,errorM,buynowM;	// player modal dilog 
+var overlayM,errorM,buynowM;	// player modal dilog
 
 /**
 *	Start player playing
@@ -171,7 +171,7 @@ function tplayer_video_progress(type){
 					}
 				}
 			}
-		},2000);
+		},6000);
 	}
 	if(type==='pause'){
 		clearInterval(playbackInterval);
@@ -343,7 +343,7 @@ export function TPlayerPlayList (){
 								{/* SECTION */}
 								<Accordion.Header className={styles["course-content__accordion__header"]}>
 									<div className={styles["course-content__accordion__header__details-box"]}>
-										<div className={styles["course-content__accordion__header__group-number"]}>{items.name}</div> {/* Section Title */}
+										<h3 className={styles["course-content__accordion__header__group-number"]} style={{margin:"0px"}}>{items.name}</h3> {/* Section Title */}
 										<div className={styles["course-content__accordion__header__details"]}>
 											<span className={styles["course-content__accordion__header__details__lessons-number"]}>
 												<span> {items.lectures.length} </span><span> دروس </span> {/* Section Length */}
@@ -440,8 +440,8 @@ export function TPlayerPaidPlayList (){
 								<Accordion.Header className={styles["purchased-course-content__accordion__header"]}>
                                     <div className={styles["course-content__accordion__header__details-box"]}>
                                         <div className={styles["purchased-course-content__accordion__header__group-number"]}>
-                                        {items.name}
-                                        <span>({lectures.length})</span>
+											<h3 className={styles["course-content__accordion__header__group-number"]} style={{margin:"0px"}}>{items.name}</h3>
+											<span>({lectures.length})</span>
                                         </div>
                                     </div>
                                 </Accordion.Header>
@@ -500,7 +500,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 	//if(!theDefaultOption.Source){
 		const dispatch = useDispatch();
 		const ioverlayM=React.useRef(null);const ierrorM=React.useRef(null);const ibuynowM=React.useRef(null);
-		useEffect(() => {return ()=>{/* dispatch(setCourseDetailsData([])); */playlistSrc=[];}}, []);
+		useEffect(() => {return ()=>{ /* dispatch(setCourseDetailsData([])); */ playlistSrc=[];}}, []);
 		isUserLogin = useSelector((state) => state.userAuthentication?.isUserAuthenticated);
 	//}
 	// lookup the options in the docs for more options
@@ -536,12 +536,12 @@ export function TadarabVideoPlayer (theDefaultOption){
 		// Modal variables
 		var overlay ={
 			label:'Click to play',
-			head:('<h1>'+courseTitle+'</h1>'),
+			head:('<div style="margin-top:30px">'+courseTitle+'</div>'),
 			body:'<p><button class="vjs-big-play-button tplayer-overlay-btn" type="button" title="Play Video" aria-disabled="false"><span aria-hidden="true" class="vjs-icon-placeholder"></span><span class="vjs-control-text" aria-live="polite">Play Video</span></button></p>',
 		};
 		var buynow={
 			label:'Tadarab Popup',
-			head:'<h1>واصل مشاهدة الدورة كاملة</h1>',
+			head:'<div>واصل مشاهدة الدورة كاملة</div>',
 			buybtn:{
 				text:'',
 				class:'add_to_cart',
@@ -623,7 +623,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 	/** Buy now popup **/
 	const buynow_popup = function(options,modal){
 		//var buybtn=((options.buybtn)?('<a class="tadarab-btn '+options.buybtn.class+'" '+options.buybtn.attr+'>'+options.buybtn.text+'</a>'):''),
-		var buybtn=((options.buybtn)?('<button type="button" id="monthly-subscribe-btn" class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__yzr2X btn btn-primary" style="width:80%"><span class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__monthly-subscribe__rRgIg" onclick="handleSubscriptionBtn()">جرب تدرب بلا حدود مجاناَ</span></button>'):''),
+		var buybtn=((options.buybtn)?('<button type="button" id="monthly-subscribe-btn" class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__yzr2X btn btn-primary" style="width:80%"><span class="monthly-subscription-card_monthly-subscription__subscribe-btn-box__btn__monthly-subscribe__rRgIg" onclick="handleSubscriptionBtn()">اشترك لمشاهدة الدورة الآن</span></button>'):''),
 		closebtn=((options.clsbtn)?('<a class="tadarab-btn small secondary-btn tplayer-close '+options.clsbtn.class+'" id="tplayer-close">'+options.clsbtn.text+'</a>'):''),
 		buynow_content=((options.head)?('<div class="modal-header">'+options.head+'</div>'):'')+((options.body)?('<div class="modal-body">'+options.body+'</div>'):'')+('<div class="modal-footer btn-box">'+buybtn+closebtn+'</div>'),
 		buynowEl=document.createElement('div');

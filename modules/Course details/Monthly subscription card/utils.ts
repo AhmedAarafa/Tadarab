@@ -1,17 +1,9 @@
 export const stickyCardHandler = () => {
-    // let isExist = 0;
-    // to get elements concerned to be changed in the full width sticky view
-    // const stickyCard: any = document.getElementById("sub-sticky-card");
+ 
     const projectsSection: any = document.getElementById("practical-projects-section");
     const reviewsSection: any = document.getElementById("reviews-section");
     const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
     const navbar: any = document.getElementById("nav");
-    // const title: any = document.getElementById("course-card__title");
-    // const guaranteeBox: any = document.getElementById("course-card__guarantee-card");
-    // const detailsList: any = document.getElementById("course-card__details-list");
-    // const promoCode: any = document.getElementById("course-card__promo-code");
-    // const actionBtns: any = document.getElementById("course-card__action-btns"); 
-    // const pricesBox:any =document.getElementById("course-card__prices-box");
     // to get HTML font size related to the width of the window
     const rootFontSize = parseFloat(
         window
@@ -30,13 +22,14 @@ export const stickyCardHandler = () => {
             // and change the remained ones properties to fit to the new view
             const stickyCard: any = document.getElementById("sub-sticky-card");
             const stickyTopCourseCard: any = document.getElementById("sub-sticky-top-course-card");
+            const notificationBar: any = document.getElementById("notification-bar");
             stickyCard ? stickyCard.style.cssText = `
                  display:none;`:null;
             stickyTopCourseCard ? stickyTopCourseCard.style.cssText = `
                  display:flex;
                  position:fixed;
-                 top:${navbar?.offsetHeight}px;
-                 `:null;
+                 top:${navbar?.offsetHeight + notificationBar?.offsetHeight || 0}px;
+                   `:null;
     
            
         }else if(window.scrollY < projectsSection?.offsetTop || 
@@ -62,13 +55,14 @@ export const stickyCardHandler = () => {
               window.scrollY >= courseSubscribersSection?.offsetTop
               ) {
 
+                  const notificationBar: any = document.getElementById("notification-bar");
                   const stickyCard: any = document.getElementById("sub-sticky-card");
                   const stickyTopCourseCard: any = document.getElementById("sub-sticky-top-course-card");
                    stickyCard ? stickyCard.style.cssText = `display:none`:null;
                    stickyTopCourseCard ? stickyTopCourseCard.style.cssText = `
                    display:flex;
                    position:fixed;
-                   top:${navbar?.offsetHeight}px;
+                   top:${navbar?.offsetHeight + notificationBar?.offsetHeight || 0}px;
                    `:null;
               }else if(window.scrollY < projectsSection?.offsetTop || 
                 window.scrollY < reviewsSection?.offsetTop || 

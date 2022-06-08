@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from "./monthly-subscription-card.module.css"
 import { Button } from "react-bootstrap";
-import { CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon,GuaranteeIcon } from "common/Icons/Icons";
+import { CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon,GuaranteeIcon, TvIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image';
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
@@ -14,11 +14,14 @@ import { handleCart } from 'modules/_Shared/utils/handleCart';
 import { setCartItems } from 'configurations/redux/actions/cartItems';
 import Link from "next/link";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 
 export default function MonthlySubscriptionCard() {
 
   const [isMobileView, setIsMobileView] = useState(false);
+  const [subscriptionTimer, setSubscriptionTimer] = useState(0);
+  const [toDisplayValues, setToDisplayValues] = useState<any>({values:[] , visible:false});
   const [courseDetails, setCourseDetails] = useState<any>([]);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -26,7 +29,83 @@ export default function MonthlySubscriptionCard() {
   const Router = useRouter();
   const { slug } = Router.query;
 
+  useEffect(() => {
 
+    // setSubscriptionTimer
+    document.cookie.split('; ').reduce((prev: any, current: any) => {
+      const [name, ...value] = current.split('=');
+      prev[name] = value.join('=');
+      if((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN"){
+
+      }else{
+
+        setSubscriptionTimer(  prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))  );
+        return prev;
+      }
+      
+  }, {});
+    
+    
+  }, [])
+
+  useEffect(() => {
+    if(subscriptionTimer !== 0){
+      document.cookie.split('; ').reduce((prev: any, current: any) => {
+        const [name, ...value] = current.split('=');
+        prev[name] = value.join('=');
+        
+        setSubscriptionTimer(  prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))  );
+        if(Math.sign( prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))) ) !== -1){
+
+          let interval =  setInterval(() => {
+    
+                // get total seconds between the times
+                let delta: any = Math.sign( prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))) ) !== -1  ? 
+                Math.abs( prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))) )
+                :
+                clearInterval(interval);
+                ;
+          
+                // calculate (and subtract) whole days
+                let days: any = Math.floor(delta / 86400);
+                delta -= days * 86400;
+          
+                // calculate (and subtract) whole hours
+                let hours: any = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+          
+                // calculate (and subtract) whole minutes
+                let minutes: any = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+          
+                // what's left is seconds
+                let seconds: any = delta; // in theory the modulus is not required
+          
+                days = days.toString().padStart(2, 0);
+                hours = hours.toString().padStart(2, 0);
+                minutes = minutes.toString().padStart(2, 0);
+                seconds = seconds.toString().padStart(2, 0);
+      
+                if( days == '00' && hours == '00' && minutes == '00' && seconds == '00' ){
+                  setToDisplayValues({values:[days, hours, minutes, seconds],visible:false});
+                  clearInterval(interval);
+                  
+                }else{
+      
+                  setToDisplayValues({values:[days, hours, minutes, seconds],visible:true});
+                  return { days, hours, minutes, seconds }
+                }
+          }, 1000);
+
+        }
+        return prev;
+    }, {});
+
+    }
+  
+  }, [subscriptionTimer])
+
+ 
   useEffect(() => {
     setCourseDetails(courseDetailsData.data || []);
   }, [courseDetailsData]);
@@ -57,6 +136,19 @@ export default function MonthlySubscriptionCard() {
       })
     }
   }
+
+  const handleFreeCoursesActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+        handleFreeCourses(course);
+    } else {
+        Router.push({
+            pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+            query: { from: "/course" }
+        })
+    }
+}
+
+  
 
   const handleCartActionBtn = (course: any): any => {
     dispatch(setCheckoutType("cart"));
@@ -117,16 +209,22 @@ export default function MonthlySubscriptionCard() {
 
 
         <div className={styles["monthly-subscription__subscribe-btn-box"]}>
+          {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+          <div className={styles["monthly-subscription__subscription-timer"]}>
+          عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
+            <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+          </div>}
           <Button id="monthly-subscribe-btn" className={styles["monthly-subscription__subscribe-btn-box__btn"]}
             onClick={() => handleSubscriptionBtn()}>
-            <span className={styles["monthly-subscription__subscribe-btn-box__btn__monthly-subscribe"]}>
-              جرب تدرب بلا حدود مجاناَ
-            </span>
+            <div>
 
+              <span>اشترك لمشاهدة هذه الدورة </span>
+              </div>
+              <div>+ مئات الدورات التدريبية باشتراك شهرى واحد</div>
           </Button>
         </div>
         <div className={styles["monthly-subscription__subscription-value"]}>
-          ٧ أيام تجربة مجانية ثم ٩ دك شهرياَ
+        ٧ أيام تجربة مجانية ثم ٩ دك   شهرياً
         </div>
         {/* <div className={styles["monthly-subscription__watch-this-course"]}>
       شاهد هذه الدورة + 600 دورة اخرى
@@ -200,6 +298,9 @@ export default function MonthlySubscriptionCard() {
           className={styles["monthly-subscription__course-card__actions-btns"]}
         >
           <Button onClick={() => {
+            courseDetails?.course_details?.discounted_price == 0 ?
+            handleFreeCoursesActionBtn(courseDetails.course_details)
+            :
             handleCartActionBtn(courseDetails.course_details);
           }} disabled={courseDetails?.course_details?.is_in_cart}
             className={
@@ -208,10 +309,16 @@ export default function MonthlySubscriptionCard() {
               ]
             }
           >
-            {/* {console.log(courseDetails)
-            } */}
-            <CartIcon color="#222" />
+           {
+             courseDetails?.course_details?.discounted_price == 0 ?
+             <TvIcon color="#222" />
+             :
+             <CartIcon color="#222" />
+           }
             {
+              courseDetails?.course_details?.discounted_price == 0 ?
+              <span> ابدأ الآن مجانًا </span>  
+              :
               courseDetails?.course_details?.is_in_cart ?
               <span> تمت الإضافة </span>  
               :
@@ -244,6 +351,9 @@ export default function MonthlySubscriptionCard() {
             <ShareIcon />
           </Button>
         </div>
+        {
+          courseDetails?.course_details?.discounted_price !== 0 &&
+
         <div className={styles["monthly-subscription__subscription-value"]}>
           سعر الدورة
           <span>
@@ -255,6 +365,7 @@ export default function MonthlySubscriptionCard() {
           </span>
 
         </div>
+        }
 
         <div
           id="course-card__guarantee-card"
@@ -626,7 +737,11 @@ export default function MonthlySubscriptionCard() {
           </div> */}
           <div className={styles["monthly-subscription__course-card__actions-btns"]}
           >
-            <Button onClick={()=>{handleCartActionBtn(courseDetails?.course_details)}}
+            <Button onClick={()=>{
+              courseDetails?.course_details?.discounted_price == 0 ?
+              handleFreeCoursesActionBtn(courseDetails.course_details)
+              :
+              handleCartActionBtn(courseDetails?.course_details)}}
             disabled={courseDetails?.course_details?.is_in_cart}
               className={
                 styles[
@@ -634,13 +749,21 @@ export default function MonthlySubscriptionCard() {
                 ]
               }
             >
-              <CartIcon color="#222" />
-              {
+               {
+             courseDetails?.course_details?.discounted_price == 0 ?
+             <TvIcon color="#222" />
+             :
+             <CartIcon color="#222" />
+           }
+            {
+              courseDetails?.course_details?.discounted_price == 0 ?
+              <span> ابدأ الآن مجانًا </span>  
+              :
               courseDetails?.course_details?.is_in_cart ?
               <span> تمت الإضافة </span>  
               :
               <span> امتلك هذه الدورة </span>
-          } 
+          }  
             </Button>
             <Button
               className={
