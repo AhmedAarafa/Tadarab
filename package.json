@@ -1,5 +1,5 @@
 {
-  "name": "tadarab-development",
+  "name": "tadarab",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,8 +20,10 @@
     "next": "^12.1.5",
     "normalize.css": "^8.0.1",
     "react": "17.0.2",
+    "react-apple-login": "^1.1.3",
     "react-bootstrap": "^2.0.3",
     "react-dom": "17.0.2",
+    "react-facebook-login": "^4.1.1",
     "react-facebook-pixel": "^1.0.4",
     "react-google-login": "^5.2.2",
     "react-gtm-module": "^2.0.11",

@@ -1,7 +1,7 @@
 .watched-courses__title {
   font-size: 2rem;
   font-weight: 800;
-  padding: 4rem 3rem 0 3rem;
+  padding: 3rem 3rem 0 3rem;
   z-index: 5;
   background-color: white;
   color: var(--dark-black);
@@ -844,7 +844,7 @@
     font-size: 3.52rem;
     text-align: center;
     padding: 0;
-    padding: 7.344rem 0 0 0;
+    padding: 6rem 0 0 0;
   }
   .watched-courses__departments-list {
     padding: 0 3rem 0 4rem;

@@ -117,7 +117,7 @@ export default function CourseAdvertisement(theOption: any) {
                   <>
                     {
                       ((theOption?.liveWebinarDetails?.webinar_type)&&(theOption?.liveWebinarDetails?.webinar_type=='soon')) ?
-                        <img loading="lazy"   src={theOption?.liveWebinarDetails?.image} alt="تدرب في رمضان" />
+                        <img loading="lazy"   src={theOption?.liveWebinarDetails?.image} alt="" />
                         :
                         <div className='embed-responsive embed-responsive-16by9' id='webinar-embed'>
                           <iframe src={theOption.liveWebinarDetails.streamUrl} allow="autoplay; fullscreen; picture-in-picture" style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}} frameBorder="0" allowFullScreen></iframe>
@@ -129,56 +129,56 @@ export default function CourseAdvertisement(theOption: any) {
                     <TadarabVideoPlayer />
                   </>
               }
-            </div>
-            {
-              ((theOption?.liveWebinarDetails?.webinar_type)&&(theOption?.liveWebinarDetails?.webinar_type=='soon')) &&
-              <div className={styles["live-webinar-countdown"]}>
-                <div className={styles["live-webinar-countdown__offer-available"]}>
-                  <div>بث مباشر</div>
-                  <div>على تدرب</div>
-                </div>
-                <div>
-                  <div className={styles["live-webinar-countdown__countdown-box"]}>
-                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                      <div>يوم</div>
-                      <div>{toDisplayValues[0]}</div>
-                    </div>
-                    <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                      :
-                    </div>
-                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                      <div>ساعة</div>
-                      <div>
-                        {toDisplayValues[1]}
-                      </div>
-                    </div>
-                    <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                      :
-                    </div>
-                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                      <div>دقيقة</div>
-                      <div>
-                        {toDisplayValues[2]}
-                      </div>
-                    </div>
-                    <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                      :
-                    </div>
-                    <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                      <div>ثانية</div>
-                      <div>
-                        {toDisplayValues[3]}
-                      </div>
-                    </div>
+              {
+                ((theOption?.liveWebinarDetails?.webinar_type)&&(theOption?.liveWebinarDetails?.webinar_type=='soon')) &&
+                <div className={styles["live-webinar-countdown"]}>
+                  <div className={styles["live-webinar-countdown__offer-available"]}>
+                    <div>بث مباشر</div>
+                    <div>علي تدرب</div>
                   </div>
+                  <div>
+                    <div className={styles["live-webinar-countdown__countdown-box"]}>
+                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                        <div>يوم</div>
+                        <div>{toDisplayValues[0]}</div>
+                      </div>
+                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                        :
+                      </div>
+                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                        <div>ساعة</div>
+                        <div>
+                          {toDisplayValues[1]}
+                        </div>
+                      </div>
+                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                        :
+                      </div>
+                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                        <div>دقيقة</div>
+                        <div>
+                          {toDisplayValues[2]}
+                        </div>
+                      </div>
+                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                        :
+                      </div>
+                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                        <div>ثانية</div>
+                        <div>
+                          {toDisplayValues[3]}
+                        </div>
+                      </div>
+                    </div>
 
+                  </div>
                 </div>
-              </div>
-            }
+              }
+            </div>
 
-            <h1 className={styles["course-ad__course-title"]}>
+            <div className={styles["course-ad__course-title"]}>
               {courseDetailsData?.data?.course_details?.title}
-            </h1>
+            </div>
             <div className={styles["course-ad__course-description"]}>
               {courseDetailsData?.data?.course_details?.details}
             </div>

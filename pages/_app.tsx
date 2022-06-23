@@ -6,7 +6,7 @@ import 'normalize.css';
 import { Provider, useDispatch } from 'react-redux';
 import { store } from "configurations/redux/store";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import TransactionInProgress from "./TransactionInProgress";
 // import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Head from "next/head";
@@ -16,7 +16,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
-const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
+//const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -52,6 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   }, []);
 
+
   // const tagManagerArgs = {
   //   gtmId: 'GTM-M2TKMK7'
   // }
@@ -70,7 +71,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#AF151F" />
 
         <meta name="description" content=" أنضم لآكبر منصة تعلم عن بعد في الخليج والوطن العربي أفضل دورات تدريبية معتمدة مقدمة من آكبر المدربين والخبراء على منصة تدرب" key="description" />
-        <meta name="robots" content="noindex, nofollow"/>
+        <meta name="robots" content="index, follow"/>
         <meta property="og:locale" content="ar_AR" key="og-locale" />
         <meta property="og:type" content="website" key="og-type" />
         <meta property="og:title" content="دورات تدريبية اون لاين مجانيه عن بعد - منصه تدرب " key="og-title" />
@@ -122,7 +123,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/*<!-- End Facebook Pixel Code -->*/}
 
       <Provider store={store}> 
-      <NotificationBar />
+      {/* <NotificationBar /> */}
       <Navbar />
       <Component {...pageProps} /> 
       <Footer />

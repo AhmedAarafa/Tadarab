@@ -69,19 +69,20 @@
           justify-content: center;
 }
 
-.category-description__info div:nth-of-type(2) {
+.category-description__info h1 {
   font-size: 1.875rem;
   font-weight: 800;
   color: var(--dark-black);
+  margin: 0.5rem 0;
 }
 
-.category-description__info div:nth-of-type(3) {
+.category-description__info div:nth-of-type(2) {
   font-size: 1.25rem;
   color: var(--grey);
   margin: -0.2rem 0 0 0;
 }
 
-.category-description__info div:nth-of-type(3) span {
+.category-description__info div:nth-of-type(2) span {
   font-weight: 800;
 }
 
@@ -151,10 +152,11 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
-  .category-description__info div:nth-of-type(2) {
+  .category-description__info h1 {
     font-size: 4.3125rem;
+    margin: 1.15rem 0;
   }
-  .category-description__info div:nth-of-type(3) {
+  .category-description__info div:nth-of-type(2) {
     font-size: 2.875rem;
     margin: -0.46rem 0 0 0;
   }

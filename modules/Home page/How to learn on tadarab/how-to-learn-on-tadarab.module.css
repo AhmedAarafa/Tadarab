@@ -28,14 +28,18 @@
   height: 100%;
 }
 
-.how-to-learn-on-tadarab__content div:nth-of-type(1) {
+.how-to-learn-on-tadarab__content h3 {
   font-size: 1.875rem;
   color: var(--dark-black);
   font-weight: 800;
   display: inline-block;
 }
 
-.how-to-learn-on-tadarab__content span {
+.how-to-learn-on-tadarab__content h3 div {
+  padding-top: 10px;
+}
+
+.how-to-learn-on-tadarab__content h3 span {
   color: var(--primary-red);
   display: inline-block;
 }

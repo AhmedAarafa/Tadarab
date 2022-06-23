@@ -448,7 +448,7 @@ function LatestCourses() {
                               }
                             >
                           <Link href={`/course/${course.slug}`}>
-                                <h1  onClick={()=>{GAProductClickEventHandler(course,i)}}
+                                <div  onClick={()=>{GAProductClickEventHandler(course,i)}}
                               title={course.title}
                                   className={
                                     styles[
@@ -457,7 +457,7 @@ function LatestCourses() {
                                   }
                                 >
                                   {course.title}
-                                </h1>
+                                </div>
                           </Link>
                           <Link href={`/trainer/${course.trainer?.slug}`}>
 

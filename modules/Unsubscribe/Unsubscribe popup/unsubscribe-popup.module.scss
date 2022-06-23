@@ -1,0 +1,487 @@
+@import "../../../styles/mixins";
+
+.unsubscribe-popup__header {
+    @include flex(center, space-between);
+    width: 100%;
+    padding: 1rem 0 !important;
+
+    div {
+        // width: 90%;
+        // text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        // margin-right: auto !important;
+    }
+
+    button {
+        margin: 0 !important;
+        margin-right: auto !important;
+    }
+}
+
+.unsubscribe-popup__body {
+    &>div:nth-of-type(1) {
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1.1rem;
+    }
+}
+
+.unsubscribe-popup__category-card-container {
+    @include flex(flex-start, center);
+    flex-wrap: wrap;
+    margin: 1rem 0 0 0;
+
+    &>div {
+        padding: 1.5rem 2rem !important;
+
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 34% !important
+        }
+
+    }
+}
+
+.unsubscribe-popup__category-card {
+    width: 10rem*0.8;
+    height: 10rem*0.8;
+    border: 0.063rem*0.8 solid #00000026;
+    border-radius: 0.75rem*0.8;
+    text-align: center;
+    @include flex(center, center);
+    display: inline-flex;
+    margin: 0 0.5rem 1rem 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 1.875rem*0.8 #0000001A;
+    }
+}
+
+.unsubscribe-popup__category-card__img-box {
+    width: 3.125rem*0.8 !important;
+    height: 3.125rem*0.8;
+    border-radius: 50%;
+    background-color: var(--primary-red);
+    @include flex(center, center);
+
+    img {
+        width: 2rem*0.8;
+        height: 2rem*0.8;
+    }
+
+}
+
+.unsubscribe-popup__category-card__department {
+    font-size: 1rem*0.8;
+    font-weight: 700;
+    color: var(--dark-black);
+    margin-top: 0.3rem*0.8;
+
+}
+
+.unsubscribe-popup__category-card__learners-number {
+    font-size: 0.875rem*0.8;
+    color: var(--grey);
+    margin-top: 0.3rem*0.8;
+}
+
+.unsubscribe-popup__footer,
+.unsubscribe-popup__footer2,
+.unsubscribe-popup__footer3 {
+    border: 0;
+    padding-top: 0;
+}
+
+.unsubscribe-popup__footer {
+    button {
+        @include contained-button;
+        padding: 0.5rem 1.25rem;
+        border-radius: 0.625rem;
+        margin: 0.25rem auto;
+    }
+}
+
+.unsubscribe-popup__body__unsubscription-cons-body {
+    @include flex(center, center);
+    flex-direction: column;
+}
+
+.unsubscribe-popup__body__unsubscription-cons-list {
+    list-style-type: none;
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+.unsubscribe-popup__body__unsubscription-cons-img {
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem 0;
+}
+
+.unsubscribe-popup__footer2,
+.unsubscribe-popup__footer3 {
+    @include flex(center, space-between);
+
+    button:nth-of-type(1),
+    button:nth-of-type(2) {
+        padding: 0.5rem 1.25rem;
+        border-radius: 0.625rem;
+        margin: 0.5rem 0;
+    }
+
+    button:nth-of-type(1) {
+        @include contained-button;
+    }
+
+    button:nth-of-type(2) {
+        @include outlined-button;
+    }
+}
+
+.reason-for-unsubscription {
+    width: fit-content !important;
+    // margin: 0 auto;
+    text-align: right !important;
+
+    ul {
+        list-style-type: none;
+
+        li {
+            @include flex(center, flex-start);
+        }
+    }
+
+    input {
+        cursor: pointer;
+        margin: 0 0 0 0.75rem;
+        width: 1.2rem;
+        height: 1.2rem;
+
+        &:focus {
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        &:checked {
+            background-color: var(--primary-red);
+            border-color: var(--primary-red);
+        }
+    }
+}
+
+.reason-for-unsubscription__another-reason {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 2rem 0 0 0 !important;
+
+    div {
+        text-align: center;
+    }
+}
+
+
+.reason-for-unsubscription__another-reason-input-field {
+    border: 0.1rem solid rgba(119, 119, 119, 0.2) !important;
+    padding: 1rem;
+    font-family: 'Almarai', sans-serif;
+    width: 100%;
+    height: 5.625rem;
+    font-size: 0.9rem;
+    border-radius: 0.75rem;
+    margin-top: 0.5rem;
+    resize: none;
+    overflow: hidden;
+
+    &:active,
+    &:focus {
+        outline: 0 !important;
+        -webkit-appearance: none;
+        box-shadow: none !important;
+    }
+
+    &::placeholder {
+        color: rgba(34, 34, 34, 0.5);
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width:1200px) {
+
+    .unsubscribe-popup__category-card-container {
+
+        &>div {
+            padding: 1.5rem*1.3 2rem*1.3 !important;
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 33% !important;
+
+                &:after {
+                    font-size: 1rem*1.3 !important;
+                    box-shadow: 0 0 1.25rem*1.3 #00000033 !important;
+                }
+            }
+
+            &>div:nth-child(1) {
+                right: 1rem*1.3 !important;
+
+                &:after {
+                    padding: 1.5rem*1.3 1.18rem*1.3 1.5rem*1.3 1.28rem*1.3 !important;
+                }
+
+            }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.3 !important;
+
+                &:after {
+                    padding: 1.5rem*1.3 1.28rem*1.3 1.5rem*1.3 1.18rem*1.3 !important;
+                }
+            }
+
+        }
+    }
+
+    .unsubscribe-popup__category-card {
+        width: 10rem*0.85;
+        height: 10rem*0.85;
+        border: 0.063rem*0.85 solid #00000026;
+        border-radius: 0.75rem*0.85;
+        margin: 0 0.5rem 1rem 0.5rem;
+
+        &:hover {
+            box-shadow: 0 0 1.875rem*0.85 #0000001A;
+        }
+    }
+
+    .unsubscribe-popup__category-card__img-box {
+        width: 3.125rem*0.85 !important;
+        height: 3.125rem*0.85;
+        border-radius: 50%;
+
+        img {
+            width: 2rem*0.85;
+            height: 2rem*0.85;
+        }
+
+    }
+
+    .unsubscribe-popup__category-card__department {
+        font-size: 1rem*0.9;
+        margin-top: 0.3rem*0.9;
+
+    }
+
+    .unsubscribe-popup__category-card__learners-number {
+        font-size: 0.875rem*0.9;
+        margin-top: 0.3rem*0.9;
+    }
+
+}
+
+@media (max-width:980px) {
+
+    .unsubscribe-popup__category-card-container {
+        margin-top: 2rem;
+
+        &>div {
+            padding: 1.5rem*1.4 2rem*1.4 !important;
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 31% !important;
+
+                &:after {
+                    font-size: 1rem*1.4 !important;
+                    box-shadow: 0 0 1.25rem*1.4 #00000033 !important;
+                }
+            }
+
+            &>div:nth-child(1) {
+                right: 1rem*1.4 !important;
+
+                &:after {
+                    padding: 1.5rem*1.4 1.18rem*1.4 1.5rem*1.4 1.28rem*1.4 !important;
+                }
+
+            }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.4 !important;
+
+                &:after {
+                    padding: 1.5rem*1.4 1.28rem*1.4 1.5rem*1.4 1.18rem*1.4 !important;
+                }
+            }
+
+        }
+    }
+
+    .unsubscribe-popup__category-card {
+        width: 10rem*0.85;
+        height: 10rem*0.85;
+        border: 0.063rem*0.85 solid #00000026;
+        border-radius: 0.75rem*0.85;
+        margin: 0 0.5rem 1rem 0.5rem;
+
+        &:hover {
+            box-shadow: 0 0 1.875rem*0.85 #0000001A;
+        }
+    }
+
+    .unsubscribe-popup__category-card__img-box {
+        width: 3.125rem*0.85 !important;
+        height: 3.125rem*0.85;
+        border-radius: 50%;
+
+        img {
+            width: 2rem*0.85;
+            height: 2rem*0.85;
+        }
+
+    }
+
+    .unsubscribe-popup__category-card__department {
+        font-size: 1rem;
+        margin-top: 0.3rem;
+
+    }
+
+    .unsubscribe-popup__category-card__learners-number {
+        font-size: 0.875rem;
+        margin-top: 0.3rem;
+    }
+}
+
+@media (max-width: 575px) {
+
+    .unsubscribe-popup__header {
+        padding: 1rem 0.5rem !important;
+
+        div {
+            font-size: 1.5rem*1.8;
+        }
+    }
+
+    .unsubscribe-popup__body {
+        &>div:nth-of-type(1) {
+            width: 100%;
+            font-size: 1.1rem*1.8;
+        }
+    }
+
+    .unsubscribe-popup__category-card-container {
+        margin: 1rem*2 0 0 0;
+    }
+
+    .unsubscribe-popup__category-card {
+        width: 10rem*1.7;
+        height: 10rem*1.7;
+        border: 0.063rem*1.7 solid #00000026;
+        border-radius: 0.75rem*1.7;
+        text-align: center;
+        @include flex(center, center);
+        margin: 0 0.5rem 1rem 0.5rem;
+
+        &:hover {
+            box-shadow: 0 0 1.875rem*1.7 #0000001A;
+        }
+    }
+
+    .unsubscribe-popup__category-card__img-box {
+        width: 3.125rem*2 !important;
+        height: 3.125rem*2;
+        background-color: var(--primary-red);
+        @include flex(center, center);
+
+        img {
+            width: 2rem*2;
+            height: 2rem*2;
+        }
+
+    }
+
+    .unsubscribe-popup__category-card__department {
+        font-size: 1rem*2.2;
+        margin-top: 0.3rem*1.7;
+
+    }
+
+    .unsubscribe-popup__category-card__learners-number {
+        font-size: 0.875rem*2.2;
+        margin-top: 0.3rem*1.7;
+    }
+
+    .unsubscribe-popup__footer {
+        button {
+            @include contained-button;
+            font-size: 0.97rem*2;
+            padding: 0.5rem*2 1.25rem*2;
+            border-radius: 0.625rem*2;
+            margin: 0.25rem*2 auto;
+        }
+    }
+
+    .unsubscribe-popup__body__unsubscription-cons-list {
+        margin: 0 auto;
+        font-size: 1.1rem*1.7;
+    }
+
+    .unsubscribe-popup__body__unsubscription-cons-img {
+        width: 4rem*1.7;
+        height: 4rem*1.7;
+        margin: 1rem*1.7 0;
+    }
+
+    .unsubscribe-popup__footer2,
+    .unsubscribe-popup__footer3 {
+
+        button:nth-of-type(1),
+        button:nth-of-type(2) {
+            padding: 0.5rem*1.7 1.25rem*1.7;
+            border-radius: 0.625rem*1.7;
+            margin: 0.5rem*1.7 0;
+            font-size: 0.97rem*1.7;
+        }
+    }
+
+    .reason-for-unsubscription {
+
+        input {
+            margin: 0 0 0 0.75rem*1.7;
+            width: 1.2rem*1.7;
+            height: 1.2rem*1.7;
+        }
+    }
+
+    .reason-for-unsubscription__another-reason {
+        font-size: 0.9rem*1.7;
+        margin: 2rem 0 0 0 !important;
+    }
+
+
+    .reason-for-unsubscription__another-reason-input-field {
+        border: 0.1rem*1.7 solid rgba(119, 119, 119, 0.2) !important;
+        padding: 1rem*1.7;
+        height: 5.625rem*1.7;
+        font-size: 0.9rem*1.7;
+        border-radius: 0.75rem*1.7;
+        margin-top: 0.5rem*1.7;
+
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+        }
+
+        &::placeholder {
+            font-size: 0.9rem*1.7;
+        }
+    }
+}

@@ -122,7 +122,7 @@
         height: 100%;
         width: fit-content;
         margin: 0 0 0 3.5rem;
-        padding: 0.55rem 0;
+        padding: 0.45rem 0;
         display: inline-block;
         cursor: pointer;
     }
@@ -607,11 +607,18 @@
 .navbar__account-icon__dropdown {
     @include popover;
     top: 1.25rem !important;
-    height: 4rem;
+    // height: 4rem;
     width: fit-content;
-    padding: 0 1.5rem;
+    padding: 0.6rem 1.5rem ;
     border-radius: 0.8rem;
     @include flex(center, center);
+    flex-direction: column;
+    div{
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        color: var(--dark-black);
+    }
 
     button {
         @include contained-button;

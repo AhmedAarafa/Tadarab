@@ -118,27 +118,27 @@ export default function MobileCheckoutBar() {
     <>
       <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
         <div>
-        {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+          {/* {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
           <div className={styles["monthly-subscription__subscription-timer"]}>
           عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
             <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-          </div>}
+          </div>} */}
           <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
             {
               Router.asPath.includes("subscription") ? 
-              <span>جرب تدرب بلا حدود مجاناَ</span>
+              <span> ابدأ التعلم الآن</span>
               :
               <>
               <div>
-
-              <span>اشترك لمشاهدة هذه الدورة </span>
+                <span>اشترك في تدرب بلا حدود </span>
               </div>
-              <div>+ مئات الدورات التدريبية باشتراك شهرى واحد</div>
               </>
             }
           </Button>
           <div>
-          ٧ أيام تجربة مجانية ثم ٩ دك   شهريًا
+          <div className={styles["monthly-subscription__subscription-value"]}>
+          احصل على كل الدورات فقط ب 6 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 9 دك</span>
+          </div>
           </div>
         </div>
       </div>

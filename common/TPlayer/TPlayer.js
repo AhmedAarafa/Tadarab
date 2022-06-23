@@ -33,9 +33,12 @@ var courseTitle		= ''; 			// the current course title
 var courseId		= 0; 			// the current course id
 var playbtn_on		= false;
 var free_limit		= 2;		// free course limit after then signup popup
-var seconds_counter = 0;
 var tplayer;					// TADARAB PLAYER GLOBAL OBJECT
 var overlayM,errorM,buynowM;	// player modal dilog
+
+let pervPr = 0;
+let prevTime = 0;
+let playCounter = 0;
 
 /**
 *	Start player playing
@@ -43,13 +46,99 @@ var overlayM,errorM,buynowM;	// player modal dilog
 function startPlaying(){
 	const gradientLayer = document.getElementById("video-player-container");
 	gradientLayer.classList.remove("course-advertisement_video-player-gradient__4ZVgD");
-	playbtn_on=true;tplayer_video_progress('play');
+	playbtn_on=true;
+	//tplayer_video_progress('play');
 }
 
 /**
 *	pause player playing
 */
-function pausePlaying(){if(playbtn_on){tplayer.bigPlayButton.show();}tplayer_video_progress('pause');}
+function pausePlaying(){
+	if(playbtn_on){tplayer.bigPlayButton.show();}
+	//tplayer_video_progress('pause');
+}
+
+/**
+*	update play time event
+*/
+function updatePlayTime(){
+	if(tplayer.paused()){return;} /** breack **/
+
+	var id=tplayer?.playlist.currentItem(),
+	//is_view=(tplayer.playlist()[id].sources[0].isView),
+	//view_pr=(tplayer.playlist()[id].sources[0].viewPr),
+	duration=tplayer?.duration(),current=tplayer?.currentTime(),
+	perc=(current/duration*100).toFixed(2);
+
+	if((tplayer?.playlist?.currentItem())&&(tplayer?.currentTime())){
+		/** Start up 0% start reached **/
+		if((Math.floor(perc)<=0)&&(tplayer?.playlist()[id].viewPr<1)){
+			tplayer.playlist()[id].viewPr=1;
+			tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,0,current);
+		}
+
+		/** 25% reached **/
+		if((Math.floor(perc)>=25)&&(tplayer?.playlist()[id].viewPr<25)){
+			tplayer.playlist()[id].viewPr=25;
+			tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,25,current);
+		}
+
+		/** 50% reached **/
+		if((Math.floor(perc)>=50)&&(tplayer?.playlist()[id].viewPr<50)){
+			tplayer.playlist()[id].viewPr=50;
+			tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,50,current);
+		}
+
+		/** 75% reached **/
+		if((Math.floor(perc)>=75)&&(tplayer?.playlist()[id].viewPr<75)){
+			tplayer.playlist()[id].viewPr=75;
+			tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,75,current);
+		}
+
+		/** 100% reached **/
+		if((Math.floor(perc)>=99)&&(tplayer?.playlist()[id].viewPr<99)){
+			tplayer.playlist()[id].viewPr=100;clearInterval(playbackInterval);
+			tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,100,current);
+		}
+
+		if(isUserLogin==true){
+			if(pervPr < Math.floor(perc)){ /** each percentage **/
+				//if(((Math.floor(perc).toFixed(0))%2===0)&&(((pervPr).toFixed(0)) < ((Math.floor(perc)).toFixed(0)))){ /** each 2 percentage **/
+				
+				pervPr=(Math.floor(perc));playCounter=((Math.floor(current))-prevTime);prevTime=(Math.floor(current));
+
+				/*console.log("Percentage :", pervPr);
+				console.log("Time :", (Math.floor(current)));
+				console.log("Counter :", playCounter);
+				console.log("-------------------------");*/
+
+				/* endpoint perameters.
+				*	- courseId (corrent course id)
+				*	- userId (logged-in user id)
+				*	- id (the playlist item id integer (playlist index))
+				*	- title (the playlist item title (you can use `tplayer.playlist()[id].title` ))
+				*	- PR (percentage of the complete video (you can use `(Math.floor(perc))` ))
+				*	- seconds (the complate viwed seconds (you can use `(Math.floor(current))` ))
+				*	- counter (counter for the call each number of seconds)
+				*/
+				axiosInstance.post(`course/${courseId}/progress`, {
+					"action": "web",
+					"lecture_id":id,
+					"title":tplayer.playlist()[id].title,
+					"courseId":courseId,
+					"percentage":(Math.floor(perc)),
+					"seconds":(Math.floor(current)),
+					"counter":playCounter,
+				}).then((response) => {
+					//console.log(response);
+					//console.log("PLAYER Track: ",response);
+				}).catch((error)=>{
+					//console.log("PLAYER Track ERROR: ",error);
+				})
+			}
+		}
+	}
+}
 
 /** 
 *	handle error
@@ -80,9 +169,20 @@ function pudate_playlist_active(e){
 	//var elems=Array.from(document.querySelectorAll('.active'));elems.forEach(node=>{node?.classList.remove('active');node?.classList.remove('play');});e.classList.add('active');e?.classList.add('play');
 }
 
+/**
+*	deprecated function
+*	@deprecated: 08-06-2022
+*	@type: tracking video progress for logged in users
+*	@since: 1.7.4 
+*	@isse: too many request call to server API
+*	@replace `updatePlayTime` with on update player event
+*/
 function tplayer_video_progress(type){
 	var playbackInterval;
 	if((playbackInterval)&&(typeof playbackInterval!==undefined)){clearInterval(playbackInterval);}
+
+	if (tplayer.paused()) {return;}
+
 	if((type==='play')&&(tplayer?.playlist)){
 		var id=tplayer?.playlist.currentItem(),
 		//is_view=(tplayer.playlist()[id].sources[0].isView),
@@ -193,8 +293,8 @@ const handleSubscriptionBtn = () => {
 *	Video GA tracking
 */
 function tplayer_viewed(id,title,isFree,pr,current){
-	var type=((isFree)?'free':'paid'),action=((pr>0)?('progress-'+pr+'%'):'start'),
-	vTitleEnglish=google_translate(title),courseTitleEnglish=google_translate(courseTitle);
+	//var type=((isFree)?'free':'paid'),action=((pr>0)?('progress-'+pr+'%'):'start'),
+	//vTitleEnglish=google_translate(title),courseTitleEnglish=google_translate(courseTitle);
 	//tadarab_fire_traking_GA_code('video_tracking',{type:type,action:action,course_name:courseTitleEnglish,video_name:vTitleEnglish});
 }
 
@@ -254,6 +354,7 @@ function is_playable_next(id){
 		isFree=((tplayer.playlist()[id].is_free)?tplayer.playlist()[id].is_free:false),
 		is_play=((isPurchased==true)?true:isFree);
 		if((play_src!=='')&&(is_play)){is_able=true;}
+		pervPr=0;prevTime=0;
 	}
 	return is_able;
 }
@@ -269,7 +370,7 @@ function tplayer_dialog(action){
 /**
 *	Duration calcculation
 */ 
-function duration_calculator(time) {      
+function duration_calculator(time) {
 	time=Number(time);
 	let h=(Math.floor(time/3600)),m=(Math.floor(time%3600/60)),s=(Math.floor(time%3600%60));
 	return {h,m,s};
@@ -337,7 +438,7 @@ export function TPlayerPlayList (){
 					
 					var sid=items.id,s_duration=items.total_duration,lectures=(items.lectures);lectures=Object.values(lectures);
 					return (
-						<Accordion key={sindex} defaultActiveKey="" className={styles["course-content__accordion"]}>
+						<Accordion key={sindex} defaultActiveKey="0" className={styles["course-content__accordion"]}>
 							<Accordion.Item eventKey={JSON.stringify(sindex)}  className={styles["course-content__accordion__item"]}>
 								
 								{/* SECTION */}
@@ -433,7 +534,7 @@ export function TPlayerPaidPlayList (){
 				playlistHTML=livePlayList.map(function(items,sindex){
 					var sid=items.id,s_duration=items.total_duration,lectures=(items.lectures);lectures=Object.values(lectures);
 					return (
-						<Accordion key={sindex} defaultActiveKey="" className={styles["course-content__accordion"]}>
+						<Accordion key={sindex} defaultActiveKey="0" className={styles["course-content__accordion"]}>
 							<Accordion.Item eventKey={JSON.stringify(sindex)}  className={styles["course-content__accordion__item"]}>
 								
 								{/* SECTION */}
@@ -484,7 +585,6 @@ export function TPlayerPaidPlayList (){
 
 				//playlistHTML=freelistHtml.concat(playlistHTML);
 				playlistSrc=allLectures;
-				console.log("playlistSrc ",playlistSrc);
 				return (
 					<>{playlistHTML}</>
 				)
@@ -560,6 +660,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 			constructor: function(){Button.apply(this,arguments);this.addClass("vjs-icon-next-item");},
 			handleClick: function(props){
 				var nid=(tplayer?.playlist?.currentItem()+1);
+				pervPr=0;prevTime=0;
 				if((tplayer.playlist()[nid])&&(tplayer.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!=true)){free_lession(nid);}else{if(is_playable_next(nid)){pudate_playlist_active(document.querySelector('a[data-lession="'+nid+'"].lession'));tplayer_dialog('hide');tplayer.playlist.next();}else{tplayer_dialog('show');return false;}}
 			}
 		});
@@ -568,6 +669,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 		const PrevButton = videojs.extend(Button, {
 			constructor: function(){Button.apply(this,arguments);this.addClass("vjs-icon-previous-item");this.addClass("hide");},
 			handleClick: function(props){
+				pervPr=0;prevTime=0;
 				var nid=(tplayer?.playlist?.currentItem()-1);
 				if((tplayer.playlist()[nid])&&(tplayer.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!=true)){free_lession(nid); }else{if(is_playable_next(nid)){pudate_playlist_active(document.querySelector('a[data-lession="'+nid+'"].lession'));tplayer_dialog('hide');tplayer.playlist.previous();}else{tplayer_dialog('show');return false;}}
 			}
@@ -581,6 +683,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 
 		tplayer.on("play", startPlaying);
 		tplayer.on("pause", pausePlaying);
+		tplayer.on("timeupdate", updatePlayTime);
 		tplayer.on("error", handleOnError);
 		tplayer.on('contextmenu',function(e){
 			e.preventDefault();this.addClass('vjs-contextmenu-ui');
@@ -598,6 +701,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 			}
 		});
 		tplayer.on('ended',function(e){
+			pervPr=0;prevTime=0;
 			var nid=(tplayer?.playlist?.currentItem()+1);
 			if((tplayer.playlist()[nid])&&(tplayer.playlist()[nid].is_free)&&(nid>free_limit)&&(isUserLogin!=true)){free_lession(nid);playbtn_on=true;}else{if(is_playable_next(nid)){tplayer_videotimeloader(nid);}else{tplayer.playlist.autoadvance(0);tplayer_dialog('show')}}
 		});

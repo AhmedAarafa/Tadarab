@@ -72,7 +72,7 @@ export default function SimilarBooks(props: any) {
                                             className={styles["similar-books__cards-carousel__card__card-body"]}
                                         >
                                             <Link href={`/ebook/${book?.slug}`}>
-                                                <h1 className={styles["similar-books__cards-carousel__card__card-body__title"]}>{book?.title}</h1>
+                                                <div className={styles["similar-books__cards-carousel__card__card-body__title"]}>{book?.title}</div>
                                             </Link>
                                             <Link href={`/topic/${book?.categories[0]?.slug}`}>
                                                 <div className={styles["similar-books__cards-carousel__card__card-body__category"]}>

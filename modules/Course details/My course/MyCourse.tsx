@@ -8,6 +8,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { TadarabVideoPlayer, TPlayerPaidPlayList } from "common/TPlayer/TPlayer";
 import { setMyCourseNavigator } from "configurations/redux/actions/myCourseNavigator";
 import Link from "next/link";
+import useResize from "custom hooks/useResize";
 
 export default function MyCourse() {
     const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -17,6 +18,17 @@ export default function MyCourse() {
     const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
     const myCourseNavigator = useSelector((state:any) => state.myCourseNavigator);
     const dispatch = useDispatch();
+
+    const [isMobileView, setIsMobileView] = useState(false);
+
+    const viewportWidthDetector = () => {
+        if (window.innerWidth >= 576) {
+            setIsMobileView(false);
+        } else {
+            setIsMobileView(true);
+        }
+    }
+    useResize(viewportWidthDetector);
 
     useEffect(() => {
         let today:any = new Date();
@@ -41,9 +53,9 @@ export default function MyCourse() {
 
     useEffect(() => {
         setCourseDetails(courseDetailsData?.data);
-        return () => {
-            dispatch(setMyCourseNavigator("curriculum"));
-          }
+        // return () => {
+        //     dispatch(setMyCourseNavigator("curriculum"));
+        //   }
       }, [courseDetailsData]);
 
     let progress_pr = ((courseDetailsData.data?.progress_percentage)?courseDetailsData.data?.progress_percentage:0);
@@ -73,15 +85,10 @@ export default function MyCourse() {
                     { /** Player section **/}
                     <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}`}>
                         <TadarabVideoPlayer />
-                    </div>
-
-                </Col>
-                <Col xs={{span:12 , order:3}} sm={{span:4}}></Col>
-                
-                <Col xs={{span:12 , order:3}} sm={{span:8 , order:3}}>
-                
-                    {/** Attachments **/}
-                    <Accordion defaultActiveKey="" className={`${styles["course-content__attachments-accordion"]}`}>
+                         {/** Attachments **/}
+                   { courseDetailsData.data?.attachments.length !== 0  && courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null && 
+                   !isMobileView &&
+                    <Accordion defaultActiveKey="20" className={`${styles["course-content__attachments-accordion"]}`}>
                         <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
                             <Accordion.Header className={styles["course-content__accordion__header"]}>
                                 <div className={styles["course-content__accordion__header__details-box"]}>
@@ -117,7 +124,53 @@ export default function MyCourse() {
                                 }
                             </Accordion.Body>
                         </Accordion.Item>
-                    </Accordion>
+                    </Accordion>}
+                    </div>
+
+                </Col>
+                <Col xs={{span:12 , order:3}} sm={{span:4}}></Col>
+                
+                <Col xs={{span:12 , order:3}} sm={{span:8 , order:3}}>
+                
+                    {/** Attachments **/}
+                   { isMobileView && courseDetailsData.data?.attachments.length !== 0  && courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null && 
+                    <Accordion defaultActiveKey="20" className={`${styles["course-content__attachments-accordion"]}`}>
+                        <Accordion.Item  eventKey="20"  className={styles["course-content__accordion__item"]}>
+                            <Accordion.Header className={styles["course-content__accordion__header"]}>
+                                <div className={styles["course-content__accordion__header__details-box"]}>
+                                    <div style={{color:"#af151f"}} className={styles["course-content__accordion__header__group-number"]}>
+                                    ملفات شرح
+                                    </div>
+                                </div>
+                            </Accordion.Header>
+                            <Accordion.Body className={styles["course-content__accordion__body"]}>
+                                { courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
+                                    (courseDetailsData.data?.attachments).map((att:any,i:number)=>{
+                                        
+                                        return(
+                                            <div key={i} className={styles["course-content__accordion__body__list-item"]}>
+                                                <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
+                                                    <div className={styles["course-content__accordion__body__list-item__icon"]}>
+                                                        <AttachmentsIcon />
+                                                    </div>
+                                                    <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
+                                                        <div>{att.title}</div>
+                                                    </div>
+                                                </div>
+                                                <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
+                                                  <Link href={att.link} passHref>
+                                                    <a  target="_blank" rel="noopener">
+                                                      <FileDownloadIcon color="#af151f"/>
+                                                    </a>
+                                                  </Link> 
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>}
                 </Col>
                 </>
             }

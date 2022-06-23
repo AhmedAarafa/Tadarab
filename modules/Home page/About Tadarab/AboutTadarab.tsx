@@ -16,7 +16,7 @@ export default function AboutTadarab() {
         <Row className={styles["about-tadarab"]}>
           
             <Col xs={12} className={styles["about-tadarab__title"]}>
-                    <span> ماذا قال المتدربون عن دورات تدرب </span>
+                    <span>ماذا قال المتدربون عن الدورات التدريبية في  تدرب</span> 
                     {/* <span>  قالوا عن تدرب  </span> */}
             </Col>
             <Col xs={12} className={styles["about-tadarab__breif"]}>

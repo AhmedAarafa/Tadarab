@@ -17,9 +17,15 @@ import "swiper/css";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 
 export default function WatchedCourses(props: any) {
+    const [watchedCourses, setWatchedCourses] = useState<any>([]);
+
+    useEffect(() => {
+        setWatchedCourses(props.data || []);
+      }, [props?.data]);
+
     return (
         <>
-            <Row className={styles["watched-courses"]}>
+            { watchedCourses.length !== 0 && <Row className={styles["watched-courses"]}>
                 <Col xs={12} className={styles["watched-courses__title"]}>
                     <span>دوراتي </span>
                     <span>التدريبية</span>
@@ -53,7 +59,7 @@ export default function WatchedCourses(props: any) {
                     >
 
                         {
-                            props?.data?.map((course: any, i: number) => {
+                            watchedCourses?.map((course: any, i: number) => {
                                 return (
                                     <SwiperSlide key={i}>
 
@@ -63,7 +69,7 @@ export default function WatchedCourses(props: any) {
                                                 styles["watched-courses__cards-carousel__course-card"]
                                             }>
                                             {
-                                                course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                                                course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
 
                                                 <div
                                                     className={
@@ -71,20 +77,20 @@ export default function WatchedCourses(props: any) {
                                                         "watched-courses__cards-carousel__course-card__category-chip"
                                                         ]
                                                     }
-                                                    style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
+                                                    style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
                                                 >
-                                                    {course.categories[0] !== undefined && course.categories[0].title}
+                                                    {course?.categories[0] !== undefined && course?.categories[0].title}
                                                 </div>
 
                                             }
 
 
-                                            <Link href={`/course/${course.slug}`}>
+                                            <Link href={`/course/${course?.slug}`}>
                                                 <a onClick={() => { GAProductClickEventHandler(course, i) }}>
 
                                                     <Card.Img
                                                         variant="top"
-                                                        src={course.image}
+                                                        src={course?.image}
                                                         alt="course image"
                                                         className={
                                                             styles[
@@ -103,7 +109,7 @@ export default function WatchedCourses(props: any) {
                                                     ]
                                                 }
                                             >
-                                                <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
+                                                <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
                                                     className={
                                                         styles[
                                                         "watched-courses__cards-carousel__course-card__card-body__card-header"
@@ -117,7 +123,7 @@ export default function WatchedCourses(props: any) {
                                                             ]
                                                         }
                                                     >
-                                                        <Link href={`/trainer/${course.trainer?.slug}`}>
+                                                        <Link href={`/trainer/${course?.trainer?.slug}`}>
 
                                                             <img loading="lazy"
                                                                 src={course?.trainer?.image}
@@ -132,19 +138,19 @@ export default function WatchedCourses(props: any) {
                                                             ]
                                                         }
                                                     >
-                                                        <Link href={`/course/${course.slug}`}>
+                                                        <Link href={`/course/${course?.slug}`}>
                                                             <h1 onClick={() => { GAProductClickEventHandler(course, i) }}
-                                                                title={course.title}
+                                                                title={course?.title}
                                                                 className={
                                                                     styles[
                                                                     "watched-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
                                                                     ]
                                                                 }
                                                             >
-                                                                {course.title}
+                                                                {course?.title}
                                                             </h1>
                                                         </Link>
-                                                        <Link href={`/trainer/${course.trainer?.slug}`}>
+                                                        <Link href={`/trainer/${course?.trainer?.slug}`}>
 
                                                             <div title={course?.trainer?.name_ar}
                                                                 className={
@@ -165,24 +171,24 @@ export default function WatchedCourses(props: any) {
                                                     <div className={styles[
                                                         "watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar"
                                                     ]}>
-                                                        <ProgressBar now={32} />
+                                                        <ProgressBar now={Math.ceil(course?.progress_percentage)} />
                                                     </div>
                                                     <div className="w-100 d-flex align-items-center justify-content-between">
 
                                                         <div className={styles[
                                                             "watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage"
                                                         ]}>
-                                                            32%
+                                                            {`${course?.progress_percentage}%`}
 
                                                         </div>
 
-                                                        <Link href={`/course/${course.slug}`}>
+                                                        <Link href={`/course/${course?.slug}`}>
 
                                                             <div className={styles[
                                                                 "watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start"
                                                             ]}>
                                                                 {
-                                                                    course.progress_percentage == 0 ?
+                                                                    course?.progress_percentage == 0 ?
                                                                         " ابدأ "
                                                                         :
                                                                         " أكمل "
@@ -209,7 +215,7 @@ export default function WatchedCourses(props: any) {
 
                     </Swiper>
                 </Col>
-            </Row>
+            </Row>}
 
         </>
     )

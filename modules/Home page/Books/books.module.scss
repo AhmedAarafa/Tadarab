@@ -12,7 +12,8 @@
     background-color: white;
     @include flex(center, flex-start);
 
-    &>div {
+    &>h2 {
+        font-weight: 800;
         span:nth-of-type(1) {
             color: var(--dark-black);
         }

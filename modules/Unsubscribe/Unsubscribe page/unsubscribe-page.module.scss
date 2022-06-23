@@ -1,0 +1,100 @@
+@import "../../../styles/mixins";
+
+.unsubscribe-page {
+    padding: 5.5rem 2rem 0 2rem;
+    @include flex(center, center);
+}
+
+.unsubscribe-page__title {
+    text-align: center;
+    color: var(--dark-black);
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+.unsubscribe-page__your-membership {
+    color: var(--dark-black);
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin: 1rem 0 0.25rem 0;
+}
+
+.unsubscribe-page__subscription-pros {
+    color: var(--dark-black);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.unsubscribe-page__subscription-pros__list {
+    list-style-type: none;
+    padding: 1rem 0.5rem 0 0 !important;
+
+    li {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    svg {
+        width: 1.125rem;
+        height: 0.875rem;
+        margin: 0 0 0 0.5rem;
+    }
+}
+
+.unsubscribe-page__cancel-subscription {
+    button {
+        @include contained-button;
+        padding: 0.4rem 2rem;
+        margin: 1rem 0 0 0;
+    }
+
+    text-align: center;
+}
+
+
+@media (max-width: 575px) {
+
+    .unsubscribe-page {
+        padding: 10rem 5rem 0 5rem;
+        @include flex(center, center);
+    }
+
+    .unsubscribe-page__title {
+        font-size: 1.5rem*2.5;
+    }
+
+    .unsubscribe-page__your-membership {
+        font-size: 1.25rem*2.5;
+        margin: 1rem*2.5 0 0.25rem*2.5 0;
+    }
+
+    .unsubscribe-page__subscription-pros {
+        font-size: 1.1rem*1.9;
+    }
+
+    .unsubscribe-page__subscription-pros__list {
+        padding: 1rem*2.5 0.5rem*2.5 0 0 !important;
+
+        li {
+            font-size: 1rem*1.9;
+            margin-bottom: 0.2rem*1.9;
+        }
+
+        svg {
+            width: 1.125rem*1.9;
+            height: 0.875rem*1.9;
+            margin: 0 0 0 0.5rem*1.9;
+        }
+    }
+
+    .unsubscribe-page__cancel-subscription {
+        button {
+            padding: 0.4rem*2.5 2rem*2.5;
+            margin: 1rem*2.5 0 0 0;
+            font-size: 0.97rem*1.9;
+            border-radius: 0.625rem*2.5;
+            width: 60%;
+        }
+    }
+
+}

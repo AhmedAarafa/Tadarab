@@ -31,13 +31,14 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { withRouter } from 'next/router';
 import useResize from "custom hooks/useResize";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
-import { useGoogleLogout } from 'react-google-login';
+//import { useGoogleLogout } from 'react-google-login';
 
 function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [expanded, setExpanded] = useState<any>(false);
+  const [dropdownOpened, setDropdownOpened] = useState({cart:false,account:false});
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
   const [searchQuery, setSearchQuery] = useState("");
   const handleDiscoverSidebarShow = (status: boolean) => {
@@ -58,18 +59,19 @@ function Navbar() {
     console.log("logout failed");
   }
 
-  const { signOut, loaded } = useGoogleLogout({
+  /*const { signOut, loaded } = useGoogleLogout({
     onFailure: onLOFailure,
     clientId: `${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`,
     onLogoutSuccess: onLOLogoutSuccess,
-  })
+  })*/
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user_id");
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
-    signOut();
+    localStorage.removeItem("is_user_subscribed");
+    //signOut();
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
     setExpanded(false);
 
@@ -100,7 +102,8 @@ function Navbar() {
     window.addEventListener("click", (e: any) => {
       if (e.target.className == "btn-close" ||
         e.target.className == ("fade offcanvas-backdrop show") ||
-        e.target.className == ("fade offcanvas-backdrop")
+        e.target.className == ("fade offcanvas-backdrop") ||
+        e.target.id == ("show-results")
       ) {
         const closeBtn: any = document.getElementsByClassName(`btn-close`)[0];
         closeBtn.style.cssText = ` display:none !important`;
@@ -150,10 +153,14 @@ function Navbar() {
       if (searchBar) {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+          userStatus.isSubscribed == true ?
+          searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
           searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
           // searchBar.style.cssText=`width:28rem`;
           // searchBar.style.cssText=`width:31.75rem`;
+          userStatus.isSubscribed == true ?
+          searchBar.style.cssText = `width:42rem`:
           searchBar.style.cssText = `width:36rem`;
         }
       }
@@ -162,10 +169,14 @@ function Navbar() {
 
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
+            userStatus.isSubscribed == true ?
+            searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
             searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
             // searchBar.style.cssText=`width:28rem`;
             // searchBar.style.cssText=`width:31.75rem`;
+            userStatus.isSubscribed == true ?
+          searchBar.style.cssText = `width:42rem`:
             searchBar.style.cssText = `width:36rem`;
           }
         }
@@ -178,9 +189,13 @@ function Navbar() {
 
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+          userStatus.isSubscribed == true ?
+          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
           searchBar.style.cssText = `width: calc(100vw - 50rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
+          userStatus.isSubscribed == true ?
+          searchBar.style.cssText = `width:38.5rem`:
           searchBar.style.cssText = `width:32.5rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
@@ -191,9 +206,13 @@ function Navbar() {
 
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
+            userStatus.isSubscribed == true ?
+          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
             searchBar.style.cssText = `width: calc(100vw - 50rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
+            userStatus.isSubscribed == true ?
+            searchBar.style.cssText = `width:38.5rem`:
             searchBar.style.cssText = `width:32.5rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
@@ -339,6 +358,26 @@ function Navbar() {
     }
   }
 
+  const closeDropdown = (dropdown:string)=>{
+    if(dropdown == "cart"){
+      if(dropdownOpened.account == true){
+        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart,account:false});
+      }else{
+        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart});
+      }
+    }else if(dropdown == "account"){
+      if(dropdownOpened.cart == true){
+        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account,cart:false});
+      }else{
+        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account});
+      }
+    }
+  }
+
+  useEffect(() => {
+    setDropdownOpened({cart:false,account:false});
+  }, [router.asPath]);
+
 
 
   return (
@@ -384,37 +423,37 @@ function Navbar() {
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
                 <Link href="/topic/family">
-                  <li onClick={() => { setExpanded(false) }}>الاسرة</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>الاسرة</li>
                 </Link>
                 <Link href="/topic/self-development">
-                  <li onClick={() => { setExpanded(false) }}>التنمية الذاتية</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>التنمية الذاتية</li>
                 </Link>
                 <Link href="/topic/health">
-                  <li onClick={() => { setExpanded(false) }}>الصحة</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>الصحة</li>
                 </Link>
-                <Link href="/topic/human-recourses">
-                  <li onClick={() => { setExpanded(false) }}>الموارد البشرية</li>
+                <Link href="/topic/human-resources">
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>الموارد البشرية</li>
                 </Link>
                 <Link href="/topic/office">
-                  <li onClick={() => { setExpanded(false) }}>برامج الأوفيس</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>برامج الأوفيس</li>
                 </Link>
                 <Link href="/topic/family-and-educational-skills">
-                  <li onClick={() => { setExpanded(false) }}>تربية الأبناء</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>تربية الأبناء</li>
                 </Link>
                 <Link href="/topic/technology">
-                  <li onClick={() => { setExpanded(false) }}>تكنولوجيا</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>تكنولوجيا</li>
                 </Link>
                 <Link href="/topic/business">
-                  <li onClick={() => { setExpanded(false) }}>ريادة الأعمال</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>ريادة الأعمال</li>
                 </Link>
                 <Link href="/topic/language-and-sciences">
-                  <li onClick={() => { setExpanded(false) }}>علوم ولغات</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>علوم ولغات</li>
                 </Link>
                 <Link href="/topic/talents">
-                  <li onClick={() => { setExpanded(false) }}>فن وهوايات</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>فن وهوايات</li>
                 </Link>
                 <Link href="/topic/home">
-                  <li onClick={() => { setExpanded(false) }}>منزل</li>
+                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>منزل</li>
                 </Link>
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
@@ -439,9 +478,10 @@ function Navbar() {
                   <li>تواصل معنا</li>
               </ul> */}
             </Offcanvas>
+            { !userStatus.isSubscribed == true && 
             <Link href="/subscription">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
-            </Link>
+            </Link>}
 
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
@@ -451,6 +491,10 @@ function Navbar() {
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
+            { userStatus.isSubscribed == true &&  <Link href="/unsubscribe">
+              <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>إلغاء الإشتراك الشهرى</li>
+            </Link>}
+
             {Router.router?.asPath.includes("/course/") &&
               <>
                 <li id="curriculum" className={styles["sidebar-list__item"]}
@@ -608,7 +652,7 @@ function Navbar() {
                   className={styles["navbar__search-bar-container__search-bar"]}
                 />
               </div>
-              <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>
+              { !userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
@@ -709,7 +753,7 @@ function Navbar() {
             </div>
           </div>
 
-          {(!isCoursePurchased || isMobileView) && <OverlayTrigger
+          {(!isCoursePurchased || isMobileView) && <OverlayTrigger show={dropdownOpened.cart}
             trigger='click'
             rootClose
             placement="bottom-start"
@@ -897,7 +941,7 @@ function Navbar() {
                   >
                     <Link href="/checkout">
 
-                      <Button>إذهب للسلة</Button>
+                      <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
                     </Link>
                   </div>
                 </div>
@@ -905,7 +949,7 @@ function Navbar() {
             }
           >
             <div className={styles["navbar__cart-icon-container"]} id="carticon"
-              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`) }}>
+              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
               <CartIcon color="#222" />
               <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
               {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
@@ -917,13 +961,18 @@ function Navbar() {
           {
             userStatus.isUserAuthenticated &&
             <>
-              <OverlayTrigger trigger="click" placement="bottom-start" rootClose overlay={
-                <div className={styles["navbar__account-icon__dropdown"]}>
-                  <Button onClick={() => handleLogout()}
+              <OverlayTrigger show={dropdownOpened.account} trigger="click" placement="bottom-start" rootClose overlay={
+                <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
+                  { userStatus.isSubscribed == true &&
+                  <Link href="/unsubscribe">
+                    <div onClick={()=>{closeDropdown("account")}}>إلغاء الإشتراك الشهرى</div>
+                  </Link>
+                    }
+                  <Button onClick={() => {handleLogout(); closeDropdown("account");}}
                     className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
                 </div>
               }>
-                <div className={styles["navbar__account-icon"]}>
+                <div onClick={()=>{closeDropdown("account")}} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />
                 </div>

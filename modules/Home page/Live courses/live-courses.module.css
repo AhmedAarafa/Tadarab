@@ -13,11 +13,15 @@
           justify-content: space-between;
 }
 
-.live-courses__title > div span:nth-of-type(1) {
+.live-courses__title > h2 {
+  font-weight: 800;
+}
+
+.live-courses__title > h2 span:nth-of-type(1) {
   color: var(--dark-black);
 }
 
-.live-courses__title > div span:nth-of-type(2) {
+.live-courses__title > h2 span:nth-of-type(2) {
   color: var(--primary-red);
 }
 

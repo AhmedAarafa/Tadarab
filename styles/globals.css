@@ -6,7 +6,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url(c:\Users\User\OneDrive\Desktop\Tadarab Development v5.0.0\v-1.5.0\node_modules\normalize.css\normalize.css);
+@import url(c:\Users\User\OneDrive\Desktop\Tadarab Development v5.0.0\v-1.7.0\node_modules\normalize.css\normalize.css);
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -12078,6 +12078,14 @@ a {
   width: 6.35em !important;
 }
 
+.video-js .vjs-volume-panel {
+  direction: ltr !important;
+}
+
+.video-js .vjs-volume-panel.vjs-hover .vjs-mute-control ~ .vjs-volume-control.vjs-volume-horizontal {
+  width: 5em !important;
+}
+
 .video-js .vjs-control:focus:before, .video-js .vjs-control:hover:before {
   text-shadow: 0 0 1em #bf1e1e,0 0 1em #bf1e1e,0 0 1em #bf1e1e !important;
 }
@@ -12757,6 +12765,15 @@ video::-webkit-media-controls-panel, video::-webkit-media-controls-panel-contain
   .video-js .vjs-big-play-button {
     left: 45% !important;
   }
+  .vjs-time-control.vjs-time-divider, .vjs-duration.vjs-time-control {
+    display: none !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .video-js .vjs-quality-selector {
+    right: 90px !important;
+  }
 }
 
 /*  */
@@ -13127,6 +13144,7 @@ div[id^='popover-latest-courses-card'] {
 #offcanvasNavbar2 {
   overflow: auto !important;
   padding: 0 !important;
+  z-index: 22 !important;
 }
 
 #offcanvasNavbar2 .offcanvas-header {
@@ -13312,6 +13330,16 @@ input:-webkit-autofill:active {
 .btn:disabled {
   pointer-events: none !important;
   opacity: 0.85 !important;
+}
+
+.modal-dialog {
+  max-width: 80%;
+}
+
+.modal-content {
+  border: 0;
+  border-radius: 0.8rem;
+  padding: 0 2rem;
 }
 
 @media (min-width: 1400px) {
@@ -13611,6 +13639,19 @@ input:-webkit-autofill:active {
   }
   .navbar-brand {
     margin-right: 4.5rem !important;
+  }
+  div[role="dialog"] {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+  }
+  .modal-dialog {
+    margin: auto;
+    max-width: 95%;
+    width: 95%;
+  }
+  button[aria-label="Close"] {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/2em auto no-repeat;
   }
 }
 

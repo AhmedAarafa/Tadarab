@@ -28,10 +28,10 @@ export default function Books() {
 
 
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 1 }} className={styles["books__title"]}>
-          <div>
+          <h2>
             <span>الكتب و</span>
             <span>الملخصات</span>
-          </div>
+          </h2>
         </Col>
 
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 4, order: 1 }} className={styles["see-more-btn-col"]}>
@@ -80,7 +80,7 @@ export default function Books() {
                       className={styles["books__cards-carousel__card__card-body"]}
                     >
                       <Link href={`/ebook/${book?.slug}`}>
-                        <h1 className={styles["books__cards-carousel__card__card-body__title"]}>{book?.title}</h1>
+                        <h3 className={styles["books__cards-carousel__card__card-body__title"]}>{book?.title}</h3>
                       </Link>
                       <Link href={`/topic/${book.categories[0]?.slug}`}>
                         <div className={styles["books__cards-carousel__card__card-body__category"]}>{

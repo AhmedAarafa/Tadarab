@@ -1,14 +1,49 @@
+Version 1.8.0 (23 June 2022)
+1)	Loader in my-account page
+2)  Hide timer
+
+Version 1.7.9 (21 June 2022)
+1)	My account page issue fixed.
+
+Version 1.7.8 (21 June 2022)
+1)	version 1.7.7
+2)  Change subscription 9 to 6
+
+Version 1.7.7 (16 June 2022)
+1)	Change subscription free to paid
+2)  Account page changes
+3)  GA tracking added for paid subscription.
+
+Version 1.7.6 (16 June 2022)
+1)	My account page filter.
+2)  Course progress in account page.
+
+Version 1.7.5 (14 June 2022)
+1)	Add eBook download link.
+2)  Player progress call change with timeupdate player event
+3)  Course details page special bundle issue fixed from API.
+
+Version 1.7.4 (10 June 2022)
+1)	Hiro image update.
+
+Version 1.7.3 (07 June 2022)
+1)	Change robot meta tag noindex,nofollow to index,follow.
+
+Version 1.7.2 (05 June 2022)
+1)	Subscription text show only subscription checkout type.
+2)  hide subscription CTA for normal checkout type.
+
 Version 1.7.1 (03 June 2022)
 1)	PayPal option visible again.
 
 Version 1.7.0 (03 June 2022)
-1)	Change CTA and button text in checkout for subscription
-2)  Add heading free trail text in checkout for subscription
+1)	Change CTA and button text in checkout for subscription.
+2)	Add heading free trail text in checkout for subscription.
 
 Version 1.6.9 (01 June 2022)
 1)	Change video progress endpoint call 2 seconds to 6 seconds.
-2)  Add trainer login link in sign-in page
-3)  Webinar issue fixed.
+2)	Add trainer login link in sign-in page.
+3)	Webinar issue fixed.
 
 Version 1.6.8 (31 May 2022)
 1)	Hide PayPal option from checkout.

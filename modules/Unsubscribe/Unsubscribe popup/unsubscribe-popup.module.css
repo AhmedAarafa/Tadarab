@@ -1,0 +1,633 @@
+.unsubscribe-popup__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0 !important;
+}
+
+.unsubscribe-popup__header div {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.unsubscribe-popup__header button {
+  margin: 0 !important;
+  margin-right: auto !important;
+}
+
+.unsubscribe-popup__body > div:nth-of-type(1) {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.unsubscribe-popup__category-card-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 1rem 0 0 0;
+}
+
+.unsubscribe-popup__category-card-container > div {
+  padding: 1.5rem 2rem !important;
+}
+
+.unsubscribe-popup__category-card-container > div > div:nth-child(1),
+.unsubscribe-popup__category-card-container > div > div:nth-child(2) {
+  top: 34% !important;
+}
+
+.unsubscribe-popup__category-card {
+  width: 8rem;
+  height: 8rem;
+  border: 0.0504rem solid #00000026;
+  border-radius: 0.6rem;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  margin: 0 0.5rem 1rem 0.5rem;
+  cursor: pointer;
+}
+
+.unsubscribe-popup__category-card:hover {
+  -webkit-box-shadow: 0 0 1.5rem #0000001A;
+          box-shadow: 0 0 1.5rem #0000001A;
+}
+
+.unsubscribe-popup__category-card__img-box {
+  width: 2.5rem !important;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--primary-red);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.unsubscribe-popup__category-card__img-box img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.unsubscribe-popup__category-card__department {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--dark-black);
+  margin-top: 0.24rem;
+}
+
+.unsubscribe-popup__category-card__learners-number {
+  font-size: 0.7rem;
+  color: var(--grey);
+  margin-top: 0.24rem;
+}
+
+.unsubscribe-popup__footer,
+.unsubscribe-popup__footer2,
+.unsubscribe-popup__footer3 {
+  border: 0;
+  padding-top: 0;
+}
+
+.unsubscribe-popup__footer button {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.625rem;
+  margin: 0.25rem auto;
+}
+
+.unsubscribe-popup__footer button:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unsubscribe-popup__footer button:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unsubscribe-popup__footer button:hover, .unsubscribe-popup__footer button:active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.unsubscribe-popup__body__unsubscription-cons-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.unsubscribe-popup__body__unsubscription-cons-list {
+  list-style-type: none;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.unsubscribe-popup__body__unsubscription-cons-img {
+  width: 4rem;
+  height: 4rem;
+  margin: 1rem 0;
+}
+
+.unsubscribe-popup__footer2,
+.unsubscribe-popup__footer3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(1),
+.unsubscribe-popup__footer2 button:nth-of-type(2),
+.unsubscribe-popup__footer3 button:nth-of-type(1),
+.unsubscribe-popup__footer3 button:nth-of-type(2) {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.625rem;
+  margin: 0.5rem 0;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(1),
+.unsubscribe-popup__footer3 button:nth-of-type(1) {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  background-color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(1):hover,
+.unsubscribe-popup__footer3 button:nth-of-type(1):hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(1):active,
+.unsubscribe-popup__footer3 button:nth-of-type(1):active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(1):hover, .unsubscribe-popup__footer2 button:nth-of-type(1):active,
+.unsubscribe-popup__footer3 button:nth-of-type(1):hover,
+.unsubscribe-popup__footer3 button:nth-of-type(1):active {
+  background-color: #9d151e !important;
+  border: 0.125rem solid #9d151e !important;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(2),
+.unsubscribe-popup__footer3 button:nth-of-type(2) {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: 'Almarai', sans-serif;
+  border: 0 !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+  background-color: white !important;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(2):hover,
+.unsubscribe-popup__footer3 button:nth-of-type(2):hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(2):active,
+.unsubscribe-popup__footer3 button:nth-of-type(2):active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(2):hover,
+.unsubscribe-popup__footer3 button:nth-of-type(2):hover {
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+}
+
+.unsubscribe-popup__footer2 button:nth-of-type(2):active,
+.unsubscribe-popup__footer3 button:nth-of-type(2):active {
+  background-color: var(--primary-red) !important;
+  color: white !important;
+  border: 0.125rem solid var(--primary-red) !important;
+}
+
+.reason-for-unsubscription {
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  text-align: right !important;
+}
+
+.reason-for-unsubscription ul {
+  list-style-type: none;
+}
+
+.reason-for-unsubscription ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.reason-for-unsubscription input {
+  cursor: pointer;
+  margin: 0 0 0 0.75rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.reason-for-unsubscription input:focus {
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.reason-for-unsubscription input:checked {
+  background-color: var(--primary-red);
+  border-color: var(--primary-red);
+}
+
+.reason-for-unsubscription__another-reason {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 2rem 0 0 0 !important;
+}
+
+.reason-for-unsubscription__another-reason div {
+  text-align: center;
+}
+
+.reason-for-unsubscription__another-reason-input-field {
+  border: 0.1rem solid rgba(119, 119, 119, 0.2) !important;
+  padding: 1rem;
+  font-family: 'Almarai', sans-serif;
+  width: 100%;
+  height: 5.625rem;
+  font-size: 0.9rem;
+  border-radius: 0.75rem;
+  margin-top: 0.5rem;
+  resize: none;
+  overflow: hidden;
+}
+
+.reason-for-unsubscription__another-reason-input-field:active, .reason-for-unsubscription__another-reason-input-field:focus {
+  outline: 0 !important;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.reason-for-unsubscription__another-reason-input-field::-webkit-input-placeholder {
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 0.9rem;
+}
+
+.reason-for-unsubscription__another-reason-input-field:-ms-input-placeholder {
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 0.9rem;
+}
+
+.reason-for-unsubscription__another-reason-input-field::-ms-input-placeholder {
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 0.9rem;
+}
+
+.reason-for-unsubscription__another-reason-input-field::placeholder {
+  color: rgba(34, 34, 34, 0.5);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1200px) {
+  .unsubscribe-popup__category-card-container > div {
+    padding: 1.95rem 2.6rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1),
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2) {
+    top: 33% !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1):after,
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2):after {
+    font-size: 1.3rem !important;
+    -webkit-box-shadow: 0 0 1.625rem #00000033 !important;
+            box-shadow: 0 0 1.625rem #00000033 !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1) {
+    right: 1.3rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1):after {
+    padding: 1.95rem 1.534rem 1.95rem 1.664rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2) {
+    left: 1.3rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2):after {
+    padding: 1.95rem 1.664rem 1.95rem 1.534rem !important;
+  }
+  .unsubscribe-popup__category-card {
+    width: 8.5rem;
+    height: 8.5rem;
+    border: 0.05355rem solid #00000026;
+    border-radius: 0.6375rem;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
+  .unsubscribe-popup__category-card:hover {
+    -webkit-box-shadow: 0 0 1.59375rem #0000001A;
+            box-shadow: 0 0 1.59375rem #0000001A;
+  }
+  .unsubscribe-popup__category-card__img-box {
+    width: 2.65625rem !important;
+    height: 2.65625rem;
+    border-radius: 50%;
+  }
+  .unsubscribe-popup__category-card__img-box img {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+  .unsubscribe-popup__category-card__department {
+    font-size: 0.9rem;
+    margin-top: 0.27rem;
+  }
+  .unsubscribe-popup__category-card__learners-number {
+    font-size: 0.7875rem;
+    margin-top: 0.27rem;
+  }
+}
+
+@media (max-width: 980px) {
+  .unsubscribe-popup__category-card-container {
+    margin-top: 2rem;
+  }
+  .unsubscribe-popup__category-card-container > div {
+    padding: 2.1rem 2.8rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1),
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2) {
+    top: 31% !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1):after,
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2):after {
+    font-size: 1.4rem !important;
+    -webkit-box-shadow: 0 0 1.75rem #00000033 !important;
+            box-shadow: 0 0 1.75rem #00000033 !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1) {
+    right: 1.4rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(1):after {
+    padding: 2.1rem 1.652rem 2.1rem 1.792rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2) {
+    left: 1.4rem !important;
+  }
+  .unsubscribe-popup__category-card-container > div > div:nth-child(2):after {
+    padding: 2.1rem 1.792rem 2.1rem 1.652rem !important;
+  }
+  .unsubscribe-popup__category-card {
+    width: 8.5rem;
+    height: 8.5rem;
+    border: 0.05355rem solid #00000026;
+    border-radius: 0.6375rem;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
+  .unsubscribe-popup__category-card:hover {
+    -webkit-box-shadow: 0 0 1.59375rem #0000001A;
+            box-shadow: 0 0 1.59375rem #0000001A;
+  }
+  .unsubscribe-popup__category-card__img-box {
+    width: 2.65625rem !important;
+    height: 2.65625rem;
+    border-radius: 50%;
+  }
+  .unsubscribe-popup__category-card__img-box img {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+  .unsubscribe-popup__category-card__department {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+  }
+  .unsubscribe-popup__category-card__learners-number {
+    font-size: 0.875rem;
+    margin-top: 0.3rem;
+  }
+}
+
+@media (max-width: 575px) {
+  .unsubscribe-popup__header {
+    padding: 1rem 0.5rem !important;
+  }
+  .unsubscribe-popup__header div {
+    font-size: 2.7rem;
+  }
+  .unsubscribe-popup__body > div:nth-of-type(1) {
+    width: 100%;
+    font-size: 1.98rem;
+  }
+  .unsubscribe-popup__category-card-container {
+    margin: 2rem 0 0 0;
+  }
+  .unsubscribe-popup__category-card {
+    width: 17rem;
+    height: 17rem;
+    border: 0.1071rem solid #00000026;
+    border-radius: 1.275rem;
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
+  .unsubscribe-popup__category-card:hover {
+    -webkit-box-shadow: 0 0 3.1875rem #0000001A;
+            box-shadow: 0 0 3.1875rem #0000001A;
+  }
+  .unsubscribe-popup__category-card__img-box {
+    width: 6.25rem !important;
+    height: 6.25rem;
+    background-color: var(--primary-red);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .unsubscribe-popup__category-card__img-box img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .unsubscribe-popup__category-card__department {
+    font-size: 2.2rem;
+    margin-top: 0.51rem;
+  }
+  .unsubscribe-popup__category-card__learners-number {
+    font-size: 1.925rem;
+    margin-top: 0.51rem;
+  }
+  .unsubscribe-popup__footer button {
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: 'Almarai', sans-serif;
+    border: 0 !important;
+    background-color: var(--primary-red) !important;
+    border: 0.125rem solid var(--primary-red) !important;
+    font-size: 1.94rem;
+    padding: 1rem 2.5rem;
+    border-radius: 1.25rem;
+    margin: 0.5rem auto;
+  }
+  .unsubscribe-popup__footer button:hover {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .unsubscribe-popup__footer button:active {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .unsubscribe-popup__footer button:hover, .unsubscribe-popup__footer button:active {
+    background-color: #9d151e !important;
+    border: 0.125rem solid #9d151e !important;
+  }
+  .unsubscribe-popup__body__unsubscription-cons-list {
+    margin: 0 auto;
+    font-size: 1.87rem;
+  }
+  .unsubscribe-popup__body__unsubscription-cons-img {
+    width: 6.8rem;
+    height: 6.8rem;
+    margin: 1.7rem 0;
+  }
+  .unsubscribe-popup__footer2 button:nth-of-type(1),
+  .unsubscribe-popup__footer2 button:nth-of-type(2),
+  .unsubscribe-popup__footer3 button:nth-of-type(1),
+  .unsubscribe-popup__footer3 button:nth-of-type(2) {
+    padding: 0.85rem 2.125rem;
+    border-radius: 1.0625rem;
+    margin: 0.85rem 0;
+    font-size: 1.649rem;
+  }
+  .reason-for-unsubscription input {
+    margin: 0 0 0 1.275rem;
+    width: 2.04rem;
+    height: 2.04rem;
+  }
+  .reason-for-unsubscription__another-reason {
+    font-size: 1.53rem;
+    margin: 2rem 0 0 0 !important;
+  }
+  .reason-for-unsubscription__another-reason-input-field {
+    border: 0.17rem solid rgba(119, 119, 119, 0.2) !important;
+    padding: 1.7rem;
+    height: 9.5625rem;
+    font-size: 1.53rem;
+    border-radius: 1.275rem;
+    margin-top: 0.85rem;
+  }
+  .reason-for-unsubscription__another-reason-input-field:active, .reason-for-unsubscription__another-reason-input-field:focus {
+    outline: 0 !important;
+    -webkit-appearance: none;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+  }
+  .reason-for-unsubscription__another-reason-input-field::-webkit-input-placeholder {
+    font-size: 1.53rem;
+  }
+  .reason-for-unsubscription__another-reason-input-field:-ms-input-placeholder {
+    font-size: 1.53rem;
+  }
+  .reason-for-unsubscription__another-reason-input-field::-ms-input-placeholder {
+    font-size: 1.53rem;
+  }
+  .reason-for-unsubscription__another-reason-input-field::placeholder {
+    font-size: 1.53rem;
+  }
+}
+/*# sourceMappingURL=unsubscribe-popup.module.css.map */

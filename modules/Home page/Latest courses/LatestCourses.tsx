@@ -197,8 +197,10 @@ function LatestCourses() {
     <>
       <Row className={styles["latest-courses"]}>
         <Col xs={12} className={styles["latest-courses__title"]}>
-          <span>الدورات </span>
-          <span>التدريبية</span>
+          <h2>
+            <span>الدورات </span>
+            <span>التدريبية</span>
+          </h2>
         </Col>
         <Col
           xs={{ span: 12, order: 1 }} sm={9}
@@ -468,7 +470,7 @@ function LatestCourses() {
                             }
                           >
                             <Link href={`/course/${course.slug}`}>
-                              <h1 onClick={() => { GAProductClickEventHandler(course, i) }}
+                              <h3 onClick={() => { GAProductClickEventHandler(course, i) }}
                                 title={course.title}
                                 className={
                                   styles[
@@ -477,7 +479,7 @@ function LatestCourses() {
                                 }
                               >
                                 {course.title}
-                              </h1>
+                              </h3>
                             </Link>
                             <Link href={`/trainer/${course.trainer?.slug}`}>
                               <div title={course.trainer?.name_ar}

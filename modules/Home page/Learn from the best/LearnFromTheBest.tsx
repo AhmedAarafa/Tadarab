@@ -27,10 +27,10 @@ export default function LearnFromTheBest() {
     <>
       <Row>
         <Col xs={{span:12 ,order:1}} sm={{span:9 ,order:1}} className={styles["learn-from-the-best__title"]}> 
-          <div>
+          <h2>
             <span> تعلم من </span>
             <span> الأفضل </span>
-          </div>
+          </h2>
         </Col>
 
         <Col xs={{span:12 ,order:3}} sm={{span:3 ,order:1}} className={styles["learn-from-the-best__see-more-btn-col"]}>

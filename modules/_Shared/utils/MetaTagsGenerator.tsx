@@ -7,7 +7,7 @@ export default function MetaTagsGenerator(props:any) {
         <Head>
             <title>{props.title}</title>
             <meta name="description" content={props.description} key="description" />
-            <meta name="robots" content="noindex, nofollow" />
+            <meta name="robots" content="index, follow" />
             <meta property="og:locale" content="ar_AR" key="og-locale"/>
             <meta property="og:type" content="website" key="og-type" />
             <meta property="og:title" content={props.title} key="og-title" />
@@ -26,6 +26,7 @@ export default function MetaTagsGenerator(props:any) {
             <meta name="twitter:site" content="@tadarab_" key="twitter-site" />
             <meta name="twitter:creator" content="@tadarab_" key="twitter-creator" />
             <meta name="twitter:image" content={props.img} key="twitter-image" />
+            <link rel="canonical" href="https://www.tadarab.com/"/>
         </Head>
     )
 }

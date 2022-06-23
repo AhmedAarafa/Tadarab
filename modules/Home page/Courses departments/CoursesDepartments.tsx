@@ -26,10 +26,10 @@ export default function CoursesDepartments() {
     <>
       <Row>
         <Col xs={{span:12 , order:1}} sm={{span:9 , order:1}} className={styles["courses-departments__container"]}>
-          <div className={styles["courses-departments__container__title"]}>
+          <h2 className={styles["courses-departments__container__title"]}>
             <span> أقسام </span>
             <span> الدورات </span>
-          </div>
+          </h2>
           </Col>
 
           <Col xs={{span:12 , order:3}} sm={{span:3 , order:1}} className={styles["courses-departments__see-more-btn-col"]}> 

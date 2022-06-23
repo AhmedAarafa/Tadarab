@@ -398,10 +398,6 @@
   padding-bottom: 2rem;
 }
 
-.checkout__subscription-benefits div:nth-of-type(1) {
-  margin: 0 0 1.5rem 0;
-}
-
 .checkout__subscription-benefits div {
   margin: 0 0 0.5rem 0;
 }
@@ -410,6 +406,10 @@
   margin-left: 0.5rem;
   width: 1.125rem;
   height: 0.875rem;
+}
+
+.checkout__subscription-benefits__title {
+  margin: 0 0 1.5625rem 0 !important;
 }
 
 .checkout__subscription-benefits__sub-benefits__text {
@@ -1259,7 +1259,7 @@
   font-weight: 800;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details {
+.checkout__cart-sticky-card__subscribe-summary__details_orignal {
   margin: 0.5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1273,19 +1273,36 @@
   font-size: 0.9rem;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details span:nth-of-type(2) {
+.checkout__cart-sticky-card__subscribe-summary__details_orignal span.checkout__cart_subscribe_price-total_orignal {
   color: var(--dark-black);
-  font-weight: 700;
+  -webkit-text-decoration: line-through #af151f;
+          text-decoration: line-through #af151f;
+  font-weight: 800;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details {
+  margin: 0.5rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-weight: 800;
+  font-size: 0.9rem;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__todays-total {
-  font-weight: 800;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__exp {
   text-align: center;
-  font-size: 0.875rem;
+  font-size: 0.6875rem;
+  color: #af151f;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__cancel-sub {
@@ -1300,11 +1317,12 @@
   font-weight: 700;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__terms {
+.checkout__cart-sticky-card__subscribe-summary__terms_policy {
   font-size: 0.5625rem;
   text-align: center;
   color: var(--grey);
-  margin-top: 0.7rem;
+  margin-top: 1rem !important;
+  text-align: right;
 }
 
 .watch-subscribed-course {
@@ -2723,7 +2741,7 @@
   .checkout__cart-sticky-card__subscribe-summary__title {
     font-size: 2.8125rem;
   }
-  .checkout__cart-sticky-card__subscribe-summary__details {
+  .checkout__cart-sticky-card__subscribe-summary__details, .checkout__cart-sticky-card__subscribe-summary__details_orignal {
     margin: 0 0 1.5rem 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2749,7 +2767,7 @@
   .checkout__cart-sticky-card__subscribe-summary__cancel-sub div {
     font-size: 1.875rem !important;
   }
-  .checkout__cart-sticky-card__subscribe-summary__terms {
+  .checkout__cart-sticky-card__subscribe-summary__terms_policy {
     font-size: 1.40625rem;
     margin-top: 2rem;
     margin-bottom: -2.5rem;

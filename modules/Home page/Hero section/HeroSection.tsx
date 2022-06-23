@@ -4,7 +4,7 @@ import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./hero-section.module.css";
 import  {SearchIcon}  from "common/Icons/Icons";
 import Router from "next/router";
-import Image from 'next/image';
+//import Image from 'next/image';
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,11 +66,11 @@ export default function HeroSection() {
         <Col xs={0} sm={{ span: 2, order: 'first' }}></Col>
         <Col xs={12} sm={{ span: 5, order: 'first' }}>
           <div className={styles["hero-section__container"]}>
-            <h1 className={styles["hero-section__title"]}>
-              أكبر منصة دورات تدريبية عن بعد
-              </h1>
+            <h1 className={styles["hero-section__title"]}  >
+            تعلم أون لاين مع منصة تدرب
+            </h1>
             <p className={styles["hero-section__para"]}>
-            انضم لأكبر منصة تعلم أون لاين في الخليج والوطن العربي وابدأ التعلم الآن من أفضل الخبراء العرب
+           أكبر منصة عربية تقدم دروات تدريبية مجانية ومدفوعة، متخصصة في التعلم عن بعد مع أفضل المدربين والخبراء
             </p>
             <div className={styles["hero-section__search-bar-container"]}>
               <div

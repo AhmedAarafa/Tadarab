@@ -19,7 +19,7 @@ export default function CategoryDescription(props:any) {
                     </div>
                     <div className={styles["category-description__info"]}>
                         <div> تخصص </div>
-                        <div> {props.data?.title} </div>
+                        <h1> {props.data?.title} </h1>
                         <div>
                             { props.data?.parent_id == 0 &&
                              <>

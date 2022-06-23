@@ -16,9 +16,10 @@ const withAuth = (Component:any) => {
     useEffect(() => {
       if (localStorage.getItem("token")) {
         const tokenStored:any = localStorage.getItem("token");
-        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,token:tokenStored,id:userAuthState.id}));
+        const userSubscriptionState:any = localStorage.getItem("is_user_subscribed");
+        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:true,token:tokenStored,id:userAuthState.id,isSubscribed:JSON.parse(userSubscriptionState)}));
       }else{
-        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null,id:0}));
+        dispatch(setIsUserAuthenticated({...userAuthState,isUserAuthenticated:false,token:null,id:0,isSubscribed:false}));
       }
     },[]);
     // If user is not logged in, return login component

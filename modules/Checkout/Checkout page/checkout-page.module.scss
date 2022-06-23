@@ -304,10 +304,7 @@
     order: 1;
     border-bottom: 0.1rem solid rgba(119, 119, 119, 0.2);
     padding-bottom: 2rem;
-    div:nth-of-type(1){
-    margin: 0 0 1.5rem 0;
-    }
-
+    
     div{
         margin: 0 0 0.5rem 0 ;
         svg{
@@ -316,6 +313,9 @@
             height: 0.875rem;
         }
     }
+}
+.checkout__subscription-benefits__title{
+    margin: 0 0 1.5625rem 0 !important;
 }
 
 .checkout__subscription-benefits__sub-benefits__text{
@@ -956,25 +956,30 @@
     color: var(--dark-black);
     font-weight: 800;
 }
-
+.checkout__cart-sticky-card__subscribe-summary__details_orignal{
+    margin: 0.5rem 0 ;
+    @include flex(center,space-between);
+    span.checkout__cart_subscribe_price-total_orignal{
+        color: var(--dark-black);
+        text-decoration:line-through rgba(175, 21, 31, 1);
+        font-weight:800;
+    }
+    font-size: 0.9rem;
+}
 .checkout__cart-sticky-card__subscribe-summary__details{
     margin: 0.5rem 0 ;
     @include flex(center,space-between);
-   
-    span:nth-of-type(2){
-        color: var(--dark-black);
-        font-weight: 700;
-    }
+    font-weight:800;
     font-size: 0.9rem;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__todays-total{
-    font-weight: 800;
-    font-size: 1.1rem;
+    font-size:0.8rem;
 }
 .checkout__cart-sticky-card__subscribe-summary__details__exp{
     text-align: center;
-    font-size: 0.875rem;
+    font-size: 0.6875rem;
+    color: rgba(175, 21, 31, 1);
 }
 
 .checkout__cart-sticky-card__subscribe-summary__cancel-sub{
@@ -983,16 +988,17 @@
     margin-top: 0.2rem;
     color: var(--grey) !important;
     div{
-    font-size: 0.75rem !important;
-    font-weight: 700;
+        font-size: 0.75rem !important;
+        font-weight: 700;
     }
 }
 
-.checkout__cart-sticky-card__subscribe-summary__terms{
+.checkout__cart-sticky-card__subscribe-summary__terms_policy{
     font-size: 0.5625rem;
     text-align: center;
     color: var(--grey);
-    margin-top: 0.7rem;
+    margin-top: 1rem !important;
+    text-align:right;
 }
 
 .watch-subscribed-course{
@@ -2214,10 +2220,6 @@
 .checkout__subscription-benefits{
     margin: 2rem 0 1.5rem*2.5 0;
     border-bottom: none;
-
-    div:nth-of-type(1){
-    // margin: 0 0 1.5rem*2.5 0;
-    }
     order:3;
 
     div{
@@ -2272,7 +2274,7 @@
     font-size: 1.125rem*2.5;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details{
+.checkout__cart-sticky-card__subscribe-summary__details,.checkout__cart-sticky-card__subscribe-summary__details_orignal{
     margin: 0 0 1.5rem 0;
     @include flex(center,space-between);
     font-size: 0.9rem*2.5 ;
@@ -2293,7 +2295,7 @@
         }
 }
 
-.checkout__cart-sticky-card__subscribe-summary__terms{
+.checkout__cart-sticky-card__subscribe-summary__terms_policy{
     font-size: 0.5625rem*2.5;
     margin-top: 0.8rem*2.5;
     margin-bottom: -1rem*2.5;

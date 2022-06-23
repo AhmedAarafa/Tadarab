@@ -185,6 +185,7 @@ export default function FooterSection() {
                 <img loading="lazy"   src={"/images/visa.png"} alt="Visa" />
                 <img loading="lazy"   src={"/images/knet.png"} alt="Knet" />
                 <img loading="lazy"   src={"/images/paypal3.png"} alt="Paypal" />
+                <img loading="lazy"   src={"/images/mada.png"} alt="Mada" />
               </div>
             </div>
           </Col>

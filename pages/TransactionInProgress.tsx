@@ -23,10 +23,16 @@ export default function TransactionInProgress() {
         dispatch(setInvoiceDetails(response?.data?.data));
         if(JSON.stringify(response.status).startsWith("2")){
 
+          let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free&&response.data?.data?.transaction_details?.is_trial_free==true)?true:false);
           let customData = {};
           if((response.data?.transaction_details?.checkout_type)&&response.data?.transaction_details?.checkout_type!='subscription'){
             customData = {value: response.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_course_purchase'};
+          }else{
+            if(!is_trial_free){
+              customData = {value: response.data?.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_subscription_purchase', predicted_ltv:270};
+            }
           }
+          
           FBPixelEventsHandler(response.data.fb_tracking_events,customData);
 
           response?.data?.data?.is_successful == true ?
@@ -51,9 +57,14 @@ export default function TransactionInProgress() {
         dispatch(setInvoiceDetails(response?.data?.data));
         if(JSON.stringify(response.status).startsWith("2")){
           
+          let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free&&response.data?.data?.transaction_details?.is_trial_free==true)?true:false);
           let customData = {};
           if((response.data?.data?.transaction_details?.checkout_type)&&response.data?.data?.transaction_details?.checkout_type!='subscription'){
             customData = {value: response.data?.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_course_purchase'};
+          }else{
+            if(!is_trial_free){
+              customData = {value: response.data?.data?.transaction_details.amount_usd, currency: 'USD',content_type: 'online_subscription_purchase', predicted_ltv:270};
+            }
           }
           FBPixelEventsHandler(response.data.fb_tracking_events,customData);
           

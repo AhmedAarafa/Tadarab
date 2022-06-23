@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Card, Pagination, Offcanvas, ProgressBar } from "react-bootstrap";
+import { Row, Col, Button, Card, Spinner, Offcanvas, ProgressBar } from "react-bootstrap";
 import styles from "./my-account-page.module.css";
 import Router, { useRouter } from "next/router";
 import { axiosInstance } from "configurations/axios/axiosConfig";
@@ -24,24 +24,40 @@ import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import BrowseThroughCategories from "modules/My account page/Browse through categories/BrowseThroughCategories";
 import LatestCourses from "modules/My account page/Latest courses/LatestCourses";
 import WatchedCourses from "modules/My account page/Watched courses/WatchedCourses";
+//import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+//import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function MyAccountPage() {
   SwiperCore.use([Navigation]);
-  const [courseListing, setCourseListing] = useState<any>([]);
+  const [myAccountData, setMyAccountData] = useState<any>({});
+  const [isUserPurchasedAnyCourses, setIsUserPurchasedAnyCourses] = useState(false);
   const [currentPage, setCurrentPage] = useState("1");
   const [pageNumber, setPageNumber] = useState(1);
+  const [isShowMoreBtnDisabled, setIsShowMoreBtnDisabled] = useState(false);
+  const [isBlurryLayerDisabled, setIsBlurryLayerDisabled] = useState(false);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [categoriesSlicer, setCategoriesSlicer] = useState<any>(4);
   const dispatch = useDispatch();
   const router = useRouter();
   const [FilterSidebarShow, setFilterSidebarShow] = useState(false);
-
+  const [purchasedCoursesSlicer, setPurchasedCoursesSlicer] = useState<any>(9);
+  const [filters, setFilters] = useState<any>({
+    categories: [],
+    price: [],
+    levels: []
+  });
 
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `users/purchased/?country_code=eg&limit=9&page=${pageNumber}`);
+      const handleFavResponse: any = handleFav(course, `course/filter/?country_code=eg&
+      page=${pageNumber}&
+      limit=${purchasedCoursesSlicer}&
+      category_ids=${filters?.categories.toString()}&
+      types=${filters.price.toString()}&
+      levels=${filters.levels.toString()}
+      `);
       handleFavResponse.then(function (response: any) {
-        setCourseListing(response?.data);
+        setMyAccountData(response?.data);
       })
     } else {
       Router.push({
@@ -54,13 +70,19 @@ export default function MyAccountPage() {
   const handleCartActionBtn = (course: any): any => {
     dispatch(setCheckoutType("cart"));
 
-    const handleCartResponse: any = handleCart([course], `users/purchased/?country_code=eg&limit=9&page=${pageNumber}`, false);
+    const handleCartResponse: any = handleCart([course], `course/filter/?country_code=eg&
+    page=${pageNumber}&
+    limit=${purchasedCoursesSlicer}&
+    category_ids=${filters?.categories.toString()}&
+    types=${filters.price.toString()}&
+    levels=${filters.levels.toString()}
+    `, false);
     handleCartResponse.then(function (firstresponse: any) {
       firstresponse.resp.then(function (response: any) {
         console.log("response,", response);
         console.log("firstresponse", firstresponse);
 
-        setCourseListing(response?.data);
+        setMyAccountData(response?.data);
         dispatch(setCartItems(firstresponse.cartResponse));
       })
     })
@@ -83,10 +105,16 @@ export default function MyAccountPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setCurrentPage(pgNo);
     axiosInstance
-      .get(`users/purchased/?country_code=eg&limit=9&page=${pgNo}`)
+      .get(`course/filter/?country_code=eg&
+      page=${pgNo}&
+      limit=${purchasedCoursesSlicer}&
+      category_ids=${filters?.categories.toString()}&
+      types=${filters.price.toString()}&
+      levels=${filters.levels.toString()}
+      `)
       .then(function (response: any) {
         console.log(response);
-        setCourseListing(response?.data);
+        setMyAccountData(response?.data);
         toggleLoader("hide");
 
       })
@@ -101,11 +129,28 @@ export default function MyAccountPage() {
     fourth: true
   });
 
+  useEffect(() => {
+    filters?.categories.forEach((catId: any) => {
+      // let markedCategory: any = document.getElementById(`cat-${catId}`);
+      let markedCategory: any = document.querySelectorAll(`[id="cat-${catId}"]`);
+      console.log("markedCategory", markedCategory);
+      console.log("filters", filters);
+      markedCategory.forEach((cat: any) => {
+        console.log("markedCategory", cat);
+        cat.checked = true;
+      })
+    });
+  }, [showMore])
+
+
+
+
   const showMoreHandler = (order: any) => {
     switch (order) {
       case "first":
         setShowMore({ ...showMore, first: !showMore[`${order}`] });
         categoriesSlicer == 4 ? setCategoriesSlicer(20) : setCategoriesSlicer(4);
+
         break;
       case "second":
         setShowMore({ ...showMore, second: !showMore[`${order}`] });
@@ -122,16 +167,13 @@ export default function MyAccountPage() {
 
   }
 
-  const [filters, setFilters] = useState<any>({
-    categories: [],
-    price: []
-  });
+
 
   const handleCategoriesFilters = (categoryId: any) => {
 
     setFilters({
       ...filters, categories:
-        filters.categories.includes(categoryId) ? filters.categories.filter((e: any) => e !== categoryId) : [...filters.categories, categoryId]
+        filters?.categories.includes(categoryId) ? filters?.categories.filter((f: any) => f !== categoryId) : [...filters?.categories, categoryId]
     })
   }
 
@@ -139,7 +181,16 @@ export default function MyAccountPage() {
 
     setFilters({
       ...filters, price:
-        filters.price.includes(type) ? filters.price.filter((e: any) => e !== type) : [...filters.price, type]
+        filters.price.includes(type) ? filters.price.filter((f: any) => f !== type) : [...filters.price, type]
+    })
+
+  }
+
+  const handleLevelsFilters = (type: any) => {
+
+    setFilters({
+      ...filters, levels:
+        filters.levels.includes(type) ? filters.levels.filter((f: any) => f !== type) : [...filters.levels, type]
     })
 
   }
@@ -149,8 +200,7 @@ export default function MyAccountPage() {
   }
 
   const checkBoxesHandler = () => {
-
-    filters.categories.forEach((catId: any) => {
+    filters?.categories.forEach((catId: any) => {
       // let markedCategory: any = document.getElementById(`cat-${catId}`);
       let markedCategory: any = document.querySelectorAll(`[id="cat-${catId}"]`);
       markedCategory.forEach((cat: any) => {
@@ -168,22 +218,69 @@ export default function MyAccountPage() {
       })
     });
 
+    filters.levels.forEach((level: any) => {
+      let markedLevelCB: any = document.querySelectorAll(`[id="level-${level}"]`);
+      markedLevelCB.forEach((levelCB: any) => {
+        console.log("levelCB", levelCB);
+        levelCB.checked = true;
+      })
+    });
+
   }
 
   useEffect(() => {
-    console.log(filters);
+    // setIsShowMoreBtnDisabled(true);
+    axiosInstance
+      .get(`course/filter/?country_code=eg&
+      page=${pageNumber}&
+      limit=${purchasedCoursesSlicer}&
+      category_ids=${filters?.categories.toString()}&
+      types=${filters.price.toString()}&
+      levels=${filters.levels.toString()}
+      `)
+      .then(function (response: any) {
+
+        if (tokenValidationCheck(response)) {
+
+          setMyAccountData(response?.data);
+          FBPixelEventsHandler(response.data.fb_tracking_events, null);
+          toggleLoader("hide");
+          setIsShowMoreBtnDisabled(false);
+          setIsBlurryLayerDisabled(false);
+        }
+        toggleLoader("hide");
+
+      })
+      .catch(function (error) {
+        toggleLoader("hide");
+        console.log(error);
+      });
+  }, [filters, pageNumber, purchasedCoursesSlicer]);
+
+  useEffect(() => {
+    setPurchasedCoursesSlicer(9);
+    setIsBlurryLayerDisabled(true);
+    setIsShowMoreBtnDisabled(false);
   }, [filters]);
+
+  useEffect(() => {
+    setIsShowMoreBtnDisabled(true);
+  }, [purchasedCoursesSlicer]);
 
 
   useEffect(() => {
     toggleLoader("show");
 
     axiosInstance
-      .get(`users/purchased/?country_code=eg&limit=9&page=1`)
+      .get(`course/filter/?country_code=eg&page=1&limit=${purchasedCoursesSlicer}`)
       .then(function (response: any) {
         if (tokenValidationCheck(response)) {
 
-          setCourseListing(response?.data);
+          setMyAccountData(response?.data);
+          if (response?.data?.data?.courses.length !== 0) {
+            setIsUserPurchasedAnyCourses(true);
+          }
+
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
         }
@@ -203,7 +300,10 @@ export default function MyAccountPage() {
       <Row className={styles["my-account__row"]}>
 
         {
-          JSON.stringify(courseListing?.data?.courses) !== '[]' && courseListing?.data?.courses !== null &&
+          (!isUserPurchasedAnyCourses &&
+            myAccountData?.data?.courses?.length !== 0 &&
+            myAccountData?.data?.courses !== null) ||
+          myAccountData?.data?.is_user_subscription &&
           <>
             <Col sm={{ span: 3, order: 2 }} className={styles["my-account__filter"]}>
 
@@ -221,10 +321,11 @@ export default function MyAccountPage() {
               </div>
               <div className={styles["filter-sidebar__filter-list-container"]}>
 
+                {/** Categories filter **/}
                 <ul className={styles["filter-sidebar__filter-list"]}>
                   <div>التخصصات</div>
                   {
-                    courseListing?.data?.categories?.slice(0, categoriesSlicer).map((cat: any, i: number) => {
+                    myAccountData?.data?.categories?.slice(0, categoriesSlicer).map((cat: any, i: number) => {
                       return (
                         <li key={i}>
                           <input className="form-check-input" type="checkbox"
@@ -255,9 +356,11 @@ export default function MyAccountPage() {
                       </g>
                     </svg>
                   </div>
-
                 </ul>
-                <ul className={styles["filter-sidebar__filter-list"]}>
+                {/** Categories filter end **/}
+
+                {/** Free/Paid filter */}
+                {/* <ul className={styles["filter-sidebar__filter-list"]}>
                   <div>السعر</div>
                   <li>
                     <input className="form-check-input" type="checkbox"
@@ -275,35 +378,37 @@ export default function MyAccountPage() {
                       مجاني
                     </span>
                   </li>
+                </ul> */}
+                {/** Free/Paid filter end */}
 
-                </ul>
+                {/** Trainer level filter **/}
                 <ul className={styles["filter-sidebar__filter-list"]}>
                   <div>المستوي</div>
 
                   <li>
-                    <input className="form-check-input" type="checkbox"
-                      name="level-beginner" />
+                    <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("beginner") }}
+                      id="level-beginner" name="level-beginner" />
                     <span >
                       مبتدئ
                     </span>
                   </li>
                   <li>
-                    <input className="form-check-input" type="checkbox"
-                      name="level-intermediate" />
+                    <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("intermediate") }}
+                      id="level-intermediate" name="level-intermediate" />
                     <span >
                       متوسط
                     </span>
                   </li>
                   <li>
-                    <input className="form-check-input" type="checkbox"
-                      name="level-professional" />
+                    <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("professional") }}
+                      id="level-professional" name="level-professional" />
                     <span >
                       محترف
                     </span>
                   </li>
                   <li>
-                    <input className="form-check-input" type="checkbox"
-                      name="level-all" />
+                    <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("all") }}
+                      id="level-all" name="level-all" />
                     <span >
                       كل المستويات
                     </span>
@@ -311,6 +416,7 @@ export default function MyAccountPage() {
 
 
                 </ul>
+                {/** Trainer level filter end **/}
 
               </div>
 
@@ -320,11 +426,17 @@ export default function MyAccountPage() {
               <div onClick={() => { handleFilterSidebarShow(true) }}>
                 <FilterIcon />
               </div>
+              <div>
+                <span>تصنيف الدورات</span>
+                <span>مسح النتائج</span>
+              </div>
+
             </Col>
           </>
         }
         {
-          JSON.stringify(courseListing?.data?.courses) !== '[]' && courseListing?.data?.courses !== null &&
+          JSON.stringify(myAccountData?.data?.courses) !== '[]' && myAccountData?.data?.courses !== null &&
+          myAccountData?.data?.is_user_subscription &&
           <Offcanvas id="offcanvasNavbar3" aria-labelledby="offcanvasNavbarLabel3" placement="end" show={FilterSidebarShow}
             onEntered={() => { checkBoxesHandler() }}
             onHide={() => { handleFilterSidebarShow(false) }}>
@@ -339,12 +451,13 @@ export default function MyAccountPage() {
                 </div>
               </Offcanvas.Title>
             </Offcanvas.Header>
-            <Offcanvas.Body>
+            <Offcanvas.Body className={styles["filter-sidebar__offcanvas-body"]}>
 
+              {/** Categories filter **/}
               <ul className={styles["filter-sidebar__filter-list"]}>
                 <div>التخصصات</div>
                 {
-                  courseListing?.data?.categories?.slice(0, categoriesSlicer).map((cat: any, i: number) => {
+                  myAccountData?.data?.categories?.slice(0, categoriesSlicer).map((cat: any, i: number) => {
                     return (
                       <li key={i}>
                         <input className="form-check-input" type="checkbox"
@@ -375,9 +488,11 @@ export default function MyAccountPage() {
                     </g>
                   </svg>
                 </div>
-
               </ul>
-              <ul className={styles["filter-sidebar__filter-list"]}>
+              {/** Categories filter end **/}
+
+              {/** Free/Paid filter **/}
+              {/* <ul className={styles["filter-sidebar__filter-list"]}>
                 <div>السعر</div>
                 <li>
                   <input className="form-check-input" type="checkbox"
@@ -395,68 +510,87 @@ export default function MyAccountPage() {
                     مجاني
                   </span>
                 </li>
+              </ul> */}
+              {/** Free/Paid filter end **/}
 
-              </ul>
+              {/** Trainer level filter **/}
               <ul className={styles["filter-sidebar__filter-list"]}>
                 <div>المستوي</div>
 
                 <li>
-                  <input className="form-check-input" type="checkbox"
-                    name="level-beginner" />
+                  <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("beginner") }}
+                    id="level-beginner" name="level-beginner" />
                   <span >
                     مبتدئ
                   </span>
                 </li>
                 <li>
-                  <input className="form-check-input" type="checkbox"
-                    name="level-intermediate" />
+                  <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("intermediate") }}
+                    id="level-intermediate" name="level-intermediate" />
                   <span >
                     متوسط
                   </span>
                 </li>
                 <li>
-                  <input className="form-check-input" type="checkbox"
-                    name="level-professional" />
+                  <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("professional") }}
+                    id="level-professional" name="level-professional" />
                   <span >
                     محترف
                   </span>
                 </li>
                 <li>
-                  <input className="form-check-input" type="checkbox"
-                    name="level-all" />
+                  <input className="form-check-input" type="checkbox" onChange={() => { handleLevelsFilters("all") }}
+                    id="level-all" name="level-all" />
                   <span >
                     كل المستويات
                   </span>
                 </li>
 
               </ul>
+              {/** Trainer level filter end **/}
+
+              <div className={styles["filter-sidebar__show-results"]}>
+                <Button id="show-results" onClick={() => { handleFilterSidebarShow(false) }}>
+                  نتائج البحث
+                </Button>
+
+              </div>
 
             </Offcanvas.Body>
 
           </Offcanvas>
+
         }
 
-        <Col sm={courseListing?.data?.courses?.length == 0 ? { span: 12, order: 3 } : { span: 9, order: 3 }}
+        <Col sm={(!isUserPurchasedAnyCourses || myAccountData?.data?.courses?.length == 0 || !myAccountData?.data?.is_user_subscription) ? { span: 12, order: 3 } : { span: 9, order: 3 }}
           xs={{ span: 12, order: 2 }} className={styles["my-account"]}>
-          {courseListing?.data?.courses?.length == 0 &&
+          {
+            isBlurryLayerDisabled &&
+            <>
+              <div className={styles["blurry-overlay"]}></div>
+              <div className={styles["filters-spinner-loader"]}>
+                <Spinner animation="border" />
+              </div>
+            </>
+          }
+          {!isUserPurchasedAnyCourses && myAccountData?.data?.courses?.length == 0 &&
             <div className={styles["my-account__you-have-no-courses"]}>
               لا يوجد دورات في حسابك
             </div>
           }
 
-          {courseListing?.data?.courses?.map((course: any, i: number) => {
-
+          {isUserPurchasedAnyCourses && myAccountData?.data?.courses?.slice(0, purchasedCoursesSlicer).map((course: any, i: number) => {
             return (
               <Card key={i} className={styles["my-account__course-card"]}>
                 {
-                  course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                  course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
                   <div
                     className={
                       styles["my-account__course-card__category-chip"]
                     }
-                    style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
+                    style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
                   >
-                    {course.categories[0] !== undefined && course.categories[0].title}
+                    {course?.categories[0] !== undefined && course?.categories[0].title}
                   </div>
                 }
 
@@ -512,7 +646,7 @@ export default function MyAccountPage() {
                       }
                     >
                       <Link href={`/course/${course.slug}`}>
-                        <h1 onClick={() => { GAProductClickEventHandler(course, i) }}
+                        <div onClick={() => { GAProductClickEventHandler(course, i) }}
                           title={course.title}
                           className={
                             styles[
@@ -521,7 +655,7 @@ export default function MyAccountPage() {
                           }
                         >
                           {course.title}
-                        </h1>
+                        </div>
                       </Link>
 
                       <Link href={`/trainer/${course.trainer?.slug}`}>
@@ -541,7 +675,10 @@ export default function MyAccountPage() {
                   </div>
 
                   <div className={styles['my-account__course-card__card-body__progress-bar']}>
-                    <ProgressBar now={32} />
+                    {
+                      course?.progress_percentage == 0 ? <></> : <ProgressBar now={Math.ceil(course?.progress_percentage)} />
+                    }
+
                   </div>
 
                   <div
@@ -677,57 +814,71 @@ export default function MyAccountPage() {
                   </div>
 
                 </Card.Body>
-
               </Card>
             )
           })}
           {
-            JSON.stringify(courseListing?.data?.courses) !== '[]' && courseListing?.data?.courses !== null &&
+            JSON.stringify(myAccountData?.data?.courses) !== '[]' && myAccountData?.data?.courses !== null &&
             <>
-              <Col sm={courseListing?.data?.courses?.length == 0 ? 12 : 9} xs={12} className={styles["my-account__pagination"]}>
-                {
-                  courseListing?.pagination?.count > 9 && <Pagination>
+              <Col sm={myAccountData?.data?.courses?.length == 0 ? 12 : 9} xs={12} className={styles["my-account__pagination"]}>
+                {/*   {
+                  myAccountData?.pagination?.count > 9 && <Pagination>
                     <Pagination.Prev
                       onClick={() => {
-                        setPageNumber(courseListing?.pagination?.current - 1);
-                        handlePageClick(courseListing?.pagination?.current - 1)
+                        setPageNumber(myAccountData?.pagination?.current - 1);
+                        handlePageClick(myAccountData?.pagination?.current - 1)
                       }}
                       className={`${currentPage == "1" && styles["disabled"]}`} />
 
                     <Pagination.Item
-                      style={{ display: courseListing?.pagination?.previous ? "" : "none" }}
-                      active={currentPage == courseListing?.pagination?.previous}
+                      style={{ display: myAccountData?.pagination?.previous ? "" : "none" }}
+                      active={currentPage == myAccountData?.pagination?.previous}
                       onClick={() => {
-                        setPageNumber(courseListing?.pagination?.previous);
-                        handlePageClick(courseListing?.pagination?.previous)
+                        setPageNumber(myAccountData?.pagination?.previous);
+                        handlePageClick(myAccountData?.pagination?.previous)
                       }}>
-                      {courseListing?.pagination?.previous}
+                      {myAccountData?.pagination?.previous}
                     </Pagination.Item>
                     <Pagination.Item
-                      active={currentPage == courseListing?.pagination?.current}
+                      active={currentPage == myAccountData?.pagination?.current}
                       onClick={() => {
-                        setPageNumber(courseListing?.pagination?.current);
-                        handlePageClick(courseListing?.pagination?.current);
+                        setPageNumber(myAccountData?.pagination?.current);
+                        handlePageClick(myAccountData?.pagination?.current);
                       }}>
-                      {courseListing?.pagination?.current}
+                      {myAccountData?.pagination?.current}
                     </Pagination.Item>
                     <Pagination.Item
-                      style={{ display: courseListing?.pagination?.next ? "" : "none" }}
-                      active={currentPage == courseListing?.pagination?.next}
+                      style={{ display: myAccountData?.pagination?.next ? "" : "none" }}
+                      active={currentPage == myAccountData?.pagination?.next}
                       onClick={() => {
-                        setPageNumber(courseListing?.pagination?.next);
-                        handlePageClick(courseListing?.pagination?.next)
+                        setPageNumber(myAccountData?.pagination?.next);
+                        handlePageClick(myAccountData?.pagination?.next)
                       }}>
-                      {courseListing?.pagination?.next}
+                      {myAccountData?.pagination?.next}
                     </Pagination.Item>
 
                     <Pagination.Next
                       onClick={() => {
-                        setPageNumber(courseListing?.pagination?.current + 1);
-                        handlePageClick(courseListing?.pagination?.current + 1)
+                        setPageNumber(myAccountData?.pagination?.current + 1);
+                        handlePageClick(myAccountData?.pagination?.current + 1)
                       }}
-                      className={`${currentPage == courseListing?.pagination?.pages && styles["disabled"]}`} />
+                      className={`${currentPage == myAccountData?.pagination?.pages && styles["disabled"]}`} />
                   </Pagination>
+                } */}
+                {
+                  (purchasedCoursesSlicer < myAccountData?.pagination?.count) && myAccountData?.pagination?.count > 9 &&
+
+                  <Button disabled={isShowMoreBtnDisabled} onClick={() => setPurchasedCoursesSlicer(purchasedCoursesSlicer + 9)} className={styles["show-all-purchased-courses-btn"]}>
+                    {
+                      isShowMoreBtnDisabled ?
+                        <>
+                          <Spinner as="span" animation="border" />
+                          جاري التحميل
+                        </>
+                        :
+                        "تصفح المزيد"
+                    }
+                  </Button>
                 }
 
               </Col>
@@ -736,16 +887,16 @@ export default function MyAccountPage() {
         </Col>
 
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 12, order: 1 }}>
-          <BrowseThroughCategories data={courseListing?.data?.categories} />
+          {/* <BrowseThroughCategories data={myAccountData?.data?.categories} /> */}
           {
-            JSON.stringify(courseListing?.data?.courses) !== '[]' && courseListing?.data?.courses !== null &&
-            <WatchedCourses data={courseListing?.data?.courses} />
+            JSON.stringify(myAccountData?.data?.courses) !== '[]' && myAccountData?.data?.courses !== null &&
+            <WatchedCourses data={myAccountData?.data?.watched_courses} />
           }
         </Col>
 
-        <Col xs={{ span: 12, order: 4 }} sm={{ span: 12, order: 4 }}>
-          <LatestCourses data={courseListing?.data?.best_seller_courses} />
-        </Col>
+        {/* <Col xs={{ span: 12, order: 4 }} sm={{ span: 12, order: 4 }}>
+          <LatestCourses data={myAccountData?.data?.best_seller_courses} />
+        </Col> */}
 
       </Row>
 

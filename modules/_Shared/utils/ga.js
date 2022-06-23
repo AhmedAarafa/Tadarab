@@ -138,18 +138,51 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 			'eventLabel':(traking_data.course_name+'|'+traking_data.video_name) //'<course name>|<video name>'
 		});
 	}else if(traking_type=='subscription'){
-		console.log(traking_data);
+		console.log(traking_data.is_trial_free);
 		dataLayer = dataLayer || [];
-		dataLayer.push({
-			'event': 'GTMevent',
-			'eventCategory': 'subscription',
-			'eventAction': 'free-trial',
-			'eventLabel': '7-day',
-			'userID': traking_data.user_id,
-			'clientID': traking_data.cid,
-			'start_trial_date': traking_data.date // Date when free-trial occurred (YYYYMMDD)
-		});
-
+		if((traking_data.is_trial_free)&&(traking_data.is_trial_free==true)){
+			dataLayer.push({
+				'event': 'GTMevent',
+				'eventCategory': 'subscription',
+				'eventAction': 'free-trial',
+				'eventLabel': '7-day',
+				'userID': traking_data.user_id,
+				'clientID': traking_data.cid,
+				'start_trial_date': traking_data.date // Date when free-trial occurred (YYYYMMDD)
+			});
+		}else{
+			dataLayer.push({
+				'event': 'GTMecommerce',
+				'eventCategory': 'subscription',
+				'eventAction': 'purchase',
+				'eventLabel': '1', /* number of payments */
+				'ecommerce': {
+					'currencyCode': 'USD',
+					'purchase': {
+						'actionField': {
+							'id': traking_data.trn_id,
+							'revenue': traking_data.revenue,
+							'tax': '0.00',
+							'affiliation': '',
+							'shipping': '0.00',
+							'coupon': ''
+						},
+						'products': [{
+							'id': 'Paid Subscription',
+							'name': 'Paid Subscription',
+							'category': 'online-subscription-purchase',
+							'brand': 'Tadarab',
+							'variant': '1', /* number of payments */
+							'price': traking_data.revenue,
+							'quantity': 1
+						}]
+					}
+				},
+			   'userID': traking_data.user_id,
+			   'clientID': traking_data.cid,
+			   'start_trial_date': traking_data.date
+			});
+		}
 	}
 }
 

@@ -202,7 +202,7 @@ export default function LiveCourses() {
                       <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
                           <Link href={`/webinar/${lc.slug}`}>
-                            <h1 title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
+                            <div title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
                           </Link>
                           <Link href={`/trainer/${lc.trainer?.slug}`}>
 

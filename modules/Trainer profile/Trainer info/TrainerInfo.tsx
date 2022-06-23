@@ -164,8 +164,7 @@ export default function TrainerInfo() {
             <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners"]}>
                 <div>عدد المتعلمين</div>
                 <div>
-                  {
-                  trainerProfileData.data?.data?.courses?.map((item:any)=> item.subscribers_count).reduce((prev:any, curr:any) => prev + curr, 0) +
+                {
                   parseInt(trainerProfileData.data?.data?.buyers_count) 
                 }
                 </div> 

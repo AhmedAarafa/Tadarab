@@ -9,6 +9,7 @@ import useResize from "custom hooks/useResize";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import dynamic from 'next/dynamic';
 import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
+import Router, { useRouter } from "next/router";
 
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const UnlimitedCourses = dynamic(() => import("modules/Tadarab subscription/Unlimited courses/UnlimitedCourses"));
@@ -19,10 +20,17 @@ const Faq = dynamic(() => import("modules/Tadarab subscription/FAQ/Faq"));
 const MobileCheckoutBar = dynamic(() => import("modules/Course details/Mobile checkout bar/MobileCheckoutBar"));
 
 export default function TadarabSubscription() {
+  const userAuthState = useSelector((state: any) => state.userAuthentication);
+  
 
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
+
+  if(userAuthState.isUserAuthenticated && userAuthState.isSubscribed){
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
+  }
   useEffect(() => {
+ 
     toggleLoader("show");
     subscriptionCounter();
     let addToCartBtn: any = null;
@@ -96,6 +104,13 @@ export default function TadarabSubscription() {
     };
 
   }, []);
+
+  useEffect(() => {
+    if(userAuthState.isUserAuthenticated && userAuthState.isSubscribed){
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
+  }
+  }, [userAuthState])
+  
 
   return (
     <>

@@ -475,7 +475,7 @@ export default function TrainingCourses(props: any) {
                                                 }
                                             >
                                                 <Link href={`/course/${course.slug}`}>
-                                                    <h1 onClick={() => { GAProductClickEventHandler(course, i) }}
+                                                    <div onClick={() => { GAProductClickEventHandler(course, i) }}
                                                         className={
                                                             styles[
                                                             "training-courses__course-card__card-body__card-header__course-details__title"
@@ -484,7 +484,7 @@ export default function TrainingCourses(props: any) {
                                                         title={course.title}
                                                     >
                                                         {course.title}
-                                                    </h1>
+                                                    </div>
                                                 </Link>
                                                 <Link href={`/trainer/${course.trainer?.slug}`}>
 

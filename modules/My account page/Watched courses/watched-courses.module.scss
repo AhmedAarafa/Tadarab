@@ -7,7 +7,7 @@
     // margin-top: 7.25rem;
     font-size: 2rem;
     font-weight: 800;
-    padding: 4rem 3rem 0 3rem;
+    padding: 3rem 3rem 0 3rem;
     z-index: 5;
     background-color: white;
     color: var(--dark-black);
@@ -36,8 +36,8 @@
         &::before {
             content: "-";
             padding-left: 0.5rem;
-            color: var(--grey); 
-            text-decoration:none !important;
+            color: var(--grey);
+            text-decoration: none !important;
             display: inline-block;
         }
 
@@ -114,7 +114,7 @@
     width: 100%;
     height: 10rem;
     cursor: pointer;
-    border-radius: 0.75rem 0.75rem 0 0; 
+    border-radius: 0.75rem 0.75rem 0 0;
 }
 
 .watched-courses__cards-carousel__course-card__card-body {
@@ -236,16 +236,16 @@
     display: block;
 }
 
-.watched-courses__show-more-link{
+.watched-courses__show-more-link {
     color: var(--primary-red);
     font-size: 0.8125rem;
     text-align: center;
-    margin: 0.5rem 0 0 0 ;
-    text-decoration: underline 0.0625rem 	rgba(0, 0, 0,0.5);
+    margin: 0.5rem 0 0 0;
+    text-decoration: underline 0.0625rem rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
 
-.watch-subscribed-course{
+.watch-subscribed-course {
     font-size: 0.9rem !important;
     font-weight: 700 !important;
     padding: 0.5rem 1rem;
@@ -255,14 +255,14 @@
     cursor: pointer;
 }
 
-.watched-courses__cards-carousel__course-card__card-body__watching-progress-box{
-    @include flex(flex-start,center);
+.watched-courses__cards-carousel__course-card__card-body__watching-progress-box {
+    @include flex(flex-start, center);
     flex-direction: column;
 }
 
-.watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar{
+.watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar {
     width: 100%;
-    
+
     &>div:first-child {
         border-radius: 0.9375rem;
         height: 0.7rem;
@@ -274,18 +274,19 @@
     }
 }
 
-.watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage{
+.watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage {
     font-weight: 800;
     color: var(--dark-black);
     font-size: 1rem;
 }
 
-.watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start{
+.watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start {
     font-weight: 800;
     color: var(--primary-red);
     font-size: 0.7rem;
     cursor: pointer;
-    svg{
+
+    svg {
         margin-right: 0.3rem;
         width: 0.7rem;
         height: 0.7rem;
@@ -293,9 +294,10 @@
 }
 
 @media (max-width:1200px) {
-    .watched-courses__title{
+    .watched-courses__title {
         font-size: 2rem*1.2;
     }
+
     .watched-courses__departments-list {
         padding-right: 3rem;
 
@@ -499,32 +501,34 @@
             margin: 0.65rem 0.575rem 0.65rem 0.575rem;
         }
     }
-    .watch-subscribed-course{
-    font-size: 0.9rem*1.27 !important;
+
+    .watch-subscribed-course {
+        font-size: 0.9rem*1.27 !important;
         padding: 0.5rem*1.27 1rem*1.27;
         border-radius: 0.7rem*1.27;
     }
 
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar{
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar {
         width: 100%;
-        
+
         &>div:first-child {
             border-radius: 0.9375rem*1.27;
             height: 0.7rem*1.27;
-    
+
             &>div:first-child {
                 border-radius: 0.9375rem*1.27;
             }
         }
     }
-    
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage{
+
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage {
         font-size: 1rem*1.27;
     }
-    
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start{
+
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start {
         font-size: 0.7rem*1.27;
-        svg{
+
+        svg {
             margin-right: 0.3rem*1.27;
             width: 0.7rem*1.27;
             height: 0.7rem*1.27;
@@ -535,9 +539,10 @@
 
 @media (max-width:980px) {
 
-    .watched-courses__title{
+    .watched-courses__title {
         font-size: 2rem*1.4;
     }
+
     .watched-courses__departments-list {
         padding-right: 3rem;
 
@@ -740,32 +745,34 @@
             margin: 0.88rem 0.88rem 0.88rem 0.88rem;
         }
     }
-    .watch-subscribed-course{
-    font-size: 0.9rem*1.67 !important;
-        
+
+    .watch-subscribed-course {
+        font-size: 0.9rem*1.67 !important;
+
         padding: 0.5rem*1.67 1rem*1.67;
         border-radius: 0.7rem*1.67;
     }
 
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar{
-        
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar {
+
         &>div:first-child {
             border-radius: 0.9375rem*1.67;
             height: 0.7rem*1.67;
-    
+
             &>div:first-child {
                 border-radius: 0.9375rem*1.67;
             }
         }
     }
-    
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage{
+
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage {
         font-size: 1rem*1.67;
     }
-    
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start{
+
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start {
         font-size: 0.7rem*1.67;
-        svg{
+
+        svg {
             margin-right: 0.3rem*1.67;
             width: 0.7rem*1.65;
             height: 0.7rem*1.65;
@@ -780,7 +787,7 @@
         font-size: 1.6rem*2.2;
         text-align: center;
         padding: 0;
-        padding: 7.344rem 0 0 0;
+        padding: 6rem 0 0 0;
     }
 
     .watched-courses__departments-list {
@@ -797,16 +804,16 @@
             list-style-type: none;
             cursor: pointer;
             z-index: 3;
-    
+
             &::before {
                 padding-left: 0.5rem*2.92;
             }
-    
+
         }
     }
 
     .watched-courses__departments-list__item--active {
-       text-underline-offset: 0.2rem*2.92;
+        text-underline-offset: 0.2rem*2.92;
     }
 
 
@@ -900,7 +907,7 @@
 
     .watched-courses__cards-carousel__course-card__card-body {
         padding: 0.6rem*2.92 1rem*2.92;
-        @include flex(unset,flex-start);
+        @include flex(unset, flex-start);
         flex-direction: column;
         height: 43.5%;
     }
@@ -1021,31 +1028,33 @@
 
         }
     }
-    .watch-subscribed-course{
-    font-size: 0.9rem*2.5 !important;
+
+    .watch-subscribed-course {
+        font-size: 0.9rem*2.5 !important;
         padding: 0.5rem*2.5 1rem*2.5;
         border-radius: 0.7rem*2.5;
     }
 
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar{
-        
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__progress-bar {
+
         &>div:first-child {
             border-radius: 0.9375rem*2.5;
             height: 0.7rem*2.5;
-    
+
             &>div:first-child {
                 border-radius: 0.9375rem*2.5;
             }
         }
     }
-    
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage{
+
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__percentage {
         font-size: 1rem*2.5;
     }
-    
-    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start{
+
+    .watched-courses__cards-carousel__course-card__card-body__watching-progress-box__start {
         font-size: 0.7rem*2.5;
-        svg{
+
+        svg {
             margin-right: 0.3rem*2.5;
             width: 0.7rem*2.2;
             height: 0.7rem*2.2;

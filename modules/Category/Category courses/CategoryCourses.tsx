@@ -144,7 +144,7 @@ export default function CategoryCourses(props:any) {
                             }
                         >
                             <Link href={`/course/${course.slug}`}>
-                            <h1
+                            <div
                             className={
                                 styles[
                                 "category-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
@@ -152,7 +152,7 @@ export default function CategoryCourses(props:any) {
                             }
                             >
                             {course.title}
-                            </h1>
+                            </div>
                             </Link>
                             <div
                             className={

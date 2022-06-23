@@ -38,6 +38,21 @@ export default function SignInPage() {
   const router: any = useRouter();
   const dispatch = useDispatch();
 
+  
+  useEffect(() => {
+    if(userAuthState.isUserAuthenticated){
+      if(userAuthState.isSubscribed){
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
+      }else{
+        if (router.query && router.query.from_subscription) {
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        }
+      }
+    }
+    
+  }, [userAuthState])
+
+
   const showHidePasswordHandler = () => {
     const passwordField: any = document.getElementById("password-field");
     if (passwordField.type === "password") {
@@ -75,6 +90,8 @@ export default function SignInPage() {
     if (router.query && router.query.from) {
       if (router.query.from == "checkout") {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=checkout`);
+      } else if (router.query.from.startsWith("webinar")) {
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
       } else {
         Router.back();
       }
@@ -138,12 +155,14 @@ export default function SignInPage() {
                       });
                       localStorage.setItem("token", response.data.data.token);
                       localStorage.setItem("user_id", response.data.data.id);
+                      localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
                       localStorage.setItem("cart", JSON.stringify(totalItems));
                       localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
                       dispatch(setIsUserAuthenticated({
                         ...userAuthState, isUserAuthenticated: true,
                         token: response.data.data.token,
-                        id: response.data.data.id
+                        id: response.data.data.id,
+                        isSubscribed: response.data.data.is_in_user_subscription
                       }));
 
 
@@ -155,6 +174,8 @@ export default function SignInPage() {
                       if (router.query.from == "checkout") {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                         console.log("checkout");
+                      } else if (router.query.from.startsWith("webinar")) {
+                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                       } else {
                         Router.back();
                         console.log("back");
@@ -165,10 +186,10 @@ export default function SignInPage() {
 
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
                     } else {
-                      if (response.data.data?.is_in_user_subscription){
+                      if (response.data.data?.is_in_user_subscription) {
 
                         Router.push('/my-account');
-                      }else {
+                      } else {
 
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                       }
@@ -250,7 +271,7 @@ export default function SignInPage() {
                     </Button>
                   </div>
 
-                  <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]}>
+                  <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]} style={{marginBottom:"0px"}}>
                     <span> ليس لديك حساب؟ </span>
                     {/* <Link href="/sign-up"> */}
                     <span onClick={() => { handleRedirection() }}> انشاء حساب جديد </span>
@@ -261,7 +282,7 @@ export default function SignInPage() {
                   <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]}>
                     <span>لوحة تحكم المدربين</span>
                     {/* <Link href="/sign-up"> */}
-                      <span><a target="_blank" href="https://app.tadarab.com/#signup" rel="noreferrer"> اضغط هنا للدخول</a></span>
+                    <span><a target="_blank" href="https://app.tadarab.com/#signup" rel="noreferrer"> اضغط هنا للدخول</a></span>
                     {/* </Link> */}
                   </div>
                 </Form>

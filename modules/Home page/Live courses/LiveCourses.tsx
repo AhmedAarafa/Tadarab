@@ -109,6 +109,18 @@ export default function LiveCourses() {
     // setLatestCourses([...latestCourses]);
   }
 
+  const liveCourseWatchingHandler = (slug:string,webinarType:any)=>{
+    if(webinarType == "soon"){
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);
+    }else{
+      if(userStatus.isUserAuthenticated){
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);
+      }else{
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=webinar/${slug}`);
+      }
+    }
+  }
+
 
   useEffect(() => {
 
@@ -148,10 +160,10 @@ export default function LiveCourses() {
 
       <Row >
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["live-courses__title"]}>
-          <div>
+          <h2>
             <span> الدورات </span>
             <span> المباشرة </span>
-          </div>
+          </h2>
         </Col>
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["live-courses__see-more-btn-col"]}>
 
@@ -215,16 +227,18 @@ export default function LiveCourses() {
                         {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
                       </div>
                     </div>
-                    <Link href={`/webinar/${lc.slug}`}>
-                      <Card.Img variant="top" src={lc.image} alt='trainer image'
+                    {console.log("lc",lc)
+                    }
+                    {/* <Link href={`/webinar/${lc.slug}`}> */}
+                      <Card.Img onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}} variant="top" src={lc.image} alt='trainer image'
                         className={styles["live-courses__cards-carousel__card__trainer-img"]} />
-                    </Link>
+                    {/* </Link> */}
                     <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                       <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                          <Link href={`/webinar/${lc.slug}`}> 
-                            <h1 title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</h1>
-                          </Link>
+                          {/* <Link href={`/webinar/${lc.slug}`}>  */}
+                            <div onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
+                          {/* </Link> */}
                           <Link href={`/trainer/${lc.trainer?.slug}`}>
 
                             <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
@@ -237,8 +251,8 @@ export default function LiveCourses() {
 
 
                       <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
-                        <Link href={`/webinar/${lc.slug}`}>
-                          <div>
+                        {/* <Link href={`/webinar/${lc.slug}`}> */}
+                          <div onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}}>
                             <div
                               className={
                                 styles[
@@ -299,7 +313,7 @@ export default function LiveCourses() {
                               </div>
                             }
                           </div>
-                        </Link>
+                        {/* </Link> */}
                         {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart} variant={""}>
 
                           {(lc.discounted_price == 0  && lc.webinar_type == "soon") ? 

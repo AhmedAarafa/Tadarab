@@ -129,14 +129,14 @@ export default function UnlimitedCourses() {
               </div> 
               <Button onClick={()=>{handleSubscriptionBtn()}} className={styles["unlimited-courses__subscribe-btn"]}  id="monthly-subscribe-btn" >
               <span className={styles["monthly-subscription__subscribe-btn-box__btn__monthly-subscribe"]}>
-              جرب تدرب بلا حدود مجاناَ
+              ابدأ التعلم الآن
               </span>  
           
 
               </Button>
-              <div className={styles["unlimited-courses__exp-days"]}>
-              ٧ أيام تجربة مجانية ثم ٩ دك   شهريًا
-              </div>
+              {/* <div className={styles["unlimited-courses__exp-days"]}>
+              ٧ أيام تجربة مجانية ثم ٩ دك (٢٩ $) شهريًا
+              </div> */}
               
               {/* <div className={styles["unlimited-courses__brief"]}>
               تدرب الآن من اي مكان وفي اي وقت

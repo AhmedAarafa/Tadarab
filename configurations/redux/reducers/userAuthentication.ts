@@ -7,23 +7,26 @@ const userAuthentication = (
     isUserAuthenticated: false,
     token: null,
     id: 0,
+    isSubscribed: false,
   },
   action: {
     type: string;
     payload: {
       isUserAuthenticated: boolean;
       token: string | null;
-      id:number | null;
+      id: number | null;
+      isSubscribed: boolean | null;
     };
   }
 ) => {
   switch (action.type) {
-    case TYPES.IS_USER_AUTHENTICATED: 
+    case TYPES.IS_USER_AUTHENTICATED:
       return {
         ...state,
         isUserAuthenticated: action.payload.isUserAuthenticated,
         token: action.payload.token,
         id: action.payload.id,
+        isSubscribed: action.payload.isSubscribed,
       };
     default:
       return state;

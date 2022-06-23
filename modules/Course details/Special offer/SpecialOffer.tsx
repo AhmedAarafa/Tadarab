@@ -135,9 +135,9 @@ export default function SpecialOffer(props: any) {
             // console.log("handleCartResponse",firstresponse);
             firstresponse.resp.then(function (response: any) {
                 setDisabled(true);
-                console.log("firstresponse", firstresponse);
-                console.log("response,", response);
-                setSpecialBundleData(response.data.data);
+                //console.log("firstresponse :", firstresponse);
+                //console.log("response :", response);
+                setSpecialBundleData(response?.data?.data);
                 dispatch(setCartItems(firstresponse.cartResponse));
             })
         })
@@ -167,7 +167,7 @@ export default function SpecialOffer(props: any) {
                                             <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
                                                 <img loading="lazy" src={course?.image} alt="course image" />
                                                 {
-                                                    course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                                                    (course?.length) && course.categories[0].title !== null && course.categories[0].title !== "" &&
 
                                                     <div className={styles["special-offer__cards-outer-box__card__category-chip"]}
                                                         style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}>
@@ -187,7 +187,7 @@ export default function SpecialOffer(props: any) {
                                                             {course.title}
                                                         </h3>
                                                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
-                                                            {course.trainer.name_ar}
+                                                            {course.trainer?.name_ar}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -235,7 +235,6 @@ export default function SpecialOffer(props: any) {
                                 )
                             })
                         }
-
 
                         <div className={styles["special-offer__cards-outer-box__card__checkout-box"]}>
                             <div className={styles["special-offer__cards-outer-box__card__checkout-box__prices-box"]}>

@@ -2,6 +2,8 @@
 
 .my-account__row {
     background-color: #EEEDEF;
+    min-height: fit-content;
+    margin: 3rem 0 -5rem 0;
 }
 
 .my-account {
@@ -9,6 +11,33 @@
     @include flex(center, space-evenly);
     flex-wrap: wrap;
     height: fit-content;
+    position: relative;
+}
+
+.blurry-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10%;
+    background-color: rgba(238, 237, 239, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: 3;
+}
+
+.filters-spinner-loader {
+    position: absolute;
+    top: 40%;
+    z-index: 3;
+
+    div {
+        width: 4rem;
+        height: 4rem;
+        color: var(--primary-red) !important;
+        border-width: 0.4rem;
+        // border-style: groove;
+        // border-color: var(--primary-red) !important;
+        // animation-duration: 0.75s;
+    }
 }
 
 .my-account__filter {
@@ -234,6 +263,7 @@
         width: 2.5rem;
         height: 2.5rem;
         margin-left: 0.6rem;
+        cursor: pointer;
     }
 }
 
@@ -260,6 +290,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 9.688rem;
+    cursor: pointer;
 }
 
 .my-account__course-card__card-body__checkout-details {
@@ -477,6 +508,23 @@
 //     object-fit: cover;
 // }
 
+.show-all-purchased-courses-btn {
+    @include outlined-button;
+    background-color: transparent !important;
+    width: 30%;
+    font-size: 1.0625rem;
+    border-radius: 1rem;
+    height: 3rem;
+    @include flex(center, center);
+
+    span {
+        margin: 0 0 0 1rem;
+        color: var(--primary-red) !important;
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+    }
+}
+
 
 /*  */
 
@@ -539,7 +587,7 @@
         &>div:first-child {
             border-radius: 0.9375rem*1.27;
             height: 0.7rem*1.27;
-    
+
             &>div:first-child {
                 border-radius: 0.9375rem*1.27;
             }
@@ -624,6 +672,8 @@
         @include flex(center, center);
         padding: 2rem*1.25 0 5rem*1.25 0;
     }
+
+
 
 
     .watch-subscribed-course {
@@ -921,8 +971,12 @@
 }
 
 @media (max-width: 575px) {
+    .my-account__row {
+        margin: 3rem*2 0 -5rem*2.5 0;
+    }
+
     .my-account {
-        padding: 5rem 5rem 0 5rem;
+        padding: 5rem;
         @include flex(center, space-evenly);
         flex-wrap: wrap;
     }
@@ -930,8 +984,9 @@
     .my-account__filter-icon-col {
         display: block;
         padding: 7rem 5rem 0 5rem;
+        display: flex;
 
-        div {
+        div:nth-of-type(1) {
             background-color: white;
             width: fit-content;
             padding: 2rem;
@@ -942,6 +997,21 @@
         svg {
             width: 3rem;
             height: 3rem;
+        }
+
+        span:nth-of-type(1) {
+            @include flex(center, center);
+            font-size: 2.875rem;
+            font-weight: 800;
+            color: var(--dark-black);
+            margin-right: 2rem;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 2.0125rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin: 0 2.5rem 0 0;
         }
     }
 
@@ -1047,6 +1117,28 @@
         margin-bottom: 4rem;
     }
 
+    .filter-sidebar__offcanvas-body {
+        position: relative;
+    }
+
+    .filter-sidebar__show-results {
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        padding: 3rem 2rem;
+        width: 100%;
+        border-top: 0.063rem solid rgba(119, 119, 119, 0.2);
+        // margin: 0 0 0 0 !important;
+
+        button {
+            @include contained-button;
+            font-size: 0.97rem*2.5;
+            padding: 0.375rem*2.5 0.75rem*2.5;
+            border-radius: 0.625rem*2.5;
+            width: 100%;
+        }
+    }
+
     .show-less,
     .show-more {
         transition: all 0.3s ease;
@@ -1107,7 +1199,7 @@
         &>div:first-child {
             border-radius: 0.9375rem*2.5;
             height: 0.7rem*2.5;
-    
+
             &>div:first-child {
                 border-radius: 0.9375rem*2.5;
             }
@@ -1317,4 +1409,22 @@
 
     }
 
+    .show-all-purchased-courses-btn {
+        width: 94%;
+        margin: 2rem 0 0 0;
+        font-size: 2.813rem;
+        border-radius: 1.875rem;
+        height: 6.875rem;
+
+        span {
+            margin: 0 0 0 1rem*2.5;
+            width: 1.5rem*2.5 !important;
+            height: 1.5rem*2.5 !important;
+        }
+    }
+
+    .blurry-overlay,
+    .filters-spinner-loader {
+        display: none; 
+    }
 }

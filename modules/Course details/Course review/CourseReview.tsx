@@ -15,7 +15,7 @@ import Image from 'next/image';
 export default function CourseReview(props:any) { 
     SwiperCore.use([Navigation]);
   const [courseReviews, setCourseReviews] = useState<any>([]);
-  const [reviewsSlicer, setReviewsSlicer] = useState<any>(1);
+  const [reviewsSlicer, setReviewsSlicer] = useState<any>(1); 
 
     useEffect(() => {
 

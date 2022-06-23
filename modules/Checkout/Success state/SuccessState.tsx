@@ -12,6 +12,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter }  from "next/router";
 import Link from "next/link";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
+import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 
 export default function SuccessState() {
 
@@ -19,6 +20,7 @@ export default function SuccessState() {
     const invoiceDetails = useSelector((state:any) => state.invoiceDetails);
     const cartItems = useSelector((state:any) => state.cartItems);
     var checkoutType = useSelector((state:any) => state.checkoutType);
+    const userAuthState = useSelector((state: any) => state.userAuthentication);
 
     let tadarabGA = new TadarabGA();
     useEffect(() => {
@@ -35,10 +37,17 @@ export default function SuccessState() {
                     email:invoiceDetails?.data?.transaction_details.email
                 });
             }else if(checkoutType=='subscription'){
+                dispatch(setIsUserAuthenticated({
+                    ...userAuthState,
+                    isSubscribed:true
+                  }));
                 tadarabGA.tadarab_fire_traking_GA_code("subscription", {
-                    user_id: invoiceDetails?.data?.transaction_details.user_id,
-                    date:invoiceDetails?.data?.transaction_details.date_ymd,
-                    cid:invoiceDetails?.data?.ga_tracking.cid,
+                    trn_id: invoiceDetails?.data?.transaction_details?.payment_id,
+                    user_id: invoiceDetails?.data?.transaction_details?.user_id,
+                    revenue: invoiceDetails?.data?.transaction_details?.amount_usd,
+                    date:invoiceDetails?.data?.transaction_details?.date_ymd,
+                    cid:invoiceDetails?.data?.ga_tracking?.cid,
+                    is_trial_free:invoiceDetails?.data?.ga_tracking?.is_trial_free
                 });
             }
         }
@@ -47,9 +56,10 @@ export default function SuccessState() {
     useEffect(() => {
         //   localStorage.setItem("cart" , "[]");
         dispatch(setCartItems(null));
-        console.log("success state",invoiceDetails);
+        //console.log("success state",invoiceDetails);
         localStorage.setItem("cart",JSON.stringify([]));
         localStorage.setItem("cart_items",JSON.stringify([]));
+
       
         return () => {
             console.log("setCheckoutType dispatched");

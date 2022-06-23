@@ -41,14 +41,14 @@ export default function Statistics() {
 
 
         <Col xs={12} sm={6} className={styles["marketing-boxes__box"]}>
-          <div className={styles["marketing-boxes__title"]}>
+          <h1 className={styles["marketing-boxes__title"]}>
             <div> اشترك الآن لوصول 
               <span className={styles["marketing-boxes__title--important"]}>
               غير محدود
               </span>
               لأكبر مكتبة إلكترونية عربية بالخليج.
               </div>
-          </div>
+          </h1>
           <div className={styles["marketing-boxes__brief"]}>
             
             <div className={styles["marketing-boxes__brief__list-item"]}>

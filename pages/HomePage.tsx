@@ -15,7 +15,7 @@ const HeroSection = dynamic(() => import("modules/Home page/Hero section/HeroSec
 const LatestCourses = dynamic(() => import("modules/Home page/Latest courses/LatestCourses"));
 const CoursesDepartments = dynamic(() => import("modules/Home page/Courses departments/CoursesDepartments"));
 const LiveCourses = dynamic(() => import("modules/Home page/Live courses/LiveCourses"));
-const Consultation = dynamic(() => import("modules/Home page/Consultations/Consultation"));
+//const Consultation = dynamic(() => import("modules/Home page/Consultations/Consultation"));
 const HowToLearnOnTadarab = dynamic(() => import("modules/Home page/How to learn on tadarab/HowToLearnOnTadarab"));
 const Books = dynamic(() => import("modules/Home page/Books/Books"));
 const Statistics = dynamic(() => import("modules/Home page/Statistics/Statistics"));
@@ -26,7 +26,6 @@ const EducationalGuide = dynamic(() => import("modules/Home page/Educational gui
 const AboutTadarab = dynamic(() => import("modules/Home page/About Tadarab/AboutTadarab"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("modules/Home page/Tadarab unlimited/TadarabUnlimited"));
-const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 function HomePage(props: any) {
   

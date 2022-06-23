@@ -46,7 +46,6 @@ interface SignUpFormValues {
   password: string;
 };
 
-
 export default function SignupPage() {
   const [countryFlag, setCountryFlag] = useState("eg.png");
   const [countryCallingCode, setCountryCallingCode] = useState("20");
@@ -78,7 +77,24 @@ export default function SignupPage() {
     // console.log("e",e);
 
   };
+
   useEffect(() => {
+  
+    if(userAuthState.isUserAuthenticated){
+      if(userAuthState.isSubscribed){
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
+      }else{
+        if (router.query && router.query.from_subscription) {
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        }
+      }
+    }
+  }, [userAuthState])
+
+
+
+  useEffect(() => {
+
     const phoneField: any = document.querySelector("input[type='tel']");
     phoneField.addEventListener('blur', updateValue);
     phoneField.addEventListener('change', updateValue);
@@ -88,6 +104,8 @@ export default function SignupPage() {
       intlTelInput?.classList.remove("selected-dial-code");
     }, 50);
   }, []);
+
+
 
 
   function validationSchema() {
@@ -141,6 +159,8 @@ export default function SignupPage() {
       // router.push(router.back());
       if (router.query.from == "checkout") {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth/?from=checkout`);
+      } else if (router.query.from.startsWith("webinar")) {
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
       } else {
         Router.back();
       }
@@ -260,7 +280,6 @@ export default function SignupPage() {
               </div>
             </TwitterLogin>
 
-
             <div>
               <AppleIcon />
               أبل
@@ -292,7 +311,7 @@ export default function SignupPage() {
                     "phone": values.phoneNumber,
                   }).then((response: any) => {
                     // setResponse(response.data);
-                    console.log("Response",response);
+                    console.log("Response", response);
                     if (JSON.stringify(response.status).startsWith("2")) {
                       let customData = { email: values.email, phone: values.phoneNumber };
                       FBPixelEventsHandler(response.data.fb_tracking_events, customData);
@@ -303,17 +322,21 @@ export default function SignupPage() {
                         });
                         localStorage.setItem("token", response.data.data.token);
                         localStorage.setItem("user_id", response.data.data.id);
+                        localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
                         localStorage.setItem("cart", JSON.stringify(totalItems));
                         localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
                         dispatch(setIsUserAuthenticated({
                           ...userAuthState, isUserAuthenticated: true,
                           token: response.data.data.token,
-                          id: response.data.data.id
+                          id: response.data.data.id,
+                          isSubscribed: response.data.data.is_in_user_subscription
                         }));
 
                         // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                         if (router.query && router.query.from) {
                           if (router.query.from == "checkout") {
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                          } else if (router.query.from.startsWith("webinar")) {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                           } else {
                             Router.back();
