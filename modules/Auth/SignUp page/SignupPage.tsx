@@ -233,6 +233,67 @@ export default function SignupPage() {
 
   const responseFacebook = (response:any)=>{
     console.log(response);
+    if ("error" in response) {
+      // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
+    } else {
+      let tadarabGA = new TadarabGA();
+      let clientId = tadarabGA.tadarab_get_traking_client();
+      let customData = { email: response.email, phone: "" };
+
+      axiosInstance
+        .post(`social-login`, {
+          "email": response.email,
+          "first_name": response.name.split(' ')[0],
+          "last_name": response.name.split(' ')[1],
+          "full_name": response.name,
+          "social_type": "facebook",
+          "social_token": response.accessToken,
+          "clientId": clientId,
+        }).then((resp: any) => {
+
+          console.log(resp);
+          if (JSON.stringify(resp.status).startsWith("2")) {
+            FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
+            if (resp.data.data !== null) {
+              const totalItems: any = [];
+              resp?.data?.data?.courses?.data.forEach((item: any) => {
+                totalItems.push(item.id);
+              });
+              localStorage.setItem("token", resp.data.data.token);
+              localStorage.setItem("user_id", resp.data.data.id);
+              localStorage.setItem("is_user_subscribed", resp.data.data.is_in_user_subscription);
+              localStorage.setItem("cart", JSON.stringify(totalItems));
+              localStorage.setItem("cart_items", JSON.stringify([...new Set(resp.data.data.cart_items)]));
+              dispatch(setIsUserAuthenticated({
+                ...userAuthState, isUserAuthenticated: true,
+                token: resp.data.data.token,
+                id: resp.data.data.id,
+                isSubscribed: resp.data.data.is_in_user_subscription
+              }));
+
+
+              if (router.query && router.query.from) {
+                if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                } else {
+                  Router.back();
+                }
+              } else if (router.query && router.query.from_subscription) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+              } else {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+              }
+            }
+            tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: resp.data.data.email, traking_uid: resp.data.data.id });
+
+          } else {
+            setErrorMessage(resp.data.message);
+          }
+        }).catch((error: any) => {
+          console.log(error);
+        })
+
+    }
   }
 
   const responseTwitter = (err: any, data: any) => {

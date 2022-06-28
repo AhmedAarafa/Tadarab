@@ -75,7 +75,7 @@ function Navbar() {
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
     setExpanded(false);
 
-    dispatch(setIsUserAuthenticated({ ...userStatus, isUserAuthenticated: false, token: null, id: 0 }));
+    dispatch(setIsUserAuthenticated({ ...userStatus, isUserAuthenticated: false, isSubscribed:false ,  token: null, id: 0 }));
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
