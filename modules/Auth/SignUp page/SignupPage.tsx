@@ -231,8 +231,8 @@ export default function SignupPage() {
     }
   }
 
-  const responseFacebook = (fbResponse:any)=>{
-    console.log(fbResponse);
+  const responseFacebook = (response:any)=>{
+    console.log(response);
   }
 
   const responseTwitter = (err: any, data: any) => {
@@ -281,7 +281,7 @@ export default function SignupPage() {
               appId={`${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`}
               autoLoad={false}
               fields="name,email"
-              callback={()=>responseFacebook}
+              callback={responseFacebook}
               render={(renderProps:any) => (
                 <div onClick={renderProps.onClick}>
                   <FbIcon color="#4267B2"/>
