@@ -13,6 +13,7 @@
     "@silvermine/videojs-quality-selector": "^1.2.5",
     "@tippyjs/react": "^4.2.6",
     "@types/react-bootstrap": "^0.32.29",
+    "@types/react-facebook-login": "^4.1.5",
     "axios": "^0.25.0",
     "bootstrap": "^5.1.3",
     "formik": "^2.2.9",

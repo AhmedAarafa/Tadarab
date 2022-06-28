@@ -47,7 +47,7 @@ export default function MyCourse() {
 
         return () => {
             dispatch(setMyCourseNavigator("curriculum"));
-          }
+        }
 
       }, []);
 

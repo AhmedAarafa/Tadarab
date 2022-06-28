@@ -27,17 +27,10 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import Link from "next/link";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   LoginSocialGoogle,
-//   LoginSocialFacebook,
-//   LoginSocialTwitter,
-//   IResolveParams,
-//   TypeCrossFunction
-// } from 'reactjs-social-login';
-// import SocialLogin from "react-social-login";
-// import { OldSocialLogin as SocialLogin } from "react-social-login";
 import GoogleLogin from 'react-google-login';
 import TwitterLogin from "react-twitter-login";
+// import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 interface SignUpFormValues {
   name: string;
@@ -79,11 +72,11 @@ export default function SignupPage() {
   };
 
   useEffect(() => {
-  
-    if(userAuthState.isUserAuthenticated){
-      if(userAuthState.isSubscribed){
+
+    if (userAuthState.isUserAuthenticated) {
+      if (userAuthState.isSubscribed) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
-      }else{
+      } else {
         if (router.query && router.query.from_subscription) {
           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
         }
@@ -174,8 +167,6 @@ export default function SignupPage() {
   }
 
   const responseGoogle = (googleResponse: any) => {
-    console.log("response", googleResponse);
-    console.log("error" in googleResponse);
 
     if ("error" in googleResponse) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
@@ -205,12 +196,14 @@ export default function SignupPage() {
               });
               localStorage.setItem("token", response.data.data.token);
               localStorage.setItem("user_id", response.data.data.id);
+              localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
               localStorage.setItem("cart", JSON.stringify(totalItems));
               localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
               dispatch(setIsUserAuthenticated({
                 ...userAuthState, isUserAuthenticated: true,
                 token: response.data.data.token,
-                id: response.data.data.id
+                id: response.data.data.id,
+                isSubscribed: response.data.data.is_in_user_subscription
               }));
 
 
@@ -236,6 +229,10 @@ export default function SignupPage() {
         })
 
     }
+  }
+
+  const responseFacebook = (fbResponse:any)=>{
+    console.log(fbResponse);
   }
 
   const responseTwitter = (err: any, data: any) => {
@@ -280,10 +277,18 @@ export default function SignupPage() {
               </div>
             </TwitterLogin>
 
-            <div>
-              <AppleIcon />
-              أبل
-            </div>
+            <FacebookLogin
+              appId={`${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`}
+              autoLoad={false}
+              fields="name,email"
+              callback={()=>responseFacebook}
+              render={(renderProps:any) => (
+                <div onClick={renderProps.onClick}>
+                  <FbIcon color="#4267B2"/>
+                  فيسبوك
+                </div>
+              )} />
+
           </div>
 
           <div className={styles["register__register-box__register-with-email"]}>

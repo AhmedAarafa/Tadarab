@@ -29,9 +29,9 @@
 }
 
 .sign-in__sign-in-box__sign-in-with {
-    @include flex(center, flex-start);
+    @include flex(center, space-between);
     margin-top: 1.25rem;
-    display: none !important;
+    // display: none !important;
 
     div {
         font-size: 1.063rem;
@@ -180,7 +180,6 @@
     height: 100%;
     position: absolute;
     @include flex(center, center);
-
 }
 
 .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn {
@@ -199,8 +198,9 @@
     color: var(--dark-black);
     text-align: center;
     margin: 1rem 0 0 0;
-    a{
-        &:hover{
+
+    a {
+        &:hover {
             color: var(--dark-black) !important;
             cursor: pointer;
 
@@ -222,7 +222,8 @@
         color: var(--primary-red);
         font-weight: 800;
         cursor: pointer;
-        a{
+
+        a {
             color: var(--primary-red);
             font-weight: 800;
             cursor: pointer;
@@ -249,9 +250,15 @@
     position: absolute;
     bottom: 3.2rem;
     padding: 0.3rem 1.5rem;
-    @include flex(unset, center); 
+    @include flex(unset, center);
     width: 100%;
     border-radius: 0.7rem;
+}
+
+
+.disabled {
+    pointer-events: none !important;
+    opacity: 0.7 !important;
 }
 
 
@@ -261,7 +268,7 @@
         margin: 2rem*2.3 -0.75rem 0 0;
         bottom: 3.5rem*2.1;
         padding: 0.3*2.3rem 1.5rem*2.3;
-        border-radius: 0.7rem*2.3; 
+        border-radius: 0.7rem*2.3;
     }
 
     .error-msg {

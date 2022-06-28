@@ -23,10 +23,17 @@ import * as Yup from "yup";
 import { EnvelopeIcon, GoogleIcon, FbIcon, AppleIcon, LockIcon, EyeIcon } from "common/Icons/Icons";
 import { signinValidationRules } from "validation rules/signin";
 import Link from "next/link";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
+import GoogleLogin from 'react-google-login';
+import TwitterLogin from "react-twitter-login";
+
 interface SignInFormValues {
   email: string;
   password: string;
 };
+
+
+
 
 export default function SignInPage() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,22 +41,21 @@ export default function SignInPage() {
   const [validationAfterSubmit, setValidationAfterSubmit] = useState({ email: false, password: false });
   const [fieldBlur, setFieldBlur] = useState({ email: "", password: "" });
   const userAuthState = useSelector((state: any) => state.userAuthentication);
-
   const router: any = useRouter();
   const dispatch = useDispatch();
 
-  
+
   useEffect(() => {
-    if(userAuthState.isUserAuthenticated){
-      if(userAuthState.isSubscribed){
+    if (userAuthState.isUserAuthenticated) {
+      if (userAuthState.isSubscribed) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
-      }else{
+      } else {
         if (router.query && router.query.from_subscription) {
           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
         }
       }
     }
-    
+
   }, [userAuthState])
 
 
@@ -102,6 +108,71 @@ export default function SignInPage() {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
     }
   }
+  const responseGoogle = (googleResponse: any) => {
+
+
+    if ("error" in googleResponse) {
+      // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
+
+    } else {
+      let tadarabGA = new TadarabGA();
+      let clientId = tadarabGA.tadarab_get_traking_client();
+      let customData = { email: googleResponse.profileObj.email, phone: "" };
+
+      axiosInstance
+        .post(`social-login`, {
+          "email": googleResponse.profileObj.email,
+          "first_name": googleResponse.profileObj.givenName,
+          "last_name": googleResponse.profileObj.familyName,
+          "full_name": `${googleResponse.profileObj.givenName} ${googleResponse.profileObj.familyName}`,
+          "social_type": "google",
+          "social_token": googleResponse.tokenObj.access_token,
+          "clientId": clientId,
+        }).then((response: any) => {
+          console.log(response);
+          if (JSON.stringify(response.status).startsWith("2")) {
+            FBPixelEventsHandler(response.data.fb_tracking_events, customData);
+            if (response.data.data !== null) {
+              const totalItems: any = [];
+              response?.data?.data?.courses?.data.forEach((item: any) => {
+                totalItems.push(item.id);
+              });
+              localStorage.setItem("token", response.data.data.token);
+              localStorage.setItem("user_id", response.data.data.id);
+              localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
+              localStorage.setItem("cart", JSON.stringify(totalItems));
+              localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
+              dispatch(setIsUserAuthenticated({
+                ...userAuthState, isUserAuthenticated: true,
+                token: response.data.data.token,
+                id: response.data.data.id,
+                isSubscribed: response.data.data.is_in_user_subscription
+              }));
+
+
+              if (router.query && router.query.from) {
+                if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                } else {
+                  Router.back();
+                }
+              } else if (router.query && router.query.from_subscription) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+              } else {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+              }
+            }
+            tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: response.data.data.email, traking_uid: response.data.data.id });
+
+          } else {
+            setErrorMessage(response.data.message);
+          }
+        }).catch((error: any) => {
+          console.log(error);
+        })
+
+    }
+  }
 
   return (
     <>
@@ -113,10 +184,19 @@ export default function SignInPage() {
           </div>
 
           <div className={styles["sign-in__sign-in-box__sign-in-with"]}>
-            <div>
-              <GoogleIcon />
-              جوجل
-            </div>
+            <GoogleLogin
+              clientId={`${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+              render={renderProps => (
+                <div onClick={renderProps.onClick} className={renderProps.disabled ? styles['disabled'] : ""} >
+                  <GoogleIcon />
+                  جوجل
+                </div>
+              )}
+            />
             <div>
               <FbIcon color="#1977f3" />
               فيسبوك
@@ -271,7 +351,7 @@ export default function SignInPage() {
                     </Button>
                   </div>
 
-                  <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]} style={{marginBottom:"0px"}}>
+                  <div className={styles["sign-in__sign-in-box__sign-in-form-box__do-you-have-acc"]} style={{ marginBottom: "0px" }}>
                     <span> ليس لديك حساب؟ </span>
                     {/* <Link href="/sign-up"> */}
                     <span onClick={() => { handleRedirection() }}> انشاء حساب جديد </span>
