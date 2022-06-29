@@ -326,7 +326,7 @@ export default function SignupPage() {
               )}
             />
 
-            <TwitterLogin
+            {/* <TwitterLogin
               authCallback={responseTwitter}
               consumerKey={`${process.env.NEXT_PUBLIC_TWITTER_API_KEY}`}
               consumerSecret={`${process.env.NEXT_PUBLIC_TWITTER_APP_SECRET}`}
@@ -336,7 +336,7 @@ export default function SignupPage() {
                 <TwitterIcon color="#1DA1F2" />
                 تويتر
               </div>
-            </TwitterLogin>
+            </TwitterLogin> */}
 
             <FacebookLogin
               appId={`${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`}

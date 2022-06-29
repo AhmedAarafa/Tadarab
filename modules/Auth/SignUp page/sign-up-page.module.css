@@ -40,7 +40,7 @@
   font-size: 1.063rem;
   font-weight: 700;
   color: var(--dark-black);
-  width: 8.875rem;
+  width: 50%;
   height: 3.125rem;
   -webkit-box-shadow: 0 0.1875rem 1.25rem #0000001A;
           box-shadow: 0 0.1875rem 1.25rem #0000001A;
@@ -52,9 +52,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-left: 0.75rem;
   cursor: pointer;
 }

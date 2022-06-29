@@ -29,7 +29,7 @@
 }
 
 .sign-in__sign-in-box__sign-in-with {
-    @include flex(center, space-between);
+    @include flex(center, flex-start);
     margin-top: 1.25rem;
     // display: none !important;
 
@@ -37,12 +37,14 @@
         font-size: 1.063rem;
         font-weight: 700;
         color: var(--dark-black);
-        width: 8.875rem;
+        // width: 8.875rem;
+        width: 50%;
         height: 3.125rem;
         box-shadow: 0 0.1875rem 1.25rem #0000001A;
         border-radius: 0.75rem;
         padding: 0.8125rem 1.1875rem 0.8125rem 0;
-        @include flex(center, flex-start);
+        // @include flex(center, flex-start);
+        @include flex(center, center);
         margin-left: 0.75rem;
         cursor: pointer;
 
