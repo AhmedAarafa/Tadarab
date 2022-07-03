@@ -34,7 +34,7 @@
   padding-right: 0;
 }
 
-.notification-bar > div:nth-of-type(1) span {
+.notification-bar > div:nth-of-type(1) span, .notification-bar > div:nth-of-type(1) a {
   display: inline-block;
   margin-right: 0.2rem;
   text-decoration: underline;
@@ -42,7 +42,7 @@
   color: #0645ad;
 }
 
-.notification-bar > div:nth-of-type(1) span:hover, .notification-bar > div:nth-of-type(1) span:active {
+.notification-bar > div:nth-of-type(1) span:hover, .notification-bar > div:nth-of-type(1) span:active, .notification-bar > div:nth-of-type(1) a:hover, .notification-bar > div:nth-of-type(1) a:active {
   color: #0645ad;
   cursor: pointer;
   text-decoration: underline;
@@ -71,12 +71,13 @@
     font-size: 1.53125rem;
     top: 0;
     height: 7.5rem;
+    text-align: center;
   }
-  .notification-bar > div:nth-of-type(1) span {
+  .notification-bar > div:nth-of-type(1) span, .notification-bar > div:nth-of-type(1) a {
     margin-right: 0.5rem;
     text-underline-offset: 0.5rem;
   }
-  .notification-bar > div:nth-of-type(1) span:hover, .notification-bar > div:nth-of-type(1) span:active {
+  .notification-bar > div:nth-of-type(1) span:hover, .notification-bar > div:nth-of-type(1) span:active, .notification-bar > div:nth-of-type(1) a:hover, .notification-bar > div:nth-of-type(1) a:active {
     text-underline-offset: 0.5rem;
   }
   .notification-bar svg {

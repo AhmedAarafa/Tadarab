@@ -38,7 +38,7 @@ function Navbar() {
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [expanded, setExpanded] = useState<any>(false);
-  const [dropdownOpened, setDropdownOpened] = useState({cart:false,account:false});
+  const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
   const [searchQuery, setSearchQuery] = useState("");
   const handleDiscoverSidebarShow = (status: boolean) => {
@@ -52,10 +52,10 @@ function Navbar() {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const onLOLogoutSuccess = ():void=>{
+  const onLOLogoutSuccess = (): void => {
     console.log("logout succeed");
   }
-  const onLOFailure = ():void=>{
+  const onLOFailure = (): void => {
     console.log("logout failed");
   }
 
@@ -71,11 +71,10 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     localStorage.removeItem("is_user_subscribed");
-    //signOut();
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
     setExpanded(false);
 
-    dispatch(setIsUserAuthenticated({ ...userStatus, isUserAuthenticated: false, isSubscribed:false ,  token: null, id: 0 }));
+    dispatch(setIsUserAuthenticated({ ...userStatus, isUserAuthenticated: false, isSubscribed: false, token: null, id: 0 }));
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
@@ -95,7 +94,6 @@ function Navbar() {
   useEffect(() => {
     notificationBarHandler();
   })
-
 
   useEffect(() => {
 
@@ -154,14 +152,14 @@ function Navbar() {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
-          searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
+            searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
           // searchBar.style.cssText=`width:28rem`;
           // searchBar.style.cssText=`width:31.75rem`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width:42rem`:
-          searchBar.style.cssText = `width:36rem`;
+            searchBar.style.cssText = `width:42rem` :
+            searchBar.style.cssText = `width:36rem`;
         }
       }
       window.addEventListener("resize", () => {
@@ -170,14 +168,14 @@ function Navbar() {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
             userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
-            searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
+              searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
             // searchBar.style.cssText=`width:28rem`;
             // searchBar.style.cssText=`width:31.75rem`;
             userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width:42rem`:
-            searchBar.style.cssText = `width:36rem`;
+              searchBar.style.cssText = `width:42rem` :
+              searchBar.style.cssText = `width:36rem`;
           }
         }
       });
@@ -190,13 +188,13 @@ function Navbar() {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
-          searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+            searchBar.style.cssText = `width: calc(100vw - 44rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width:38.5rem`:
-          searchBar.style.cssText = `width:32.5rem`;
+            searchBar.style.cssText = `width:38.5rem` :
+            searchBar.style.cssText = `width:32.5rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
       }
@@ -207,13 +205,13 @@ function Navbar() {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
             userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
-            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+              searchBar.style.cssText = `width: calc(100vw - 44rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 50rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
             userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width:38.5rem`:
-            searchBar.style.cssText = `width:32.5rem`;
+              searchBar.style.cssText = `width:38.5rem` :
+              searchBar.style.cssText = `width:32.5rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
         }
@@ -358,27 +356,25 @@ function Navbar() {
     }
   }
 
-  const closeDropdown = (dropdown:string)=>{
-    if(dropdown == "cart"){
-      if(dropdownOpened.account == true){
-        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart,account:false});
-      }else{
-        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart});
+  const closeDropdown = (dropdown: string):any => {
+    if (dropdown == "cart") {
+      if (dropdownOpened.account == true) {
+        setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart, account: false });
+      } else {
+        setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart });
       }
-    }else if(dropdown == "account"){
-      if(dropdownOpened.cart == true){
-        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account,cart:false});
-      }else{
-        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account});
+    } else if (dropdown == "account") {
+      if (dropdownOpened.cart == true) {
+        setDropdownOpened({ ...dropdownOpened, account: !dropdownOpened.account, cart: false });
+      } else {
+        setDropdownOpened({ ...dropdownOpened, account: !dropdownOpened.account });
       }
     }
   }
 
   useEffect(() => {
-    setDropdownOpened({cart:false,account:false});
+    setDropdownOpened({ cart: false, account: false });
   }, [router.asPath]);
-
-
 
   return (
     <>
@@ -478,10 +474,10 @@ function Navbar() {
                   <li>تواصل معنا</li>
               </ul> */}
             </Offcanvas>
-            { !userStatus.isSubscribed == true && 
-            <Link href="/subscription">
-              <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
-            </Link>}
+            {!userStatus.isSubscribed == true &&
+              <Link href="/subscription">
+                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
+              </Link>}
 
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
@@ -491,7 +487,7 @@ function Navbar() {
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
-            { userStatus.isSubscribed == true &&  <Link href="/unsubscribe">
+            {userStatus.isSubscribed == true && <Link href="/unsubscribe">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>إلغاء الإشتراك الشهرى</li>
             </Link>}
 
@@ -641,7 +637,7 @@ function Navbar() {
                     sendSearchQuery(event);
                   }}
                 >
-                    <SearchIcon color="#777" />
+                  <SearchIcon color="#777" />
                 </div>
                 <Form.Control
                   id="search-field"
@@ -652,7 +648,7 @@ function Navbar() {
                   className={styles["navbar__search-bar-container__search-bar"]}
                 />
               </div>
-              { !userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
+              {!userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
@@ -753,9 +749,10 @@ function Navbar() {
             </div>
           </div>
 
-          {(!isCoursePurchased || isMobileView) && <OverlayTrigger show={dropdownOpened.cart}
+          {(!isCoursePurchased || isMobileView) && <OverlayTrigger
+          //  show={dropdownOpened.cart}
             trigger='click'
-            rootClose
+            rootClose={true}
             placement="bottom-start"
             overlay={
               <div className={styles["navbar__cart-popover"]}
@@ -763,7 +760,7 @@ function Navbar() {
                 id="cart-popover" >
                 <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
                   {
-                   cartItems?.data?.map((item: any, i: number) => {
+                    cartItems?.data?.map((item: any, i: number) => {
                       return (
 
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
@@ -961,18 +958,20 @@ function Navbar() {
           {
             userStatus.isUserAuthenticated &&
             <>
-              <OverlayTrigger show={dropdownOpened.account} trigger="click" placement="bottom-start" rootClose overlay={
+              <OverlayTrigger 
+              // show={dropdownOpened.account}
+               trigger="click" placement="bottom-start" rootClose={true} overlay={
                 <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
-                  { userStatus.isSubscribed == true &&
-                  <Link href="/unsubscribe">
-                    <div onClick={()=>{closeDropdown("account")}}>إلغاء الإشتراك الشهرى</div>
-                  </Link>
-                    }
-                  <Button onClick={() => {handleLogout(); closeDropdown("account");}}
+                  {userStatus.isSubscribed == true &&
+                    <Link href="/unsubscribe">
+                      <div onClick={() => { closeDropdown("account") }}>إلغاء الإشتراك الشهرى</div>
+                    </Link>
+                  }
+                  <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
                     className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
                 </div>
               }>
-                <div onClick={()=>{closeDropdown("account")}} className={styles["navbar__account-icon"]}>
+                <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />
                 </div>

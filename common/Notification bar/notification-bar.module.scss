@@ -18,7 +18,7 @@
         width: 95%;
         padding-right: 0;
 
-        span {
+        span,a {
             display: inline-block;
             margin-right: 0.2rem;
             text-decoration: underline;
@@ -51,9 +51,9 @@
         font-size: 0.875rem*1.75;
         top: 0;
         height: 3.75rem*2;
-
+        text-align:center;
         &>div:nth-of-type(1) {
-            span {
+            span,a {
                 margin-right: 0.2rem*2.5;
                 text-underline-offset: 0.2rem*2.5;
                 &:hover,

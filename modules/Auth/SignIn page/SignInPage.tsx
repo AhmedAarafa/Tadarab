@@ -109,25 +109,154 @@ export default function SignInPage() {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
     }
   }
+  // const responseGoogle = (googleResponse: any) => {
+
+
+  //   if ("error" in googleResponse) {
+  //     // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
+
+  //   } else {
+  //     let tadarabGA = new TadarabGA();
+  //     let clientId = tadarabGA.tadarab_get_traking_client();
+  //     let customData = { email: googleResponse.profileObj.email, phone: "" };
+
+  //     axiosInstance
+  //       .post(`social-login`, {
+  //         "email": googleResponse.profileObj.email,
+  //         "first_name": googleResponse.profileObj.givenName,
+  //         "last_name": googleResponse.profileObj.familyName,
+  //         "full_name": `${googleResponse.profileObj.givenName} ${googleResponse.profileObj.familyName}`,
+  //         "social_type": "google",
+  //         "social_token": googleResponse.tokenObj.access_token,
+  //         "clientId": clientId,
+  //       }).then((response: any) => {
+  //         console.log(response);
+  //         if (JSON.stringify(response.status).startsWith("2")) {
+  //           FBPixelEventsHandler(response.data.fb_tracking_events, customData);
+  //           if (response.data.data !== null) {
+  //             const totalItems: any = [];
+  //             response?.data?.data?.courses?.data.forEach((item: any) => {
+  //               totalItems.push(item.id);
+  //             });
+  //             localStorage.setItem("token", response.data.data.token);
+  //             localStorage.setItem("user_id", response.data.data.id);
+  //             localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
+  //             localStorage.setItem("cart", JSON.stringify(totalItems));
+  //             localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
+  //             dispatch(setIsUserAuthenticated({
+  //               ...userAuthState, isUserAuthenticated: true,
+  //               token: response.data.data.token,
+  //               id: response.data.data.id,
+  //               isSubscribed: response.data.data.is_in_user_subscription
+  //             }));
+
+
+  //             if (router.query && router.query.from) {
+  //               if (router.query.from == "checkout") {
+  //                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+  //               } else {
+  //                 Router.back();
+  //               }
+  //             } else if (router.query && router.query.from_subscription) {
+  //               Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+  //             } else {
+  //               Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+  //             }
+  //           }
+  //           tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: response.data.data.email, traking_uid: response.data.data.id });
+
+  //         } else {
+  //           setErrorMessage(response.data.message);
+  //         }
+  //       }).catch((error: any) => {
+  //         console.log(error);
+  //       })
+
+  //   }
+  // }
+
+  // const responseFacebook = (response: any) => {
+  //   console.log(response);
+  //   if ("error" in response) {
+  //     // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
+  //   } else {
+  //     let tadarabGA = new TadarabGA();
+  //     let clientId = tadarabGA.tadarab_get_traking_client();
+  //     let customData = { email: response.email, phone: "" };
+
+  //     axiosInstance
+  //       .post(`social-login`, {
+  //         "email": response.email,
+  //         "first_name": response.name.split(' ')[0],
+  //         "last_name": response.name.split(' ')[1],
+  //         "full_name": response.name,
+  //         "social_type": "facebook",
+  //         "social_token": response.accessToken,
+  //         "clientId": clientId,
+  //       }).then((resp: any) => {
+
+  //         console.log(resp);
+  //         if (JSON.stringify(resp.status).startsWith("2")) {
+  //           FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
+  //           if (resp.data.data !== null) {
+  //             const totalItems: any = [];
+  //             resp?.data?.data?.courses?.data.forEach((item: any) => {
+  //               totalItems.push(item.id);
+  //             });
+  //             localStorage.setItem("token", resp.data.data.token);
+  //             localStorage.setItem("user_id", resp.data.data.id);
+  //             localStorage.setItem("is_user_subscribed", resp.data.data.is_in_user_subscription);
+  //             localStorage.setItem("cart", JSON.stringify(totalItems));
+  //             localStorage.setItem("cart_items", JSON.stringify([...new Set(resp.data.data.cart_items)]));
+  //             dispatch(setIsUserAuthenticated({
+  //               ...userAuthState, isUserAuthenticated: true,
+  //               token: resp.data.data.token,
+  //               id: resp.data.data.id,
+  //               isSubscribed: resp.data.data.is_in_user_subscription
+  //             }));
+
+
+  //             if (router.query && router.query.from) {
+  //               if (router.query.from == "checkout") {
+  //                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+  //               } else {
+  //                 Router.back();
+  //               }
+  //             } else if (router.query && router.query.from_subscription) {
+  //               Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+  //             } else {
+  //               Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+  //             }
+  //           }
+  //           tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: resp.data.data.email, traking_uid: resp.data.data.id });
+
+  //         } else {
+  //           setErrorMessage(resp.data.message);
+  //         }
+  //       }).catch((error: any) => {
+  //         console.log(error);
+  //       })
+
+  //   }
+  // }
+
+
+  /** Google Login callback */
   const responseGoogle = (googleResponse: any) => {
-
-
     if ("error" in googleResponse) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
-
     } else {
       let tadarabGA = new TadarabGA();
       let clientId = tadarabGA.tadarab_get_traking_client();
       let customData = { email: googleResponse.profileObj.email, phone: "" };
-
-      axiosInstance
-        .post(`social-login`, {
-          "email": googleResponse.profileObj.email,
-          "first_name": googleResponse.profileObj.givenName,
-          "last_name": googleResponse.profileObj.familyName,
-          "full_name": `${googleResponse.profileObj.givenName} ${googleResponse.profileObj.familyName}`,
+      if(googleResponse?.status!="unknown"&&googleResponse?.status!=""){
+        axiosInstance.post(`social-login`, {
+          "email": googleResponse?.profileObj?.email,
+          "first_name": googleResponse?.profileObj?.givenName,
+          "last_name": googleResponse?.profileObj?.familyName,
+          "full_name": `${googleResponse?.profileObj?.givenName} ${googleResponse?.profileObj?.familyName}`,
           "social_type": "google",
-          "social_token": googleResponse.tokenObj.access_token,
+          "social_token": googleResponse?.tokenObj?.access_token,
           "clientId": clientId,
         }).then((response: any) => {
           console.log(response);
@@ -171,31 +300,32 @@ export default function SignInPage() {
         }).catch((error: any) => {
           console.log(error);
         })
-
+      }
     }
   }
+  /** Google Login callback end */
 
+  /** FB Login callback */
   const responseFacebook = (response: any) => {
-    console.log(response);
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {
-      let tadarabGA = new TadarabGA();
-      let clientId = tadarabGA.tadarab_get_traking_client();
-      let customData = { email: response.email, phone: "" };
-
-      axiosInstance
-        .post(`social-login`, {
+      if(response?.status!="unknown"&&response?.status!=""){
+        let tadarabGA = new TadarabGA();
+        let clientId = tadarabGA.tadarab_get_traking_client();
+        let customData = { email: response?.email, phone: "" };
+        let fname = ((response?.name.split(' ')[0])?response?.name.split(' ')[0]:"");
+        let lname = ((response?.name.split(' ')[1])?response?.name.split(' ')[1]:"");
+        axiosInstance.post(`social-login`, {
           "email": response.email,
-          "first_name": response.name.split(' ')[0],
-          "last_name": response.name.split(' ')[1],
-          "full_name": response.name,
+          "first_name": fname,
+          "last_name": lname,
+          "full_name": response?.name,
           "social_type": "facebook",
-          "social_token": response.accessToken,
+          "social_token": response?.accessToken,
           "clientId": clientId,
         }).then((resp: any) => {
-
-          console.log(resp);
+          //console.log(resp);
           if (JSON.stringify(resp.status).startsWith("2")) {
             FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
             if (resp.data.data !== null) {
@@ -234,12 +364,12 @@ export default function SignInPage() {
             setErrorMessage(resp.data.message);
           }
         }).catch((error: any) => {
-          console.log(error);
+          //console.log(error);
         })
-
+      }
     }
   }
-
+  /** FB Login callback end */
 
   return (
     <>
@@ -260,7 +390,7 @@ export default function SignInPage() {
               render={renderProps => (
                 <div onClick={renderProps.onClick} className={renderProps.disabled ? styles['disabled'] : ""} >
                   <GoogleIcon />
-                  جوجل
+                  تسجيل الدخول بواسطة جوجل
                 </div>
               )}
             />
@@ -272,7 +402,7 @@ export default function SignInPage() {
               render={(renderProps: any) => (
                 <div onClick={renderProps.onClick}>
                   <FbIcon color="#4267B2" />
-                  فيسبوك
+                  تسجيل الدخول بواسطة فيسبوك
                 </div>
               )} />
             {/* <div>

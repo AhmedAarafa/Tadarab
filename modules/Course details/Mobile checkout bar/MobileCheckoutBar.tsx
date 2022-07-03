@@ -9,7 +9,9 @@ import Router, { useRouter } from "next/router";
 export default function MobileCheckoutBar() {
 
   const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
-  const userStatus = useSelector((state:any) => state.userAuthentication);
+  //const userStatus = useSelector((state:any) => state.userAuthentication);
+  const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
+
   const [toDisplayValues, setToDisplayValues] = useState<any>({values:[] , visible:false});
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
   const [courseDetails, setCourseDetails] = useState<any>([]);

@@ -1,3 +1,34 @@
+Version 1.9.0 (02 July 2022)
+1)  subscription button CTA issue in mobile view.
+
+Version 1.8.9 (30 June 2022)
+1)  Player modal dialog issue(CSS issue) fixed.
+
+Version 1.8.8 (30 June 2022)
+1)  Add signin/signup with Google
+2)  Add signin/signup with Facebook
+3)  Change social login details
+
+Version 1.8.7 (30 June 2022)
+1)	Add Google with signin/signup
+2)  Add Facebook with signin/signup
+3)  Yellow bar for webinar
+
+Version 1.8.6 (29 June 2022)
+1)  Hide webinar yellowbar
+
+Version 1.8.5 (29 June 2022)
+1)  Add the yellow bar for webinar
+
+Version 1.8.4 (25 June 2022)
+1)  Hide the yellow bar
+
+Version 1.8.3 (25 June 2022)
+1)  Top yellow bar show with webinar link.
+
+Version 1.8.2 (23 June 2022)
+1)  - Issue with payment option in version 1.8.0
+
 Version 1.8.0 (23 June 2022)
 1)	Loader in my-account page
 2)  Hide timer

@@ -48,15 +48,17 @@ export default function NotificationBar() {
                 <div style={{display: userStatus ? 'none' : 'flex'}} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>
-                            لفترة محدودة استفيد من اشتراك تدرب بلا حدود اول ٧ أيام مجاناَ
-                            <span onClick={() => { handleSubscriptionBtn() }}>
-                                ابدأ التعلم الآن
-                            </span>
+                            شاهد الآن بث مباشر دورة الدليل الشامل لصناعة علامة تجارية ناجحة 
+                            <a href="https://marketing.tadarab.com/funnel/tadarab-live-3/l1/" target="__blank">
+                                أضغط هنا لمشاهدة البث
+                            </a>
+                            {/* <span onClick={() => { handleSubscriptionBtn() }}>
+                            أضغط هنا لمشاهدة البث
+                            </span> */}
                         </div>
                     </div>
                     <div>
                         <div onClick={() => { hideNotificationBar() }}>
-
                             <CloseIcon color="#fff" />
                         </div>
                     </div>

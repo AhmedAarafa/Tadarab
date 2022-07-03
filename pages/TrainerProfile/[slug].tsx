@@ -11,6 +11,8 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
+import useResize from "custom hooks/useResize";
 
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
@@ -34,6 +36,7 @@ export default function TrainerProfile(props: any) {
         return;
       })
     }
+
   }, [])
 
   useEffect(() => {
@@ -48,7 +51,7 @@ export default function TrainerProfile(props: any) {
           dispatch(setTrainerProfileData(response.data));
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
-          
+
         })
         .catch(function (error) {
           toggleLoader("hide");
@@ -59,6 +62,16 @@ export default function TrainerProfile(props: any) {
 
   }, [router.query]);
 
+  const viewportWidthDetector = () => {
+    const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+    if (window.innerWidth >= 576) {
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+    } else {
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:flex` : null ;
+    }
+}
+useResize(viewportWidthDetector);
+
 
 
 
@@ -66,8 +79,9 @@ export default function TrainerProfile(props: any) {
     <>
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
-        img={seoData?.seo_image} /> }
+        img={seoData?.seo_image} />}
       <Container fluid="xxl">
+        <MobileCheckoutBar />
         <TrainerProfilePage />
       </Container>
     </>
@@ -75,7 +89,7 @@ export default function TrainerProfile(props: any) {
 }
 
 export async function getServerSideProps(context: any) {
-  try{
+  try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}trainers/${context?.params?.slug}/?country_code=null&limit=10&page=1`)
     const seoData = await res.json()
     return { props: { seoData: seoData.data } }

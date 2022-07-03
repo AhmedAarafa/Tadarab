@@ -1079,27 +1079,6 @@
   height: 2.8125rem;
 }
 
-.checkout__payment-method-box__payment-method__images__visa {
-  width: 3.0625rem;
-  height: 1rem;
-}
-
-.checkout__payment-method-box__payment-method__images__master-card {
-  width: 2rem;
-  height: 1.25rem;
-  margin: 0 1rem 0 0;
-}
-
-.checkout__payment-method-box__payment-method__images__knet {
-  width: 2.0625rem;
-  height: 1.5rem;
-}
-
-.checkout__payment-method-box__payment-method__images__paypal {
-  width: 4.875rem;
-  height: 1.25rem;
-}
-
 .checkout__payment-method-box__payment-method__text {
   font-size: 1rem;
   font-weight: 800;
@@ -1368,6 +1347,20 @@
 
 .checkout__cart-fixed-card {
   display: none;
+}
+
+.payment-spinner-loader {
+  position: fixed;
+  top: 50%;
+  right: 55%;
+  z-index: 3;
+}
+
+.payment-spinner-loader div {
+  width: 3rem;
+  height: 3rem;
+  color: var(--primary-red) !important;
+  border-width: 0.4rem;
 }
 
 @media (max-width: 1200px) {
@@ -2783,6 +2776,18 @@
   .monthly-subscription__subscription-timer {
     font-size: 1.875rem;
     margin-bottom: 1.25rem;
+  }
+  .payment-spinner-loader {
+    position: fixed;
+    top: 50%;
+    right: 43%;
+    z-index: 3;
+  }
+  .payment-spinner-loader div {
+    width: 7.5rem;
+    height: 7.5rem;
+    color: var(--primary-red) !important;
+    border-width: 0.8rem;
   }
 }
 /*# sourceMappingURL=checkout-page.module.css.map */

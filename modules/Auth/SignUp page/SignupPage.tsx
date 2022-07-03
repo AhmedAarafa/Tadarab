@@ -236,12 +236,12 @@ export default function SignupPage() {
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {
-      let tadarabGA = new TadarabGA();
-      let clientId = tadarabGA.tadarab_get_traking_client();
-      let customData = { email: response.email, phone: "" };
+      if(response?.status!="unknown"&&response?.status!=""){
+        let tadarabGA = new TadarabGA();
+        let clientId = tadarabGA.tadarab_get_traking_client();
+        let customData = { email: response.email, phone: "" };
 
-      axiosInstance
-        .post(`social-login`, {
+        axiosInstance.post(`social-login`, {
           "email": response.email,
           "first_name": response.name.split(' ')[0],
           "last_name": response.name.split(' ')[1],
@@ -250,7 +250,6 @@ export default function SignupPage() {
           "social_token": response.accessToken,
           "clientId": clientId,
         }).then((resp: any) => {
-
           console.log(resp);
           if (JSON.stringify(resp.status).startsWith("2")) {
             FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
@@ -292,7 +291,7 @@ export default function SignupPage() {
         }).catch((error: any) => {
           console.log(error);
         })
-
+      }
     }
   }
 
@@ -321,7 +320,7 @@ export default function SignupPage() {
               render={renderProps => (
                 <div onClick={renderProps.onClick} className={renderProps.disabled ? styles['disabled'] : ""} >
                   <GoogleIcon />
-                  جوجل
+                  انشاء حساب بواسطة جوجل
                 </div>
               )}
             />
@@ -346,7 +345,7 @@ export default function SignupPage() {
               render={(renderProps:any) => (
                 <div onClick={renderProps.onClick}>
                   <FbIcon color="#4267B2"/>
-                  فيسبوك
+                 انشاء حساب بواسطة فيسبوك
                 </div>
               )} />
 

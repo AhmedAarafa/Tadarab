@@ -40,31 +40,6 @@ import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 
-// const Navbar = dynamic(() => import("common/Navbar/Navbar"));
-// const Footer = dynamic(() => import("common/Footer/Footer"));
-// const CourseCard = dynamic(() => import( "modules/Course details/Course card/CourseCard"));
-// const CourseAdvertisement = dynamic(() => import("modules/Course details/Course Advertisement/CourseAdvertisement")); 
-// const WhatYouWillLearn = dynamic(() => import("modules/Course details/What you will learn/WhatYouWillLearn")); 
-// const CourseDetailsSection = dynamic(() => import("modules/Course details/Course details section/CourseDetailsSection")); 
-// const CourseKeywords = dynamic(() => import("modules/Course details/Course keywords/CourseKeywords")); 
-// const CourseRequirements = dynamic(() => import("modules/Course details/Course requirements/CourseRequirements"));
-// const CourseContent = dynamic(() => import("modules/Course details/Course content/CourseContent"));
-// const TrainerInfo = dynamic(() => import("modules/Course details/Trainer info/TrainerInfo"));
-// const GuaranteeCard = dynamic(() => import("modules/Course details/Guarantee card/GuaranteeCard"));
-// const CourseCertificate = dynamic(() => import("modules/Course details/Course certificate/CourseCertificate"));
-// const FAQ = dynamic(() => import("modules/Course details/FAQ/FAQ"));
-// const SpecialOffer = dynamic(() => import("modules/Course details/Special offer/SpecialOffer"));
-// const PracticalProjects = dynamic(() => import("modules/Course details/Practical projects/PracticalProjects"));
-// const CourseReview = dynamic(() => import("modules/Course details/Course review/CourseReview"));
-// const CourseSubscribers = dynamic(() => import("modules/Course details/Course subscribers/CourseSubscribers"));
-// const TadarabBusiness = dynamic(() => import("modules/Course details/Tadarab business/TadarabBusiness"));
-// const CommentsSection = dynamic(() => import("modules/Course details/Comments section/CommentsSection"));
-// const MobileNavTabsBar = dynamic(() => import("modules/Course details/Mobile nav tabs bar/MobileNavTabsBar"));
-// const MobileCheckoutBar = dynamic(() => import("modules/Course details/Mobile checkout bar/MobileCheckoutBar"));
-// const MyCourse = dynamic(() => import("modules/Course details/My course/MyCourse"));
-// const MonthlySubscriptionCard = dynamic(() => import("modules/Course details/Monthly subscription card/MonthlySubscriptionCard"));
-
-
 function CourseDetails(props: any) {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);

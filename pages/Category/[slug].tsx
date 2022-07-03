@@ -12,6 +12,8 @@ import { Container } from "react-bootstrap";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
+import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
+import useResize from "custom hooks/useResize";
 
 const CategoryDescription = dynamic(() => import("modules/Category/Category description/CategoryDescription"));
 const CategoryCourses = dynamic(() => import("modules/Category/Category courses/CategoryCourses"));
@@ -31,6 +33,8 @@ export default function Category(props: any) {
 
   useEffect(() => {
     toggleLoader("show");
+    const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+    MOBILECHECKOUTBAR.style.cssText=`display:flex`;
   }, [])
   
   useEffect(() => {
@@ -51,12 +55,23 @@ export default function Category(props: any) {
   }, [Router.query.slug]);
   // [] empty dependency array to be executed once (like onLoad) ... if it is NOT empty, it will execute when the dependencies change.
 
+  const viewportWidthDetector = () => {
+    const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+    if (window.innerWidth >= 576) {
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+    } else {
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:flex` : null ;
+    }
+}
+useResize(viewportWidthDetector);
+
   return (
     <>
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
       <Container fluid="xxl">
+      <MobileCheckoutBar />
         <CategoryDescription data={category} />
         {/* <CategoryCourses data={category} />  */}
         {/* <CategoryTopics data={category} /> */}

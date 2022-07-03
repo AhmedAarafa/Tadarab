@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./trainer-profile-page.module.css";
 import TrainerInfo from "../Trainer info/TrainerInfo";
 import { Row, Col, Button, Form } from "react-bootstrap";
@@ -14,15 +14,15 @@ export default function TrainerProfilePage() {
       <Row className={styles["trainer-profile"]}>
         <Col xs={12} className={styles["trainer-profile__trainer-info"]}>
           <div className={styles["trainer-profile__trainer-info-trainer-card-box"]}>
-
-           <TrainerInfo />
-           <TrainerAccountsCard />
+            <TrainerInfo />
+            <TrainerAccountsCard />
           </div>
-          
+
           <TrainerCourses />
 
         </Col>
       </Row>
+
     </>
   );
 }
