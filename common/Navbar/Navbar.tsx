@@ -357,6 +357,7 @@ function Navbar() {
   }
 
   const closeDropdown = (dropdown: string):any => {
+    
     if (dropdown == "cart") {
       if (dropdownOpened.account == true) {
         setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart, account: false });
@@ -750,7 +751,8 @@ function Navbar() {
           </div>
 
           {(!isCoursePurchased || isMobileView) && <OverlayTrigger
-          //  show={dropdownOpened.cart}
+           show={dropdownOpened.cart}
+            onToggle={()=>closeDropdown("cart")}
             trigger='click'
             rootClose={true}
             placement="bottom-start"
@@ -959,7 +961,9 @@ function Navbar() {
             userStatus.isUserAuthenticated &&
             <>
               <OverlayTrigger 
-              // show={dropdownOpened.account}
+              show={dropdownOpened.account}
+              onToggle={()=>closeDropdown("account")}
+
                trigger="click" placement="bottom-start" rootClose={true} overlay={
                 <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
                   {userStatus.isSubscribed == true &&
