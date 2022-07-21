@@ -345,6 +345,7 @@ function Navbar() {
   }
 
   const closeDropdown = (dropdown: string): any => {
+    console.log("aslals");
 
     if (dropdown == "cart") {
       if (dropdownOpened.account == true) {
