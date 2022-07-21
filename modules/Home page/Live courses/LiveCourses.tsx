@@ -23,6 +23,7 @@ export default function LiveCourses() {
 
   const homePageData = useSelector((state: any) => state.homePageData);
   const [liveCourses, setLiveCourses] = useState<any>([]);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const userStatus = useSelector((state: any) => state.userAuthentication); 
 
   const handleSubscribeBtn = (course: any): any => {
@@ -77,6 +78,10 @@ export default function LiveCourses() {
     setLiveCourses([...liveCourses]);
   }
   const handleCartActionBtn = (course: any): any => {
+    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
     dispatch(setCheckoutType("cart"));
 
     // if(userStatus?.isUserAuthenticated == true){
@@ -227,8 +232,7 @@ export default function LiveCourses() {
                         {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
                       </div>
                     </div>
-                    {console.log("lc",lc)
-                    }
+                 
                     {/* <Link href={`/webinar/${lc.slug}`}> */}
                       <Card.Img onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}} variant="top" src={lc.image} alt='trainer image'
                         className={styles["live-courses__cards-carousel__card__trainer-img"]} />
@@ -314,12 +318,12 @@ export default function LiveCourses() {
                             }
                           </div>
                         {/* </Link> */}
-                        {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart} variant={""}>
+                        {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
 
                           {(lc.discounted_price == 0  && lc.webinar_type == "soon") ? 
                           <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
                             :
-                            <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                            <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
 
                         </Button>}
                       </div>

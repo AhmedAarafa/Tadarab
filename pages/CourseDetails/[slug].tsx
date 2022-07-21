@@ -194,9 +194,9 @@ function CourseDetails(props: any) {
         .then(function (response: any) {
           toggleLoader("hide");
 
-          const data: Course = response?.data?.data;
+          const data = response?.data?.data;
           
-          setCourseId(response?.data?.data?.course_details.id);
+          setCourseId(response?.data?.data?.course_details?.id);
           dispatch(setCourseDetailsData(data));
 
           let tadarabGA = new TadarabGA();
@@ -212,15 +212,14 @@ function CourseDetails(props: any) {
           } else {
             referrer = "homepage";
           }
-
           tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
             {
               products: [{
-                name: data.title,
-                id: data.id,
-                price: data.discounted_price_usd,
+                name: data?.course_details?.title,
+                id: data?.course_details?.id,
+                price: data?.course_details?.discounted_price_usd,
                 brand: "Tadarab",
-                category: data.categories && data.categories[0].title,
+                category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
                 variant: "Single Course"
               }],
               list: referrer
@@ -230,7 +229,7 @@ function CourseDetails(props: any) {
         })
         .catch(function (error) {
           toggleLoader("hide");
-          console.log(error);
+          //console.log(error);
         });
     }
 

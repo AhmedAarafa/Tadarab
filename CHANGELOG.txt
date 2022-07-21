@@ -1,3 +1,21 @@
+Version 1.9.5 (21 July 2022)
+1)  Coupon code apply from link
+
+Version 1.9.4 (21 July 2022)
+1)  Add to cart issue fixed (merged with ahmed development branch)
+
+Version 1.9.3 (20 July 2022)
+1)  Free video play redirect to login issue fixed.
+
+Version 1.9.2 (19 July 2022)
+1)  Free video play issue fixed
+2)  Hide Facebook signin/signup button
+3)  GA product details vide tracking issue fixed
+4)  Course page add h1 tag in course title.
+
+Version 1.9.1 (14 July 2022)
+1)  Change subscription 6 to 9 without trial
+
 Version 1.9.0 (02 July 2022)
 1)  subscription button CTA issue in mobile view.
 
@@ -10,7 +28,7 @@ Version 1.8.8 (30 June 2022)
 3)  Change social login details
 
 Version 1.8.7 (30 June 2022)
-1)	Add Google with signin/signup
+1)  Add Google with signin/signup
 2)  Add Facebook with signin/signup
 3)  Yellow bar for webinar
 
@@ -27,17 +45,17 @@ Version 1.8.3 (25 June 2022)
 1)  Top yellow bar show with webinar link.
 
 Version 1.8.2 (23 June 2022)
-1)  - Issue with payment option in version 1.8.0
+1)  Issue with payment option in version 1.8.0
 
 Version 1.8.0 (23 June 2022)
-1)	Loader in my-account page
+1)  Loader in my-account page
 2)  Hide timer
 
 Version 1.7.9 (21 June 2022)
-1)	My account page issue fixed.
+1)  My account page issue fixed.
 
 Version 1.7.8 (21 June 2022)
-1)	version 1.7.7
+1)  version 1.7.7
 2)  Change subscription 9 to 6
 
 Version 1.7.7 (16 June 2022)

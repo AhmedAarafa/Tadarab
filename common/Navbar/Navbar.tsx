@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./navbar.module.css";
 import Link from 'next/link';
 import {
@@ -37,6 +37,7 @@ function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
+  const [isCartDropdownVisible, setIsCartDropdownVisible] = useState(true);
   const [expanded, setExpanded] = useState<any>(false);
   const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
@@ -51,6 +52,7 @@ function Navbar() {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const router = useRouter();
 
+
   const dispatch = useDispatch();
   const onLOLogoutSuccess = (): void => {
     console.log("logout succeed");
@@ -58,12 +60,6 @@ function Navbar() {
   const onLOFailure = (): void => {
     console.log("logout failed");
   }
-
-  /*const { signOut, loaded } = useGoogleLogout({
-    onFailure: onLOFailure,
-    clientId: `${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`,
-    onLogoutSuccess: onLOLogoutSuccess,
-  })*/
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -235,11 +231,6 @@ function Navbar() {
 
   useEffect(() => {
     let localStorageItems: any = localStorage.getItem("cart");
-    // console.log("cartItems",cartItems);
-    // console.log("localStorageItems",localStorageItems);
-    // if(userStatus.isUserAuthenticated === true){
-    // setLocalStateCartItems(cartItems?.data);
-
 
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
 
@@ -259,9 +250,7 @@ function Navbar() {
     } else {
 
       setLocalStateCartItems(null);
-      // dispatch(setCartItems(null));
     }
-
 
   }, [])
 
@@ -276,7 +265,6 @@ function Navbar() {
       }
     }
   }, [courseDetailsData, myCourseNavigator, router.asPath])
-
 
 
   useEffect(() => {
@@ -356,8 +344,8 @@ function Navbar() {
     }
   }
 
-  const closeDropdown = (dropdown: string):any => {
-    
+  const closeDropdown = (dropdown: string): any => {
+
     if (dropdown == "cart") {
       if (dropdownOpened.account == true) {
         setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart, account: false });
@@ -488,9 +476,9 @@ function Navbar() {
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
-            {userStatus.isSubscribed == true && <Link href="/unsubscribe">
+            {/* {userStatus.isSubscribed == true && <Link href="/unsubscribe">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>إلغاء الإشتراك الشهرى</li>
-            </Link>}
+            </Link>} */}
 
             {Router.router?.asPath.includes("/course/") &&
               <>
@@ -750,231 +738,239 @@ function Navbar() {
             </div>
           </div>
 
-          {(!isCoursePurchased || isMobileView) && <OverlayTrigger
-           show={dropdownOpened.cart}
-            onToggle={()=>closeDropdown("cart")}
-            trigger='click'
-            rootClose={true}
-            placement="bottom-start"
-            overlay={
-              <div className={styles["navbar__cart-popover"]}
-                style={{ display: !cartItems?.data?.length ? "none" : "" }}
-                id="cart-popover" >
-                <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
-                  {
-                    cartItems?.data?.map((item: any, i: number) => {
-                      return (
+          {(!isCoursePurchased || isMobileView) &&
+            <OverlayTrigger
+              rootClose={dropdownOpened.cart}
+              {...(dropdownOpened.cart ? {} : { show: false })}
+              onToggle={() => { closeDropdown("cart") }}
+              trigger='click'
+              placement="bottom-start"
+              overlay={
+                <div className={styles["navbar__cart-popover"]}
+                  style={{ display: !cartItems?.data?.length ? "none" : "" }}
+                  id="cart-popover" >
+                  <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
+                    {
+                      cartItems?.data?.map((item: any, i: number) => {
+                        return (
 
-                        <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                          <img loading="lazy"
-                            src={item.image}
-                            alt="course image"
-                            className={styles["navbar__cart-popover__img"]}
-                          />
-                          <div
-                            className={styles["navbar__cart-popover__course-details"]}
-                          >
+                          <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
+                            <img loading="lazy"
+                              src={item.image}
+                              alt="course image"
+                              className={styles["navbar__cart-popover__img"]}
+                            />
                             <div
-                              className={
-                                styles["navbar__cart-popover__course-details__title"]
-                              }
+                              className={styles["navbar__cart-popover__course-details"]}
                             >
-                              {item.title}
-                            </div>
-                            <div
-                              className={
-                                styles["navbar__cart-popover__course-details__author"]
-                              }
-                            >
-                              {" "}
-                              {item.trainer?.name_ar}{" "}
-                            </div>
-                            <div
-                              className={
-                                styles[
-                                "navbar__cart-popover__course-details__price-container"
-                                ]
-                              }
-                            >
-                              {item.discounted_price == 0 ?
-                                "مجانًا"
-                                :
-                                <>
+                              <div
+                                className={
+                                  styles["navbar__cart-popover__course-details__title"]
+                                }
+                              >
+                                {item.title}
+                              </div>
+                              <div
+                                className={
+                                  styles["navbar__cart-popover__course-details__author"]
+                                }
+                              >
+                                {" "}
+                                {item.trainer?.name_ar}{" "}
+                              </div>
+                              <div
+                                className={
+                                  styles[
+                                  "navbar__cart-popover__course-details__price-container"
+                                  ]
+                                }
+                              >
+                                {item.discounted_price == 0 ?
+                                  "مجانًا"
+                                  :
+                                  <>
+                                    <span
+                                      className={
+                                        styles["navbar__cart-popover__course-details__price"]
+                                      }
+                                    >
+                                      {item.discounted_price}
+                                    </span>
+                                    <span
+                                      className={
+                                        styles[
+                                        "navbar__cart-popover__course-details__currency"
+                                        ]
+                                      }
+                                    >
+                                      {item?.currency_code}
+                                    </span>
+                                  </>
+                                }
+                              </div>
+                              {item.price > item.discounted_price &&
+                                <div
+                                  className={
+                                    styles[
+                                    "navbar__cart-popover__course-details__old-price-container"
+                                    ]
+                                  }
+                                >
                                   <span
                                     className={
-                                      styles["navbar__cart-popover__course-details__price"]
+                                      styles[
+                                      "navbar__cart-popover__course-details__old-price"
+                                      ]
                                     }
                                   >
-                                    {item.discounted_price}
+                                    {item.price}
                                   </span>
                                   <span
                                     className={
                                       styles[
-                                      "navbar__cart-popover__course-details__currency"
+                                      "navbar__cart-popover__course-details__old-price-currency"
                                       ]
                                     }
                                   >
                                     {item?.currency_code}
                                   </span>
-                                </>
+                                </div>
                               }
                             </div>
-                            {item.price > item.discounted_price &&
-                              <div
-                                className={
-                                  styles[
-                                  "navbar__cart-popover__course-details__old-price-container"
-                                  ]
-                                }
-                              >
-                                <span
-                                  className={
-                                    styles[
-                                    "navbar__cart-popover__course-details__old-price"
-                                    ]
-                                  }
-                                >
-                                  {item.price}
-                                </span>
-                                <span
-                                  className={
-                                    styles[
-                                    "navbar__cart-popover__course-details__old-price-currency"
-                                    ]
-                                  }
-                                >
-                                  {item?.currency_code}
-                                </span>
-                              </div>
-                            }
                           </div>
-                        </div>
 
-                      )
-                    })
-                  }
-                </div>
-
-                {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
-                    {localStateCartItems?.length > 2 && "اعرض المزيد"}
-                    
-                    </div> */}
-                <div className={styles["navbar__cart-popover__checkout-box"]}>
-                  <div
-                    className={
-                      styles[
-                      "navbar__cart-popover__checkout-box__total-price-box"
-                      ]
+                        )
+                      })
                     }
-                  >
+                  </div>
+
+                  {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
+                        {localStateCartItems?.length > 2 && "اعرض المزيد"}
+                        
+                        </div> */}
+                  <div className={styles["navbar__cart-popover__checkout-box"]}>
                     <div
                       className={
-                        styles["navbar__cart-popover__checkout-box__items"]
+                        styles[
+                        "navbar__cart-popover__checkout-box__total-price-box"
+                        ]
                       }
                     >
-                      الإجمالي ({localStateCartItems?.length} دورة)
-                    </div>
-                    <div>
-                      <span
-                        className={
-                          styles[
-                          "navbar__cart-popover__checkout-box__total-price"
-                          ]
-                        }
-                      >
-                        {
-                          cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
-                        }
-                      </span>
-                      <span
-                        className={
-                          styles[
-                          "navbar__cart-popover__checkout-box__total-price-currency"
-                          ]
-                        }
-                      >
-
-                        {cartItems?.data && cartItems?.data[0]?.currency_code}
-                      </span>
-                    </div>
-                    {
-                      cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
-                      >
-                      cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
-                      &&
                       <div
                         className={
-                          styles[
-                          "navbar__cart-popover__checkout-box__old-total-price-box"
-                          ]
+                          styles["navbar__cart-popover__checkout-box__items"]
                         }
                       >
+                        الإجمالي ({localStateCartItems?.length} دورة)
+                      </div>
+                      <div>
                         <span
                           className={
                             styles[
-                            "navbar__cart-popover__checkout-box__old-total-price"
+                            "navbar__cart-popover__checkout-box__total-price"
                             ]
                           }
                         >
                           {
-                            cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                            cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
                           }
                         </span>
                         <span
                           className={
                             styles[
-                            "navbar__cart-popover__checkout-box__old-total-price-currency"
+                            "navbar__cart-popover__checkout-box__total-price-currency"
                             ]
                           }
                         >
-                          {cartItems?.data[0]?.currency_code}
+
+                          {cartItems?.data && cartItems?.data[0]?.currency_code}
                         </span>
                       </div>
+                      {
+                        cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                        >
+                        cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                        &&
+                        <div
+                          className={
+                            styles[
+                            "navbar__cart-popover__checkout-box__old-total-price-box"
+                            ]
+                          }
+                        >
+                          <span
+                            className={
+                              styles[
+                              "navbar__cart-popover__checkout-box__old-total-price"
+                              ]
+                            }
+                          >
+                            {
+                              cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                            }
+                          </span>
+                          <span
+                            className={
+                              styles[
+                              "navbar__cart-popover__checkout-box__old-total-price-currency"
+                              ]
+                            }
+                          >
+                            {cartItems?.data[0]?.currency_code}
+                          </span>
+                        </div>
 
-                    }
-                  </div>
-                  <div
-                    className={
-                      styles["navbar__cart-popover__checkout-box__cart-btn"]
-                    }
-                  >
-                    <Link href="/checkout">
-
-                      <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
-                    </Link>
+                      }
+                    </div>
+                    <div
+                      className={
+                        styles["navbar__cart-popover__checkout-box__cart-btn"]
+                      }
+                    >
+                      <Link href="/checkout">
+                        <Button onClick={() => {
+                          closeDropdown("cart");
+                          //  setIsCartDropdownVisible(false)  ;
+                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                        }}>إذهب للسلة</Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            }
-          >
-            <div className={styles["navbar__cart-icon-container"]} id="carticon"
-              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
-              <CartIcon color="#222" />
-              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
-              {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
 
-            </div>
-          </OverlayTrigger>
+              }
+            >
+              <div className={styles["navbar__cart-icon-container"]} id="carticon"
+                onClick={() => {
+                  isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                  closeDropdown("cart");
+                }}>
+                <CartIcon color="#222" />
+                <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
+                {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
+              </div>
+            </OverlayTrigger>
+
           }
 
           {
             userStatus.isUserAuthenticated &&
             <>
-              <OverlayTrigger 
-              show={dropdownOpened.account}
-              onToggle={()=>closeDropdown("account")}
-
-               trigger="click" placement="bottom-start" rootClose={true} overlay={
-                <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
-                  {userStatus.isSubscribed == true &&
-                    <Link href="/unsubscribe">
-                      <div onClick={() => { closeDropdown("account") }}>إلغاء الإشتراك الشهرى</div>
-                    </Link>
-                  }
-                  <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
-                    className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
-                </div>
-              }>
+              <OverlayTrigger
+                rootClose={dropdownOpened.account}
+                {...(dropdownOpened.account ? {} : { show: false })}
+                onToggle={() => { closeDropdown("account") }}
+                trigger="click" placement="bottom-start" overlay={
+                  <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
+                    {/* {userStatus.isSubscribed == true &&
+                      <Link href="/unsubscribe">
+                        <div onClick={() => { closeDropdown("account") }}>إلغاء الإشتراك الشهرى</div>
+                      </Link>
+                    } */}
+                    <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
+                      className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
+                  </div>
+                }>
                 <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />

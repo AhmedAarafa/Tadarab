@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,QAAQ,CAAA;EACJ,OAAO,EAAE,IAAI;CAOhB;;AARD,AAKI,QALI,CAKJ,EAAE,CAAA;EACE,SAAS,EAAE,iBAAiB;CAC/B;;AAIL,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,QAAQ,CAAA;IACJ,OAAO,EAAE,UAAU;GAOtB;EARD,AAEI,QAFI,CAEJ,CAAC,CAAA;IACG,SAAS,EAAE,MAAQ,CAAC,UAAU;GACjC;EAJL,AAKI,QALI,CAKJ,EAAE,CAAA;IACE,SAAS,EAAE,MAAU,CAAC,UAAU;GACnC",
+    "sources": [
+        "articles-page.module.scss",
+        "../../../styles/_mixins.scss",
+        "../../../styles/colors-pallete.scss"
+    ],
+    "names": [],
+    "file": "articles-page.module.css"
+}

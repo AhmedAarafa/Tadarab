@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import styles from "./unsubscribe-popup.module.css";
@@ -5,8 +6,13 @@ import { Button, Modal, Form } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
+import Link from "next/link";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import Router from "next/router";
+import TadarabGA from "modules/_Shared/utils/ga";
 
 export default function UnsubscribePopup(props: any) {
+    const [categories, setCategories] = useState([]);
     SwiperCore.use([Navigation]);
     const [step, setStep] = useState(1);
     const [unsubscriptionReasons, setUnsubscriptionReasons] = useState<any>({ knownReasons: [], others: "" });
@@ -32,10 +38,31 @@ export default function UnsubscribePopup(props: any) {
         filters.categories.includes(categoryId) ? filters.categories.filter((f: any) => f !== categoryId) : [...filters.categories, categoryId] */
     };
 
+    const cancelSubscription = () => {
+        axiosInstance.post(`subscription/unsubscribe`, {
+            "reasons": JSON.stringify(unsubscriptionReasons.knownReasons).replace(/[\[\]']+/g, ''),
+            "other_reason": unsubscriptionReasons.others,
+        }).then((response: any) => {
+            let tadarabGA = new TadarabGA();
+            tadarabGA.tadarab_fire_traking_GA_code("unsubscribe", {
+                single_reason: response?.data?.data?.single_reason,
+                user_id: response?.data?.data?.ga_tracking.uid,
+                cid: response?.data?.data?.ga_tracking.cid,
+                date: response?.data?.data?.start_trial_date,
+            });
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+        }).catch((error: any) => {
+            console.log(error);
+        })
+    }
 
     useEffect(() => {
-        console.log("unsubscriptionReasons", unsubscriptionReasons);
-    }, [unsubscriptionReasons])
+        axiosInstance.get(`categories`).then(function (response: any) {
+            setCategories(response?.data?.data?.categories);
+        }).catch(function (error: any) {
+            console.log(error);
+        });
+    }, []);
 
 
     return (
@@ -68,177 +95,30 @@ export default function UnsubscribePopup(props: any) {
                                         },
                                     }} className="mySwiper">
 
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
+                                    {categories.map((cat: any, i: number) => {
+                                        return (
+                                            <SwiperSlide key={i} style={{ cursor: "pointer" }}>
+                                                <Link href={`/topic/${cat?.slug}`}>
+                                                    <div className={styles["unsubscribe-popup__category-card"]}>
+                                                        <div>
+                                                            <div className="d-flex justify-content-center">
+                                                                <div className={styles["unsubscribe-popup__category-card__img-box"]}
+                                                                    style={{ backgroundColor: cat?.color }}>
+                                                                    <img loading="lazy" src={`/images/${cat?.icon}.svg`} alt={cat?.icon} id={styles[cat?.icon]} />
+                                                                </div>
+                                                            </div>
+                                                            <div className={styles["unsubscribe-popup__category-card__department"]}>{cat?.title}</div>
+                                                            <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
+                                                                {cat?.courses_count} دورة
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </Link>
+                                            </SwiperSlide>
+                                        )
+                                    })
+                                    }
 
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
-                                    <SwiperSlide style={{ cursor: "pointer" }}>
-
-                                        <div className={styles["unsubscribe-popup__category-card"]}>
-                                            <div>
-
-                                                <div className="d-flex justify-content-center">
-                                                    <div className={styles["unsubscribe-popup__category-card__img-box"]}
-                                                        style={{ backgroundColor: "yellow" }}>
-                                                        <img loading="lazy" src={`/images/technology.svg`} alt="technology" id="technology" />
-                                                    </div>
-                                                </div>
-                                                <div className={styles["unsubscribe-popup__category-card__department"]}>تكنولوجيا</div>
-                                                <div className={styles["unsubscribe-popup__category-card__learners-number"]}>
-                                                    16 دورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </SwiperSlide>
                                 </Swiper>
 
                             </div>
@@ -247,9 +127,9 @@ export default function UnsubscribePopup(props: any) {
 
                         <Modal.Footer className={styles["unsubscribe-popup__footer"]}>
 
-                            <Button onClick={() => { setStep(step + 1) }}>
+                            <a onClick={() => { setStep(step + 1) }}>
                                 استكمال إلغاء الإشتراك
-                            </Button>
+                            </a>
 
                         </Modal.Footer>
                     </>
@@ -285,13 +165,13 @@ export default function UnsubscribePopup(props: any) {
 
                         <Modal.Footer className={styles["unsubscribe-popup__footer2"]}>
 
-                            <Button onClick={() => { setStep(step + 1) }}>
+                            <a onClick={() => { setStep(step + 1) }}>
                                 استكمال إلغاء الإشتراك
-                            </Button>
+                            </a>
 
-                            <Button>
+                            <Link href="/my-account">
                                 الابقاء علي اشتراكى
-                            </Button>
+                            </Link>
 
                         </Modal.Footer>
                     </>
@@ -313,13 +193,13 @@ export default function UnsubscribePopup(props: any) {
 
                         <Modal.Footer className={styles["unsubscribe-popup__footer3"]}>
 
-                            <Button onClick={() => { setStep(step + 1) }}>
+                            <a onClick={() => { setStep(step + 1) }}>
                                 استكمال إلغاء الإشتراك
-                            </Button>
+                            </a>
 
-                            <Button>
+                            <a href="https://wa.link/z4tq07" target="_blank" rel="noreferrer">
                                 تواصل مع خدمة العملاء
-                            </Button>
+                            </a>
 
                         </Modal.Footer>
                     </>
@@ -400,13 +280,13 @@ export default function UnsubscribePopup(props: any) {
 
                         <Modal.Footer className={styles["unsubscribe-popup__footer3"]}>
 
-                            <Button>
+                            <a onClick={() => { cancelSubscription() }}>
                                 إلغاء الاشتراك
-                            </Button>
+                            </a>
 
-                            <Button>
+                            <a href="https://wa.link/z4tq07" target="_blank" rel="noreferrer">
                                 تواصل مع خدمة العملاء
-                            </Button>
+                            </a>
 
                         </Modal.Footer>
                     </>

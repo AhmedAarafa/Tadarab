@@ -32,6 +32,7 @@ export default function TrainerCourses() {
 
     const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
     const [trainerProfile, setTrainerProfile] = useState<any>({});
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [trainerSlug, setTrainerSlug] = useState<any>("");
 
@@ -64,39 +65,19 @@ export default function TrainerCourses() {
     }
 
     const handleCartActionBtn = (course: any): any => {
+        setDisabledCartBtns([...disabledCartBtns,course.id]);
+        setTimeout(() => {
+          setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+        }, 5000);
         dispatch(setCheckoutType("cart"));
 
-        // if (userStatus?.isUserAuthenticated == true) {
         const handleCartResponse: any = handleCart([course], `trainers/${trainerSlug}/?country_code=null&page=${pageNumber}&limit=10`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setTrainerProfile(response.data);
-                // console.log("response.data.data",response.data.data);
                 dispatch(setCartItems(firstresponse.cartResponse));
-                // console.log("firstresponse.totalItems",firstresponse.cartResponse);
             })
-            //  setLocalCartItems(response.totalItems);
         })
-        // }
-        // else {
-        //     const handleCartResponse: any = handleCart([course], `trainers/10253/?country_code=null`, false);
-        //     handleCartResponse.then(function (response: any) {
-        //         dispatch(setCartItems(response.data.data));
-        //         let newArray:any = trainerProfile.courses;
-        //         response.data.data?.forEach((element:any) => {
-        //         newArray.forEach((ele:any) => {
-        //             if(element.id === ele.id){
-        //                 // console.log(ele);
-        //                 ele.is_in_cart = true;
-        //             }
-        //         });
-        //     });
-        //     setTrainerProfile({...trainerProfile,courses:newArray});
-
-        //     })
-
-        // }
-        // setLatestCourses([...latestCourses]);
     }
 
     const handleFreeCoursesActionBtn = (course: any): any => {
@@ -322,7 +303,7 @@ export default function TrainerCourses() {
                                         </div>
 
                                         <div className="d-inline-block">
-                                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
+                                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
                                                 className={
                                                     styles[
                                                     "trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn"
@@ -340,7 +321,7 @@ export default function TrainerCourses() {
                                                         course.discounted_price == 0 ?
                                                             <TvIcon color="#222" />
                                                             :
-                                                            course.is_in_cart ?
+                                                            course.is_in_cart || disabledCartBtns.includes(course.id) ?
                                                                 <AddedToCartIcon color="#222" />
                                                                 :
                                                                 <CartIcon color="#222" />

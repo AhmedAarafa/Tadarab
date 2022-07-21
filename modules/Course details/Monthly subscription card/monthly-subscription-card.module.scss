@@ -74,6 +74,13 @@
     }
 }
 
+.monthly-subscription__course-card__course-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin: 0 0 1rem 0;
+}
+
 .monthly-subscription__course-card__price-box {
     color: var(--dark-black);
     // margin-top: 0.5rem;
@@ -497,6 +504,11 @@
         }
     }
 
+    .monthly-subscription__course-card__course-title {
+        font-size: 1.1rem*2.5;
+        margin: 0 0 1rem*2.5 0;
+    }
+
     .monthly-subscription__course-card__price-box {
         color: var(--dark-black);
         // margin-top: 0.5rem*2.5;
@@ -557,8 +569,8 @@
         }
 
         svg {
-            width: 1.3125rem*2.5;
-            height: 1.1875rem*2.5;
+            width: 1.3125rem*2.5 !important;
+            height: 1.1875rem*2.5 !important;
 
         }
 

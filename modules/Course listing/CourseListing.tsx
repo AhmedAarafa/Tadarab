@@ -23,6 +23,7 @@ import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
     const [currentPage, setCurrentPage] = useState(1);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const dispatch = useDispatch();
     const router = useRouter();
@@ -43,6 +44,10 @@ export default function CourseListing() {
     }
 
     const handleCartActionBtn = (course: any): any => {
+        setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
         dispatch(setCheckoutType("cart"));
 
         const handleCartResponse: any = handleCart(
@@ -278,7 +283,7 @@ export default function CourseListing() {
                                                     </div>
                                                 }
                                             </div>
-                                            {!course.is_purchased && <Button className={styles["course-listing__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={course.is_in_cart} variant={""}>
+                                            {!course.is_purchased && <Button className={styles["course-listing__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}>
                                                 {course.price == 0 ? <div onClick={() => handleSubscribeBtn(course)}> {course.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
                                                     :
                                                     <div onClick={() =>
@@ -287,7 +292,7 @@ export default function CourseListing() {
                                                             :
                                                             handleCartActionBtn(course)}> {(course.discounted_price == 0 ?
                                                                 <TvIcon color="#222" />
-                                                                : course.is_in_cart ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                                                                : course.is_in_cart || disabledCartBtns.includes(course.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
                                             </Button>}
                                         </div>
                                     </Card.Body>
@@ -472,7 +477,7 @@ export default function CourseListing() {
                                             </div>
 
                                             <div >
-                                                {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
+                                                {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
                                                     className={
                                                         styles[
                                                         "course-listing__course-card__card-body__checkout-details__icon-btn"
@@ -489,7 +494,7 @@ export default function CourseListing() {
                                                             course.discounted_price == 0 ?
                                                                 <TvIcon color="#222" />
                                                                 :
-                                                                course.is_in_cart ?
+                                                                course.is_in_cart || disabledCartBtns.includes(course.id) ?
                                                                     <AddedToCartIcon color="#222" />
                                                                     :
                                                                     <CartIcon color="#222" />

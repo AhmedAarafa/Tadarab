@@ -26,6 +26,8 @@ export default function CourseSubscribers() {
   const userStatus = useSelector((state:any) => state.userAuthentication);
   const [courseDetails, setCourseDetails] = useState<any>([]);
   const [courseSubscribers, setCourseSubscribers] = useState([]);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
   const Router = useRouter();
@@ -46,6 +48,10 @@ export default function CourseSubscribers() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
     dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
@@ -352,7 +358,7 @@ export default function CourseSubscribers() {
                                      handleFreeCoursesActionBtn(course)
                                      :
                                      handleCartActionBtn(course)
-                                    }  disabled={course.is_in_cart} variant={""}
+                                    }  disabled={course.is_in_cart  || disabledCartBtns.includes(course.id) } variant={""}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -365,7 +371,7 @@ export default function CourseSubscribers() {
                                       course.discounted_price == 0 ?
                                       <TvIcon color="#222" />
                                       :
-                                  course.is_in_cart ?
+                                  course.is_in_cart  || disabledCartBtns.includes(course.id)  ?
                                   <AddedToCartIcon color="#222"/>
                                    : 
                                    <CartIcon color="#222"/>

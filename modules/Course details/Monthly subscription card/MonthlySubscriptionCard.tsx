@@ -23,6 +23,8 @@ export default function MonthlySubscriptionCard() {
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
   const [courseDetails, setCourseDetails] = useState<any>([]);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const dispatch = useDispatch();
@@ -151,6 +153,10 @@ export default function MonthlySubscriptionCard() {
 
 
   const handleCartActionBtn = (course: any): any => {
+    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
     dispatch(setCheckoutType("cart"));
     // console.log(Router.asPath.substring(1));
     // if(userStatus?.isUserAuthenticated == true){
@@ -187,110 +193,118 @@ export default function MonthlySubscriptionCard() {
   return (
     <>
       <div className={styles["monthly-subscription__course-card"]} id="sub-sticky-card">
-        <div
+        { !courseDetails?.subscription_exclude ?
+          <>
+            <div
 
-          className={styles["monthly-subscription__course-card__title"]}
-        >
-          <div>
-            <span> اشترك في تدرب    </span>
-            <span>
-              بلا حدود
-            </span>
-          </div>
-
-
-          <div>
-            { courseDetails?.course_details?.type == "webinar" && <>
+              className={styles["monthly-subscription__course-card__title"]}
+            >
               <div>
-                <div>
+                <span> اشترك في تدرب    </span>
+                <span>
+                  بلا حدود
+                </span>
+              </div>
 
-                <TickIcon />
-                </div>
-                مشاهدة هذه الدورة اثناء البث المباشر.
-                </div>
+
               <div>
-                <div>
+                { courseDetails?.course_details?.type == "webinar" && <>
+                  <div>
+                    <div>
 
-                <TickIcon />
-                </div>
-                مشاهدة تسجيل الدورة فى أى وقت يناسبك.
-                </div>
-              <div>
-                <div>
+                    <TickIcon />
+                    </div>
+                    مشاهدة هذه الدورة اثناء البث المباشر.
+                    </div>
+                  <div>
+                    <div>
 
-                <TickIcon />
-                </div>
-                تحميل جميع مرفقات الدورة 
-                </div>
-              <div>
-                <div>
+                    <TickIcon />
+                    </div>
+                    مشاهدة تسجيل الدورة فى أى وقت يناسبك.
+                    </div>
+                  <div>
+                    <div>
 
-                <TickIcon />
-                </div>
-                مشاهدة بلا حدود لأكثر من ٧٥٠ دورة تدريبية في جميع المجالات.
-                </div>
-              <div>
-                <div>
+                    <TickIcon />
+                    </div>
+                    تحميل جميع مرفقات الدورة 
+                    </div>
+                  <div>
+                    <div>
 
-                <TickIcon />
-                </div>
-                عدد لا نهائي من شهادات إتمام الدورات.
-                </div>
-              <div>
-                <div>
+                    <TickIcon />
+                    </div>
+                    مشاهدة بلا حدود لأكثر من ٧٥٠ دورة تدريبية في جميع المجالات.
+                    </div>
+                  <div>
+                    <div>
 
-                <TickIcon />
-                </div>
-                دورات جديدة تضاف شهرياَ.
-                </div>
-              <div>
-                <div>
+                    <TickIcon />
+                    </div>
+                    عدد لا نهائي من شهادات إتمام الدورات.
+                    </div>
+                  <div>
+                    <div>
 
-                <TickIcon />
-                </div>
-                لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
-                </div>
-            </>}
+                    <TickIcon />
+                    </div>
+                    دورات جديدة تضاف شهرياَ.
+                    </div>
+                  <div>
+                    <div>
 
-            <span>
-              {  courseDetails?.course_details?.type !== "webinar" &&  "شاهد هذه الدورة + أكثر من 750 دورة تدريبية في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي"}
-              <span>
-                <Link href="/subscription">
+                    <TickIcon />
+                    </div>
+                    لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
+                    </div>
+                </>}
 
-                  اعرف المزيد.
-                </Link>
-              </span>
-            </span>
+                <span>
+                  {  courseDetails?.course_details?.type !== "webinar" &&  "شاهد هذه الدورة + أكثر من 750 دورة تدريبية في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي"}
+                  <span>
+                    <Link href="/subscription">
 
-          </div>
+                      اعرف المزيد.
+                    </Link>
+                  </span>
+                </span>
 
-        </div>
+              </div>
 
-
-        <div className={styles["monthly-subscription__subscribe-btn-box"]}>
-          {/* {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
-          <div className={styles["monthly-subscription__subscription-timer"]}>
-          عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
-            <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-          </div>} */}
-          <Button id="monthly-subscribe-btn" className={styles["monthly-subscription__subscribe-btn-box__btn"]}
-            onClick={() => handleSubscriptionBtn()}>
-            <div>
-              <span>اشترك في تدرب بلا حدود </span>
             </div>
-          </Button>
-        </div>
-        <div className={styles["monthly-subscription__subscription-value"]}>
-        احصل على كل الدورات فقط ب 6 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 9 دك</span>
-        </div>
-        {/* <div className={styles["monthly-subscription__watch-this-course"]}>
-      شاهد هذه الدورة + 600 دورة اخرى
-      </div> */
-        }
 
-        <div className={styles["monthly-subscription__or-box"]}>
-          أو
-        </div>
+
+            <div className={styles["monthly-subscription__subscribe-btn-box"]}>
+              {/* {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+              <div className={styles["monthly-subscription__subscription-timer"]}>
+              عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
+                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+              </div>} */}
+              <Button id="monthly-subscribe-btn" className={styles["monthly-subscription__subscribe-btn-box__btn"]}
+                onClick={() => handleSubscriptionBtn()}>
+                <div>
+                  <span>اشترك في تدرب بلا حدود </span>
+                </div>
+              </Button>
+            </div>
+            <div className={styles["monthly-subscription__subscription-value"]}>
+            احصل على كل الدورات فقط ب 9 دك / شهر.
+            </div>
+            {/* <div className={styles["monthly-subscription__watch-this-course"]}>
+          شاهد هذه الدورة + 600 دورة اخرى
+          </div> */
+            }
+
+            <div className={styles["monthly-subscription__or-box"]}>
+              أو
+            </div>
+          </>
+          :
+          <div className={styles["monthly-subscription__course-card__course-title"]}>
+            {courseDetailsData?.data?.course_details?.title}
+          </div>
+        }
 
         {/* <div>
 
@@ -359,7 +373,7 @@ export default function MonthlySubscriptionCard() {
               handleFreeCoursesActionBtn(courseDetails.course_details)
               :
               handleCartActionBtn(courseDetails.course_details);
-          }} disabled={courseDetails?.course_details?.is_in_cart}
+          }} disabled={courseDetails?.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails?.course_details?.id) }
             className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
           >
             {
@@ -805,7 +819,7 @@ export default function MonthlySubscriptionCard() {
                   :
                   handleCartActionBtn(courseDetails?.course_details)
               }}
-                disabled={courseDetails?.course_details?.is_in_cart}
+                disabled={courseDetails?.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails?.course_details?.id) }
                 className={
                   styles[
                   "monthly-subscription__course-card__actions-btns__add-to-cart-btn"

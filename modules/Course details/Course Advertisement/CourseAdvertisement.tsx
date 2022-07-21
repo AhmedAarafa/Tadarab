@@ -176,9 +176,9 @@ export default function CourseAdvertisement(theOption: any) {
               }
             </div>
 
-            <div className={styles["course-ad__course-title"]}>
+            <h1 className={styles["course-ad__course-title"]}>
               {courseDetailsData?.data?.course_details?.title}
-            </div>
+            </h1>
             <div className={styles["course-ad__course-description"]}>
               {courseDetailsData?.data?.course_details?.details}
             </div>

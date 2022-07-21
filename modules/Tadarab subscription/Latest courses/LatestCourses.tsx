@@ -39,6 +39,7 @@ function LatestCourses() {
   const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [isFnExecuted, setIsFnExecuted] = useState(false);
   const [latestCourses, setLatestCourses] = useState<any>([]);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const [filterType, setFilterType] = useState("best-seller");
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
@@ -75,6 +76,10 @@ function LatestCourses() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
+    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
     dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
@@ -557,7 +562,7 @@ function LatestCourses() {
                             </div>
 
                             <div >
-                              { !course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
+                              { !course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
                                 className={
                                   styles[
                                     "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -577,7 +582,7 @@ function LatestCourses() {
                                     course.discounted_price == 0 ?
                                     <TvIcon color="#222" />
                                     :
-                                  course.is_in_cart ?
+                                  course.is_in_cart || disabledCartBtns.includes(course.id) ?
                                   <AddedToCartIcon color="#222"/>
                                    : 
                                    <CartIcon color="#222"/>

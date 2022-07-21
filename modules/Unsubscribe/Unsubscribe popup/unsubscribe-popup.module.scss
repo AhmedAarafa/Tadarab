@@ -93,16 +93,21 @@
 .unsubscribe-popup__footer3 {
     border: 0;
     padding-top: 0;
-}
-
-.unsubscribe-popup__footer {
-    button {
-        @include contained-button;
-        padding: 0.5rem 1.25rem;
-        border-radius: 0.625rem;
+    padding: 0 1.25rem 0.5rem 1.25rem;
+    
+    a {
+        font-size: 0.85rem;
+        font-weight: 400;
+        cursor: pointer;
         margin: 0.25rem auto;
+        color: var(--dark-black);
+    
+        &:is(&:hover, &:active) {
+           color: var(--primary-red);
+        }
     }
 }
+
 
 .unsubscribe-popup__body__unsubscription-cons-body {
     @include flex(center, center);
@@ -127,20 +132,18 @@
 .unsubscribe-popup__footer3 {
     @include flex(center, space-between);
 
-    button:nth-of-type(1),
-    button:nth-of-type(2) {
+    a:nth-of-type(1),
+    a:nth-of-type(2) {
         padding: 0.5rem 1.25rem;
         border-radius: 0.625rem;
         margin: 0.5rem 0;
     }
-
-    button:nth-of-type(1) {
-        @include contained-button;
+    a:nth-of-type(2) {
+        &:is(&:hover, &:active) {
+            color: var(--dark-black);
+         }
     }
 
-    button:nth-of-type(2) {
-        @include outlined-button;
-    }
 }
 
 .reason-for-unsubscription {
@@ -418,12 +421,12 @@
     }
 
     .unsubscribe-popup__footer {
-        button {
-            @include contained-button;
-            font-size: 0.97rem*2;
-            padding: 0.5rem*2 1.25rem*2;
-            border-radius: 0.625rem*2;
-            margin: 0.25rem*2 auto;
+        padding: 0 1.25rem*2.5 0.5rem*2.5 1.25rem*2.5;
+
+        a {
+            font-size: 0.85rem*2;
+            margin: 0.25rem*2.5 auto;
+            text-underline-offset: 0.1rem*2.5;
         }
     }
 

@@ -29,7 +29,6 @@ import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthent
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from 'react-google-login';
 import TwitterLogin from "react-twitter-login";
-// import FacebookLogin from 'react-facebook-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 interface SignUpFormValues {
@@ -154,6 +153,8 @@ export default function SignupPage() {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth/?from=checkout`);
       } else if (router.query.from.startsWith("webinar")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
+      } else if (router.query.from.startsWith("course")) {
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
       } else {
         Router.back();
       }
@@ -186,7 +187,6 @@ export default function SignupPage() {
           "social_token": googleResponse.tokenObj.access_token,
           "clientId": clientId,
         }).then((response: any) => {
-          console.log(response);
           if (JSON.stringify(response.status).startsWith("2")) {
             FBPixelEventsHandler(response.data.fb_tracking_events, customData);
             if (response.data.data !== null) {
@@ -225,14 +225,14 @@ export default function SignupPage() {
             setErrorMessage(response.data.message);
           }
         }).catch((error: any) => {
-          console.log(error);
+          //console.log(error);
         })
 
     }
   }
 
   const responseFacebook = (response:any)=>{
-    console.log(response);
+    //console.log(response);
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {
@@ -250,7 +250,7 @@ export default function SignupPage() {
           "social_token": response.accessToken,
           "clientId": clientId,
         }).then((resp: any) => {
-          console.log(resp);
+          //console.log(resp);
           if (JSON.stringify(resp.status).startsWith("2")) {
             FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
             if (resp.data.data !== null) {
@@ -289,14 +289,14 @@ export default function SignupPage() {
             setErrorMessage(resp.data.message);
           }
         }).catch((error: any) => {
-          console.log(error);
+          //console.log(error);
         })
       }
     }
   }
 
   const responseTwitter = (err: any, data: any) => {
-    console.log(err, data);
+    //console.log(err, data);
   }
 
 
@@ -337,7 +337,7 @@ export default function SignupPage() {
               </div>
             </TwitterLogin> */}
 
-            <FacebookLogin
+            {/* <FacebookLogin
               appId={`${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`}
               autoLoad={false}
               fields="name,email"
@@ -347,7 +347,7 @@ export default function SignupPage() {
                   <FbIcon color="#4267B2"/>
                  انشاء حساب بواسطة فيسبوك
                 </div>
-              )} />
+              )} /> */}
 
           </div>
 
@@ -376,7 +376,7 @@ export default function SignupPage() {
                     "phone": values.phoneNumber,
                   }).then((response: any) => {
                     // setResponse(response.data);
-                    console.log("Response", response);
+                    //console.log("Response", response);
                     if (JSON.stringify(response.status).startsWith("2")) {
                       let customData = { email: values.email, phone: values.phoneNumber };
                       FBPixelEventsHandler(response.data.fb_tracking_events, customData);
@@ -403,13 +403,14 @@ export default function SignupPage() {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                           } else if (router.query.from.startsWith("webinar")) {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                          } else if (router.query.from.startsWith("course")) {
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                           } else {
                             Router.back();
                           }
                         } else if (router.query && router.query.from_subscription) {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
                         } else {
-                          //console.log("homepage");
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                         }
                       }

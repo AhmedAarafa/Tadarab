@@ -61,6 +61,13 @@
   margin-left: 0.3rem;
 }
 
+.monthly-subscription__course-card__course-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin: 0 0 1rem 0;
+}
+
 .monthly-subscription__course-card__price-box {
   color: var(--dark-black);
 }
@@ -609,6 +616,10 @@
   .monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(2) {
     margin: 0 0.5rem 0 0;
   }
+  .monthly-subscription__course-card__course-title {
+    font-size: 2.75rem;
+    margin: 0 0 2.5rem 0;
+  }
   .monthly-subscription__course-card__price-box {
     color: var(--dark-black);
   }
@@ -704,8 +715,8 @@
     color: white !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn svg {
-    width: 3.28125rem;
-    height: 2.96875rem;
+    width: 3.28125rem !important;
+    height: 2.96875rem !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn span {
     font-size: 2.5rem;

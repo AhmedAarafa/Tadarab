@@ -42,13 +42,17 @@
 }
 
 .unsubscribe-page__cancel-subscription {
-    button {
-        @include contained-button;
-        padding: 0.4rem 2rem;
-        margin: 1rem 0 0 0;
-    }
+    padding: 0.5rem 2rem;
 
-    text-align: center;
+    a {
+        font-size: 0.85rem;
+        font-weight: 400;
+        cursor: pointer;
+        color: var(--dark-black);
+        &:is(&:hover, &:active) {
+           color: var(--primary-red);
+        }
+    }
 }
 
 
@@ -88,12 +92,11 @@
     }
 
     .unsubscribe-page__cancel-subscription {
-        button {
-            padding: 0.4rem*2.5 2rem*2.5;
-            margin: 1rem*2.5 0 0 0;
-            font-size: 0.97rem*1.9;
-            border-radius: 0.625rem*2.5;
-            width: 60%;
+        padding: 0.5rem*2.5 2rem*2.5;
+
+        a {
+            font-size: 0.85rem*2;
+            text-underline-offset: 0.1rem*2.5;
         }
     }
 

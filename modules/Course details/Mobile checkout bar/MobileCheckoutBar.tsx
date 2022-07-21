@@ -139,7 +139,7 @@ export default function MobileCheckoutBar() {
           </Button>
           <div>
           <div className={styles["monthly-subscription__subscription-value"]}>
-          احصل على كل الدورات فقط ب 6 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 9 دك</span>
+          احصل على كل الدورات فقط ب 9 دك / شهر.
           </div>
           </div>
         </div>

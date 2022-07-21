@@ -42,6 +42,7 @@ function LatestCourses() {
   const [isExecuted, setIsExecuted] = useState(false);
   const [latestCourses, setLatestCourses] = useState<any>([]);
   const [filterType, setFilterType] = useState("best-seller");
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
 
@@ -76,18 +77,18 @@ function LatestCourses() {
   }
 
   const handleCartActionBtn = (course: any): any => {
+    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
     dispatch(setCheckoutType("cart"));
 
-    // if(userStatus?.isUserAuthenticated == true){
         dispatch(addCourseToCart(course));
       
       const handleCartResponse:any =  handleCart([course],`home/?country_code=null&type=${filterType}`,false);
       handleCartResponse.then(function(firstresponse:any) {
-        // console.log("handleCartResponse",firstresponse);
         firstresponse.resp.then(function(response:any){
-          // console.log(response);
            setLatestCourses(response.data.data.best_seller_courses);
-          // dispatch(setCartItems(firstresponse.cartResponse));
         })
       })
 
@@ -192,6 +193,8 @@ function LatestCourses() {
       departmentsList.style.cssText = `z-index:1;`
     }
   }
+
+  
 
   return (
     <>
@@ -377,7 +380,7 @@ function LatestCourses() {
                                   course?.discounted_price == 0 ?
                                     handleFreeCoursesActionBtn(course)
                                     :
-                                    handleCartActionBtn(course)} disabled={course.is_in_cart}>
+                                    handleCartActionBtn(course)} disabled={course.is_in_cart || disabledCartBtns.includes(course.id)}>
                                 {
                                   course.discounted_price == 0 ?
                                     <TvIcon color="#fff" />
@@ -578,7 +581,7 @@ function LatestCourses() {
                           </div>
 
                           <div >
-                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
+                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
                               className={
                                 styles[
                                 "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -596,7 +599,7 @@ function LatestCourses() {
                                   course.discounted_price == 0 ?
                                     <TvIcon color="#222" />
                                     :
-                                    (course.is_in_cart) ?
+                                    (course.is_in_cart)  || disabledCartBtns.includes(course.id) ?
                                       <AddedToCartIcon color="#222" />
                                       :
                                       <CartIcon color="#222" />

@@ -183,7 +183,18 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 			   'start_trial_date': traking_data.date
 			});
 		}
-	}
+	}else if(traking_type=='unsubscribe'){
+		dataLayer = dataLayer || [];
+		dataLayer.push({
+			'event': 'GTMevent',
+			'eventCategory': 'subscription',
+			'eventAction': 'cancellation',
+			'eventLabel': traking_data.single_reason,
+			'userID': traking_data.user_id,
+			'clientID': traking_data.cid,
+			'start_trial_date': traking_data.date // Date when free-trial occurred
+		});
+	 }
 }
 
 /**

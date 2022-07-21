@@ -21,6 +21,7 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 export default function TrainingCourses(props: any) {
     const [currentPage, setCurrentPage] = useState("1");
     const [pageNumber, setPageNumber] = useState(1);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const dispatch = useDispatch();
     const Router = useRouter();
@@ -166,7 +167,13 @@ export default function TrainingCourses(props: any) {
         }
     }
 
+    
+
     const handleCartActionBtn = (course: any): any => {
+        setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
         dispatch(setCheckoutType("cart"));
 
         const handleCartResponse: any = handleCart([course], `categories/${slug}/?country_code=null&page=${pageNumber}&limit=12`, false);
@@ -581,7 +588,7 @@ export default function TrainingCourses(props: any) {
                                             </div>
 
                                             <div className="d-inline-block">
-                                                {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart} variant={""}
+                                                {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart  || disabledCartBtns.includes(course.id) } variant={""}
                                                     className={
                                                         styles[
                                                         "training-courses__course-card__card-body__checkout-details__icon-btn"
@@ -599,7 +606,7 @@ export default function TrainingCourses(props: any) {
                                                             course.discounted_price == 0 ?
                                                                 <TvIcon color="#222" />
                                                                 :
-                                                                course.is_in_cart ?
+                                                                course.is_in_cart  || disabledCartBtns.includes(course.id) ?
                                                                     <AddedToCartIcon color="#222" />
                                                                     :
                                                                     <CartIcon color="#222" />

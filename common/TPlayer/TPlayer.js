@@ -12,7 +12,7 @@ import { Accordion } from "react-bootstrap";
 import styles from "modules/Course details/Course content/course-content.module.css";
 import { UnlockIcon,LessonPlayIcon,ClockIcon,LockIcon,AttachmentsIcon,FileDownloadIcon,CheckCircleIcon,ProgressBar } from "common/Icons/Icons";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 //import playlistSrc from "./playlist.json";
 //import "@silvermine/videojs-quality-selector/dist/css/quality-selector.css";
@@ -193,7 +193,7 @@ function tplayer_video_progress(type){
 		if((Math.floor(perc)<=0)&&(tplayer?.playlist()[id].viewPr<1)){
 			tplayer.playlist()[id].viewPr=1;
 			tplayer_viewed(id,tplayer?.playlist()[id].title,tplayer?.playlist()[id].is_free,0,current);
-			console.log("0% start reached");
+			//console.log("0% start reached");
 		}
 		playbackInterval=setInterval(function(){
 			if((tplayer?.playlist?.currentItem())&&(tplayer?.currentTime())){
@@ -203,22 +203,22 @@ function tplayer_video_progress(type){
 				if((Math.floor(perc)>=25)&&(tplayer?.playlist()[id].viewPr<25)){
 					tplayer.playlist()[id].viewPr=25;
 					tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,25,current);
-					console.log("25% reached");
+					//console.log("25% reached");
 				}
 				if((Math.floor(perc)>=50)&&(tplayer?.playlist()[id].viewPr<50)){
 					tplayer.playlist()[id].viewPr=50;
 					tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,50,current);
-					console.log("50% reached");
+					//console.log("50% reached");
 				}
 				if((Math.floor(perc)>=75)&&(tplayer?.playlist()[id].viewPr<75)){
 					tplayer.playlist()[id].viewPr=75;
 					tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,75,current);
-					console.log("75% reached");
+					//console.log("75% reached");
 				}
 				if((Math.floor(perc)>=99)&&(tplayer?.playlist()[id].viewPr<99)){
 					tplayer.playlist()[id].viewPr=100;clearInterval(playbackInterval);
 					tplayer_viewed(id,tplayer.playlist()[id].title,tplayer.playlist()[id].is_free,100,current);
-					console.log("100% reached");
+					//console.log("100% reached");
 				}
 
 				if((Math.floor(perc))%2===0){
@@ -244,10 +244,10 @@ function tplayer_video_progress(type){
 							"seconds":(Math.floor(current)),
 							"counter":seconds_counter,
 						}).then((response) => {
-							console.log(response);
-							console.log("PLAYER Track: ",response);
+							//console.log(response);
+							//console.log("PLAYER Track: ",response);
 						}).catch((error)=>{
-							console.log("PLAYER Track ERROR: ",error);
+							//console.log("PLAYER Track ERROR: ",error);
 						})
 
 
@@ -311,8 +311,8 @@ function google_translate(str){
 				"Content-Type": "application/json"
 			}
 		}).then(res => res.json()).then((response) => {
-			console.log("response from google: ");
-			console.log(response);
+			//console.log("response from google: ");
+			//console.log(response);
 		}).catch(error => {
 			/** error **/
 			//console.log("There was an error with the translation request: ", error);
@@ -378,7 +378,11 @@ function duration_calculator(time) {
 
 /** Free lession limit alert **/
 function free_lession(id){
-	tplayer.bigPlayButton.hide();alert("Login first");
+	tplayer.bigPlayButton.hide();
+	Router.push({
+		pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+		query: { from: `course/${Router.router.state.query.slug}` }
+	});
 }
 
 function TPlayer(){
@@ -407,10 +411,10 @@ export function TPlayerPlayList (){
 				/** Free */
 				freelistHtml=freeLectures.map(function(freelec,findex){
 					allLectures.push(freelec);
-					if(lec_index>0){lec_index++;}else{lec_index=0;}
+					if(lec_index>=0){lec_index++;}else{lec_index=0;}
 					return (
 						<a key={lec_index} className='lession play free free-lession' data-lession={lec_index} data-play={true} onClick={play_video}>
-							<div key={lec_index} className={styles["course-content__accordion__body__list-item"]}>
+							<div className={styles["course-content__accordion__body__list-item"]}>
 								<div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
 									<div className={styles["course-content__accordion__body__list-item__icon"]}><LessonPlayIcon color="#be1622" opacity="1"/></div>
 									<div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
@@ -467,10 +471,10 @@ export function TPlayerPlayList (){
 											var lid=lec.id,isFree=((lec.is_free)?lec.is_free:false),is_play=((isPurchased==true)?true:isFree),title=((lec.title)?lec.title:''),lession_class="lession ";
 											lession_class+=((!is_play)?'paid':'play');lession_class+=((isFree&&!isPurchased)?' free free-lession':'');
 											//if(lec.is_free){freeLectures.push(lec);}
-											allLectures.push(lec);if(lec_index>0){lec_index++;}else{lec_index=0;}
+											allLectures.push(lec);if(lec_index>=0){lec_index++;}else{lec_index=0;}
 											return (
 												<a key={lec_index} className={lession_class} data-lession={lec_index} data-play={is_play} onClick={play_video}>
-													<div key={lec_index} className={styles["course-content__accordion__body__list-item"]}>
+													<div className={styles["course-content__accordion__body__list-item"]}>
 														<div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
 															<div className={styles["course-content__accordion__body__list-item__icon"]}><LessonPlayIcon color="#be1622" opacity="1"/></div>
 															<div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
@@ -557,7 +561,7 @@ export function TPlayerPaidPlayList (){
 											allLectures.push(lec);if(lec_index>=0){lec_index++;}else{lec_index=0;}
 											return (
 												<a key={lec_index} className={lession_class} data-lession={lec_index} data-play={is_play} onClick={play_video}>
-                                                   <div key={lec_index} className={styles["purchased-course-content__accordion__body__list-item"]}>
+                                                   <div className={styles["purchased-course-content__accordion__body__list-item"]}>
                                                         <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
                                                            <div className={styles["purchased-course-content__accordion__body__list-item__icon"]}>
                                                             <CheckCircleIcon color="#9E9DA4" />
@@ -600,7 +604,7 @@ export function TadarabVideoPlayer (theDefaultOption){
 	//if(!theDefaultOption.Source){
 		const dispatch = useDispatch();
 		const ioverlayM=React.useRef(null);const ierrorM=React.useRef(null);const ibuynowM=React.useRef(null);
-		useEffect(() => {return ()=>{ /* dispatch(setCourseDetailsData([])); */ playlistSrc=[];}}, []);
+		useEffect(() => {return ()=>{ dispatch(setCourseDetailsData([])); playlistSrc=[];}}, []);
 		isUserLogin = useSelector((state) => state.userAuthentication?.isUserAuthenticated);
 	//}
 	// lookup the options in the docs for more options

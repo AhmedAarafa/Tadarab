@@ -23,6 +23,7 @@ export default function LiveCourses() {
 
   const homePageData = useSelector((state: any) => state.homePageData);
   const [liveCourses, setLiveCourses] = useState<any>([]);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const userStatus = useSelector((state: any) => state.userAuthentication);
 
   const handleSubscribeBtn = (course: any): any => {
@@ -77,6 +78,10 @@ export default function LiveCourses() {
     setLiveCourses([...liveCourses]);
   }
   const handleCartActionBtn = (course: any): any => {
+    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    }, 5000);
     dispatch(setCheckoutType("cart"));
 
     const handleCartResponse: any = handleCart([course], `home/?country_code=null`, false);
@@ -281,10 +286,10 @@ export default function LiveCourses() {
                           </div>
 
                         </Link>
-                        {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart} variant={""}>
+                        {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
                           {lc.price == 0 ? <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
                             :
-                            <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                            <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
                         </Button>}
                       </div>
                     </Card.Body>

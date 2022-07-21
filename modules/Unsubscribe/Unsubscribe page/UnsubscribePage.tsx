@@ -30,9 +30,9 @@ export default function UnsubscribePage() {
                     <li><TickIcon />الدورات الجديدة المضافة بشكل شهري. </li>
                 </ul>
                 <div className={styles["unsubscribe-page__cancel-subscription"]}>
-                    <Button onClick={() => handleShow()}>
+                    <a onClick={() => handleShow()}>
                         إلغاء الاشتراك
-                    </Button>
+                    </a>
 
                     <UnsubscribePopup show={show} handleShow={() => handleShow} handleClose={() => handleClose} />
                 </div>

@@ -68,8 +68,6 @@ export default function CoursesDepartments() {
                                             <div className={styles["courses-departments__cards-carousel__departments-card__img-box"]}
                                             style={{backgroundColor:cat.color}}>
                                                 <img loading="lazy"   src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]}/>
-                                              
-
                                             </div>
                                         </div>
                                         <div className={styles["courses-departments__cards-carousel__departments-card__department"]}>{cat.title}</div>

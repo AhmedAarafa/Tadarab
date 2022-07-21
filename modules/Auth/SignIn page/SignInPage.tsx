@@ -99,6 +99,8 @@ export default function SignInPage() {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=checkout`);
       } else if (router.query.from.startsWith("webinar")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
+      } else if (router.query.from.startsWith("course"))  {
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
       } else {
         Router.back();
       }
@@ -259,7 +261,7 @@ export default function SignInPage() {
           "social_token": googleResponse?.tokenObj?.access_token,
           "clientId": clientId,
         }).then((response: any) => {
-          console.log(response);
+          //console.log(response);
           if (JSON.stringify(response.status).startsWith("2")) {
             FBPixelEventsHandler(response.data.fb_tracking_events, customData);
             if (response.data.data !== null) {
@@ -279,9 +281,10 @@ export default function SignInPage() {
                 isSubscribed: response.data.data.is_in_user_subscription
               }));
 
-
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                } else if (router.query.from.startsWith("course"))  {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                 } else {
                   Router.back();
@@ -298,7 +301,7 @@ export default function SignInPage() {
             setErrorMessage(response.data.message);
           }
         }).catch((error: any) => {
-          console.log(error);
+          //console.log(error);
         })
       }
     }
@@ -345,9 +348,10 @@ export default function SignInPage() {
                 isSubscribed: resp.data.data.is_in_user_subscription
               }));
 
-
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                } else if (router.query.from.startsWith("course"))  {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                 } else {
                   Router.back();
@@ -394,7 +398,7 @@ export default function SignInPage() {
                 </div>
               )}
             />
-            <FacebookLogin
+            {/* <FacebookLogin
               appId={`${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`}
               autoLoad={false}
               fields="name,email"
@@ -404,7 +408,7 @@ export default function SignInPage() {
                   <FbIcon color="#4267B2" />
                   تسجيل الدخول بواسطة فيسبوك
                 </div>
-              )} />
+              )} /> */}
             {/* <div>
               <AppleIcon />
               أبل
@@ -429,9 +433,9 @@ export default function SignInPage() {
                   "password": values.password,
                   "clientId": clientId,
                 }).then((response: any) => {
-                  console.log("Response.message", response);
+                  //console.log("Response.message", response);
                   if (JSON.stringify(response.status).startsWith("2")) {
-                    console.log("success");
+                    //console.log("success");
                     if (response.data.data !== null) {
                       const totalItems: any = [];
                       response.data.data.courses.data.forEach((item: any) => {
@@ -448,52 +452,44 @@ export default function SignInPage() {
                         id: response.data.data.id,
                         isSubscribed: response.data.data.is_in_user_subscription
                       }));
-
-
                     }
-                    console.log("router.query", router.query.from);
 
                     if (router.query && router.query.from) {
                       // router.push(router.back());
                       if (router.query.from == "checkout") {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                        console.log("checkout");
+                        //console.log("checkout");
                       } else if (router.query.from.startsWith("webinar")) {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                       } else {
-                        Router.back();
-                        console.log("back");
-
+                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                        //Router.back();
+                        //console.log("back");
                       }
 
                     } else if (router.query && router.query.from_subscription) {
-
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
                     } else {
                       if (response.data.data?.is_in_user_subscription) {
-
                         Router.push('/my-account');
                       } else {
-
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                       }
                     }
                   } else {
-                    console.log("error 4xx or 5xx");
+                    //console.log("error 4xx or 5xx");
                     setErrorMessage(response.data.message);
                     // setTimeout(() => {
                     // setErrorMessage("");
                     // }, 5000);
                   }
                 }).catch((error: any) => {
-                  console.log("errrrr", error);
+                  //console.log("errrrr", error);
                 })
               }}
             >
               {({ resetForm, errors, handleBlur }) => (
-
                 <Form>
-
                   <div className={`${styles["sign-in__sign-in-box__sign-in-form-box__email-field-container"]} 
                   ${errors.email && validationAfterSubmit.email && styles["required"]}`}>
                     <div className={styles["sign-in__sign-in-box__sign-in-form-box__icon-wrapper"]}>
