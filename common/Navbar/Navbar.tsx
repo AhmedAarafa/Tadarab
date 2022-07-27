@@ -488,9 +488,9 @@ function Navbar() {
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
-            {/* { userStatus.isSubscribed == true &&  <Link href="/unsubscribe">
+            {userStatus.isSubscribed == true && <Link href="/unsubscribe">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>إلغاء الإشتراك الشهرى</li>
-            </Link>} */}
+            </Link>}
 
             {Router.router?.asPath.includes("/course/") &&
               <>
@@ -1012,18 +1012,22 @@ function Navbar() {
           {
             userStatus.isUserAuthenticated &&
             <>
-              <OverlayTrigger show={dropdownOpened.account} trigger="click" placement="bottom-start" rootClose overlay={
-                <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
-                  {/* { userStatus.isSubscribed == true &&
-                  <Link href="/unsubscribe">
-                    <div onClick={()=>{closeDropdown("account")}}>إلغاء الإشتراك الشهرى</div>
-                  </Link>
-                    } */}
-                  <Button onClick={() => {handleLogout(); closeDropdown("account");}}
-                    className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
-                </div>
-              }>
-                <div onClick={()=>{closeDropdown("account")}} className={styles["navbar__account-icon"]}>
+              <OverlayTrigger
+                rootClose={dropdownOpened.account}
+                {...(dropdownOpened.account ? {} : { show: false })}
+                onToggle={() => { closeDropdown("account") }}
+                trigger="click" placement="bottom-start" overlay={
+                  <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
+                    {userStatus.isSubscribed == true &&
+                      <Link href="/unsubscribe">
+                        <div onClick={() => { closeDropdown("account") }}>إلغاء الإشتراك الشهرى</div>
+                      </Link>
+                    }
+                    <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
+                      className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
+                  </div>
+                }>
+                <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />
                 </div>
