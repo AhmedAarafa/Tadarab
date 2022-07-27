@@ -14,55 +14,32 @@ import TagManager from 'react-gtm-module';
 import Script from "next/script";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
+import Router, { useRouter } from "next/router";
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
-//const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
-
+const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 function MyApp({ Component, pageProps }: AppProps) {
-
-  
   useEffect(() => {
-
-    // if (localStorage.getItem("countryCode")) {
-
-    // } else {
-    //   axiosInstance
-    //     .get("https://ipapi.co/json/")
-    //     .then(function (response: any) {
-    //       if (response == undefined) {
-    //         localStorage.setItem("countryCode", "kw");
-    //       } else {
-    //         localStorage.setItem("countryCode", response?.data.country.toLowerCase());
-    //       }
-    //     })
-    //     .catch(function (error) {
-    //       localStorage.setItem("countryCode", "kw");
-    //       console.log(error);
-    //     });
-    // }
-
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
-
     localStorage.setItem("theme", "light");
     document.body.setAttribute("data-theme", "light");
     if(process.env.NEXT_PUBLIC_ENVIRONMENT==='production'){
       // console.log = function() {}
     }
-
   }, []);
 
-
-  // const tagManagerArgs = {
-  //   gtmId: 'GTM-M2TKMK7'
-  // }
-  // TagManager.initialize(tagManagerArgs)
-
+  let siteurl = "https://www.tadarab.com";
+  const allowedCanonical=['/','/courses','/subscription','/topic/business','/topic/self-development','/topic/home','/topic/family-and-educational-skills','/topic/talents','/topic/family','/topic/technology','/topic/office','/topic/language-and-sciences','/topic/health'];
+  const router = useRouter();
+  let is_allow=allowedCanonical.includes((router.asPath));
+  if(is_allow){ siteurl+=router.asPath; }
   return (
     <>
       <Head>
         <title>دورات تدريبية اون لاين مجانيه عن بعد - منصه تدرب </title>
-        
+        { (is_allow)?<><link rel="canonical" href={siteurl} /></>:<></> }
+
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Tadarab" />
@@ -123,7 +100,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/*<!-- End Facebook Pixel Code -->*/}
 
       <Provider store={store}> 
-      {/* <NotificationBar /> */}
+      <NotificationBar />
       <Navbar />
       <Component {...pageProps} /> 
       <Footer />

@@ -48,10 +48,7 @@ export default function NotificationBar() {
                 <div style={{display: userStatus ? 'none' : 'flex'}} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>
-                            شاهد الآن بث مباشر دورة الدليل الشامل لصناعة علامة تجارية ناجحة 
-                            <a href="https://marketing.tadarab.com/funnel/tadarab-live-3/l1/" target="__blank">
-                                أضغط هنا لمشاهدة البث
-                            </a>
+                        العرض ينتهى قريباَ | أحصل على اي عدد من الدورات بخصم ٧٠٪  أستثمر وقتك بالصيف وابدأ التعلم الأن
                             {/* <span onClick={() => { handleSubscriptionBtn() }}>
                             أضغط هنا لمشاهدة البث
                             </span> */}

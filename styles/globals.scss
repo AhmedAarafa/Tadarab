@@ -17,10 +17,8 @@
   --pale-red: #EF798A;
   --drop-shadow: 0 0 1.25rem #0000001A;
   --icons-green:#198754;
-  --borders-grey:#707070; 
-  
+  --borders-grey:#707070;
 }
-
   
 [data-theme='dark'] {
 
@@ -1272,11 +1270,6 @@ input:-webkit-autofill:active{
   .navbar-brand{
     margin-right: 4.5rem !important;
   }
-
-  
-div[role="dialog"] {
-  display: flex !important;
-}
 .modal-dialog{
   margin:auto;
   max-width: 95%;

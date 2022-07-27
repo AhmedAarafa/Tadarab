@@ -188,49 +188,114 @@ function CourseDetails(props: any) {
 
     
 
-    if (Router.query.slug) {    
-      axiosInstance
-        .get(`courses/${slug}/?country_code=null`)
-        .then(function (response: any) {
-          toggleLoader("hide");
+    if (Router.query.slug) {   
 
-          const data = response?.data?.data;
+          if (Router.query?.aid) {
+            axiosInstance
+                .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
+                .then((res:any) => {
+                  localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+                  localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+                  localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
+
+                  axiosInstance
+                  .get(`courses/${slug}/?country_code=null`)
+                  .then(function (response: any) {
+                    toggleLoader("hide");
           
-          setCourseId(response?.data?.data?.course_details?.id);
-          dispatch(setCourseDetailsData(data));
-
-          let tadarabGA = new TadarabGA();
-          let referrer = "";
-          let myHost = window.location.host;
-          if (document.referrer.includes(myHost)) {
-            document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
-              ?
-              referrer = "homepage"
-              :
-              referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
-
-          } else {
-            referrer = "homepage";
-          }
-          tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
-            {
-              products: [{
-                name: data?.course_details?.title,
-                id: data?.course_details?.id,
-                price: data?.course_details?.discounted_price_usd,
-                brand: "Tadarab",
-                category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
-                variant: "Single Course"
-              }],
-              list: referrer
+                    const data = response?.data?.data;
+                    
+                    setCourseId(response?.data?.data?.course_details?.id);
+                    dispatch(setCourseDetailsData(data));
+          
+                    let tadarabGA = new TadarabGA();
+                    let referrer = "";
+                    let myHost = window.location.host;
+                    if (document.referrer.includes(myHost)) {
+                      document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
+                        ?
+                        referrer = "homepage"
+                        :
+                        referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
+          
+                    } else {
+                      referrer = "homepage";
+                    }
+                    tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
+                      {
+                        products: [{
+                          name: data?.course_details?.title,
+                          id: data?.course_details?.id,
+                          price: data?.course_details?.discounted_price_usd,
+                          brand: "Tadarab",
+                          category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
+                          variant: "Single Course"
+                        }],
+                        list: referrer
+                      });
+          
+                    FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+                  })
+                  .catch(function (error) {
+                    toggleLoader("hide");
+                  });
+                })
+                .catch((error:any)=>{
+                  console.log("error", error);
+                });
+          }else{
+            axiosInstance
+            .get(`courses/${slug}/?country_code=null`)
+            .then(function (response: any) {
+              toggleLoader("hide");
+    
+              const data = response?.data?.data;
+              
+              setCourseId(response?.data?.data?.course_details?.id);
+              dispatch(setCourseDetailsData(data));
+    
+              let tadarabGA = new TadarabGA();
+              let referrer = "";
+              let myHost = window.location.host;
+              if (document.referrer.includes(myHost)) {
+                document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
+                  ?
+                  referrer = "homepage"
+                  :
+                  referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
+    
+              } else {
+                referrer = "homepage";
+              }
+              tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
+                {
+                  products: [{
+                    name: data?.course_details?.title,
+                    id: data?.course_details?.id,
+                    price: data?.course_details?.discounted_price_usd,
+                    brand: "Tadarab",
+                    category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
+                    variant: "Single Course"
+                  }],
+                  list: referrer
+                });
+    
+              FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+            })
+            .catch(function (error) {
+              toggleLoader("hide");
             });
+          }
 
-          FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
-        })
-        .catch(function (error) {
-          toggleLoader("hide");
-          //console.log(error);
-        });
+          if(localStorage.getItem("affiliate_id") &&
+          Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))){
+            localStorage.removeItem("affiliate_id");
+            localStorage.removeItem("cced");
+            localStorage.setItem("coupon_code", "");
+
+          }
+
+     
     }
 
  

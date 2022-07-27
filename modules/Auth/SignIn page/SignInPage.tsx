@@ -458,7 +458,6 @@ export default function SignInPage() {
                       // router.push(router.back());
                       if (router.query.from == "checkout") {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                        //console.log("checkout");
                       } else if (router.query.from.startsWith("webinar")) {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                       } else {
@@ -467,6 +466,8 @@ export default function SignInPage() {
                         //console.log("back");
                       }
 
+                    } else if (router.query && router.query.aid) {
+                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}?aid=${Router.query.aid}&code=${Router.query.code}`);
                     } else if (router.query && router.query.from_subscription) {
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
                     } else {

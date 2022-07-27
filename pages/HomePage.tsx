@@ -10,6 +10,7 @@ import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import Router, { useRouter } from "next/router";
 
 const HeroSection = dynamic(() => import("modules/Home page/Hero section/HeroSection"));
 const LatestCourses = dynamic(() => import("modules/Home page/Latest courses/LatestCourses"));
@@ -28,24 +29,62 @@ const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("modules/Home page/Tadarab unlimited/TadarabUnlimited"));
 
 function HomePage(props: any) {
-  
+  const router = useRouter();
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
   
   useEffect(() => {
     toggleLoader("show");
     const countryCode: any = localStorage.getItem("countryCode");
-    axiosInstance
-      .get(`home/?country_code=null`)
-      .then(function (response: any) {
-        dispatch(setHomePageData(response.data.data));
-        FBPixelEventsHandler(response.data.fb_tracking_events, null);
-        toggleLoader("hide");
-      })
-      .catch(function (error:any) {
-        toggleLoader("hide");
-        console.log(error);
-      });
+
+        if (Router.query?.aid) {
+          axiosInstance
+              .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
+              .then((res:any) => {
+                // console.log("res",res);
+                localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+                localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+                localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
+                axiosInstance
+                .get(`home/?country_code=null`)
+                .then(function (response: any) {
+                  dispatch(setHomePageData(response.data.data));
+                  FBPixelEventsHandler(response.data.fb_tracking_events, null);
+                  toggleLoader("hide");
+                })
+                .catch(function (error:any) {
+                  toggleLoader("hide");
+                  console.log(error);
+                });
+              })
+              .catch((error:any)=>{
+                console.log("error", error);
+                toggleLoader("hide");
+              });
+        }else{
+
+          axiosInstance
+          .get(`home/?country_code=null`)
+          .then(function (response: any) {
+            dispatch(setHomePageData(response.data.data));
+            FBPixelEventsHandler(response.data.fb_tracking_events, null);
+            toggleLoader("hide");
+          })
+          .catch(function (error:any) {
+            toggleLoader("hide");
+            console.log(error);
+          });
+        }
+
+
+
+            if(localStorage.getItem("affiliate_id") &&
+            Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))){
+              localStorage.removeItem("affiliate_id");
+              localStorage.removeItem("cced");
+              localStorage.setItem("coupon_code", "");
+
+            }
 
 
     window.addEventListener("scroll", () => {
@@ -58,7 +97,8 @@ function HomePage(props: any) {
       })
     }
 
-  }, []);
+
+  }, [router]);
   
   return (
     <>

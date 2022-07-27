@@ -408,6 +408,8 @@ export default function SignupPage() {
                           } else {
                             Router.back();
                           }
+                        } else if (router.query && router.query.aid) {
+                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}?aid=${Router.query.aid}&code=${Router.query.code}`);
                         } else if (router.query && router.query.from_subscription) {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
                         } else {

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import styles from "./navbar.module.css";
 import Link from 'next/link';
 import {
@@ -37,9 +37,8 @@ function Navbar() {
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
-  const [isCartDropdownVisible, setIsCartDropdownVisible] = useState(true);
   const [expanded, setExpanded] = useState<any>(false);
-  const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
+  const [dropdownOpened, setDropdownOpened] = useState({cart:false,account:false});
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
   const [searchQuery, setSearchQuery] = useState("");
   const handleDiscoverSidebarShow = (status: boolean) => {
@@ -52,14 +51,19 @@ function Navbar() {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const router = useRouter();
 
-
   const dispatch = useDispatch();
-  const onLOLogoutSuccess = (): void => {
+  const onLOLogoutSuccess = ():void=>{
     console.log("logout succeed");
   }
-  const onLOFailure = (): void => {
+  const onLOFailure = ():void=>{
     console.log("logout failed");
   }
+
+  /*const { signOut, loaded } = useGoogleLogout({
+    onFailure: onLOFailure,
+    clientId: `${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`,
+    onLogoutSuccess: onLOLogoutSuccess,
+  })*/
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -67,10 +71,11 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     localStorage.removeItem("is_user_subscribed");
+    //signOut();
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
     setExpanded(false);
 
-    dispatch(setIsUserAuthenticated({ ...userStatus, isUserAuthenticated: false, isSubscribed: false, token: null, id: 0 }));
+    dispatch(setIsUserAuthenticated({ ...userStatus, isUserAuthenticated: false, token: null, id: 0 }));
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
@@ -148,14 +153,14 @@ function Navbar() {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
-            searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
+          searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
+          searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
           // searchBar.style.cssText=`width:28rem`;
           // searchBar.style.cssText=`width:31.75rem`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width:42rem` :
-            searchBar.style.cssText = `width:36rem`;
+          searchBar.style.cssText = `width:42rem`:
+          searchBar.style.cssText = `width:36rem`;
         }
       }
       window.addEventListener("resize", () => {
@@ -164,14 +169,14 @@ function Navbar() {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
-              searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
+            searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
+            searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
             // searchBar.style.cssText=`width:28rem`;
             // searchBar.style.cssText=`width:31.75rem`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width:42rem` :
-              searchBar.style.cssText = `width:36rem`;
+          searchBar.style.cssText = `width:42rem`:
+            searchBar.style.cssText = `width:36rem`;
           }
         }
       });
@@ -184,13 +189,13 @@ function Navbar() {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 44rem)` :
-            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
+          searchBar.style.cssText = `width: calc(100vw - 50rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width:38.5rem` :
-            searchBar.style.cssText = `width:32.5rem`;
+          searchBar.style.cssText = `width:38.5rem`:
+          searchBar.style.cssText = `width:32.5rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
       }
@@ -201,13 +206,13 @@ function Navbar() {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width: calc(100vw - 44rem)` :
-              searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
+            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width:38.5rem` :
-              searchBar.style.cssText = `width:32.5rem`;
+            searchBar.style.cssText = `width:38.5rem`:
+            searchBar.style.cssText = `width:32.5rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
         }
@@ -231,6 +236,11 @@ function Navbar() {
 
   useEffect(() => {
     let localStorageItems: any = localStorage.getItem("cart");
+    // console.log("cartItems",cartItems);
+    // console.log("localStorageItems",localStorageItems);
+    // if(userStatus.isUserAuthenticated === true){
+    // setLocalStateCartItems(cartItems?.data);
+
 
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
 
@@ -250,7 +260,9 @@ function Navbar() {
     } else {
 
       setLocalStateCartItems(null);
+      // dispatch(setCartItems(null));
     }
+
 
   }, [])
 
@@ -265,6 +277,7 @@ function Navbar() {
       }
     }
   }, [courseDetailsData, myCourseNavigator, router.asPath])
+
 
 
   useEffect(() => {
@@ -344,25 +357,24 @@ function Navbar() {
     }
   }
 
-  const closeDropdown = (dropdown: string): any => {
-
-    if (dropdown == "cart") {
-      if (dropdownOpened.account == true) {
-        setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart, account: false });
-      } else {
-        setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart });
+  const closeDropdown = (dropdown:string)=>{
+    if(dropdown == "cart"){
+      if(dropdownOpened.account == true){
+        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart,account:false});
+      }else{
+        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart});
       }
-    } else if (dropdown == "account") {
-      if (dropdownOpened.cart == true) {
-        setDropdownOpened({ ...dropdownOpened, account: !dropdownOpened.account, cart: false });
-      } else {
-        setDropdownOpened({ ...dropdownOpened, account: !dropdownOpened.account });
+    }else if(dropdown == "account"){
+      if(dropdownOpened.cart == true){
+        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account,cart:false});
+      }else{
+        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account});
       }
     }
   }
 
   useEffect(() => {
-    setDropdownOpened({ cart: false, account: false });
+    setDropdownOpened({cart:false,account:false});
   }, [router.asPath]);
 
   return (
@@ -463,10 +475,10 @@ function Navbar() {
                   <li>تواصل معنا</li>
               </ul> */}
             </Offcanvas>
-            {!userStatus.isSubscribed == true &&
-              <Link href="/subscription">
-                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
-              </Link>}
+            { !userStatus.isSubscribed == true && 
+            <Link href="/subscription">
+              <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
+            </Link>}
 
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
@@ -476,7 +488,7 @@ function Navbar() {
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
-            {/* {userStatus.isSubscribed == true && <Link href="/unsubscribe">
+            {/* { userStatus.isSubscribed == true &&  <Link href="/unsubscribe">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>إلغاء الإشتراك الشهرى</li>
             </Link>} */}
 
@@ -506,8 +518,25 @@ function Navbar() {
             </div>
 
           </div>
-          <Link href={userStatus.isUserAuthenticated ? "/my-account" : "/sign-up"}>
-            <Button onClick={() => { setExpanded(false) }} className={styles["sidebar-list__register-btn"]}>
+         
+            <Button onClick={() => { 
+              setExpanded(false);
+              if(userStatus.isUserAuthenticated){
+
+                if (router.query && router.query.aid) {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account/?aid=${Router.query.aid}&code=${Router.query.code}`);
+                }else{
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
+                }
+              }else{
+
+                if (router.query && router.query.aid) {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?aid=${Router.query.aid}&code=${Router.query.code}`);
+                }else{
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
+                }
+              }
+            }} className={styles["sidebar-list__register-btn"]}>
               {
                 userStatus.isUserAuthenticated ?
                   "حسابي"
@@ -515,10 +544,23 @@ function Navbar() {
                   "حساب جديد"
               }
             </Button>
-          </Link>
-          <Link href={userStatus.isUserAuthenticated ? "/" : "/sign-in"}>
             <Button onClick={() => {
               setExpanded(false);
+              if(userStatus.isUserAuthenticated){
+
+                if (router.query && router.query.aid) {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}?aid=${Router.query.aid}&code=${Router.query.code}`);
+                }else{
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                }
+              }else{
+
+                if (router.query && router.query.aid) {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?aid=${Router.query.aid}&code=${Router.query.code}`);
+                }else{
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
+                }
+              }
 
               userStatus.isUserAuthenticated ?
                 handleLogout() :
@@ -532,7 +574,6 @@ function Navbar() {
                   "تسجيل دخول"
               }
             </Button>
-          </Link>
         </NavBar.Offcanvas>
         <Nav>
           {!isCoursePurchased &&
@@ -626,7 +667,7 @@ function Navbar() {
                     sendSearchQuery(event);
                   }}
                 >
-                  <SearchIcon color="#777" />
+                    <SearchIcon color="#777" />
                 </div>
                 <Form.Control
                   id="search-field"
@@ -637,7 +678,7 @@ function Navbar() {
                   className={styles["navbar__search-bar-container__search-bar"]}
                 />
               </div>
-              {!userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
+              { !userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
@@ -689,13 +730,25 @@ function Navbar() {
 
 
 
-          {userStatus.isUserAuthenticated == false && <Link href="/sign-up">
-            <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
-          </Link>
+          {userStatus.isUserAuthenticated == false &&
+            <Button className={styles["navbar__register-btn"]} onClick={()=>{
+              if (router.query && router.query.aid) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?aid=${Router.query.aid}&code=${Router.query.code}`);
+              }else{
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
+              }
+            }}>حساب جديد</Button>
+          
           }
-          {userStatus.isUserAuthenticated == false && <Link href="/sign-in">
-            <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
-          </Link>}
+          {userStatus.isUserAuthenticated == false && 
+            <Button onClick={()=>{
+              if (router.query && router.query.aid) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?aid=${Router.query.aid}&code=${Router.query.code}`);
+              }else{
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
+              }
+            }} className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
+         }
 
           <div className={styles["navbar_responsive-search-icon"]}>
             <div onClick={() => {
@@ -738,240 +791,239 @@ function Navbar() {
             </div>
           </div>
 
-          {(!isCoursePurchased || isMobileView) &&
-            <OverlayTrigger
-              rootClose={dropdownOpened.cart}
-              {...(dropdownOpened.cart ? {} : { show: false })}
-              onToggle={() => { closeDropdown("cart") }}
-              trigger='click'
-              placement="bottom-start"
-              overlay={
-                <div className={styles["navbar__cart-popover"]}
-                  style={{ display: !cartItems?.data?.length ? "none" : "" }}
-                  id="cart-popover" >
-                  <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
-                    {
-                      cartItems?.data?.map((item: any, i: number) => {
-                        return (
+          {(!isCoursePurchased || isMobileView) && <OverlayTrigger show={dropdownOpened.cart}
+            trigger='click'
+            rootClose
+            placement="bottom-start"
+            overlay={
+              <div className={styles["navbar__cart-popover"]}
+                style={{ display: !cartItems?.data?.length ? "none" : "" }}
+                id="cart-popover" >
+                <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
+                  {
+                   cartItems?.data?.map((item: any, i: number) => {
+                      return (
 
-                          <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                            <img loading="lazy"
-                              src={item.image}
-                              alt="course image"
-                              className={styles["navbar__cart-popover__img"]}
-                            />
+                        <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
+                          <img loading="lazy"
+                            src={item.image}
+                            alt="course image"
+                            className={styles["navbar__cart-popover__img"]}
+                          />
+                          <div
+                            className={styles["navbar__cart-popover__course-details"]}
+                          >
                             <div
-                              className={styles["navbar__cart-popover__course-details"]}
+                              className={
+                                styles["navbar__cart-popover__course-details__title"]
+                              }
                             >
-                              <div
-                                className={
-                                  styles["navbar__cart-popover__course-details__title"]
-                                }
-                              >
-                                {item.title}
-                              </div>
-                              <div
-                                className={
-                                  styles["navbar__cart-popover__course-details__author"]
-                                }
-                              >
-                                {" "}
-                                {item.trainer?.name_ar}{" "}
-                              </div>
-                              <div
-                                className={
-                                  styles[
-                                  "navbar__cart-popover__course-details__price-container"
-                                  ]
-                                }
-                              >
-                                {item.discounted_price == 0 ?
-                                  "مجانًا"
-                                  :
-                                  <>
-                                    <span
-                                      className={
-                                        styles["navbar__cart-popover__course-details__price"]
-                                      }
-                                    >
-                                      {item.discounted_price}
-                                    </span>
-                                    <span
-                                      className={
-                                        styles[
-                                        "navbar__cart-popover__course-details__currency"
-                                        ]
-                                      }
-                                    >
-                                      {item?.currency_code}
-                                    </span>
-                                  </>
-                                }
-                              </div>
-                              {item.price > item.discounted_price &&
-                                <div
-                                  className={
-                                    styles[
-                                    "navbar__cart-popover__course-details__old-price-container"
-                                    ]
-                                  }
-                                >
+                              {item.title}
+                            </div>
+                            <div
+                              className={
+                                styles["navbar__cart-popover__course-details__author"]
+                              }
+                            >
+                              {" "}
+                              {item.trainer?.name_ar}{" "}
+                            </div>
+                            <div
+                              className={
+                                styles[
+                                "navbar__cart-popover__course-details__price-container"
+                                ]
+                              }
+                            >
+                              {item.discounted_price == 0 ?
+                                "مجانًا"
+                                :
+                                <>
                                   <span
                                     className={
-                                      styles[
-                                      "navbar__cart-popover__course-details__old-price"
-                                      ]
+                                      styles["navbar__cart-popover__course-details__price"]
                                     }
                                   >
-                                    {item.price}
+                                    {item.discounted_price}
                                   </span>
                                   <span
                                     className={
                                       styles[
-                                      "navbar__cart-popover__course-details__old-price-currency"
+                                      "navbar__cart-popover__course-details__currency"
                                       ]
                                     }
                                   >
                                     {item?.currency_code}
                                   </span>
-                                </div>
+                                </>
                               }
                             </div>
+                            {item.price > item.discounted_price &&
+                              <div
+                                className={
+                                  styles[
+                                  "navbar__cart-popover__course-details__old-price-container"
+                                  ]
+                                }
+                              >
+                                <span
+                                  className={
+                                    styles[
+                                    "navbar__cart-popover__course-details__old-price"
+                                    ]
+                                  }
+                                >
+                                  {item.price}
+                                </span>
+                                <span
+                                  className={
+                                    styles[
+                                    "navbar__cart-popover__course-details__old-price-currency"
+                                    ]
+                                  }
+                                >
+                                  {item?.currency_code}
+                                </span>
+                              </div>
+                            }
                           </div>
+                        </div>
 
-                        )
-                      })
+                      )
+                    })
+                  }
+                </div>
+
+                {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
+                    {localStateCartItems?.length > 2 && "اعرض المزيد"}
+                    
+                    </div> */}
+                <div className={styles["navbar__cart-popover__checkout-box"]}>
+                  <div
+                    className={
+                      styles[
+                      "navbar__cart-popover__checkout-box__total-price-box"
+                      ]
                     }
-                  </div>
-
-                  {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
-                        {localStateCartItems?.length > 2 && "اعرض المزيد"}
-                        
-                        </div> */}
-                  <div className={styles["navbar__cart-popover__checkout-box"]}>
+                  >
                     <div
                       className={
-                        styles[
-                        "navbar__cart-popover__checkout-box__total-price-box"
-                        ]
+                        styles["navbar__cart-popover__checkout-box__items"]
                       }
                     >
-                      <div
+                      الإجمالي ({localStateCartItems?.length} دورة)
+                    </div>
+                    <div>
+                      <span
                         className={
-                          styles["navbar__cart-popover__checkout-box__items"]
+                          styles[
+                          "navbar__cart-popover__checkout-box__total-price"
+                          ]
                         }
                       >
-                        الإجمالي ({localStateCartItems?.length} دورة)
-                      </div>
-                      <div>
+                        {
+                          cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                        }
+                      </span>
+                      <span
+                        className={
+                          styles[
+                          "navbar__cart-popover__checkout-box__total-price-currency"
+                          ]
+                        }
+                      >
+
+                        {cartItems?.data && cartItems?.data[0]?.currency_code}
+                      </span>
+                    </div>
+                    {
+                      cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                      >
+                      cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                      &&
+                      <div
+                        className={
+                          styles[
+                          "navbar__cart-popover__checkout-box__old-total-price-box"
+                          ]
+                        }
+                      >
                         <span
                           className={
                             styles[
-                            "navbar__cart-popover__checkout-box__total-price"
+                            "navbar__cart-popover__checkout-box__old-total-price"
                             ]
                           }
                         >
                           {
-                            cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                            cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
                           }
                         </span>
                         <span
                           className={
                             styles[
-                            "navbar__cart-popover__checkout-box__total-price-currency"
+                            "navbar__cart-popover__checkout-box__old-total-price-currency"
                             ]
                           }
                         >
-
-                          {cartItems?.data && cartItems?.data[0]?.currency_code}
+                          {cartItems?.data[0]?.currency_code}
                         </span>
                       </div>
-                      {
-                        cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
-                        >
-                        cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
-                        &&
-                        <div
-                          className={
-                            styles[
-                            "navbar__cart-popover__checkout-box__old-total-price-box"
-                            ]
-                          }
-                        >
-                          <span
-                            className={
-                              styles[
-                              "navbar__cart-popover__checkout-box__old-total-price"
-                              ]
-                            }
-                          >
-                            {
-                              cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
-                            }
-                          </span>
-                          <span
-                            className={
-                              styles[
-                              "navbar__cart-popover__checkout-box__old-total-price-currency"
-                              ]
-                            }
-                          >
-                            {cartItems?.data[0]?.currency_code}
-                          </span>
-                        </div>
 
+                    }
+                  </div>
+                  <div
+                    className={
+                      styles["navbar__cart-popover__checkout-box__cart-btn"]
+                    }
+                  >
+
+                      <Button onClick={() => { closeDropdown("cart");
+                      if (router.query && router.query.aid) {
+                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/?aid=${Router.query.aid}&code=${Router.query.code}`);
+                      }else{
+                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
                       }
-                    </div>
-                    <div
-                      className={
-                        styles["navbar__cart-popover__checkout-box__cart-btn"]
-                      }
-                    >
-                      <Link href="/checkout">
-                        <Button onClick={() => {
-                          closeDropdown("cart");
-                          //  setIsCartDropdownVisible(false)  ;
-                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
-                        }}>إذهب للسلة</Button>
-                      </Link>
-                    </div>
+                     }}>إذهب للسلة</Button>
                   </div>
                 </div>
-
-              }
-            >
-              <div className={styles["navbar__cart-icon-container"]} id="carticon"
-                onClick={() => {
-                  isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
-                  closeDropdown("cart");
-                }}>
-                <CartIcon color="#222" />
-                <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
-                {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
               </div>
-            </OverlayTrigger>
+            }
+          >
+            <div className={styles["navbar__cart-icon-container"]} id="carticon"
+              onClick={() => {
+                if(isMobileView){
+                  if (router.query && router.query.aid) {
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/?aid=${Router.query.aid}&code=${Router.query.code}`);
+                  }else{
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
+                  }
+                }
+                  closeDropdown("cart");
+                  }}>
+              <CartIcon color="#222" />
+              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
+              {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
 
+            </div>
+          </OverlayTrigger>
           }
 
           {
             userStatus.isUserAuthenticated &&
             <>
-              <OverlayTrigger
-                rootClose={dropdownOpened.account}
-                {...(dropdownOpened.account ? {} : { show: false })}
-                onToggle={() => { closeDropdown("account") }}
-                trigger="click" placement="bottom-start" overlay={
-                  <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
-                    {/* {userStatus.isSubscribed == true &&
-                      <Link href="/unsubscribe">
-                        <div onClick={() => { closeDropdown("account") }}>إلغاء الإشتراك الشهرى</div>
-                      </Link>
+              <OverlayTrigger show={dropdownOpened.account} trigger="click" placement="bottom-start" rootClose overlay={
+                <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
+                  {/* { userStatus.isSubscribed == true &&
+                  <Link href="/unsubscribe">
+                    <div onClick={()=>{closeDropdown("account")}}>إلغاء الإشتراك الشهرى</div>
+                  </Link>
                     } */}
-                    <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
-                      className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
-                  </div>
-                }>
-                <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
+                  <Button onClick={() => {handleLogout(); closeDropdown("account");}}
+                    className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
+                </div>
+              }>
+                <div onClick={()=>{closeDropdown("account")}} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />
                 </div>

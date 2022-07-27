@@ -30,7 +30,6 @@ export default function MobileCheckoutBar() {
       if((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN"){
 
       }else{
-
         setSubscriptionTimer(  prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))  );
         return prev;
       }

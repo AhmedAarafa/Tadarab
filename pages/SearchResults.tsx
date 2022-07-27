@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 // import SearchResultsPage from "modules/Search Results/SearchResultsPage";
 import { Container } from "react-bootstrap";
 import MetaTagsGenerator from 'modules/_Shared/utils/MetaTagsGenerator';
+import Router, { useRouter } from 'next/router';
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 import dynamic from 'next/dynamic';
 const SearchResultsPage = dynamic(() => import("modules/Search Results/SearchResultsPage"));
@@ -9,12 +12,39 @@ const NotificationBar = dynamic(() => import("common/Notification bar/Notificati
 
 export default function SearchResults(props: any) {
   const { seoData } = props;
+  const router = useRouter();
+
+  useEffect(() => {
+
+    if (props?.queryParams?.aid) {
+      axiosInstance
+        .post(`coupon_link/${props?.queryParams?.aid}/${props?.queryParams?.code}`)
+        .then((res: any) => {
+          localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+          localStorage.setItem("affiliate_id", `${props?.queryParams?.aid}`);
+          localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
+        })
+        .catch((error: any) => {
+          console.log("error", error);
+        });
+    }
+
+    if (localStorage.getItem("affiliate_id") &&
+      Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
+      localStorage.removeItem("affiliate_id");
+      localStorage.removeItem("cced");
+      localStorage.setItem("coupon_code", "");
+
+    }
+
+  }, [props.queryParams]);
+  
   return (
     <>
-    {seoData &&
-            <MetaTagsGenerator title={seoData?.seo_title} 
-            description={seoData?.seo_metadesc} 
-            img={seoData?.seo_image} />}
+      {seoData &&
+        <MetaTagsGenerator title={seoData?.seo_title}
+          description={seoData?.seo_metadesc}
+          img={seoData?.seo_image} />}
       <Container fluid="xxl">
         <SearchResultsPage />
       </Container>
@@ -22,10 +52,10 @@ export default function SearchResults(props: any) {
   )
 }
 export async function getServerSideProps(context: any) {
-  try{
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/?country_code=null&keyword=${context?.query?.q}&page=1&limit=16`)
-      const seoData = await res.json()
-  return { props: { seoData: seoData.data } };
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/?country_code=null&keyword=${context?.query?.q}&page=1&limit=16`)
+    const seoData = await res.json()
+    return { props: { seoData: seoData.data, queryParams: context.query } };
   } catch {
     return { props: { seoData: {} } };
   }

@@ -41,7 +41,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
 // if(isAuthenticated == true){
   courses.forEach((course:any,index:number) => {
     
-    console.log("course.archive_id",course);
+    // console.log("course.archive_id",course);
     
     localStorageItemsArray.push({
       id: course.archive_id || course.id,

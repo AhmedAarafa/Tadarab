@@ -1,6 +1,23 @@
 @import "../../../styles/mixins";
 
-
+.course-price{
+    display: flex;
+    align-items: center;
+    justify-content: unset;
+    color: var(--grey);
+    font-size: 0.75rem;
+    text-align: center;
+    flex-direction: column;
+    .orignal-price{
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
+    }
+    .sale-price{
+        font-size: .9rem;color: black;
+    }
+    span {
+        margin: 0 0.1rem 0 0;
+    }
+}
 
 .monthly-subscription__course-card {
     margin: 5.5rem 0.5rem 0 0;
@@ -726,6 +743,15 @@
         span:nth-of-type(2) {
             margin-right: 0.5rem;
 
+        }
+    }
+
+    .course-price{
+        .orignal-price{
+            font-size: 1.875rem;
+        }
+        .sale-price{
+            font-size: 1.9rem;
         }
     }
 

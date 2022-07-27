@@ -1,3 +1,36 @@
+.course-price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+  color: var(--grey);
+  font-size: 0.75rem;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.course-price .orignal-price {
+  -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
+          text-decoration: line-through rgba(175, 21, 31, 0.5);
+}
+
+.course-price .sale-price {
+  font-size: .9rem;
+  color: black;
+}
+
+.course-price span {
+  margin: 0 0.1rem 0 0;
+}
+
 .monthly-subscription__course-card {
   margin: 5.5rem 0.5rem 0 0;
   padding: 1.25rem 1.625rem 0 1.625rem;
@@ -879,6 +912,12 @@
   }
   .monthly-subscription__subscription-value span:nth-of-type(2) {
     margin-right: 0.5rem;
+  }
+  .course-price .orignal-price {
+    font-size: 1.875rem;
+  }
+  .course-price .sale-price {
+    font-size: 1.9rem;
   }
   .course-details__course-card__guarantee-box {
     display: -webkit-box;

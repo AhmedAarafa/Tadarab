@@ -424,24 +424,41 @@ export default function MonthlySubscriptionCard() {
             <ShareIcon />
           </Button>
         </div>
-        {
-          courseDetails?.course_details?.discounted_price !== 0 &&
 
-          <div className={styles["monthly-subscription__subscription-value"]}>
-            سعر الدورة
-            <span>
-              {courseDetails?.course_details?.currency_code}
-            </span>
-            <span>
+        {/* Price end */}
+        <div className={styles["course-price"]}>
+          {/* Orignal price start */}
+          {courseDetails?.course_details?.price != courseDetails?.course_details?.discounted_price &&
+              <div className={styles["orignal-price"]}>
+                بدلاً من 
+                <span>
+                  {courseDetails?.course_details?.currency_code}
+                </span>
+                <span>
+                  {courseDetails?.course_details?.price}
+                </span>
+              </div>
+          }
+          {/* Orignal price end */}
 
-              {courseDetails?.course_details?.discounted_price}
-            </span>
+          {/* Sale price start */}
+          {courseDetails?.course_details?.discounted_price !== 0 &&
+            <div className={styles["sale-price"]}>
+              سعر الدورة
+              <span>
+                {courseDetails?.course_details?.currency_code}
+              </span>
+              <span>
 
-          </div>
-        }
-        {/* {
-          console.log("courseDetails",courseDetails)
-        } */}
+                {courseDetails?.course_details?.discounted_price}
+              </span>
+
+            </div>
+          }
+          {/* Sale price end */}
+        </div>
+        {/* Price end */}
+
 
         {courseDetails?.course_details?.type !== "webinar" && <div
           id="course-card__guarantee-card"

@@ -24,7 +24,6 @@ export default function TrainerProfile(props: any) {
   const { seoData } = props;
 
 
-
   useEffect(() => {
     toggleLoader("show");
     window.addEventListener("scroll", () => {
@@ -44,7 +43,33 @@ export default function TrainerProfile(props: any) {
 
     if (router.query.slug) {
 
-      axiosInstance
+      if (Router.query?.aid) {
+        axiosInstance
+          .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
+          .then((res: any) => {
+            localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+            localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+            localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
+
+            axiosInstance
+            .get(`trainers/${slug}/?country_code=null&limit=10&page=1`)
+            .then(function (response: any) {
+              const data: Trainer = response.data.data;
+              dispatch(setTrainerProfileData(response.data));
+              FBPixelEventsHandler(response.data.fb_tracking_events, null);
+              toggleLoader("hide");
+    
+            })
+            .catch(function (error) {
+              toggleLoader("hide");
+              console.log(error);
+            });
+          })
+          .catch((error: any) => {
+            console.log("error", error);
+          });
+      } else {
+        axiosInstance
         .get(`trainers/${slug}/?country_code=null&limit=10&page=1`)
         .then(function (response: any) {
           const data: Trainer = response.data.data;
@@ -57,6 +82,17 @@ export default function TrainerProfile(props: any) {
           toggleLoader("hide");
           console.log(error);
         });
+      }
+
+      if (localStorage.getItem("affiliate_id") &&
+        Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
+        localStorage.removeItem("affiliate_id");
+        localStorage.removeItem("cced");
+        localStorage.setItem("coupon_code", "");
+
+      }
+
+      
     }
 
 

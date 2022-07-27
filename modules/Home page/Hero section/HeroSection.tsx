@@ -123,7 +123,7 @@ export default function HeroSection() {
         </Col>
         <Col xs={{ span: 12, order: 'first' }}  sm={5} className={styles["hero-section__col"]}>
           <img loading="lazy"  
-            src="/images/Final Graphics- colored.png"
+            src="/images/HeroSectionHero.png"
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}
           />

@@ -2,7 +2,8 @@ import React from 'react';
 import Head from "next/head";
 
 export default function MetaTagsGenerator(props:any) {
-    let siteurl = 'https://www.tadarab.com';if(typeof window !== 'undefined'){siteurl=window.location.href;}
+    let siteurl = 'https://www.tadarab.com';
+    if(typeof window !== 'undefined'){siteurl=window.location.href;}
     return (
         <Head>
             <title>{props.title}</title>
@@ -26,7 +27,6 @@ export default function MetaTagsGenerator(props:any) {
             <meta name="twitter:site" content="@tadarab_" key="twitter-site" />
             <meta name="twitter:creator" content="@tadarab_" key="twitter-creator" />
             <meta name="twitter:image" content={props.img} key="twitter-image" />
-            <link rel="canonical" href="https://www.tadarab.com/"/>
         </Head>
     )
 }
