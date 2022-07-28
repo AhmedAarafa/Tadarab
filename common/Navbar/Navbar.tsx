@@ -488,9 +488,9 @@ function Navbar() {
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>لوحتي التعليمية</li>
               </Link>
             }
-            {userStatus.isSubscribed == true && <Link href="/unsubscribe">
+            {/* { userStatus.isSubscribed == true &&  <Link href="/unsubscribe">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>إلغاء الإشتراك الشهرى</li>
-            </Link>}
+            </Link>} */}
 
             {Router.router?.asPath.includes("/course/") &&
               <>
@@ -518,25 +518,8 @@ function Navbar() {
             </div>
 
           </div>
-         
-            <Button onClick={() => { 
-              setExpanded(false);
-              if(userStatus.isUserAuthenticated){
-
-                if (router.query && router.query.aid) {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account/?aid=${Router.query.aid}&code=${Router.query.code}`);
-                }else{
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
-                }
-              }else{
-
-                if (router.query && router.query.aid) {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?aid=${Router.query.aid}&code=${Router.query.code}`);
-                }else{
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
-                }
-              }
-            }} className={styles["sidebar-list__register-btn"]}>
+          <Link href={userStatus.isUserAuthenticated ? "/my-account" : "/sign-up"}>
+            <Button onClick={() => { setExpanded(false);}} className={styles["sidebar-list__register-btn"]}>
               {
                 userStatus.isUserAuthenticated ?
                   "حسابي"
@@ -544,24 +527,11 @@ function Navbar() {
                   "حساب جديد"
               }
             </Button>
+         </Link>
+         <Link href={userStatus.isUserAuthenticated ? "/" : "/sign-in"}>
             <Button onClick={() => {
               setExpanded(false);
-              if(userStatus.isUserAuthenticated){
-
-                if (router.query && router.query.aid) {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}?aid=${Router.query.aid}&code=${Router.query.code}`);
-                }else{
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
-                }
-              }else{
-
-                if (router.query && router.query.aid) {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?aid=${Router.query.aid}&code=${Router.query.code}`);
-                }else{
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
-                }
-              }
-
+             
               userStatus.isUserAuthenticated ?
                 handleLogout() :
                 null
@@ -574,6 +544,7 @@ function Navbar() {
                   "تسجيل دخول"
               }
             </Button>
+         </Link>
         </NavBar.Offcanvas>
         <Nav>
           {!isCoursePurchased &&
@@ -730,25 +701,13 @@ function Navbar() {
 
 
 
-          {userStatus.isUserAuthenticated == false &&
-            <Button className={styles["navbar__register-btn"]} onClick={()=>{
-              if (router.query && router.query.aid) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?aid=${Router.query.aid}&code=${Router.query.code}`);
-              }else{
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
-              }
-            }}>حساب جديد</Button>
-          
+          {userStatus.isUserAuthenticated == false && <Link href="/sign-up">
+            <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
+          </Link>
           }
-          {userStatus.isUserAuthenticated == false && 
-            <Button onClick={()=>{
-              if (router.query && router.query.aid) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?aid=${Router.query.aid}&code=${Router.query.code}`);
-              }else{
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
-              }
-            }} className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
-         }
+          {userStatus.isUserAuthenticated == false && <Link href="/sign-in">
+            <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
+          </Link>}
 
           <div className={styles["navbar_responsive-search-icon"]}>
             <div onClick={() => {
@@ -922,7 +881,7 @@ function Navbar() {
                         }
                       >
                         {
-                          cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                          cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
                         }
                       </span>
                       <span
@@ -956,7 +915,7 @@ function Navbar() {
                           }
                         >
                           {
-                            cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                            cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
                           }
                         </span>
                         <span
@@ -978,29 +937,17 @@ function Navbar() {
                     }
                   >
 
-                      <Button onClick={() => { closeDropdown("cart");
-                      if (router.query && router.query.aid) {
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/?aid=${Router.query.aid}&code=${Router.query.code}`);
-                      }else{
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
-                      }
-                     }}>إذهب للسلة</Button>
+                    <Link href="/checkout">
+
+                    <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
+                    </Link>
                   </div>
                 </div>
               </div>
             }
           >
             <div className={styles["navbar__cart-icon-container"]} id="carticon"
-              onClick={() => {
-                if(isMobileView){
-                  if (router.query && router.query.aid) {
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/?aid=${Router.query.aid}&code=${Router.query.code}`);
-                  }else{
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
-                  }
-                }
-                  closeDropdown("cart");
-                  }}>
+              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
               <CartIcon color="#222" />
               <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
               {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
@@ -1012,22 +959,18 @@ function Navbar() {
           {
             userStatus.isUserAuthenticated &&
             <>
-              <OverlayTrigger
-                rootClose={dropdownOpened.account}
-                {...(dropdownOpened.account ? {} : { show: false })}
-                onToggle={() => { closeDropdown("account") }}
-                trigger="click" placement="bottom-start" overlay={
-                  <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
-                    {userStatus.isSubscribed == true &&
-                      <Link href="/unsubscribe">
-                        <div onClick={() => { closeDropdown("account") }}>إلغاء الإشتراك الشهرى</div>
-                      </Link>
-                    }
-                    <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
-                      className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
-                  </div>
-                }>
-                <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
+              <OverlayTrigger show={dropdownOpened.account} trigger="click" placement="bottom-start" rootClose overlay={
+                <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>
+                  {/* { userStatus.isSubscribed == true &&
+                  <Link href="/unsubscribe">
+                    <div onClick={()=>{closeDropdown("account")}}>إلغاء الإشتراك الشهرى</div>
+                  </Link>
+                    } */}
+                  <Button onClick={() => {handleLogout(); closeDropdown("account");}}
+                    className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
+                </div>
+              }>
+                <div onClick={()=>{closeDropdown("account")}} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />
                 </div>

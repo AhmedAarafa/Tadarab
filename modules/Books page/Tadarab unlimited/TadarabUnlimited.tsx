@@ -26,7 +26,7 @@ export default function TadarabUnlimited() {
                     <Row className={styles["tadarab-unlimited"]}>
                         <Col xs={5}>
                             <div className={styles["tadarab-unlimited__img"]}>
-                                <img loading="lazy" src={"/images/tadarab-unlimited.png"} alt="تدرب بلا حدود" />
+                                <img loading="lazy" src={"/images/tadarab-unlimited.png"} alt="تدرب للدورات المجانية والمدفوعة" />
                             </div>
                         </Col>
                         <Col xs={7} className={styles["tadarab-unlimited__brief"]}>
@@ -35,7 +35,7 @@ export default function TadarabUnlimited() {
                                 <span> تدرب بلا حدود </span>
                             </div>
                             <div>
-                            منصة تدرب تقدم لك باقات متنوعة سواء من دورات تدريبية مجانية أو كورسات مدفوعة، حيث يمكنك بحرية استكشاف ومشاهدة جميع دورات تدرب أكثر من 750 دورة تدريبية عربية مسجلة بالإضافة إلى الدورات المباشرة والكتب والملخصات الحصرية باشتراك شهري واحد. 
+                            منصة تدرب تقدم لك باقات متنوعة سواء من دورات مجانية أو كورسات مدفوعة، حيث يمكنك بحرية استكشاف ومشاهدة جميع دورات تدرب أكثر من 750 دورة تدريبية عربية مسجلة بالإضافة إلى الدورات المباشرة والكتب والملخصات الحصرية باشتراك شهري واحد. 
 
                             </div>
                             <Link href="/subscription">
@@ -52,7 +52,7 @@ export default function TadarabUnlimited() {
                     <div className={styles["tadarab-unlimited-mobile-view"]}>
                         <div>
                             <div className={styles["tadarab-unlimited-mobile-view__img"]}>
-                                <img loading="lazy" src={"/images/tadarab-unlimited.png"} alt="تدرب بلا حدود" />
+                                <img loading="lazy" src={"/images/tadarab-unlimited.png"} alt="تدرب للدورات المجانية والمدفوعة" />
                             </div>
                         </div>
                         <div className={styles["tadarab-unlimited-mobile-view__brief"]}>

@@ -190,7 +190,7 @@ function CourseDetails(props: any) {
 
     if (Router.query.slug) {   
 
-          if (Router.query?.aid) {
+          if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
             axiosInstance
                 .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
                 .then((res:any) => {

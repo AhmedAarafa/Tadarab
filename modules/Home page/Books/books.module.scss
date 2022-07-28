@@ -14,6 +14,11 @@
 
     &>h2 {
         font-weight: 800;
+
+        span {
+            display: inline-block;
+        }
+
         span:nth-of-type(1) {
             color: var(--dark-black);
         }
@@ -88,10 +93,12 @@
     width: 100%;
     border-radius: 0.5rem;
     height: 18.75rem;
+
     // box-shadow: 0 0 0.5rem #00000033;
-    &:hover{
+    &:hover {
         transform: scale(1.03);
     }
+
     cursor: pointer;
 }
 
@@ -107,7 +114,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     cursor: pointer;
-    
+
 }
 
 .books__cards-carousel__card__card-body__category {
@@ -158,41 +165,46 @@
 
 
 
-@media (max-width:1200px){
+@media (max-width:1200px) {
 
     .books__cards-carousel {
         background-color: white;
-    
+
         &>div {
             padding: 0.5rem*1.33 2rem*1.33 !important;
             @include inset-box-shadow(white);
-    
+
             &>div:nth-child(1),
             &>div:nth-child(2) {
                 top: 29% !important;
-                &:after{
+
+                &:after {
                     font-size: 1rem*1.33 !important;
                     box-shadow: 0 0 1.25rem*1.33 #00000033 !important;
-                  }
+                }
             }
-            &>div:nth-child(1){
+
+            &>div:nth-child(1) {
                 right: 1rem*1.33 !important;
-                &:after{
-                  padding: 1.5rem*1.33 1.18rem*1.33 1.5rem*1.33 1.28rem*1.33 !important;
+
+                &:after {
+                    padding: 1.5rem*1.33 1.18rem*1.33 1.5rem*1.33 1.28rem*1.33 !important;
                 }
 
             }
-            &>div:nth-child(2){
+
+            &>div:nth-child(2) {
                 left: 1rem*1.33 !important;
-                &:after{
-                  padding: 1.5rem*1.33 1.28rem*1.33 1.5rem*1.33 1.18rem*1.33 !important;
+
+                &:after {
+                    padding: 1.5rem*1.33 1.28rem*1.33 1.5rem*1.33 1.18rem*1.33 !important;
                 }
             }
-    
+
         }
-    
+
     }
-    
+
     .books__cards-carousel__card {
         width: 13.25rem*1.33;
         // height: 25rem*1.33;
@@ -200,33 +212,33 @@
         border-radius: 0.5rem*1.33;
         border: 0;
         display: inline-block;
-    
+
         div:nth-of-type(1) {
             padding: 0.5rem*1.33 0;
         }
     }
-    
+
     .books__cards-carousel__card__book-img {
         width: 100%;
         border-radius: 0.5rem*1.33;
         height: 18.75rem*1.33;
         // box-shadow: 0 0 0.5rem*1.33 #00000033;
     }
-    
+
     .books__cards-carousel__card__card-body__title {
         font-size: 1.063rem*1.33;
         font-weight: 800;
         color: var(--dark-black);
         width: 17rem;
     }
-    
+
     .books__cards-carousel__card__card-body__category {
         font-size: 1rem*1.33;
         color: var(--grey);
         width: 17rem;
 
     }
-    
+
     .books__cards-carousel__card__download-btn {
         @include outlined-button;
         width: 100%;
@@ -235,29 +247,29 @@
         border-radius: 0.75rem*1.33;
         @include flex(center, center);
         margin-top: 1rem*1.33;
-    
+
         &:hover,
         &:active {
             background-color: var(--primary-red) !important;
             border: 0.125rem*1.33 solid rgba(175, 21, 31, 0.2) !important;
-    
+
             color: white !important;
-    
+
             span {
-    
+
                 color: white !important;
             }
-    
+
             svg {
                 * {
-    
+
                     color: white !important;
                     fill: white !important;
                 }
             }
         }
-    
-    
+
+
         span {
             font-size: 1rem*1.33;
             font-weight: 700;
@@ -267,114 +279,119 @@
     }
 }
 
-@media (max-width:980px){
+@media (max-width:980px) {
 
-.books__cards-carousel {
-    background-color: white;
+    .books__cards-carousel {
+        background-color: white;
 
-    &>div {
-        padding: 0.5rem*1.35 2rem*1.35 !important;
-        @include inset-box-shadow(white);
+        &>div {
+            padding: 0.5rem*1.35 2rem*1.35 !important;
+            @include inset-box-shadow(white);
 
-        &>div:nth-child(1),
-        &>div:nth-child(2) {
-            top: 29% !important;
-            &:after{
-                font-size: 1rem*1.35 !important;
-                box-shadow: 0 0 1.25rem*1.35 #00000033 !important;
-              }
-        }
-        &>div:nth-child(1){
-            right: 1rem*1.35 !important;
-            &:after{
-              padding: 1.5rem*1.35 1.18rem*1.35 1.5rem*1.35 1.28rem*1.35 !important;
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 29% !important;
+
+                &:after {
+                    font-size: 1rem*1.35 !important;
+                    box-shadow: 0 0 1.25rem*1.35 #00000033 !important;
+                }
             }
 
-        }
-        &>div:nth-child(2){
-            left: 1rem*1.35 !important;
-            &:after{
-              padding: 1.5rem*1.35 1.28rem*1.35 1.5rem*1.35 1.18rem*1.35 !important;
+            &>div:nth-child(1) {
+                right: 1rem*1.35 !important;
+
+                &:after {
+                    padding: 1.5rem*1.35 1.18rem*1.35 1.5rem*1.35 1.28rem*1.35 !important;
+                }
+
             }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.35 !important;
+
+                &:after {
+                    padding: 1.5rem*1.35 1.28rem*1.35 1.5rem*1.35 1.18rem*1.35 !important;
+                }
+            }
+
         }
 
     }
 
-}
+    .books__cards-carousel__card {
+        width: 13.25rem*1.35;
+        // height: 25rem*1.35;
+        height: 27.875rem*1.35;
+        border-radius: 0.5rem*1.35;
+        border: 0;
+        display: inline-block;
 
-.books__cards-carousel__card {
-    width: 13.25rem*1.35;
-    // height: 25rem*1.35;
-    height: 27.875rem*1.35;
-    border-radius: 0.5rem*1.35;
-    border: 0;
-    display: inline-block;
-
-    div:nth-of-type(1) {
-        padding: 0.5rem*1.35 0;
+        div:nth-of-type(1) {
+            padding: 0.5rem*1.35 0;
+        }
     }
-}
 
-.books__cards-carousel__card__book-img {
-    width: 100%;
-    border-radius: 0.5rem*1.35;
-    height: 18.75rem*1.35;
-    // box-shadow: 0 0 0.5rem*1.35 #00000033;
-}
+    .books__cards-carousel__card__book-img {
+        width: 100%;
+        border-radius: 0.5rem*1.35;
+        height: 18.75rem*1.35;
+        // box-shadow: 0 0 0.5rem*1.35 #00000033;
+    }
 
-.books__cards-carousel__card__card-body__title {
-    font-size: 1.063rem*1.35;
-    font-weight: 800;
-    color: var(--dark-black);
-    width: 17rem;
+    .books__cards-carousel__card__card-body__title {
+        font-size: 1.063rem*1.35;
+        font-weight: 800;
+        color: var(--dark-black);
+        width: 17rem;
 
-}
+    }
 
-.books__cards-carousel__card__card-body__category {
-    font-size: 1rem*1.35;
-    color: var(--grey);
-    width: 17rem;
+    .books__cards-carousel__card__card-body__category {
+        font-size: 1rem*1.35;
+        color: var(--grey);
+        width: 17rem;
 
-}
+    }
 
-.books__cards-carousel__card__download-btn {
-    @include outlined-button;
-    width: 100%;
-    height: 2.75rem*1.35;
-    border: 0.125rem*1.35 solid rgba(175, 21, 31, 0.2) !important;
-    border-radius: 0.75rem*1.35;
-    @include flex(center, center);
-    margin-top: 1rem*1.35;
-
-    &:hover,
-    &:active {
-        background-color: var(--primary-red) !important;
+    .books__cards-carousel__card__download-btn {
+        @include outlined-button;
+        width: 100%;
+        height: 2.75rem*1.35;
         border: 0.125rem*1.35 solid rgba(175, 21, 31, 0.2) !important;
+        border-radius: 0.75rem*1.35;
+        @include flex(center, center);
+        margin-top: 1rem*1.35;
 
-        color: white !important;
-
-        span {
+        &:hover,
+        &:active {
+            background-color: var(--primary-red) !important;
+            border: 0.125rem*1.35 solid rgba(175, 21, 31, 0.2) !important;
 
             color: white !important;
-        }
 
-        svg {
-            * {
+            span {
 
                 color: white !important;
-                fill: white !important;
+            }
+
+            svg {
+                * {
+
+                    color: white !important;
+                    fill: white !important;
+                }
             }
         }
-    }
 
 
-    span {
-        font-size: 1rem*1.35;
-        font-weight: 700;
-        color: var(--primary-red);
-        margin-right: 0.5rem*1.35;
+        span {
+            font-size: 1rem*1.35;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-right: 0.5rem*1.35;
+        }
     }
-}
 
 }
 
@@ -404,7 +421,7 @@
         border-radius: 0.75rem*3.1;
         @include flex(center, center);
 
-        svg{
+        svg {
             width: 0.5rem*3.1;
             height: 0.875rem*3.1;
             margin-right: 2.063rem;
@@ -430,7 +447,7 @@
             &>div:nth-child(2) {
                 top: 29% !important;
             }
-            
+
 
         }
 
@@ -478,7 +495,7 @@
         @include flex(center, center);
         margin-top: 1rem*3.1;
 
-        svg{
+        svg {
             width: 1.188rem*2.8;
             height: 1.25rem*2.8;
         }
@@ -496,7 +513,7 @@
             }
 
             svg {
-               
+
                 * {
                     color: white !important;
                     fill: white !important;

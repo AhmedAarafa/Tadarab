@@ -16,7 +16,7 @@ export default function SearchResults(props: any) {
 
   useEffect(() => {
 
-    if (props?.queryParams?.aid) {
+    if (props?.queryParams?.aid && !localStorage.getItem("affiliate_id")) {
       axiosInstance
         .post(`coupon_link/${props?.queryParams?.aid}/${props?.queryParams?.code}`)
         .then((res: any) => {

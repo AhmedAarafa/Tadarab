@@ -37,11 +37,10 @@ function HomePage(props: any) {
     toggleLoader("show");
     const countryCode: any = localStorage.getItem("countryCode");
 
-        if (Router.query?.aid) {
+        if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
           axiosInstance
               .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
               .then((res:any) => {
-                // console.log("res",res);
                 localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
                 localStorage.setItem("affiliate_id", `${Router.query.aid}`);
                 localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
@@ -77,12 +76,12 @@ function HomePage(props: any) {
         }
 
 
-
             if(localStorage.getItem("affiliate_id") &&
             Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))){
               localStorage.removeItem("affiliate_id");
               localStorage.removeItem("cced");
               localStorage.setItem("coupon_code", "");
+              
 
             }
 

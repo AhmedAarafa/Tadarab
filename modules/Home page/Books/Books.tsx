@@ -29,8 +29,9 @@ export default function Books() {
 
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 1 }} className={styles["books__title"]}>
           <h2>
-            <span>الكتب و</span>
-            <span>الملخصات</span>
+            <span>كتب</span>
+            <span>مجانية</span>
+            <span>و ملخصات</span>
           </h2>
         </Col>
 

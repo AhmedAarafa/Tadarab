@@ -373,55 +373,54 @@ function CheckoutPage(props: any) {
         };
     }, []);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const couponCode: any = localStorage.getItem("coupon_code");
-        const couponInputField: any = document.querySelector('[name="couponField"]');
-        let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
+    //     const couponCode: any = localStorage.getItem("coupon_code");
+    //     const couponInputField: any = document.querySelector('[name="couponField"]');
+    //     let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
 
-        if(couponCode !== "") {
+    //     if(couponCode !== "") {
             
-             axiosInstance
-            .post(`coupons/${couponCode}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
-            .then((response: any) => {
-                if (response.status.toString().startsWith("2")) {
+    //          axiosInstance
+    //         .post(`coupons/${couponCode}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
+    //         .then((response: any) => {
+    //             if (response.status.toString().startsWith("2")) {
                     
-                    setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: couponInputField.value, total_payment_amount: response.data.data.total_payment_amount })
-                    localStorage.setItem("coupon_code", couponInputField.value);
-                    let tadarabGA = new TadarabGA();
-                    tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
-                        { coupon_name: couponInputField.value });
+    //                 setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: couponCode, total_payment_amount: response.data.data.total_payment_amount })
+    //                 localStorage.setItem("coupon_code", couponCode);
+    //                 let tadarabGA = new TadarabGA();
+    //                 tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
+    //                     { coupon_name: couponInputField.value });
     
-                    setErrorMessage("");
+    //                 setErrorMessage("");
     
-                }
-                 else {
-                     if(response.data.message != "الرجاء ملء جميع الحقول المطلوبة"){
-                         setErrorMessage(response.data.message);
-                     }
-                }
-            })
-            .catch((error: any) => {
-                console.log("error", error);
-            })}
+    //             }
+    //              else {
+    //                  if(response.data.message != "الرجاء ملء جميع الحقول المطلوبة"){
+    //                      setErrorMessage(response.data.message);
+    //                  }
+    //             }
+    //         })
+    //         .catch((error: any) => {
+    //             console.log("error", error);
+    //         })
+    //     }
 
-        // setSubscriptionTimer
-        document.cookie.split('; ').reduce((prev: any, current: any) => {
-            const [name, ...value] = current.split('=');
-            prev[name] = value.join('=');
-            if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+    //     // setSubscriptionTimer
+    //     document.cookie.split('; ').reduce((prev: any, current: any) => {
+    //         const [name, ...value] = current.split('=');
+    //         prev[name] = value.join('=');
+    //         if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
 
-            } else {
+    //         } else {
 
-                setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-                return prev;
-            }
+    //             setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+    //             return prev;
+    //         }
 
-        }, {});
+    //     }, {});
 
-      
-
-    }, [])
+    // }, [])
 
     useEffect(() => {
         if (userAuthState.isUserAuthenticated && userAuthState.isSubscribed) {
@@ -541,7 +540,7 @@ function CheckoutPage(props: any) {
                     .get(`users/cart/?country_code=null`)
                     .then(function (response: any) {
                         setLocalStateCartItems(response?.data?.data.courses);
-                        FBPixelEventsHandler(response.data.fb_tracking_events, null);
+                        FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
                         toggleLoader("hide");
 
                     })
@@ -561,15 +560,15 @@ function CheckoutPage(props: any) {
         const couponInputField: any = document.querySelector('[name="couponField"]');
         let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
 
-      if(couponCode !== "") {
+      if(couponCode !== "" && cartItemsIds && cartItemsIds?.length !== 0) {
           
         axiosInstance
         .post(`coupons/${couponCode}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
         .then((response: any) => {
             if (response.status.toString().startsWith("2")) {
                 
-                setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: couponInputField.value, total_payment_amount: response.data.data.total_payment_amount })
-                localStorage.setItem("coupon_code", couponInputField.value);
+                setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: couponCode, total_payment_amount: response.data.data.total_payment_amount })
+                localStorage.setItem("coupon_code", couponCode);
                 let tadarabGA = new TadarabGA();
                 tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
                     { coupon_name: couponInputField.value });
@@ -866,33 +865,38 @@ function CheckoutPage(props: any) {
 
     useEffect(() => {
         if (isVisaMasterFrameReady == true) {
-
             radioBtnsHandler();
         }
-    }, [isVisaMasterFrameReady])
+    }, [isVisaMasterFrameReady]);
 
     useEffect(() => {
-          if (Router.query?.aid) {
-            axiosInstance
-              .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
-              .then((res: any) => {
-                localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
-                localStorage.setItem("affiliate_id", `${Router.query.aid}`);
-                localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
-              })
-              .catch((error: any) => {
-                console.log("error", error);
-              });
-          }
+        const couponCode: any = localStorage.getItem("coupon_code");
+        const affId: any = localStorage.getItem("affiliate_id");
+        const couponInputField: any = document.querySelector('[name="couponField"]');
+        let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
+
+        //   if (couponCode !== "") {
+        //     axiosInstance
+        //       .post(`coupon_link/${affId}/${couponCode}`)
+        //       .then((res: any) => {
+
+        //         setIsCouponApplied({ status: true, discounted_amount: res.data.data.total_discount_amount, value: res?.data?.data?.coupon_code, total_payment_amount: res.data.data.total_payment_amount })
+        //         localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+        //         localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+        //         localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
+        //       })
+        //       .catch((error: any) => {
+        //         console.log("error", error);
+        //       });
+        //   }
     
           if (localStorage.getItem("affiliate_id") &&
             Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
             localStorage.removeItem("affiliate_id");
             localStorage.removeItem("cced");
             localStorage.setItem("coupon_code", "");
-    
           }
-      }, [Router]);
+      }, []);
 
 
     const promoCodeHandler = (e: any) => {
@@ -903,30 +907,33 @@ function CheckoutPage(props: any) {
         if (e.target[0].value == "" || e.target[0].value == null) {
             setErrorMessage("الرجاء إدخال الكوبون");
         } else {
-            axiosInstance
-                .post(`coupons/${e.target[0].value}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
-                .then((response: any) => {
-                    if (response.status.toString().startsWith("2")) {
-
-                        setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: e.target[0].value, total_payment_amount: response.data.data.total_payment_amount })
-                        localStorage.setItem("coupon_code", e.target[0].value)
-                        let tadarabGA = new TadarabGA();
-                        tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
-                            { coupon_name: e.target[0].value });
-
-                        setErrorMessage("");
-
-                    } else {
-                        setErrorMessage(response.data.message);
-                    }
-                })
-                .catch((error: any) => {
-                    console.log("error", error);
-                })
+            if(cartItemsIds && cartItemsIds?.length !== 0 ){
+                axiosInstance
+                    .post(`coupons/${e.target[0].value}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
+                    .then((response: any) => {
+                        if (response.status.toString().startsWith("2")) {
+    
+                            setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: e.target[0].value, total_payment_amount: response.data.data.total_payment_amount })
+                            localStorage.setItem("coupon_code", e.target[0].value)
+                            let tadarabGA = new TadarabGA();
+                            tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
+                                { coupon_name: e.target[0].value });
+    
+                            setErrorMessage("");
+    
+                        } else {
+                            setErrorMessage(response.data.message);
+                        }
+                    })
+                    .catch((error: any) => {
+                        console.log("error", error);
+                    })
+            }
         }
     }
 
     const handleCouponInput = () => {
+        
         const couponInputField: any = document.querySelector('[name="couponField"]');
         localStorage.setItem("coupon_code","");
         couponInputField.value = "";
@@ -1103,7 +1110,7 @@ function CheckoutPage(props: any) {
                                         dispatch(setInvoiceDetails(response.data.data));
         
                                         let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                        FBPixelEventsHandler(response.data.fb_tracking_events, customData);
+                                        FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
         
         
                                         localStorage.setItem("cart", "[]");
@@ -1201,7 +1208,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                FBPixelEventsHandler(response.data.fb_tracking_events, customData);
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 dispatch(setCartItems([]));
@@ -1935,7 +1942,8 @@ function CheckoutPage(props: any) {
                                                 <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
                                                 <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                                             </div>
-                                            : <React.Fragment />}
+                                            : <React.Fragment />
+                                            }
 
                                     </div>
 
@@ -2342,15 +2350,15 @@ function CheckoutPage(props: any) {
                                         :
                                         <div className="position-relative">
                                             <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>
-                                            {paymentMethod == "VISA" && 
-                                            <VisamasterPaymentButtonComponent/>
+                                            { paymentMethod == "VISA" && 
+                                              <VisamasterPaymentButtonComponent />
                                             }
-                                            {paymentMethod == "PAYPAL" &&
+                                            { paymentMethod == "PAYPAL" &&
                                                <PayPalPaymentButtonComponent />
                                             }
 
-                                            {paymentMethod == "KNET" && 
-                                              <KnetButtonComponent/>
+                                            { paymentMethod == "KNET" && 
+                                              <KnetButtonComponent />
                                             }
                                         </div>
                                     }

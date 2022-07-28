@@ -70,7 +70,7 @@ export default function HeroSection() {
             تعلم أون لاين مع منصة تدرب
             </h1>
             <p className={styles["hero-section__para"]}>
-           أكبر منصة عربية تقدم دروات تدريبية مجانية ومدفوعة، متخصصة في التعلم عن بعد مع أفضل المدربين والخبراء
+           أكبر منصة عربية تقدم دورات تدريبية مجانية ومدفوعة، متخصصة في التعلم عن بعد مع أفضل المدربين والخبراء
             </p>
             <div className={styles["hero-section__search-bar-container"]}>
               <div
