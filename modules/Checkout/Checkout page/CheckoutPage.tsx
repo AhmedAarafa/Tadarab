@@ -154,12 +154,12 @@ function CheckoutPage(props: any) {
             setMobileView(true);
 
             unCheckedRadioBtns.forEach((radBtn: any) => {
-                radBtn.parentElement.parentElement.style.cssText = `
+                radBtn ? radBtn.parentElement.parentElement.style.cssText = `
             height: 12.5rem;
             overflow: hidden;
             box-shadow: 0 0 1.25rem #0000001A;
             border:none;
-            `;
+            `:null;
                 const relatedInfoBox: any = document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`);
                 relatedInfoBox ? relatedInfoBox.style.cssText = `
             display:none;
@@ -198,12 +198,12 @@ function CheckoutPage(props: any) {
             const unCheckedRadioBtns: any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
             setMobileView(false);
             unCheckedRadioBtns.forEach((radBtn: any) => {
-                radBtn.parentElement.parentElement.style.cssText = `
+                radBtn ?  radBtn.parentElement.parentElement.style.cssText = `
             height: 5rem;
             overflow: hidden;
             box-shadow: 0rem 0rem 1.25rem #0000001A;
             border:none;
-            `;
+            `:null;
                 const relatedInfoBox: any = document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`);
                 relatedInfoBox ? relatedInfoBox.style.cssText = `
             display:none;
@@ -250,12 +250,12 @@ function CheckoutPage(props: any) {
                 stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
 
                 unCheckedRadioBtns.forEach((radBtn: any) => {
-                    radBtn.parentElement.parentElement.style.cssText = `
+                    radBtn ?  radBtn.parentElement.parentElement.style.cssText = `
                 height: 12.5rem;
                 overflow: hidden;
                 box-shadow: 0 0 1.25rem #0000001A;
                 border:none;
-                `;
+                `:null;
                     const relatedInfoBox: any = document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`);
                     relatedInfoBox ? relatedInfoBox.style.cssText = `
                 display:none;
@@ -293,12 +293,12 @@ function CheckoutPage(props: any) {
                 stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
                 setMobileView(false);
                 unCheckedRadioBtns.forEach((radBtn: any) => {
-                    radBtn.parentElement.parentElement.style.cssText = `
+                    radBtn ?  radBtn.parentElement.parentElement.style.cssText = `
                 height: 5rem;
                 overflow: hidden;
                 box-shadow: 0rem 0rem 1.25rem #0000001A;
                 border:none;
-                `;
+                `:null;
                     const relatedInfoBox: any = document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`);
                     relatedInfoBox ? relatedInfoBox.style.cssText = `
                 display:none;
@@ -782,12 +782,12 @@ function CheckoutPage(props: any) {
 
         if (document.documentElement.clientWidth <= 576) {
             unCheckedRadioBtns?.forEach((radBtn: any) => {
-                radBtn.parentElement.parentElement.style.cssText = `
+                radBtn ?  radBtn.parentElement.parentElement.style.cssText = `
                 height: 12.5rem;
                 overflow: hidden;
                 box-shadow: 0 0 1.25rem #0000001A;
                 border:none;
-                `;
+                `:null;
                 const relatedInfoBox: any = document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`);
                 relatedInfoBox ? relatedInfoBox.style.cssText = `
                 display:none;
@@ -795,7 +795,7 @@ function CheckoutPage(props: any) {
                     null;
 
             });
-            if (isVisaMasterFrameReady) {
+            if (isVisaMasterFrameReady && checkedRadioBtn) {
 
                 if (checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
                     checkedRadioBtn.parentElement.parentElement.id == "payment-method3"
@@ -821,12 +821,12 @@ function CheckoutPage(props: any) {
 
         } else {
             unCheckedRadioBtns?.forEach((radBtn: any) => {
-                radBtn.parentElement.parentElement.style.cssText = `
+                radBtn ? radBtn.parentElement.parentElement.style.cssText = `
                 height: 5rem;
                 overflow: hidden;
                 box-shadow: 0rem 0rem 1.25rem #0000001A;
                 border:none;
-                `;
+                `:null;
                 const relatedInfoBox: any = document.querySelector(`#${radBtn.parentElement.parentElement.id}  div#card-info-box`);
                 relatedInfoBox ? relatedInfoBox.style.cssText = `
                 display:none;
@@ -834,7 +834,7 @@ function CheckoutPage(props: any) {
 
             });
 
-            if (isVisaMasterFrameReady) {
+            if (isVisaMasterFrameReady && checkedRadioBtn) {
                 if (checkedRadioBtn?.parentElement.parentElement.id == "payment-method2" ||
                     checkedRadioBtn?.parentElement.parentElement.id == "payment-method3"
                 ) {
@@ -1312,9 +1312,7 @@ function CheckoutPage(props: any) {
                     null;
             }}
             className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-            {/* إتمام الشراء (VISA) */}
             إتمام الشراء
-
         </Button>
         )
     }
