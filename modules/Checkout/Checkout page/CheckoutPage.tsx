@@ -2012,7 +2012,7 @@ function CheckoutPage(props: any) {
 
                                     {step == "added-courses" ?
 
-                                        <Button disabled={JSON.stringify(localStateCartItems) == "[]" ||
+                                        <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
                                             JSON.stringify(localStateCartItems) == "null" ||
                                             JSON.stringify(localStateCartItems) == "undefined"} onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2327,7 +2327,7 @@ function CheckoutPage(props: any) {
                                     </div>
 
                                     {step == "added-courses" ?
-                                        <Button disabled={JSON.stringify(localStateCartItems) == "[]" ||
+                                        <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
                                             JSON.stringify(localStateCartItems) == "null" ||
                                             JSON.stringify(localStateCartItems) == "undefined"}
                                             onClick={() => {
