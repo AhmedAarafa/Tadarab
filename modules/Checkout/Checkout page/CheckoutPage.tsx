@@ -2080,7 +2080,7 @@ function CheckoutPage(props: any) {
                                 </div>
 
                                 {
-                                    (JSON.stringify(localStateCartItems) == "[]" || localStateCartItems == null) &&
+                                    (JSON.stringify(cartItems?.data) == "[]" || cartItems?.data == null) &&
                                     <div className={styles["checkout__no-courses-in-your-cart"]}>
                                         لا يوجد اي دورات في السلة الخاصة بك
                                     </div>
