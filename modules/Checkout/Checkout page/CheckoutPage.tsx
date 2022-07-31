@@ -572,7 +572,6 @@ function CheckoutPage(props: any) {
                 let tadarabGA = new TadarabGA();
                 tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
                     { coupon_name: couponInputField.value });
-
                 setErrorMessage("");
 
             } else {
@@ -795,7 +794,7 @@ function CheckoutPage(props: any) {
                     null;
 
             });
-            if (isVisaMasterFrameReady && checkedRadioBtn) {
+            // if (isVisaMasterFrameReady && checkedRadioBtn) {
 
                 if (checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
                     checkedRadioBtn.parentElement.parentElement.id == "payment-method3"
@@ -814,9 +813,9 @@ function CheckoutPage(props: any) {
                     border: 0.3125rem solid #AF151F;
                     `
                 }
-            } else {
-                setIsSpinnerExist(true);
-            }
+            // } else {
+            //     setIsSpinnerExist(true);
+            // }
 
 
         } else {
@@ -834,7 +833,7 @@ function CheckoutPage(props: any) {
 
             });
 
-            if (isVisaMasterFrameReady && checkedRadioBtn) {
+            // if (isVisaMasterFrameReady && checkedRadioBtn) {
                 if (checkedRadioBtn?.parentElement.parentElement.id == "payment-method2" ||
                     checkedRadioBtn?.parentElement.parentElement.id == "payment-method3"
                 ) {
@@ -852,9 +851,9 @@ function CheckoutPage(props: any) {
                     border: 0.125rem solid #AF151F;
                     `: null;
                 }
-            } else {
-                setIsSpinnerExist(true);
-            }
+            // } else {
+            //     setIsSpinnerExist(true);
+            // }
         }
 
         const relatedInfoBox: any = document.querySelector(`#${checkedRadioBtn?.parentElement.parentElement.id}  div#card-info-box`);
@@ -863,11 +862,11 @@ function CheckoutPage(props: any) {
         `: null;
     };
 
-    useEffect(() => {
-        if (isVisaMasterFrameReady == true) {
-            radioBtnsHandler();
-        }
-    }, [isVisaMasterFrameReady]);
+    // useEffect(() => {
+    //     if (isVisaMasterFrameReady == true) {
+    //         radioBtnsHandler();
+    //     }
+    // }, [isVisaMasterFrameReady]);
 
     useEffect(() => {
         const couponCode: any = localStorage.getItem("coupon_code");
@@ -2013,8 +2012,8 @@ function CheckoutPage(props: any) {
                                     {step == "added-courses" ?
 
                                         <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
-                                            JSON.stringify(localStateCartItems) == "null" ||
-                                            JSON.stringify(localStateCartItems) == "undefined"} onClick={() => {
+                                            JSON.stringify(cartItems?.data) == "null" ||
+                                            JSON.stringify(cartItems?.data) == "undefined"} onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
                                                 userStatus.isUserAuthenticated ?
                                                     setStep("payment-types")
@@ -2087,7 +2086,9 @@ function CheckoutPage(props: any) {
                                 }
 
                                 {cartItems?.data?.length ? cartItems?.data?.map((it: any, i: number) => {
-
+                                    console.log("cartItems",cartItems);
+                                    console.log("isCouponApplied",isCouponApplied);
+                                    
                                     return (
 
                                         <div key={i} className={styles["checkout__cards-outer-box__card"]}>
@@ -2328,8 +2329,8 @@ function CheckoutPage(props: any) {
 
                                     {step == "added-courses" ?
                                         <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
-                                            JSON.stringify(localStateCartItems) == "null" ||
-                                            JSON.stringify(localStateCartItems) == "undefined"}
+                                            JSON.stringify(cartItems?.data) == "null" ||
+                                            JSON.stringify(cartItems?.data) == "undefined"}
                                             onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
                                                 userStatus.isUserAuthenticated ?
