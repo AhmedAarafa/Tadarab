@@ -44,6 +44,7 @@ export default function CourseListing() {
     }
 
     const handleCartActionBtn = (course: any): any => {
+        
         setDisabledCartBtns([...disabledCartBtns,course.id]);
     setTimeout(() => {
       setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));

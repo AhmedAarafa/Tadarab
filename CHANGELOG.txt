@@ -1,3 +1,8 @@
+Version 2.0.0 (31th July 2022)
+1)  Add coupon base discount function.
+2)  Fixed checkout page issue.
+3)  Fixed home page filder issue.
+
 Version 1.9.9 (25 July 2022)
 1)  Add condition for canonical URL (Allow some pages only).
 

@@ -48,13 +48,13 @@ function LatestCourses() {
 
 
   const handleFilterType = (type: string) => {
-    setFilterType(type);
+    setFilterType(type); 
     axiosInstance 
       .get(`home/courses/?country_code=null&type=${type}`)
       /* home/courses/?country_code=null&type=${type} */
       .then(function (response: any) {
-        setLatestCourses(response.data.data);
-        // console.log("response.data.data.courses",response.data.data.courses);
+        console.log("response//",response);
+        setLatestCourses(response?.data?.data);
       })
       .catch(function (error) {
         console.log(error);

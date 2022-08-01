@@ -954,6 +954,13 @@
 
 .checkout__cart-sticky-card__subscribe-summary__details__todays-total{
     font-size:0.8rem;
+    span{
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
+        display: inline-block;
+    }
+    div{
+        font-size:0.7rem;
+    }
 }
 .checkout__cart-sticky-card__subscribe-summary__details__exp{
     text-align: center;

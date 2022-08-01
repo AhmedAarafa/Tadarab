@@ -1278,6 +1278,16 @@
   font-size: 0.8rem;
 }
 
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total span {
+  -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
+          text-decoration: line-through rgba(175, 21, 31, 0.5);
+  display: inline-block;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total div {
+  font-size: 0.7rem;
+}
+
 .checkout__cart-sticky-card__subscribe-summary__details__exp {
   text-align: center;
   font-size: 0.6875rem;

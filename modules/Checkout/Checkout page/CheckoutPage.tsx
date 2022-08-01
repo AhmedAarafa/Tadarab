@@ -54,6 +54,7 @@ function CheckoutPage(props: any) {
     const [subscriptionTimer, setSubscriptionTimer] = useState(0);
     const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+    const [isDiscountLinkApplied, setIsDiscountLinkApplied] = useState(false);
 
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
     const dispatch = useDispatch();
@@ -373,54 +374,57 @@ function CheckoutPage(props: any) {
         };
     }, []);
 
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     const couponCode: any = localStorage.getItem("coupon_code");
-    //     const couponInputField: any = document.querySelector('[name="couponField"]');
-    //     let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
+        if(localStorage.getItem("affiliate_id") && localStorage.getItem("affiliate_id") !== ""){
+            setIsDiscountLinkApplied(true);
+        }
 
-    //     if(couponCode !== "") {
-            
-    //          axiosInstance
-    //         .post(`coupons/${couponCode}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
-    //         .then((response: any) => {
-    //             if (response.status.toString().startsWith("2")) {
-                    
-    //                 setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: couponCode, total_payment_amount: response.data.data.total_payment_amount })
-    //                 localStorage.setItem("coupon_code", couponCode);
-    //                 let tadarabGA = new TadarabGA();
-    //                 tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
-    //                     { coupon_name: couponInputField.value });
+        // setSubscriptionTimer
+        document.cookie.split('; ').reduce((prev: any, current: any) => {
+            const [name, ...value] = current.split('=');
+            prev[name] = value.join('=');
+            if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+
+            } else {
+
+                setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+                return prev;
+            }
+
+        }, {});
+
+    }, []);
+
     
-    //                 setErrorMessage("");
+    useEffect(() => {
+        const couponCode: any = localStorage.getItem("coupon_code");
+        const affId: any = localStorage.getItem("affiliate_id");
+        const couponInputField: any = document.querySelector('[name="couponField"]');
+        let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
+
+        //   if (couponCode !== "") {
+        //     axiosInstance
+        //       .post(`coupon_link/${affId}/${couponCode}`)
+        //       .then((res: any) => {
+
+        //         setIsCouponApplied({ status: true, discounted_amount: res.data.data.total_discount_amount, value: res?.data?.data?.coupon_code, total_payment_amount: res.data.data.total_payment_amount })
+        //         localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+        //         localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+        //         localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
+        //       })
+        //       .catch((error: any) => {
+        //         console.log("error", error);
+        //       });
+        //   }
     
-    //             }
-    //              else {
-    //                  if(response.data.message != "الرجاء ملء جميع الحقول المطلوبة"){
-    //                      setErrorMessage(response.data.message);
-    //                  }
-    //             }
-    //         })
-    //         .catch((error: any) => {
-    //             console.log("error", error);
-    //         })
-    //     }
-
-    //     // setSubscriptionTimer
-    //     document.cookie.split('; ').reduce((prev: any, current: any) => {
-    //         const [name, ...value] = current.split('=');
-    //         prev[name] = value.join('=');
-    //         if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
-
-    //         } else {
-
-    //             setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-    //             return prev;
-    //         }
-
-    //     }, {});
-
-    // }, [])
+          if (localStorage.getItem("affiliate_id") &&
+            Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
+            localStorage.removeItem("affiliate_id");
+            localStorage.removeItem("cced");
+            localStorage.setItem("coupon_code", "");
+          }
+      }, []);
 
     useEffect(() => {
         if (userAuthState.isUserAuthenticated && userAuthState.isSubscribed) {
@@ -572,7 +576,6 @@ function CheckoutPage(props: any) {
                 let tadarabGA = new TadarabGA();
                 tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
                     { coupon_name: couponInputField.value });
-
                 setErrorMessage("");
 
             } else {
@@ -795,7 +798,7 @@ function CheckoutPage(props: any) {
                     null;
 
             });
-            if (isVisaMasterFrameReady && checkedRadioBtn) {
+            // if (isVisaMasterFrameReady && checkedRadioBtn) {
 
                 if (checkedRadioBtn.parentElement.parentElement.id == "payment-method2" ||
                     checkedRadioBtn.parentElement.parentElement.id == "payment-method3"
@@ -814,9 +817,9 @@ function CheckoutPage(props: any) {
                     border: 0.3125rem solid #AF151F;
                     `
                 }
-            } else {
-                setIsSpinnerExist(true);
-            }
+            // } else {
+            //     setIsSpinnerExist(true);
+            // }
 
 
         } else {
@@ -834,7 +837,7 @@ function CheckoutPage(props: any) {
 
             });
 
-            if (isVisaMasterFrameReady && checkedRadioBtn) {
+            // if (isVisaMasterFrameReady && checkedRadioBtn) {
                 if (checkedRadioBtn?.parentElement.parentElement.id == "payment-method2" ||
                     checkedRadioBtn?.parentElement.parentElement.id == "payment-method3"
                 ) {
@@ -852,9 +855,9 @@ function CheckoutPage(props: any) {
                     border: 0.125rem solid #AF151F;
                     `: null;
                 }
-            } else {
-                setIsSpinnerExist(true);
-            }
+            // } else {
+            //     setIsSpinnerExist(true);
+            // }
         }
 
         const relatedInfoBox: any = document.querySelector(`#${checkedRadioBtn?.parentElement.parentElement.id}  div#card-info-box`);
@@ -863,40 +866,12 @@ function CheckoutPage(props: any) {
         `: null;
     };
 
-    useEffect(() => {
-        if (isVisaMasterFrameReady == true) {
-            radioBtnsHandler();
-        }
-    }, [isVisaMasterFrameReady]);
+    // useEffect(() => {
+    //     if (isVisaMasterFrameReady == true) {
+    //         radioBtnsHandler();
+    //     }
+    // }, [isVisaMasterFrameReady]);
 
-    useEffect(() => {
-        const couponCode: any = localStorage.getItem("coupon_code");
-        const affId: any = localStorage.getItem("affiliate_id");
-        const couponInputField: any = document.querySelector('[name="couponField"]');
-        let cartItemsIds = cartItems?.data?.map((it:any) => it.id);
-
-        //   if (couponCode !== "") {
-        //     axiosInstance
-        //       .post(`coupon_link/${affId}/${couponCode}`)
-        //       .then((res: any) => {
-
-        //         setIsCouponApplied({ status: true, discounted_amount: res.data.data.total_discount_amount, value: res?.data?.data?.coupon_code, total_payment_amount: res.data.data.total_payment_amount })
-        //         localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
-        //         localStorage.setItem("affiliate_id", `${Router.query.aid}`);
-        //         localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
-        //       })
-        //       .catch((error: any) => {
-        //         console.log("error", error);
-        //       });
-        //   }
-    
-          if (localStorage.getItem("affiliate_id") &&
-            Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
-            localStorage.removeItem("affiliate_id");
-            localStorage.removeItem("cced");
-            localStorage.setItem("coupon_code", "");
-          }
-      }, []);
 
 
     const promoCodeHandler = (e: any) => {
@@ -1264,7 +1239,6 @@ function CheckoutPage(props: any) {
             }}
             className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
             إتمام الشراء
-            {/* إتمام الشراء (KNET) */}
         </Button>
         )
     }
@@ -1741,9 +1715,10 @@ function CheckoutPage(props: any) {
                                                                 const submitBtn: any = document.getElementById("paynow_button");
                                                                 if (Frames.isCardValid()) {
                                                                     submitBtn ? submitBtn.style.cssText = `pointer-events:all;opacity:1` : null;
-                                                                } else {
-                                                                    submitBtn ? submitBtn.style.cssText = `pointer-events:none;opacity:0.7` : null;
-                                                                }
+                                                                } 
+                                                                // else {
+                                                                //     submitBtn ? submitBtn.style.cssText = `pointer-events:none;opacity:0.7` : null;
+                                                                // }
 
                                                             }}
                                                             cardSubmitted={(e: any) => {
@@ -1843,18 +1818,32 @@ function CheckoutPage(props: any) {
                         <span>دك/شهرياً</span>
                     </div> */}
                                     <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-                                        {/* {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                        {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
                             <div className={styles["monthly-subscription__subscription-timer"]}>
                                 عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
                                 <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-                            </div>} */}
+                            </div>}
                                         <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
                                             <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
                                                 سعر الاشتراك
                                             </span>
-                                            <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                            {/* <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
                                                 فقط 9 دك / شهر
-                                            </span>
+                                            </span> */}
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                    <div>
+                                                        السعر الأصلي 
+                                                        <span>
+                                                         ١٥ دك / ش
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                    بعد الخصم ٩ دك / ش
+                                                    </div>
+                                                    <div>
+                                                    ستوفر ٦ دك ( ٤٠٪ ) / ش
+                                                    </div>
+                                                </div>
                                         </div>
                                         {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}> بعد ٧ أيام فترة التجربة  </div> */}
                                         {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
@@ -1889,45 +1878,50 @@ function CheckoutPage(props: any) {
                                 :
                                 <div className={styles["checkout__cart-sticky-card"]}>
                                     <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
-                                    <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
+                                    {
+                                        !isDiscountLinkApplied &&
+                                        <>
+                                            <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
 
-                                    <div style={{ position: "relative" }}>
-                                        <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
-                                            <Form onSubmit={() => { promoCodeHandler(event) }}>
+                                            <div style={{ position: "relative" }}>
+                                                <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
+                                                    <Form onSubmit={() => { promoCodeHandler(event) }}>
 
-                                                <Form.Control
-                                                    type="text"
-                                                    name="couponField"
-                                                    placeholder="ادخل الكوبون هنا"
-                                                    // placeholder={isCouponApplied.status ? "" : "ادخل الكوبون هنا"}
-                                                    className={
-                                                        styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
-                                                    }
-                                                    onChange={() => { setErrorMessage("") }}
-                                                    disabled={isCouponApplied.status ? true : false}
-                                                />
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="couponField"
+                                                            placeholder="ادخل الكوبون هنا"
+                                                            // placeholder={isCouponApplied.status ? "" : "ادخل الكوبون هنا"}
+                                                            className={
+                                                                styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
+                                                            }
+                                                            onChange={() => { setErrorMessage("") }}
+                                                            disabled={isCouponApplied.status ? true : false}
+                                                        />
+                                                        {
+                                                            isCouponApplied.status ?
+                                                                <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
+
+                                                                :
+                                                                <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
+                                                                    تطبيق
+                                                                </Button>
+
+                                                        }
+                                                    </Form>
+
+
+                                                </div>
                                                 {
-                                                    isCouponApplied.status ?
-                                                        <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
-
-                                                        :
-                                                        <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
-                                                            تطبيق
-                                                        </Button>
-
+                                                    errorMessage !== "" && cartItems?.data?.length !== 0 &&
+                                                    <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
+                                                        {errorMessage}
+                                                    </div>
                                                 }
-                                            </Form>
 
-
-                                        </div>
-                                        {
-                                            errorMessage !== "" && cartItems?.data?.length !== 0 &&
-                                            <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
-                                                {errorMessage}
                                             </div>
-                                        }
-
-                                    </div>
+                                        </>
+                                    }
 
 
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
@@ -1953,7 +1947,7 @@ function CheckoutPage(props: any) {
                                                 الكوبون
                                             </div>
                                                     <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                                <span> {isCouponApplied.discounted_amount}- </span>
+                                                                <span> {isCouponApplied.discounted_amount.toFixed(2)}- </span>
                                                                 <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
                                                     </div>
 
@@ -2012,9 +2006,9 @@ function CheckoutPage(props: any) {
 
                                     {step == "added-courses" ?
 
-                                        <Button disabled={JSON.stringify(localStateCartItems) == "[]" ||
-                                            JSON.stringify(localStateCartItems) == "null" ||
-                                            JSON.stringify(localStateCartItems) == "undefined"} onClick={() => {
+                                        <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
+                                            JSON.stringify(cartItems?.data) == "null" ||
+                                            JSON.stringify(cartItems?.data) == "undefined"} onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
                                                 userStatus.isUserAuthenticated ?
                                                     setStep("payment-types")
@@ -2080,14 +2074,16 @@ function CheckoutPage(props: any) {
                                 </div>
 
                                 {
-                                    (JSON.stringify(localStateCartItems) == "[]" || localStateCartItems == null) &&
+                                    (JSON.stringify(cartItems?.data) == "[]" || cartItems?.data == null) &&
                                     <div className={styles["checkout__no-courses-in-your-cart"]}>
                                         لا يوجد اي دورات في السلة الخاصة بك
                                     </div>
                                 }
 
                                 {cartItems?.data?.length ? cartItems?.data?.map((it: any, i: number) => {
-
+                                    console.log("cartItems",cartItems);
+                                    console.log("isCouponApplied",isCouponApplied);
+                                    
                                     return (
 
                                         <div key={i} className={styles["checkout__cards-outer-box__card"]}>
@@ -2163,11 +2159,11 @@ function CheckoutPage(props: any) {
                                 <span>دك/شهرياً</span>
                             </div> */}
                                         <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-                                            {/* {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
                                                 <div className={styles["monthly-subscription__subscription-timer"]}>
                                                     عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
                                                     <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-                                                </div>} */}
+                                                </div>}
                                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
                                                 ملخص الاشتراك
                                             </div>
@@ -2175,9 +2171,21 @@ function CheckoutPage(props: any) {
                                                 <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
                                                     سعر الاشتراك
                                                 </span>
-                                                <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                    فقط 9 دك / شهر
-                                                </span>
+                                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                    <div>
+                                                        السعر الأصلي 
+                                                        <span>
+                                                         ١٥ دك / ش
+                                                        </span>
+                                                    </div>
+                                                    <div>
+                                                    بعد الخصم ٩ دك / ش
+                                                    </div>
+                                                    <div>
+                                                    ستوفر ٦ دك ( ٤٠٪ ) / ش
+                                                    </div>
+                                                </div>
+                                               
                                             </div>
                                             {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
                                         </div>
@@ -2205,45 +2213,50 @@ function CheckoutPage(props: any) {
                                 :
                                 <div className={styles["checkout__cart-sticky-card"]}>
                                     <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
-                                    <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
+                                    {
+                                        !isDiscountLinkApplied &&
+                                        <>
+                                            <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
 
-                                    <div style={{ position: "relative" }}>
-                                        <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
-                                            <Form onSubmit={() => { promoCodeHandler(event) }}>
+                                            <div style={{ position: "relative" }}>
+                                                <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
+                                                    <Form onSubmit={() => { promoCodeHandler(event) }}>
 
-                                                <Form.Control
-                                                    type="text"
-                                                    name="couponField"
-                                                    placeholder="ادخل الكوبون هنا"
-                                                    // placeholder={isCouponApplied.status ? "" : "ادخل الكوبون هنا"}
-                                                    className={
-                                                        styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
-                                                    }
-                                                    onChange={() => { setErrorMessage("") }}
-                                                    disabled={isCouponApplied.status ? true : false}
-                                                />
+                                                        <Form.Control
+                                                            type="text"
+                                                            name="couponField"
+                                                            placeholder="ادخل الكوبون هنا"
+                                                            // placeholder={isCouponApplied.status ? "" : "ادخل الكوبون هنا"}
+                                                            className={
+                                                                styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
+                                                            }
+                                                            onChange={() => { setErrorMessage("") }}
+                                                            disabled={isCouponApplied.status ? true : false}
+                                                        />
+                                                        {
+                                                            isCouponApplied.status ?
+                                                                <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
+
+                                                                :
+                                                                <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
+                                                                    تطبيق
+                                                                </Button>
+
+                                                        }
+                                                    </Form>
+
+
+                                                </div>
                                                 {
-                                                    isCouponApplied.status ?
-                                                        <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
-
-                                                        :
-                                                        <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
-                                                            تطبيق
-                                                        </Button>
-
+                                                    errorMessage !== ""  && cartItems?.data?.length !== 0 &&
+                                                    <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
+                                                        {errorMessage}
+                                                    </div>
                                                 }
-                                            </Form>
 
-
-                                        </div>
-                                        {
-                                            errorMessage !== ""  && cartItems?.data?.length !== 0 &&
-                                            <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
-                                                {errorMessage}
                                             </div>
-                                        }
-
-                                    </div>
+                                        </>
+                                    }
 
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                                         <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
@@ -2269,7 +2282,7 @@ function CheckoutPage(props: any) {
                                             </div>
 
                                                 <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                    <span> {isCouponApplied.discounted_amount}- </span>
+                                                    <span> {isCouponApplied.discounted_amount.toFixed(2)}- </span>
                                                     <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                                                 </div>
                                         </div>
@@ -2327,9 +2340,9 @@ function CheckoutPage(props: any) {
                                     </div>
 
                                     {step == "added-courses" ?
-                                        <Button disabled={JSON.stringify(localStateCartItems) == "[]" ||
-                                            JSON.stringify(localStateCartItems) == "null" ||
-                                            JSON.stringify(localStateCartItems) == "undefined"}
+                                        <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
+                                            JSON.stringify(cartItems?.data) == "null" ||
+                                            JSON.stringify(cartItems?.data) == "undefined"}
                                             onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
                                                 userStatus.isUserAuthenticated ?
@@ -2438,9 +2451,23 @@ function CheckoutPage(props: any) {
                                                         <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
                                                             سعر الاشتراك
                                                         </span>
-                                                        <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                        {/* <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
                                                             فقط 9 دك / شهر
+                                                        </span> */}
+                                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
+                                                        <div>
+                                                        السعر الأصلي 
+                                                        <span>
+                                                         ١٥ دك / ش
                                                         </span>
+                                                    </div>
+                                                        <div>
+                                                        بعد الخصم ٩ دك / ش
+                                                        </div>
+                                                        <div>
+                                                        ستوفر ٦ دك ( ٤٠٪ ) / ش
+                                                        </div>
+                                                    </div>
                                                     </div>
 
                                                     {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
@@ -2682,7 +2709,7 @@ function CheckoutPage(props: any) {
                                 سعر الاشتراك
                             </span>
                             <span className={styles["checkout__cart_subscribe_price-total_orignal"]}>
-                                &nbsp;&nbsp;9 kd&nbsp;&nbsp;
+                                &nbsp;&nbsp;  ١٥ دك / ش&nbsp;&nbsp;
                             </span>
                         </div>
                         <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
@@ -2690,10 +2717,10 @@ function CheckoutPage(props: any) {
                                 السعر بعد الخصم
                             </span>
                             <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                فقط 6 kd / شهر
+                               ٩ دك / ش
                             </span>
                         </div>
-                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div>
+                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٦ دك ( ٤٠٪ ) / ش </div>
 
                         {/* PayPal */}
                         {
