@@ -7,8 +7,8 @@ export const FBPixelEventsHandler = (trackingEvents:any,customData:any):any =>{
     // console.log("trackingEvents",trackingEvents);
     
     trackingEvents?.forEach((ev: any) => {
-      tadarabFbPixel.setEventId(ev.event_id);
-      tadarabFbPixel.eventHandler(ev.event_name, customData);
+      tadarabFbPixel.setEventId(ev && ev.event_id && ev.event_id);
+      tadarabFbPixel.eventHandler(ev && ev.event_name && ev.event_name, customData);
     });
     
 }
