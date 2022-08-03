@@ -1089,6 +1089,9 @@ function CheckoutPage(props: any) {
         
         
                                         localStorage.setItem("cart", "[]");
+                                        localStorage.removeItem("coupon_code");
+                                        localStorage.removeItem("affiliate_id");
+                                        localStorage.removeItem("cced");
                                         dispatch(setCartItems([]));
                                     } else {
                                         dispatch(setTransactionStatus(false));
@@ -1108,7 +1111,7 @@ function CheckoutPage(props: any) {
         )
     }
 
-    const PayPalSubscriptionButtonComponent = ()=>{
+    const PayPalSubscriptionButtonComponent = ()=> {
         return(
             <PayPalButtons
             style={{
@@ -1186,6 +1189,9 @@ function CheckoutPage(props: any) {
                                 FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
+                                localStorage.removeItem("coupon_code");
+                                localStorage.removeItem("affiliate_id");
+                                localStorage.removeItem("cced");
                                 dispatch(setCartItems([]));
                             } else {
                                 dispatch(setTransactionStatus(false));
@@ -1860,7 +1866,98 @@ function CheckoutPage(props: any) {
                                     {
                                         paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
 
-                                        <PayPalSubscriptionButtonComponent />
+                                        <PayPalButtons
+            style={{
+                color: "blue",
+                shape: "pill",
+                label: "subscribe",
+                tagline: false,
+                layout: "horizontal",
+            }}
+
+            createSubscription={(data: any, actions: any): any => {
+                setIsSpinnerExist(true);
+                return (
+                    axiosInstance.post(`payments/payouts/?country_code=null`, {
+                        "action": "web",
+                        "payment_method": "paypal",
+                        "checkout_type": "subscription",
+                        'page_id': courseDetailsData?.data?.course_details?.id,
+                    })
+                        .then((response: any) => {
+                            setIsSpinnerExist(false);
+                            if (tokenValidationCheck(response)) {
+                                if (JSON.stringify(response.status).startsWith("2")) {
+                                    localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                    localStorage.setItem("paymentId", response.data.data.payment_id);
+                                    setCheckoutTransactionDetails(response.data.data);
+
+                                    return actions.subscription.create({
+                                        plan_id: paymentSettings?.paypal.planid,
+                                        purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
+                                    });
+
+                                } else {
+                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                }
+                            }
+
+                        }).catch((error: any) => {
+                            setIsSpinnerExist(false);
+                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            console.log("error", error);
+                        })
+                )
+
+
+            }}
+            onApprove={(data: any, actions: any): any => {
+                setSucceeded(true);
+
+                axiosInstance
+                    .get(`payments/details?payment_method=paypal&
+            checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+            paypal_order_id=${data.orderID}&
+            subscription_id=${data.subscriptionID}&
+            facil_atoken=${data.facilitatorAccessToken}&
+            page_id=${courseDetailsData?.data?.course_details?.id}&
+            checkout_type=subscription&
+            payment_id=${localStorage.getItem("paymentId")}`)
+                    .then(function (response: any) {
+                        setIsSpinnerExist(false);
+                        if (tokenValidationCheck(response)) {
+
+                            if (response.status.toString().startsWith("2")) {
+
+                                localStorage.removeItem("checkoutTransactionId");
+                                localStorage.removeItem("paymentId");
+                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                dispatch(setInvoiceDetails(response.data.data));
+
+                                let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
+                                let customData = {};
+                                if (!is_trial_free) {
+                                    customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                                }
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+
+                                localStorage.setItem("cart", "[]");
+                                localStorage.removeItem("coupon_code");
+                                localStorage.removeItem("affiliate_id");
+                                localStorage.removeItem("cced");
+                                dispatch(setCartItems([]));
+                            } else {
+                                dispatch(setTransactionStatus(false));
+                                dispatch(setInvoiceDetails({}));
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        setIsSpinnerExist(false);
+                        console.log(error);
+                    });
+            }}
+        />
                                     }
                                     {
                                         paymentMethod == "VISA" && 
@@ -1873,16 +1970,15 @@ function CheckoutPage(props: any) {
                                 </div>
 
                                 {/* { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
-                    <PaySafeIcon color="#6c757d" />
-                    <span> ادفع بأمان وسهولة عبر تدرب </span>
-                </div>} */}
+                                    <PaySafeIcon color="#6c757d" />
+                                    <span> ادفع بأمان وسهولة عبر تدرب </span>
+                                    </div> } 
+                                */}
                             </div>
                                 :
                                 <div className={styles["checkout__cart-sticky-card"]}>
                                     <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
-                                    {
-                                        !isDiscountLinkApplied &&
-                                        <>
+                                
                                             <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
 
                                             <div style={{ position: "relative" }}>
@@ -1892,8 +1988,7 @@ function CheckoutPage(props: any) {
                                                         <Form.Control
                                                             type="text"
                                                             name="couponField"
-                                                            placeholder="ادخل الكوبون هنا"
-                                                            // placeholder={isCouponApplied.status ? "" : "ادخل الكوبون هنا"}
+                                                            placeholder={isCouponApplied.status ? isCouponApplied.value : "ادخل الكوبون هنا"}
                                                             className={
                                                                 styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
                                                             }
@@ -1922,8 +2017,6 @@ function CheckoutPage(props: any) {
                                                 }
 
                                             </div>
-                                        </>
-                                    }
 
 
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
@@ -1949,7 +2042,7 @@ function CheckoutPage(props: any) {
                                                 الكوبون
                                             </div>
                                                     <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                                <span> {isCouponApplied.discounted_amount.toFixed(2)}- </span>
+                                                                <span> {isCouponApplied?.discounted_amount?.toFixed(2)}- </span>
                                                                 <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
                                                     </div>
 
@@ -1998,7 +2091,7 @@ function CheckoutPage(props: any) {
                                         {!cartItems?.data?.length ?
 
                                             <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                                                <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                                                <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
                                                 } </span>
                                                 <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                                             </div>
@@ -2034,7 +2127,122 @@ function CheckoutPage(props: any) {
                                             }
 
                                             {paymentMethod == "PAYPAL" &&
-                                                <PayPalPaymentButtonComponent />
+                                                <div className={styles["checkout__cart-sticky-card__paypal"]}>
+
+
+                                                <PayPalButtons
+                                                    style={{
+                                                        color: "blue",
+                                                        shape: "pill",
+                                                        label: "pay",
+                                                        tagline: false,
+                                                        layout: "horizontal",
+                                                    }}
+                                                    createOrder={(data: any, actions: any): any => {
+                                                        setIsSpinnerExist(true);
+                                                        const localStorageItems: any = localStorage.getItem("cart_items");
+                                                        let usdAmount: any = "";
+                                                        let checkoutDetails: any = {};
+                                            
+                                                        return (async function () {
+                                                            await axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                                                "action": "web",
+                                                                "checkout_token": "",
+                                                                "items": localStorageItems,
+                                                                "coupon_code": localStorage.getItem("coupon_code"),
+                                                                "payment_method": "paypal",
+                                                                "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                                                            })
+                                                                .then((response: any) => {
+                                                                    setIsSpinnerExist(false);
+                                                                    if (tokenValidationCheck(response)) {
+                                            
+                                                                        if (JSON.stringify(response.status).startsWith("2")) {
+                                            
+                                                                            localStorage.setItem("successUrl", response.data.data.success_url);
+                                                                            localStorage.setItem("failureUrl", response.data.data.failure_url);
+                                                                            localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                                                            localStorage.setItem("paymentId", response.data.data.payment_id);
+                                                                            usdAmount = response.data.data.amount_usd;
+                                                                            setCheckoutTransactionDetails(response.data.data);
+                                            
+                                                                        } else {
+                                                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                        }
+                                                                    }
+                                            
+                                                                }).catch((error: any) => {
+                                                                    setIsSpinnerExist(false);
+                                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                    console.log("error", error);
+                                                                })
+                                            
+                                            
+                                                            return actions.order
+                                                                .create({
+                                                                    purchase_units: [
+                                                                        {
+                                                                            amount: {
+                                                                                // charge users $499 per order
+                                                                                value: checkoutType == "subscription" ? 29.56 : usdAmount,
+                                                                            },
+                                                                        },
+                                                                    ],
+                                                                    // remove the applicaiton_context object if you need your users to add a shipping address
+                                                                    application_context: {
+                                                                        shipping_preference: "NO_SHIPPING",
+                                                                    },
+                                                                })
+                                                                .then((orderID: any) => {
+                                                                    setOrderID(orderID);
+                                                                    return orderID;
+                                                                });
+                                                        })()
+                                                    }}
+                                                    onApprove={(data: any, actions: any) => {
+                                            
+                                            
+                                                        return actions.order.capture().then(function (details: any) {
+                                                            const { payer } = details;
+                                                            setBillingDetails(payer);
+                                                            setSucceeded(true);
+                                            
+                                                            axiosInstance
+                                                                .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
+                                                                .then(function (response: any) {
+                                                                    setIsSpinnerExist(false);
+                                                                    if (tokenValidationCheck(response)) {
+                                            
+                                                                        if (response.status.toString().startsWith("2")) {
+                                                                            localStorage.removeItem("checkoutTransactionId");
+                                                                            localStorage.removeItem("paymentId");
+                                                                            dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                                            dispatch(setInvoiceDetails(response.data.data));
+                                            
+                                                                            let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+                                                                            FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                            
+                                            
+                                                                            localStorage.setItem("cart", "[]");
+                                                                            localStorage.removeItem("coupon_code");
+                                                                            localStorage.removeItem("affiliate_id");
+                                                                            localStorage.removeItem("cced");
+                                                                            dispatch(setCartItems([]));
+                                                                        } else {
+                                                                            dispatch(setTransactionStatus(false));
+                                                                            dispatch(setInvoiceDetails({}));
+                                                                        }
+                                                                    }
+                                            
+                                                                })
+                                                                .catch(function (error) {
+                                                                    setIsSpinnerExist(false);
+                                                                    console.log(error);
+                                                                });
+                                                        })
+                                                    }}
+                                                />
+                                                </div>
                                             }
 
                                             {paymentMethod == "KNET" && 
@@ -2193,7 +2401,98 @@ function CheckoutPage(props: any) {
 
                                             paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
 
-                                            <PayPalSubscriptionButtonComponent />
+                                            <PayPalButtons
+            style={{
+                color: "blue",
+                shape: "pill",
+                label: "subscribe",
+                tagline: false,
+                layout: "horizontal",
+            }}
+
+            createSubscription={(data: any, actions: any): any => {
+                setIsSpinnerExist(true);
+                return (
+                    axiosInstance.post(`payments/payouts/?country_code=null`, {
+                        "action": "web",
+                        "payment_method": "paypal",
+                        "checkout_type": "subscription",
+                        'page_id': courseDetailsData?.data?.course_details?.id,
+                    })
+                        .then((response: any) => {
+                            setIsSpinnerExist(false);
+                            if (tokenValidationCheck(response)) {
+                                if (JSON.stringify(response.status).startsWith("2")) {
+                                    localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                    localStorage.setItem("paymentId", response.data.data.payment_id);
+                                    setCheckoutTransactionDetails(response.data.data);
+
+                                    return actions.subscription.create({
+                                        plan_id: paymentSettings?.paypal.planid,
+                                        purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
+                                    });
+
+                                } else {
+                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                }
+                            }
+
+                        }).catch((error: any) => {
+                            setIsSpinnerExist(false);
+                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            console.log("error", error);
+                        })
+                )
+
+
+            }}
+            onApprove={(data: any, actions: any): any => {
+                setSucceeded(true);
+
+                axiosInstance
+                    .get(`payments/details?payment_method=paypal&
+            checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+            paypal_order_id=${data.orderID}&
+            subscription_id=${data.subscriptionID}&
+            facil_atoken=${data.facilitatorAccessToken}&
+            page_id=${courseDetailsData?.data?.course_details?.id}&
+            checkout_type=subscription&
+            payment_id=${localStorage.getItem("paymentId")}`)
+                    .then(function (response: any) {
+                        setIsSpinnerExist(false);
+                        if (tokenValidationCheck(response)) {
+
+                            if (response.status.toString().startsWith("2")) {
+
+                                localStorage.removeItem("checkoutTransactionId");
+                                localStorage.removeItem("paymentId");
+                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                dispatch(setInvoiceDetails(response.data.data));
+
+                                let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
+                                let customData = {};
+                                if (!is_trial_free) {
+                                    customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                                }
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+
+                                localStorage.setItem("cart", "[]");
+                                localStorage.removeItem("coupon_code");
+                                localStorage.removeItem("affiliate_id");
+                                localStorage.removeItem("cced");
+                                dispatch(setCartItems([]));
+                            } else {
+                                dispatch(setTransactionStatus(false));
+                                dispatch(setInvoiceDetails({}));
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        setIsSpinnerExist(false);
+                        console.log(error);
+                    });
+            }}
+        />
                                         }
                                         {
 
@@ -2213,9 +2512,7 @@ function CheckoutPage(props: any) {
                                 :
                                 <div className={styles["checkout__cart-sticky-card"]}>
                                     <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
-                                    {
-                                        !isDiscountLinkApplied &&
-                                        <>
+                                  
                                             <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
 
                                             <div style={{ position: "relative" }}>
@@ -2225,8 +2522,7 @@ function CheckoutPage(props: any) {
                                                         <Form.Control
                                                             type="text"
                                                             name="couponField"
-                                                            placeholder="ادخل الكوبون هنا"
-                                                            // placeholder={isCouponApplied.status ? "" : "ادخل الكوبون هنا"}
+                                                            placeholder={isCouponApplied.status ? isCouponApplied.value : "ادخل الكوبون هنا"}
                                                             className={
                                                                 styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
                                                             }
@@ -2255,8 +2551,6 @@ function CheckoutPage(props: any) {
                                                 }
 
                                             </div>
-                                        </>
-                                    }
 
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                                         <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
@@ -2282,7 +2576,7 @@ function CheckoutPage(props: any) {
                                             </div>
 
                                                 <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                    <span> {isCouponApplied.discounted_amount.toFixed(2)}- </span>
+                                                    <span> {isCouponApplied?.discounted_amount?.toFixed(2)}- </span>
                                                     <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                                                 </div>
                                         </div>
@@ -2332,7 +2626,7 @@ function CheckoutPage(props: any) {
                                         {cartItems?.data?.length ?
 
                                             <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                                                <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                                                <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
                                                 } </span>
                                                 <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                                             </div>
@@ -2365,7 +2659,122 @@ function CheckoutPage(props: any) {
                                               <VisamasterPaymentButtonComponent />
                                             }
                                             { paymentMethod == "PAYPAL" &&
-                                               <PayPalPaymentButtonComponent />
+                                               <div className={styles["checkout__cart-sticky-card__paypal"]}>
+
+
+                                               <PayPalButtons
+                                                   style={{
+                                                       color: "blue",
+                                                       shape: "pill",
+                                                       label: "pay",
+                                                       tagline: false,
+                                                       layout: "horizontal",
+                                                   }}
+                                                   createOrder={(data: any, actions: any): any => {
+                                                       setIsSpinnerExist(true);
+                                                       const localStorageItems: any = localStorage.getItem("cart_items");
+                                                       let usdAmount: any = "";
+                                                       let checkoutDetails: any = {};
+                                           
+                                                       return (async function () {
+                                                           await axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                                               "action": "web",
+                                                               "checkout_token": "",
+                                                               "items": localStorageItems,
+                                                               "coupon_code": localStorage.getItem("coupon_code"),
+                                                               "payment_method": "paypal",
+                                                               "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                                                           })
+                                                               .then((response: any) => {
+                                                                   setIsSpinnerExist(false);
+                                                                   if (tokenValidationCheck(response)) {
+                                           
+                                                                       if (JSON.stringify(response.status).startsWith("2")) {
+                                           
+                                                                           localStorage.setItem("successUrl", response.data.data.success_url);
+                                                                           localStorage.setItem("failureUrl", response.data.data.failure_url);
+                                                                           localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                                                           localStorage.setItem("paymentId", response.data.data.payment_id);
+                                                                           usdAmount = response.data.data.amount_usd;
+                                                                           setCheckoutTransactionDetails(response.data.data);
+                                           
+                                                                       } else {
+                                                                           setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                       }
+                                                                   }
+                                           
+                                                               }).catch((error: any) => {
+                                                                   setIsSpinnerExist(false);
+                                                                   setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                   console.log("error", error);
+                                                               })
+                                           
+                                           
+                                                           return actions.order
+                                                               .create({
+                                                                   purchase_units: [
+                                                                       {
+                                                                           amount: {
+                                                                               // charge users $499 per order
+                                                                               value: checkoutType == "subscription" ? 29.56 : usdAmount,
+                                                                           },
+                                                                       },
+                                                                   ],
+                                                                   // remove the applicaiton_context object if you need your users to add a shipping address
+                                                                   application_context: {
+                                                                       shipping_preference: "NO_SHIPPING",
+                                                                   },
+                                                               })
+                                                               .then((orderID: any) => {
+                                                                   setOrderID(orderID);
+                                                                   return orderID;
+                                                               });
+                                                       })()
+                                                   }}
+                                                   onApprove={(data: any, actions: any) => {
+                                           
+                                           
+                                                       return actions.order.capture().then(function (details: any) {
+                                                           const { payer } = details;
+                                                           setBillingDetails(payer);
+                                                           setSucceeded(true);
+                                           
+                                                           axiosInstance
+                                                               .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
+                                                               .then(function (response: any) {
+                                                                   setIsSpinnerExist(false);
+                                                                   if (tokenValidationCheck(response)) {
+                                           
+                                                                       if (response.status.toString().startsWith("2")) {
+                                                                           localStorage.removeItem("checkoutTransactionId");
+                                                                           localStorage.removeItem("paymentId");
+                                                                           dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                                           dispatch(setInvoiceDetails(response.data.data));
+                                           
+                                                                           let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+                                                                           FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                           
+                                           
+                                                                           localStorage.setItem("cart", "[]");
+                                                                           localStorage.removeItem("coupon_code");
+                                                                           localStorage.removeItem("affiliate_id");
+                                                                           localStorage.removeItem("cced");
+                                                                           dispatch(setCartItems([]));
+                                                                       } else {
+                                                                           dispatch(setTransactionStatus(false));
+                                                                           dispatch(setInvoiceDetails({}));
+                                                                       }
+                                                                   }
+                                           
+                                                               })
+                                                               .catch(function (error) {
+                                                                   setIsSpinnerExist(false);
+                                                                   console.log(error);
+                                                               });
+                                                       })
+                                                   }}
+                                               />
+                                               </div>
                                             }
 
                                             { paymentMethod == "KNET" && 
@@ -2725,7 +3134,98 @@ function CheckoutPage(props: any) {
                         {/* PayPal */}
                         {
                             paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
-                            <PayPalSubscriptionButtonComponent />
+                            <PayPalButtons
+            style={{
+                color: "blue",
+                shape: "pill",
+                label: "subscribe",
+                tagline: false,
+                layout: "horizontal",
+            }}
+
+            createSubscription={(data: any, actions: any): any => {
+                setIsSpinnerExist(true);
+                return (
+                    axiosInstance.post(`payments/payouts/?country_code=null`, {
+                        "action": "web",
+                        "payment_method": "paypal",
+                        "checkout_type": "subscription",
+                        'page_id': courseDetailsData?.data?.course_details?.id,
+                    })
+                        .then((response: any) => {
+                            setIsSpinnerExist(false);
+                            if (tokenValidationCheck(response)) {
+                                if (JSON.stringify(response.status).startsWith("2")) {
+                                    localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                    localStorage.setItem("paymentId", response.data.data.payment_id);
+                                    setCheckoutTransactionDetails(response.data.data);
+
+                                    return actions.subscription.create({
+                                        plan_id: paymentSettings?.paypal.planid,
+                                        purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
+                                    });
+
+                                } else {
+                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                }
+                            }
+
+                        }).catch((error: any) => {
+                            setIsSpinnerExist(false);
+                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                            console.log("error", error);
+                        })
+                )
+
+
+            }}
+            onApprove={(data: any, actions: any): any => {
+                setSucceeded(true);
+
+                axiosInstance
+                    .get(`payments/details?payment_method=paypal&
+            checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+            paypal_order_id=${data.orderID}&
+            subscription_id=${data.subscriptionID}&
+            facil_atoken=${data.facilitatorAccessToken}&
+            page_id=${courseDetailsData?.data?.course_details?.id}&
+            checkout_type=subscription&
+            payment_id=${localStorage.getItem("paymentId")}`)
+                    .then(function (response: any) {
+                        setIsSpinnerExist(false);
+                        if (tokenValidationCheck(response)) {
+
+                            if (response.status.toString().startsWith("2")) {
+
+                                localStorage.removeItem("checkoutTransactionId");
+                                localStorage.removeItem("paymentId");
+                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                dispatch(setInvoiceDetails(response.data.data));
+
+                                let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
+                                let customData = {};
+                                if (!is_trial_free) {
+                                    customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                                }
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+
+                                localStorage.setItem("cart", "[]");
+                                localStorage.removeItem("coupon_code");
+                                localStorage.removeItem("affiliate_id");
+                                localStorage.removeItem("cced");
+                                dispatch(setCartItems([]));
+                            } else {
+                                dispatch(setTransactionStatus(false));
+                                dispatch(setInvoiceDetails({}));
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        setIsSpinnerExist(false);
+                        console.log(error);
+                    });
+            }}
+        />
                         }
                         {/* PayPal end */}
 

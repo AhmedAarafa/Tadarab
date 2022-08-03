@@ -116,6 +116,7 @@
 
 .checkout__course-content__title {
     margin-bottom: 1.125rem;
+    order: 2;
 
     span:nth-of-type(1) {
         font-size: 1.25rem;
@@ -139,6 +140,7 @@
     border-top: 0.1rem solid rgba(119, 119, 119, 0.2);
     @include flex;
     overflow: hidden;
+    order: 3;
 
 }
 
@@ -737,7 +739,7 @@
 
 .checkout__payment-method-box {
     margin: 0 0 2.3125rem 0;
-    order: 2;
+    order: 1;
 }
 
 .checkout__payment-method-box__title {

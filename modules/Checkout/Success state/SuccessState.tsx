@@ -56,13 +56,14 @@ export default function SuccessState() {
     useEffect(() => {
         //   localStorage.setItem("cart" , "[]");
         dispatch(setCartItems(null));
-        //console.log("success state",invoiceDetails);
         localStorage.setItem("cart",JSON.stringify([]));
         localStorage.setItem("cart_items",JSON.stringify([]));
+        localStorage.removeItem("coupon_code");
+        localStorage.removeItem("affiliate_id");
+        localStorage.removeItem("cced");
 
       
         return () => {
-            console.log("setCheckoutType dispatched");
             dispatch(setCheckoutType("cart"));
             dispatch(setTransactionStatus(null));
         }
