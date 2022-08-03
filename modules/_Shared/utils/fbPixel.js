@@ -8,8 +8,8 @@ export default class TadarabFBPixel {
             let eventIdCookieKey = this.eventName.toLowerCase() + '_event_id';
             this.eventId = this.getCookie(eventIdCookieKey);
         }
-        let fbp = this.getCookie('_fbp');
-        let fbc = this.getCookie('_fbc');
+        let fbp = "";
+        let fbc = "";
         fbq('track', eventName, customData, {eventID: this.eventId}, { fbp: fbp, fbc: fbc});
         // console.log('trackkk',fbq('track', eventName, customData, {eventID: this.eventId}, { fbp: fbp, fbc: fbc}));
         // console.log(fbp,fbc,customData,eventName,this.eventId);

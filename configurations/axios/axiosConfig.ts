@@ -8,8 +8,8 @@ export const axiosInstance = axios.create({
 });
 
 let tadarabFbPixel = new TadarabFBPixel();
-let fbp = tadarabFbPixel.getCookie('_fbp');
-let fbc = tadarabFbPixel.getCookie('_fbc');
+let fbp = "";
+let fbc = "";
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
