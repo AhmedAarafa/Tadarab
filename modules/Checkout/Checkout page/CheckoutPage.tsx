@@ -1718,6 +1718,7 @@ function CheckoutPage(props: any) {
                                                             frameValidationChanged={(e: any) => { }}
                                                             paymentMethodChanged={(e: any) => { }}
                                                             cardValidationChanged={(e: any) => {
+                                                                console.log("setIsFinalizePaymentBtnEnabled(true)xx;");
                                                                 const submitBtn: any = document.getElementById("paynow_button");
                                                                 if (Frames.isCardValid()) {
                                                                     if(submitBtn){
