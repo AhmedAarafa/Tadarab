@@ -544,7 +544,7 @@ function CheckoutPage(props: any) {
                     .get(`users/cart/?country_code=null`)
                     .then(function (response: any) {
                         setLocalStateCartItems(response?.data?.data.courses);
-                        FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+                        // FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
                         toggleLoader("hide");
 
                     })
@@ -1085,7 +1085,7 @@ function CheckoutPage(props: any) {
                                         dispatch(setInvoiceDetails(response.data.data));
         
                                         let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                        FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                        // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
         
         
                                         localStorage.setItem("cart", "[]");
@@ -1186,7 +1186,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
@@ -1939,7 +1939,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
@@ -2220,7 +2220,7 @@ function CheckoutPage(props: any) {
                                                                             dispatch(setInvoiceDetails(response.data.data));
                                             
                                                                             let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                            FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                            // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
                                             
                                             
                                                                             localStorage.setItem("cart", "[]");
@@ -2474,7 +2474,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
@@ -2752,7 +2752,7 @@ function CheckoutPage(props: any) {
                                                                            dispatch(setInvoiceDetails(response.data.data));
                                            
                                                                            let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                           FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                        //    FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
                                            
                                            
                                                                            localStorage.setItem("cart", "[]");
@@ -3207,7 +3207,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
