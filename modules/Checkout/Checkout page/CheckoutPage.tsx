@@ -55,7 +55,7 @@ function CheckoutPage(props: any) {
     const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const [isDiscountLinkApplied, setIsDiscountLinkApplied] = useState(false);
-
+    const [isFinalizePaymentBtnEnabled, setIsFinalizePaymentBtnEnabled] = useState(false);
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cartItems);
@@ -71,7 +71,7 @@ function CheckoutPage(props: any) {
     const [orderID, setOrderID] = useState(false);
     const [billingDetails, setBillingDetails] = useState("");
 
-    
+
     useEffect(() => {
         toggleLoader("show");
 
@@ -1251,7 +1251,7 @@ function CheckoutPage(props: any) {
 
     const VisamasterPaymentButtonComponent = ()=>{
         return(
-            <Button style={isVisaMasterFrameReady ? {} : { pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
+            <Button style={isFinalizePaymentBtnEnabled ? {} : { pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
             onClick={() => {
                 setIsSpinnerExist(true);
                 Frames.isCardValid() ?
@@ -1299,7 +1299,7 @@ function CheckoutPage(props: any) {
     
     const VisamasterSubscriptionButtonComponent = ()=>{
         return(
-            <Button style={{ pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
+            <Button style={isFinalizePaymentBtnEnabled ? {} : { pointerEvents: "none", opacity: "0.7" }}  id="paynow_button"
                                                 onClick={() => {
 
                                                     setIsSpinnerExist(true);
@@ -1721,7 +1721,7 @@ function CheckoutPage(props: any) {
                                                                 const submitBtn: any = document.getElementById("paynow_button");
                                                                 if (Frames.isCardValid()) {
                                                                     if(submitBtn){
-                                                                        submitBtn.style.cssText = `pointer-events:all;opacity:1`;
+                                                                        setIsFinalizePaymentBtnEnabled(true);
                                                                     }
                                                                 } 
                                                                 // else {
