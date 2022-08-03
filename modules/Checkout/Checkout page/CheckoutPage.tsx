@@ -1721,6 +1721,7 @@ function CheckoutPage(props: any) {
                                                                 const submitBtn: any = document.getElementById("paynow_button");
                                                                 if (Frames.isCardValid()) {
                                                                     if(submitBtn){
+                                                                        console.log("setIsFinalizePaymentBtnEnabled(true);");
                                                                         setIsFinalizePaymentBtnEnabled(true);
                                                                     }
                                                                 } 
