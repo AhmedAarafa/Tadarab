@@ -22,10 +22,10 @@ import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
-// import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import TadarabGA from "modules/_Shared/utils/ga";
-// import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
+import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import Link from "next/link";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
@@ -71,7 +71,7 @@ function CheckoutPage(props: any) {
     const [orderID, setOrderID] = useState(false);
     const [billingDetails, setBillingDetails] = useState("");
 
-
+    
     useEffect(() => {
         toggleLoader("show");
 
@@ -544,7 +544,7 @@ function CheckoutPage(props: any) {
                     .get(`users/cart/?country_code=null`)
                     .then(function (response: any) {
                         setLocalStateCartItems(response?.data?.data.courses);
-                        // FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+                        FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
                         toggleLoader("hide");
 
                     })
@@ -1085,7 +1085,7 @@ function CheckoutPage(props: any) {
                                         dispatch(setInvoiceDetails(response.data.data));
         
                                         let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                        // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                        FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
         
         
                                         localStorage.setItem("cart", "[]");
@@ -1186,7 +1186,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
@@ -1251,7 +1251,7 @@ function CheckoutPage(props: any) {
 
     const VisamasterPaymentButtonComponent = ()=>{
         return(
-            <Button style={{ pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
+            <Button style={isVisaMasterFrameReady ? {} : { pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
             onClick={() => {
                 setIsSpinnerExist(true);
                 Frames.isCardValid() ?
@@ -1939,7 +1939,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
@@ -2023,7 +2023,7 @@ function CheckoutPage(props: any) {
                                         <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
                                             السعر الإجمالي
                                         </div>
-                                        {cartItems?.data?.length ?
+                                        {cartItems?.data?.length !== 0 ?
 
                                             <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
                                                 <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
@@ -2088,7 +2088,7 @@ function CheckoutPage(props: any) {
                                         <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
                                             السعر النهائي
                                         </div>
-                                        {!cartItems?.data?.length ?
+                                        {cartItems?.data?.length !== 0 ?
 
                                             <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
                                                 <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
@@ -2220,7 +2220,7 @@ function CheckoutPage(props: any) {
                                                                             dispatch(setInvoiceDetails(response.data.data));
                                             
                                                                             let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                            // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                            FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
                                             
                                             
                                                                             localStorage.setItem("cart", "[]");
@@ -2474,7 +2474,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");
@@ -2654,7 +2654,7 @@ function CheckoutPage(props: any) {
                                         </Button>
                                         :
                                         <div className="position-relative">
-                                            <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>
+                                            <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>                                          
                                             { paymentMethod == "VISA" && 
                                               <VisamasterPaymentButtonComponent />
                                             }
@@ -2752,7 +2752,7 @@ function CheckoutPage(props: any) {
                                                                            dispatch(setInvoiceDetails(response.data.data));
                                            
                                                                            let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                        //    FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                           FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
                                            
                                            
                                                                            localStorage.setItem("cart", "[]");
@@ -3207,7 +3207,7 @@ function CheckoutPage(props: any) {
                                 if (!is_trial_free) {
                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                 }
-                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
                                 localStorage.setItem("cart", "[]");
                                 localStorage.removeItem("coupon_code");

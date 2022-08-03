@@ -87,9 +87,11 @@ export default function MonthlySubscriptionCard() {
             hours = hours.toString().padStart(2, 0);
             minutes = minutes.toString().padStart(2, 0);
             seconds = seconds.toString().padStart(2, 0);
+            console.log(days,typeof(days),hours,minutes,seconds);
+            
 
             if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
-              setToDisplayValues({ values: [days, hours, minutes, seconds], visible: false });
+              setToDisplayValues({...toDisplayValues, visible: false });
               clearInterval(interval);
 
             } else {
