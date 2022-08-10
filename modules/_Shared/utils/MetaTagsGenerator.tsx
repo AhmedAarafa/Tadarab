@@ -1,12 +1,18 @@
 import React from 'react';
 import Head from "next/head";
-
+import Router, { useRouter } from "next/router";
 export default function MetaTagsGenerator(props:any) {
-    let siteurl = 'https://www.tadarab.com';
+
+    let siteurl = "https://www.tadarab.com";let canonical=siteurl;
+    const allowedCanonical=['/Category/[slug]','/TrainerProfile/[slug]'];
+    const router = useRouter();
+    let is_allow=allowedCanonical.includes((router.route));
+    if(is_allow){canonical+=router.asPath;}
     if(typeof window !== 'undefined'){siteurl=window.location.href;}
     return (
         <Head>
             <title>{props.title}</title>
+            { (is_allow)?<><link rel="canonical" href={canonical} /></>:<></> }
             <meta name="description" content={props.description} key="description" />
             <meta name="robots" content="index, follow" />
             <meta property="og:locale" content="ar_AR" key="og-locale"/>

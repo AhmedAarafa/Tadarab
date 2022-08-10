@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
 import  useAddToCart  from "custom hooks/useAddToCart";
 import  useAddToFav  from "custom hooks/useAddToFav";
-import { setCartItems, addCourseToCart } from "configurations/redux/actions/cartItems"; 
+import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
@@ -37,7 +37,7 @@ function LatestCourses() {
   const homePageData = useSelector((state: any) => state.homePageData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const cartItems = useSelector((state: any) => state.cartItems);
-
+  const [temporaryAddToCart, setTemporaryAddToCart] = useState<any>([]);
   const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [isExecuted, setIsExecuted] = useState(false);
   const [latestCourses, setLatestCourses] = useState<any>([]);
@@ -78,22 +78,30 @@ function LatestCourses() {
 
   const handleCartActionBtn = (course: any): any => {
     setDisabledCartBtns([...disabledCartBtns,course.id]);
-    setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
-    }, 5000);
+    // setTemporaryAddToCart([...temporaryAddToCart,course.id]);
+    if(cartItems?.data){
+      dispatch(setCartItems([...(cartItems?.data),course]));
+    }
+    
+
+    // setTimeout(() => {
+    //   setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+    // }, 5000);
     dispatch(setCheckoutType("cart"));
 
-        dispatch(addCourseToCart(course));
-      
+
       const handleCartResponse:any =  handleCart([course],`home/?country_code=null&type=${filterType}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
            setLatestCourses(response.data.data.best_seller_courses);
+           dispatch(setCartItems(firstresponse.cartResponse));
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+
+          //  dispatch(setCartItems(firstresponse.cartResponse.filter((c:any) => !temporaryAddToCart.includes(c))));
         })
       })
 
   }
-
   const handleFreeCoursesActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
       handleFreeCourses(course);

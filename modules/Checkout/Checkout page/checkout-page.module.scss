@@ -949,7 +949,9 @@
 }
 .checkout__cart-sticky-card__subscribe-summary__details{
     margin: 0.5rem 0 ;
-    @include flex(center,space-between);
+    &>div{
+        @include flex(center,space-between);
+    }
     font-weight:800;
     font-size: 0.9rem;
 }
@@ -957,11 +959,31 @@
 .checkout__cart-sticky-card__subscribe-summary__details__todays-total{
     font-size:0.8rem;
     span{
-        text-decoration: line-through rgba(175, 21, 31, 0.5);
-        display: inline-block;
+        color: var(--dark-black);
+        text-decoration:line-through rgba(175, 21, 31, 1);
+        font-weight:800;
     }
-    div{
-        font-size:0.7rem;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old{
+    font-size:0.8rem;
+    font-weight: 400;
+}
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__new,
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price{
+    font-size:0.8rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price{
+    font-size:0.8rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    text-decoration:line-through rgba(175, 21, 31, 1);
+    font-weight:800;
+    padding: 0 0.5rem;
+    &:before,&:after{
+        content: "\00a0\00a0";
     }
 }
 .checkout__cart-sticky-card__subscribe-summary__details__exp{
@@ -1011,15 +1033,13 @@
 .monthly-subscription__subscription-timer{
     font-size: 0.75rem;
     text-align: center;
-    margin-bottom: 0.3rem;
-    color: #222;
-    span{
-        color: red;
-    }
+    // color: #222;
+    color: var(--primary-red);
+
 }
 
 .checkout__course-content {
-    display: flex;
+    // display: flex;
     flex-direction: column;
 }
 
@@ -1577,7 +1597,7 @@
     .checkout__course-content {
         order: 2;
         // border-bottom: 0.1rem*2.2 solid rgba(119, 119, 119, 0.2);
-        display: flex;
+        // display: flex;
         flex-direction: column;
     }
     .checkout__course-content__title {

@@ -21,7 +21,7 @@ export default function CourseKeywords() {
             <div className={styles["course-keywords__tags"]}>
                 {courseDetailsData.data?.course_details?.tags?.map((tag:any,i:number)=>{
                     return(
-                        <div key={i}> {tag.title} </div>
+                        <div key={i}> {tag?.title} </div>
                     )
                 })}
              

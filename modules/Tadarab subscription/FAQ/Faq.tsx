@@ -40,7 +40,7 @@ export default function Faq() {
                   </Accordion.Body>
               </Accordion.Item>
 
-              <Accordion.Item
+              {/* <Accordion.Item
                 eventKey="1"
                 className={styles["faq__accordion__item"]}
               >
@@ -50,10 +50,10 @@ export default function Faq() {
                 <Accordion.Body  className={styles["faq__accordion__body"]}>
                 نعم بكل ترحيب يمكنك بدء التعلم الآن والحصول على فترة تجربة مجاناََ بدون اي تكلفة كما يمكنك الغاء الاشتراك في أي وقت في حين قررت ذلك.
                   </Accordion.Body>
-              </Accordion.Item>
+              </Accordion.Item> */}
 
               <Accordion.Item
-                eventKey="2"
+                eventKey="1"
                 className={styles["faq__accordion__item"]}
               >
                 <Accordion.Header className={styles["faq__accordion__header"]}>
@@ -65,7 +65,7 @@ export default function Faq() {
               </Accordion.Item>
 
               <Accordion.Item
-                eventKey="3"
+                eventKey="2"
                 className={styles["faq__accordion__item"]}
               >
                 <Accordion.Header className={styles["faq__accordion__header"]}>
@@ -78,7 +78,7 @@ export default function Faq() {
 
 
               <Accordion.Item
-                eventKey="4"
+                eventKey="3"
                 className={styles["faq__accordion__item"]}
               >
                 <Accordion.Header className={styles["faq__accordion__header"]}>
@@ -91,7 +91,7 @@ export default function Faq() {
 
 
               <Accordion.Item
-                eventKey="5"
+                eventKey="4"
                 className={styles["faq__accordion__item"]}
               >
                 <Accordion.Header className={styles["faq__accordion__header"]}>

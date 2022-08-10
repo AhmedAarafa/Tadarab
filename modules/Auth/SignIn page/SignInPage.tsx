@@ -433,11 +433,11 @@ export default function SignInPage() {
                   "password": values.password,
                   "clientId": clientId,
                 }).then((response: any) => {
-                  //console.log("Response.message", response);
                   if (JSON.stringify(response.status).startsWith("2")) {
                     //console.log("success");
                     if (response.data.data !== null) {
                       const totalItems: any = [];
+                      console.log("Response", response);
                       response.data.data.courses.data.forEach((item: any) => {
                         totalItems.push(item.id);
                       });
@@ -446,6 +446,8 @@ export default function SignInPage() {
                       localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
                       localStorage.setItem("cart", JSON.stringify(totalItems));
                       localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
+                      dispatch(setCartItems([...new Set(response.data.data.cart_items)]));
+
                       dispatch(setIsUserAuthenticated({
                         ...userAuthState, isUserAuthenticated: true,
                         token: response.data.data.token,

@@ -167,7 +167,7 @@ export default function CourseSubscribers() {
                 return(
                     <SwiperSlide key={i}>
                         <Card data-isvisible={false} data-coursedetails={JSON.stringify({
-                                name:course.title,
+                                name:course?.title,
                                 id:course.id,
                                 price:course.discounted_price_usd,
                                 brand:"Tadarab",
@@ -182,7 +182,7 @@ export default function CourseSubscribers() {
                             }
                             >
                               {
-                              course.categories[0] !== undefined &&  course.categories[0].title !== null && course.categories[0].title !== ""  &&
+                              course.categories[0] !== undefined &&  course.categories[0]?.title !== null && course.categories[0]?.title !== ""  &&
 
                             <div
                                 className={
@@ -192,7 +192,7 @@ export default function CourseSubscribers() {
                                 }
                                 style={{backgroundColor:`${course.categories[0] !== undefined && course.categories[0].color}`}}
                             > 
-                                {course.categories[0] !== undefined && course.categories[0].title} 
+                                {course.categories[0] !== undefined && course.categories[0]?.title} 
                             </div>
                               }
                             <Link href={`/course/${course.slug}`}>
@@ -249,14 +249,14 @@ export default function CourseSubscribers() {
                                 >
                                   <Link href={`/course/${course.slug}`}>
 
-                                      <h3 title={course.title}
+                                      <h3 title={course?.title}
                                       className={
                                           styles[
                                           "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__title"
                                           ]
                                       }
                                       >
-                                    {course.title}
+                                    {course?.title}
                                       </h3>
 
                                   </Link>

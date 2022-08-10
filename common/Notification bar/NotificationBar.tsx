@@ -48,7 +48,7 @@ export default function NotificationBar() {
                 <div style={{display: userStatus ? 'none' : 'flex'}} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>
-                        العرض ينتهى قريباَ | أحصل على اي عدد من الدورات بخصم ٧٠٪  أستثمر وقتك بالصيف وابدأ التعلم الأن
+                        العرض ينتهى قريباَ | أحصل على اي عدد من الدورات بخصم ٧٠٪ أستثمر وقتك بالصيف كود الخصم S70
                             {/* <span onClick={() => { handleSubscriptionBtn() }}>
                             أضغط هنا لمشاهدة البث
                             </span> */}

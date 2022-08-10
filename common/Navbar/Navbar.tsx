@@ -248,7 +248,7 @@ function Navbar() {
         .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
           dispatch(setCartItems(response?.data?.data));
-          // setLocalStateCartItems(cartItems?.data);
+          setLocalStateCartItems(cartItems?.data);
           // toggleLoader("hide");
 
         })
@@ -281,15 +281,16 @@ function Navbar() {
 
 
   useEffect(() => {
+    setLocalStateCartItems(cartItems?.data);
 
     let localStorageItems: any = localStorage.getItem("cart");
 
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
 
       axiosInstance
-        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+        .get(`courses/?country_code=null&course_ids=${JSON.stringify(cartItems?.data?.map((c:any) => c.id))?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
-          setLocalStateCartItems(response.data.data);
+          setLocalStateCartItems(response?.data?.data);
         })
         .catch(function (error) {
           console.log(error);
@@ -760,7 +761,7 @@ function Navbar() {
                 id="cart-popover" >
                 <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
                   {
-                   cartItems?.data?.map((item: any, i: number) => {
+                   localStateCartItems?.map((item: any, i: number) => {
                       return (
 
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
@@ -881,7 +882,7 @@ function Navbar() {
                         }
                       >
                         {
-                          cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
+                          localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
                         }
                       </span>
                       <span
@@ -949,7 +950,7 @@ function Navbar() {
             <div className={styles["navbar__cart-icon-container"]} id="carticon"
               onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
               <CartIcon color="#222" />
-              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
+              <Badge className={styles["navbar__cart-icon__badge"]}>{localStateCartItems?.length || ""}</Badge>
               {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
 
             </div>

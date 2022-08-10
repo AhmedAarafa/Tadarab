@@ -26,12 +26,14 @@ export default function MobileCheckoutBar() {
     // setSubscriptionTimer
     document.cookie.split('; ').reduce((prev: any, current: any) => {
       const [name, ...value] = current.split('=');
-      prev[name] = value.join('=');
-      if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+      if (prev) {
+        prev[name] = value.join('=');
+        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
 
-      } else {
-        setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-        return prev;
+        } else {
+          setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+          return prev;
+        }
       }
 
     }, {});
@@ -42,60 +44,62 @@ export default function MobileCheckoutBar() {
     if (subscriptionTimer !== 0) {
       document.cookie.split('; ').reduce((prev: any, current: any) => {
         const [name, ...value] = current.split('=');
-        prev[name] = value.join('=');
+        if (prev) {
+          prev[name] = value.join('=');
+          setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+          if (Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1) {
 
-        setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-        if (Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1) {
+            let interval = setInterval(() => {
 
-          let interval = setInterval(() => {
+              // get total seconds between the times
+              let delta: any = Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1 ?
+                Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
+                :
+                clearInterval(interval);
+              ;
 
-            // get total seconds between the times
-            let delta: any = Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1 ?
-              Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
-              :
-              clearInterval(interval);
-            ;
+              // calculate (and subtract) whole days
+              let days: any = Math.floor(delta / 86400);
+              delta -= days * 86400;
 
-            // calculate (and subtract) whole days
-            let days: any = Math.floor(delta / 86400);
-            delta -= days * 86400;
+              // calculate (and subtract) whole hours
+              let hours: any = Math.floor(delta / 3600) % 24;
+              delta -= hours * 3600;
 
-            // calculate (and subtract) whole hours
-            let hours: any = Math.floor(delta / 3600) % 24;
-            delta -= hours * 3600;
+              // calculate (and subtract) whole minutes
+              let minutes: any = Math.floor(delta / 60) % 60;
+              delta -= minutes * 60;
 
-            // calculate (and subtract) whole minutes
-            let minutes: any = Math.floor(delta / 60) % 60;
-            delta -= minutes * 60;
+              // what's left is seconds
+              let seconds: any = delta; // in theory the modulus is not required
 
-            // what's left is seconds
-            let seconds: any = delta; // in theory the modulus is not required
+              // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
+              // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
+              // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
+              // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
 
-            // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
-            // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
-            // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
-            // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
+              days = days.toString().padStart(2, 0);
+              hours = hours.toString().padStart(2, 0);
+              minutes = minutes.toString().padStart(2, 0);
+              seconds = seconds.toString().padStart(2, 0);
 
-            days = days.toString().padStart(2, 0);
-            hours = hours.toString().padStart(2, 0);
-            minutes = minutes.toString().padStart(2, 0);
-            seconds = seconds.toString().padStart(2, 0);
+              if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
+                setToDisplayValues({ values: [days, hours, minutes, seconds], visible: false });
+                clearInterval(interval);
 
-            if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
-              setToDisplayValues({ values: [days, hours, minutes, seconds], visible: false });
-              clearInterval(interval);
+              } else {
 
-            } else {
-
-              setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
-              return { days, hours, minutes, seconds }
-            }
+                setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
+                return { days, hours, minutes, seconds }
+              }
 
 
 
-          }, 1000);
+            }, 1000);
 
+          }
         }
+
         return prev;
       }, {});
 
@@ -121,7 +125,7 @@ export default function MobileCheckoutBar() {
         <div>
           {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
             <div className={styles["monthly-subscription__subscription-timer"]}>
-              عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
+              ستوفر ٤٠٪ العرض سينتهي خلال
               <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
             </div>}
           <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
@@ -137,8 +141,11 @@ export default function MobileCheckoutBar() {
             }
           </Button>
           <div>
-            <div className={styles["monthly-subscription__subscription-value"]}>
+            {/* <div className={styles["monthly-subscription__subscription-value"]}>
               احصل على كل الدورات فقط ب 9 دك / شهر.
+            </div> */}
+            <div className={styles["monthly-subscription__subscription-value"]}>
+              احصل على كل الدورات فقط ب 9 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 15 دك</span>
             </div>
           </div>
         </div>

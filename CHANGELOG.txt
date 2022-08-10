@@ -1,3 +1,18 @@
+Version 2.0.4 (09th Aug 2022)
+1)  Single course page session issue.
+
+Version 2.0.3 (08th Aug 2022)
+1)  Change notification bar text.
+2)  Small changes.
+
+Version 2.0.2 (03rd Aug 2022)
+1)  Checkout page mobile issue fixed.
+2)  Final payment amount visible.
+
+Version 2.0.1 (02nd Aug 2022)
+1)  PayPal issue fixed.
+2)  Change subscription text and add timer in single page also.
+
 Version 2.0.0 (01st Aug 2022)
 1)  Add coupon base discount function.
 2)  Fixed checkout page issue.

@@ -15,7 +15,7 @@ import { GuaranteeIcon, ArrowLeftIcon, PaySafeIcon, RemoveIcon, TickIcon, CartIc
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 // import { setCartItems } from "configurations/redux/actions/cartItems"; 
-import { setCartItems, removeCourseFromCart } from "configurations/redux/actions/cartItems";
+import { setCartItems } from "configurations/redux/actions/cartItems";
 import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
@@ -32,6 +32,7 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
+import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 
 
 function CheckoutPage(props: any) {
@@ -55,7 +56,8 @@ function CheckoutPage(props: any) {
     const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const [isDiscountLinkApplied, setIsDiscountLinkApplied] = useState(false);
-
+    const [isFinalizePaymentBtnEnabled, setIsFinalizePaymentBtnEnabled] = useState(false);
+    const [temporaryRemoval, setTemporaryRemoval] = useState<any>([]);
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cartItems);
@@ -71,7 +73,7 @@ function CheckoutPage(props: any) {
     const [orderID, setOrderID] = useState(false);
     const [billingDetails, setBillingDetails] = useState("");
 
-    
+
     useEffect(() => {
         toggleLoader("show");
 
@@ -85,8 +87,8 @@ function CheckoutPage(props: any) {
         // const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
         stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
         const localStorageItems: any = localStorage.getItem("cart");
-
-        if (JSON.stringify(Router.query) == "{}" && !localStorageItems && JSON.stringify(localStorageItems) == "[]") {
+        /* JSON.stringify(Router.query) == "{}" &&  */
+        if (localStorageItems && (localStorageItems) !== "[]") {
 
             axiosInstance
                 .get(`users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
@@ -111,10 +113,10 @@ function CheckoutPage(props: any) {
                                             });
                                         });
                                         setRelatedCourses([...newArray]);
+                                      
                                     }
 
                                     toggleLoader("hide");
-
 
                                 })
                                 .catch(function (error) {
@@ -383,13 +385,16 @@ function CheckoutPage(props: any) {
         // setSubscriptionTimer
         document.cookie.split('; ').reduce((prev: any, current: any) => {
             const [name, ...value] = current.split('=');
-            prev[name] = value.join('=');
-            if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
-
-            } else {
-
-                setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-                return prev;
+            
+            if(prev){
+                prev[name] = value.join('=');
+                if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+    
+                } else {
+    
+                    setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+                    return prev;
+                }
             }
 
         }, {});
@@ -430,7 +435,67 @@ function CheckoutPage(props: any) {
         if (userAuthState.isUserAuthenticated && userAuthState.isSubscribed) {
             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
         }
-    }, [userAuthState])
+    }, [userAuthState]);
+
+    useEffect(() => {
+    
+        if (subscriptionTimer !== 0) {
+          document.cookie.split('; ').reduce((prev: any, current: any) => {
+            const [name, ...value] = current.split('=');
+           if(prev){
+                    prev[name] = value.join('=');
+                    setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+                    if (Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1) {
+            
+                      let interval = setInterval(() => {
+            
+                        // get total seconds between the times
+                        let delta: any = Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1 ?
+                          Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
+                          :
+                          clearInterval(interval);
+                        ;
+            
+                        // calculate (and subtract) whole days
+                        let days: any = Math.floor(delta / 86400);
+                        delta -= days * 86400;
+            
+                        // calculate (and subtract) whole hours
+                        let hours: any = Math.floor(delta / 3600) % 24;
+                        delta -= hours * 3600;
+            
+                        // calculate (and subtract) whole minutes
+                        let minutes: any = Math.floor(delta / 60) % 60;
+                        delta -= minutes * 60;
+            
+                        // what's left is seconds
+                        let seconds: any = delta; // in theory the modulus is not required
+            
+                        days = days.toString().padStart(2, 0);
+                        hours = hours.toString().padStart(2, 0);
+                        minutes = minutes.toString().padStart(2, 0);
+                        seconds = seconds.toString().padStart(2, 0);
+            
+                        if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
+                          setToDisplayValues({...toDisplayValues, visible: false });
+                          clearInterval(interval);
+            
+                        } else {
+            
+                          setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
+                          return { days, hours, minutes, seconds }
+                        }
+                      }, 1000);
+            
+                    }
+                }
+    
+            return prev;
+          }, {});
+    
+        }
+    
+      }, [subscriptionTimer]);
 
 
     // useEffect(() => {
@@ -941,24 +1006,27 @@ function CheckoutPage(props: any) {
         const localStorageItems: any = localStorage.getItem("cart");
         let url: string;
         if (course.is_in_cart) {
-
+           setTemporaryRemoval([...temporaryRemoval,course.id]);
+        // setTimeout(() => {
+        //     setTemporaryRemoval(temporaryRemoval.filter((c:any) => c !== course.id));
+        //   }, 5000);
             url = `users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '').replace(`${course.id},`, '')
                 .replace(`,${course.id}`, '')
-
-                }`;
+            }`;
         } else {
-
             url = `users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')},${course.id}`;
         }
 
         // if(userStatus?.isUserAuthenticated == true){
-        dispatch(removeCourseFromCart(course.id));
+        // dispatch(removeCourseFromCart(course.id));
 
         const handleCartResponse: any = handleCart([course], url, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setRelatedCourses(response.data.data || []);
-                // dispatch(setCartItems(firstresponse.cartResponse));
+                dispatch(setCartItems(firstresponse.cartResponse));
+                setTemporaryRemoval(temporaryRemoval.filter((c:any) => c !== course.id));
+
             })
             //  setLocalCartItems(response.totalItems);
         })
@@ -1209,14 +1277,16 @@ function CheckoutPage(props: any) {
     }
 
     const KnetButtonComponent = ()=>{
+        
         return(
             <Button
             onClick={() => {
                 setIsSpinnerExist(true);
                 const localStorageItems: any = localStorage.getItem("cart_items");
+                console.log("localStorageItems",localStorageItems);
 
                 axiosInstance.post(`payments/payouts/?country_code=null`, {
-                    "action": "web", 
+                    "action": "web",
                     "checkout_token": "",
                     "items": localStorageItems,
                     "coupon_code": localStorage.getItem("coupon_code"),
@@ -1251,7 +1321,7 @@ function CheckoutPage(props: any) {
 
     const VisamasterPaymentButtonComponent = ()=>{
         return(
-            <Button style={isVisaMasterFrameReady ? {} : { pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
+            <Button style={isFinalizePaymentBtnEnabled ? {} : { pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
             onClick={() => {
                 setIsSpinnerExist(true);
                 Frames.isCardValid() ?
@@ -1299,14 +1369,15 @@ function CheckoutPage(props: any) {
     
     const VisamasterSubscriptionButtonComponent = ()=>{
         return(
-            <Button style={{ pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
+            <Button style={isFinalizePaymentBtnEnabled ? {} : { pointerEvents: "none", opacity: "0.7" }}  id="paynow_button"
                                                 onClick={() => {
 
                                                     setIsSpinnerExist(true);
 
                                                     Frames.isCardValid() ?
                                                         Frames.submitCard().then(function (data: any) {
-
+                                                            console.log("data",data);
+                                                            
                                                             const localStorageItems: any = localStorage.getItem("cart_items");
                                                             axiosInstance.post(`payments/payouts/?country_code=null`, {
                                                                 "action": "web",
@@ -1715,13 +1786,17 @@ function CheckoutPage(props: any) {
                                                             frameActivated={(e: any) => { }}
                                                             frameFocus={(e: any) => { }}
                                                             frameBlur={(e: any) => { }}
-                                                            frameValidationChanged={(e: any) => { }}
+                                                            frameValidationChanged={(e: any) => {
+                                                                console.log("e1",e);
+                                                             }}
                                                             paymentMethodChanged={(e: any) => { }}
                                                             cardValidationChanged={(e: any) => {
+                                                                console.log("e2",e);
+                                                                
                                                                 const submitBtn: any = document.getElementById("paynow_button");
                                                                 if (Frames.isCardValid()) {
                                                                     if(submitBtn){
-                                                                        submitBtn.style.cssText = `pointer-events:all;opacity:1`;
+                                                                        setIsFinalizePaymentBtnEnabled(true);
                                                                     }
                                                                 } 
                                                                 // else {
@@ -1730,9 +1805,10 @@ function CheckoutPage(props: any) {
 
                                                             }}
                                                             cardSubmitted={(e: any) => {
-                                                                console.log(e);
+                                                                console.log("cardSubmitted",e);
                                                             }}
                                                             cardTokenized={(e: any) => {
+                                                                alert(e);
                                                                 // const localStorageItems:any = localStorage.getItem("cart_items");
 
                                                                 //     console.log(e);
@@ -1825,44 +1901,41 @@ function CheckoutPage(props: any) {
                         <span>100</span>
                         <span>دك/شهرياً</span>
                     </div> */}
-                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-                                        {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
-                            <div className={styles["monthly-subscription__subscription-timer"]}>
-                                عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
-                                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-                            </div>}
-                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                            <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                سعر الاشتراك
-                                            </span>
-                                            {/* <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                فقط 9 دك / شهر
-                                            </span> */}
-                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                    <div>
-                                                        السعر الأصلي 
-                                                        <span>
-                                                         ١٥ دك / ش
-                                                        </span>
-                                                    </div>
-                                                    <div>
-                                                    بعد الخصم ٩ دك / ش
-                                                    </div>
-                                                    <div>
-                                                    ستوفر ٦ دك ( ٤٠٪ ) / ش
-                                                    </div>
-                                                </div>
-                                        </div>
-                                        {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}> بعد ٧ أيام فترة التجربة  </div> */}
-                                        {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                        <span>
-                            قيمة الإشتراك  بعد ٧ أيام فترة التجربة
-                        </span>
-                        <span>
-                        9 KD
-                        </span>
-                        </div> */}
-                                    </div>
+                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
+                                           
+                                           <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
+                                               ملخص الاشتراك
+                                           </div>
+                                           <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                                               <div>
+
+                                                   <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old"]}>
+                                                         السعر الأصلي
+                                                   </div>
+                                                   <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price"]}>
+                                                               15 kd
+                                                   </div>
+                                                   </div>
+                                               <div>
+
+                                                   <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new"]}>
+                                                      السعر بعد الخصم
+                                                   </div>
+                                                   <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price"]}>
+                                                       <div>
+                                                     فقط 9 kd / شهر
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                              
+                                           </div>
+                                           {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                               <div className={styles["monthly-subscription__subscription-timer"]}>
+                                                  ستوفر ٤٠٪ العرض سينتهي خلال  
+                                                   <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                                               </div>}
+                                           {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
+                                       </div>
                                     {
                                         paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
 
@@ -2089,18 +2162,15 @@ function CheckoutPage(props: any) {
                                             السعر النهائي
                                         </div>
                                         {cartItems?.data?.length !== 0 ?
-
                                             <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
                                                 <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
                                                 } </span>
                                                 <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
                                             </div>
                                             : <React.Fragment />}
-
                                     </div>
 
                                     {step == "added-courses" ?
-
                                         <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
                                             JSON.stringify(cartItems?.data) == "null" ||
                                             JSON.stringify(cartItems?.data) == "undefined"} onClick={() => {
@@ -2122,14 +2192,13 @@ function CheckoutPage(props: any) {
                                         <div className="position-relative">
                                             <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>
 
-                                            {paymentMethod == "VISA" && 
-                                            <VisamasterPaymentButtonComponent/>
-                                            }
+                                            {/** VISAMASTER option **/}
+                                            {paymentMethod == "VISA" && <VisamasterPaymentButtonComponent/>}
+                                            {/** VISAMASTER option end **/}
 
+                                            {/** PayPal option **/}
                                             {paymentMethod == "PAYPAL" &&
                                                 <div className={styles["checkout__cart-sticky-card__paypal"]}>
-
-
                                                 <PayPalButtons
                                                     style={{
                                                         color: "blue",
@@ -2152,77 +2221,61 @@ function CheckoutPage(props: any) {
                                                                 "coupon_code": localStorage.getItem("coupon_code"),
                                                                 "payment_method": "paypal",
                                                                 "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
-                                                            })
-                                                                .then((response: any) => {
-                                                                    setIsSpinnerExist(false);
-                                                                    if (tokenValidationCheck(response)) {
-                                            
-                                                                        if (JSON.stringify(response.status).startsWith("2")) {
-                                            
-                                                                            localStorage.setItem("successUrl", response.data.data.success_url);
-                                                                            localStorage.setItem("failureUrl", response.data.data.failure_url);
-                                                                            localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
-                                                                            localStorage.setItem("paymentId", response.data.data.payment_id);
-                                                                            usdAmount = response.data.data.amount_usd;
-                                                                            setCheckoutTransactionDetails(response.data.data);
-                                            
-                                                                        } else {
-                                                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                                                        }
+                                                            }).then((response: any) => {
+                                                                setIsSpinnerExist(false);
+                                                                if (tokenValidationCheck(response)) {
+                                                                    if (JSON.stringify(response.status).startsWith("2")) {
+                                                                        localStorage.setItem("successUrl", response.data.data.success_url);
+                                                                        localStorage.setItem("failureUrl", response.data.data.failure_url);
+                                                                        localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                                                        localStorage.setItem("paymentId", response.data.data.payment_id);
+                                                                        usdAmount = response.data.data.amount_usd;
+                                                                        setCheckoutTransactionDetails(response.data.data);
+                                                                    } else {
+                                                                        setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
                                                                     }
+                                                                }
+                                                            }).catch((error: any) => {
+                                                                setIsSpinnerExist(false);
+                                                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                console.log("error", error);
+                                                            })
                                             
-                                                                }).catch((error: any) => {
-                                                                    setIsSpinnerExist(false);
-                                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                                                    console.log("error", error);
-                                                                })
-                                            
-                                            
-                                                            return actions.order
-                                                                .create({
-                                                                    purchase_units: [
-                                                                        {
-                                                                            amount: {
-                                                                                // charge users $499 per order
-                                                                                value: checkoutType == "subscription" ? 29.56 : usdAmount,
-                                                                            },
+                                                            return actions.order.create({
+                                                                purchase_units: [
+                                                                    {
+                                                                        amount: {
+                                                                            // charge users $499 per order
+                                                                            value: checkoutType == "subscription" ? 29.56 : usdAmount,
                                                                         },
-                                                                    ],
-                                                                    // remove the applicaiton_context object if you need your users to add a shipping address
-                                                                    application_context: {
-                                                                        shipping_preference: "NO_SHIPPING",
                                                                     },
-                                                                })
-                                                                .then((orderID: any) => {
-                                                                    setOrderID(orderID);
-                                                                    return orderID;
-                                                                });
+                                                                ],
+                                                                // remove the applicaiton_context object if you need your users to add a shipping address
+                                                                application_context: {
+                                                                    shipping_preference: "NO_SHIPPING",
+                                                                },
+                                                            }).then((orderID: any) => {
+                                                                setOrderID(orderID);
+                                                                return orderID;
+                                                            });
                                                         })()
                                                     }}
                                                     onApprove={(data: any, actions: any) => {
-                                            
-                                            
                                                         return actions.order.capture().then(function (details: any) {
                                                             const { payer } = details;
                                                             setBillingDetails(payer);
                                                             setSucceeded(true);
-                                            
-                                                            axiosInstance
-                                                                .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
+                                                            axiosInstance.get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
                                                                 .then(function (response: any) {
                                                                     setIsSpinnerExist(false);
                                                                     if (tokenValidationCheck(response)) {
-                                            
                                                                         if (response.status.toString().startsWith("2")) {
                                                                             localStorage.removeItem("checkoutTransactionId");
                                                                             localStorage.removeItem("paymentId");
                                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
                                                                             dispatch(setInvoiceDetails(response.data.data));
-                                            
                                                                             let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
                                                                             FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
-                                            
-                                            
                                                                             localStorage.setItem("cart", "[]");
                                                                             localStorage.removeItem("coupon_code");
                                                                             localStorage.removeItem("affiliate_id");
@@ -2233,22 +2286,19 @@ function CheckoutPage(props: any) {
                                                                             dispatch(setInvoiceDetails({}));
                                                                         }
                                                                     }
-                                            
-                                                                })
-                                                                .catch(function (error) {
+                                                                }).catch(function (error) {
                                                                     setIsSpinnerExist(false);
-                                                                    console.log(error);
                                                                 });
                                                         })
                                                     }}
                                                 />
                                                 </div>
                                             }
+                                            {/** PayPal option end **/}
 
-                                            {paymentMethod == "KNET" && 
-                                              <KnetButtonComponent/>
-                                            }
-
+                                            {/** KNET option **/}
+                                            {paymentMethod == "KNET" && <KnetButtonComponent/>}
+                                            {/** KNET option end **/}
                                         </div>
                                     }
 
@@ -2291,18 +2341,17 @@ function CheckoutPage(props: any) {
                                 }
 
                                 {cartItems?.data?.length ? cartItems?.data?.map((it: any, i: number) => {
-                                    
+                                    /* style={{display: temporaryRemoval?.includes(it.id) ? "none" :"flex"}}  */
                                     return (
-
-                                        <div key={i} className={styles["checkout__cards-outer-box__card"]}>
+                                        !temporaryRemoval?.includes(it.id) && <div key={i} className={styles["checkout__cards-outer-box__card"]}>
 
                                             <div className={styles["checkout__cards-outer-box__card__course-img"]}>
                                                 <img loading="lazy" src={it?.image && it.image} alt="course image" />
-                                                {it.categories[0] !== undefined && it.categories[0].title !== null && it.categories[0].title !== "" &&
+                                                {it.categories && it.categories[0] !== undefined && it.categories[0].title !== null && it.categories[0].title !== "" &&
 
                                                     <div style={{ backgroundColor: `${it.categories[0] !== undefined && it.categories[0].color}` }}
                                                         className={styles["checkout__cards-outer-box__card__category-chip"]}>
-                                                        {it.categories[0] !== undefined && it.categories[0].title}
+                                                        {it.categories && it.categories[0] !== undefined && it.categories[0].title}
                                                     </div>
                                                 }
                                             </div>
@@ -2341,9 +2390,8 @@ function CheckoutPage(props: any) {
                                             </div>
 
                                             {step == "added-courses" &&
-                                                <div onClick={() => { handleCartActionBtn(it) }} className={styles["checkout__cards-outer-box__card__action-btns"]}>
+                                                <div onClick={() => { handleCartActionBtn(it)}} className={styles["checkout__cards-outer-box__card__action-btns"]}>
                                                     <RemoveIcon color="#222" />
-
                                                 </div>}
                                         </div>
                                     )
@@ -2367,34 +2415,38 @@ function CheckoutPage(props: any) {
                                 <span>دك/شهرياً</span>
                             </div> */}
                                         <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-                                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
-                                                <div className={styles["monthly-subscription__subscription-timer"]}>
-                                                    عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
-                                                    <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-                                                </div>}
+                                           
                                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
                                                 ملخص الاشتراك
                                             </div>
                                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                                <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                    سعر الاشتراك
-                                                </span>
-                                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                    <div>
-                                                        السعر الأصلي 
-                                                        <span>
-                                                         ١٥ دك / ش
-                                                        </span>
+                                                <div>
+
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old"]}>
+                                                          السعر الأصلي
                                                     </div>
-                                                    <div>
-                                                    بعد الخصم ٩ دك / ش
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price"]}>
+                                                                15 kd
                                                     </div>
-                                                    <div>
-                                                    ستوفر ٦ دك ( ٤٠٪ ) / ش
+                                                    </div>
+                                                <div>
+
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new"]}>
+                                                       السعر بعد الخصم
+                                                    </div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price"]}>
+                                                        <div>
+                                                      فقط 9 kd / شهر
+                                                        </div>
                                                     </div>
                                                 </div>
                                                
                                             </div>
+                                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                                <div className={styles["monthly-subscription__subscription-timer"]}>
+                                                   ستوفر ٤٠٪ العرض سينتهي خلال  
+                                                    <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                                                </div>}
                                             {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
                                         </div>
                                         {
@@ -2622,9 +2674,7 @@ function CheckoutPage(props: any) {
                                         <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
                                             السعر النهائي
                                         </div>
-                                        
                                         {cartItems?.data?.length ?
-
                                             <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
                                                 <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
                                                 } </span>
@@ -2828,6 +2878,7 @@ function CheckoutPage(props: any) {
                                     slidesPerView: 4.8,
                                 },
                             }} className="mySwiper">
+                               
                             {relatedCourses?.map((course: any, i: number) => {
                                 return (
 
@@ -2856,28 +2907,34 @@ function CheckoutPage(props: any) {
                                             {
                                                 checkoutType == 'subscription' &&
                                                 <div className={styles["checkout__cart-fixed-card"]}>
-                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                                        <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                            سعر الاشتراك
-                                                        </span>
-                                                        {/* <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                            فقط 9 دك / شهر
-                                                        </span> */}
-                                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                                        <div>
-                                                        السعر الأصلي 
-                                                        <span>
-                                                         ١٥ دك / ش
-                                                        </span>
+                                                     <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                                                <div>
+
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old"]}>
+                                                          السعر الأصلي
                                                     </div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price"]}>
+                                                                15 kd
+                                                    </div>
+                                                    </div>
+                                                <div>
+
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new"]}>
+                                                       السعر بعد الخصم
+                                                    </div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price"]}>
                                                         <div>
-                                                        بعد الخصم ٩ دك / ش
+                                                      فقط 9 kd / شهر
                                                         </div>
-                                                        <div>
-                                                        ستوفر ٦ دك ( ٤٠٪ ) / ش
-                                                        </div>
                                                     </div>
-                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                                <div className={styles["monthly-subscription__subscription-timer"]}>
+                                                   ستوفر ٤٠٪ العرض سينتهي خلال  
+                                                    <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                                                </div>}
 
                                                     {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
                                                     {course.categories[0] !== undefined && course.categories[0].title}
@@ -3115,7 +3172,7 @@ function CheckoutPage(props: any) {
                     <div className={styles["checkout__cart-fixed-card"]}>
                         <div className={styles["checkout__cart-sticky-card__subscribe-summary__details_orignal"]}>
                             <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                سعر الاشتراك
+                                السعر الأصلي
                             </span>
                             <span className={styles["checkout__cart_subscribe_price-total_orignal"]}>
                                 &nbsp;&nbsp;  ١٥ دك / ش&nbsp;&nbsp;
@@ -3129,7 +3186,11 @@ function CheckoutPage(props: any) {
                                ٩ دك / ش
                             </span>
                         </div>
-                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٦ دك ( ٤٠٪ ) / ش </div>
+                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>
+                                ستوفر ٤٠٪ العرض سينتهي خلال  
+                                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                            </div>}
 
                         {/* PayPal */}
                         {
@@ -3176,56 +3237,52 @@ function CheckoutPage(props: any) {
                             console.log("error", error);
                         })
                 )
-
-
             }}
             onApprove={(data: any, actions: any): any => {
                 setSucceeded(true);
+                axiosInstance.get(`payments/details?payment_method=paypal&
+                    checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+                    paypal_order_id=${data.orderID}&
+                    subscription_id=${data.subscriptionID}&
+                    facil_atoken=${data.facilitatorAccessToken}&
+                    page_id=${courseDetailsData?.data?.course_details?.id}&
+                    checkout_type=subscription&
+                    payment_id=${localStorage.getItem("paymentId")}`)
+                            .then(function (response: any) {
+                                setIsSpinnerExist(false);
+                                if (tokenValidationCheck(response)) {
 
-                axiosInstance
-                    .get(`payments/details?payment_method=paypal&
-            checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
-            paypal_order_id=${data.orderID}&
-            subscription_id=${data.subscriptionID}&
-            facil_atoken=${data.facilitatorAccessToken}&
-            page_id=${courseDetailsData?.data?.course_details?.id}&
-            checkout_type=subscription&
-            payment_id=${localStorage.getItem("paymentId")}`)
-                    .then(function (response: any) {
-                        setIsSpinnerExist(false);
-                        if (tokenValidationCheck(response)) {
+                                    if (response.status.toString().startsWith("2")) {
 
-                            if (response.status.toString().startsWith("2")) {
+                                        localStorage.removeItem("checkoutTransactionId");
+                                        localStorage.removeItem("paymentId");
+                                        dispatch(setTransactionStatus(response.data.data.is_successful));
+                                        dispatch(setInvoiceDetails(response.data.data));
 
-                                localStorage.removeItem("checkoutTransactionId");
-                                localStorage.removeItem("paymentId");
-                                dispatch(setTransactionStatus(response.data.data.is_successful));
-                                dispatch(setInvoiceDetails(response.data.data));
+                                        let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
+                                        let customData = {};
+                                        if (!is_trial_free) {
+                                            customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                                        }
+                                        FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
-                                let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
-                                let customData = {};
-                                if (!is_trial_free) {
-                                    customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                                        localStorage.setItem("cart", "[]");
+                                        localStorage.removeItem("coupon_code");
+                                        localStorage.removeItem("affiliate_id");
+                                        localStorage.removeItem("cced");
+                                        dispatch(setCartItems([]));
+                                    } else {
+                                        dispatch(setTransactionStatus(false));
+                                        dispatch(setInvoiceDetails({}));
+                                    }
                                 }
-                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
-
-                                localStorage.setItem("cart", "[]");
-                                localStorage.removeItem("coupon_code");
-                                localStorage.removeItem("affiliate_id");
-                                localStorage.removeItem("cced");
-                                dispatch(setCartItems([]));
-                            } else {
-                                dispatch(setTransactionStatus(false));
-                                dispatch(setInvoiceDetails({}));
-                            }
-                        }
-                    })
-                    .catch(function (error) {
-                        setIsSpinnerExist(false);
-                        console.log(error);
-                    });
-            }}
-        />
+                            })
+                            .catch(function (error) {
+                                setIsSpinnerExist(false);
+                                console.log(error);
+                            });
+                    }}
+                />
                         }
                         {/* PayPal end */}
 

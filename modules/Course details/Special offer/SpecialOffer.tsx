@@ -39,29 +39,31 @@ export default function SpecialOffer(props: any) {
                     if (document.cookie.indexOf('timer') > -1) { 
                         document.cookie.split('; ').reduce((prev: any, current: any) => {
                             const [name, ...value] = current.split('=');
-                            prev[name] = value.join('=');
-
-                            if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
-
-                                let now = new Date();
-                                let time = now.getTime();
-                                time += response?.data?.data.countdown * 3600 * 1000;
-                                now.setTime(time);
-                                document.cookie =
-                                    'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60)) +
-                                    '; expires=' + (new Date(now)).toUTCString() +
-                                    '; path=/';
-
-                                timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60));
-                                console.log("response?.data?.data?.countdown", response?.data?.data?.countdown);
-
-
-                            } else {
-                                if (prev.timer) {
-                                    timerHandler(prev.timer);
-                                    // console.log("prev.timer", prev.timer);
+                            if(prev){
+                                prev[name] = value.join('=');
+                                if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+    
+                                    let now = new Date();
+                                    let time = now.getTime();
+                                    time += response?.data?.data.countdown * 3600 * 1000;
+                                    now.setTime(time);
+                                    document.cookie =
+                                        'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60)) +
+                                        '; expires=' + (new Date(now)).toUTCString() +
+                                        '; path=/';
+    
+                                    timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60));
+                                    console.log("response?.data?.data?.countdown", response?.data?.data?.countdown);
+    
+    
+                                } else {
+                                    if (prev.timer) {
+                                        timerHandler(prev.timer);
+                                        // console.log("prev.timer", prev.timer);
+                                    }
                                 }
                             }
+
                             return prev;
                         }, {});
 
@@ -167,11 +169,11 @@ export default function SpecialOffer(props: any) {
                                             <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
                                                 <img loading="lazy" src={course?.image} alt="course image" />
                                                 {
-                                                    (course?.length) && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                                                    (course?.length) && course.categories[0]?.title !== null && course.categories[0]?.title !== "" &&
 
                                                     <div className={styles["special-offer__cards-outer-box__card__category-chip"]}
                                                         style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}>
-                                                        {course.categories[0] !== undefined && course.categories[0].title}
+                                                        {course.categories[0] !== undefined && course.categories[0]?.title}
                                                     </div>
                                                 }
                                             </div>
@@ -183,8 +185,8 @@ export default function SpecialOffer(props: any) {
                                                         <img loading="lazy" src={course.trainer?.image} alt="trainer image" />
                                                     </div>
                                                     <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__info"]}>
-                                                        <h3 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title={course.title}>
-                                                            {course.title}
+                                                        <h3 className={styles["special-offer__cards-outer-box__card__trainer-info-box__course-name"]} title={course?.title}>
+                                                            {course?.title}
                                                         </h3>
                                                         <div className={styles["special-offer__cards-outer-box__card__trainer-info-box__trainer-name"]}>
                                                             {course.trainer?.name_ar}

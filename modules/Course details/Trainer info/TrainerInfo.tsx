@@ -44,7 +44,7 @@ export default function TrainerInfo() {
             <div
               className={styles["trainer-info-section__trainer-info__title"]}
             >
-             {courseDetailsData.data?.course_details?.trainer.title}
+             {courseDetailsData.data?.course_details?.trainer?.title}
             </div>
             <div
               className={

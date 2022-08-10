@@ -15,6 +15,7 @@ import { setCartItems } from 'configurations/redux/actions/cartItems';
 import Link from "next/link";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
+import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 
 
 export default function MonthlySubscriptionCard() {
@@ -32,18 +33,21 @@ export default function MonthlySubscriptionCard() {
   const { slug } = Router.query;
 
   useEffect(() => {
+    subscriptionCounter();
 
     // setSubscriptionTimer
     document.cookie.split('; ').reduce((prev: any, current: any) => {
       const [name, ...value] = current.split('=');
-      prev[name] = value.join('=');
-      if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
-
-      } else {
-
-        setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-        return prev;
-      }
+     if(prev){
+                prev[name] = value.join('=');
+                if ((prev['subscription-countdown'] < (Math.floor(Date.now() / 1000))) || prev['subscription-countdown'] == NaN || prev['subscription-countdown'] == "NaN") {
+          
+                } else {
+          
+                  setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+                  return prev;
+                }
+            }
 
     }, {});
 
@@ -51,63 +55,64 @@ export default function MonthlySubscriptionCard() {
   }, [])
 
   useEffect(() => {
+    
     if (subscriptionTimer !== 0) {
       document.cookie.split('; ').reduce((prev: any, current: any) => {
         const [name, ...value] = current.split('=');
-        prev[name] = value.join('=');
-
-        setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-        if (Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1) {
-
-          let interval = setInterval(() => {
-
-            // get total seconds between the times
-            let delta: any = Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1 ?
-              Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
-              :
-              clearInterval(interval);
-            ;
-
-            // calculate (and subtract) whole days
-            let days: any = Math.floor(delta / 86400);
-            delta -= days * 86400;
-
-            // calculate (and subtract) whole hours
-            let hours: any = Math.floor(delta / 3600) % 24;
-            delta -= hours * 3600;
-
-            // calculate (and subtract) whole minutes
-            let minutes: any = Math.floor(delta / 60) % 60;
-            delta -= minutes * 60;
-
-            // what's left is seconds
-            let seconds: any = delta; // in theory the modulus is not required
-
-            days = days.toString().padStart(2, 0);
-            hours = hours.toString().padStart(2, 0);
-            minutes = minutes.toString().padStart(2, 0);
-            seconds = seconds.toString().padStart(2, 0);
-            console.log(days,typeof(days),hours,minutes,seconds);
-            
-
-            if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
-              setToDisplayValues({...toDisplayValues, visible: false });
-              clearInterval(interval);
-
-            } else {
-
-              setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
-              return { days, hours, minutes, seconds }
+       if(prev){
+                prev[name] = value.join('=');
+                setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+                if (Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1) {
+        
+                  let interval = setInterval(() => {
+        
+                    // get total seconds between the times
+                    let delta: any = Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1 ?
+                      Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
+                      :
+                      clearInterval(interval);
+                    ;
+        
+                    // calculate (and subtract) whole days
+                    let days: any = Math.floor(delta / 86400);
+                    delta -= days * 86400;
+        
+                    // calculate (and subtract) whole hours
+                    let hours: any = Math.floor(delta / 3600) % 24;
+                    delta -= hours * 3600;
+        
+                    // calculate (and subtract) whole minutes
+                    let minutes: any = Math.floor(delta / 60) % 60;
+                    delta -= minutes * 60;
+        
+                    // what's left is seconds
+                    let seconds: any = delta; // in theory the modulus is not required
+        
+                    days = days.toString().padStart(2, 0);
+                    hours = hours.toString().padStart(2, 0);
+                    minutes = minutes.toString().padStart(2, 0);
+                    seconds = seconds.toString().padStart(2, 0);
+        
+                    if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
+                      setToDisplayValues({...toDisplayValues, visible: false });
+                      clearInterval(interval);
+        
+                    } else {
+        
+                      setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
+                      return { days, hours, minutes, seconds }
+                    }
+                  }, 1000);
+        
+                }
             }
-          }, 1000);
 
-        }
         return prev;
       }, {});
 
     }
 
-  }, [subscriptionTimer])
+  }, [subscriptionTimer]);
 
 
   useEffect(() => {
@@ -151,8 +156,6 @@ export default function MonthlySubscriptionCard() {
       })
     }
   }
-
-
 
   const handleCartActionBtn = (course: any): any => {
     setDisabledCartBtns([...disabledCartBtns,course.id]);
@@ -290,9 +293,15 @@ export default function MonthlySubscriptionCard() {
                 </div>
               </Button>
             </div>
-            <div className={styles["monthly-subscription__subscription-value"]}>
+            {/* <div className={styles["monthly-subscription__subscription-value"]}>
             احصل على كل الدورات فقط ب 9 دك / شهر.
+            </div> */}
+            <div className={styles["monthly-subscription__subscription-value"]}>
+            احصل على كل الدورات فقط ب 9 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 15 دك</span>
             </div>
+           {toDisplayValues.visible && toDisplayValues.values[3] != NaN && toDisplayValues.values[3] != "NaN" && <div className={styles["monthly-subscription__subscription-value"]}>
+              <div style={{color:'#af151f'}}>ستوفر ٤٠٪؜ العرض سينتهي خلال &nbsp;&nbsp;<span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span></div>
+            </div>}
             {/* <div className={styles["monthly-subscription__watch-this-course"]}>
           شاهد هذه الدورة + 600 دورة اخرى
           </div> */

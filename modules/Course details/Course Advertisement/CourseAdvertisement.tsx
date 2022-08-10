@@ -101,7 +101,7 @@ export default function CourseAdvertisement(theOption: any) {
             courseDetailsData?.data?.course_details?.categories.slice(0, 3).map((cat: any, i: number) => {
               return (
                 <Link key={i} href={`/topic/${cat.slug}`}>
-                  <li >{cat.title}</li>
+                  <li >{cat?.title}</li>
                 </Link>
               )
             })

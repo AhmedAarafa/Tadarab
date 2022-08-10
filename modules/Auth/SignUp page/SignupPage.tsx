@@ -28,6 +28,7 @@ import Link from "next/link";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from 'react-google-login';
+import { setCartItems } from "configurations/redux/actions/cartItems";
 import TwitterLogin from "react-twitter-login";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
@@ -199,6 +200,8 @@ export default function SignupPage() {
               localStorage.setItem("is_user_subscribed", response.data.data.is_in_user_subscription);
               localStorage.setItem("cart", JSON.stringify(totalItems));
               localStorage.setItem("cart_items", JSON.stringify([...new Set(response.data.data.cart_items)]));
+              dispatch(setCartItems([...new Set(response.data.data.cart_items)]));
+
               dispatch(setIsUserAuthenticated({
                 ...userAuthState, isUserAuthenticated: true,
                 token: response.data.data.token,

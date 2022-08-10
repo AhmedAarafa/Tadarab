@@ -108,7 +108,7 @@ export default function MyCourse() {
                                                         <AttachmentsIcon />
                                                     </div>
                                                     <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
-                                                        <div>{att.title}</div>
+                                                        <div>{att?.title}</div>
                                                     </div>
                                                 </div>
                                                 <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>
@@ -154,7 +154,7 @@ export default function MyCourse() {
                                                         <AttachmentsIcon />
                                                     </div>
                                                     <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
-                                                        <div>{att.title}</div>
+                                                        <div>{att?.title}</div>
                                                     </div>
                                                 </div>
                                                 <div style={{cursor:"pointer"}} className={styles["course-content__accordion__body__list-item__download"]}>

@@ -1267,6 +1267,11 @@
 
 .checkout__cart-sticky-card__subscribe-summary__details {
   margin: 0.5rem 0;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1276,8 +1281,6 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  font-weight: 800;
-  font-size: 0.9rem;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__todays-total {
@@ -1285,13 +1288,36 @@
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__todays-total span {
-  -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
-          text-decoration: line-through rgba(175, 21, 31, 0.5);
-  display: inline-block;
+  color: var(--dark-black);
+  -webkit-text-decoration: line-through #af151f;
+          text-decoration: line-through #af151f;
+  font-weight: 800;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details__todays-total div {
-  font-size: 0.7rem;
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__new,
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price {
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-top: 0.5rem;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  -webkit-text-decoration: line-through #af151f;
+          text-decoration: line-through #af151f;
+  font-weight: 800;
+  padding: 0 0.5rem;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price:before, .checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price:after {
+  content: "\00a0\00a0";
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__exp {
@@ -1343,18 +1369,10 @@
 .monthly-subscription__subscription-timer {
   font-size: 0.75rem;
   text-align: center;
-  margin-bottom: 0.3rem;
-  color: #222;
-}
-
-.monthly-subscription__subscription-timer span {
-  color: red;
+  color: var(--primary-red);
 }
 
 .checkout__course-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -1956,9 +1974,6 @@
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
