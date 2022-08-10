@@ -1808,7 +1808,7 @@ function CheckoutPage(props: any) {
                                                                 console.log("cardSubmitted",e);
                                                             }}
                                                             cardTokenized={(e: any) => {
-                                                                alert(e);
+                                                                alert(JSON.stringify(e));
                                                                 // const localStorageItems:any = localStorage.getItem("cart_items");
 
                                                                 //     console.log(e);
