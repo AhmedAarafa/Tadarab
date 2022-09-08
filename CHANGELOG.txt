@@ -1,3 +1,46 @@
+Version 2.1.7 (06th Sep 2022)
+1)  Update subscription tracking
+
+Version 2.1.6 (29th Aug 2022)
+1)  Update subscription tracking
+2)  Update main-sitemap
+
+Version 2.1.5 (25th Aug 2022)
+1)  Add pretylink for social media redirection (tiktok,snapchat, and facebook).
+
+Version 2.1.4 (23th Aug 2022)
+1)  Build issue fixed (scss issue).
+
+Version 2.1.3 (23th Aug 2022)
+1)  Add multiple subscription plane.
+2)  Plane choose option for (NBK,BOUBYAN, and WARBA)
+
+Version 2.1.2 (22th Aug 2022)
+1)  Modify main sitemap.
+2)  Add trainers sitemap.
+
+Version 2.1.1 (17th Aug 2022)
+1)  Add instagram pretylink redirection.
+
+Version 2.1.0 (17th Aug 2022)
+1)  pages-sitemap xml files update.
+
+Version 2.0.9 (17th Aug 2022)
+1)  sitemap xml files update.
+
+Version 2.0.8 (17th Aug 2022)
+1)  sitemap xml files move to public dir.
+
+Version 2.0.7 (17th Aug 2022)
+1)  Add sitemap xml files.
+2)  robots file move to public dir.
+
+Version 2.0.6 (14th Aug 2022)
+1)  add robots.txt
+
+Version 2.0.5 (11th Aug 2022)
+1)  Subscription text changes and timer merge.
+
 Version 2.0.4 (09th Aug 2022)
 1)  Single course page session issue.
 

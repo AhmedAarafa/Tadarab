@@ -1221,6 +1221,20 @@
   border: 0.125rem solid #9d151e !important;
 }
 
+.checkout__cart-sticky-card__subscribe-box input[type=radio] {
+  margin: 0.5rem 0.25rem;
+  border-color: #707070 !important;
+  cursor: pointer;
+}
+
+.checkout__cart-sticky-card__subscribe-box input[type=radio]:checked {
+  background-color: white !important;
+}
+
+.checkout__cart-sticky-card__subscribe-box input[type=radio]:checked[type="radio"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+}
+
 .checkout__subscription-benefits__sub-benefits {
   font-size: 1.1rem;
   display: -webkit-box;
@@ -1395,6 +1409,141 @@
   height: 3rem;
   color: var(--primary-red) !important;
   border-width: 0.4rem;
+}
+
+.monthly-subscription__subscription-plans-dropdown button {
+  font-size: 0.8rem;
+  background-color: transparent !important;
+  color: var(--dark-black) !important;
+  border: 0.0625rem solid #2222228c !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.monthly-subscription__subscription-plans-dropdown button:hover, .monthly-subscription__subscription-plans-dropdown button:active {
+  background-color: transparent !important;
+  color: var(--dark-black) !important;
+  border: 0.0625rem solid #2222228c !important;
+}
+
+.monthly-subscription__subscription-plans-dropdown button + div {
+  width: 100%;
+  border-radius: 0.5rem;
+}
+
+.monthly-subscription__subscription-plans-dropdown button + div a {
+  text-align: right;
+}
+
+.subscription-dropdown-options:active, .subscription-dropdown-options:focus {
+  color: #1e2125 !important;
+  background-color: #caccce !important;
+}
+
+.subscription-plans-box {
+  border-radius: 0.5rem;
+  border: 0.0437rem solid #caccce;
+  margin: 0.5rem 0 0 0;
+}
+
+.subscription-plans-box div:nth-of-type(1) div:nth-of-type(1) {
+  border-bottom: 0.0473rem solid #caccce;
+}
+
+.subscription-plans-box div:nth-of-type(1) div {
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout__cart-sticky-card__subscription-plans {
+  margin-bottom: 0.8rem;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box {
+  border-bottom: 0.0625rem solid #F3F3F3;
+  padding: 0.5rem 1.625rem;
+  margin: 0 -1.625rem;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
+  margin: -1.625rem -1.625rem 0 -1.625rem;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box--active {
+  border: 0.0625rem solid red;
+  border-radius: 0.5rem;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: white;
+  background-color: #464646;
+  border-radius: 0.5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.1rem 0.6rem;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box input {
+  width: 1.25em;
+  height: 1.25em;
+  margin: 0.25rem 0 0.5rem 0.5rem !important;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--dark-black);
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing {
+  margin: 0 0 0.3rem 0;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing span:nth-of-type(1) {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #949498;
+  display: inline-block;
+}
+
+.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing span:nth-of-type(2) {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin: 0 0.5rem 0 0;
+  border: 0.0625rem solid red;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.5rem;
 }
 
 @media (max-width: 1200px) {
@@ -1760,6 +1909,10 @@
     font-size: 1.26rem !important;
     padding: 0.7rem 1.4rem;
     border-radius: 0.98rem;
+  }
+  .subscription-dropdown-options:focus, .subscription-dropdown-options:active {
+    color: #1e2125 !important;
+    background-color: #caccce !important;
   }
 }
 
@@ -2389,7 +2542,7 @@
     -webkit-box-shadow: 0rem 0rem 2.75rem #0000001A;
             box-shadow: 0rem 0rem 2.75rem #0000001A;
     border-radius: 2.75rem;
-    margin: 3.3rem 0 0 0;
+    margin: 3.3rem 0 3rem 0;
     padding: 4.125rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2765,7 +2918,8 @@
   .checkout__cart-sticky-card__subscribe-summary__title {
     font-size: 2.8125rem;
   }
-  .checkout__cart-sticky-card__subscribe-summary__details, .checkout__cart-sticky-card__subscribe-summary__details_orignal {
+  .checkout__cart-sticky-card__subscribe-summary__details,
+  .checkout__cart-sticky-card__subscribe-summary__details_orignal {
     margin: 0 0 1.5rem 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2819,6 +2973,138 @@
     height: 7.5rem;
     color: var(--primary-red) !important;
     border-width: 0.8rem;
+  }
+  .monthly-subscription__subscription-plans-dropdown button {
+    font-size: 1.6rem;
+    width: 100%;
+    border-radius: 1rem;
+    margin: 0 0 2rem 0;
+    padding: 0.8rem;
+    border: 0.125rem solid #2222228c !important;
+  }
+  .monthly-subscription__subscription-plans-dropdown button:hover, .monthly-subscription__subscription-plans-dropdown button:active {
+    border: 0.125rem solid #2222228c !important;
+  }
+  .monthly-subscription__subscription-plans-dropdown button + div {
+    border-radius: 1rem;
+    font-size: 1.6rem;
+  }
+  .monthly-subscription__subscription-plans-dropdown button + div a {
+    text-align: right;
+  }
+  .subscription-dropdown-options:active, .subscription-dropdown-options:focus {
+    color: #1e2125 !important;
+    background-color: #caccce !important;
+  }
+  .subscription-plans-box {
+    border-radius: 1.25rem;
+    border: 0.10925rem solid #caccce;
+    margin: 2rem 0 0 0;
+    font-size: 2.5rem;
+  }
+  .subscription-plans-box input {
+    margin: 0 0 0 2.25rem;
+    border-color: #707070 !important;
+    cursor: pointer;
+  }
+  .subscription-plans-box input:checked {
+    background-color: white !important;
+  }
+  .subscription-plans-box input:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+  }
+  .subscription-plans-box div:nth-of-type(1) div:nth-of-type(1) {
+    border-bottom: 0.11825rem solid #caccce;
+  }
+  .subscription-plans-box div:nth-of-type(1) div {
+    padding: 1.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .checkout__cart-sticky-card-div {
+    margin-top: 10rem;
+  }
+  .checkout__cart-sticky-card-div input[type=radio] {
+    margin: 1.05rem 0.525rem;
+    border-color: #707070 !important;
+    cursor: pointer;
+  }
+  .checkout__cart-sticky-card-div input[type=radio]:checked {
+    background-color: white !important;
+  }
+  .checkout__cart-sticky-card-div input[type=radio]:checked[type="radio"] {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+  }
+  .checkout__cart-sticky-card__subscription-plans {
+    margin-bottom: 1.68rem;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box {
+    border-bottom: 0.13125rem solid #F3F3F3;
+    padding: 1.05rem 3.4125rem;
+    margin: 0 -3.4125rem;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
+    margin: -3.4125rem -3.4125rem 0 -3.4125rem;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box--active {
+    border: 0.0625rem solid red;
+    border-radius: 1.05rem;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip {
+    font-size: 1.47rem;
+    color: white;
+    background-color: #464646;
+    border-radius: 1.05rem;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0.21rem 1.26rem;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box input {
+    width: 2.625em;
+    height: 2.625em;
+    margin: 0.525rem 0 1.05rem 1.05rem !important;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan {
+    font-size: 1.89rem;
+    font-weight: 800;
+    color: var(--dark-black);
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing {
+    margin: 0 0 0.63rem 0;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing span:nth-of-type(1) {
+    font-size: 1.89rem;
+    font-weight: 800;
+    color: #949498;
+    display: inline-block;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing span:nth-of-type(2) {
+    font-size: 1.47rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin: 0 1.05rem 0 0;
+    border: 0.13125rem solid red;
+    border-radius: 1.05rem;
+    padding: 0.21rem 1.05rem;
   }
 }
 /*# sourceMappingURL=checkout-page.module.css.map */

@@ -141,6 +141,30 @@ module.exports = {
   async redirects() {
     return [
       {
+        source: "/instagram",
+        destination:
+          "/?utm_source=Tadarab&utm_medium=instagram&utm_campaign=tadarab_instagram_bio_homepage",
+        permanent: true,
+      },
+      {
+        source: "/tiktok",
+        destination:
+          "/?utm_source=Tadarab&utm_medium=Tiktok&utm_campaign=tiktok",
+        permanent: true,
+      },
+      {
+        source: "/snapchat",
+        destination:
+          "/?utm_source=Tadarab&utm_medium=Snapchat&utm_campaign=snapchat",
+        permanent: true,
+      },
+      {
+        source: "/facebook",
+        destination:
+          "/?utm_source=Tadarab&utm_medium=Facebook&utm_campaign=facebook",
+        permanent: true,
+      },
+      {
         source: "/courses/qatadah-influence",
         destination:
           "/course/%d9%85%d9%87%d8%a7%d8%b1%d8%a7%d8%aa-%d8%a7%d9%84%d8%aa%d8%a3%d8%ab%d9%8a%d8%b1-%d9%88%d9%81%d9%86-%d8%a7%d9%84%d8%a7%d9%82%d9%86%d8%a7%d8%b9",

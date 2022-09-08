@@ -28,6 +28,6 @@
     "incremental": true,
     "downlevelIteration": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "modules/_Shared/utils/fbPixel.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/toggleLoader.ts", "common/Social login button/SocialButton.js", "pages/sitemap.xml.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "modules/_Shared/utils/fbPixel.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/pixel/facebook/pixel-1.js", "modules/_Shared/utils/toggleLoader.ts", "common/Social login button/SocialButton.js", "pages/sitemap.xml.jsx", "modules/Course listing/CustomPagination.jsx"],
   "exclude": ["node_modules"]
 }

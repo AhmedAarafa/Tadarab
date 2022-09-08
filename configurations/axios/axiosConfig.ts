@@ -2,7 +2,8 @@ import axios from "axios";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 
-export const axiosInstance = axios.create({
+export const 
+axiosInstance = axios.create({
   // baseURL: "https://developer.tadarab.com/wp-json/api/",
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
 });

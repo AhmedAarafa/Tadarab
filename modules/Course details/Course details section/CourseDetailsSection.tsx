@@ -1,7 +1,7 @@
 import React,{ useState,useEffect } from "react";
 import styles from "./course-details-section.module.css";
 import { useDispatch, useSelector } from "react-redux";   
-import {TadarabLogo,NextIcon,BackIcon,DarkModeIcon,DropDownIcon,SearchIcon,FavouriteIcon,CartIcon,AccountIcon} from "common/Icons/Icons";
+import { DropDownIcon } from "common/Icons/Icons";
 
 export default function CourseDetailsSection() {
     const [showMore, setShowMore] = useState(true);
@@ -52,12 +52,12 @@ export default function CourseDetailsSection() {
   return (
     <>
       <div id="course-details" className={styles["course-details-section"]}>
-        <div className={styles["course-details-section__title"]}>تفاصيل الدورة</div>
+        <h2 className={styles["course-details-section__title"]}>تفاصيل الدورة</h2>
         <p className={styles["course-details-section__para"]} 
         dangerouslySetInnerHTML={{__html: courseDetailsData.data?.course_details?.description}}  
         >
         </p>
-        <div className={styles["course-details-section__read-more"]} onClick={showMoreHandler}>
+        <div className={styles["course-details-section__read-more"]} onClick={()=>showMoreHandler()}>
             {
                 showMore ? 
                 <>

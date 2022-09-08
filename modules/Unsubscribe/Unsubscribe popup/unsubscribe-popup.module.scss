@@ -94,16 +94,16 @@
     border: 0;
     padding-top: 0;
     padding: 0 1.25rem 0.5rem 1.25rem;
-    
+
     a {
         font-size: 0.85rem;
         font-weight: 400;
         cursor: pointer;
         margin: 0.25rem auto;
         color: var(--dark-black);
-    
+
         &:is(&:hover, &:active) {
-           color: var(--primary-red);
+            color: var(--primary-red);
         }
     }
 }
@@ -138,10 +138,11 @@
         border-radius: 0.625rem;
         margin: 0.5rem 0;
     }
+
     a:nth-of-type(2) {
         &:is(&:hover, &:active) {
             color: var(--dark-black);
-         }
+        }
     }
 
 }
@@ -210,6 +211,11 @@
         color: rgba(34, 34, 34, 0.5);
         font-size: 0.9rem;
     }
+}
+
+.error-msg {
+    color: red;
+    font-size: 0.8125rem;
 }
 
 
@@ -444,8 +450,8 @@
     .unsubscribe-popup__footer2,
     .unsubscribe-popup__footer3 {
 
-        button:nth-of-type(1),
-        button:nth-of-type(2) {
+        a:nth-of-type(1),
+        a:nth-of-type(2) {
             padding: 0.5rem*1.7 1.25rem*1.7;
             border-radius: 0.625rem*1.7;
             margin: 0.5rem*1.7 0;
@@ -486,5 +492,9 @@
         &::placeholder {
             font-size: 0.9rem*1.7;
         }
+    }
+
+    .error-msg {
+        font-size: 0.8125rem*2;
     }
 }

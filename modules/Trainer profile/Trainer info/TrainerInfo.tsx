@@ -48,9 +48,7 @@ export default function TrainerInfo() {
     window.addEventListener("resize" , ()=>{
       let el:any = document.getElementById('bio');
       let divHeight = el?.offsetHeight;
-      // console.log("divHeight",divHeight);
       let lines = Math.ceil(divHeight / 24);
-      // console.log("Lines: " + lines);
       
       if(lines > 9 ){
         setIsTooMuchContent(true);
@@ -197,9 +195,8 @@ export default function TrainerInfo() {
             </>
             }
 
-           
-
-          { isTooMuchContent && <div id="fadeout2" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect"]}></div>}
+          { isTooMuchContent && <div id="fadeout2" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect"]}>
+            </div>}
         </div>
         </div>
 

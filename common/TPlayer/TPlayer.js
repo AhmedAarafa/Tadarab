@@ -180,9 +180,7 @@ function pudate_playlist_active(e){
 function tplayer_video_progress(type){
 	var playbackInterval;
 	if((playbackInterval)&&(typeof playbackInterval!==undefined)){clearInterval(playbackInterval);}
-
 	if (tplayer.paused()) {return;}
-
 	if((type==='play')&&(tplayer?.playlist)){
 		var id=tplayer?.playlist.currentItem(),
 		//is_view=(tplayer.playlist()[id].sources[0].isView),
@@ -288,7 +286,7 @@ const handleSubscriptionBtn = () => {
         query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
       })
     }
-  }
+}
 /**
 *	Video GA tracking
 */

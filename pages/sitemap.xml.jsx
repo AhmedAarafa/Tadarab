@@ -46,7 +46,7 @@ const staticPaths = fs
         ].includes(staticPage);
     })
     .map((staticPagePath) => {
-            return `${BASE_URL}/${newURLs[`${staticPagePath}`]}`;
+        return `${BASE_URL}/${newURLs[`${staticPagePath}`]}`;
     });
 
 

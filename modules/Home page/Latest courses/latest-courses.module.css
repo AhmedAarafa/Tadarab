@@ -177,7 +177,7 @@
   top: 50%;
   border-width: 0.5625rem;
   border-style: solid;
-  border-color: transparent  transparent  transparent transparent;
+  border-color: transparent transparent transparent transparent;
 }
 
 .latest-courses__popover-container--left {
@@ -186,7 +186,7 @@
 
 .latest-courses__popover-container--left::after {
   left: 100%;
-  border-color: transparent  transparent  transparent white;
+  border-color: transparent transparent transparent white;
 }
 
 .latest-courses__popover-container--right {
@@ -195,7 +195,7 @@
 
 .latest-courses__popover-container--right::after {
   right: 100%;
-  border-color: transparent  white transparent  transparent;
+  border-color: transparent white transparent transparent;
 }
 
 .latest-courses__cards-carousel__course-card:hover .popover-wrapper {
@@ -1120,10 +1120,12 @@
 
 @media (max-width: 575px) {
   .latest-courses__title {
-    font-size: 4.688rem;
     text-align: center;
     padding: 0;
     margin: 6rem 0 3.906rem 0;
+  }
+  .latest-courses__title span {
+    font-size: 4.688rem;
   }
   .latest-courses__departments-list {
     padding: 0 3rem 0 4rem;

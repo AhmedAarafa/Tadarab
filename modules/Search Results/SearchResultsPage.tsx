@@ -22,7 +22,7 @@ export default function SearchResultsPage() {
     const [searchResults, setSearchResults] = useState<any>([]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [currentPage, setCurrentPage] = useState("1");
-  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+    const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -41,9 +41,9 @@ export default function SearchResultsPage() {
     }
 
     const handleCartActionBtn = (course: any): any => {
-        setDisabledCartBtns([...disabledCartBtns,course.id]);
+        setDisabledCartBtns([...disabledCartBtns, course.id]);
         setTimeout(() => {
-          setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+            setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
         }, 5000);
         dispatch(setCheckoutType("cart"));
 
@@ -400,42 +400,43 @@ export default function SearchResultsPage() {
 
                 </Col>
                 <Col xs={12} className={styles["search-results__pagination"]}>
-
-                    {searchResults?.pagination?.count > 16 && <Pagination>
-                        <Pagination.Prev
-                            onClick={() => {
-                                handlePageClick(searchResults?.pagination?.current - 1)
-                            }}
-                            className={`${currentPage == "1" && styles["disabled"]}`} />
-                        <Pagination.Item
-                            style={{ display: searchResults?.pagination?.previous ? "" : "none" }}
-                            active={currentPage == searchResults?.pagination?.previous}
-                            onClick={() => {
-                                handlePageClick(searchResults?.pagination?.previous)
-                            }}>
-                            {searchResults?.pagination?.previous}
-                        </Pagination.Item>
-                        <Pagination.Item
-                            active={currentPage == searchResults?.pagination?.current}
-                            onClick={() => {
-                                handlePageClick(searchResults?.pagination?.current);
-                            }}>
-                            {searchResults?.pagination?.current}
-                        </Pagination.Item>
-                        <Pagination.Item
-                            style={{ display: searchResults?.pagination?.next ? "" : "none" }}
-                            active={currentPage == searchResults?.pagination?.next}
-                            onClick={() => {
-                                handlePageClick(searchResults?.pagination?.next)
-                            }}>
-                            {searchResults?.pagination?.next}
-                        </Pagination.Item>
-                        <Pagination.Next
-                            onClick={() => {
-                                handlePageClick(searchResults?.pagination?.current + 1)
-                            }}
-                            className={`${currentPage == searchResults?.pagination?.pages && styles["disabled"]}`} />
-                    </Pagination>}
+                    {searchResults?.pagination?.count > 16 &&
+                        <Pagination>
+                            <Pagination.Prev
+                                onClick={() => {
+                                    handlePageClick(searchResults?.pagination?.current - 1)
+                                }}
+                                className={`${Number(currentPage) == 1 && styles["disabled"]}`} />
+                            <Pagination.Item
+                                style={{ display: searchResults?.pagination?.previous ? "" : "none" }}
+                                active={currentPage == searchResults?.pagination?.previous}
+                                onClick={() => {
+                                    handlePageClick(searchResults?.pagination?.previous)
+                                }}>
+                                {searchResults?.pagination?.previous}
+                            </Pagination.Item>
+                            <Pagination.Item
+                                active={currentPage == searchResults?.pagination?.current}
+                                onClick={() => {
+                                    handlePageClick(searchResults?.pagination?.current);
+                                }}>
+                                {searchResults?.pagination?.current}
+                            </Pagination.Item>
+                            <Pagination.Item
+                                style={{ display: searchResults?.pagination?.next ? "" : "none" }}
+                                active={currentPage == searchResults?.pagination?.next}
+                                onClick={() => {
+                                    handlePageClick(searchResults?.pagination?.next)
+                                }}>
+                                {searchResults?.pagination?.next}
+                            </Pagination.Item>
+                            <Pagination.Next
+                                onClick={() => {
+                                    handlePageClick(searchResults?.pagination?.current + 1)
+                                }}
+                                className={`${currentPage == searchResults?.pagination?.pages && styles["disabled"]}`} />
+                        </Pagination>
+                    }
 
                 </Col>
             </Row>

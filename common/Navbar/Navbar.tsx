@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./navbar.module.css";
 import Link from 'next/link';
 import {
@@ -38,7 +38,7 @@ function Navbar() {
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [expanded, setExpanded] = useState<any>(false);
-  const [dropdownOpened, setDropdownOpened] = useState({cart:false,account:false});
+  const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
   const [searchQuery, setSearchQuery] = useState("");
   const handleDiscoverSidebarShow = (status: boolean) => {
@@ -52,10 +52,10 @@ function Navbar() {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const onLOLogoutSuccess = ():void=>{
+  const onLOLogoutSuccess = (): void => {
     console.log("logout succeed");
   }
-  const onLOFailure = ():void=>{
+  const onLOFailure = (): void => {
     console.log("logout failed");
   }
 
@@ -153,14 +153,14 @@ function Navbar() {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
-          searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
+            searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
           // searchBar.style.cssText=`width:28rem`;
           // searchBar.style.cssText=`width:31.75rem`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width:42rem`:
-          searchBar.style.cssText = `width:36rem`;
+            searchBar.style.cssText = `width:42rem` :
+            searchBar.style.cssText = `width:36rem`;
         }
       }
       window.addEventListener("resize", () => {
@@ -169,14 +169,14 @@ function Navbar() {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
             userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 48.6rem)`:
-            searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
+              searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
             // searchBar.style.cssText=`width:28rem`;
             // searchBar.style.cssText=`width:31.75rem`;
             userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width:42rem`:
-            searchBar.style.cssText = `width:36rem`;
+              searchBar.style.cssText = `width:42rem` :
+              searchBar.style.cssText = `width:36rem`;
           }
         }
       });
@@ -189,13 +189,13 @@ function Navbar() {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
-          searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+            searchBar.style.cssText = `width: calc(100vw - 44rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
           userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width:38.5rem`:
-          searchBar.style.cssText = `width:32.5rem`;
+            searchBar.style.cssText = `width:38.5rem` :
+            searchBar.style.cssText = `width:32.5rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
       }
@@ -206,13 +206,13 @@ function Navbar() {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
             userStatus.isSubscribed == true ?
-          searchBar.style.cssText = `width: calc(100vw - 44rem)`:
-            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+              searchBar.style.cssText = `width: calc(100vw - 44rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 50rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
             userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width:38.5rem`:
-            searchBar.style.cssText = `width:32.5rem`;
+              searchBar.style.cssText = `width:38.5rem` :
+              searchBar.style.cssText = `width:32.5rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
         }
@@ -242,7 +242,7 @@ function Navbar() {
     // setLocalStateCartItems(cartItems?.data);
 
 
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
+    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined ) {
 
       axiosInstance
         .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
@@ -280,27 +280,28 @@ function Navbar() {
 
 
 
-  useEffect(() => {
-    setLocalStateCartItems(cartItems?.data);
+  // useEffect(() => {
+  //   setLocalStateCartItems(cartItems?.data);
 
-    let localStorageItems: any = localStorage.getItem("cart");
+  //   let localStorageItems: any = localStorage.getItem("cart");
 
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
+  //   if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
+  //    cartItems?.data !== undefined && cartItems?.data !== "undefined") {
 
-      axiosInstance
-        .get(`courses/?country_code=null&course_ids=${JSON.stringify(cartItems?.data?.map((c:any) => c.id))?.replace(/[\[\]']+/g, '')}`)
-        .then(function (response: any) {
-          setLocalStateCartItems(response?.data?.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+  //     axiosInstance
+  //       .get(`courses/?country_code=null&course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)
+  //       .then(function (response: any) {
+  //         setLocalStateCartItems(response?.data?.data);
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
 
-    } else {
-      setLocalStateCartItems([]);
-    }
+  //   } else {
+  //     setLocalStateCartItems([]);
+  //   }
 
-  }, [cartItems])
+  // }, [cartItems]);
 
 
   useResize((
@@ -358,24 +359,24 @@ function Navbar() {
     }
   }
 
-  const closeDropdown = (dropdown:string)=>{
-    if(dropdown == "cart"){
-      if(dropdownOpened.account == true){
-        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart,account:false});
-      }else{
-        setDropdownOpened({...dropdownOpened,cart:!dropdownOpened.cart});
+  const closeDropdown = (dropdown: string) => {
+    if (dropdown == "cart") {
+      if (dropdownOpened.account == true) {
+        setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart, account: false });
+      } else {
+        setDropdownOpened({ ...dropdownOpened, cart: !dropdownOpened.cart });
       }
-    }else if(dropdown == "account"){
-      if(dropdownOpened.cart == true){
-        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account,cart:false});
-      }else{
-        setDropdownOpened({...dropdownOpened,account:!dropdownOpened.account});
+    } else if (dropdown == "account") {
+      if (dropdownOpened.cart == true) {
+        setDropdownOpened({ ...dropdownOpened, account: !dropdownOpened.account, cart: false });
+      } else {
+        setDropdownOpened({ ...dropdownOpened, account: !dropdownOpened.account });
       }
     }
   }
 
   useEffect(() => {
-    setDropdownOpened({cart:false,account:false});
+    setDropdownOpened({ cart: false, account: false });
   }, [router.asPath]);
 
   return (
@@ -387,10 +388,11 @@ function Navbar() {
         }}
         className={styles["navbar"]} expanded={expanded} expand="sm">
         <Link href="/">
-
-          <NavBar.Brand className={styles["navbar__img"]} >
-            <TadarabLogo />
-          </NavBar.Brand>
+          <a className="d-flex me-0">
+            <NavBar.Brand className={styles["navbar__img"]}>
+              <TadarabLogo />
+            </NavBar.Brand>
+          </a>
         </Link>
 
         <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />
@@ -476,10 +478,10 @@ function Navbar() {
                   <li>تواصل معنا</li>
               </ul> */}
             </Offcanvas>
-            { !userStatus.isSubscribed == true && 
-            <Link href="/subscription">
-              <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
-            </Link>}
+            {!userStatus.isSubscribed == true &&
+              <Link href="/subscription">
+                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
+              </Link>}
 
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
@@ -502,12 +504,12 @@ function Navbar() {
                   }
                   }
                 >المنهج</li>
-                <li id="certificate" className={styles["sidebar-list__item"]}
+                {/* <li id="certificate" className={styles["sidebar-list__item"]}
                   onClick={() => {
                     dispatch(setMyCourseNavigator("certificate"));
                     setExpanded(false);
                   }}
-                >شهادة الدورة</li>
+                >شهادة الدورة</li> */}
               </>
             }
           </ul>
@@ -520,7 +522,7 @@ function Navbar() {
 
           </div>
           <Link href={userStatus.isUserAuthenticated ? "/my-account" : "/sign-up"}>
-            <Button onClick={() => { setExpanded(false);}} className={styles["sidebar-list__register-btn"]}>
+            <Button onClick={() => { setExpanded(false); }} className={styles["sidebar-list__register-btn"]}>
               {
                 userStatus.isUserAuthenticated ?
                   "حسابي"
@@ -528,11 +530,11 @@ function Navbar() {
                   "حساب جديد"
               }
             </Button>
-         </Link>
-         <Link href={userStatus.isUserAuthenticated ? "/" : "/sign-in"}>
+          </Link>
+          <Link href={userStatus.isUserAuthenticated ? "/" : "/sign-in"}>
             <Button onClick={() => {
               setExpanded(false);
-             
+
               userStatus.isUserAuthenticated ?
                 handleLogout() :
                 null
@@ -545,7 +547,7 @@ function Navbar() {
                   "تسجيل دخول"
               }
             </Button>
-         </Link>
+          </Link>
         </NavBar.Offcanvas>
         <Nav>
           {!isCoursePurchased &&
@@ -639,7 +641,7 @@ function Navbar() {
                     sendSearchQuery(event);
                   }}
                 >
-                    <SearchIcon color="#777" />
+                  <SearchIcon color="#777" />
                 </div>
                 <Form.Control
                   id="search-field"
@@ -650,7 +652,7 @@ function Navbar() {
                   className={styles["navbar__search-bar-container__search-bar"]}
                 />
               </div>
-              { !userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
+              {!userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
@@ -674,7 +676,7 @@ function Navbar() {
                   <span>المنهج</span>
 
                 </div>
-                <div className={`${styles["navbar__purchased-course-nav__certificate"]} 
+                {/* <div className={`${styles["navbar__purchased-course-nav__certificate"]} 
                ${myCourseNavigator == "certificate" && styles["navbar__purchased-course-nav--active"]} `}
                   onClick={() => {
                     dispatch(setMyCourseNavigator("certificate"));
@@ -683,7 +685,7 @@ function Navbar() {
                   <CertificateIcon color={myCourseNavigator == "certificate" ? "#af151f" : "#bbbabf"} />
                   <span>شهادة الدورة</span>
 
-                </div>
+                </div> */}
 
               </div>
               {/* <div className={styles["navbar__three-dots-icon"]}>
@@ -761,7 +763,7 @@ function Navbar() {
                 id="cart-popover" >
                 <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
                   {
-                   localStateCartItems?.map((item: any, i: number) => {
+                    localStateCartItems?.map((item: any, i: number) => {
                       return (
 
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
@@ -940,7 +942,7 @@ function Navbar() {
 
                     <Link href="/checkout">
 
-                    <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
+                      <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
                     </Link>
                   </div>
                 </div>
@@ -950,7 +952,7 @@ function Navbar() {
             <div className={styles["navbar__cart-icon-container"]} id="carticon"
               onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
               <CartIcon color="#222" />
-              <Badge className={styles["navbar__cart-icon__badge"]}>{localStateCartItems?.length || ""}</Badge>
+              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
               {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
 
             </div>
@@ -967,11 +969,11 @@ function Navbar() {
                     <div onClick={()=>{closeDropdown("account")}}>إلغاء الإشتراك الشهرى</div>
                   </Link>
                     } */}
-                  <Button onClick={() => {handleLogout(); closeDropdown("account");}}
+                  <Button onClick={() => { handleLogout(); closeDropdown("account"); }}
                     className={styles["navbar__account-icon__dropdown__logout-btn"]}>تسجيل خروج</Button>
                 </div>
               }>
-                <div onClick={()=>{closeDropdown("account")}} className={styles["navbar__account-icon"]}>
+                <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
 
                   <AccountIcon />
                 </div>

@@ -1,7 +1,7 @@
 @import "../../../styles/mixins";
 
 
-.latest-courses__title{
+.latest-courses__title {
     margin-top: 2rem;
     font-size: 2rem;
     padding: 1rem 3rem 0 3rem;
@@ -14,11 +14,13 @@
     span:nth-of-type(2) {
         color: var(--primary-red);
     }
-    h2{
+
+    h2 {
         font-weight: 800;
-        margin:0px;
+        margin: 0px;
     }
 }
+
 .latest-courses__departments-list {
     z-index: 5;
     font-size: 1.125rem;
@@ -42,8 +44,8 @@
         &::before {
             content: "-";
             padding-left: 0.5rem;
-            color: var(--grey); 
-            text-decoration:none !important;
+            color: var(--grey);
+            text-decoration: none !important;
             display: inline-block;
         }
 
@@ -90,7 +92,7 @@
 }
 
 
-.popover-wrapper{
+.popover-wrapper {
     visibility: hidden;
     background-color: transparent;
     position: absolute;
@@ -100,7 +102,7 @@
     // margin-left: -60px;
     opacity: 0;
     -webkit-transition: opacity 0.3s;
-    transition: opacity 0.3s; 
+    transition: opacity 0.3s;
     width: 22.5rem;
     height: 28rem;
     @include flex(center);
@@ -119,6 +121,7 @@
     position: relative;
     height: fit-content !important;
     opacity: 0;
+
     // left: 0;
     &::after {
         content: "";
@@ -127,29 +130,32 @@
         top: 50%;
         border-width: 0.5625rem;
         border-style: solid;
-        border-color: transparent  transparent  transparent transparent;
-      }
+        border-color: transparent transparent transparent transparent;
+    }
 }
 
 .latest-courses__popover-container--left {
     opacity: 100%;
+
     &::after {
         left: 100%;
-        border-color: transparent  transparent  transparent white;
-      }
+        border-color: transparent transparent transparent white;
+    }
 }
+
 .latest-courses__popover-container--right {
     opacity: 100%;
+
     &::after {
         right: 100%;
-        border-color: transparent  white transparent  transparent ;
-      }
+        border-color: transparent white transparent transparent;
+    }
 }
 
 .latest-courses__cards-carousel__course-card:hover .popover-wrapper {
     visibility: visible;
     opacity: 1;
-  }
+}
 
 .latest-courses__cards-carousel {
     margin: 1.938rem 0 3rem 0;
@@ -172,7 +178,8 @@
         &>div:nth-child(4) {
             height: fit-content;
         }
-        &:before{
+
+        &:before {
             height: 80% !important;
         }
     }
@@ -387,7 +394,7 @@
 }
 
 .latest-courses__popover-container__what-you-will-learn {
-    @include flex(flex-start,flex-start);
+    @include flex(flex-start, flex-start);
     margin-top: 0.5rem;
 
 
@@ -437,7 +444,8 @@
     @include flex(center, center);
     width: 50%;
     height: 2.5rem;
-    svg{ 
+
+    svg {
         width: 1.5rem;
         height: 1.5rem;
     }
@@ -451,16 +459,16 @@
     display: block;
 }
 
-.latest-courses__show-more-link{
+.latest-courses__show-more-link {
     color: var(--primary-red);
     font-size: 0.8125rem;
     text-align: center;
-    margin: 0.5rem 0 0 0 ;
-    text-decoration: underline 0.0625rem 	rgba(0, 0, 0,0.5);
+    margin: 0.5rem 0 0 0;
+    text-decoration: underline 0.0625rem rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
 
-.watch-subscribed-course{
+.watch-subscribed-course {
     font-size: 0.9rem !important;
     font-weight: 700 !important;
     padding: 0.5rem 1rem;
@@ -472,10 +480,11 @@
 
 
 @media (max-width:1024px) {
-    .popover-wrapper{
+    .popover-wrapper {
         display: none;
     }
 }
+
 @media (max-width:1200px) {
     .latest-courses__departments-list {
         padding-right: 3rem;
@@ -626,7 +635,7 @@
         color: var(--grey);
         width: 13rem;
 
-        
+
 
     }
 
@@ -690,8 +699,8 @@
         }
     }
 
-    .watch-subscribed-course{
-    font-size: 0.9rem*1.27 !important;
+    .watch-subscribed-course {
+        font-size: 0.9rem*1.27 !important;
         padding: 0.5rem*1.27 1rem*1.27;
         border-radius: 0.7rem*1.27;
     }
@@ -770,7 +779,7 @@
             display: inline-block;
             background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
             background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-        border-radius: 0.75rem*1.67;
+            border-radius: 0.75rem*1.67;
 
         }
     }
@@ -904,8 +913,8 @@
         }
     }
 
-    .watch-subscribed-course{
-    font-size: 0.9rem*1.67 !important;
+    .watch-subscribed-course {
+        font-size: 0.9rem*1.67 !important;
         padding: 0.5rem*1.67 1rem*1.67;
         border-radius: 0.7rem*1.67;
     }
@@ -915,7 +924,10 @@
 @media (max-width:575px) {
 
     .latest-courses__title {
-        font-size: 4.688rem;
+            span {
+                font-size: 4.688rem;
+            }
+
         text-align: center;
         padding: 0;
         margin: 6rem 0 3.906rem 0;
@@ -935,16 +947,16 @@
             list-style-type: none;
             cursor: pointer;
             z-index: 3;
-    
+
             &::before {
                 padding-left: 0.5rem*2.92;
             }
-    
+
         }
     }
 
     .latest-courses__departments-list__item--active {
-       text-underline-offset: 0.2rem*2.92;
+        text-underline-offset: 0.2rem*2.92;
     }
 
 
@@ -1016,7 +1028,7 @@
             display: inline-block;
             background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
             background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-        border-radius: 0.75rem*2.92;
+            border-radius: 0.75rem*2.92;
 
         }
     }
@@ -1162,8 +1174,9 @@
 
         }
     }
-    .watch-subscribed-course{
-    font-size: 0.9rem*2.5 !important;
+
+    .watch-subscribed-course {
+        font-size: 0.9rem*2.5 !important;
         padding: 0.5rem*2.5 1rem*2.5;
         border-radius: 0.7rem*2.5;
     }

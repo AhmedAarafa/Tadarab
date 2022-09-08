@@ -15,6 +15,7 @@ export default function UnsubscribePopup(props: any) {
     const [categories, setCategories] = useState([]);
     SwiperCore.use([Navigation]);
     const [step, setStep] = useState(1);
+    const [showError, setShowError] = useState(false);
     const [unsubscriptionReasons, setUnsubscriptionReasons] = useState<any>({ knownReasons: [], others: "" });
     const setOtherReason = (e: any) => {
         setUnsubscriptionReasons({
@@ -30,30 +31,30 @@ export default function UnsubscribePopup(props: any) {
                 unsubscriptionReasons.knownReasons.filter((r: any) => r !== reason)
                 :
                 [...unsubscriptionReasons.knownReasons, reason]
-
-            // knownReasons: [...unsubscriptionReasons.knownReasons, reason]
         })
-
-        /* categories:
-        filters.categories.includes(categoryId) ? filters.categories.filter((f: any) => f !== categoryId) : [...filters.categories, categoryId] */
     };
 
     const cancelSubscription = () => {
-        axiosInstance.post(`subscription/unsubscribe`, {
-            "reasons": JSON.stringify(unsubscriptionReasons.knownReasons).replace(/[\[\]']+/g, ''),
-            "other_reason": unsubscriptionReasons.others,
-        }).then((response: any) => {
-            let tadarabGA = new TadarabGA();
-            tadarabGA.tadarab_fire_traking_GA_code("unsubscribe", {
-                single_reason: response?.data?.data?.single_reason,
-                user_id: response?.data?.data?.ga_tracking.uid,
-                cid: response?.data?.data?.ga_tracking.cid,
-                date: response?.data?.data?.start_trial_date,
-            });
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
-        }).catch((error: any) => {
-            console.log(error);
-        })
+        if (unsubscriptionReasons.knownReasons.length !== 0 || unsubscriptionReasons.others !== "") {
+            setShowError(false);
+            axiosInstance.post(`subscription/unsubscribe`, {
+                "reasons": JSON.stringify(unsubscriptionReasons.knownReasons).replace(/[\[\]']+/g, ''),
+                "other_reason": unsubscriptionReasons.others,
+            }).then((response: any) => {
+                let tadarabGA = new TadarabGA();
+                tadarabGA.tadarab_fire_traking_GA_code("unsubscribe", {
+                    single_reason: response?.data?.data?.single_reason,
+                    user_id: response?.data?.data?.ga_tracking.uid,
+                    cid: response?.data?.data?.ga_tracking.cid,
+                    date: response?.data?.data?.start_trial_date,
+                });
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+            }).catch((error: any) => {
+                console.log(error);
+            })
+        } else {
+            setShowError(true);
+        }
     }
 
     useEffect(() => {
@@ -145,6 +146,7 @@ export default function UnsubscribePopup(props: any) {
                             <div className={styles["unsubscribe-popup__body__unsubscription-cons-body"]}>
                                 <img src="/images/unsubscription-cons.png" alt="" className={styles["unsubscribe-popup__body__unsubscription-cons-img"]} />
                                 <ul className={styles["unsubscribe-popup__body__unsubscription-cons-list"]}>
+
                                     <li>
                                         ستفقد صلاحية الوصول لجميع الدورات.
                                     </li>
@@ -269,10 +271,11 @@ export default function UnsubscribePopup(props: any) {
                                     </div>
                                     <textarea
                                         id="unsubscription-reasons-field"
-                                        onBlur={() => { setOtherReason(event) }}
+                                        onChange={() => { setOtherReason(event) }}
                                         placeholder="سبب إلغاء اشتراكك..."
                                         className={styles["reason-for-unsubscription__another-reason-input-field"]}
                                     />
+                                    {showError && <div className={styles["error-msg"]}>الرجاء ذكر سبب إلغاء الاشتراك</div>}
                                 </div>
                             </div>
 

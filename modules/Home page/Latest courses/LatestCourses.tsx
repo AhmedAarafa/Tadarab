@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./latest-courses.module.css";
 import {
   Row,
@@ -45,13 +45,13 @@ function LatestCourses() {
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
-
+  const homePageCoursesRef = useRef([]);
+  
 
   const handleFilterType = (type: string) => {
     setFilterType(type); 
     axiosInstance 
       .get(`home/courses/?country_code=null&type=${type}`)
-      /* home/courses/?country_code=null&type=${type} */
       .then(function (response: any) {
         console.log("response//",response);
         setLatestCourses(response?.data?.data);
@@ -114,30 +114,31 @@ function LatestCourses() {
   }
 
   useEffect(() => {
+    homePageCoursesRef.current = homePageData?.data?.best_seller_courses;
+
     setLatestCourses(homePageData.data?.best_seller_courses || []);
     const localStorageItems: any = localStorage.getItem("cart");
-    if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
-      axiosInstance
-        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
-        .then(function (response: any) {
-          // console.log(response);
-          let newArray: any = homePageData?.data?.best_seller_courses || [];
-          (response?.data?.data || []).forEach((element: any) => {
-            newArray.forEach((ele: any) => {
-              if (element.id === ele.id) {
-                // console.log(ele);
-                ele.is_in_cart = true;
-                // newArray.ele.is_in_cart = true;
-                // console.log("newArray",newArray);
-              }
-            });
-          });
-          setLatestCourses([...newArray]);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+    
+    // console.log("home ",homePageCoursesRef.current, homePageData?.data?.best_seller_courses, homePageCoursesRef.current != homePageData?.data?.best_seller_courses);
+    // if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && homePageCoursesRef.current != homePageData?.data?.best_seller_courses) {
+    //   axiosInstance
+    //   .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+    //   .then(function (response: any) {
+    //       console.log(response);
+    //       let newArray: any = homePageData?.data?.best_seller_courses || [];
+    //       // (response?.data?.data || []).forEach((element: any) => {
+    //       //   newArray.forEach((ele: any) => {
+    //       //     if (element.id === ele.id) {
+    //       //       ele.is_in_cart = true;
+    //       //     }
+    //       //   });
+    //       // });
+    //       setLatestCourses([...newArray]);
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // }
   }, [homePageData]);
 
   const handlePlacement = () => {

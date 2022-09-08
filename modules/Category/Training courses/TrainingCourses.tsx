@@ -557,13 +557,13 @@ export default function TrainingCourses(props: any) {
                                                     }
                                                 </div>
                                                 {
-                                                    (course.price > course.discounted_price) &&
+                                                 !course.is_purchased && !course.is_in_user_subscription && (course.price > course.discounted_price) &&
                                                     <div
                                                         className={
                                                             styles[
                                                             "training-courses__course-card__card-body__checkout-details__old-price-container"
                                                             ]
-                                                        }
+                                                        } 
                                                     >
                                                         <span
                                                             className={

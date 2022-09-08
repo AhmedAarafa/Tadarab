@@ -180,7 +180,7 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 				},
 			   'userID': traking_data.user_id,
 			   'clientID': traking_data.cid,
-			   'start_trial_date': traking_data.date
+			   'acquisition_date': traking_data.date
 			});
 		}
 	}else if(traking_type=='unsubscribe'){
@@ -192,7 +192,7 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 			'eventLabel': traking_data.single_reason,
 			'userID': traking_data.user_id,
 			'clientID': traking_data.cid,
-			'start_trial_date': traking_data.date // Date when free-trial occurred
+			'acquisition_date': traking_data.date // Date when free-trial occurred
 		});
 	 }
 }

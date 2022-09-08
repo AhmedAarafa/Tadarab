@@ -212,6 +212,7 @@ function CourseDetails() {
       });
     };
   }, [Router.query]);
+  
   return (
     <>
     <MetaTagsGenerator title={courseDetailsData?.data?.seo_title} 

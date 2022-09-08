@@ -1,5 +1,5 @@
 .course-listing {
-  padding: 7rem 9rem 0 9rem;
+  padding: 2rem 9rem 0 9rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,6 +11,13 @@
           justify-content: space-evenly;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+.course-listing__title {
+  padding: 7rem 9rem 0 9rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark-black);
 }
 
 .course-listing__course-card {
@@ -1282,7 +1289,7 @@
 
 @media (max-width: 575px) {
   .course-listing {
-    padding: 13rem 5rem 0 5rem;
+    padding: 5rem 5rem 0 5rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1294,6 +1301,10 @@
             justify-content: space-evenly;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+  }
+  .course-listing__title {
+    padding: 17.5rem 22.5rem 0 22.5rem;
+    font-size: 5rem;
   }
   .course-listing__course-card {
     width: 46.875rem;

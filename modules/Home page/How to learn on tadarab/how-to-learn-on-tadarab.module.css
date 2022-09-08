@@ -114,14 +114,13 @@
             flex-direction: column;
     text-align: center;
     height: 100%;
-    font-size: 4.6875rem;
   }
-  .how-to-learn-on-tadarab__content div:nth-of-type(1) {
+  .how-to-learn-on-tadarab__content h3 {
     font-size: 3.9375rem;
   }
-  .how-to-learn-on-tadarab__content > div:nth-of-type(3) {
-    font-size: 2.5rem;
-    margin-top: 3rem;
+  .how-to-learn-on-tadarab__content h3 + div {
+    font-size: 2.625rem;
+    margin-top: 2rem;
   }
   .how-to-learn-on-tadarab__content button {
     -webkit-box-shadow: none !important;

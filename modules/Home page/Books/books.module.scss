@@ -398,7 +398,9 @@
 @media (max-width:575px) {
 
     .books__title {
-        font-size: 4.688rem;
+        span{
+            font-size: 4.688rem;
+        }
         padding: 0rem 0 3rem 0;
         @include flex(center, center);
 

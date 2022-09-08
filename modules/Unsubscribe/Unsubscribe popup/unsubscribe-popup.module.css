@@ -330,6 +330,11 @@
   font-size: 0.9rem;
 }
 
+.error-msg {
+  color: red;
+  font-size: 0.8125rem;
+}
+
 @media (max-width: 1200px) {
   .unsubscribe-popup__category-card-container > div {
     padding: 1.95rem 2.6rem !important;
@@ -523,10 +528,10 @@
     height: 6.8rem;
     margin: 1.7rem 0;
   }
-  .unsubscribe-popup__footer2 button:nth-of-type(1),
-  .unsubscribe-popup__footer2 button:nth-of-type(2),
-  .unsubscribe-popup__footer3 button:nth-of-type(1),
-  .unsubscribe-popup__footer3 button:nth-of-type(2) {
+  .unsubscribe-popup__footer2 a:nth-of-type(1),
+  .unsubscribe-popup__footer2 a:nth-of-type(2),
+  .unsubscribe-popup__footer3 a:nth-of-type(1),
+  .unsubscribe-popup__footer3 a:nth-of-type(2) {
     padding: 0.85rem 2.125rem;
     border-radius: 1.0625rem;
     margin: 0.85rem 0;
@@ -566,6 +571,9 @@
   }
   .reason-for-unsubscription__another-reason-input-field::placeholder {
     font-size: 1.53rem;
+  }
+  .error-msg {
+    font-size: 1.625rem;
   }
 }
 /*# sourceMappingURL=unsubscribe-popup.module.css.map */

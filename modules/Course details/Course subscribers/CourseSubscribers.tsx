@@ -48,9 +48,9 @@ export default function CourseSubscribers() {
   }
 
   const handleCartActionBtn = (course:any):any =>{
-    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setDisabledCartBtns([...disabledCartBtns,course?.id]);
     setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course?.id));
     }, 5000);
     dispatch(setCheckoutType("cart"));
     
@@ -168,8 +168,8 @@ export default function CourseSubscribers() {
                     <SwiperSlide key={i}>
                         <Card data-isvisible={false} data-coursedetails={JSON.stringify({
                                 name:course?.title,
-                                id:course.id,
-                                price:course.discounted_price_usd,
+                                id:course?.id,
+                                price:course?.discounted_price_usd,
                                 brand:"Tadarab",
                                 category: "Recorded Course",
                                 variant: "Single Course",
@@ -182,7 +182,7 @@ export default function CourseSubscribers() {
                             }
                             >
                               {
-                              course.categories[0] !== undefined &&  course.categories[0]?.title !== null && course.categories[0]?.title !== ""  &&
+                              course?.categories[0] !== undefined &&  course?.categories[0]?.title !== null && course?.categories[0]?.title !== ""  &&
 
                             <div
                                 className={
@@ -190,12 +190,12 @@ export default function CourseSubscribers() {
                                     "course-subscribers__cards-carousel__course-card__category-chip"
                                 ]
                                 }
-                                style={{backgroundColor:`${course.categories[0] !== undefined && course.categories[0].color}`}}
+                                style={{backgroundColor:`${course?.categories[0] !== undefined && course?.categories[0].color}`}}
                             > 
-                                {course.categories[0] !== undefined && course.categories[0]?.title} 
+                                {course?.categories[0] !== undefined && course?.categories[0]?.title} 
                             </div>
                               }
-                            <Link href={`/course/${course.slug}`}>
+                            <Link href={`/course/${course?.slug}`}>
                                   <a>
                                     <Card.Img
                                         variant="top"
@@ -217,7 +217,7 @@ export default function CourseSubscribers() {
                                 ]
                                 }
                             >
-                                <div style={{borderBottom: course.is_in_user_subscription && "none" }}
+                                <div style={{borderBottom: course?.is_in_user_subscription && "none" }}
                                 className={
                                     styles[
                                     "course-subscribers__cards-carousel__course-card__card-body__card-header"
@@ -231,10 +231,10 @@ export default function CourseSubscribers() {
                                     ]
                                     }
                                 >
-                                  <Link href={`/trainer/${course.trainer?.slug}`}>
+                                  <Link href={`/trainer/${course?.trainer?.slug}`}>
 
                                       <img loading="lazy"  
-                                      src={course.trainer?.image}
+                                      src={course?.trainer?.image}
                                       alt="trainer image"
                                       />
 
@@ -247,7 +247,7 @@ export default function CourseSubscribers() {
                                     ]
                                     }
                                 >
-                                  <Link href={`/course/${course.slug}`}>
+                                  <Link href={`/course/${course?.slug}`}>
 
                                       <h3 title={course?.title}
                                       className={
@@ -260,16 +260,16 @@ export default function CourseSubscribers() {
                                       </h3>
 
                                   </Link>
-                                  <Link href={`/trainer/${course.trainer?.slug}`}>
+                                  <Link href={`/trainer/${course?.trainer?.slug}`}>
 
-                                      <div title={course.trainer.name_ar}
+                                      <div title={course?.trainer.name_ar}
                                       className={
                                           styles[
                                           "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author"
                                           ]
                                       }
                                       >
-                                    {course.trainer.name_ar}
+                                    {course?.trainer.name_ar}
                                       </div>
                                   </Link>
                                 </div>
@@ -297,13 +297,13 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
+                                        {course?.is_purchased && !course?.is_in_user_subscription && "تم الشراء"}
                                   {
-                                    !course.is_purchased &&  !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                    !course?.is_purchased &&  !course?.is_in_user_subscription && (course?.discounted_price == 0 ? "مجانًا" : course?.discounted_price)
                                   }
                                    {
-                                    course.is_in_user_subscription && 
-                                    <Link href={`/course/${course.slug}`}>
+                                    course?.is_in_user_subscription && 
+                                    <Link href={`/course/${course?.slug}`}>
                                     <span className={styles["watch-subscribed-course"]}>
                                       شاهد الدورة
                                     </span>
@@ -311,18 +311,18 @@ export default function CourseSubscribers() {
 
                                   }
                                     </span>
-                                   { course.discounted_price !== 0 && !course.is_purchased &&   <span
+                                   { course?.discounted_price !== 0 && !course?.is_purchased &&   <span
                                         className={
                                         styles[
                                             "course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
                                         ]
                                         }
                                     >
-                                        { !course.is_in_user_subscription && course.currency_code}
+                                        { !course?.is_in_user_subscription && course?.currency_code}
                                     </span>}
                                     </div>
 
-                                    {(course.price > course.discounted_price) && !course.is_purchased &&
+                                    {(course?.price > course?.discounted_price) && !course?.is_purchased &&
                                     <div
                                     className={
                                         styles[
@@ -337,7 +337,7 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course.price}
+                                        { course?.price}
                                     </span>
                                     <span
                                         className={
@@ -346,19 +346,19 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course.currency_code}
+                                        { course?.currency_code}
                                     </span>
                                     </div>
                                     }
                                 </div>
 
                                 <div className="d-inline-block">
-                                     { !course.is_purchased && !course.is_in_user_subscription && <Button onClick={()=>
-                                     course.discounted_price == 0 ?
+                                     { !course?.is_purchased && !course?.is_in_user_subscription && <Button onClick={()=>
+                                     course?.discounted_price == 0 ?
                                      handleFreeCoursesActionBtn(course)
                                      :
                                      handleCartActionBtn(course)
-                                    }  disabled={course.is_in_cart  || disabledCartBtns.includes(course.id) } variant={""}
+                                    }  disabled={course?.is_in_cart  || disabledCartBtns.includes(course?.id) } variant={""}
                                     className={
                                         styles[
                                         "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
@@ -368,10 +368,10 @@ export default function CourseSubscribers() {
                                     <div className={styles["course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
 
                                     {
-                                      course.discounted_price == 0 ?
+                                      course?.discounted_price == 0 ?
                                       <TvIcon color="#222" />
                                       :
-                                  course.is_in_cart  || disabledCartBtns.includes(course.id)  ?
+                                  course?.is_in_cart  || disabledCartBtns.includes(course?.id)  ?
                                   <AddedToCartIcon color="#222"/>
                                    : 
                                    <CartIcon color="#222"/>
@@ -389,7 +389,7 @@ export default function CourseSubscribers() {
                                     <div className={styles["course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
 
                                         {
-                                        course.is_in_favorites ?
+                                        course?.is_in_favorites ?
                                         <AddedToFavouriteIcon color="#af151f"/>
                                         : 
                                         <FavouriteIcon color="#222"/>

@@ -208,7 +208,7 @@ export default function TrainerCourses() {
                                                     {course.title}
                                                 </h3>
                                             </Link>
-                                            <div title={course.trainer.name_ar}
+                                            <div title={course.trainer?.name_ar}
                                                 className={
                                                     styles[
                                                     "trainer-courses-box__trainer-courses__course-card__card-body__card-header__course-details__author"

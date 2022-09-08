@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from "./live-courses.module.css";
 import Link from 'next/link';
 import { Row, Col, Button, Card } from "react-bootstrap";
@@ -24,7 +24,8 @@ export default function LiveCourses() {
   const homePageData = useSelector((state: any) => state.homePageData);
   const [liveCourses, setLiveCourses] = useState<any>([]);
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
-  const userStatus = useSelector((state: any) => state.userAuthentication); 
+  const userStatus = useSelector((state: any) => state.userAuthentication);
+  const liveCoursesRef = useRef([]);
 
   const handleSubscribeBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
@@ -78,49 +79,28 @@ export default function LiveCourses() {
     setLiveCourses([...liveCourses]);
   }
   const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setDisabledCartBtns([...disabledCartBtns, course.id]);
     setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
     }, 5000);
     dispatch(setCheckoutType("cart"));
 
-    // if(userStatus?.isUserAuthenticated == true){
     const handleCartResponse: any = handleCart([course], `home/?country_code=null`, false);
     handleCartResponse.then(function (firstresponse: any) {
       firstresponse.resp.then(function (response: any) {
         setLiveCourses(response.data.data.live_courses);
         dispatch(setCartItems(firstresponse.cartResponse));
       })
-      //  setLocalCartItems(response.totalItems);
     })
-    // }
-    // else{
-    //   const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
-    //   handleCartResponse.then(function(response:any) {
-    //       dispatch(setCartItems(response.data.data));
-    //       let newArray:any = liveCourses;
-    //       response.data.data?.forEach((element:any) => {
-    //        newArray.forEach((ele:any) => {
-    //            if(element.id === ele.id){
-    //              // console.log(ele);
-    //              ele.is_in_cart = true;
-    //          }
-    //      });
-    //  });
-    //  setLiveCourses([...newArray]);
-
-    //   })
-    // }
-    // setLatestCourses([...latestCourses]);
   }
 
-  const liveCourseWatchingHandler = (slug:string,webinarType:any)=>{
-    if(webinarType == "soon"){
+  const liveCourseWatchingHandler = (slug: string, webinarType: any) => {
+    if (webinarType == "soon") {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);
-    }else{
-      if(userStatus.isUserAuthenticated){
+    } else {
+      if (userStatus.isUserAuthenticated) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);
-      }else{
+      } else {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=webinar/${slug}`);
       }
     }
@@ -128,135 +108,133 @@ export default function LiveCourses() {
 
 
   useEffect(() => {
+    liveCoursesRef.current = homePageData?.data?.live_courses;
 
     setLiveCourses(homePageData.data?.live_courses || []);
     const localStorageItems: any = localStorage.getItem("cart");
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
-      axiosInstance
-        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
-        .then(function (response: any) {
-          // console.log(response);
-          let newArray: any = homePageData?.data?.live_courses || [];
-          (response?.data?.data || []).forEach((element: any) => {
-            newArray.forEach((ele: any) => {
-              if (element.id === ele.id) {
-                // console.log(ele);
-                ele.is_in_cart = true;
-                // newArray.ele.is_in_cart = true;
-                // console.log("newArray",newArray);
-              }
-            });
-          });
-          setLiveCourses([...newArray]);
+    // console.log("live ", liveCoursesRef.current, homePageData?.data?.live_courses, liveCoursesRef.current != homePageData?.data?.live_courses);
+    // if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && liveCoursesRef.current != homePageData?.data?.live_courses) {
+    //   axiosInstance
+    //   .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+    //   .then(function (response: any) {
+    //     let newArray: any = homePageData?.data?.live_courses || [];
+    //       // (response?.data?.data || []).forEach((element: any) => {
+    //       //   newArray.forEach((ele: any) => {
+    //       //     if (element.id === ele.id) {
+    //       //       ele.is_in_cart = true;
+    //       //     }
+    //       //   });
+    //       // });
+    //       setLiveCourses([...newArray]);
 
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
 
-    }
+    // }
 
   }, [homePageData]);
 
   return (
     <>
-    {
-      (liveCourses !== null && JSON.stringify(liveCourses) !== "[]") &&
+      {
+        (liveCourses !== null && JSON.stringify(liveCourses) !== "[]") &&
 
-      <Row >
-        <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["live-courses__title"]}>
-          <h2>
-            <span> الدورات </span>
-            <span> المباشرة </span>
-          </h2>
-        </Col>
-        <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["live-courses__see-more-btn-col"]}>
+        <Row >
+          <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["live-courses__title"]}>
+            <h2>
+              <span> الدورات </span>
+              <span> المباشرة </span>
+            </h2>
+          </Col>
+          <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["live-courses__see-more-btn-col"]}>
 
-          <Button className={styles["live-courses__see-more-btn"]}
-            onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`) }}
-          >
-            اعرض المزيد
-            <ChevronLeftIcon color="#af151f" />
+            <Button className={styles["live-courses__see-more-btn"]}
+              onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`) }}
+            >
+              اعرض المزيد
+              <ChevronLeftIcon color="#af151f" />
 
-          </Button>
+            </Button>
 
-        </Col>
+          </Col>
 
-        <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 2 }} className={styles["live-courses__cards-carousel"]}>
-          <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{ "clickable": true }}
-            breakpoints={{
-              "50": {
-                slidesPerView: 1,
-              },
-              "576": {
-                slidesPerView: 3,
-              },
-              "981": {
-                slidesPerView: 4,
-              },
-              "1201": {
-                slidesPerView: 5,
-              },
-            }} className="mySwiper">
+          <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 2 }} className={styles["live-courses__cards-carousel"]}>
+            <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{ "clickable": true }}
+              breakpoints={{
+                "50": {
+                  slidesPerView: 1,
+                },
+                "576": {
+                  slidesPerView: 3,
+                },
+                "981": {
+                  slidesPerView: 4,
+                },
+                "1201": {
+                  slidesPerView: 5,
+                },
+              }} className="mySwiper">
 
-            {liveCourses?.map((lc: any, i: number) => {
-              return (
-                <SwiperSlide key={i}>
-                  <Card className={`${lc.price == 0 ? styles["live-courses__cards-carousel__card"] : styles["live-courses__cards-carousel__card--paid"]} 
+              {liveCourses?.map((lc: any, i: number) => {
+                return (
+                  <SwiperSlide key={i}>
+                    <Card className={`${lc.price == 0 ? styles["live-courses__cards-carousel__card"] : styles["live-courses__cards-carousel__card--paid"]} 
                   `}>
-                    {lc.categories[0] !== undefined && lc.categories[0].title !== null && lc.categories[0].title !== "" &&
+                      {lc.categories[0] !== undefined && lc.categories[0].title !== null && lc.categories[0].title !== "" &&
 
+                        <div
+                          className={
+                            styles[
+                            "live-courses__cards-carousel__course-card__category-chip"
+                            ]
+                          }
+                          style={{ backgroundColor: `${lc.categories[0] !== undefined && lc.categories[0].color}` }}
+                        >
+                          {lc.categories[0] !== undefined && lc.categories[0].title}
+                        </div>
+                      }
                       <div
                         className={
                           styles[
-                          "live-courses__cards-carousel__course-card__category-chip"
+                          "live-courses__cards-carousel__course-card__duration-chip"
                           ]
                         }
-                        style={{ backgroundColor: `${lc.categories[0] !== undefined && lc.categories[0].color}` }}
                       >
-                        {lc.categories[0] !== undefined && lc.categories[0].title}
-                      </div>
-                    }
-                    <div
-                      className={
-                        styles[
-                        "live-courses__cards-carousel__course-card__duration-chip"
-                        ]
-                      }
-                    >
-                      <div>
-                        {lc.full_date == Math.floor(Date.now() / 1000) && <LiveIcon />}
-                      </div>
-                      <div>
+                        <div>
+                          {lc.full_date == Math.floor(Date.now() / 1000) && <LiveIcon />}
+                        </div>
+                        <div>
 
-                        {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
+                          {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
+                        </div>
                       </div>
-                    </div>
-                 
-                    {/* <Link href={`/webinar/${lc.slug}`}> */}
-                      <Card.Img onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}} variant="top" src={lc.image} alt='trainer image'
+
+                      {/* <Link href={`/webinar/${lc.slug}`}> */}
+                      <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src={lc.image} alt='trainer image'
                         className={styles["live-courses__cards-carousel__card__trainer-img"]} />
-                    {/* </Link> */}
-                    <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
-                      <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
-                        <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                          {/* <Link href={`/webinar/${lc.slug}`}>  */}
-                            <div onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
-                          {/* </Link> */}
-                          <Link href={`/trainer/${lc.trainer?.slug}`}>
+                      {/* </Link> */}
+                      <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
+                        <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
+                          <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
+                            {/* <Link href={`/webinar/${lc.slug}`}>  */}
+                            <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
+                            {/* </Link> */}
+                            <Link href={`/trainer/${lc.trainer?.slug}`}>
 
-                            <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
-                          </Link>
+                              <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
+                            </Link>
+                          </div>
+                          <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
+                            {lc.details}
+                          </div>
                         </div>
-                        <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
-                          {lc.details}
-                        </div>
-                      </div>
 
 
-                      <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
-                        {/* <Link href={`/webinar/${lc.slug}`}> */}
-                          <div onClick={()=>{liveCourseWatchingHandler(lc.slug,lc.webinar_type)}}>
+                        <div className={styles["live-courses__cards-carousel__card__card-body__checkout-details"]}>
+                          {/* <Link href={`/webinar/${lc.slug}`}> */}
+                          <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }}>
                             <div
                               className={
                                 styles[
@@ -317,33 +295,33 @@ export default function LiveCourses() {
                               </div>
                             }
                           </div>
-                        {/* </Link> */}
-                        {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
+                          {/* </Link> */}
+                          {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
 
-                          {(lc.discounted_price == 0  && lc.webinar_type == "soon") ? 
-                          <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
-                            :
-                            <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                            {(lc.discounted_price == 0 && lc.webinar_type == "soon") ?
+                              <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
+                              :
+                              <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
 
-                        </Button>}
-                      </div>
-                    </Card.Body>
-                    {(lc.webinar_type == "live" || lc.webinar_type == "replay") &&  <div className={styles["live-courses__cards-carousel__card__live-icon"]}>
-                      <PlayIcon />
+                          </Button>}
+                        </div>
+                      </Card.Body>
+                      {(lc.webinar_type == "live" || lc.webinar_type == "replay") && <div className={styles["live-courses__cards-carousel__card__live-icon"]}>
+                        <PlayIcon />
 
-                    </div>}
-                  </Card>
-                </SwiperSlide>
+                      </div>}
+                    </Card>
+                  </SwiperSlide>
 
-              )
-            })
-            }
+                )
+              })
+              }
 
 
-          </Swiper>
-        </Col>
-      </Row>
-    }
+            </Swiper>
+          </Col>
+        </Row>
+      }
     </>
   );
 }

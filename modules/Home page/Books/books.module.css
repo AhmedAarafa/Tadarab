@@ -519,7 +519,6 @@
 
 @media (max-width: 575px) {
   .books__title {
-    font-size: 4.688rem;
     padding: 0rem 0 3rem 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -530,6 +529,9 @@
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+  }
+  .books__title span {
+    font-size: 4.688rem;
   }
   .see-more-btn-col {
     padding: 5.688rem 0 0 0;
