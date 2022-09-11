@@ -34,6 +34,7 @@ yarn-error.log*
 .env.production.local
 package-lock.json
 package-lock.JSON
+test.txt
 
 # vercel
 .vercel
