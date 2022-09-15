@@ -23,7 +23,7 @@ export default function CourseReview(props:any) {
 
             scrollspyHandler("reviews-section");
             axiosInstance
-             .get(`course/${props.Cid()}/reviews/?country_code=null`)
+             .get(`course/${props.Cid()}/reviews`)
              .then(function (response:any) {
                  setCourseReviews(response.data.data);
              })

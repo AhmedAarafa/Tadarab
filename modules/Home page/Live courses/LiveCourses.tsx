@@ -37,7 +37,7 @@ export default function LiveCourses() {
             if (tokenValidationCheck(response)) {
               console.log("Response", response);
               axiosInstance
-                .get(`home/?country_code=null`)
+                .get(`home`)
                 .then(function (response: any) {
                   setLiveCourses(response.data.data.live_courses);
                 })
@@ -56,7 +56,7 @@ export default function LiveCourses() {
           .then((response: any) => {
             console.log("Response", response);
             axiosInstance
-              .get(`home/?country_code=null`)
+              .get(`home`)
               .then(function (response: any) {
                 setLiveCourses(response.data.data.live_courses);
               })
@@ -85,7 +85,7 @@ export default function LiveCourses() {
     }, 5000);
     dispatch(setCheckoutType("cart"));
 
-    const handleCartResponse: any = handleCart([course], `home/?country_code=null`, false);
+    const handleCartResponse: any = handleCart([course], `home`, false);
     handleCartResponse.then(function (firstresponse: any) {
       firstresponse.resp.then(function (response: any) {
         setLiveCourses(response.data.data.live_courses);
@@ -115,7 +115,7 @@ export default function LiveCourses() {
     // console.log("live ", liveCoursesRef.current, homePageData?.data?.live_courses, liveCoursesRef.current != homePageData?.data?.live_courses);
     // if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && liveCoursesRef.current != homePageData?.data?.live_courses) {
     //   axiosInstance
-    //   .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+    //   .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
     //   .then(function (response: any) {
     //     let newArray: any = homePageData?.data?.live_courses || [];
     //       // (response?.data?.data || []).forEach((element: any) => {

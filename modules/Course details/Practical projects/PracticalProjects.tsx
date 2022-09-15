@@ -16,7 +16,7 @@ export default function PracticalProjects(props:any) {
     if(props.Cid() !== ""){
 
       axiosInstance
-      .get(`course/${props.Cid()}/projects/?country_code=null`)
+      .get(`course/${props.Cid()}/projects`)
       .then(function (response:any) {
           setCourseProjects(response.data.data);
       })

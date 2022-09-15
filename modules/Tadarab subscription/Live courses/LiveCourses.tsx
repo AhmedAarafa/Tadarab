@@ -37,7 +37,7 @@ export default function LiveCourses() {
 
               console.log("Response", response);
               axiosInstance
-                .get(`home/?country_code=null`)
+                .get(`home`)
                 .then(function (response: any) {
                   setLiveCourses(response.data.data.live_courses);
                 })
@@ -55,7 +55,7 @@ export default function LiveCourses() {
           .then((response: any) => {
             console.log("Response", response);
             axiosInstance
-              .get(`home/?country_code=null`)
+              .get(`home`)
               .then(function (response: any) {
                 setLiveCourses(response.data.data.live_courses);
               })
@@ -84,7 +84,7 @@ export default function LiveCourses() {
     }, 5000);
     dispatch(setCheckoutType("cart"));
 
-    const handleCartResponse: any = handleCart([course], `home/?country_code=null`, false);
+    const handleCartResponse: any = handleCart([course], `home`, false);
     handleCartResponse.then(function (firstresponse: any) {
       firstresponse.resp.then(function (response: any) {
         setLiveCourses(response.data.data.live_courses);
@@ -101,7 +101,7 @@ export default function LiveCourses() {
     const localStorageItems: any = localStorage.getItem("cart");
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
       axiosInstance
-        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+        .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
           // console.log(response);
           let newArray: any = homePageData.data?.live_courses;

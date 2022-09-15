@@ -1,3 +1,9 @@
+Version 2.1.9 (08th Sep 2022)
+1)  subscription plan issue.
+
+Version 2.1.8 (08th Sep 2022)
+1)  Multi-subscription revoke uncompleted plan.
+
 Version 2.1.7 (06th Sep 2022)
 1)  Update subscription tracking
 

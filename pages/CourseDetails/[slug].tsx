@@ -199,7 +199,7 @@ function CourseDetails(props: any) {
                   localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
 
                   axiosInstance
-                  .get(`courses/${slug}/?country_code=null`)
+                  .get(`courses/${slug}`)
                   .then(function (response: any) {
                     toggleLoader("hide");
           
@@ -245,7 +245,7 @@ function CourseDetails(props: any) {
                 });
           }else{
             axiosInstance
-            .get(`courses/${slug}/?country_code=null`)
+            .get(`courses/${slug}`)
             .then(function (response: any) {
               toggleLoader("hide");
     
@@ -388,7 +388,7 @@ function CourseDetails(props: any) {
 
 export async function getServerSideProps(context: any) {
   try{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/${context?.params?.slug}/?country_code=null`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/${context?.params?.slug}`)
     const seoData = await res.json()
     return { props: { seoData: seoData.data } }
   } catch {

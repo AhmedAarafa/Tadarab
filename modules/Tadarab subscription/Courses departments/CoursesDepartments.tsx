@@ -20,7 +20,7 @@ export default function CoursesDepartments() {
 
   useEffect(() => {
     // axiosInstance
-    // .get(`home/?country_code=null`)
+    // .get(`home`)
     // .then(function (response:any) {
     //   setCategories(response.data.data.categories);
     // })

@@ -46,7 +46,7 @@ const Home: NextPage = (props: any) => {
 
 export async function getServerSideProps(context: any) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}home/?country_code=null`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}home`);
     const seoData = await res.json();
     return { props: { seoData: seoData.data, queryParams: context.query } };
   } catch {

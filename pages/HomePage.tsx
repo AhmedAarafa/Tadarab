@@ -45,7 +45,7 @@ function HomePage(props: any) {
                 localStorage.setItem("affiliate_id", `${Router.query.aid}`);
                 localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
                 axiosInstance
-                .get(`home/?country_code=null`)
+                .get(`home`)
                 .then(function (response: any) {
                   dispatch(setHomePageData(response.data.data));
                   FBPixelEventsHandler(response.data.fb_tracking_events, null);
@@ -63,7 +63,7 @@ function HomePage(props: any) {
         }else{
 
           axiosInstance
-          .get(`home/?country_code=null`)
+          .get(`home`)
           .then(function (response: any) {
             dispatch(setHomePageData(response.data.data));
             FBPixelEventsHandler(response.data.fb_tracking_events, null);

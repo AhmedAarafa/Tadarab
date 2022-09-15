@@ -355,6 +355,9 @@
 .checkout__cards-outer-box__card__old-price {
   color: var(--grey);
   margin-top: -0.5rem;
+}
+
+.checkout__cards-outer-box__card__old-price span {
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
           text-decoration: line-through rgba(175, 21, 31, 0.5);
 }
@@ -909,6 +912,9 @@
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
   margin-top: -0.385rem;
+}
+
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container span {
   -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
           text-decoration: line-through rgba(119, 119, 119, 0.7);
 }

@@ -52,7 +52,7 @@ export default function TrainerProfile(props: any) {
             localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
 
             axiosInstance
-            .get(`trainers/${slug}/?country_code=null&limit=10&page=1`)
+            .get(`trainers/${slug}/?limit=10&page=1`)
             .then(function (response: any) {
               const data: Trainer = response.data.data;
               dispatch(setTrainerProfileData(response.data));
@@ -70,7 +70,7 @@ export default function TrainerProfile(props: any) {
           });
       } else {
         axiosInstance
-        .get(`trainers/${slug}/?country_code=null&limit=10&page=1`)
+        .get(`trainers/${slug}/?limit=10&page=1`)
         .then(function (response: any) {
           const data: Trainer = response.data.data;
           dispatch(setTrainerProfileData(response.data));
@@ -126,7 +126,7 @@ useResize(viewportWidthDetector);
 
 export async function getServerSideProps(context: any) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}trainers/${context?.params?.slug}/?country_code=null&limit=10&page=1`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}trainers/${context?.params?.slug}/?limit=10&page=1`)
     const seoData = await res.json()
     return { props: { seoData: seoData.data } }
   } catch {

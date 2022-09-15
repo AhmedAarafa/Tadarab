@@ -25,7 +25,7 @@ export default function SpecialOffer(props: any) {
         if (props.Cid() !== "") {
 
             axiosInstance
-                .get(`course/${props.Cid()}/special-bundle/?country_code=null`)
+                .get(`course/${props.Cid()}/special-bundle`)
                 .then(function (response: any) {
                     setSpecialBundleData(response?.data?.data);
 
@@ -36,13 +36,13 @@ export default function SpecialOffer(props: any) {
                         }
                     })
 
-                    if (document.cookie.indexOf('timer') > -1) { 
+                    if (document.cookie.indexOf('timer') > -1) {
                         document.cookie.split('; ').reduce((prev: any, current: any) => {
                             const [name, ...value] = current.split('=');
-                            if(prev){
+                            if (prev) {
                                 prev[name] = value.join('=');
                                 if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
-    
+
                                     let now = new Date();
                                     let time = now.getTime();
                                     time += response?.data?.data.countdown * 3600 * 1000;
@@ -51,11 +51,11 @@ export default function SpecialOffer(props: any) {
                                         'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60)) +
                                         '; expires=' + (new Date(now)).toUTCString() +
                                         '; path=/';
-    
+
                                     timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60));
                                     console.log("response?.data?.data?.countdown", response?.data?.data?.countdown);
-    
-    
+
+
                                 } else {
                                     if (prev.timer) {
                                         timerHandler(prev.timer);
@@ -132,13 +132,14 @@ export default function SpecialOffer(props: any) {
         dispatch(setCheckoutType("cart"));
 
 
-        const handleCartResponse: any = handleCart(courses, `course/${props.Cid()}/special-bundle/?country_code=null`, true);
+        // console.log("handleCartResponse", courses);
+        const handleCartResponse: any = handleCart(courses, `course/${props.Cid()}/special-bundle`, true);
         handleCartResponse.then(function (firstresponse: any) {
-            // console.log("handleCartResponse",firstresponse);
+            console.log("handleCartResponse", firstresponse);
             firstresponse.resp.then(function (response: any) {
                 setDisabled(true);
-                //console.log("firstresponse :", firstresponse);
-                //console.log("response :", response);
+                console.log("firstresponse :", firstresponse);
+                console.log("response :", response);
                 setSpecialBundleData(response?.data?.data);
                 dispatch(setCartItems(firstresponse.cartResponse));
             })
@@ -164,7 +165,7 @@ export default function SpecialOffer(props: any) {
                         {
                             specialBundleData?.courses?.map((course: any, i: number) => {
                                 return (
-                                    <div key={i}>
+                                    <div key={i + 6}>
                                         <div className={styles["special-offer__cards-outer-box__card"]}>
                                             <div className={styles["special-offer__cards-outer-box__card__course-img"]}>
                                                 <img loading="lazy" src={course?.image} alt="course image" />

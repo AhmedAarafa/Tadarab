@@ -301,7 +301,9 @@
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
     margin-top: -0.5rem;
-    text-decoration: line-through rgba(119, 119, 119, 0.7);
+    span{
+        text-decoration: line-through rgba(119, 119, 119, 0.7);
+    }
 }
 
 .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
@@ -658,7 +660,6 @@
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
         margin-top: -0.5rem*1.27;
-        text-decoration: line-through rgba(119, 119, 119, 0.7);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
@@ -872,7 +873,6 @@
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
         margin-top: -0.5rem*1.67;
-        text-decoration: line-through rgba(119, 119, 119, 0.7);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {

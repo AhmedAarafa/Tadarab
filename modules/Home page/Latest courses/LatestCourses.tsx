@@ -51,7 +51,7 @@ function LatestCourses() {
   const handleFilterType = (type: string) => {
     setFilterType(type); 
     axiosInstance 
-      .get(`home/courses/?country_code=null&type=${type}`)
+      .get(`home/courses/?type=${type}`)
       .then(function (response: any) {
         console.log("response//",response);
         setLatestCourses(response?.data?.data);
@@ -64,7 +64,7 @@ function LatestCourses() {
 
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `home/courses/?country_code=null&type=${filterType}`);
+      const handleFavResponse: any = handleFav(course, `home/courses/?type=${filterType}`);
       handleFavResponse.then(function (response: any) {
         setLatestCourses(response.data.data);
       })
@@ -90,7 +90,7 @@ function LatestCourses() {
     dispatch(setCheckoutType("cart"));
 
 
-      const handleCartResponse:any =  handleCart([course],`home/?country_code=null&type=${filterType}`,false);
+      const handleCartResponse:any =  handleCart([course],`home/?type=${filterType}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
            setLatestCourses(response.data.data.best_seller_courses);
@@ -122,7 +122,7 @@ function LatestCourses() {
     // console.log("home ",homePageCoursesRef.current, homePageData?.data?.best_seller_courses, homePageCoursesRef.current != homePageData?.data?.best_seller_courses);
     // if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && homePageCoursesRef.current != homePageData?.data?.best_seller_courses) {
     //   axiosInstance
-    //   .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+    //   .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
     //   .then(function (response: any) {
     //       console.log(response);
     //       let newArray: any = homePageData?.data?.best_seller_courses || [];

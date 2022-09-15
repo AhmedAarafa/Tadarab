@@ -35,7 +35,7 @@ export default function CourseSubscribers() {
 
   const handleFavActionBtn = (course:any):any =>{
     if(userStatus.isUserAuthenticated == true){
-    const handleFavResponse:any =  handleFav(course,`courses/${slug}/?country_code=null`);
+    const handleFavResponse:any =  handleFav(course,`courses/${slug}`);
     handleFavResponse.then(function(response:any) {
       setCourseDetails(response.data.data?.related_courses);
     })
@@ -55,7 +55,7 @@ export default function CourseSubscribers() {
     dispatch(setCheckoutType("cart"));
     
     // if(userStatus?.isUserAuthenticated == true){
-      const handleCartResponse:any =  handleCart([course],`courses/${slug}/?country_code=null`,false);
+      const handleCartResponse:any =  handleCart([course],`courses/${slug}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
             // console.log("response.data.data",response.data.data);
@@ -67,7 +67,7 @@ export default function CourseSubscribers() {
       })
     // }
     // else{
-    //   const handleCartResponse:any =  handleCart([course],`courses/1540/?country_code=null`,false);
+    //   const handleCartResponse:any =  handleCart([course],`courses/1540`,false);
     //   handleCartResponse.then(function(response:any) {
     //       dispatch(setCartItems(response.data.data));
 
@@ -106,7 +106,7 @@ export default function CourseSubscribers() {
     // if(localStorageItems !== "undefined" && localStorageItems !== "null" && localStorageItems !== "[]" ){
         
     //     axiosInstance
-    //     .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
+    //     .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g,'')}`)
     //     .then(function (response:any) {
          
     //       let newArray:any = courseDetailsData.data?.related_courses;

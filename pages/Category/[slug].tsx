@@ -49,7 +49,7 @@ export default function Category(props: any) {
             localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
 
             axiosInstance
-              .get(`categories/${slug}/?country_code=null&page=1&limit=12`)
+              .get(`categories/${slug}/?page=1&limit=12`)
               .then(function (response: any) {
                 setCategory(response.data.data);
                 setPagination(response.data.pagination);
@@ -65,7 +65,7 @@ export default function Category(props: any) {
           });
       } else {
         axiosInstance
-          .get(`categories/${slug}/?country_code=null&page=1&limit=12`)
+          .get(`categories/${slug}/?page=1&limit=12`)
           .then(function (response: any) {
             setCategory(response.data.data);
             setPagination(response.data.pagination);
@@ -118,7 +118,7 @@ export default function Category(props: any) {
 
 export async function getServerSideProps(context: any) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}categories/${context?.params?.slug}/?country_code=null&page=1&limit=12`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}categories/${context?.params?.slug}/?page=1&limit=12`)
     const seoData = await res.json()
     return { props: { seoData: seoData.data } };
   } catch {

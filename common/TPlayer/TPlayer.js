@@ -383,7 +383,7 @@ function free_lession(id){
 	});
 }
 
-function TPlayer(){
+function TPlayer(){ 
 	return (
 		<div></div>
 	)
@@ -392,7 +392,7 @@ function TPlayer(){
 export function TPlayerPlayList (){
 	const [courseDetails, setCourseDetails] = useState([]);var playlistHTML,freelistHtml;
     const courseDetailsData = useSelector((state) => state.courseDetailsData);
-	useEffect(() => {setCourseDetails(courseDetailsData.data || []);return ()=>{}}, []);
+	useEffect(() => {setCourseDetails(courseDetailsData.data || []);return ()=>{}}, [courseDetailsData]);
 	isUserLogin = useSelector((state) => state.userAuthentication?.isUserAuthenticated);
 	isPurchased=(courseDetailsData?.data?.course_details?.is_purchased);
 	courseId=(courseDetailsData.data?.course_details?.id);

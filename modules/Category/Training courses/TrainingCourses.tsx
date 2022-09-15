@@ -155,7 +155,7 @@ export default function TrainingCourses(props: any) {
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `categories/${slug}/?country_code=null&page=${pageNumber}&limit=12`);
+            const handleFavResponse: any = handleFav(course, `categories/${slug}/?page=${pageNumber}&limit=12`);
             handleFavResponse.then(function (response: any) {
                 setFilteredCourses(response.data);
             })
@@ -176,7 +176,7 @@ export default function TrainingCourses(props: any) {
     }, 5000);
         dispatch(setCheckoutType("cart"));
 
-        const handleCartResponse: any = handleCart([course], `categories/${slug}/?country_code=null&page=${pageNumber}&limit=12`, false);
+        const handleCartResponse: any = handleCart([course], `categories/${slug}/?page=${pageNumber}&limit=12`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setFilteredCourses(response.data);
@@ -201,7 +201,7 @@ export default function TrainingCourses(props: any) {
         toggleLoader("show");
         setCurrentPage(pgNo);
         axiosInstance
-            .get(`categories/${slug}/?country_code=null&page=${pgNo}&limit=12`)
+            .get(`categories/${slug}/?page=${pgNo}&limit=12`)
             .then(function (response: any) {
                 console.log(response.data);
                 setFilteredCourses(response?.data);

@@ -33,7 +33,7 @@ export default function CourseListing() {
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
             const handleFavResponse: any = handleFav(
-                course, `courses/?country_code=null&page=${currentPage}&limit=20&type=${Router.query.type}`);
+                course, `courses/?page=${currentPage}&limit=20&type=${Router.query.type}`);
             handleFavResponse.then(function (response: any) {
                 setCourseListing(response?.data);
             })
@@ -54,7 +54,7 @@ export default function CourseListing() {
         dispatch(setCheckoutType("cart"));
 
         const handleCartResponse: any = handleCart(
-            [course], `courses/?country_code=null&page=${currentPage}&limit=20&type=${Router.query.type}`, false);
+            [course], `courses/?page=${currentPage}&limit=20&type=${Router.query.type}`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setCourseListing(response?.data);
@@ -72,7 +72,7 @@ export default function CourseListing() {
                     .then((response: any) => {
                         if (tokenValidationCheck(response)) {
                             axiosInstance
-                                .get(`home/?country_code=null`)
+                                .get(`home`)
                                 .then(function (response: any) {
                                     setCourseListing(response.data.data.live_courses);
                                 })
@@ -89,7 +89,7 @@ export default function CourseListing() {
                     .delete(`users/live-subscriptions`, { data: { "course_id": course.id } })
                     .then((response: any) => {
                         axiosInstance
-                            .get(`home/?country_code=null`)
+                            .get(`home`)
                             .then(function (response: any) {
                                 setCourseListing(response.data.data.live_courses);
                             })
@@ -132,7 +132,7 @@ export default function CourseListing() {
         setPagesArray([]);
         let startIndex: any = 0, endIndex: any = 0;
         axiosInstance
-            .get(`courses/?country_code=null&page=${pgNo}&limit=20&type=${router.query.type}`)
+            .get(`courses/?page=${pgNo}&limit=20&type=${router.query.type}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
                 let totalPages = response?.data.pagination.pages;
@@ -186,7 +186,7 @@ export default function CourseListing() {
 
     useEffect(() => {
         axiosInstance
-            .get(`courses/?country_code=null&page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
+            .get(`courses/?page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
                 toggleLoader("hide");

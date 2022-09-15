@@ -401,7 +401,9 @@
 
 .navbar__cart-popover__course-details__old-price-container {
     margin-top: -0.5rem;
-    text-decoration: line-through rgba(119, 119, 119, 0.7);
+    span{
+        text-decoration: line-through rgba(119, 119, 119, 0.7);
+    }
 
 }
 

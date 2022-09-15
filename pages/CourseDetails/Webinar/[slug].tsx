@@ -189,7 +189,7 @@ function CourseDetails() {
     });
     
     if (Router.query.slug){
-      axiosInstance.get(`webinar/${slug}/?country_code=null`).then(function (response:any){
+      axiosInstance.get(`webinar/${slug}`).then(function (response:any){
         toggleLoader("hide");
         const data: Course = response?.data?.data?.archive_course;
         setCourseId(response?.data?.data?.archive_course.course_details.id);

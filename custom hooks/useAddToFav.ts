@@ -14,11 +14,11 @@ const useAddToFav = (course?: any,queryParam?:any) => {
         if(course.is_in_favorites == false){
   
           axiosInstance
-          .post(`users/favorites/?country_code=null`, {"course_id" : course.id})
+          .post(`users/favorites`, {"course_id" : course.id})
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get(`home/?country_code=null`)
+            .get(`home`)
             .then(async function (response:any) {
              await dispatch(setHomePageData(response.data.data.latest_courses));
               // return latestCourses;
@@ -34,11 +34,11 @@ const useAddToFav = (course?: any,queryParam?:any) => {
           });
         }else{
           axiosInstance
-          .delete(`users/favorites/?country_code=null`, { data:{"course_id" : course.id}})
+          .delete(`users/favorites`, { data:{"course_id" : course.id}})
           .then((response:any) => {
             console.log("Response",response);
             axiosInstance
-            .get(`home/?country_code=null`)
+            .get(`home`)
             .then(async function (response:any) {
              await dispatch(setHomePageData(response.data.data.latest_courses));
               // return latestCourses;

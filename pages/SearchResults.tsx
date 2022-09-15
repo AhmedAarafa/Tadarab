@@ -53,7 +53,7 @@ export default function SearchResults(props: any) {
 }
 export async function getServerSideProps(context: any) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/?country_code=null&keyword=${context?.query?.q}&page=1&limit=16`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/?keyword=${context?.query?.q}&page=1&limit=16`)
     const seoData = await res.json()
     return { props: { seoData: seoData.data, queryParams: context.query } };
   } catch {

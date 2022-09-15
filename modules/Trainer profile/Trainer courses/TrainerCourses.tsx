@@ -51,7 +51,7 @@ export default function TrainerCourses() {
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `trainers/${trainerSlug}/?country_code=null&page=${pageNumber}&limit=10`);
+            const handleFavResponse: any = handleFav(course, `trainers/${trainerSlug}/?page=${pageNumber}&limit=10`);
             handleFavResponse.then(function (response: any) {
                 setTrainerProfile(response.data);
                 console.log("response.data.data", response.data.data);
@@ -71,7 +71,7 @@ export default function TrainerCourses() {
         }, 5000);
         dispatch(setCheckoutType("cart"));
 
-        const handleCartResponse: any = handleCart([course], `trainers/${trainerSlug}/?country_code=null&page=${pageNumber}&limit=10`, false);
+        const handleCartResponse: any = handleCart([course], `trainers/${trainerSlug}/?page=${pageNumber}&limit=10`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setTrainerProfile(response.data);
@@ -95,7 +95,7 @@ export default function TrainerCourses() {
         toggleLoader("show");
         setCurrentPage(pgNo);
         axiosInstance
-            .get(`trainers/${trainerSlug}/?country_code=null&page=${pgNo}&limit=10`)
+            .get(`trainers/${trainerSlug}/?page=${pgNo}&limit=10`)
             .then(function (response: any) {
                 console.log(response.data);
                 setTrainerProfile(response?.data);

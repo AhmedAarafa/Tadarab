@@ -80,7 +80,7 @@ function Navbar() {
     setLocalStateCartItems(null);
 
     axiosInstance
-      .get(`home/?country_code=null`, { headers: { "Authorization": `` } })
+      .get(`home`, { headers: { "Authorization": `` } })
       .then(function (response: any) {
         dispatch(setHomePageData(response.data.data));
         toggleLoader("hide");
@@ -245,8 +245,9 @@ function Navbar() {
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined ) {
 
       axiosInstance
-        .get(`courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+        .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
+          console.log("response",response);
           dispatch(setCartItems(response?.data?.data));
           setLocalStateCartItems(cartItems?.data);
           // toggleLoader("hide");
@@ -280,28 +281,29 @@ function Navbar() {
 
 
 
-  // useEffect(() => {
-  //   setLocalStateCartItems(cartItems?.data);
+  useEffect(() => {
+    setLocalStateCartItems(cartItems?.data);
 
-  //   let localStorageItems: any = localStorage.getItem("cart");
+    let localStorageItems: any = localStorage.getItem("cart");
 
-  //   if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
-  //    cartItems?.data !== undefined && cartItems?.data !== "undefined") {
+    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
+     cartItems?.data !== undefined && cartItems?.data !== "undefined") {
 
-  //     axiosInstance
-  //       .get(`courses/?country_code=null&course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)
-  //       .then(function (response: any) {
-  //         setLocalStateCartItems(response?.data?.data);
-  //       })
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       });
+      axiosInstance
+        .get(`courses/?course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)
+        .then(function (response: any) {
+          console.log("response2",response);
+          setLocalStateCartItems(response?.data?.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
-  //   } else {
-  //     setLocalStateCartItems([]);
-  //   }
+    } else {
+      setLocalStateCartItems([]);
+    }
 
-  // }, [cartItems]);
+  }, [cartItems]);
 
 
   useResize((
@@ -763,10 +765,12 @@ function Navbar() {
                 id="cart-popover" >
                 <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
                   {
+                    
                     localStateCartItems?.map((item: any, i: number) => {
                       return (
-
+                        
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
+                          {/* {console.log(cartItems)} */}
                           <img loading="lazy"
                             src={item.image}
                             alt="course image"
@@ -809,6 +813,7 @@ function Navbar() {
                                     {item.discounted_price}
                                   </span>
                                   <span
+                                  
                                     className={
                                       styles[
                                       "navbar__cart-popover__course-details__currency"
@@ -829,7 +834,7 @@ function Navbar() {
                                 }
                               >
                                 <span
-                                  className={
+                                  className={ 
                                     styles[
                                     "navbar__cart-popover__course-details__old-price"
                                     ]

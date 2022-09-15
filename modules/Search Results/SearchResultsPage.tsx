@@ -28,7 +28,7 @@ export default function SearchResultsPage() {
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `courses/?country_code=null&keyword=${router.query.q}&page=${currentPage}&limit=16`);
+            const handleFavResponse: any = handleFav(course, `courses/?keyword=${router.query.q}&page=${currentPage}&limit=16`);
             handleFavResponse.then(function (response: any) {
                 setSearchResults(response?.data);
             })
@@ -48,7 +48,7 @@ export default function SearchResultsPage() {
         dispatch(setCheckoutType("cart"));
 
         // if(userStatus?.isUserAuthenticated == true){
-        const handleCartResponse: any = handleCart([course], `courses/?country_code=null&keyword=${router.query.q}&page=${currentPage}&limit=16`, false);
+        const handleCartResponse: any = handleCart([course], `courses/?keyword=${router.query.q}&page=${currentPage}&limit=16`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setSearchResults(response?.data);
@@ -58,7 +58,7 @@ export default function SearchResultsPage() {
         })
         // }
         // else{
-        //   const handleCartResponse:any =  handleCart([course],`home/?country_code=null`,false);
+        //   const handleCartResponse:any =  handleCart([course],`home`,false);
         //   handleCartResponse.then(function(response:any) {
         //     // console.log(response.data.data);
         //       dispatch(setCartItems(response.data.data));
@@ -113,7 +113,7 @@ export default function SearchResultsPage() {
             // console.log("router.query.q",router.query.q);
 
             axiosInstance
-                .get(`courses/?country_code=null&keyword=${router.query.q}&page=1&limit=16`)
+                .get(`courses/?keyword=${router.query.q}&page=1&limit=16`)
                 .then(function (response: any) {
                     console.log(response);
                     setSearchResults(response?.data);
@@ -134,7 +134,7 @@ export default function SearchResultsPage() {
         window.scrollTo({ top: 0, behavior: "smooth" });
         setCurrentPage(pgNo);
         axiosInstance
-            .get(`courses/?country_code=null&keyword=${router?.query?.q}&page=${pgNo}&limit=16`)
+            .get(`courses/?keyword=${router?.query?.q}&page=${pgNo}&limit=16`)
             .then(function (response: any) {
                 console.log(response);
                 setSearchResults(response?.data);

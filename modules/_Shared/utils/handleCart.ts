@@ -82,7 +82,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
 
               if(course.is_in_cart == false){ 
                   return (axiosInstance
-                  .post(`users/cart/?country_code=null`,
+                  .post(`users/cart`,
                    {"items" : JSON.stringify([...new Set(localStorageItemsArray.flat())])})
                   .then((response:any) => {
                     if(tokenValidationCheck(response)){
@@ -110,7 +110,7 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
                   }))
                 }else{
                   return (axiosInstance
-                  .delete(`users/cart/?country_code=null`, { data:{"item_id" : course.id}})
+                  .delete(`users/cart`, { data:{"item_id" : course.id}})
                   .then((response:any) => {
                     if(tokenValidationCheck(response)){
                       

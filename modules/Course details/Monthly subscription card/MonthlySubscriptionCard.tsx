@@ -134,7 +134,7 @@ export default function MonthlySubscriptionCard() {
   const handleFavActionBtn = (course: any): any => {
 
     if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `${course.archive_id ? "webinar" : "courses"}/${slug}/?country_code=null`);
+      const handleFavResponse: any = handleFav(course, `${course.archive_id ? "webinar" : "courses"}/${slug}`);
       handleFavResponse.then(function (response: any) {
         setCourseDetails(response.data.data);
       })
@@ -172,7 +172,7 @@ export default function MonthlySubscriptionCard() {
       })
       }else{
 
-        const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}/?country_code=null`, false);
+        const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}`, false);
         handleCartResponse.then(function (firstresponse: any) {
           // console.log("handleCartResponse",firstresponse);
           firstresponse.resp.then(function (response: any) {

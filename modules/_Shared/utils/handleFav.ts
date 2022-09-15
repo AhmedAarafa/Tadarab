@@ -6,7 +6,7 @@ export function handleFav(course:any,endPoint:string){
     if(course.is_in_favorites == false){
 
         return(axiosInstance
-        .post(`users/favorites/?country_code=null`, {"course_id" : course.id})
+        .post(`users/favorites`, {"course_id" : course.id})
         .then((response:any) => {
           if(tokenValidationCheck(response)){
 
@@ -24,7 +24,7 @@ export function handleFav(course:any,endPoint:string){
       }
       else{
         return (axiosInstance
-        .delete(`users/favorites/?country_code=null`, { data:{"course_id" : course.id}})
+        .delete(`users/favorites`, { data:{"course_id" : course.id}})
         .then((response:any) => {
           if(tokenValidationCheck(response)){
 

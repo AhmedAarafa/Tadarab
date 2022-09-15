@@ -23,7 +23,7 @@ export default function Books() {
     useEffect(() => {
         if (Router.query.slug) {
             axiosInstance
-                .get(`ebook/${slug}/?country_code=null`)
+                .get(`ebook/${slug}`)
                 .then(function (response: any) {
                     setBookDetails(response.data.data);
                     FBPixelEventsHandler(response.data.fb_tracking_events, null);

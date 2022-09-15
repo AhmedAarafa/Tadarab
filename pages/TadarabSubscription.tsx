@@ -80,7 +80,7 @@ export default function TadarabSubscription() {
 
     const countryCode: any = localStorage.getItem("countryCode");
     axiosInstance
-      .get(`home/?country_code=null`)
+      .get(`home`)
       .then(function (response: any) {
         dispatch(setHomePageData(response.data.data));
         FBPixelEventsHandler(response.data.fb_tracking_events, null);
