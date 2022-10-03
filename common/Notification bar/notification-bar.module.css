@@ -1,14 +1,8 @@
 .notification-bar {
   background-image: url("/images/bar2.png");
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
   font-size: 0.875rem;
   font-weight: 800;
   color: #222;
@@ -17,23 +11,15 @@
   top: 0;
   width: 100%;
   height: 3.2rem;
-  z-index: 500;
+  z-index: 20;
 }
-
 .notification-bar > div:nth-of-type(1) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 95%;
   padding-right: 0;
 }
-
 .notification-bar > div:nth-of-type(1) span, .notification-bar > div:nth-of-type(1) a {
   display: inline-block;
   margin-right: 0.2rem;
@@ -41,27 +27,18 @@
   text-underline-offset: 0.2rem;
   color: #0645ad;
 }
-
 .notification-bar > div:nth-of-type(1) span:hover, .notification-bar > div:nth-of-type(1) span:active, .notification-bar > div:nth-of-type(1) a:hover, .notification-bar > div:nth-of-type(1) a:active {
   color: #0645ad;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 0.2rem;
 }
-
 .notification-bar > div:nth-of-type(2) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 5%;
 }
-
 .notification-bar svg {
   cursor: pointer;
 }
@@ -82,8 +59,7 @@
   }
   .notification-bar svg {
     margin-left: 1rem;
-    width: 1.75312rem;
-    height: 1.75312rem;
+    width: 1.753125rem;
+    height: 1.753125rem;
   }
-}
-/*# sourceMappingURL=notification-bar.module.css.map */
+}/*# sourceMappingURL=notification-bar.module.css.map */

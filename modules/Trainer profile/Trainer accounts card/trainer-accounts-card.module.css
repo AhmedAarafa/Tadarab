@@ -4,8 +4,7 @@
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  -webkit-box-shadow: 0rem 0rem 1.25rem #0000001A;
-          box-shadow: 0rem 0rem 1.25rem #0000001A;
+  box-shadow: 0rem 0rem 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
   margin: 0 2.9375rem 0 0;
   position: -webkit-sticky;
@@ -16,13 +15,11 @@
 .trainer-accounts-card__title {
   margin: 0 0 0.5625rem 0;
 }
-
 .trainer-accounts-card__title div:nth-of-type(1) {
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--dark-black);
 }
-
 .trainer-accounts-card__title div:nth-of-type(2) {
   font-size: 0.875rem;
   color: var(--grey);
@@ -35,41 +32,26 @@
 }
 
 .trainer-accounts-card__accounts-btns {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-
 .trainer-accounts-card__accounts-btns a {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
   background-color: white !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   border: 0.063rem solid var(--dark-black) !important;
   color: var(--dark-black) !important;
   width: 45%;
@@ -78,34 +60,26 @@
   padding: 0 !important;
   font-size: 0.875rem;
 }
-
 .trainer-accounts-card__accounts-btns a:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .trainer-accounts-card__accounts-btns a:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .trainer-accounts-card__accounts-btns a:hover {
   color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
 }
-
 .trainer-accounts-card__accounts-btns a:active {
   background-color: var(--primary-red) !important;
   color: white !important;
   border: 0.125rem solid var(--primary-red) !important;
 }
-
 .trainer-accounts-card__accounts-btns a:hover, .trainer-accounts-card__accounts-btns a:active {
   border: 0.063rem solid var(--dark-black) !important;
   background-color: white !important;
   color: var(--dark-black) !important;
 }
-
 .trainer-accounts-card__accounts-btns a svg {
   width: 1.25rem;
   height: 1.25rem;
@@ -120,82 +94,63 @@
   position: relative;
   display: none;
 }
-
 .trainer-accounts-card__or:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
   border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
   width: 38%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-
 .trainer-accounts-card__or:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   right: 0;
   border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
   width: 38%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .trainer-accounts-card__action-btns {
   margin: 1.4688rem 0 0 0;
   display: none;
 }
-
 .trainer-accounts-card__action-btns button {
   width: 100%;
   height: 2.8125rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 0 0 0.9375rem 0;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
   font-size: 1rem;
 }
-
 .trainer-accounts-card__action-btns button:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .trainer-accounts-card__action-btns button:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .trainer-accounts-card__action-btns button:hover, .trainer-accounts-card__action-btns button:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .trainer-accounts-card__action-btns button:nth-of-type(2) {
   background-color: var(--pale-red) !important;
   color: var(--primary-red) !important;
   border: none !important;
 }
-
 .trainer-accounts-card__action-btns button:nth-of-type(2):active, .trainer-accounts-card__action-btns button:nth-of-type(2):hover {
   background-color: var(--pale-red) !important;
   color: var(--primary-red) !important;
@@ -209,8 +164,7 @@
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    -webkit-box-shadow: 0rem 0rem 2.5rem #0000001A;
-            box-shadow: 0rem 0rem 2.5rem #0000001A;
+    box-shadow: 0rem 0rem 2.5rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 2.5rem;
     margin: 7rem 0 0 0;
     position: static;
@@ -226,27 +180,19 @@
     font-size: 1.75rem;
   }
   .trainer-accounts-card__accounts-btns {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   .trainer-accounts-card__accounts-btns a {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -261,12 +207,10 @@
     border-radius: 1.25rem;
   }
   .trainer-accounts-card__accounts-btns a:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .trainer-accounts-card__accounts-btns a:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .trainer-accounts-card__accounts-btns a:hover {
     color: var(--primary-red) !important;
@@ -300,18 +244,11 @@
   .trainer-accounts-card__action-btns button {
     width: 100%;
     height: 5.625rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin: 0 0 1.875rem 0;
     font-size: 2rem;
     border-radius: 1.25rem;
   }
-}
-/*# sourceMappingURL=trainer-accounts-card.module.css.map */
+}/*# sourceMappingURL=trainer-accounts-card.module.css.map */

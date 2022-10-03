@@ -1,11 +1,9 @@
 .cookies-terms {
   padding: 8rem;
 }
-
 .cookies-terms * {
   font-size: 1rem !important;
 }
-
 .cookies-terms h4 {
   font-size: 1.5rem !important;
 }
@@ -20,5 +18,4 @@
   .cookies-terms h4 {
     font-size: 2.7rem !important;
   }
-}
-/*# sourceMappingURL=cookies-page.module.css.map */
+}/*# sourceMappingURL=cookies-page.module.css.map */

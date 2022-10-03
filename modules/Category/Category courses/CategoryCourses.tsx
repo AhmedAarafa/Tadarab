@@ -197,7 +197,7 @@ export default function CategoryCourses(props:any) {
                                 ]
                                 }
                             >
-                                {course.currency_code}
+                                {course.currency_symbol}
                             </span>}
 
                             </div>
@@ -226,7 +226,7 @@ export default function CategoryCourses(props:any) {
                                 ]
                                 }
                             >
-                                {course.currency_code}
+                                {course.currency_symbol}
                             </span>
                             </div>
                             }

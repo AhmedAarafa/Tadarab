@@ -1,11 +1,5 @@
 @import "../../../styles/mixins";
 
-.trainer-profile__trainer-info-col {
-    // padding: 0 0 2.1875rem 0;
-    // border-bottom: 0.125rem solid 	rgba(119, 119, 119,0.2);
-
-}
-
 .trainer-profile__trainer-info-col__trainer-info-box {
     @include flex;
 }
@@ -155,12 +149,6 @@
 
 
 @media (max-width: 575px) {
-    .trainer-profile__trainer-info-col {
-        // padding: 0 0 2.1875rem*1.6 0;
-        // border-bottom: 0.125rem*1.6 solid 	rgba(119, 119, 119,0.2);
-
-    }
-
     .trainer-profile__trainer-info-col__trainer-info-box {
         @include flex;
     }
@@ -287,7 +275,7 @@
     .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect {
         position: absolute;
         width: 100%;
-        bottom: 5rem;
+        bottom: 4rem;
         height: 4rem*1.6;
     }
 

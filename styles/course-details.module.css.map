@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,mBAAmB;AACnB,iCAAiC;AACjC,iCAAiC,CAAC;EAC9B,OAAO,EAAE,iBAAiB;CAC7B;;AAED,AAAA,+BAA+B;AAC/B,mCAAmC,CAAC;EAChC,OAAO,EAAE,YAAY;CACxB;;AAGD,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,mBAAmB,CAAC;IAChB,OAAO,EAAE,MAAM;GAClB;EAED,AAAA,+BAA+B;EAC/B,mCAAmC,CAAC;IAChC,OAAO,EAAE,UAAU;GACtB;EAED,AAAA,iCAAiC,CAAC;IAC9B,OAAO,EAAE,MAAM;GAElB;EAED,AAAA,iCAAiC,CAAC;IAC9B,OAAO,EAAE,MAAM;GAClB",
-    "sources": [
-        "course-details.module.scss"
-    ],
-    "names": [],
-    "file": "course-details.module.css"
-}
+{"version":3,"sources":["course-details.module.scss","course-details.module.css"],"names":[],"mappings":"AAAA;;;EAGI,0BAAA;ACCJ;;ADEA;;EAEI,qBAAA;ACCJ;;ADGA;EACI;IACI,eAAA;ECAN;EDGE;;IAEI,mBAAA;ECDN;EDIE;IACI,eAAA;ECFN;EDME;IACI,eAAA;ECJN;AACF","file":"course-details.module.css"}

@@ -14,17 +14,10 @@
 
 .successful-investment__marketing_boxes {
   padding: 0 6.75rem 0 6.75rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .successful-investment__marketing_boxes__box {
@@ -58,28 +51,16 @@
   }
   .successful-investment__marketing_boxes {
     padding: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
   .successful-investment__marketing_boxes__box {
     width: 100%;
     margin: 0 0 0 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
+    flex-direction: column-reverse;
   }
   .successful-investment__marketing_boxes__box__img img {
     width: 100%;
@@ -91,5 +72,4 @@
     margin: 2.875rem 4.3125rem 4rem 4.3125rem;
     text-align: center;
   }
-}
-/*# sourceMappingURL=successful-investment.module.css.map */
+}/*# sourceMappingURL=successful-investment.module.css.map */

@@ -262,7 +262,7 @@ export default function LatestCourses(props: any) {
                                     ]
                                   }
                                 >
-                                  {!course.is_in_user_subscription && course.currency_code}
+                                  {!course.is_in_user_subscription && course.currency_symbol}
                                 </span>}
   
                                 <span
@@ -304,7 +304,7 @@ export default function LatestCourses(props: any) {
                                       ]
                                     }
                                   >
-                                    {course.currency_code}
+                                    {course.currency_symbol}
                                   </span>
                                   <span
                                     className={

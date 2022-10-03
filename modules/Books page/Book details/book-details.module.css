@@ -5,69 +5,55 @@
 .book-details__book-preview {
   width: 15.3125rem;
 }
-
 .book-details__book-preview img {
   width: 15.3125rem;
   height: 21.9rem;
-  -webkit-box-shadow: 0 0 3rem #00000033;
-          box-shadow: 0 0 3rem #00000033;
+  box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2);
   border-radius: 0.625rem;
 }
-
 .book-details__book-preview a:hover, .book-details__book-preview a:active {
   color: white !important;
 }
-
 .book-details__book-preview button {
   height: 2.85rem;
   margin: 1.875rem 0 0.875rem 0;
 }
-
 .book-details__book-preview button:nth-of-type(1) {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
   width: 100%;
 }
-
 .book-details__book-preview button:nth-of-type(1):hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .book-details__book-preview button:nth-of-type(1):active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .book-details__book-preview button:nth-of-type(1):hover, .book-details__book-preview button:nth-of-type(1):active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .book-details__book-preview button:nth-of-type(1) svg {
   width: 1rem;
   height: 1rem;
   margin-left: 0.625rem;
 }
-
 .book-details__book-preview button:nth-of-type(2) {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -77,32 +63,24 @@
   width: 20%;
   margin-right: 5%;
 }
-
 .book-details__book-preview button:nth-of-type(2):hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .book-details__book-preview button:nth-of-type(2):active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .book-details__book-preview button:nth-of-type(2):hover, .book-details__book-preview button:nth-of-type(2):active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .book-details__book-preview button:nth-of-type(2):hover, .book-details__book-preview button:nth-of-type(2):active {
   background-color: rgba(0, 0, 0, 0.08) !important;
   border: none !important;
 }
-
 .book-details__book-preview button:nth-of-type(2) svg {
   width: 1.25rem;
   height: 1rem;
 }
-
 .book-details__book-preview div {
   font-size: 0.875rem;
   color: var(--dark-black);
@@ -121,15 +99,9 @@
   border-radius: 0.5rem;
   font-size: 0.875rem;
   color: var(--grey);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .book-details__book-info__book-title {
@@ -145,18 +117,11 @@
 }
 
 .book-details__book-info__downloads-details {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   padding: 1.7rem 0 2rem 0;
 }
-
 .book-details__book-info__downloads-details svg {
   width: 1.875rem;
   height: 1.875rem;
@@ -164,27 +129,16 @@
 }
 
 .book-details__book-info__downloads-details__downloads-number {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   margin-left: 1.1875rem;
 }
-
 .book-details__book-info__downloads-details__downloads-number div:nth-of-type(1) {
   font-size: 0.875rem;
   color: var(--dark-black);
 }
-
 .book-details__book-info__downloads-details__downloads-number div:nth-of-type(2) {
   font-size: 1.875rem;
   font-weight: 800;
@@ -198,25 +152,17 @@
   border-radius: 0.75rem;
   font-size: 0.875rem;
   color: var(--dark-black);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(239, 121, 138, 0.08);
   font-weight: 700;
 }
-
 .book-details__book-info__downloads-details__manufacturer svg {
   width: 1.0625rem;
   height: 1rem;
   margin: 0 0 0 0.4rem;
 }
-
 .book-details__book-info__downloads-details__manufacturer span {
   font-size: 1.0625rem;
   color: var(--primary-red);
@@ -238,7 +184,6 @@
   margin-top: 2.5rem;
   position: relative;
   overflow: hidden;
-  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
   color: var(--grey);
 }
@@ -261,11 +206,9 @@
   cursor: pointer;
   z-index: 3;
 }
-
 .book-details__book-info__book-brief__brief__read-more span {
   margin-left: 0.5rem;
 }
-
 .book-details__book-info__book-brief__brief__read-more svg {
   width: 0.625rem;
   height: 0.375rem;
@@ -273,8 +216,7 @@
 
 .book-details__book-info__book-brief__brief--fadeout-effect {
   position: absolute;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(white));
-  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, white 100%);
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
   width: 100%;
   bottom: 3rem;
   height: 4rem;
@@ -295,11 +237,8 @@
   .book-details__book-preview img {
     width: 70%;
     height: 51rem;
-    -webkit-box-shadow: 0 0 6rem #00000033;
-            box-shadow: 0 0 6rem #00000033;
+    box-shadow: 0 0 6rem rgba(0, 0, 0, 0.2);
     border-radius: 1.5625rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     margin: 0 auto;
   }
@@ -320,15 +259,9 @@
     height: 4.375rem;
     border-radius: 1.25rem;
     font-size: 2.1875rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin: 0 auto;
   }
   .book-details__book-info__book-title {
@@ -341,20 +274,13 @@
     text-align: center;
   }
   .book-details__book-info__downloads-details {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     padding: 4.25rem 0 5rem 0;
     border-bottom: none;
     margin: 0;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
   }
   .book-details__book-info__downloads-details svg {
     width: 4.6875rem;
@@ -362,19 +288,10 @@
     margin: 0 0 1.25rem 2.96875rem;
   }
   .book-details__book-info__downloads-details__downloads-number {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     margin-left: 2.96875rem;
   }
   .book-details__book-info__downloads-details__downloads-number div:nth-of-type(1) {
@@ -389,15 +306,9 @@
     height: 7.8125rem;
     border-radius: 1.875rem;
     font-size: 2.1875rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     width: 100%;
   }
   .book-details__book-info__downloads-details__manufacturer svg {
@@ -419,7 +330,6 @@
     padding: 6.25rem 0;
     position: relative;
     overflow: hidden;
-    -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
   .book-details__book-info__book-brief__title__para {
@@ -457,7 +367,6 @@
     background-color: white;
     z-index: 8;
     margin: 0 -5rem;
-    background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(5%, white), color-stop(90%, white), to(white));
     background: linear-gradient(transparent 0%, white 5%, white 90%, white 100%);
   }
   .mobile-download-bar a:hover, .mobile-download-bar a:active {
@@ -469,14 +378,13 @@
     border-radius: 1.5625rem !important;
   }
   .mobile-download-bar button:nth-of-type(1) {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -485,12 +393,10 @@
     margin: 2rem 5% 1rem 5%;
   }
   .mobile-download-bar button:nth-of-type(1):hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .mobile-download-bar button:nth-of-type(1):active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .mobile-download-bar button:nth-of-type(1):hover, .mobile-download-bar button:nth-of-type(1):active {
     background-color: #9d151e !important;
@@ -502,14 +408,13 @@
     margin-left: 1.5625rem;
   }
   .mobile-download-bar button:nth-of-type(2) {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -521,12 +426,10 @@
     padding: 0;
   }
   .mobile-download-bar button:nth-of-type(2):hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .mobile-download-bar button:nth-of-type(2):active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .mobile-download-bar button:nth-of-type(2):hover, .mobile-download-bar button:nth-of-type(2):active {
     background-color: #9d151e !important;
@@ -545,5 +448,4 @@
     text-align: center;
     margin: 0 0 1rem 0;
   }
-}
-/*# sourceMappingURL=book-details.module.css.map */
+}/*# sourceMappingURL=book-details.module.css.map */

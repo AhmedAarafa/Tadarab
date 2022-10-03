@@ -7,67 +7,47 @@
   padding-bottom: 2rem;
   background-color: white;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) {
   padding-top: 0.5rem;
   height: 30rem;
   margin-bottom: 3rem;
   padding-bottom: 2rem;
 }
-
-.about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1),
-.about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2) {
+.about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1), .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2) {
   top: 47% !important;
 }
-
-.about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1):after,
-.about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2):after {
+.about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1):after, .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2):after {
   font-size: 1.2rem !important;
-  -webkit-box-shadow: 0 0 1.5rem #00000033 !important;
-          box-shadow: 0 0 1.5rem #00000033 !important;
+  box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2) !important;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1) {
   right: 1.2rem !important;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1):after {
   padding: 1.8rem 1.416rem 1.8rem 1.536rem !important;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2) {
   left: 1.2rem !important;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2):after {
   padding: 1.8rem 1.536rem 1.8rem 1.416rem !important;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(3) {
   bottom: 0;
   display: block !important;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(3) span {
   margin: 0 0.5rem 0 0.5rem;
   width: 0.7rem;
   height: 0.7rem;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(4) {
   padding-bottom: 2rem;
 }
-
 .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(4) > div:nth-child(n) {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .about-tadarab__title {
@@ -75,36 +55,22 @@
   font-weight: 800;
   padding: 4rem 3rem 0.8rem 3rem;
   background-color: white;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .about-tadarab__title span:nth-of-type(1) {
   color: var(--dark-black);
 }
-
 .about-tadarab__title span:nth-of-type(2) {
   color: var(--primary-red);
   margin-right: 0.3rem;
 }
 
 .about-tadarab__breif {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   font-size: 1.063rem;
   color: var(--grey);
@@ -114,15 +80,9 @@
   width: 70.375rem;
   height: 21.438rem;
   margin-right: 7rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   position: relative;
 }
 
@@ -132,7 +92,6 @@
   display: inline-block;
   position: relative;
 }
-
 .about-tadarab__cards-carousel__item__container__img img {
   border-radius: 1.375rem;
   width: 100%;
@@ -149,15 +108,9 @@
 }
 
 .about-tadarab__cards-carousel__item__container__course-details-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   position: absolute;
   bottom: 2rem;
   right: 2rem;
@@ -166,7 +119,6 @@
 .about-tadarab__cards-carousel__item__container__course-details-box__trainer-img {
   display: inline-block;
 }
-
 .about-tadarab__cards-carousel__item__container__course-details-box__trainer-img img {
   border-radius: 50%;
   width: 2.5rem;
@@ -191,27 +143,15 @@
 }
 
 .about-tadarab__cards-carousel__item__container__review-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
   background-color: white;
   width: 46.875rem;
   height: 16.875rem;
-  -webkit-box-shadow: 0 0 1.875rem #0000001A;
-          box-shadow: 0 0 1.875rem #0000001A;
+  box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   padding: 1.7rem 2.5rem;
   position: absolute;
@@ -234,7 +174,6 @@
   font-weight: 800;
   color: var(--dark-black);
 }
-
 .about-tadarab__cards-carousel__item__container__review-box__reviewer-details div:nth-of-type(2) {
   font-size: 1.25rem;
   color: var(--grey);
@@ -252,15 +191,12 @@
     height: fit-content;
     margin-bottom: 0;
   }
-  .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1),
-  .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2) {
+  .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1), .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2) {
     top: 47% !important;
   }
-  .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1):after,
-  .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2):after {
+  .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(1):after, .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(2):after {
     font-size: 2rem !important;
-    -webkit-box-shadow: 0 0 2.5rem #00000033 !important;
-            box-shadow: 0 0 2.5rem #00000033 !important;
+    box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.2) !important;
   }
   .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(3) {
     bottom: 0rem;
@@ -276,43 +212,25 @@
     height: 55rem;
   }
   .about-tadarab__cards-carousel-container > div:nth-child(1) > div:nth-child(4) > div:nth-child(n) {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-start;
   }
   .about-tadarab__title {
     font-size: 4.688rem;
     padding: 5.25rem 0 2.344rem 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     text-align: center;
   }
   .about-tadarab__title span:nth-of-type(2) {
     margin-right: 0.3rem;
   }
   .about-tadarab__breif {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     font-size: 2.6rem;
     padding: 0 12.5rem 0 12.5rem;
     text-align: center;
@@ -321,15 +239,9 @@
     width: 70.375rem;
     height: 21.438rem;
     margin-right: 7rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     position: relative;
   }
   .about-tadarab__cards-carousel__item__container__img {
@@ -343,15 +255,9 @@
     border-radius: 3.4375rem;
   }
   .about-tadarab__cards-carousel__item__container__course-details-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     position: absolute;
     bottom: 2rem;
     right: 2rem;
@@ -380,8 +286,7 @@
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    -webkit-box-shadow: 0 0 1.875rem #0000001A;
-            box-shadow: 0 0 1.875rem #0000001A;
+    box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 3.125rem;
     padding: 3rem 4.688rem;
     position: static;
@@ -400,5 +305,4 @@
   .about-tadarab__cards-carousel__item__container__review-box__reviewer-details div:nth-of-type(2) {
     font-size: 2.5rem;
   }
-}
-/*# sourceMappingURL=about-tadarab.module.css.map */
+}/*# sourceMappingURL=about-tadarab.module.css.map */

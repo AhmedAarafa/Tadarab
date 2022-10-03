@@ -58,7 +58,7 @@ export default function CourseCard() {
                 styles["course-details__course-card__price-box__currency"]
               }
             >
-              {courseDetails.course_details?.currency_code}
+              {courseDetails.course_details?.currency_symbol}
             </span>
           </div>
          { courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price  &&
@@ -83,7 +83,7 @@ export default function CourseCard() {
                 }
               >
                 {" "}
-                {courseDetails.course_details?.currency_code}{" "}
+                {courseDetails.course_details?.currency_symbol}{" "}
               </span>
             </div>
             <span
@@ -232,7 +232,7 @@ export default function CourseCard() {
                   styles["course-details__course-card__price-box__currency"]
                 }
               >
-                {courseDetails.course_details?.currency_code}
+                {courseDetails.course_details?.currency_symbol}
               </span>
             </div>
           { courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price  &&
@@ -257,7 +257,7 @@ export default function CourseCard() {
                   }
                 >
                   {" "}
-                  {courseDetails.course_details?.currency_code}{" "}
+                  {courseDetails.course_details?.currency_symbol}{" "}
                 </span>
               </div>
               <span

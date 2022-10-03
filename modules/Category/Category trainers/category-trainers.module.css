@@ -11,37 +11,25 @@
 .category-trainer__cards-carousel {
   padding-top: 2.0625rem;
 }
-
 .category-trainer__cards-carousel > div {
   padding: 0 !important;
 }
-
-.category-trainer__cards-carousel > div > div:nth-child(1),
-.category-trainer__cards-carousel > div > div:nth-child(2) {
+.category-trainer__cards-carousel > div > div:nth-child(1), .category-trainer__cards-carousel > div > div:nth-child(2) {
   top: 43% !important;
 }
 
 .category-trainer__cards-carousel__card {
   width: 15rem;
   height: 17.5rem;
-  -webkit-box-shadow: 0 0.4rem 1.0504rem #0000001A;
-          box-shadow: 0 0.4rem 1.0504rem #0000001A;
+  box-shadow: 0 0.4rem 1.0504rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.6rem;
   color: white;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+  align-items: unset;
+  justify-content: flex-end;
   display: inline-flex;
   background: transparent url("/images/trainer img.png") no-repeat padding-box;
   background-size: contain;
@@ -49,8 +37,7 @@
 
 .category-trainer__cards-carousel__card__card-body {
   padding: 0;
-  background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(30%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
-  background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.631372549) 30%, rgba(0, 0, 0, 0.9019607843) 100%) 0% 0% no-repeat padding-box;
   padding: 0 0.3rem 1.2rem 0.3rem;
   padding-bottom: 1.2rem;
 }
@@ -87,11 +74,10 @@
     padding: 0 1.9rem !important;
   }
   .category-trainer__cards-carousel > div:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
-    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
-            box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+    box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
     top: 0;
     left: 0;
     width: 100%;
@@ -99,15 +85,12 @@
     z-index: 200;
     pointer-events: none;
   }
-  .category-trainer__cards-carousel > div > div:nth-child(1),
-  .category-trainer__cards-carousel > div > div:nth-child(2) {
+  .category-trainer__cards-carousel > div > div:nth-child(1), .category-trainer__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;
   }
-  .category-trainer__cards-carousel > div > div:nth-child(1):after,
-  .category-trainer__cards-carousel > div > div:nth-child(2):after {
+  .category-trainer__cards-carousel > div > div:nth-child(1):after, .category-trainer__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.3rem !important;
-    -webkit-box-shadow: 0 0 1.625rem #00000033 !important;
-            box-shadow: 0 0 1.625rem #00000033 !important;
+    box-shadow: 0 0 1.625rem rgba(0, 0, 0, 0.2) !important;
   }
   .category-trainer__cards-carousel > div > div:nth-child(1) {
     right: 1.3rem !important;
@@ -124,25 +107,17 @@
   .category-trainer__cards-carousel__card {
     width: 17.8125rem;
     height: 20.78125rem;
-    -webkit-box-shadow: 0 0.475rem 1.24735rem #0000001A;
-            box-shadow: 0 0.475rem 1.24735rem #0000001A;
+    box-shadow: 0 0.475rem 1.24735rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 0.7125rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: unset;
+    justify-content: flex-end;
     background: transparent url("/images/trainer img.png") no-repeat padding-box;
     background-size: contain;
   }
   .category-trainer__cards-carousel__card__card-body {
     padding: 0;
-    background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(30%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.631372549) 30%, rgba(0, 0, 0, 0.9019607843) 100%) 0% 0% no-repeat padding-box;
     padding: 0 0.285rem 1.14rem 0.285rem;
     padding-bottom: 1.425rem;
   }
@@ -151,25 +126,23 @@
     margin: 2.375rem 0 0.29735rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
-  .category-trainer__cards-carousel__card__job-history {
+.category-trainer__cards-carousel__card__job-history {
     font-size: 0.77235rem;
     padding: 0;
   }
 }
-
 @media (max-width: 980px) {
   .category-trainer__cards-carousel {
-    padding-top: 3.42161rem;
+    padding-top: 3.421605rem;
   }
   .category-trainer__cards-carousel > div {
     padding: 0 2.67rem !important;
   }
   .category-trainer__cards-carousel > div:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
-    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
-            box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+    box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
     top: 0;
     left: 0;
     width: 100%;
@@ -177,15 +150,12 @@
     z-index: 200;
     pointer-events: none;
   }
-  .category-trainer__cards-carousel > div > div:nth-child(1),
-  .category-trainer__cards-carousel > div > div:nth-child(2) {
+  .category-trainer__cards-carousel > div > div:nth-child(1), .category-trainer__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;
   }
-  .category-trainer__cards-carousel > div > div:nth-child(1):after,
-  .category-trainer__cards-carousel > div > div:nth-child(2):after {
+  .category-trainer__cards-carousel > div > div:nth-child(1):after, .category-trainer__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.5rem !important;
-    -webkit-box-shadow: 0 0 1.875rem #00000033 !important;
-            box-shadow: 0 0 1.875rem #00000033 !important;
+    box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.2) !important;
   }
   .category-trainer__cards-carousel > div > div:nth-child(1) {
     right: 1.5rem !important;
@@ -201,40 +171,31 @@
   }
   .category-trainer__cards-carousel__card {
     width: 25.03125rem;
-    height: 29.20312rem;
-    -webkit-box-shadow: 0 0.6675rem 1.75285rem #0000001A;
-            box-shadow: 0 0.6675rem 1.75285rem #0000001A;
+    height: 29.203125rem;
+    box-shadow: 0 0.6675rem 1.752855rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.00125rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: unset;
+    justify-content: flex-end;
     background: transparent url("/images/trainer img.png") no-repeat padding-box;
     background-size: contain;
   }
   .category-trainer__cards-carousel__card__card-body {
     padding: 0;
-    background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(30%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.631372549) 30%, rgba(0, 0, 0, 0.9019607843) 100%) 0% 0% no-repeat padding-box;
     padding: 0 0.4005rem 1.602rem 0.4005rem;
     padding-bottom: 2.0025rem;
   }
   .category-trainer__cards-carousel__card__trainer {
     font-size: 1.66875rem;
-    margin: 3.3375rem 0 0.41785rem 0;
+    margin: 3.3375rem 0 0.417855rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
-  .category-trainer__cards-carousel__card__job-history {
-    font-size: 1.08535rem;
+.category-trainer__cards-carousel__card__job-history {
+    font-size: 1.085355rem;
     padding: 0;
   }
 }
-
 @media (max-width: 575px) {
   .category-trainer {
     margin: 12.4rem 0 0 0;
@@ -250,44 +211,28 @@
     padding: 0 4.9rem !important;
   }
   .category-trainer__cards-carousel > div:before {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
-  .category-trainer__cards-carousel > div > div:nth-child(1),
-  .category-trainer__cards-carousel > div > div:nth-child(2) {
+  .category-trainer__cards-carousel > div > div:nth-child(1), .category-trainer__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;
   }
   .category-trainer__cards-carousel > div > div:nth-child(4) > div {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: unset;
+    justify-content: center;
   }
   .category-trainer__cards-carousel__card {
     width: 45.9375rem;
     height: 53.59375rem;
-    -webkit-box-shadow: 0 1.225rem 3.21685rem #0000001A;
-            box-shadow: 0 1.225rem 3.21685rem #0000001A;
+    box-shadow: 0 1.225rem 3.21685rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.8375rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: unset;
+    justify-content: flex-end;
   }
   .category-trainer__cards-carousel__card__card-body {
     padding: 0;
-    background: transparent -webkit-gradient(linear, left top, left bottom, from(#00000000), color-stop(30%, #000000a1), to(#000000E6)) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.631372549) 30%, rgba(0, 0, 0, 0.9019607843) 100%) 0% 0% no-repeat padding-box;
     padding: 0 0.735rem 2.94rem 0.735rem;
     padding-bottom: 3.675rem;
   }
@@ -297,9 +242,8 @@
     margin: 6.125rem 0 0.76685rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
-  .category-trainer__cards-carousel__card__job-history {
+.category-trainer__cards-carousel__card__job-history {
     font-size: 1.99185rem;
     padding: 0;
   }
-}
-/*# sourceMappingURL=category-trainers.module.css.map */
+}/*# sourceMappingURL=category-trainers.module.css.map */

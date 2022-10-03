@@ -1,28 +1,19 @@
 .search-results {
   padding: 2rem 9rem 0 9rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .search-results__total-search-results {
   padding: 6rem 9rem 0 9rem;
 }
-
 .search-results__total-search-results div {
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--dark-black);
 }
-
 .search-results__total-search-results div span {
   color: var(--primary-red);
 }
@@ -34,17 +25,15 @@
 .search-results__course-card {
   width: 15rem;
   height: 17.75rem;
-  -webkit-box-shadow: 0 0.5rem 1.313rem #0000001A;
-          box-shadow: 0 0.5rem 1.313rem #0000001A;
+  box-shadow: 0 0.5rem 1.313rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.75rem;
   position: relative;
   display: inline-block;
   overflow: visible;
   margin: 0 0 2rem 0;
 }
-
 .search-results__course-card:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -78,32 +67,17 @@
 
 .search-results__course-card__card-body {
   padding: 0.6rem 1rem 0.6rem 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: unset;
+  justify-content: space-between;
+  flex-direction: column;
   height: 43.5%;
 }
 
 .search-results__course-card__card-body__card-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   position: relative;
   padding: 0 0 0.7813rem 0;
   border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
@@ -113,7 +87,6 @@
   display: inline-block;
   font-size: 0.5rem;
 }
-
 .search-results__course-card__card-body__card-header__trainer-img-box img {
   border-radius: 50%;
   width: 2.5rem;
@@ -147,15 +120,9 @@
 }
 
 .search-results__course-card__card-body__checkout-details {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .search-results__course-card__card-body__checkout-details__price-container__price {
@@ -193,22 +160,13 @@
   border-radius: 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
   border: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+  align-items: center;
+  justify-content: center;
   display: inline-flex;
   margin-right: 0.3rem;
   padding: 0 !important;
 }
-
 .search-results__course-card__card-body__checkout-details__icon-btn:hover, .search-results__course-card__card-body__checkout-details__icon-btn:active, .search-results__course-card__card-body__checkout-details__icon-btn:focus {
   background-color: rgba(0, 0, 0, 0.07);
 }
@@ -224,15 +182,9 @@
 }
 
 .search-results__pagination {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   padding: 2rem 0 5rem 0;
 }
 
@@ -254,17 +206,10 @@
 @media (max-width: 575px) {
   .search-results {
     padding: 5rem 5rem 0 5rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   .search-results__total-search-results {
     padding: 12.5rem 5rem 0 5rem;
@@ -276,8 +221,7 @@
   .search-results__course-card {
     width: 46.875rem;
     height: 50rem;
-    -webkit-box-shadow: 0 1.25rem 2.345rem #0000001A;
-            box-shadow: 0 1.25rem 2.345rem #0000001A;
+    box-shadow: 0 1.25rem 2.345rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.875rem;
     display: inline-block;
     margin: 0 0 4.21875rem 0;
@@ -310,15 +254,9 @@
     height: 37.5%;
   }
   .search-results__course-card__card-body__card-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     position: relative;
     padding: 0 0 1.95325rem 0;
     border-bottom: 0.125rem solid rgba(34, 34, 34, 0.1);
@@ -344,15 +282,9 @@
     width: 33.3rem;
   }
   .search-results__course-card__card-body__checkout-details {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
   }
   .search-results__course-card__card-body__checkout-details__price-container__price {
     font-size: 3.125rem;
@@ -375,17 +307,9 @@
     border-radius: 0.75rem;
     background-color: rgba(0, 0, 0, 0.05);
     border: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
+    align-items: center;
+    justify-content: center;
     display: inline-flex;
     width: 5.625rem;
     height: 5.625rem;
@@ -409,5 +333,4 @@
     padding: 1.25rem 2.5rem;
     border-radius: 1.75rem;
   }
-}
-/*# sourceMappingURL=search-results-page.module.css.map */
+}/*# sourceMappingURL=search-results-page.module.css.map */

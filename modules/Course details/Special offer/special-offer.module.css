@@ -7,18 +7,11 @@
 }
 
 .special-offer__title {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 1.438rem;
 }
-
 .special-offer__title span {
   font-size: 1.25rem;
   font-weight: 800;
@@ -30,21 +23,11 @@
   border-radius: 1.375rem;
   background-color: white;
   padding: 1.7rem 2rem 2.25rem 2rem;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  flex-direction: column;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .special-offer__cards-outer-box div:nth-last-child(2) .special-offer__cards-outer-box__plus {
   display: none;
 }
@@ -53,15 +36,9 @@
   width: 100%;
   border-radius: 0.75rem;
   margin: 1.25rem 0 0.5rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
   overflow: hidden;
 }
 
@@ -69,55 +46,37 @@
   position: relative;
   width: 100%;
   border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 1rem 0 1.2rem 0;
 }
-
 .special-offer__cards-outer-box__plus:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 0;
   border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
   width: 38%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-
 .special-offer__cards-outer-box__plus:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   right: 0;
   border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
   width: 38%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
-
 .special-offer__cards-outer-box__plus div {
   background-color: rgba(175, 21, 31, 0.1);
   padding: 0.8rem;
   border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .special-offer__cards-outer-box__plus div svg {
   width: 1.125rem;
   height: 1.125rem;
@@ -126,9 +85,8 @@
 .special-offer__cards-outer-box__card__course-img {
   position: relative;
 }
-
 .special-offer__cards-outer-box__card__course-img:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -137,13 +95,11 @@
   display: inline-block;
   background: none;
 }
-
 .special-offer__cards-outer-box__card__course-img img {
   width: 12.5rem;
   height: 7.5rem;
   border-radius: 0.75rem;
-  -webkit-box-shadow: 0 0 1.25rem #0000001A;
-          box-shadow: 0 0 1.25rem #0000001A;
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
 }
 
 .special-offer__cards-outer-box__card__category-chip {
@@ -173,15 +129,9 @@
 
 .special-offer__cards-outer-box__card__trainer-info-box {
   padding-bottom: 0.8rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -197,7 +147,6 @@
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-img {
   margin-left: 0.75rem;
 }
-
 .special-offer__cards-outer-box__card__trainer-info-box__trainer-img img {
   width: 2.5rem;
   height: 2.5rem;
@@ -226,30 +175,21 @@
 }
 
 .special-offer__cards-outer-box__card__rating-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   display: none !important;
 }
-
 .special-offer__cards-outer-box__card__rating-box span:nth-of-type(1) {
   font-size: 1rem;
   font-weight: 800;
   color: var(--dark-black);
 }
-
 .special-offer__cards-outer-box__card__rating-box span:nth-of-type(2) {
   font-size: 0.813rem;
   color: var(--grey);
   margin-right: 0.3rem;
 }
-
 .special-offer__cards-outer-box__card__rating-box svg {
   margin: 0 0.2rem 0.2rem 0;
 }
@@ -257,22 +197,14 @@
 .special-offer__cards-outer-box__card__price {
   color: var(--dark-black);
   margin-top: 0.7rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .special-offer__cards-outer-box__card__price span:nth-of-type(1) {
   font-size: 1.25rem;
   font-weight: 800;
 }
-
 .special-offer__cards-outer-box__card__price span:nth-of-type(2) {
   font-size: 0.813rem;
   font-weight: 700;
@@ -285,26 +217,18 @@
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
           text-decoration: line-through rgba(175, 21, 31, 0.5);
 }
-
 .special-offer__cards-outer-box__card__old-price span:nth-of-type(1) {
   font-size: 0.75rem;
   font-weight: 800;
 }
-
 .special-offer__cards-outer-box__card__old-price span:nth-of-type(2) {
   font-size: 0.625rem;
 }
 
 .special-offer__cards-outer-box__card__checkout-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   padding-top: 2.5rem;
   margin-top: 2.5rem;
@@ -313,22 +237,14 @@
 
 .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
   color: var(--dark-black);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .special-offer__cards-outer-box__card__checkout-box__prices-box__price span:nth-of-type(1) {
   font-size: 2.5rem;
   font-weight: 800;
 }
-
 .special-offer__cards-outer-box__card__checkout-box__prices-box__price span:nth-of-type(2) {
   font-size: 1.625rem;
   font-weight: 700;
@@ -341,17 +257,10 @@
   margin-top: -0.8rem;
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
           text-decoration: line-through rgba(175, 21, 31, 0.5);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .special-offer__cards-outer-box__card__checkout-box__prices-box__old-price span:nth-of-type(2) {
   font-size: 1.688rem;
   font-weight: 800;
@@ -362,7 +271,6 @@
   color: var(--grey);
   margin-top: -0.2rem;
 }
-
 .special-offer__cards-outer-box__card__checkout-box__prices-box__discount span {
   font-size: 1.125rem;
   font-weight: 800;
@@ -370,69 +278,43 @@
 
 .special-offer__cards-outer-box__card__offer-duration-box {
   background-color: rgba(175, 21, 31, 0.08);
-  -webkit-box-shadow: 0 0.188rem 0.5rem #0000001A;
-          box-shadow: 0 0.188rem 0.5rem #0000001A;
+  box-shadow: 0 0.188rem 0.5rem rgba(0, 0, 0, 0.1019607843);
   padding: 0.563rem 1rem 0.7rem 1rem;
   border-radius: 0.625rem;
   color: var(--primary-red);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .special-offer__cards-outer-box__card__offer-duration-box__offer-available {
   margin-left: 1.938rem;
 }
-
 .special-offer__cards-outer-box__card__offer-duration-box__offer-available div:nth-of-type(1) {
   font-size: 1rem;
   font-weight: 800;
 }
-
 .special-offer__cards-outer-box__card__offer-duration-box__offer-available div:nth-of-type(2) {
   font-size: 0.938rem;
   margin-top: -0.2rem;
 }
 
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
 
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   width: 2.3125rem;
 }
-
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(1) {
   font-size: 0.813rem;
 }
-
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(2) {
   font-size: 1.063rem;
   font-weight: 800;
@@ -440,15 +322,9 @@
   background-color: white;
   padding: 0.313rem 0.5rem;
   margin-top: 0.1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
@@ -460,54 +336,39 @@
 }
 
 .special-offer__cards-outer-box__card__add-to-cart-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
   width: 18.75rem;
   height: 3.125rem;
   margin-top: 0.75rem;
-  -webkit-box-shadow: 0 0.25rem 1.25rem #AF151F4D;
-          box-shadow: 0 0.25rem 1.25rem #AF151F4D;
+  box-shadow: 0 0.25rem 1.25rem rgba(175, 21, 31, 0.3019607843);
 }
-
 .special-offer__cards-outer-box__card__add-to-cart-btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .special-offer__cards-outer-box__card__add-to-cart-btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .special-offer__cards-outer-box__card__add-to-cart-btn span {
   font-size: 1.063rem;
   font-weight: 700;
   margin-right: 1.25rem;
 }
-
 .special-offer__cards-outer-box__card__add-to-cart-btn svg {
   width: 1.375rem;
   height: 1.25rem;
@@ -521,15 +382,9 @@
     padding: 1.78312rem 0.38812rem 0.38812rem 0.38812rem;
   }
   .special-offer__title {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 1.78312rem;
   }
   .special-offer__title span {
@@ -543,35 +398,19 @@
   .special-offer__cards-outer-box {
     border-radius: 1.705rem;
     padding: 2.108rem 2.79rem 2.79rem 2.79rem;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    flex-direction: column;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .special-offer__cards-outer-box__card {
     width: 100%;
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     border-radius: 0;
     margin: 1.55rem 0 0.62rem 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
     overflow: hidden;
   }
   .special-offer__cards-outer-box__card svg {
@@ -582,50 +421,36 @@
     position: relative;
     width: 100%;
     border-radius: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin: 1.5rem 0;
   }
   .special-offer__cards-outer-box__plus:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 0;
     border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
     width: 38%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   .special-offer__cards-outer-box__plus:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     right: 0;
     border-top: 0.05rem solid rgba(119, 119, 119, 0.5);
     width: 38%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
   }
   .special-offer__cards-outer-box__plus div {
     background-color: rgba(175, 21, 31, 0.1);
     padding: 1.2rem;
     border-radius: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .special-offer__cards-outer-box__plus div svg {
     width: 3rem;
@@ -651,15 +476,9 @@
   }
   .special-offer__cards-outer-box__card__trainer-info-box {
     padding-bottom: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
     width: 100%;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -685,15 +504,9 @@
   }
   .special-offer__cards-outer-box__card__rating-box {
     margin-top: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .special-offer__cards-outer-box__card__rating-box span:nth-of-type(1) {
     font-size: 2.5rem;
@@ -710,15 +523,9 @@
   }
   .special-offer__cards-outer-box__card__price {
     margin-top: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .special-offer__cards-outer-box__card__price span:nth-of-type(1) {
     font-size: 3.125rem;
@@ -733,49 +540,25 @@
             text-decoration: line-through rgba(175, 21, 31, 0.5);
   }
   .special-offer__cards-outer-box__card__checkout-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
     border-top: 0.063rem solid rgba(119, 119, 119, 0.5);
     margin-top: 2rem;
     padding-top: 2rem;
   }
   .special-offer__cards-outer-box__card__checkout-box__prices-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .special-offer__cards-outer-box__card__checkout-box__prices-box__price {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .special-offer__cards-outer-box__card__checkout-box__prices-box__price span:nth-of-type(1) {
     font-size: 4.688rem;
@@ -789,15 +572,9 @@
     margin-top: -0.992rem;
     -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
             text-decoration: line-through rgba(175, 21, 31, 0.5);
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .special-offer__cards-outer-box__card__checkout-box__prices-box__old-price span:nth-of-type(2) {
     font-size: 3.438rem;
@@ -811,36 +588,21 @@
   }
   .special-offer__cards-outer-box__card__offer-duration-checkout-box {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .special-offer__cards-outer-box__card__offer-duration-box {
     background-color: rgba(175, 21, 31, 0.08);
-    -webkit-box-shadow: 0 0.23rem 0.62rem #0000001A;
-            box-shadow: 0 0.23rem 0.62rem #0000001A;
+    box-shadow: 0 0.23rem 0.62rem rgba(0, 0, 0, 0.1019607843);
     padding: 1.5rem;
     border-radius: 1rem;
     margin-top: 3.5rem;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    align-items: center;
+    justify-content: space-around;
   }
   .special-offer__cards-outer-box__card__offer-duration-box__offer-available {
     margin-left: 2.4rem;
@@ -853,30 +615,15 @@
     margin-top: -0.248rem;
   }
   .special-offer__cards-outer-box__card__offer-duration-box__countdown-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     width: 5rem;
   }
   .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown div:nth-of-type(1) {
@@ -893,23 +640,16 @@
     margin: 2.6rem 1rem 0 1rem;
   }
   .special-offer__cards-outer-box__card__add-to-cart-btn {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -917,16 +657,13 @@
     height: 7.813rem;
     border-radius: 1.3rem;
     margin-top: 1.875rem;
-    -webkit-box-shadow: 0 0.625rem 3.125rem #AF151F4D;
-            box-shadow: 0 0.625rem 3.125rem #AF151F4D;
+    box-shadow: 0 0.625rem 3.125rem rgba(175, 21, 31, 0.3019607843);
   }
   .special-offer__cards-outer-box__card__add-to-cart-btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .special-offer__cards-outer-box__card__add-to-cart-btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active {
     background-color: #9d151e !important;
@@ -940,5 +677,4 @@
     width: 3.44rem;
     height: 3.125rem;
   }
-}
-/*# sourceMappingURL=special-offer.module.css.map */
+}/*# sourceMappingURL=special-offer.module.css.map */

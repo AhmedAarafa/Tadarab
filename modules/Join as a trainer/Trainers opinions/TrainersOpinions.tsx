@@ -28,7 +28,7 @@ export default function TrainersOpinions() {
 
         <div className={styles["trainers-opinions__video"]}>
           <TadarabVideoPlayer Source={source} Poster={"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/join-as-trainer-video.png"} />
-        </div>
+        </div> 
 
         <div className={styles["trainers-opinions__inquiries-section"]}>
           <div>تحتاج مساعدة أو استفسار؟</div>

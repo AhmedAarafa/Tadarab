@@ -8,7 +8,6 @@
   padding-bottom: 3rem;
   position: relative;
   overflow: hidden;
-  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
@@ -20,18 +19,11 @@
 }
 
 .what-you-will-learn__list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   margin-bottom: 1rem;
 }
-
 .what-you-will-learn__list span {
   font-size: 1rem;
   color: var(--grey);
@@ -42,9 +34,7 @@
   font-size: 1.125rem;
   font-weight: 800;
   width: 93%;
-  -webkit-box-flex: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
+  flex-grow: 2;
   background-color: white;
   color: var(--primary-red);
   position: absolute;
@@ -53,15 +43,13 @@
   cursor: pointer;
   z-index: 3;
 }
-
 .what-you-will-learn__read-more span {
   margin-left: 0.5rem;
 }
 
 .what-you-will-learn--fadeout-effect {
   position: absolute;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(white));
-  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, white 100%);
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
   width: 100%;
   bottom: 3.2rem;
   height: 4rem;
@@ -82,7 +70,6 @@
     padding-bottom: 7.5rem;
     position: relative;
     overflow: hidden;
-    -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
   .what-you-will-learn__title {
@@ -92,15 +79,9 @@
     margin-bottom: 3.75rem;
   }
   .what-you-will-learn__list {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     margin-bottom: 2.5rem;
   }
   .what-you-will-learn__list span {
@@ -116,9 +97,7 @@
     font-size: 2.8125rem;
     font-weight: 800;
     width: 85%;
-    -webkit-box-flex: 2;
-        -ms-flex-positive: 2;
-            flex-grow: 2;
+    flex-grow: 2;
     background-color: white;
     color: var(--primary-red);
     position: absolute;
@@ -136,12 +115,10 @@
   }
   .what-you-will-learn--fadeout-effect {
     position: absolute;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(white));
-    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, white 100%);
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
     width: 100%;
     bottom: 8rem;
     height: 10rem;
     pointer-events: none;
   }
-}
-/*# sourceMappingURL=what-you-will-learn.module.css.map */
+}/*# sourceMappingURL=what-you-will-learn.module.css.map */

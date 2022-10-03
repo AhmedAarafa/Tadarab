@@ -189,6 +189,8 @@ export default function CourseListing() {
             .get(`courses/?page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
+                console.log("responseresponse",response);
+                
                 toggleLoader("hide");
 
             })
@@ -274,7 +276,7 @@ export default function CourseListing() {
                                                             ]
                                                         }
                                                     >
-                                                        {course.currency_code}
+                                                        {course.currency_symbol}
                                                     </span>}
 
                                                     <span
@@ -305,7 +307,7 @@ export default function CourseListing() {
                                                                 ]
                                                             }
                                                         >
-                                                            {course.currency_code}
+                                                            {course.currency_symbol}
                                                         </span>
                                                         <span
                                                             className={
@@ -403,7 +405,7 @@ export default function CourseListing() {
                                                     ]
                                                 }
                                             >
-                                                <Link href="/course">
+                                                <Link href={`/course/${course.slug}`}>
                                                     <h1 onClick={() => { GAProductClickEventHandler(course, i) }}
                                                         title={course.title}
                                                         className={
@@ -454,7 +456,7 @@ export default function CourseListing() {
                                                             ]
                                                         }
                                                     >
-                                                        {!course.is_in_user_subscription && course.currency_code}
+                                                        {!course.is_in_user_subscription && course.currency_symbol}
                                                     </span>}
 
                                                     <span
@@ -495,7 +497,7 @@ export default function CourseListing() {
                                                                 ]
                                                             }
                                                         >
-                                                            {course.currency_code}
+                                                            {course.currency_symbol}
                                                         </span>
                                                         <span
                                                             className={

@@ -4,36 +4,22 @@
   padding: 5rem 3rem 0 3rem;
   background-color: #0E0B1D;
   border-radius: 5rem 0 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .consultations__title span:nth-of-type(1) {
   color: white;
 }
-
 .consultations__title span:nth-of-type(2) {
   color: var(--primary-red);
   margin-right: 0.45rem;
 }
 
 .consultations__minor-title-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   background-color: #0E0B1D;
   padding: 1rem 3rem 0 3rem;
 }
@@ -45,15 +31,9 @@
 }
 
 .consultations__show-all-btn-col {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  align-items: center;
+  justify-content: flex-end;
   padding-left: 3rem;
   background-color: #0E0B1D;
 }
@@ -67,21 +47,14 @@
   border-radius: 0.75rem;
   width: 15.188rem;
   height: 2.75rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  align-items: center;
+  justify-content: space-around;
 }
-
 .consultations__minor-title-container__btn svg {
   width: 0.5rem;
   height: 0.875rem;
 }
-
 .consultations__minor-title-container__btn:hover, .consultations__minor-title-container__btn:active, .consultations__minor-title-container__btn:focus {
   background-color: #0E0B1D;
   border: 0.063rem solid rgba(255, 255, 255, 0.2);
@@ -92,17 +65,14 @@
   padding-top: 2.2rem;
   padding-bottom: 4.8rem;
 }
-
 .consultations__cards-carousel > div {
   padding: 0 1.6rem !important;
 }
-
 .consultations__cards-carousel > div:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
-  -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
-          box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+  box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
   top: 0;
   left: 0;
   width: 100%;
@@ -110,9 +80,7 @@
   z-index: 200;
   pointer-events: none;
 }
-
-.consultations__cards-carousel > div > div:nth-child(1),
-.consultations__cards-carousel > div > div:nth-child(2) {
+.consultations__cards-carousel > div > div:nth-child(1), .consultations__cards-carousel > div > div:nth-child(2) {
   top: 42% !important;
 }
 
@@ -123,17 +91,9 @@
   color: white;
   position: relative;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+  align-items: unset;
+  justify-content: flex-end;
   display: inline-flex;
   background: transparent url("/images/trainer img@2x.png") no-repeat padding-box;
   background-size: contain;
@@ -157,14 +117,13 @@
 }
 
 .consultations__cards-carousel__card__btn {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -172,37 +131,24 @@
   height: 3rem;
   border-radius: 0 0 0.5rem 0.5rem;
   margin-top: 1.2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .consultations__cards-carousel__card__btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .consultations__cards-carousel__card__btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .consultations__cards-carousel__card__btn svg {
   width: 1.2rem;
   height: 1.2rem;
 }
-
 .consultations__cards-carousel__card__btn span {
   font-size: 0.8rem;
   margin-right: 0.6248rem;
@@ -213,15 +159,9 @@
     font-size: 2.06rem;
     padding: 5.15rem 3.09rem 0 3.09rem;
     border-radius: 5.15rem 0 0 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .consultations__title span:nth-of-type(1) {
     color: white;
@@ -230,15 +170,9 @@
     margin-right: 0.4635rem;
   }
   .consultations__minor-title-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     padding: 1.03rem 3.09rem 0 3.09rem;
   }
   .consultations__minor-title-container__para {
@@ -247,15 +181,9 @@
     color: white;
   }
   .consultations__show-all-btn-col {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: center;
+    justify-content: flex-end;
     padding-left: 3.09rem;
   }
   .consultations__minor-title-container__btn {
@@ -264,14 +192,9 @@
     border-radius: 0.7725rem;
     width: 15.64364rem;
     height: 2.8325rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    align-items: center;
+    justify-content: space-around;
   }
   .consultations__minor-title-container__btn svg {
     width: 0.515rem;
@@ -288,11 +211,10 @@
     padding: 0 2.06rem !important;
   }
   .consultations__cards-carousel > div:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
-    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
-            box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+    box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
     top: 0;
     left: 0;
     width: 100%;
@@ -300,15 +222,12 @@
     z-index: 200;
     pointer-events: none;
   }
-  .consultations__cards-carousel > div > div:nth-child(1),
-  .consultations__cards-carousel > div > div:nth-child(2) {
+  .consultations__cards-carousel > div > div:nth-child(1), .consultations__cards-carousel > div > div:nth-child(2) {
     top: 42% !important;
   }
-  .consultations__cards-carousel > div > div:nth-child(1):after,
-  .consultations__cards-carousel > div > div:nth-child(2):after {
+  .consultations__cards-carousel > div > div:nth-child(1):after, .consultations__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.03rem !important;
-    -webkit-box-shadow: 0 0 1.2875rem #00000033 !important;
-            box-shadow: 0 0 1.2875rem #00000033 !important;
+    box-shadow: 0 0 1.2875rem rgba(0, 0, 0, 0.2) !important;
   }
   .consultations__cards-carousel > div > div:nth-child(1) {
     right: 1.03rem !important;
@@ -326,15 +245,9 @@
     width: 19.3125rem;
     height: 26.39375rem;
     border-radius: 0.7725rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: unset;
+    justify-content: flex-end;
     background: transparent url("/images/trainer img@2x.png") no-repeat padding-box;
     background-size: contain;
   }
@@ -347,19 +260,18 @@
     margin: 2.575rem 0 0.30282rem 0;
   }
   .consultations__cards-carousel__card__job-title,
-  .consultations__cards-carousel__card__job-history {
+.consultations__cards-carousel__card__job-history {
     font-size: 0.83739rem;
     padding: 0;
   }
   .consultations__cards-carousel__card__btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -367,23 +279,15 @@
     height: 3.8625rem;
     border-radius: 0 0 0.64375rem 0.64375rem;
     margin-top: 1.545rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .consultations__cards-carousel__card__btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .consultations__cards-carousel__card__btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
     background-color: #9d151e !important;
@@ -398,21 +302,14 @@
     margin-right: 0.80443rem;
   }
 }
-
 @media (max-width: 980px) {
   .consultations__title {
     font-size: 2.68rem;
     padding: 6.7rem 4.02rem 0 4.02rem;
     border-radius: 6.7rem 0 0 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .consultations__title span:nth-of-type(1) {
     color: white;
@@ -421,15 +318,9 @@
     margin-right: 0.603rem;
   }
   .consultations__minor-title-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     padding: 1.34rem 4.02rem 0 4.02rem;
   }
   .consultations__minor-title-container__para {
@@ -438,15 +329,9 @@
     color: white;
   }
   .consultations__show-all-btn-col {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: center;
+    justify-content: flex-end;
     padding-left: 4.02rem;
   }
   .consultations__minor-title-container__btn {
@@ -455,14 +340,9 @@
     border-radius: 1.005rem;
     width: 20.35192rem;
     height: 3.685rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    align-items: center;
+    justify-content: space-around;
   }
   .consultations__minor-title-container__btn svg {
     width: 0.67rem;
@@ -479,11 +359,10 @@
     padding: 0 2.68rem !important;
   }
   .consultations__cards-carousel > div:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
-    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
-            box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+    box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
     top: 0;
     left: 0;
     width: 100%;
@@ -491,15 +370,12 @@
     z-index: 200;
     pointer-events: none;
   }
-  .consultations__cards-carousel > div > div:nth-child(1),
-  .consultations__cards-carousel > div > div:nth-child(2) {
+  .consultations__cards-carousel > div > div:nth-child(1), .consultations__cards-carousel > div > div:nth-child(2) {
     top: 42% !important;
   }
-  .consultations__cards-carousel > div > div:nth-child(1):after,
-  .consultations__cards-carousel > div > div:nth-child(2):after {
+  .consultations__cards-carousel > div > div:nth-child(1):after, .consultations__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.34rem !important;
-    -webkit-box-shadow: 0 0 1.675rem #00000033 !important;
-            box-shadow: 0 0 1.675rem #00000033 !important;
+    box-shadow: 0 0 1.675rem rgba(0, 0, 0, 0.2) !important;
   }
   .consultations__cards-carousel > div > div:nth-child(1) {
     right: 1.34rem !important;
@@ -517,15 +393,9 @@
     width: 25.125rem;
     height: 34.3375rem;
     border-radius: 1.005rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: unset;
+    justify-content: flex-end;
     background: transparent url("/images/trainer img@2x.png") no-repeat padding-box;
     background-size: contain;
   }
@@ -538,19 +408,18 @@
     margin: 3.35rem 0 0.39396rem 0;
   }
   .consultations__cards-carousel__card__job-title,
-  .consultations__cards-carousel__card__job-history {
+.consultations__cards-carousel__card__job-history {
     font-size: 1.08942rem;
     padding: 0;
   }
   .consultations__cards-carousel__card__btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -558,23 +427,15 @@
     height: 5.025rem;
     border-radius: 0 0 0.8375rem 0.8375rem;
     margin-top: 2.01rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .consultations__cards-carousel__card__btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .consultations__cards-carousel__card__btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
     background-color: #9d151e !important;
@@ -589,36 +450,23 @@
     margin-right: 1.04654rem;
   }
 }
-
 @media (max-width: 575px) {
   .consultations__title {
     font-size: 4.688rem;
     padding: 8.5rem 3rem 0 3rem;
     margin-top: 16.688rem;
     border-radius: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .consultations__title span:nth-of-type(2) {
     margin-right: 0.45rem;
   }
   .consultations__minor-title-container {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     padding: 2.8rem 3rem 0 3rem;
   }
   .consultations__minor-title-container__para {
@@ -627,15 +475,9 @@
     text-align: center;
   }
   .consultations__show-all-btn-col {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     padding-left: 0;
     background-color: #0E0B1D;
   }
@@ -647,15 +489,9 @@
     width: 100%;
     height: 6.6825rem;
     margin: 8.75rem 3.438rem 17.031rem 3.438rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .consultations__minor-title-container__btn svg {
     width: 1.25rem;
@@ -673,11 +509,10 @@
     padding: 0 4.86rem !important;
   }
   .consultations__cards-carousel > div:before {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
-    -webkit-box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
-            box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
+    box-shadow: -2.813rem 0 2.5rem -3.125rem black inset, 2.813rem 0 2.5rem -3.125rem black inset;
     top: 0;
     left: 0;
     width: 100%;
@@ -685,8 +520,7 @@
     z-index: 200;
     pointer-events: none;
   }
-  .consultations__cards-carousel > div > div:nth-child(1),
-  .consultations__cards-carousel > div > div:nth-child(2) {
+  .consultations__cards-carousel > div > div:nth-child(1), .consultations__cards-carousel > div > div:nth-child(2) {
     top: 42% !important;
   }
   .consultations__cards-carousel__card {
@@ -694,15 +528,9 @@
     height: 62.26875rem;
     border-radius: 1.8225rem;
     color: white;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
+    align-items: unset;
+    justify-content: flex-end;
   }
   .consultations__cards-carousel__card__card-body {
     padding: 0;
@@ -712,19 +540,18 @@
     margin: 6.075rem 0 0.71442rem 0;
   }
   .consultations__cards-carousel__card__job-title,
-  .consultations__cards-carousel__card__job-history {
+.consultations__cards-carousel__card__job-history {
     font-size: 1.97559rem;
     padding: 0;
   }
   .consultations__cards-carousel__card__btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -732,23 +559,15 @@
     height: 9.1125rem;
     border-radius: 0 0 1.51875rem 1.51875rem;
     margin-top: 3.645rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .consultations__cards-carousel__card__btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .consultations__cards-carousel__card__btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
     background-color: #9d151e !important;
@@ -762,5 +581,4 @@
     font-size: 2.43rem;
     margin-right: 1.89783rem;
   }
-}
-/*# sourceMappingURL=consultations.module.css.map */
+}/*# sourceMappingURL=consultations.module.css.map */

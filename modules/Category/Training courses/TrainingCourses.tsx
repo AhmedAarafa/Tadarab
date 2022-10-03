@@ -552,7 +552,7 @@ export default function TrainingCourses(props: any) {
                                                                 ]
                                                             }
                                                         >
-                                                            {!course.is_in_user_subscription && course.currency_code}
+                                                            {!course.is_in_user_subscription && course.currency_symbol}
                                                         </span>
                                                     }
                                                 </div>
@@ -581,7 +581,7 @@ export default function TrainingCourses(props: any) {
                                                                 ]
                                                             }
                                                         >
-                                                            {course.currency_code}
+                                                            {course.currency_symbol}
                                                         </span>
                                                     </div>
                                                 }

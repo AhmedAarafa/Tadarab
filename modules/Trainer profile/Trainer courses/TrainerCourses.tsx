@@ -265,7 +265,7 @@ export default function TrainerCourses() {
                                                             ]
                                                         }
                                                     >
-                                                        {!course.is_in_user_subscription && course.currency_code}
+                                                        {!course.is_in_user_subscription && course.currency_symbol}
                                                     </span>
                                                 }
 
@@ -296,7 +296,7 @@ export default function TrainerCourses() {
                                                             ]
                                                         }
                                                     >
-                                                        {course.currency_code}
+                                                        {course.currency_symbol}
                                                     </span>
                                                 </div>
                                             }

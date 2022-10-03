@@ -135,6 +135,10 @@ module.exports = {
         source: "/unsubscribe",
         destination: "/Unsubscribe",
       },
+      {
+        source: "/tadarab-season",
+        destination: "/TadarabSeason",
+      }
     ];
   },
 

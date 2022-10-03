@@ -237,14 +237,12 @@ export default function MyCourse() {
                                     <span>
                                         تحميل الشهادة
                                     </span>
-
-                                </Button>
+                                </Button> 
                                 <Button>
                                     <ShareIcon />
                                     <span>
                                         مشاركة الشهادة
                                     </span>
-
                                 </Button>
                             </div>
                         </Col>

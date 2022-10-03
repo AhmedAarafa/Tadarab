@@ -5,31 +5,15 @@
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 89vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .unlimited-courses > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: rgba(0, 0, 0, 0.4);
   padding: 1rem;
   width: 100%;
@@ -37,14 +21,13 @@
 }
 
 .unlimited-courses__subscribe-btn {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -53,17 +36,12 @@
   width: 16rem;
   font-size: 0.97rem;
 }
-
 .unlimited-courses__subscribe-btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .unlimited-courses__subscribe-btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .unlimited-courses__subscribe-btn:hover, .unlimited-courses__subscribe-btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
@@ -78,7 +56,6 @@
 .unlimited-courses__logo {
   margin-bottom: 1.5rem;
 }
-
 .unlimited-courses__logo img {
   width: 14rem;
 }
@@ -91,7 +68,6 @@
   width: 60%;
   margin: 0 0 2rem 0;
 }
-
 .unlimited-courses__title span {
   color: var(--primary-red);
   margin: 0 0.1rem;
@@ -105,8 +81,7 @@
 
 .unlimited-courses__search-bar-container {
   position: relative;
-  -webkit-box-shadow: 0 0 1.625rem #0000001A;
-          box-shadow: 0 0 1.625rem #0000001A;
+  box-shadow: 0 0 1.625rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.75rem;
   overflow: hidden;
   font-weight: 400;
@@ -115,21 +90,15 @@
   background-color: white;
   margin-top: 1.5rem;
   width: 27.188rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
 
 .unlimited-courses__search-bar-container__search-bar {
   border: 0 !important;
   padding: 0rem 1rem 0rem 0;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   width: 70%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -137,39 +106,29 @@
   font-size: 1.063rem;
   color: rgba(34, 34, 34, 0.5);
 }
-
 .unlimited-courses__search-bar-container__search-bar:active, .unlimited-courses__search-bar-container__search-bar:focus {
   outline: 0 !important;
   -webkit-appearance: none;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
-
-.unlimited-courses__search-bar-container__search-bar::-webkit-input-placeholder {
+.unlimited-courses__search-bar-container__search-bar::-moz-placeholder {
   color: rgba(51, 51, 51, 0.5);
 }
-
 .unlimited-courses__search-bar-container__search-bar:-ms-input-placeholder {
   color: rgba(51, 51, 51, 0.5);
 }
-
-.unlimited-courses__search-bar-container__search-bar::-ms-input-placeholder {
-  color: rgba(51, 51, 51, 0.5);
-}
-
 .unlimited-courses__search-bar-container__search-bar::placeholder {
   color: rgba(51, 51, 51, 0.5);
 }
 
 .unlimited-courses__search-bar__btn {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -180,22 +139,16 @@
   height: 2.75rem;
   margin-right: 0.2rem;
 }
-
 .unlimited-courses__search-bar__btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .unlimited-courses__search-bar__btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .unlimited-courses__search-bar__btn:hover, .unlimited-courses__search-bar__btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .unlimited-courses__search-bar__btn svg {
   margin: 0 0.625rem 0 0;
 }
@@ -207,21 +160,13 @@
   color: var(--primary-red);
   font-size: 1rem;
   font-weight: 700;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-shadow: 0 0 1.625rem #0000001A;
-          box-shadow: 0 0 1.625rem #0000001A;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 1.625rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.625rem;
   margin: 1.25rem 0 0 0;
 }
-
 .unlimited-courses__subscription-value span {
   font-weight: 800;
   font-size: 1.875rem;
@@ -241,7 +186,6 @@
   margin-bottom: 0.3rem;
   color: white;
 }
-
 .monthly-subscription__subscription-timer span {
   color: red;
 }
@@ -271,30 +215,15 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 65vh;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .unlimited-courses > div {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     padding: 1rem;
     width: 100%;
     height: 100%;
@@ -313,21 +242,14 @@
     text-align: center;
   }
   .unlimited-courses__search-bar-container {
-    -webkit-box-shadow: 0 0 3.7375rem #0000001A;
-            box-shadow: 0 0 3.7375rem #0000001A;
+    box-shadow: 0 0 3.7375rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.725rem;
     padding: 0.92rem 0rem 0.92rem 0rem;
     margin-top: 3.45rem;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .unlimited-courses__search-bar-container__search-bar {
     border: 0 !important;
@@ -336,14 +258,13 @@
     font-size: 2.126rem;
   }
   .unlimited-courses__search-bar__btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -354,12 +275,10 @@
     border-radius: 1.4375rem;
   }
   .unlimited-courses__search-bar__btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .unlimited-courses__search-bar__btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .unlimited-courses__search-bar__btn:hover, .unlimited-courses__search-bar__btn:active {
     background-color: #9d151e !important;
@@ -374,17 +293,10 @@
     width: 100%;
     height: 8.625rem;
     font-size: 2.3rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-shadow: 0 0 3.7375rem #0000001A;
-            box-shadow: 0 0 3.7375rem #0000001A;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 3.7375rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.4375rem;
     margin: 2.875rem 0 0 0;
   }
@@ -402,5 +314,4 @@
     font-size: 1.875rem;
     margin-top: 3rem;
   }
-}
-/*# sourceMappingURL=unlimited-courses.module.css.map */
+}/*# sourceMappingURL=unlimited-courses.module.css.map */

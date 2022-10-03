@@ -13,7 +13,6 @@ export default function PrivacyPage() {
         axiosInstance
             .get(`static/privacy-policy`)
             .then(function (response: any) {
-                console.log("response",response);
                 setPrivacyPolicy(response?.data?.data?.page_html);
                 toggleLoader("hide");
             })

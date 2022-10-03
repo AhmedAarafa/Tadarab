@@ -3,15 +3,9 @@
   border-radius: 1.25rem;
   background-color: rgba(25, 135, 84, 0.1);
   padding: 1.875rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   color: var(--dark-black);
   margin-top: 5.25rem;
 }
@@ -19,7 +13,6 @@
 .guarantee-card__brief {
   margin-right: 1.875rem;
 }
-
 .guarantee-card__brief div:nth-of-type(1) {
   font-weight: 800;
 }
@@ -28,5 +21,4 @@
   .guarantee-card {
     display: none;
   }
-}
-/*# sourceMappingURL=guarantee-card.module.css.map */
+}/*# sourceMappingURL=guarantee-card.module.css.map */

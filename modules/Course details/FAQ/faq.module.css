@@ -16,41 +16,23 @@
 
 .faq__accordion__item {
   border-radius: 1.063rem !important;
-  -webkit-box-shadow: 0 0 1.25rem #00000014;
-          box-shadow: 0 0 1.25rem #00000014;
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.0784313725);
   border: 0 !important;
   margin-top: 1.25rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: flex-start;
+  justify-content: unset;
+  flex-direction: column;
 }
 
 .faq__accordion__header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .faq__accordion__header svg {
   margin-left: 1.3rem;
 }
-
 .faq__accordion__header button {
   font-size: 1.125rem;
   font-weight: 800;
@@ -59,24 +41,16 @@
   padding: 1.5rem !important;
   border-radius: 1.25rem !important;
   direction: ltr !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .faq__accordion__header button::after {
   background-image: url("/images/arrow1.svg") !important;
   background-size: 1.25rem 1.1rem !important;
   margin-left: 1rem !important;
   margin-top: 0.3rem !important;
 }
-
 .faq__accordion__header button:not(.collapsed)::after {
   background-image: url("/images/arrow1.svg") !important;
   background-size: 1.25rem 1.1rem !important;
@@ -95,11 +69,9 @@
   font-weight: 700;
   margin-top: 1.625rem;
 }
-
 .faq__contact-us span:nth-of-type(1) {
   color: var(--grey);
 }
-
 .faq__contact-us span:nth-of-type(2) {
   color: var(--primary-red);
   cursor: pointer;
@@ -119,34 +91,18 @@
   }
   .faq__accordion__item {
     border-radius: 2.5512rem !important;
-    -webkit-box-shadow: 0 0 3rem #00000014;
-            box-shadow: 0 0 3rem #00000014;
+    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.0784313725);
     border: 0 !important;
     margin-top: 3rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: flex-start;
+    justify-content: unset;
+    flex-direction: column;
   }
   .faq__accordion__header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .faq__accordion__header svg {
     margin-left: 3.12rem;
@@ -155,15 +111,9 @@
     font-size: 2.475rem;
     padding: 3.6rem !important;
     border-radius: 3rem !important;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     text-align: right;
   }
   .faq__accordion__header button::after {
@@ -184,5 +134,4 @@
     font-size: 2.7rem;
     margin-top: 3.9rem;
   }
-}
-/*# sourceMappingURL=faq.module.css.map */
+}/*# sourceMappingURL=faq.module.css.map */

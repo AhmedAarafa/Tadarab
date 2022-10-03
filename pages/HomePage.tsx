@@ -35,7 +35,6 @@ function HomePage(props: any) {
   
   useEffect(() => {
     toggleLoader("show");
-    const countryCode: any = localStorage.getItem("countryCode");
 
         if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
           axiosInstance

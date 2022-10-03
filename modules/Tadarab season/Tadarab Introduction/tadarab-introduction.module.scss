@@ -1,0 +1,133 @@
+@import "../../../styles/mixins";
+
+.tadarab-introduction {
+    margin: 5rem 3rem;
+}
+
+.tadarab-introduction__description-box {
+    @include flex(center, flex-start);
+    flex-direction: column;
+    margin: 4rem 0 0 0;
+    padding-left: 1rem;
+    text-align: center;
+}
+
+.tadarab-introduction__video {
+    @include flex(flex-start, flex-end);
+
+    img {
+        border-radius: 2rem;
+    }
+}
+
+.tadarab-introduction__description-box__title {
+    font-size: 1.4rem;
+}
+
+.tadarab-introduction__description-box__img{
+    width: 18.4375rem;
+    height: 3.875rem;
+}
+
+.tadarab-introduction__description-box__brief {
+    margin-bottom: 1rem;
+}
+
+.tadarab-introduction__description-box__form {
+    width: 100%;
+
+    input {
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.625rem;
+        height: 3rem;
+
+        &::placeholder {
+            font-size: 0.9rem;
+        }
+
+        &:active,
+        &:focus {
+            outline: 0 !important;
+            -webkit-appearance: none;
+            box-shadow: none !important;
+            border-color: #ced4da;
+        }
+    }
+
+    button {
+        @include contained-button;
+        width: 100%;
+        height: 3rem;
+        margin: 1rem 0 0 0;
+    }
+}
+
+.tadarab-introduction__description-box__subsc-pricing {
+    font-size: 0.8rem;
+    margin: 0.2rem 0 0 0;
+    color: var(--grey);
+}
+
+@media (max-width: 575px) {
+
+    .tadarab-introduction {
+        margin: 10rem 4rem;
+    }
+
+    .tadarab-introduction__video {
+        @include flex(flex-start, flex-end);
+
+        img {
+            border-radius: 2rem;
+            width: 100%;
+        }
+    }
+
+    .tadarab-introduction__description-box {
+        @include flex(center, flex-start);
+        margin: 4rem 0 0 0;
+        padding: 0 3rem;
+    }
+
+    .tadarab-introduction__description-box__title {
+        font-size: 1.4*2.2rem;
+    }
+
+    .tadarab-introduction__description-box__img{
+        width: 18.4375rem*2.2;
+        height: 3.875rem*2.2;
+    }
+    
+    .tadarab-introduction__description-box__brief {
+        margin-bottom: 1rem*2.2;
+        font-size: 2.2rem;
+    }
+
+    .tadarab-introduction__description-box__form {
+        input {
+            padding: 0.5rem*2.2 0.75rem*2.2;
+            border-radius: 0.625rem*2.2;
+            height: 3rem*2.2;
+            font-size: 2.2rem;
+    
+            &::placeholder {
+                font-size: 0.9rem*2.2;
+            }
+        }
+    
+        button {
+            @include contained-button;
+            height: 3rem*2.2;
+            margin: 1rem*2.2 0 0 0;
+            font-size: 0.97rem*2.2;
+            padding: 0.375rem*2.2 0.75rem*2.2;
+            border-radius: 0.625rem*2.2;
+        }
+    }
+    
+    .tadarab-introduction__description-box__subsc-pricing {
+        font-size: 0.8rem*2.1;
+        margin: 0.2rem*2.2 0 0 0;
+        color: var(--grey);
+    }
+}

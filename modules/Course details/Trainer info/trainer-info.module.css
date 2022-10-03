@@ -5,15 +5,9 @@
 }
 
 .trainer-info-section__trainer-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .trainer-info-section__trainer-img img {
@@ -24,19 +18,10 @@
 }
 
 .trainer-info-section__trainer-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
   margin-right: 1.063rem;
 }
 
@@ -56,11 +41,9 @@
   margin-right: -0.3rem;
   font-size: 0.938rem;
 }
-
 .trainer-info-section__trainer-info__courses-number-box span {
   font-weight: 700;
 }
-
 .trainer-info-section__trainer-info__courses-number-box svg {
   margin-left: 0.1rem;
 }
@@ -86,7 +69,6 @@
   width: fit-content;
   cursor: pointer;
 }
-
 .trainer-info-section__view-trainer-account span {
   font-size: 1rem;
   color: var(--primary-red);
@@ -104,15 +86,9 @@
     position: relative;
   }
   .trainer-info-section__trainer-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-start;
   }
   .trainer-info-section__trainer-img img {
     width: 12.5rem;
@@ -120,19 +96,10 @@
     border-radius: 50%;
   }
   .trainer-info-section__trainer-info {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
     margin-right: 2.6575rem;
   }
   .trainer-info-section__trainer-info__name {
@@ -166,15 +133,9 @@
     -webkit-box-orient: vertical;
   }
   .trainer-info-section__view-trainer-account {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .trainer-info-section__view-trainer-account span {
     font-size: 2.5rem;
@@ -185,5 +146,4 @@
     height: 1.5625rem;
     margin-top: 0.5rem;
   }
-}
-/*# sourceMappingURL=trainer-info.module.css.map */
+}/*# sourceMappingURL=trainer-info.module.css.map */

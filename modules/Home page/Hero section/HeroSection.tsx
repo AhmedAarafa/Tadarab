@@ -19,7 +19,7 @@ export default function HeroSection() {
 
     if (e.key === 'Enter' || e.keyCode === 13 ) {
       if(searchQuery == ""){
-        console.log("متخمش يسطا");
+         
       }else{
         Router.push({
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,
@@ -46,7 +46,7 @@ export default function HeroSection() {
     }else if(tagsSearchQuery.status == false){
 
       if(searchQuery == ""){
-        console.log("متخمش يسطا"); 
+          
       }else{
         Router.push({
           pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}search`,

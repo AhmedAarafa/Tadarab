@@ -7,30 +7,22 @@
 }
 
 .course-requirements__mid-level {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   border-radius: 0.938rem;
-  background-color: #af151f37;
+  background-color: rgba(175, 21, 31, 0.2156862745);
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   padding: 0.8rem 1rem;
 }
-
 .course-requirements__mid-level span {
   font-size: 1.063rem;
   font-weight: 800;
   color: var(--primary-red);
   margin: 0 0.5rem -0.3rem 0;
 }
-
 .course-requirements__mid-level svg {
   width: 1.875rem;
   height: 1.7rem;
@@ -49,7 +41,6 @@
 .course-requirements__box__requirements {
   padding: 0.5rem 1rem 0 0;
 }
-
 .course-requirements__box__requirements li {
   margin-bottom: 0.3rem;
   font-size: 0.938rem;
@@ -65,15 +56,9 @@
     padding: 1.75rem;
   }
   .course-requirements__mid-level {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     border-radius: 2.345rem;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -101,5 +86,4 @@
     margin-bottom: 0.75rem;
     font-size: 2.345rem;
   }
-}
-/*# sourceMappingURL=course-requirements.module.css.map */
+}/*# sourceMappingURL=course-requirements.module.css.map */

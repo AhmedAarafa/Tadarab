@@ -1,13 +1,7 @@
 .educational-guide {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: unset;
+  justify-content: center;
 }
 
 .educational-guide__container {
@@ -16,15 +10,9 @@
   height: 26.25rem;
   border-radius: 2.5rem;
   margin-top: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
 
 .educational-guide__container__img {
@@ -35,7 +23,6 @@
   border-radius: 1rem;
   background-color: white;
 }
-
 .educational-guide__container__img img {
   width: 16.25rem;
   height: 16.25rem;
@@ -51,11 +38,9 @@
   font-size: 1.875rem;
   font-weight: 800;
 }
-
 .educational-guide__container__details-box__title span:nth-of-type(1) {
   color: white;
 }
-
 .educational-guide__container__details-box__title span:nth-of-type(2) {
   color: var(--primary-red);
 }
@@ -67,14 +52,13 @@
 }
 
 .educational-guide__container__details-box__btn {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -84,17 +68,12 @@
   font-size: 1rem;
   font-weight: 700;
 }
-
 .educational-guide__container__details-box__btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .educational-guide__container__details-box__btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
@@ -102,15 +81,9 @@
 
 @media (max-width: 575px) {
   .educational-guide {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: unset;
+    justify-content: center;
   }
   .educational-guide__container {
     width: 73rem;
@@ -119,19 +92,10 @@
     height: fit-content;
     border-radius: 6rem;
     margin: 10rem 3.125rem 3rem 3.125rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   .educational-guide__container__img {
     width: -webkit-fit-content;
@@ -158,14 +122,13 @@
     padding: 2.219rem 4.609rem 2.5rem 4.609rem;
   }
   .educational-guide__container__details-box__btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -177,16 +140,13 @@
     margin-bottom: 5rem;
   }
   .educational-guide__container__details-box__btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .educational-guide__container__details-box__btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-}
-/*# sourceMappingURL=educational-guide.module.css.map */
+}/*# sourceMappingURL=educational-guide.module.css.map */

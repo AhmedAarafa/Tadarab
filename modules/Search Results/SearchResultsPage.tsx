@@ -282,7 +282,7 @@ export default function SearchResultsPage() {
                                                         ]
                                                     }
                                                 >
-                                                    {!course.is_in_user_subscription && course.currency_code}
+                                                    {!course.is_in_user_subscription && course.currency_symbol}
                                                 </span>}
 
                                                 <span
@@ -324,7 +324,7 @@ export default function SearchResultsPage() {
                                                             ]
                                                         }
                                                     >
-                                                        {course.currency_code}
+                                                        {course.currency_symbol}
                                                     </span>
                                                     <span
                                                         className={

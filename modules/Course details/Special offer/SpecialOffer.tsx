@@ -217,13 +217,13 @@ export default function SpecialOffer(props: any) {
                                                     </div>
                                                     <div className={styles["special-offer__cards-outer-box__card__price"]}>
                                                         <span> {course.discounted_price} </span>
-                                                        <span>{course.currency_code} </span>
+                                                        <span>{course.currency_symbol} </span>
                                                     </div>
                                                     {
                                                         course.price > course.discounted_price &&
                                                         <div className={styles["special-offer__cards-outer-box__card__old-price"]}>
                                                             <span> {course.price} </span>
-                                                            <span>{course.currency_code}</span>
+                                                            <span>{course.currency_symbol}</span>
                                                         </div>
                                                     }
                                                 </div>
@@ -247,7 +247,7 @@ export default function SpecialOffer(props: any) {
                                             specialBundleData?.discounted_price
                                         }
                                     </span>
-                                    <span> {specialBundleData?.currency_code} </span>
+                                    <span> {specialBundleData?.currency_symbol} </span>
                                 </div>
                                 {
                                     specialBundleData?.price >
@@ -262,7 +262,7 @@ export default function SpecialOffer(props: any) {
                                                     specialBundleData?.price
                                                 }
                                             </span>
-                                            <span> {specialBundleData?.currency_code} </span>
+                                            <span> {specialBundleData?.currency_symbol} </span>
                                         </div>
 
                                         <div className={styles["special-offer__cards-outer-box__card__checkout-box__prices-box__discount"]}>

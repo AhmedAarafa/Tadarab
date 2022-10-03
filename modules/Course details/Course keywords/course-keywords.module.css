@@ -14,7 +14,6 @@
 .course-keywords__tags {
   margin-top: 1.25rem;
 }
-
 .course-keywords__tags div {
   font-size: 0.75rem;
   color: var(--grey);
@@ -49,5 +48,4 @@
     padding: 1.25rem 1.875rem;
     margin: 0 0 1.25rem 0.75rem;
   }
-}
-/*# sourceMappingURL=course-keywords.module.css.map */
+}/*# sourceMappingURL=course-keywords.module.css.map */

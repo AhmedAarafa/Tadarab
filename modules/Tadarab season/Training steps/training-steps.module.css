@@ -1,0 +1,86 @@
+.tadarab-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5rem 3rem 8rem 3rem;
+}
+
+.tadarab-steps__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.tadarab-steps__steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.tadarab-steps__steps__step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.tadarab-steps__steps__step__icon svg {
+  width: 4.375rem;
+  height: 4.375rem;
+  margin-bottom: 0.3rem;
+}
+
+.tadarab-steps__steps__step__title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.tadarab-steps__steps__step__brief {
+  font-size: 1rem;
+}
+
+.tadarab-steps__video {
+  margin: 8rem 0 0 0;
+  width: 100%;
+}
+
+@media (max-width: 575px) {
+  .tadarab-steps {
+    padding: 10rem 4rem;
+  }
+  .tadarab-steps__title {
+    font-size: 5rem;
+    line-height: 6rem;
+  }
+  .tadarab-steps__steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .tadarab-steps__steps__step {
+    padding: 4rem 0 0 0;
+  }
+  .tadarab-steps__steps__step__icon svg {
+    width: 9.625rem;
+    height: 9.625rem;
+    margin-bottom: 0.66rem;
+  }
+  .tadarab-steps__steps__step__title {
+    font-size: 2.86rem;
+  }
+  .tadarab-steps__steps__step__brief {
+    font-size: 2.2rem;
+  }
+  .tadarab-steps__video {
+    margin: 12rem 0 0 0 !important;
+    width: calc(100% + 5rem);
+  }
+}/*# sourceMappingURL=training-steps.module.css.map */

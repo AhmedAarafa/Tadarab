@@ -1,8 +1,6 @@
 import React from 'react';
 import styles from "./faq.module.css";
 import { Row,Col,Accordion } from "react-bootstrap";
-import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
-import Router from "next/router";
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 export default function Faq() {

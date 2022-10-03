@@ -1,3 +1,6 @@
+Version 2.2.0 (19th Sep 2022)
+1)  All courses page course items permalinks wrong.
+
 Version 2.1.9 (08th Sep 2022)
 1)  subscription plan issue.
 

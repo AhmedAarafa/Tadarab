@@ -708,7 +708,7 @@ export default function MyAccountPage() {
                             ]
                           }
                         >
-                          {!course.is_in_user_subscription && course.currency_code}
+                          {!course.is_in_user_subscription && course.currency_symbol}
                         </span>}
 
                         <span
@@ -749,7 +749,7 @@ export default function MyAccountPage() {
                               ]
                             }
                           >
-                            {course.currency_code}
+                            {course.currency_symbol}
                           </span>
                           <span
                             className={

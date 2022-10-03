@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,eAAe,CAAA;EACX,OAAO,EAAE,IAAI;CAKhB;;AAND,AAGI,eAHW,CAGX,CAAC,CAAA;EACG,SAAS,EAAE,eAAe;CAC7B;;AAKL,MAAM,EAAE,SAAS,EAAE,KAAK;EAEpB,AAAA,eAAe,CAAA;IACX,OAAO,EAAE,UAAU;GAItB;EALD,AAEI,eAFW,CAEX,CAAC,CAAA;IACG,SAAS,EAAE,IAAM,CAAC,UAAU;GAC/B",
-    "sources": [
-        "privacy-page.module.scss",
-        "../../../styles/_mixins.scss",
-        "../../../styles/colors-pallete.scss"
-    ],
-    "names": [],
-    "file": "privacy-page.module.css"
-}
+{"version":3,"sources":["privacy-page.module.scss","privacy-page.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;ACDJ;ADGI;EACI,0BAAA;ACDR;;ADOA;EAEI;IACI,mBAAA;ECLN;EDMM;IACI,0BAAA;ECJV;AACF","file":"privacy-page.module.css"}

@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,iBAAiB,CAAA;EACb,OAAO,EAAE,IAAI;CAOhB;;AARD,AAEI,iBAFa,CAEb,CAAC,CAAA;EACG,SAAS,EAAE,eAAe;CAC7B;;AAJL,AAKI,iBALa,CAKb,EAAE,CAAA;EACE,SAAS,EAAE,iBAAiB;CAC/B;;AAIL,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,iBAAiB,CAAA;IACb,OAAO,EAAE,UAAU;GAOtB;EARD,AAEI,iBAFa,CAEb,CAAC,CAAA;IACG,SAAS,EAAE,MAAQ,CAAC,UAAU;GACjC;EAJL,AAKI,iBALa,CAKb,EAAE,CAAA;IACE,SAAS,EAAE,MAAU,CAAC,UAAU;GACnC",
-    "sources": [
-        "instructor-terms-page.module.scss",
-        "../../../styles/_mixins.scss",
-        "../../../styles/colors-pallete.scss"
-    ],
-    "names": [],
-    "file": "instructor-terms-page.module.css"
-}
+{"version":3,"sources":["instructor-terms-page.module.scss","instructor-terms-page.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;ACDJ;ADEI;EACI,0BAAA;ACAR;ADEI;EACI,4BAAA;ACAR;;ADKA;EACI;IACI,mBAAA;ECFN;EDGM;IACI,4BAAA;ECDV;EDGM;IACI,4BAAA;ECDV;AACF","file":"instructor-terms-page.module.css"}

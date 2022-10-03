@@ -120,7 +120,6 @@ export default function UnlimitedCourses() {
   return (
       <Row className={styles["unlimited-courses"]}>
           <Col xs={12}>
-
               <div className={styles["unlimited-courses__logo"]}>
                 <img loading="lazy"   src={"/images/TadarabUnlimited.png"} alt="TadarabUnlimited" />
               </div>

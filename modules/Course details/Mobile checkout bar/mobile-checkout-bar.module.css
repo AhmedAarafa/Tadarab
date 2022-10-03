@@ -1,23 +1,15 @@
 .mobile-checkout-bar {
   background-color: white;
   padding: 10px 0px;
-  -webkit-box-shadow: 0 -0.781rem 3.281rem #00000014;
-          box-shadow: 0 -0.781rem 3.281rem #00000014;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-shadow: 0 -0.781rem 3.281rem rgba(0, 0, 0, 0.0784313725);
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 8;
   display: none;
-  background: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(5%, white), color-stop(90%, white), to(white));
   background: linear-gradient(transparent 0%, white 5%, white 90%, white 100%);
 }
 
@@ -31,29 +23,21 @@
   text-align: center;
   margin-bottom: 0.3rem;
 }
-
 .monthly-subscription__subscription-timer span {
   color: red;
 }
 
 .mobile-checkout-bar__subscribe-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -62,42 +46,30 @@
   width: 50rem;
   height: 6.5rem;
   margin-top: 0.4rem;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
-
 .mobile-checkout-bar__subscribe-btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .mobile-checkout-bar__subscribe-btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .mobile-checkout-bar__subscribe-btn:hover, .mobile-checkout-bar__subscribe-btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-
 .mobile-checkout-bar__subscribe-btn div:nth-of-type(2) {
   font-size: 1.59375rem;
 }
-
 .mobile-checkout-bar__subscribe-btn svg {
   width: 3.281rem;
   height: 2.8rem;
   margin-left: 0.3rem;
 }
-
 .mobile-checkout-bar__subscribe-btn span {
   font-size: 2.188rem;
   font-weight: 700;
 }
-
 .mobile-checkout-bar__subscribe-btn + div {
   font-size: 1.8rem;
   text-align: center;
@@ -119,17 +91,9 @@
 }
 
 .mobile-checkout-bar__course-card__old-price-box--line-through {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+  align-items: center;
+  justify-content: unset;
   display: inline-flex;
   -webkit-text-decoration: line-through var(--primary-red);
           text-decoration: line-through var(--primary-red);
@@ -147,5 +111,4 @@
 
 .mobile-checkout-bar__course-card__old-price-box__currency {
   font-size: 1.719rem;
-}
-/*# sourceMappingURL=mobile-checkout-bar.module.css.map */
+}/*# sourceMappingURL=mobile-checkout-bar.module.css.map */

@@ -3,15 +3,9 @@
 }
 
 .category-description__description {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
 }
 
 .category-description__img {
@@ -19,18 +13,11 @@
   height: 6rem;
   background-color: #813A8A;
   border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   margin: 0 0 0 1.125rem;
 }
-
 .category-description__img img {
   width: 3rem;
   height: 3.125rem;
@@ -58,30 +45,21 @@
   color: var(--grey);
   border-radius: 0.5rem;
   background-color: #F2F2F2;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .category-description__info h1 {
   font-size: 1.875rem;
   font-weight: 800;
   color: var(--dark-black);
   margin: 0.5rem 0;
 }
-
 .category-description__info div:nth-of-type(2) {
   font-size: 1.25rem;
   color: var(--grey);
   margin: -0.2rem 0 0 0;
 }
-
 .category-description__info div:nth-of-type(2) span {
   font-weight: 800;
 }
@@ -89,7 +67,47 @@
 .category-description__brief {
   font-size: 1.125rem;
   color: var(--grey);
-  margin: 1rem 0 0 0;
+}
+
+.category-description__brief--fadeout-effect {
+  position: absolute;
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+  width: 112%;
+  bottom: 3rem;
+  height: 4rem;
+  pointer-events: none;
+  margin: 0 -3rem;
+}
+
+.category-description__brief__read-more {
+  font-size: 1.125rem;
+  font-weight: 800;
+  width: 100%;
+  background-color: white;
+  color: #AF151F;
+  position: absolute;
+  bottom: 0rem;
+  right: 0;
+  padding: 0.8rem 0rem 1rem 0;
+  cursor: pointer;
+  z-index: 3;
+}
+.category-description__brief__read-more span {
+  margin-left: 0.5rem;
+}
+.category-description__brief__read-more svg {
+  width: 0.625rem;
+  height: 0.375rem;
+}
+
+.category-description__brief-about-trainer {
+  margin: 1.875rem 0 0 0;
+  width: 42.1875rem;
+  height: 16rem;
+  padding-bottom: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }
 
 @media (max-width: 575px) {
@@ -97,28 +115,16 @@
     padding: 15.8125rem 3rem 0 3rem;
   }
   .category-description__description {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
   }
   .category-description__img {
     width: 13.8rem;
     height: 13.8rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin: 0 0 0 2.5875rem;
   }
   .category-description__img img {
@@ -142,15 +148,9 @@
     height: 4.025rem;
     font-size: 2.0125rem;
     border-radius: 1.15rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .category-description__info h1 {
     font-size: 4.3125rem;
@@ -162,7 +162,39 @@
   }
   .category-description__brief {
     font-size: 2.5875rem;
-    margin: 2.3rem 0 0 0;
   }
-}
-/*# sourceMappingURL=category-description.module.css.map */
+  .category-description__brief__read-more {
+    font-size: 1.8rem;
+    font-weight: 800;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    bottom: -0.5rem;
+    padding: 1.75rem 0 1rem 0;
+    margin-top: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  .category-description__brief__read-more span {
+    margin-left: 0.8rem;
+  }
+  .category-description__brief__read-more svg {
+    width: 1rem;
+    height: 0.6rem;
+  }
+  .category-description__brief--fadeout-effect {
+    position: absolute;
+    width: 112%;
+    bottom: 4rem;
+    height: 6.4rem;
+  }
+  .category-description__brief-about-trainer {
+    margin: 3rem 0 0 0;
+    width: 100%;
+    height: 25.6rem;
+    padding-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+}/*# sourceMappingURL=category-description.module.css.map */

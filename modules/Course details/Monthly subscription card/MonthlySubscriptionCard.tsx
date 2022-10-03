@@ -38,16 +38,16 @@ export default function MonthlySubscriptionCard() {
     // setSubscriptionTimer
     document.cookie.split('; ').reduce((prev: any, current: any) => {
       const [name, ...value] = current.split('=');
-     if(prev){
-                prev[name] = value.join('=');
-                if ((prev['subscription-countdown'] < (Math.floor(Date.now() / 1000))) || prev['subscription-countdown'] == NaN || prev['subscription-countdown'] == "NaN") {
-          
-                } else {
-          
-                  setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-                  return prev;
-                }
-            }
+      if (prev) {
+        prev[name] = value.join('=');
+        if ((prev['subscription-countdown'] < (Math.floor(Date.now() / 1000))) || prev['subscription-countdown'] == NaN || prev['subscription-countdown'] == "NaN") {
+
+        } else {
+
+          setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+          return prev;
+        }
+      }
 
     }, {});
 
@@ -55,57 +55,57 @@ export default function MonthlySubscriptionCard() {
   }, [])
 
   useEffect(() => {
-    
+
     if (subscriptionTimer !== 0) {
       document.cookie.split('; ').reduce((prev: any, current: any) => {
         const [name, ...value] = current.split('=');
-       if(prev){
-                prev[name] = value.join('=');
-                setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-                if (Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1) {
-        
-                  let interval = setInterval(() => {
-        
-                    // get total seconds between the times
-                    let delta: any = Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1 ?
-                      Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
-                      :
-                      clearInterval(interval);
-                    ;
-        
-                    // calculate (and subtract) whole days
-                    let days: any = Math.floor(delta / 86400);
-                    delta -= days * 86400;
-        
-                    // calculate (and subtract) whole hours
-                    let hours: any = Math.floor(delta / 3600) % 24;
-                    delta -= hours * 3600;
-        
-                    // calculate (and subtract) whole minutes
-                    let minutes: any = Math.floor(delta / 60) % 60;
-                    delta -= minutes * 60;
-        
-                    // what's left is seconds
-                    let seconds: any = delta; // in theory the modulus is not required
-        
-                    days = days.toString().padStart(2, 0);
-                    hours = hours.toString().padStart(2, 0);
-                    minutes = minutes.toString().padStart(2, 0);
-                    seconds = seconds.toString().padStart(2, 0);
-        
-                    if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
-                      setToDisplayValues({...toDisplayValues, visible: false });
-                      clearInterval(interval);
-        
-                    } else {
-        
-                      setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
-                      return { days, hours, minutes, seconds }
-                    }
-                  }, 1000);
-        
-                }
-            }
+        if (prev) {
+          prev[name] = value.join('=');
+          setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
+          if (Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1) {
+
+            let interval = setInterval(() => {
+
+              // get total seconds between the times
+              let delta: any = Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1 ?
+                Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
+                :
+                clearInterval(interval);
+              ;
+
+              // calculate (and subtract) whole days
+              let days: any = Math.floor(delta / 86400);
+              delta -= days * 86400;
+
+              // calculate (and subtract) whole hours
+              let hours: any = Math.floor(delta / 3600) % 24;
+              delta -= hours * 3600;
+
+              // calculate (and subtract) whole minutes
+              let minutes: any = Math.floor(delta / 60) % 60;
+              delta -= minutes * 60;
+
+              // what's left is seconds
+              let seconds: any = delta; // in theory the modulus is not required
+
+              days = days.toString().padStart(2, 0);
+              hours = hours.toString().padStart(2, 0);
+              minutes = minutes.toString().padStart(2, 0);
+              seconds = seconds.toString().padStart(2, 0);
+
+              if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
+                setToDisplayValues({ ...toDisplayValues, visible: false });
+                clearInterval(interval);
+
+              } else {
+
+                setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
+                return { days, hours, minutes, seconds }
+              }
+            }, 1000);
+
+          }
+        }
 
         return prev;
       }, {});
@@ -158,30 +158,30 @@ export default function MonthlySubscriptionCard() {
   }
 
   const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns,course.id]);
+    setDisabledCartBtns([...disabledCartBtns, course.id]);
     setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
     }, 5000);
     dispatch(setCheckoutType("cart"));
     // console.log(Router.asPath.substring(1));
     // if(userStatus?.isUserAuthenticated == true){
-      if(courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ){
-        Router.push({
-          pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-          query: { from: Router.asPath.substring(1) }
+    if (courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated) {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from: Router.asPath.substring(1) }
       })
-      }else{
+    } else {
 
-        const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}`, false);
-        handleCartResponse.then(function (firstresponse: any) {
-          // console.log("handleCartResponse",firstresponse);
-          firstresponse.resp.then(function (response: any) {
-            console.log(response.data.data);
-            setCourseDetails(response.data.data);
-            dispatch(setCartItems(firstresponse.cartResponse));
-          })
+      const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}`, false);
+      handleCartResponse.then(function (firstresponse: any) {
+        // console.log("handleCartResponse",firstresponse);
+        firstresponse.resp.then(function (response: any) {
+          console.log(response.data.data);
+          setCourseDetails(response.data.data);
+          dispatch(setCartItems(firstresponse.cartResponse));
         })
-      }
+      })
+    }
 
 
   }
@@ -198,7 +198,7 @@ export default function MonthlySubscriptionCard() {
   return (
     <>
       <div className={styles["monthly-subscription__course-card"]} id="sub-sticky-card">
-        { !courseDetails?.subscription_exclude ?
+        {!courseDetails?.subscription_exclude ?
           <>
             <div
 
@@ -213,60 +213,60 @@ export default function MonthlySubscriptionCard() {
 
 
               <div>
-                { courseDetails?.course_details?.type == "webinar" && <>
+                {courseDetails?.course_details?.type == "webinar" && <>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
                     مشاهدة هذه الدورة اثناء البث المباشر.
-                    </div>
+                  </div>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
                     مشاهدة تسجيل الدورة فى أى وقت يناسبك.
-                    </div>
+                  </div>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
-                    تحميل جميع مرفقات الدورة 
-                    </div>
+                    تحميل جميع مرفقات الدورة
+                  </div>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
                     مشاهدة بلا حدود لأكثر من ٧٥٠ دورة تدريبية في جميع المجالات.
-                    </div>
+                  </div>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
                     عدد لا نهائي من شهادات إتمام الدورات.
-                    </div>
+                  </div>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
                     دورات جديدة تضاف شهرياَ.
-                    </div>
+                  </div>
                   <div>
                     <div>
 
-                    <TickIcon />
+                      <TickIcon />
                     </div>
                     لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
-                    </div>
+                  </div>
                 </>}
 
                 <span>
-                  {  courseDetails?.course_details?.type !== "webinar" &&  "شاهد هذه الدورة + أكثر من 750 دورة تدريبية في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي"}
+                  {courseDetails?.course_details?.type !== "webinar" && "شاهد هذه الدورة + أكثر من 750 دورة تدريبية في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي"}
                   <span>
                     <Link href="/subscription">
 
@@ -293,15 +293,26 @@ export default function MonthlySubscriptionCard() {
                 </div>
               </Button>
             </div>
+
             {/* <div className={styles["monthly-subscription__subscription-value"]}>
             احصل على كل الدورات فقط ب 9 دك / شهر.
             </div> */}
-            <div className={styles["monthly-subscription__subscription-value"]}>
-            احصل على كل الدورات فقط ب 9 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 15 دك</span>
+            {console.log("setCourseDetails", courseDetails)}
+            <div className={styles["monthly-subscription__subscription-value"]} >
+              <span>
+                احصل على كل الدورات فقط ب
+                { courseDetails.subscription_sale_price }
+                { courseDetails.currency_symbol } / شهر
+                بدلا من
+              </span>
+              <span className={styles["amount-strike"]}>
+                { courseDetails.subscription_original_price }
+                { courseDetails.currency_symbol }
+              </span>
             </div>
-           {toDisplayValues.visible && toDisplayValues.values[3] != NaN && toDisplayValues.values[3] != "NaN" && <div className={styles["monthly-subscription__subscription-value"]}>
+            {/* {toDisplayValues.visible && toDisplayValues.values[3] != NaN && toDisplayValues.values[3] != "NaN" && <div className={styles["monthly-subscription__subscription-value"]}>
               <div style={{color:'#af151f'}}>ستوفر ٤٠٪؜ العرض سينتهي خلال &nbsp;&nbsp;<span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span></div>
-            </div>}
+            </div>} */}
             {/* <div className={styles["monthly-subscription__watch-this-course"]}>
           شاهد هذه الدورة + 600 دورة اخرى
           </div> */
@@ -336,7 +347,7 @@ export default function MonthlySubscriptionCard() {
                 styles["monthly-subscription__course-card__price-box__currency"]
               }
             >
-              {courseDetails.course_details?.currency_code}
+              {courseDetails.course_details?.currency_symbol}
             </span>
           </div>
           {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
@@ -361,7 +372,7 @@ export default function MonthlySubscriptionCard() {
                   }
                 >
                   {" "}
-                  {courseDetails.course_details?.currency_code}{" "}
+                  {courseDetails.course_details?.currency_symbol}{" "}
                 </span>
               </div>
               <span
@@ -384,29 +395,29 @@ export default function MonthlySubscriptionCard() {
               handleFreeCoursesActionBtn(courseDetails.course_details)
               :
               handleCartActionBtn(courseDetails.course_details);
-          }} disabled={courseDetails?.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails?.course_details?.id) }
+          }} disabled={courseDetails?.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails?.course_details?.id)}
             className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
           >
             {
-              courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ? 
-              <></>
-              :
-              courseDetails?.course_details?.discounted_price == 0 ?
-                <TvIcon color="#222" />
+              courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                <></>
                 :
-                <CartIcon color="#222" />
+                courseDetails?.course_details?.discounted_price == 0 ?
+                  <TvIcon color="#222" />
+                  :
+                  <CartIcon color="#222" />
             }
             {
-              courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ? 
-              <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-              :
-              courseDetails?.course_details?.discounted_price == 0 ?
-                <span> ابدأ الآن مجانًا </span>
+              courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                <span>سجل لمشاهدة البث المباشر مجاناَ</span>
                 :
-                courseDetails?.course_details?.is_in_cart ?
-                  <span> تمت الإضافة </span>
+                courseDetails?.course_details?.discounted_price == 0 ?
+                  <span> ابدأ الآن مجانًا </span>
                   :
-                  <span> امتلك هذه الدورة </span>
+                  courseDetails?.course_details?.is_in_cart ?
+                    <span> تمت الإضافة </span>
+                    :
+                    <span> امتلك هذه الدورة </span>
             }
           </Button>
 
@@ -440,15 +451,15 @@ export default function MonthlySubscriptionCard() {
         <div className={styles["course-price"]}>
           {/* Orignal price start */}
           {courseDetails?.course_details?.price != courseDetails?.course_details?.discounted_price &&
-              <div className={styles["orignal-price"]}>
-                بدلاً من 
-                <span>
-                  {courseDetails?.course_details?.currency_code}
-                </span>
-                <span>
-                  {courseDetails?.course_details?.price}
-                </span>
-              </div>
+            <div className={styles["orignal-price"]}>
+              بدلاً من
+              <span>
+                {courseDetails?.course_details?.currency_symbol}
+              </span>
+              <span>
+                {courseDetails?.course_details?.price}
+              </span>
+            </div>
           }
           {/* Orignal price end */}
 
@@ -457,7 +468,7 @@ export default function MonthlySubscriptionCard() {
             <div className={styles["sale-price"]}>
               سعر الدورة
               <span>
-                {courseDetails?.course_details?.currency_code}
+                {courseDetails?.course_details?.currency_symbol}
               </span>
               <span>
 
@@ -801,7 +812,7 @@ export default function MonthlySubscriptionCard() {
                   styles["monthly-subscription__course-card__price-box__currency"]
                 }
               >
-                {courseDetails.course_details?.currency_code}
+                {courseDetails.course_details?.currency_symbol}
               </span>
             </div>
             {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
@@ -826,7 +837,7 @@ export default function MonthlySubscriptionCard() {
                     }
                   >
                     {" "}
-                    {courseDetails.course_details?.currency_code}{" "}
+                    {courseDetails.course_details?.currency_symbol}{" "}
                   </span>
                 </div>
                 <span
@@ -847,7 +858,7 @@ export default function MonthlySubscriptionCard() {
                   :
                   handleCartActionBtn(courseDetails?.course_details)
               }}
-                disabled={courseDetails?.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails?.course_details?.id) }
+                disabled={courseDetails?.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails?.course_details?.id)}
                 className={
                   styles[
                   "monthly-subscription__course-card__actions-btns__add-to-cart-btn"

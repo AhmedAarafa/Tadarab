@@ -20,21 +20,14 @@
 
 .training-courses__filters-col {
   padding: 2.4375rem 0 0 9rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .training-courses__filters-col__filter-box {
   width: 15.5rem;
-  -webkit-box-shadow: 0rem 0.1875rem 1.625rem #00000029;
-          box-shadow: 0rem 0.1875rem 1.625rem #00000029;
+  box-shadow: 0rem 0.1875rem 1.625rem rgba(0, 0, 0, 0.1607843137);
   border-radius: 0.9375rem;
   background-color: white;
 }
@@ -47,17 +40,10 @@
 }
 
 .level-filter {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .level-filter svg {
   width: 1.875rem;
   height: 1.5rem;
@@ -70,18 +56,11 @@
   outline: 0;
   cursor: pointer;
 }
-
 .training-courses__filters-col__filter-box__filter button {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   padding: 0.375rem 1.25rem;
   border-radius: 0.9375rem;
   background-color: white !important;
@@ -91,16 +70,13 @@
   color: var(--dark-black) !important;
   z-index: 3;
 }
-
 .training-courses__filters-col__filter-box__filter button + div {
   width: 100%;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   border-radius: 0.9375rem;
-  -webkit-box-shadow: 0rem 0.1875rem 1.625rem #00000029;
-          box-shadow: 0rem 0.1875rem 1.625rem #00000029;
+  box-shadow: 0rem 0.1875rem 1.625rem rgba(0, 0, 0, 0.1607843137);
   border: 0;
 }
-
 .training-courses__filters-col__filter-box__filter button + div a {
   margin: 0;
   padding: 0.2rem 0.2rem;
@@ -109,37 +85,27 @@
   font-size: 1.0625rem;
   font-weight: 800;
   color: var(--dark-black);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
-
 .training-courses__filters-col__filter-box__filter button + div a svg {
   width: 1.875rem;
   height: 1.5rem;
   margin: 0 0 0.5rem 0.5rem;
 }
-
 .training-courses__filters-col__filter-box__filter button + div a:hover, .training-courses__filters-col__filter-box__filter button + div a:active {
   background-color: rgba(0, 0, 0, 0.05) !important;
   color: var(--dark-black) !important;
 }
-
 .training-courses__filters-col__filter-box__filter button:hover, .training-courses__filters-col__filter-box__filter button:active, .training-courses__filters-col__filter-box__filter button:focus {
   background-color: white !important;
   border: 0 !important;
   color: var(--dark-black) !important;
 }
-
 .training-courses__filters-col__filter-box__filter button::after {
   background-position: left 1.25rem center;
   background-size: 1.5rem 1rem;
@@ -153,33 +119,24 @@
 
 .training-courses__filtered-courses {
   padding: 4.25rem 4.625rem 0 13.625rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .training-courses__course-card {
   width: 18.1875rem;
   height: 19.4rem;
-  -webkit-box-shadow: 0 0.485rem 0.90986rem #0000001A;
-          box-shadow: 0 0.485rem 0.90986rem #0000001A;
+  box-shadow: 0 0.485rem 0.90986rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.7275rem;
   position: relative;
   display: inline-block;
   margin: 0 0 1.875rem 0;
   overflow: hidden;
 }
-
 .training-courses__course-card:after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -212,32 +169,17 @@
 
 .training-courses__course-card__card-body {
   padding: 0.582rem 0.97rem 0.2rem 0.97rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: unset;
+  justify-content: space-between;
+  flex-direction: column;
   height: 40%;
 }
 
 .training-courses__course-card__card-body__card-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   position: relative;
   padding: 0 0 0.7813rem 0;
   border-bottom: 0.0485rem solid rgba(34, 34, 34, 0.1);
@@ -246,7 +188,6 @@
 .training-courses__course-card__card-body__card-header__trainer-img-box {
   font-size: 0.5rem;
 }
-
 .training-courses__course-card__card-body__card-header__trainer-img-box img {
   border-radius: 50%;
   width: 2.425rem;
@@ -282,15 +223,9 @@
 }
 
 .training-courses__course-card__card-body__checkout-details {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .training-courses__course-card__card-body__checkout-details__price-container__price {
@@ -328,17 +263,9 @@
   border-radius: 0.75rem;
   background-color: rgba(0, 0, 0, 0.05);
   border: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
+  align-items: center;
+  justify-content: center;
   display: inline-flex;
   width: 2.1825rem;
   height: 2.1825rem;
@@ -346,7 +273,6 @@
   padding: 0 !important;
   border-radius: 0.7275rem;
 }
-
 .training-courses__course-card__card-body__checkout-details__icon-btn:hover, .training-courses__course-card__card-body__checkout-details__icon-btn:active, .training-courses__course-card__card-body__checkout-details__icon-btn:focus {
   background-color: rgba(0, 0, 0, 0.07);
 }
@@ -362,15 +288,9 @@
 }
 
 .training-courses__pagination {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   padding: 2rem 0 5rem 0;
 }
 
@@ -383,8 +303,7 @@
   .training-courses__course-card {
     width: 27.1875rem;
     height: 29rem;
-    -webkit-box-shadow: 0 0.725rem 1.3601rem #0000001A;
-            box-shadow: 0 0.725rem 1.3601rem #0000001A;
+    box-shadow: 0 0.725rem 1.3601rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.0875rem;
     margin: 0 0 2.71875rem 0;
   }
@@ -415,17 +334,11 @@
     padding: 0.87rem 1.45rem 0.6rem 1.45rem;
   }
   .training-courses__course-card__card-body__card-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     position: relative;
-    padding: 0 0 1.13288rem 0;
+    padding: 0 0 1.132885rem 0;
     border-bottom: 0.0725rem solid rgba(34, 34, 34, 0.1);
   }
   .training-courses__course-card__card-body__card-header__trainer-img-box {
@@ -450,15 +363,9 @@
     width: 19.8rem;
   }
   .training-courses__course-card__card-body__checkout-details {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
   }
   .training-courses__course-card__card-body__checkout-details__price-container__price {
     font-size: 1.8125rem;
@@ -481,17 +388,9 @@
     border-radius: 0.75rem;
     background-color: rgba(0, 0, 0, 0.05);
     border: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
+    align-items: center;
+    justify-content: center;
     display: inline-flex;
     width: 3.2625rem;
     height: 3.2625rem;
@@ -511,30 +410,17 @@
     height: 1.77625rem;
   }
   .training-courses__pagination {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     padding: 2.9rem 0 7.25rem 0;
   }
 }
-
 @media (max-width: 575px) {
   .filter-sidebar__title-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     width: 100%;
     border-bottom: 0.063rem solid rgba(119, 119, 119, 0.2);
     margin-left: 7rem !important;
@@ -567,15 +453,9 @@
   }
   .filter-sidebar__filter-list li {
     margin: 1.725rem 0 0 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .filter-sidebar__filter-list li:nth-of-type(1) {
     margin: 2.5875rem 0 0 0;
@@ -604,15 +484,9 @@
     font-size: 2.0125rem;
     font-weight: 700;
     color: var(--primary-red);
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     cursor: pointer;
     width: -webkit-fit-content;
     width: -moz-fit-content;
@@ -628,13 +502,11 @@
     margin-bottom: 4rem;
   }
   .show-less,
-  .show-more {
-    -webkit-transition: all 0.3s ease;
+.show-more {
     transition: all 0.3s ease;
   }
   .show-less {
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
+    transform: rotate(180deg);
   }
   .training-courses {
     margin: 4.1875rem 0 0 0;
@@ -648,17 +520,10 @@
     height: 8rem;
     border-radius: 50%;
     background-color: white;
-    -webkit-box-shadow: 0 0 1rem #0000001A;
-            box-shadow: 0 0 1rem #0000001A;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1019607843);
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
     cursor: pointer;
     margin: 0 3rem 0 0;
   }
@@ -680,20 +545,13 @@
   }
   .training-courses__filtered-courses {
     padding: 4.25rem 3rem 0 3rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .training-courses__filters-col__filter-box {
     width: 12rem;
-    -webkit-box-shadow: 0rem 0.1875rem 1.625rem #00000029;
-            box-shadow: 0rem 0.1875rem 1.625rem #00000029;
+    box-shadow: 0rem 0.1875rem 1.625rem rgba(0, 0, 0, 0.1607843137);
     border-radius: 0.9375rem;
     background-color: white;
   }
@@ -702,15 +560,9 @@
     padding: 0.8125rem 1.25rem 0;
   }
   .level-filter {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .level-filter svg {
     width: 1.875rem;
@@ -725,15 +577,9 @@
   }
   .training-courses__filters-col__filter-box__filter button {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
     padding: 0.375rem 0 0.375rem 0;
     border: 0 !important;
     font-size: 1.0625rem;
@@ -751,15 +597,9 @@
     padding: 0.2rem 0.2rem;
     border-radius: 0.5rem;
     font-size: 1.0625rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
@@ -782,8 +622,7 @@
   .training-courses__course-card {
     width: 50.625rem;
     height: 54rem;
-    -webkit-box-shadow: 0 1.35rem 2.5326rem #0000001A;
-            box-shadow: 0 1.35rem 2.5326rem #0000001A;
+    box-shadow: 0 1.35rem 2.5326rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 2.025rem;
     margin: 0 0 5.0625rem 0;
   }
@@ -814,15 +653,9 @@
     padding: 1.62rem 2.7rem 1.5rem 2.7rem;
   }
   .training-courses__course-card__card-body__card-header {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     position: relative;
     padding: 0 0 2.10951rem 0;
     border-bottom: 0.135rem solid rgba(34, 34, 34, 0.1);
@@ -849,15 +682,9 @@
     width: 37rem;
   }
   .training-courses__course-card__card-body__checkout-details {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
   }
   .training-courses__course-card__card-body__checkout-details__price-container__price {
     font-size: 3.375rem;
@@ -880,17 +707,9 @@
     border-radius: 0.75rem;
     background-color: rgba(0, 0, 0, 0.05);
     border: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
+    align-items: center;
+    justify-content: center;
     display: inline-flex;
     width: 6.075rem;
     height: 6.075rem;
@@ -910,16 +729,9 @@
     height: 3.3075rem;
   }
   .training-courses__pagination {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     padding: 5.4rem 0 13.5rem 0;
   }
-}
-/*# sourceMappingURL=training-courses.module.css.map */
+}/*# sourceMappingURL=training-courses.module.css.map */

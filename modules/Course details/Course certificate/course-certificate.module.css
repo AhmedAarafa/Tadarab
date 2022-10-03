@@ -6,22 +6,18 @@
   border-radius: 1.25rem;
   padding: 1.875rem;
 }
-
 .course-certificate div:nth-of-type(1) {
   color: var(--grey);
 }
-
 .course-certificate h3 {
   color: var(--dark-black);
   font-weight: 700;
   margin-top: -0.3rem;
 }
-
 .course-certificate div:nth-of-type(2) img {
   width: 40rem;
   height: 28.25rem;
-  -webkit-box-shadow: 0 0 1.25rem #0000001A;
-          box-shadow: 0 0 1.25rem #0000001A;
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
   margin-top: 1.875rem;
 }
@@ -41,10 +37,8 @@
   .course-certificate div:nth-of-type(3) img {
     width: 100%;
     height: 32.938rem;
-    -webkit-box-shadow: 0 0 3.125rem #0000001A;
-            box-shadow: 0 0 3.125rem #0000001A;
+    box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.25rem;
     margin-top: 4.3125rem;
   }
-}
-/*# sourceMappingURL=course-certificate.module.css.map */
+}/*# sourceMappingURL=course-certificate.module.css.map */

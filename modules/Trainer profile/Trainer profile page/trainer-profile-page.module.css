@@ -3,49 +3,26 @@
 }
 
 .trainer-profile__trainer-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  align-items: unset;
+  justify-content: unset;
+  flex-wrap: wrap;
 }
 
 .trainer-profile__trainer-info-trainer-card-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
 }
 
 @media (max-width: 575px) {
   .trainer-profile__trainer-info-trainer-card-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: unset;
+    justify-content: unset;
+    flex-direction: column;
   }
   .trainer-profile {
     padding: 12rem 4.5rem 0 4.5rem;
   }
-}
-/*# sourceMappingURL=trainer-profile-page.module.css.map */
+}/*# sourceMappingURL=trainer-profile-page.module.css.map */

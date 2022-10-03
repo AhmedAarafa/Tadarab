@@ -12,52 +12,37 @@
 }
 
 .how-to-learn-on-tadarab__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  flex-direction: column;
   height: 100%;
 }
-
 .how-to-learn-on-tadarab__content h3 {
   font-size: 1.875rem;
   color: var(--dark-black);
   font-weight: 800;
   display: inline-block;
 }
-
 .how-to-learn-on-tadarab__content h3 div {
   padding-top: 10px;
 }
-
 .how-to-learn-on-tadarab__content h3 span {
   color: var(--primary-red);
   display: inline-block;
 }
-
 .how-to-learn-on-tadarab__content div:nth-of-type(3) {
   font-size: 1rem;
   color: var(--dark-black);
 }
-
 .how-to-learn-on-tadarab__content button {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -67,17 +52,12 @@
   border-radius: 0.625rem;
   width: 10rem;
 }
-
 .how-to-learn-on-tadarab__content button:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .how-to-learn-on-tadarab__content button:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .how-to-learn-on-tadarab__content button:hover, .how-to-learn-on-tadarab__content button:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
@@ -99,19 +79,10 @@
     margin: 5rem 0 2rem 0;
   }
   .how-to-learn-on-tadarab__content {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
     text-align: center;
     height: 100%;
   }
@@ -123,14 +94,13 @@
     margin-top: 2rem;
   }
   .how-to-learn-on-tadarab__content button {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -141,16 +111,13 @@
     margin-top: 3rem;
   }
   .how-to-learn-on-tadarab__content button:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .how-to-learn-on-tadarab__content button:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .how-to-learn-on-tadarab__content button:hover, .how-to-learn-on-tadarab__content button:active {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-}
-/*# sourceMappingURL=how-to-learn-on-tadarab.module.css.map */
+}/*# sourceMappingURL=how-to-learn-on-tadarab.module.css.map */

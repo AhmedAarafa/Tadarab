@@ -144,8 +144,17 @@ export default function MobileCheckoutBar() {
             {/* <div className={styles["monthly-subscription__subscription-value"]}>
               احصل على كل الدورات فقط ب 9 دك / شهر.
             </div> */}
-            <div className={styles["monthly-subscription__subscription-value"]}>
-              احصل على كل الدورات فقط ب 9 دك / شهر.<span>بدل من</span><span className={styles["amount-strike"]}> 15 دك</span>
+            <div className={styles["monthly-subscription__subscription-value"]} >
+              <span>
+                احصل على كل الدورات فقط ب
+                {courseDetails.subscription_sale_price}
+                {courseDetails.currency_symbol} / شهر
+                بدلا من
+              </span>
+              <span className={styles["amount-strike"]}>
+                {courseDetails.subscription_original_price}
+                {courseDetails.currency_symbol}
+              </span>
             </div>
           </div>
         </div>

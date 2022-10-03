@@ -15,7 +15,6 @@ export default function FAQ(props:any) {
       axiosInstance
       .get(`course/${props.Cid()}/faqs`)
       .then(function (response:any) {
-          // console.log("response",response);
           setFaqs(response.data.data);
       })
       .catch(function (error) {

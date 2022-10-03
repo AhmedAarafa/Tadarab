@@ -29,8 +29,7 @@
 
 .hero-section__search-bar-container {
   position: relative;
-  -webkit-box-shadow: 0 0 1.625rem #0000001A;
-          box-shadow: 0 0 1.625rem #0000001A;
+  box-shadow: 0 0 1.625rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.75rem;
   overflow: hidden;
   font-weight: 400;
@@ -39,15 +38,9 @@
   background-color: white;
   margin-top: 2rem;
   width: 27.188rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
 
 .hero-section__search-bar-container__icon-wrapper {
@@ -55,17 +48,10 @@
   height: 100%;
   position: absolute;
   pointer-events: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .hero-section__search-bar-container__icon-wrapper > svg {
   width: 1.1rem;
   height: 1.1rem;
@@ -74,7 +60,7 @@
 .hero-section__search-bar-container__search-bar {
   border: 0 !important;
   padding: 0rem 2.7rem 0rem 0;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   width: 70%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
@@ -82,26 +68,17 @@
   font-size: 1.063rem;
   color: rgba(34, 34, 34, 0.5);
 }
-
 .hero-section__search-bar-container__search-bar:active, .hero-section__search-bar-container__search-bar:focus {
   outline: 0 !important;
   -webkit-appearance: none;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
-
-.hero-section__search-bar-container__search-bar::-webkit-input-placeholder {
+.hero-section__search-bar-container__search-bar::-moz-placeholder {
   color: rgba(51, 51, 51, 0.5);
 }
-
 .hero-section__search-bar-container__search-bar:-ms-input-placeholder {
   color: rgba(51, 51, 51, 0.5);
 }
-
-.hero-section__search-bar-container__search-bar::-ms-input-placeholder {
-  color: rgba(51, 51, 51, 0.5);
-}
-
 .hero-section__search-bar-container__search-bar::placeholder {
   color: rgba(51, 51, 51, 0.5);
 }
@@ -109,11 +86,8 @@
 .hero-section__chips-box {
   margin-top: 1rem;
   width: 23rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .hero-section__chip {
@@ -126,15 +100,9 @@
   border-radius: 0.938rem;
   color: var(--dark-black);
   font-size: 0.625rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   padding: 0.063rem 0.663rem;
   font-weight: 700;
   background-color: inherit;
@@ -143,14 +111,13 @@
 }
 
 .hero-section__search-bar__btn {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -161,17 +128,12 @@
   height: 2.75rem;
   margin-right: 1.3rem;
 }
-
 .hero-section__search-bar__btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .hero-section__search-bar__btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .hero-section__search-bar__btn:hover, .hero-section__search-bar__btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
@@ -188,46 +150,32 @@
   position: absolute;
   top: -2.5rem;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
   padding: 0 2rem;
 }
-
 .categories-cards-container div:nth-of-type(1) div:nth-of-type(1) {
   background-color: var(--primary-red);
 }
-
 .categories-cards-container div:nth-of-type(1) div:nth-of-type(2) {
   color: var(--primary-red);
 }
-
 .categories-cards-container div:nth-of-type(2) div:nth-of-type(1) {
   background-color: #FF7900;
 }
-
 .categories-cards-container div:nth-of-type(2) div:nth-of-type(2) {
   color: #FF7900;
 }
-
 .categories-cards-container div:nth-of-type(3) div:nth-of-type(1) {
   background-color: #1F7B24;
 }
-
 .categories-cards-container div:nth-of-type(3) div:nth-of-type(2) {
   color: #1F7B24;
 }
-
 .categories-cards-container div:nth-of-type(4) div:nth-of-type(1) {
   background-color: #813A8A;
 }
-
 .categories-cards-container div:nth-of-type(4) div:nth-of-type(2) {
   color: #813A8A;
 }
@@ -235,18 +183,11 @@
 .categories-cards-container__card {
   width: 16.25rem;
   height: 5rem;
-  -webkit-box-shadow: 0 0 1.875rem #0000001A;
-          box-shadow: 0 0 1.875rem #0000001A;
+  box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   background-color: white;
 }
 
@@ -255,19 +196,11 @@
   width: 3.75rem;
   height: 3.75rem;
   border-radius: 0.813rem;
-  -webkit-box-shadow: 0 0 1.875rem #0000001A;
-          box-shadow: 0 0 1.875rem #0000001A;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .categories-cards-container__img-box svg {
   width: 2.375rem;
   height: 1.75rem;
@@ -294,45 +227,26 @@
     height: 52rem;
   }
   .hero-section__col {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
   }
   .hero-section__chips-box {
     display: none;
   }
   .hero-section__container {
     margin: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
   }
   .hero-section__title {
-    -webkit-box-ordinal-group: 3;
-        -ms-flex-order: 2;
-            order: 2;
+    order: 2;
   }
   .hero-section__para {
-    -webkit-box-ordinal-group: 4;
-        -ms-flex-order: 3;
-            order: 3;
+    order: 3;
   }
   .hero-section__search-bar-container {
     margin: 0;
@@ -346,13 +260,10 @@
     font-size: 2.1rem;
     padding-right: 8rem;
   }
-  .hero-section__search-bar-container__search-bar::-webkit-input-placeholder {
+  .hero-section__search-bar-container__search-bar::-moz-placeholder {
     color: rgba(51, 51, 51, 0.45);
   }
   .hero-section__search-bar-container__search-bar:-ms-input-placeholder {
-    color: rgba(51, 51, 51, 0.45);
-  }
-  .hero-section__search-bar-container__search-bar::-ms-input-placeholder {
     color: rgba(51, 51, 51, 0.45);
   }
   .hero-section__search-bar-container__search-bar::placeholder {
@@ -382,5 +293,4 @@
     font-size: 2.5rem;
     font-weight: 700;
   }
-}
-/*# sourceMappingURL=hero-section.module.css.map */
+}/*# sourceMappingURL=hero-section.module.css.map */

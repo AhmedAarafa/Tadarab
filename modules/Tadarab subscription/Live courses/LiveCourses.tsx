@@ -98,20 +98,18 @@ export default function LiveCourses() {
   useEffect(() => {
 
     setLiveCourses(homePageData.data?.live_courses || []);
+    console.log("homePageData.data?.live_courses  sub",homePageData.data?.live_courses);
+
     const localStorageItems: any = localStorage.getItem("cart");
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
       axiosInstance
         .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
-          // console.log(response);
           let newArray: any = homePageData.data?.live_courses;
           response.data.data.forEach((element: any) => {
             newArray.forEach((ele: any) => {
               if (element.id === ele.id) {
-                // console.log(ele);
                 ele.is_in_cart = true;
-                // newArray.ele.is_in_cart = true;
-                // console.log("newArray",newArray);
               }
             });
           });
@@ -121,7 +119,6 @@ export default function LiveCourses() {
         .catch(function (error) {
           console.log(error);
         });
-
     }
 
   }, [homePageData]);
@@ -238,7 +235,7 @@ export default function LiveCourses() {
                                   ]
                                 }
                               >
-                                {lc.currency_code}
+                                {lc.currency_symbol}
                               </span>}
 
                               <span
@@ -269,7 +266,7 @@ export default function LiveCourses() {
                                     ]
                                   }
                                 >
-                                  {lc.currency_code}
+                                  {lc.currency_symbol}
                                 </span>
                                 <span
                                   className={

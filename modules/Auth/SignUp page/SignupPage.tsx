@@ -19,7 +19,7 @@ import {
 import * as Yup from "yup";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
-import { EnvelopeIcon, GoogleIcon, TwitterIcon, FbIcon, AppleIcon, LockIcon, EyeIcon, MobileIcon, NameFieldIcon } from "common/Icons/Icons";
+import { EnvelopeIcon, GoogleIcon, TwitterIcon, TickIcon, FbIcon, AppleIcon, LockIcon, EyeIcon, MobileIcon, NameFieldIcon } from "common/Icons/Icons";
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
@@ -31,6 +31,7 @@ import GoogleLogin from 'react-google-login';
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import TwitterLogin from "react-twitter-login";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+
 
 interface SignUpFormValues {
   name: string;
@@ -234,12 +235,12 @@ export default function SignupPage() {
     }
   }
 
-  const responseFacebook = (response:any)=>{
+  const responseFacebook = (response: any) => {
     //console.log(response);
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {
-      if(response?.status!="unknown"&&response?.status!=""){
+      if (response?.status != "unknown" && response?.status != "") {
         let tadarabGA = new TadarabGA();
         let clientId = tadarabGA.tadarab_get_traking_client();
         let customData = { email: response.email, phone: "" };
@@ -310,6 +311,28 @@ export default function SignupPage() {
           <div className={styles["register__register-box__title"]}>
             <div> انشاء حساب جديد </div>
             <div> اهلا بك في تدرب أنشئ حساب جديد الان </div>
+          </div>
+          <div className={styles["register__register-box__benefits__box"]}>
+            <div>
+              <div className={styles["register__register-box__benefits"]}>
+                <div>
+                  <TickIcon />
+                </div>
+                <span>انضم إلي اكثر من 2 مليون متعلم عربي</span>
+              </div>
+              <div className={styles["register__register-box__benefits"]}>
+                <div>
+                  <TickIcon />
+                </div>
+                <span>اكبر مكتبة دورات تدريبية في الوطن العربي</span>
+              </div>
+              <div className={styles["register__register-box__benefits"]}>
+                <div>
+                  <TickIcon />
+                </div>
+                <span>مرفقات وكتيبات مجانية جاهزة لتحميل</span>
+              </div>
+            </div>
           </div>
 
           <div className={styles["register__register-box__register-with"]}>

@@ -1,11 +1,9 @@
 .terms-and-conditions {
   padding: 8rem;
 }
-
 .terms-and-conditions * {
   font-size: 1rem !important;
 }
-
 .terms-and-conditions h4 {
   font-size: 1.5rem !important;
 }
@@ -20,5 +18,4 @@
   .terms-and-conditions h4 {
     font-size: 2.7rem !important;
   }
-}
-/*# sourceMappingURL=terms-page.module.css.map */
+}/*# sourceMappingURL=terms-page.module.css.map */

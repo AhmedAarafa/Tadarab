@@ -1,0 +1,93 @@
+@import "../../../styles/mixins";
+
+
+.subscription-benefits {
+    padding: 5rem 1.6rem;
+    background-color: rgba(0, 20, 37, 0.04);
+}
+
+.subscription-benefits__title{
+    @include flex(center,flex-start);
+    // flex-direction: column;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.subscription-benefits__benefits {
+    margin: 0.2rem 0 0 0;
+
+    div {
+        margin-top: 0.2rem;
+    }
+
+    svg {
+        width: 1.125rem;
+        height: 0.875rem;
+        margin: 0 0 0 0.3rem;
+    }
+}
+
+.subscription-benefits__benefits__list-item {
+    @include flex(flex-start, flex-start);
+
+    div {
+        width: fit-content;
+    }
+
+    span {
+        display: inline-block;
+    }
+}
+
+.subscription-benefits--important {
+    color: var(--primary-red);
+    display: inline-block;
+    margin: 0 0.1rem;
+}
+
+@media (max-width:575px) {
+
+    .subscription-benefits {
+        padding: 5rem 4rem;
+    }
+
+    .subscription-benefits__benefits {
+        font-size: 1rem*2.3;
+        margin: 2.5875rem 0 0 0;
+        width: 100%;
+
+        div {
+            margin-top: 0.2rem*2.5;
+        }
+
+        svg {
+            width: 1.125rem*2.5;
+            height: 0.875rem*2.5;
+            margin: 0 0 0 0.3rem*2.5;
+        }
+    }
+
+    .subscription-benefits__title{
+        @include flex(center,center);
+        text-align: center;
+        font-size: 2.5rem*2;
+    }
+    
+    .subscription-benefits__benefits__list-item {
+        @include flex(flex-start, flex-start);
+    
+        div {
+            width: fit-content;
+        }
+    
+        span {
+            display: inline-block;
+        }
+    }
+    
+    .subscription-benefits--important {
+        color: var(--primary-red);
+        display: inline-block;
+        margin: 0 0.1rem;
+    }
+}

@@ -269,9 +269,7 @@
 .checkout__cards-outer-box__card__old-price {
     color: var(--grey);
     margin-top: -0.5rem;
-    span{
-        text-decoration: line-through rgba(175, 21, 31, 0.5);
-    }
+    text-decoration: line-through rgba(175, 21, 31, 0.5);
 
     span:nth-of-type(1) {
         font-size: 0.9375rem;
@@ -687,9 +685,7 @@
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
     margin-top: -0.5rem*0.77;
-    span{
-        text-decoration: line-through rgba(119, 119, 119, 0.7);
-    }
+    text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
@@ -975,7 +971,7 @@
     margin: 0.5rem 0;
     @include flex(center, space-between);
 
-    span.checkout__cart_subscribe_price-total_orignal {
+    span.checkout__cart_subscribe_price-total_original {
         color: var(--dark-black);
         text-decoration: line-through rgba(175, 21, 31, 1);
         font-weight: 800;
@@ -1086,7 +1082,7 @@
 }
 
 .checkout__course-content {
-    // display: flex;
+    display: flex;
     flex-direction: column;
 }
 
@@ -1162,21 +1158,32 @@
     }
 }
 
-.checkout__cart-sticky-card__subscription-plans{
+.choose-best-subscription-plan {
+    font-size: 0.9rem !important;
+    color: var(--dark-black) !important;
+
+    span {
+        font-size: 0.9rem !important;
+        color: var(--primary-red);
+    }
+}
+
+.checkout__cart-sticky-card__subscription-plans {
     margin-bottom: 0.8rem;
 }
 
-.checkout__cart-sticky-card__subscription-plans__plan-box{
+.checkout__cart-sticky-card__subscription-plans__plan-box {
     border-bottom: 0.0625rem solid #F3F3F3;
     padding: 0.5rem 1.625rem;
     margin: 0 -1.625rem;
 
 }
 
-.checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1){
+.checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
     margin: -1.625rem -1.625rem 0 -1.625rem;
 }
-.checkout__cart-sticky-card__subscription-plans__plan-box--active{
+
+.checkout__cart-sticky-card__subscription-plans__plan-box--active {
     border: 0.0625rem solid red;
     border-radius: 0.5rem;
 
@@ -2107,8 +2114,8 @@
 
 
     .checkout__payment-method-box {
-        margin: 6rem 0 2.3125rem*2.2 0;
-        order: 1;
+        margin: 0rem 0 2.3125rem*2.2 0;
+        order: 2;
     }
 
     .checkout__payment-method-box__title {
@@ -2338,7 +2345,6 @@
         font-size: 0.5rem*2.45;
 
         img {
-
             border-radius: 50%;
             width: 2.5rem*2.45;
             height: 2.5rem*2.45;
@@ -2400,7 +2406,6 @@
 
     .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
         svg {
-
             width: 1.55rem*2.5;
             height: 1.7rem*2.5;
         }
@@ -2409,7 +2414,6 @@
 
     .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
         svg {
-
             width: 1.413rem*2.5;
             height: 1.225rem*2.5;
         }
@@ -2429,7 +2433,7 @@
     .checkout__subscription-benefits {
         margin: 2rem 0 1.5rem*2.5 0;
         border-bottom: none;
-        order: 3;
+        order: 3 !important;
 
         div {
             margin: 0 0 0.5rem*2.5 0;
@@ -2479,7 +2483,6 @@
             border-radius: 0.625rem*2.5;
             margin-top: 1rem*2.5;
             font-size: 0.97rem*2.5;
-
         }
     }
 
@@ -2580,6 +2583,18 @@
         }
     }
 
+    .choose-best-subscription-plan {
+        font-size: 0.9rem*2.5 !important;
+        margin: 3rem 0 0.5rem 0;
+        text-align: center;
+
+        span {
+            font-size: 0.9rem*2.5 !important;
+            font-weight: 800;
+        }
+
+    }
+
     .subscription-plans-box {
         border-radius: 0.5rem*2.5;
         border: 0.0437rem*2.5 solid #caccce;
@@ -2612,89 +2627,88 @@
         }
     }
 
-   
-    .checkout__cart-sticky-card-div{
-        margin-top: 10rem;
+    .checkout__cart-sticky-card-div {
+        margin-top: 7rem;
+        order: 1;
+
         input[type=radio] {
-            margin: 0.5rem*2.1 0.25rem*2.1;
+            margin: 0.5rem*2.2 0.25rem*2.2;
             border-color: #707070 !important;
             cursor: pointer;
-    
+
             &:checked {
                 background-color: white !important;
             }
-    
+
             &:checked[type="radio"] {
                 background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
             }
         }
     }
 
-    
-.checkout__cart-sticky-card__subscription-plans{
-    margin-bottom: 0.8rem*2.1;
-}
 
-.checkout__cart-sticky-card__subscription-plans__plan-box{
-    border-bottom: 0.0625rem*2.1 solid #F3F3F3;
-    padding: 0.5rem*2.1 1.625rem*2.1;
-    margin: 0 -1.625rem*2.1;
-
-}
-
-.checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1){
-    margin: -1.625rem*2.1 -1.625rem*2.1 0 -1.625rem*2.1;
-}
-.checkout__cart-sticky-card__subscription-plans__plan-box--active{
-    border: 0.0625rem solid red;
-    border-radius: 0.5rem*2.1;
-
-}
-
-.checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip {
-    font-size: 0.7rem*2.1;
-    color: white;
-    background-color: #464646;
-    border-radius: 0.5rem*2.1;
-    width: fit-content;
-    padding: 0.1rem*2.1 0.6rem*2.1;
-}
-
-.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
-    @include flex(center, flex-start);
-
-    input {
-        width: 1.25em*2.1;
-        height: 1.25em*2.1;
-        margin: 0.25rem*2.1 0 0.5rem*2.1 0.5rem*2.1 !important;
-    }
-}
-
-.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan {
-    font-size: 0.9rem*2.1;
-    font-weight: 800;
-    color: var(--dark-black);
-
-}
-
-.checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing {
-    margin: 0 0 0.3rem*2.1 0;
-
-    span:nth-of-type(1) {
-        font-size: 0.9rem*2.1;
-        font-weight: 800;
-        color: #949498;
-        display: inline-block;
+    .checkout__cart-sticky-card__subscription-plans {
+        margin-bottom: 0.8rem*2.2;
     }
 
-    span:nth-of-type(2) {
-        font-size: 0.7rem*2.1;
+    .checkout__cart-sticky-card__subscription-plans__plan-box {
+        border-bottom: 0.0625rem*2.2 solid #F3F3F3;
+        padding: 0.5rem*2.2 1.625rem*2.2;
+        margin: 0 -1.625rem*2.2;
+    }
+
+    .checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
+        margin: -1.625rem*2.2 -1.625rem*2.2 0 -1.625rem*2.2;
+    }
+
+    .checkout__cart-sticky-card__subscription-plans__plan-box--active {
+        border: 0.0625rem solid red;
+        border-radius: 0.5rem*2.2;
+    }
+
+    .checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip {
+        font-size: 0.7rem*2.2;
+        color: white;
+        background-color: #464646;
+        border-radius: 0.5rem*2.2;
+        width: fit-content;
+        padding: 0.1rem*2.2 0.6rem*2.2;
+    }
+
+    .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
+        @include flex(center, flex-start);
+
+        input {
+            width: 1.25em*2.2;
+            height: 1.25em*2.2;
+            margin: 0.25rem*2.2 0 0.5rem*2.2 0.5rem*2.2 !important;
+        }
+    }
+
+    .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan {
+        font-size: 0.9rem*2.2;
         font-weight: 800;
         color: var(--dark-black);
-        margin: 0 0.5rem*2.1 0 0;
-        border: 0.0625rem*2.1 solid red;
-        border-radius: 0.5rem*2.1;
-        padding: 0.1rem*2.1 0.5rem*2.1;
     }
-}
+
+    .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing {
+        margin: 0 0 0.3rem*2.2 0;
+
+        span:nth-of-type(1) {
+            font-size: 0.9rem*2.2;
+            font-weight: 800;
+            color: #949498;
+            display: inline-block;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 0.7rem*2.2;
+            font-weight: 800;
+            color: var(--dark-black);
+            margin: 0 0.5rem*2.2 0 0;
+            border: 0.0625rem*2.2 solid red;
+            border-radius: 0.5rem*2.2;
+            padding: 0.1rem*2.2 0.5rem*2.2;
+        }
+    }
 }

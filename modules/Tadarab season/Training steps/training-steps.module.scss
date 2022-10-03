@@ -1,0 +1,91 @@
+@import "../../../styles/mixins";
+
+.tadarab-steps {
+    @include flex(center, center);
+    flex-direction: column;
+    padding: 5rem 3rem 8rem 3rem;
+}
+
+.tadarab-steps__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.tadarab-steps__steps {
+    @include flex(center, space-evenly);
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.tadarab-steps__steps__step {
+    @include flex(center, center);
+    flex-direction: column;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.tadarab-steps__steps__step__icon {
+    svg {
+        width: 4.375rem;
+        height: 4.375rem;
+        margin-bottom: 0.3rem;
+    }
+}
+
+.tadarab-steps__steps__step__title {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.tadarab-steps__steps__step__brief {
+    font-size: 1rem;
+}
+
+.tadarab-steps__video{
+    margin: 8rem 0 0 0;
+    width: 100%;
+}
+
+@media (max-width: 575px) {
+    .tadarab-steps {
+        padding: 10rem 4rem;
+    }
+
+    .tadarab-steps__title {
+        font-size: 2.5rem*2;
+        line-height: 6rem;
+    }
+
+    .tadarab-steps__steps {
+        @include flex(center, space-evenly);
+        flex-direction: column;
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .tadarab-steps__steps__step {
+        padding: 4rem 0 0 0 ;
+    }
+
+    .tadarab-steps__steps__step__icon {
+        svg {
+            width: 4.375rem*2.2;
+            height: 4.375rem*2.2;
+            margin-bottom: 0.3rem*2.2;
+        }
+    }
+
+    .tadarab-steps__steps__step__title {
+        font-size: 1.3rem*2.2;
+    }
+
+    .tadarab-steps__steps__step__brief {
+        font-size: 1rem*2.2;
+    }
+
+    .tadarab-steps__video{
+        margin: 8rem*1.5 0 0 0 !important;
+        width: calc(100% + 5rem);
+    }
+}

@@ -10,15 +10,9 @@
 
 .course-review__review-box {
   margin: -0.4rem 0 0.875rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
 
 .course-review__review-box__number {
@@ -37,7 +31,6 @@
   font-weight: 700;
   color: var(--grey);
 }
-
 .course-review__review-box__review__number-of-reviews span:nth-of-type(2) {
   font-size: 0.938rem;
   color: var(--grey);
@@ -46,69 +39,44 @@
 .course-review__cards-carousel {
   margin: -1.8rem 0 0 0;
 }
-
 .course-review__cards-carousel > div {
   padding: 1rem 0.6rem 1rem 0 !important;
 }
-
-.course-review__cards-carousel > div > div:nth-child(1),
-.course-review__cards-carousel > div > div:nth-child(2) {
+.course-review__cards-carousel > div > div:nth-child(1), .course-review__cards-carousel > div > div:nth-child(2) {
   top: 39% !important;
 }
-
-.course-review__cards-carousel > div > div:nth-child(1):after,
-.course-review__cards-carousel > div > div:nth-child(2):after {
+.course-review__cards-carousel > div > div:nth-child(1):after, .course-review__cards-carousel > div > div:nth-child(2):after {
   font-size: 1.05rem !important;
-  -webkit-box-shadow: 0 0 1.3125rem #00000033 !important;
-          box-shadow: 0 0 1.3125rem #00000033 !important;
+  box-shadow: 0 0 1.3125rem rgba(0, 0, 0, 0.2) !important;
 }
-
 .course-review__cards-carousel > div > div:nth-child(1) {
   right: 0.315rem !important;
 }
-
 .course-review__cards-carousel > div > div:nth-child(1):after {
   padding: 1.575rem 1.239rem 1.575rem 1.344rem !important;
 }
-
 .course-review__cards-carousel > div > div:nth-child(2) {
   left: 0.84rem !important;
 }
-
 .course-review__cards-carousel > div > div:nth-child(2):after {
   padding: 1.575rem 1.344rem 1.575rem 1.239rem !important;
 }
-
 .course-review__cards-carousel > div > div:nth-child(3) > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .course-review__cards-carousel__card {
   padding: 1.25rem 1.688rem 1.25rem 2.875rem;
   width: 34rem;
-  -webkit-box-shadow: 0 0 1.25rem #0000001A;
-          box-shadow: 0 0 1.25rem #0000001A;
+  box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
   height: 10.0625rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: flex-start;
+  justify-content: unset;
 }
-
 .course-review__cards-carousel__card > div:nth-of-type(1) img {
   width: 3.125rem;
   height: 3.125rem;
@@ -116,18 +84,10 @@
 
 .course-review__cards-carousel__card__review-box {
   margin-right: 0.75rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -141,21 +101,13 @@
 }
 
 .course-review__cards-carousel__card__review-box__rating {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
 }
-
 .course-review__cards-carousel__card__review-box__rating svg {
   margin-left: 0.15rem;
 }
-
 .course-review__cards-carousel__card__review-box__rating span {
   font-size: 0.813rem;
   color: #999999;
@@ -190,15 +142,9 @@
   }
   .course-review__review-box {
     margin: -0.96rem 0 2.1rem 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .course-review__review-box__number {
     font-size: 9rem;
@@ -220,15 +166,12 @@
   .course-review__cards-carousel > div {
     padding: 2.4rem 1.44rem 2.4rem 0 !important;
   }
-  .course-review__cards-carousel > div > div:nth-child(1),
-  .course-review__cards-carousel > div > div:nth-child(2) {
+  .course-review__cards-carousel > div > div:nth-child(1), .course-review__cards-carousel > div > div:nth-child(2) {
     top: 39% !important;
   }
-  .course-review__cards-carousel > div > div:nth-child(1):after,
-  .course-review__cards-carousel > div > div:nth-child(2):after {
+  .course-review__cards-carousel > div > div:nth-child(1):after, .course-review__cards-carousel > div > div:nth-child(2):after {
     font-size: 2.4rem !important;
-    -webkit-box-shadow: 0 0 3rem #00000033 !important;
-            box-shadow: 0 0 3rem #00000033 !important;
+    box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2) !important;
   }
   .course-review__cards-carousel > div > div:nth-child(1) {
     right: 0.72rem !important;
@@ -243,31 +186,18 @@
     padding: 3.6rem 3.072rem 3.6rem 2.832rem !important;
   }
   .course-review__cards-carousel > div > div:nth-child(3) > div {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    align-items: center;
+    justify-content: flex-start;
   }
   .course-review__cards-carousel__card {
     padding: 3rem 3.6rem 3.6rem 3.6rem;
     width: 94.5%;
-    -webkit-box-shadow: 0 0 1.25rem #0000001A;
-            box-shadow: 0 0 1.25rem #0000001A;
+    box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 3rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: flex-start;
+    justify-content: unset;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
@@ -289,15 +219,9 @@
     margin-bottom: 0.48rem;
   }
   .course-review__cards-carousel__card__review-box__rating {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
   }
   .course-review__cards-carousel__card__review-box__rating svg {
     margin-left: 0.36rem;
@@ -318,14 +242,13 @@
     -webkit-box-orient: vertical;
   }
   .show-all-reviews-btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -337,12 +260,10 @@
     height: 6.875rem;
   }
   .show-all-reviews-btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .show-all-reviews-btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .show-all-reviews-btn:hover {
     color: var(--primary-red) !important;
@@ -356,5 +277,4 @@
   .course-review__mobile-view {
     display: block;
   }
-}
-/*# sourceMappingURL=course-review.module.css.map */
+}/*# sourceMappingURL=course-review.module.css.map */

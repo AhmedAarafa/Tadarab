@@ -1,13 +1,7 @@
 .trainer-profile__trainer-info-col__trainer-info-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
 }
 
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-img img {
@@ -18,21 +12,11 @@
 
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-info {
   margin: 0 2.75rem 0 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
-
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-info div:nth-of-type(1) {
   font-size: 0.875rem;
   color: var(--grey);
@@ -43,7 +27,6 @@
   width: -moz-fit-content;
   width: fit-content;
 }
-
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-info h1 {
   font-size: 1.875rem;
   font-weight: 800;
@@ -51,22 +34,15 @@
   margin: 0.2rem 0 0.3rem 0;
   width: 29rem;
 }
-
 .trainer-profile__trainer-info-col__trainer-info-box__trainer-info div:nth-of-type(2) {
   font-size: 1.25rem;
   color: var(--grey);
 }
 
 .trainer-profile__trainer-info-col__stastics-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: unset;
-      -ms-flex-align: unset;
-          align-items: unset;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: unset;
+  justify-content: unset;
   width: 41.875rem;
   height: 6.25rem;
   background-color: rgba(175, 21, 31, 0.05);
@@ -76,26 +52,17 @@
 }
 
 .trainer-profile__trainer-info-col__stastics-box__stastics {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
-
 .trainer-profile__trainer-info-col__stastics-box__stastics:nth-of-type(1) svg {
   width: 3.125rem;
   height: 1.875rem;
 }
-
 .trainer-profile__trainer-info-col__stastics-box__stastics:nth-of-type(2) {
   margin: 0 4.5rem 0 0;
 }
-
 .trainer-profile__trainer-info-col__stastics-box__stastics:nth-of-type(2) svg {
   width: 2.6875rem;
   height: 1.875rem;
@@ -105,14 +72,12 @@
 .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners {
   margin: 0 0.875rem 0 0;
 }
-
 .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses div:nth-of-type(1),
 .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(1) {
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--dark-black);
 }
-
 .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses div:nth-of-type(2),
 .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(2) {
   font-size: 1.875rem;
@@ -127,7 +92,6 @@
   padding-bottom: 2.5rem;
   position: relative;
   overflow: hidden;
-  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
 
@@ -156,11 +120,9 @@
   cursor: pointer;
   z-index: 3;
 }
-
 .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__read-more span {
   margin-left: 0.5rem;
 }
-
 .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__read-more svg {
   width: 0.625rem;
   height: 0.375rem;
@@ -168,8 +130,7 @@
 
 .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect {
   position: absolute;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(white));
-  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, white 100%);
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
   width: 100%;
   bottom: 3rem;
   height: 4rem;
@@ -178,15 +139,9 @@
 
 @media (max-width: 575px) {
   .trainer-profile__trainer-info-col__trainer-info-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
   }
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-img img {
     width: 15rem;
@@ -195,19 +150,10 @@
   }
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-info {
     margin: 0 4.4rem 0 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
   }
   .trainer-profile__trainer-info-col__trainer-info-box__trainer-info div:nth-of-type(1) {
     font-size: 1.4rem;
@@ -226,15 +172,9 @@
     font-size: 1.8125rem;
   }
   .trainer-profile__trainer-info-col__stastics-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: unset;
-        -ms-flex-align: unset;
-            align-items: unset;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: unset;
+    justify-content: unset;
     width: 100%;
     height: 10rem;
     border-radius: 2rem;
@@ -242,15 +182,9 @@
     margin: 2.8rem 0 0 0;
   }
   .trainer-profile__trainer-info-col__stastics-box__stastics {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
   }
   .trainer-profile__trainer-info-col__stastics-box__stastics:nth-of-type(1) svg {
     width: 5rem;
@@ -264,15 +198,15 @@
     height: 3rem;
   }
   .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses,
-  .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners {
+.trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners {
     margin: 0 1.4rem 0 0;
   }
   .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses div:nth-of-type(1),
-  .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(1) {
+.trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(1) {
     font-size: 1.4rem;
   }
   .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses div:nth-of-type(2),
-  .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(2) {
+.trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(2) {
     font-size: 3rem;
   }
   .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer {
@@ -282,7 +216,6 @@
     padding-bottom: 4rem;
     position: relative;
     overflow: hidden;
-    -webkit-transition: all 0.4s ease;
     transition: all 0.4s ease;
   }
   .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title {
@@ -314,8 +247,7 @@
   .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect {
     position: absolute;
     width: 100%;
-    bottom: 5rem;
+    bottom: 4rem;
     height: 6.4rem;
   }
-}
-/*# sourceMappingURL=trainer-info.module.css.map */
+}/*# sourceMappingURL=trainer-info.module.css.map */

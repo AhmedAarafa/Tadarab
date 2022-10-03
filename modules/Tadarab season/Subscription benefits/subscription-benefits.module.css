@@ -1,0 +1,88 @@
+.subscription-benefits {
+  padding: 5rem 1.6rem;
+  background-color: rgba(0, 20, 37, 0.04);
+}
+
+.subscription-benefits__title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.subscription-benefits__benefits {
+  margin: 0.2rem 0 0 0;
+}
+.subscription-benefits__benefits div {
+  margin-top: 0.2rem;
+}
+.subscription-benefits__benefits svg {
+  width: 1.125rem;
+  height: 0.875rem;
+  margin: 0 0 0 0.3rem;
+}
+
+.subscription-benefits__benefits__list-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.subscription-benefits__benefits__list-item div {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.subscription-benefits__benefits__list-item span {
+  display: inline-block;
+}
+
+.subscription-benefits--important {
+  color: var(--primary-red);
+  display: inline-block;
+  margin: 0 0.1rem;
+}
+
+@media (max-width: 575px) {
+  .subscription-benefits {
+    padding: 5rem 4rem;
+  }
+  .subscription-benefits__benefits {
+    font-size: 2.3rem;
+    margin: 2.5875rem 0 0 0;
+    width: 100%;
+  }
+  .subscription-benefits__benefits div {
+    margin-top: 0.5rem;
+  }
+  .subscription-benefits__benefits svg {
+    width: 2.8125rem;
+    height: 2.1875rem;
+    margin: 0 0 0 0.75rem;
+  }
+  .subscription-benefits__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 5rem;
+  }
+  .subscription-benefits__benefits__list-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .subscription-benefits__benefits__list-item div {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .subscription-benefits__benefits__list-item span {
+    display: inline-block;
+  }
+  .subscription-benefits--important {
+    color: var(--primary-red);
+    display: inline-block;
+    margin: 0 0.1rem;
+  }
+}/*# sourceMappingURL=subscription-benefits.module.css.map */

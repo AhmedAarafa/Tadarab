@@ -318,7 +318,7 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { !course?.is_in_user_subscription && course?.currency_code}
+                                        { !course?.is_in_user_subscription && course?.currency_symbol}
                                     </span>}
                                     </div>
 
@@ -346,7 +346,7 @@ export default function CourseSubscribers() {
                                         ]
                                         }
                                     >
-                                        { course?.currency_code}
+                                        { course?.currency_symbol}
                                     </span>
                                     </div>
                                     }

@@ -2,34 +2,22 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./latest-courses.module.css";
-import {
-  Row,
-  Col,
-  Button,
-  Card,
-  OverlayTrigger,
-  Popover,
-} from "react-bootstrap";
+import {Row, Col, Button, Card} from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-import 'tippy.js/dist/tippy.css';
+// import 'tippy.js/dist/tippy.css';
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ChevronLeftIcon, LearnersIcon, TickIcon, CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
-import  useAddToCart  from "custom hooks/useAddToCart";
-import  useAddToFav  from "custom hooks/useAddToFav";
-import { setCartItems } from "configurations/redux/actions/cartItems"; 
+import { setCartItems } from "configurations/redux/actions/cartItems";
 import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
-import { json } from "stream/consumers";
-import TadarabGA from "modules/_Shared/utils/ga";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
-import Image from 'next/image';
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 function LatestCourses() {
@@ -46,14 +34,14 @@ function LatestCourses() {
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
   const homePageCoursesRef = useRef([]);
-  
+
 
   const handleFilterType = (type: string) => {
-    setFilterType(type); 
-    axiosInstance 
+    setFilterType(type);
+    axiosInstance
       .get(`home/courses/?type=${type}`)
       .then(function (response: any) {
-        console.log("response//",response);
+        console.log("response//", response);
         setLatestCourses(response?.data?.data);
       })
       .catch(function (error) {
@@ -77,29 +65,20 @@ function LatestCourses() {
   }
 
   const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns,course.id]);
-    // setTemporaryAddToCart([...temporaryAddToCart,course.id]);
-    if(cartItems?.data){
-      dispatch(setCartItems([...(cartItems?.data),course]));
+    setDisabledCartBtns([...disabledCartBtns, course.id]);
+    if (cartItems?.data) {
+      dispatch(setCartItems([...(cartItems?.data), course]));
     }
-    
-
-    // setTimeout(() => {
-    //   setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
-    // }, 5000);
     dispatch(setCheckoutType("cart"));
 
-
-      const handleCartResponse:any =  handleCart([course],`home/?type=${filterType}`,false);
-      handleCartResponse.then(function(firstresponse:any) {
-        firstresponse.resp.then(function(response:any){
-           setLatestCourses(response.data.data.best_seller_courses);
-           dispatch(setCartItems(firstresponse.cartResponse));
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
-
-          //  dispatch(setCartItems(firstresponse.cartResponse.filter((c:any) => !temporaryAddToCart.includes(c))));
-        })
+    const handleCartResponse: any = handleCart([course], `home/?type=${filterType}`, false);
+    handleCartResponse.then(function (firstresponse: any) {
+      firstresponse.resp.then(function (response: any) {
+        setLatestCourses(response.data.data.best_seller_courses);
+        dispatch(setCartItems(firstresponse.cartResponse));
+        setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
       })
+    })
 
   }
   const handleFreeCoursesActionBtn = (course: any): any => {
@@ -118,27 +97,6 @@ function LatestCourses() {
 
     setLatestCourses(homePageData.data?.best_seller_courses || []);
     const localStorageItems: any = localStorage.getItem("cart");
-    
-    // console.log("home ",homePageCoursesRef.current, homePageData?.data?.best_seller_courses, homePageCoursesRef.current != homePageData?.data?.best_seller_courses);
-    // if(localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && homePageCoursesRef.current != homePageData?.data?.best_seller_courses) {
-    //   axiosInstance
-    //   .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
-    //   .then(function (response: any) {
-    //       console.log(response);
-    //       let newArray: any = homePageData?.data?.best_seller_courses || [];
-    //       // (response?.data?.data || []).forEach((element: any) => {
-    //       //   newArray.forEach((ele: any) => {
-    //       //     if (element.id === ele.id) {
-    //       //       ele.is_in_cart = true;
-    //       //     }
-    //       //   });
-    //       // });
-    //       setLatestCourses([...newArray]);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
   }, [homePageData]);
 
   const handlePlacement = () => {
@@ -150,10 +108,7 @@ function LatestCourses() {
 
       // loop over them to control the hover effect per each card
       trigger.forEach((element: any) => {
-
         element.addEventListener("mouseover", function (event: any) {
-          // event.stopPropagation();
-
           if (window.innerWidth > 1024) {
             // const observer = new MutationObserver((mutations, obs) => {
             let relatedPopover: any = document.getElementById(`popover-${element.id}`);
@@ -203,8 +158,6 @@ function LatestCourses() {
     }
   }
 
-  
-
   return (
     <>
       <Row className={styles["latest-courses"]}>
@@ -216,8 +169,7 @@ function LatestCourses() {
         </Col>
         <Col
           xs={{ span: 12, order: 1 }} sm={9}
-          className="d-flex align-items-center justify-content-start"
-        >
+          className="d-flex align-items-center justify-content-start">
           <ul id="departments-list" className={styles["latest-courses__departments-list"]}>
             <li onClick={() => { handleFilterType("best-seller") }}
               className={`${styles["latest-courses__departments-list__item"]} ${filterType == "best-seller" && styles["latest-courses__departments-list__item--active"]}`}>
@@ -529,7 +481,7 @@ function LatestCourses() {
                                   ]
                                 }
                               >
-                                {!course.is_in_user_subscription && course.currency_code}
+                                {!course.is_in_user_subscription && course.currency_symbol}
                               </span>}
 
                               <span
@@ -571,7 +523,7 @@ function LatestCourses() {
                                     ]
                                   }
                                 >
-                                  {course.currency_code}
+                                  {course.currency_symbol}
                                 </span>
                                 <span
                                   className={
@@ -608,7 +560,7 @@ function LatestCourses() {
                                   course.discounted_price == 0 ?
                                     <TvIcon color="#222" />
                                     :
-                                    (course.is_in_cart)  || disabledCartBtns.includes(course.id) ?
+                                    (course.is_in_cart) || disabledCartBtns.includes(course.id) ?
                                       <AddedToCartIcon color="#222" />
                                       :
                                       <CartIcon color="#222" />

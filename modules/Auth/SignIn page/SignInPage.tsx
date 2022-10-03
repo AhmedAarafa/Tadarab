@@ -438,6 +438,7 @@ export default function SignInPage() {
                     if (response.data.data !== null) {
                       const totalItems: any = [];
                       console.log("Response", response);
+                      console.log("totalItems", totalItems);
 
                       response.data.data.courses.data.forEach((item: any) => {
                         totalItems.push(item.id);

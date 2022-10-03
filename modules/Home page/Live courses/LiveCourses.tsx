@@ -109,31 +109,9 @@ export default function LiveCourses() {
 
   useEffect(() => {
     liveCoursesRef.current = homePageData?.data?.live_courses;
-
+    console.log("homePageData.data?.live_courses  Home",homePageData.data?.live_courses);
+    
     setLiveCourses(homePageData.data?.live_courses || []);
-    const localStorageItems: any = localStorage.getItem("cart");
-    // console.log("live ", liveCoursesRef.current, homePageData?.data?.live_courses, liveCoursesRef.current != homePageData?.data?.live_courses);
-    // if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && liveCoursesRef.current != homePageData?.data?.live_courses) {
-    //   axiosInstance
-    //   .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
-    //   .then(function (response: any) {
-    //     let newArray: any = homePageData?.data?.live_courses || [];
-    //       // (response?.data?.data || []).forEach((element: any) => {
-    //       //   newArray.forEach((ele: any) => {
-    //       //     if (element.id === ele.id) {
-    //       //       ele.is_in_cart = true;
-    //       //     }
-    //       //   });
-    //       // });
-    //       setLiveCourses([...newArray]);
-
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-
-    // }
-
   }, [homePageData]);
 
   return (
@@ -249,7 +227,7 @@ export default function LiveCourses() {
                                   ]
                                 }
                               >
-                                {lc.currency_code}
+                                {lc.currency_symbol}
                               </span>}
 
                               <span
@@ -280,7 +258,7 @@ export default function LiveCourses() {
                                     ]
                                   }
                                 >
-                                  {lc.currency_code}
+                                  {lc.currency_symbol}
                                 </span>
                                 <span
                                   className={

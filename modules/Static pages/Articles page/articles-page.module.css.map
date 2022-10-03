@@ -1,11 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,QAAQ,CAAA;EACJ,OAAO,EAAE,IAAI;CAOhB;;AARD,AAKI,QALI,CAKJ,EAAE,CAAA;EACE,SAAS,EAAE,iBAAiB;CAC/B;;AAIL,MAAM,EAAE,SAAS,EAAE,KAAK;EACpB,AAAA,QAAQ,CAAA;IACJ,OAAO,EAAE,UAAU;GAOtB;EARD,AAEI,QAFI,CAEJ,CAAC,CAAA;IACG,SAAS,EAAE,MAAQ,CAAC,UAAU;GACjC;EAJL,AAKI,QALI,CAKJ,EAAE,CAAA;IACE,SAAS,EAAE,MAAU,CAAC,UAAU;GACnC",
-    "sources": [
-        "articles-page.module.scss",
-        "../../../styles/_mixins.scss",
-        "../../../styles/colors-pallete.scss"
-    ],
-    "names": [],
-    "file": "articles-page.module.css"
-}
+{"version":3,"sources":["articles-page.module.scss","articles-page.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;ACDJ;ADKI;EACI,4BAAA;ACHR;;ADQA;EACI;IACI,mBAAA;ECLN;EDMM;IACI,4BAAA;ECJV;EDMM;IACI,4BAAA;ECJV;AACF","file":"articles-page.module.css"}

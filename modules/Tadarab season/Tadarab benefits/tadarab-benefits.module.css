@@ -1,0 +1,83 @@
+.tadarab-benefits {
+  background-color: rgba(0, 20, 37, 0.04);
+  padding: 3rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.tadarab-benefits__img img {
+  width: 25rem;
+  height: 15.625rem;
+  border-radius: 0.8rem;
+}
+
+.tadarab-benefits__title {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.tadarab-benefits__benefits-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0.5rem 0 0 0;
+}
+
+.tadarab-benefits__benefits-box__benefits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.2rem;
+}
+.tadarab-benefits__benefits-box__benefits span {
+  font-size: 1.05rem;
+  color: var(--grey);
+  width: 100%;
+}
+.tadarab-benefits__benefits-box__benefits svg {
+  width: 1.2rem;
+  height: 100%;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 575px) {
+  .tadarab-benefits {
+    padding: 5rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .tadarab-benefits__img {
+    width: 100%;
+  }
+  .tadarab-benefits__img img {
+    width: 100%;
+    height: 33rem;
+    border-radius: 1.76rem;
+  }
+  .tadarab-benefits__title {
+    font-size: 3.6rem;
+    margin-top: 2rem;
+    text-align: center;
+    line-height: 4.2rem;
+  }
+  .tadarab-benefits__benefits-box {
+    padding: 1.1rem 0 0 0;
+  }
+  .tadarab-benefits__benefits-box__benefits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.66rem;
+  }
+  .tadarab-benefits__benefits-box__benefits span {
+    font-size: 2.31rem;
+  }
+  .tadarab-benefits__benefits-box__benefits svg {
+    width: 2.64rem;
+    margin-left: 1.1rem;
+  }
+}/*# sourceMappingURL=tadarab-benefits.module.css.map */

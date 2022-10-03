@@ -52,18 +52,6 @@ function Navbar() {
   const router = useRouter();
 
   const dispatch = useDispatch();
-  const onLOLogoutSuccess = (): void => {
-    console.log("logout succeed");
-  }
-  const onLOFailure = (): void => {
-    console.log("logout failed");
-  }
-
-  /*const { signOut, loaded } = useGoogleLogout({
-    onFailure: onLOFailure,
-    clientId: `${process.env.NEXT_PUBLIC_GOOGLE_APP_ID}`,
-    onLogoutSuccess: onLOLogoutSuccess,
-  })*/
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -71,7 +59,6 @@ function Navbar() {
     localStorage.removeItem("cart");
     localStorage.removeItem("cart_items");
     localStorage.removeItem("is_user_subscribed");
-    //signOut();
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
     setExpanded(false);
 
@@ -241,13 +228,11 @@ function Navbar() {
     // if(userStatus.isUserAuthenticated === true){
     // setLocalStateCartItems(cartItems?.data);
 
-
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined ) {
+    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined) {
 
       axiosInstance
         .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
-          console.log("response",response);
           dispatch(setCartItems(response?.data?.data));
           setLocalStateCartItems(cartItems?.data);
           // toggleLoader("hide");
@@ -269,7 +254,6 @@ function Navbar() {
 
   useEffect(() => {
     if (courseDetailsData?.data && JSON.stringify(courseDetailsData?.data) !== '[]') {
-
       if ((courseDetailsData?.data?.course_details?.is_in_user_subscription || courseDetailsData?.data?.course_details?.is_purchased)
         && Router.asPath.includes("/course/")) {
         setIsCoursePurchased(true);
@@ -287,12 +271,11 @@ function Navbar() {
     let localStorageItems: any = localStorage.getItem("cart");
 
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
-     cartItems?.data !== undefined && cartItems?.data !== "undefined") {
+      cartItems?.data !== undefined && cartItems?.data !== "undefined") {
 
       axiosInstance
         .get(`courses/?course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
-          console.log("response2",response);
           setLocalStateCartItems(response?.data?.data);
         })
         .catch(function (error) {
@@ -304,7 +287,6 @@ function Navbar() {
     }
 
   }, [cartItems]);
-
 
   useResize((
     () => {
@@ -319,9 +301,7 @@ function Navbar() {
   useResize(notificationBarHandler);
 
   const handleSearchBarEntries = (e: any) => {
-
     e && e.target && setSearchQuery(e.target.value);
-
   }
 
   const sendSearchQuery = (e: any) => {
@@ -332,7 +312,7 @@ function Navbar() {
       e.target.id == "search-field-icon"
     ) {
       if (searchQuery == "") {
-        console.log("متخمش يسطا");
+
       } else {
         toggleLoader("show");
         Router.push({
@@ -483,8 +463,8 @@ function Navbar() {
             {!userStatus.isSubscribed == true &&
               <Link href="/subscription">
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
-              </Link>}
-
+              </Link>
+            }
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
             </Link>
@@ -765,10 +745,10 @@ function Navbar() {
                 id="cart-popover" >
                 <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
                   {
-                    
+
                     localStateCartItems?.map((item: any, i: number) => {
                       return (
-                        
+
                         <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
                           {/* {console.log(cartItems)} */}
                           <img loading="lazy"
@@ -813,14 +793,14 @@ function Navbar() {
                                     {item.discounted_price}
                                   </span>
                                   <span
-                                  
+
                                     className={
                                       styles[
                                       "navbar__cart-popover__course-details__currency"
                                       ]
                                     }
                                   >
-                                    {item?.currency_code}
+                                    {item?.currency_symbol}
                                   </span>
                                 </>
                               }
@@ -834,7 +814,7 @@ function Navbar() {
                                 }
                               >
                                 <span
-                                  className={ 
+                                  className={
                                     styles[
                                     "navbar__cart-popover__course-details__old-price"
                                     ]
@@ -849,7 +829,7 @@ function Navbar() {
                                     ]
                                   }
                                 >
-                                  {item?.currency_code}
+                                  {item?.currency_symbol}
                                 </span>
                               </div>
                             }
@@ -900,7 +880,7 @@ function Navbar() {
                         }
                       >
 
-                        {cartItems?.data && cartItems?.data[0]?.currency_code}
+                        {cartItems?.data && cartItems?.data[0]?.currency_symbol}
                       </span>
                     </div>
                     {
@@ -933,7 +913,7 @@ function Navbar() {
                             ]
                           }
                         >
-                          {cartItems?.data[0]?.currency_code}
+                          {cartItems?.data[0]?.currency_symbol}
                         </span>
                       </div>
 

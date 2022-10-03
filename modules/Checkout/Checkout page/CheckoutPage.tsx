@@ -57,10 +57,12 @@ function CheckoutPage(props: any) {
     const [isDiscountLinkApplied, setIsDiscountLinkApplied] = useState(false);
     const [isFinalizePaymentBtnEnabled, setIsFinalizePaymentBtnEnabled] = useState(false);
     const [temporaryRemoval, setTemporaryRemoval] = useState<any>([]);
-    const [threePlansSelection, setThreePlansSelection] = useState("monthly"); // monthly,yearly, midYearly
-    const [subscriptionPlansBanks, setSubscriptionPlansBanks] = useState({ card_bin: 0, bank: "", subplan_id: "" }); // NBK, BOUBYAN, WARBA
+    const [dropdownSubscriptionPlan, setDropdownSubscriptionPlan] = useState("");
     const [isCoursesInSpecialBundle, setIsCoursesInSpecialBundle] = useState(false);
+    const [threePlansSelection, setThreePlansSelection] = useState("yearly"); // monthly, yearly, midYearly
+    const [subscriptionPlansBanks, setSubscriptionPlansBanks] = useState({ card_bin: 0, bank: "", subplan_id: "" }); // NBK, BOUBYAN, WARBA
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
+    const [paypalPlanId, setPaypalPlanId] = useState<any>(paymentSettings?.subscription_plans[2].paypal_id || "P-9H733381WX8930338MMVMYIY");
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cartItems);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -78,16 +80,6 @@ function CheckoutPage(props: any) {
 
     useEffect(() => {
         toggleLoader("show");
-        let CART_ITEMS: any = localStorage.getItem("cart_items");
-        console.log("JSON.parse(localStorage", JSON.parse(CART_ITEMS));
-
-        if (JSON.parse(CART_ITEMS).some((c: any) => {
-            return c.is_special == true
-        })) {
-            setIsCoursesInSpecialBundle(true);
-        } else {
-            setIsCoursesInSpecialBundle(false);
-        }
 
         if (userAuthState.isUserAuthenticated && userAuthState.isSubscribed) {
             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
@@ -103,7 +95,7 @@ function CheckoutPage(props: any) {
         if (localStorageItems && (localStorageItems) !== "[]") {
 
             axiosInstance
-                .get(`users/cart/related-courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+                .get(`users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
                 .then(function (response: any) {
 
                     // setRelatedCourses(response.data.data);
@@ -111,7 +103,7 @@ function CheckoutPage(props: any) {
                     if (response.data.data !== undefined) {
                         if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
                             axiosInstance
-                                .get(`users/cart`)
+                                .get(`users/cart/?country_code=null`)
                                 .then(function (resp: any) {
                                     // setLocalStateCartItems(resp.data.data);
                                     let newArray: any = response.data.data;
@@ -127,12 +119,11 @@ function CheckoutPage(props: any) {
                                         setRelatedCourses([...newArray]);
 
                                     }
-
-                                    toggleLoader("hide");
+                                    // toggleLoader("hide");
 
                                 })
                                 .catch(function (error) {
-                                    toggleLoader("hide");
+                                    // toggleLoader("hide");
                                     console.log(error);
                                 });
                         }
@@ -413,27 +404,8 @@ function CheckoutPage(props: any) {
 
     }, []);
 
+
     useEffect(() => {
-        const couponCode: any = localStorage.getItem("coupon_code");
-        const affId: any = localStorage.getItem("affiliate_id");
-        const couponInputField: any = document.querySelector('[name="couponField"]');
-        let cartItemsIds = cartItems?.data?.map((it: any) => it.id);
-
-        if (couponCode && couponCode !== "") {
-            axiosInstance
-                .post(`coupon_link/${affId}/${couponCode}`)
-                .then((res: any) => {
-
-                    setIsCouponApplied({ status: true, discounted_amount: res.data.data.total_discount_amount, value: res?.data?.data?.coupon_code, total_payment_amount: res.data.data.total_payment_amount })
-                    localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
-                    localStorage.setItem("affiliate_id", `${Router.query.aid}`);
-                    localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
-                })
-                .catch((error: any) => {
-                    console.log("error", error);
-                });
-        }
-
         if (localStorage.getItem("affiliate_id") &&
             Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
             localStorage.removeItem("affiliate_id");
@@ -509,72 +481,6 @@ function CheckoutPage(props: any) {
     }, [subscriptionTimer]);
 
 
-    // useEffect(() => {
-    //     if (subscriptionTimer !== 0) {
-    //         document.cookie.split('; ').reduce((prev: any, current: any) => {
-    //             const [name, ...value] = current.split('=');
-    //             prev[name] = value.join('=');
-
-    //             setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-    //             if (Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1) {
-
-    //                 let interval = setInterval(() => {
-
-    //                     // get total seconds between the times
-    //                     let delta: any = Math.sign(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000)))) !== -1 ?
-    //                         Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
-    //                         :
-    //                         clearInterval(interval);
-    //                     ;
-
-    //                     // calculate (and subtract) whole days
-    //                     let days: any = Math.floor(delta / 86400);
-    //                     delta -= days * 86400;
-
-    //                     // calculate (and subtract) whole hours
-    //                     let hours: any = Math.floor(delta / 3600) % 24;
-    //                     delta -= hours * 3600;
-
-    //                     // calculate (and subtract) whole minutes
-    //                     let minutes: any = Math.floor(delta / 60) % 60;
-    //                     delta -= minutes * 60;
-
-    //                     // what's left is seconds
-    //                     let seconds: any = delta; // in theory the modulus is not required
-
-    //                     // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
-    //                     // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
-    //                     // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
-    //                     // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
-
-    //                     days = days.toString().padStart(2, 0);
-    //                     hours = hours.toString().padStart(2, 0);
-    //                     minutes = minutes.toString().padStart(2, 0);
-    //                     seconds = seconds.toString().padStart(2, 0);
-
-    //                     if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
-    //                         setToDisplayValues({ values: [days, hours, minutes, seconds], visible: false });
-    //                         clearInterval(interval);
-
-    //                     } else {
-
-    //                         setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
-    //                         return { days, hours, minutes, seconds }
-    //                     }
-
-
-
-    //                 }, 1000);
-
-    //             }
-    //             return prev;
-    //         }, {});
-
-    //     }
-
-    // }, [subscriptionTimer])
-
-
     useEffect(() => {
 
         if (router.query && router.query.checkout_type == "subscription"
@@ -605,7 +511,27 @@ function CheckoutPage(props: any) {
             setStep("begin-learning");
             setIsTransactionSucceeded(false);
         }
-    }, [transactionStatus])
+    }, [transactionStatus]);
+
+    // useEffect(() => {
+    //     axiosInstance
+    //         .get(`payments/settings/?checkout_type=${checkoutType}`, { headers: { "X-Settings-Key": `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG` } })
+    //         .then(function (response: any) {
+    //             if (JSON.stringify(response.status).startsWith("2")) {
+    //                 console.log("payments-settingsssss", response?.data.data);
+    //                 if (tokenValidationCheck(response)) {
+    //                     setPaymentSettings(response?.data?.data);
+    //                 }
+    //                 if (response?.data?.data?.is_user_subscription) {
+    //                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
+    //                 }
+    //             }
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }, [checkoutType])
+
 
 
     useEffect(() => {
@@ -616,17 +542,16 @@ function CheckoutPage(props: any) {
 
             if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
                 await axiosInstance
-                    .get(`users/cart`)
+                    .get(`users/cart/?country_code=null`)
                     .then(function (response: any) {
-
                         setLocalStateCartItems(response?.data?.data.courses);
                         FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
-                        toggleLoader("hide");
+                        // toggleLoader("hide");
 
                     })
                     .catch(function (error) {
                         console.log(error);
-                        toggleLoader("hide");
+                        // toggleLoader("hide");
                     });
             } else {
                 setLocalStateCartItems([]);
@@ -643,7 +568,7 @@ function CheckoutPage(props: any) {
         if (couponCode && couponCode !== "" && couponCode !== "null" && couponCode !== "undefined" && cartItemsIds && cartItemsIds?.length !== 0) {
 
             axiosInstance
-                .post(`coupons/${couponCode}`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
+                .post(`coupons/${couponCode}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
                 .then((response: any) => {
                     if (response.status.toString().startsWith("2")) {
 
@@ -728,7 +653,6 @@ function CheckoutPage(props: any) {
                     .get(`payments/settings/?checkout_type=${checkoutType}`, { headers: { "X-Settings-Key": `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG` } })
                     .then(function (response: any) {
                         if (JSON.stringify(response.status).startsWith("2")) {
-                            console.log("payments-settings", response);
                             if (tokenValidationCheck(response)) {
                                 setPaymentSettings(response?.data?.data);
                             }
@@ -792,9 +716,9 @@ function CheckoutPage(props: any) {
     }, [step])
 
 
-    useEffect(() => {
-        console.log("subscriptionPlansBanks", subscriptionPlansBanks);
-    }, [subscriptionPlansBanks])
+    // useEffect(() => {
+    //     console.log("subscriptionPlansBanks", subscriptionPlansBanks);
+    // }, [subscriptionPlansBanks]);
 
 
     useEffect(() => {
@@ -949,18 +873,18 @@ function CheckoutPage(props: any) {
         `: null;
     };
 
-    useEffect(() => {
-        if (subscriptionPlansBanks.bank !== "BOUBYAN") {
-            // setDropdownSubscriptionPlan("");
-        }
-    }, [subscriptionPlansBanks]);
+    // useEffect(() => {
+    //     if (subscriptionPlansBanks.bank !== "BOUBYAN") {
+    //         setDropdownSubscriptionPlan("");
+    //     }
+    // }, [subscriptionPlansBanks]);
 
-    useEffect(() => {
-        if (paymentMethod !== "VISA") {
-            // setDropdownSubscriptionPlan("");
-            setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
-        }
-    }, [paymentMethod]);
+    // useEffect(() => {
+    //     if (paymentMethod !== "VISA") {
+    //         setDropdownSubscriptionPlan("");
+    //         setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
+    //     }
+    // }, [paymentMethod]);
 
 
 
@@ -974,7 +898,7 @@ function CheckoutPage(props: any) {
         } else {
             if (cartItemsIds && cartItemsIds?.length !== 0) {
                 axiosInstance
-                    .post(`coupons/${e.target[0].value}`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
+                    .post(`coupons/${e.target[0].value}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
                     .then((response: any) => {
                         if (response.status.toString().startsWith("2")) {
 
@@ -1008,7 +932,7 @@ function CheckoutPage(props: any) {
     const handleFavActionBtn = (course: any): any => {
         const localStorageItems: any = localStorage.getItem("cart");
         if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `users/cart/related-courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`);
+            const handleFavResponse: any = handleFav(course, `users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`);
             handleFavResponse.then(function (response: any) {
                 setRelatedCourses(response.data.data);
             })
@@ -1035,11 +959,11 @@ function CheckoutPage(props: any) {
             // setTimeout(() => {
             //     setTemporaryRemoval(temporaryRemoval.filter((c:any) => c !== course.id));
             //   }, 5000);
-            url = `users/cart/related-courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '').replace(`${course.id},`, '')
+            url = `users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '').replace(`${course.id},`, '')
                 .replace(`,${course.id}`, '')
                 }`;
         } else {
-            url = `users/cart/related-courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')},${course.id}`;
+            url = `users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')},${course.id}`;
         }
 
         // if(userStatus?.isUserAuthenticated == true){
@@ -1049,7 +973,6 @@ function CheckoutPage(props: any) {
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setRelatedCourses(response.data.data || []);
-
                 dispatch(setCartItems(firstresponse.cartResponse));
                 setTemporaryRemoval(temporaryRemoval.filter((c: any) => c !== course.id));
 
@@ -1084,223 +1007,223 @@ function CheckoutPage(props: any) {
     }
 
 
-    const PayPalPaymentButtonComponent = () => {
-        return (
-            <div className={styles["checkout__cart-sticky-card__paypal"]}>
+    // const PayPalPaymentButtonComponent = () => {
+    //     return (
+    //         <div className={styles["checkout__cart-sticky-card__paypal"]}>
 
 
-                <PayPalButtons
-                    style={{
-                        color: "blue",
-                        shape: "pill",
-                        label: "pay",
-                        tagline: false,
-                        layout: "horizontal",
-                    }}
-                    createOrder={(data: any, actions: any): any => {
-                        setIsSpinnerExist(true);
-                        const localStorageItems: any = localStorage.getItem("cart_items");
-                        let usdAmount: any = "";
-                        let checkoutDetails: any = {};
+    //             <PayPalButtons
+    //                 style={{
+    //                     color: "blue",
+    //                     shape: "pill",
+    //                     label: "pay",
+    //                     tagline: false,
+    //                     layout: "horizontal",
+    //                 }}
+    //                 createOrder={(data: any, actions: any): any => {
+    //                     setIsSpinnerExist(true);
+    //                     const localStorageItems: any = localStorage.getItem("cart_items");
+    //                     let usdAmount: any = "";
+    //                     let checkoutDetails: any = {};
 
-                        return (async function () {
-                            await axiosInstance.post(`payments/payouts`, {
-                                "action": "web",
-                                "checkout_token": "",
-                                "items": localStorageItems,
-                                "coupon_code": localStorage.getItem("coupon_code"),
-                                "payment_method": "paypal",
-                                "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
-                            })
-                                .then((response: any) => {
-                                    setIsSpinnerExist(false);
-                                    if (tokenValidationCheck(response)) {
+    //                     return (async function () {
+    //                         await axiosInstance.post(`payments/payouts/?country_code=null`, {
+    //                             "action": "web",
+    //                             "checkout_token": "",
+    //                             "items": localStorageItems,
+    //                             "coupon_code": localStorage.getItem("coupon_code"),
+    //                             "payment_method": "paypal",
+    //                             "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+    //                         })
+    //                             .then((response: any) => {
+    //                                 setIsSpinnerExist(false);
+    //                                 if (tokenValidationCheck(response)) {
 
-                                        if (JSON.stringify(response.status).startsWith("2")) {
+    //                                     if (JSON.stringify(response.status).startsWith("2")) {
 
-                                            localStorage.setItem("successUrl", response.data.data.success_url);
-                                            localStorage.setItem("failureUrl", response.data.data.failure_url);
-                                            localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
-                                            localStorage.setItem("paymentId", response.data.data.payment_id);
-                                            usdAmount = response.data.data.amount_usd;
-                                            setCheckoutTransactionDetails(response.data.data);
+    //                                         localStorage.setItem("successUrl", response.data.data.success_url);
+    //                                         localStorage.setItem("failureUrl", response.data.data.failure_url);
+    //                                         localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+    //                                         localStorage.setItem("paymentId", response.data.data.payment_id);
+    //                                         usdAmount = response.data.data.amount_usd;
+    //                                         setCheckoutTransactionDetails(response.data.data);
 
-                                        } else {
-                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                        }
-                                    }
+    //                                     } else {
+    //                                         setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+    //                                     }
+    //                                 }
 
-                                }).catch((error: any) => {
-                                    setIsSpinnerExist(false);
-                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                    console.log("error", error);
-                                })
-
-
-                            return actions.order
-                                .create({
-                                    purchase_units: [
-                                        {
-                                            amount: {
-                                                // charge users $499 per order
-                                                value: checkoutType == "subscription" ? 29.56 : usdAmount,
-                                            },
-                                        },
-                                    ],
-                                    // remove the applicaiton_context object if you need your users to add a shipping address
-                                    application_context: {
-                                        shipping_preference: "NO_SHIPPING",
-                                    },
-                                })
-                                .then((orderID: any) => {
-                                    setOrderID(orderID);
-                                    return orderID;
-                                });
-                        })()
-                    }}
-                    onApprove={(data: any, actions: any) => {
+    //                             }).catch((error: any) => {
+    //                                 setIsSpinnerExist(false);
+    //                                 setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+    //                                 console.log("error", error);
+    //                             })
 
 
-                        return actions.order.capture().then(function (details: any) {
-                            const { payer } = details;
-                            setBillingDetails(payer);
-                            setSucceeded(true);
-
-                            axiosInstance
-                                .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
-                                .then(function (response: any) {
-                                    setIsSpinnerExist(false);
-                                    if (tokenValidationCheck(response)) {
-
-                                        if (response.status.toString().startsWith("2")) {
-                                            localStorage.removeItem("checkoutTransactionId");
-                                            localStorage.removeItem("paymentId");
-                                            dispatch(setTransactionStatus(response.data.data.is_successful));
-                                            dispatch(setInvoiceDetails(response.data.data));
-
-                                            let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                            FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
-
-
-                                            localStorage.setItem("cart", "[]");
-                                            localStorage.removeItem("coupon_code");
-                                            localStorage.removeItem("affiliate_id");
-                                            localStorage.removeItem("cced");
-                                            dispatch(setCartItems([]));
-                                        } else {
-                                            dispatch(setTransactionStatus(false));
-                                            dispatch(setInvoiceDetails({}));
-                                        }
-                                    }
-
-                                })
-                                .catch(function (error) {
-                                    setIsSpinnerExist(false);
-                                    console.log(error);
-                                });
-                        })
-                    }}
-                />
-            </div>
-        )
-    }
-
-    const PayPalSubscriptionButtonComponent = () => {
-        return (
-            <PayPalButtons
-                style={{
-                    color: "blue",
-                    shape: "pill",
-                    label: "subscribe",
-                    tagline: false,
-                    layout: "horizontal",
-                }}
-
-                createSubscription={(data: any, actions: any): any => {
-                    setIsSpinnerExist(true);
-                    return (
-                        axiosInstance.post(`payments/payouts`, {
-                            "action": "web",
-                            "payment_method": "paypal",
-                            "checkout_type": "subscription",
-                            'page_id': courseDetailsData?.data?.course_details?.id,
-                        })
-                            .then((response: any) => {
-                                setIsSpinnerExist(false);
-                                if (tokenValidationCheck(response)) {
-                                    if (JSON.stringify(response.status).startsWith("2")) {
-                                        localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
-                                        localStorage.setItem("paymentId", response.data.data.payment_id);
-                                        setCheckoutTransactionDetails(response.data.data);
-
-                                        return actions.subscription.create({
-                                            plan_id: paymentSettings?.paypal.planid,
-                                            purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
-                                        });
-
-                                    } else {
-                                        setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                    }
-                                }
-
-                            }).catch((error: any) => {
-                                setIsSpinnerExist(false);
-                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                console.log("error", error);
-                            })
-                    )
+    //                         return actions.order
+    //                             .create({
+    //                                 purchase_units: [
+    //                                     {
+    //                                         amount: {
+    //                                             // charge users $499 per order
+    //                                             value: checkoutType == "subscription" ? 29.56 : usdAmount,
+    //                                         },
+    //                                     },
+    //                                 ],
+    //                                 // remove the applicaiton_context object if you need your users to add a shipping address
+    //                                 application_context: {
+    //                                     shipping_preference: "NO_SHIPPING",
+    //                                 },
+    //                             })
+    //                             .then((orderID: any) => {
+    //                                 setOrderID(orderID);
+    //                                 return orderID;
+    //                             });
+    //                     })()
+    //                 }}
+    //                 onApprove={(data: any, actions: any) => {
 
 
-                }}
-                onApprove={(data: any, actions: any): any => {
-                    setSucceeded(true);
+    //                     return actions.order.capture().then(function (details: any) {
+    //                         const { payer } = details;
+    //                         setBillingDetails(payer);
+    //                         setSucceeded(true);
 
-                    axiosInstance
-                        .get(`payments/details?payment_method=paypal&
-            checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
-            paypal_order_id=${data.orderID}&
-            subscription_id=${data.subscriptionID}&
-            facil_atoken=${data.facilitatorAccessToken}&
-            page_id=${courseDetailsData?.data?.course_details?.id}&
-            checkout_type=subscription&
-            payment_id=${localStorage.getItem("paymentId")}`)
-                        .then(function (response: any) {
-                            setIsSpinnerExist(false);
-                            if (tokenValidationCheck(response)) {
+    //                         axiosInstance
+    //                             .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
+    //                             .then(function (response: any) {
+    //                                 setIsSpinnerExist(false);
+    //                                 if (tokenValidationCheck(response)) {
 
-                                if (response.status.toString().startsWith("2")) {
+    //                                     if (response.status.toString().startsWith("2")) {
+    //                                         localStorage.removeItem("checkoutTransactionId");
+    //                                         localStorage.removeItem("paymentId");
+    //                                         dispatch(setTransactionStatus(response.data.data.is_successful));
+    //                                         dispatch(setInvoiceDetails(response.data.data));
 
-                                    localStorage.removeItem("checkoutTransactionId");
-                                    localStorage.removeItem("paymentId");
-                                    dispatch(setTransactionStatus(response.data.data.is_successful));
-                                    dispatch(setInvoiceDetails(response.data.data));
+    //                                         let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+    //                                         FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
-                                    let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
-                                    let customData = {};
-                                    if (!is_trial_free) {
-                                        customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
-                                    }
-                                    FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
-                                    localStorage.setItem("cart", "[]");
-                                    localStorage.removeItem("coupon_code");
-                                    localStorage.removeItem("affiliate_id");
-                                    localStorage.removeItem("cced");
-                                    dispatch(setCartItems([]));
-                                } else {
-                                    dispatch(setTransactionStatus(false));
-                                    dispatch(setInvoiceDetails({}));
-                                }
-                            }
-                        })
-                        .catch(function (error) {
-                            setIsSpinnerExist(false);
-                            console.log(error);
-                        });
-                }}
-            />
-        )
-    }
+    //                                         localStorage.setItem("cart", "[]");
+    //                                         localStorage.removeItem("coupon_code");
+    //                                         localStorage.removeItem("affiliate_id");
+    //                                         localStorage.removeItem("cced");
+    //                                         dispatch(setCartItems([]));
+    //                                     } else {
+    //                                         dispatch(setTransactionStatus(false));
+    //                                         dispatch(setInvoiceDetails({}));
+    //                                     }
+    //                                 }
+
+    //                             })
+    //                             .catch(function (error) {
+    //                                 setIsSpinnerExist(false);
+    //                                 console.log(error);
+    //                             });
+    //                     })
+    //                 }}
+    //             />
+    //         </div>
+    //     )
+    // }
+
+    // const PayPalSubscriptionButtonComponent = () => {
+    //     return (
+    //         <PayPalButtons
+    //             style={{
+    //                 color: "blue",
+    //                 shape: "pill",
+    //                 label: "subscribe",
+    //                 tagline: false,
+    //                 layout: "horizontal",
+    //             }}
+
+    //             createSubscription={(data: any, actions: any): any => {
+    //                 setIsSpinnerExist(true);
+    //                 return (
+    //                     axiosInstance.post(`payments/payouts/?country_code=null`, {
+    //                         "action": "web",
+    //                         "payment_method": "paypal",
+    //                         "checkout_type": "subscription",
+    //                         'page_id': courseDetailsData?.data?.course_details?.id,
+    //                     })
+    //                         .then((response: any) => {
+    //                             setIsSpinnerExist(false);
+    //                             if (tokenValidationCheck(response)) {
+    //                                 if (JSON.stringify(response.status).startsWith("2")) {
+    //                                     localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+    //                                     localStorage.setItem("paymentId", response.data.data.payment_id);
+    //                                     setCheckoutTransactionDetails(response.data.data);
+
+    //                                     return actions.subscription.create({
+    //                                         plan_id: paymentSettings?.paypal.planid,
+    //                                         purchase_units: [{ amount: { value: paymentSettings?.usd_amount } }],
+    //                                     });
+
+    //                                 } else {
+    //                                     setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+    //                                 }
+    //                             }
+
+    //                         }).catch((error: any) => {
+    //                             setIsSpinnerExist(false);
+    //                             setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+    //                             console.log("error", error);
+    //                         })
+    //                 )
+
+
+    //             }}
+    //             onApprove={(data: any, actions: any): any => {
+    //                 setSucceeded(true);
+
+    //                 axiosInstance
+    //                     .get(`payments/details?payment_method=paypal&
+    //         checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
+    //         paypal_order_id=${data.orderID}&
+    //         subscription_id=${data.subscriptionID}&
+    //         facil_atoken=${data.facilitatorAccessToken}&
+    //         page_id=${courseDetailsData?.data?.course_details?.id}&
+    //         checkout_type=subscription&
+    //         payment_id=${localStorage.getItem("paymentId")}`)
+    //                     .then(function (response: any) {
+    //                         setIsSpinnerExist(false);
+    //                         if (tokenValidationCheck(response)) {
+
+    //                             if (response.status.toString().startsWith("2")) {
+
+    //                                 localStorage.removeItem("checkoutTransactionId");
+    //                                 localStorage.removeItem("paymentId");
+    //                                 dispatch(setTransactionStatus(response.data.data.is_successful));
+    //                                 dispatch(setInvoiceDetails(response.data.data));
+
+    //                                 let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
+    //                                 let customData = {};
+    //                                 if (!is_trial_free) {
+    //                                     customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+    //                                 }
+    //                                 FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+
+    //                                 localStorage.setItem("cart", "[]");
+    //                                 localStorage.removeItem("coupon_code");
+    //                                 localStorage.removeItem("affiliate_id");
+    //                                 localStorage.removeItem("cced");
+    //                                 dispatch(setCartItems([]));
+    //                             } else {
+    //                                 dispatch(setTransactionStatus(false));
+    //                                 dispatch(setInvoiceDetails({}));
+    //                             }
+    //                         }
+    //                     })
+    //                     .catch(function (error) {
+    //                         setIsSpinnerExist(false);
+    //                         console.log(error);
+    //                     });
+    //             }}
+    //         />
+    //     )
+    // }
 
     const KnetButtonComponent = () => {
 
@@ -1309,9 +1232,8 @@ function CheckoutPage(props: any) {
                 onClick={() => {
                     setIsSpinnerExist(true);
                     const localStorageItems: any = localStorage.getItem("cart_items");
-                    console.log("localStorageItems", localStorageItems);
 
-                    axiosInstance.post(`payments/payouts`, {
+                    axiosInstance.post(`payments/payouts/?country_code=null`, {
                         "action": "web",
                         "checkout_token": "",
                         "items": localStorageItems,
@@ -1354,7 +1276,7 @@ function CheckoutPage(props: any) {
                         Frames.submitCard().then(function (data: any) {
 
                             const localStorageItems: any = localStorage.getItem("cart_items");
-                            axiosInstance.post(`payments/payouts`, {
+                            axiosInstance.post(`payments/payouts/?country_code=null`, {
                                 "action": "web",
                                 "checkout_token": data.token,
                                 "items": localStorageItems,
@@ -1396,7 +1318,6 @@ function CheckoutPage(props: any) {
         return (
             <Button style={isFinalizePaymentBtnEnabled ? {} : { pointerEvents: "none", opacity: "0.7" }} id="paynow_button"
                 onClick={() => {
-
                     setIsSpinnerExist(true);
 
                     Frames.isCardValid() ?
@@ -1405,12 +1326,17 @@ function CheckoutPage(props: any) {
                             console.log("subscriptionPlansBanks", subscriptionPlansBanks);
 
                             const localStorageItems: any = localStorage.getItem("cart_items");
-                            axiosInstance.post(`payments/payouts`, {
+                            axiosInstance.post(`payments/payouts/?country_code=null`, {
                                 "action": "web",
                                 "checkout_token": data.token,
                                 "payment_method": "visamaster",
                                 "checkout_type": "subscription",
-                                "subplan_id": subscriptionPlansBanks.subplan_id == "" ? "TADARABDEFAULT" : subscriptionPlansBanks.subplan_id,
+                                "subplan_id": threePlansSelection == "monthly" ?
+                                    paymentSettings?.subscription_plans[0].subplan_id :
+                                    threePlansSelection == "midYearly" ?
+                                        paymentSettings?.subscription_plans[1].subplan_id :
+                                        paymentSettings?.subscription_plans[2].subplan_id
+                                ,
                                 "card_bin": subscriptionPlansBanks.card_bin !== 0 && subscriptionPlansBanks.card_bin,
                                 'page_id': courseDetailsData?.data?.course_details?.id,
                             })
@@ -1481,10 +1407,7 @@ function CheckoutPage(props: any) {
             ${checkoutType == "subscription"
                                     ? styles["checkout__stepper-box__stepper__item--subscription"]
                                     : styles["checkout__stepper-box__stepper__item"]
-                                }
-            
-            `}
-                        >
+                                }`}>
                             <div
                                 id="payment-types"
                                 className={styles["checkout__stepper-box__stepper__step-number"]}
@@ -1509,25 +1432,23 @@ function CheckoutPage(props: any) {
             ${step == "begin-learning"
                                     ? styles["checkout__stepper-box__stepper__item--active"]
                                     : styles["checkout__stepper-box__stepper__item"]
-                                }
-            `}
-                        >
+                                }`}>
                             <div
                                 id="begin-learning"
-                                className={styles["checkout__stepper-box__stepper__step-number"]}
-                            >
+                                className={styles["checkout__stepper-box__stepper__step-number"]}>
                                 {`${checkoutType == "subscription" ? "2" : "3"}`}
                             </div>
                             <div className={styles["c-stepper__title"]}>ابدأ التعلم</div>
                         </li>
                     </ol>
                 </div>
-
                 <Row className={styles["checkout__start-free"]}>
                     {
                         checkoutType == 'subscription' &&
-                        <><div>ابدأ التعلم الآن</div>
-                            <div>لا يوجد إلتزام ، إلغاء الإشتراك في أي وقت</div></>
+                        <>
+                            <div>ابدأ التعلم الآن</div>
+                            <div>لا يوجد إلتزام ، إلغاء الإشتراك في أي وقت</div>
+                        </>
                     }
                 </Row>
 
@@ -1538,23 +1459,17 @@ function CheckoutPage(props: any) {
                         {
                             checkoutType == "subscription" &&
                             <div className={styles["checkout__subscription-benefits"]}>
-
                                 <div className={styles["checkout__subscription-benefits__title"]}>بمجرد إشتراكك ستحصل على</div>
-
                                 <div
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
                                     <span>
-
                                         مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
                                             700
@@ -1565,15 +1480,11 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
-
                                     <span>
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
 
@@ -1586,17 +1497,12 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
-
                                     <span>
-
                                         عدد لا نهائي من
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
 
@@ -1609,17 +1515,12 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
-
                                     <span>
-
                                         ملخصات
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
 
@@ -1632,17 +1533,12 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
-
                                     <span>
-
                                         دورات
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
                                             بث مباشر
@@ -1654,17 +1550,12 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
-
                                     <span>
-
                                         <span>
                                             إمكانية متابعة الدورات من
                                             <span className={styles["checkout__subscription-benefits__title--important"]}>
@@ -1679,14 +1570,11 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
                                     <span>
                                         إمكانية
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
@@ -1699,14 +1587,11 @@ function CheckoutPage(props: any) {
                                     className={
                                         styles[
                                         "checkout__subscription-benefits__sub-benefits"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <span>
 
                                         <TickIcon />
                                     </span>
-
                                     <span>
                                         لا يوجد التزام، يمكنك
                                         <span style={{ fontWeight: "700" }} className={styles["checkout__subscription-benefits__title--important"]}>
@@ -1715,7 +1600,6 @@ function CheckoutPage(props: any) {
                                         في أي وقت.
                                     </span>
                                 </div>
-
                                 <div className={styles["checkout__cart-sticky-card__subscribe-summary__terms_policy"]}>
                                     <div>
                                         * نظام الإشتراكات يطبق الشروط والاحكام
@@ -1730,83 +1614,92 @@ function CheckoutPage(props: any) {
 
                         {mobileView == true && <div className={styles["checkout__cart-sticky-card-div"]}>
 
-                            {checkoutType == "subscription" ? <></>
-                                // <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
+                            {checkoutType == "subscription" ?
+                                <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
 
-                                //     <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
-                                //         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                //             <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
-                                //                 أفضل قيمة
-                                //             </div>
-                                //             <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                //                 <input onClick={() => {
-                                //                     setThreePlansSelection("monthly");
-                                //                     // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                //                 }} type="radio" name="subscription-plans" value="٦ دك / ش" className="form-check-input" />
-                                //                 <label htmlFor="٦ دك / ش">
-                                //                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                //                         سنوي
-                                //                     </div>
-                                //                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                //                         <span>
-                                //                             ٦ دك / ش
-                                //                         </span>
-                                //                         <span>
-                                //                             ستوفر 60%
-                                //                         </span>
-                                //                     </div>
-                                //                 </label>
-                                //             </div>
+                                    {paymentSettings &&
+                                        <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
+                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
+                                                    أفضل قيمة
+                                                </div>
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                    <input onClick={() => {
+                                                        setThreePlansSelection("yearly");
+                                                        setPaypalPlanId(paymentSettings?.subscription_plans[2].paypal_id);
 
-                                //         </div>
+                                                        // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
+                                                    }} type="radio" checked={threePlansSelection == "yearly"} name="subscription-plans" value={paymentSettings?.subscription_plans[2].name_label} className="form-check-input" />
+                                                    <label htmlFor={paymentSettings?.subscription_plans[2].name_label}>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                            {paymentSettings?.subscription_plans[2].name_label}
+                                                        </div>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                            <span>
+                                                                {paymentSettings?.subscription_plans[2].sale_label}
+                                                            </span>
+                                                            <span>
+                                                                {paymentSettings?.subscription_plans[2].discount_label}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                </div>
 
-                                //         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                //             <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                //                 <input onClick={() => {
-                                //                     setThreePlansSelection("monthly");
-                                //                     // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                //                 }} type="radio" name="subscription-plans" value="٩ دك / ش" className="form-check-input" />
-                                //                 <label htmlFor="٩ دك / ش">
-                                //                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                //                         ٦
-                                //                         شهور
-                                //                     </div>
-                                //                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                //                         <span>
-                                //                             ٩ دك / ش
-                                //                         </span>
-                                //                         <span>
-                                //                             ستوفر 40%
-                                //                         </span>
-                                //                     </div>
-                                //                 </label>
-                                //             </div>
+                                            </div>
 
-                                //         </div>
+                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                    <input onClick={() => {
+                                                        setThreePlansSelection("midYearly");
+                                                        setPaypalPlanId(paymentSettings?.subscription_plans[1].paypal_id);
 
-                                //         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                //             <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                //                 <input onClick={() => {
-                                //                     setThreePlansSelection("monthly");
-                                //                     // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                //                 }} type="radio" name="subscription-plans" value="٦ دك / ش" className="form-check-input" />
-                                //                 <label htmlFor="٦ دك / ش">
-                                //                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                //                         شهري
-                                //                     </div>
-                                //                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                //                         <span>
-                                //                             ١٥ دك / ش
-                                //                         </span>
-                                //                     </div>
-                                //                 </label>
-                                //             </div>
+                                                        // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
+                                                    }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[1].name_label} className="form-check-input" />
+                                                    <label htmlFor={paymentSettings?.subscription_plans[1].name_label}>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                            {paymentSettings?.subscription_plans[1].name_label}
+                                                        </div>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                            <span>
+                                                                {paymentSettings?.subscription_plans[1].sale_label}
+                                                            </span>
+                                                            <span>
+                                                                {paymentSettings?.subscription_plans[1].discount_label}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                </div>
 
-                                //         </div>
+                                            </div>
 
-                                //     </div>
+                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                    <input onClick={() => {
+                                                        setThreePlansSelection("monthly");
+                                                        setPaypalPlanId(paymentSettings?.subscription_plans[0].paypal_id);
 
-                                // </div>
+                                                        // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
+                                                    }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[0].name_label} className="form-check-input" />
+                                                    <label htmlFor={paymentSettings?.subscription_plans[0].name_label}>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                            {paymentSettings?.subscription_plans[0].name_label}
+                                                        </div>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                            <span>
+                                                                {paymentSettings?.subscription_plans[0].sale_label}
+                                                            </span>
+                                                            <span>
+                                                                {paymentSettings?.subscription_plans[0].discount_label}
+                                                            </span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+
+                                        </div>}
+
+                                </div>
                                 :
                                 <div className={styles["checkout__cart-sticky-card"]}>
                                     <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
@@ -1859,7 +1752,7 @@ function CheckoutPage(props: any) {
 
                                             <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
                                                 <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
-                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
                                             </div>
                                             :
                                             <React.Fragment />
@@ -1876,7 +1769,7 @@ function CheckoutPage(props: any) {
                                             </div>
                                             <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
                                                 <span> {isCouponApplied?.discounted_amount?.toFixed(2)} - </span>
-                                                <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_code}</span>
+                                                <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_symbol}</span>
                                             </div>
                                         </div>
                                     }
@@ -1890,8 +1783,9 @@ function CheckoutPage(props: any) {
                                                 الخصم
                                             </div>
                                             <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                <span> {(+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)} - </span>
-                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
+                                                <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0) -
+                                                    ((cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)} - </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
                                             </div>
                                         </div>
                                     }
@@ -1941,7 +1835,7 @@ function CheckoutPage(props: any) {
                                             <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
                                                 <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
                                                 } </span>
-                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
                                             </div>
                                             : <React.Fragment />}
                                     </div>
@@ -2107,7 +2001,6 @@ function CheckoutPage(props: any) {
                                         <div className={styles["checkout__payment-method-box__title"]} >
                                             حدد وسيلة الدفع المناسبة لك
                                         </div>
-
                                         {/* VisaMaster Payment */}
                                         {(!(paymentSettings?.visamaster == null) && !(paymentSettings?.visamaster == undefined) && (paymentSettings?.visamaster.length != 0)) &&
                                             <>
@@ -2124,7 +2017,6 @@ function CheckoutPage(props: any) {
                                                             </div>
                                                         </label>
                                                     </div>
-
                                                     <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
                                                         <Frames
                                                             config={{
@@ -2198,7 +2090,6 @@ function CheckoutPage(props: any) {
                                                                 // else {
                                                                 //     submitBtn ? submitBtn.style.cssText = `pointer-events:none;opacity:0.7` : null;
                                                                 // }
-
                                                             }}
                                                             cardSubmitted={(e: any) => {
                                                                 console.log("cardSubmitted", e);
@@ -2208,27 +2099,22 @@ function CheckoutPage(props: any) {
                                                             }
                                                             }
                                                             cardTokenizationFailed={(e: any) => {
-
                                                             }}
                                                             cardBinChanged={(e: any) => {
-                                                                console.log("checkoutType", checkoutType);
-                                                                if (checkoutType == "subscription") {
-                                                                    /** Identify the card first 6 digits is which associated with BANK  */
-                                                                    let card_bin = (e.bin), card6_bin = Number(card_bin.slice(0, 6));
-                                                                    console.log("card6_bin", typeof (card6_bin), card6_bin);
-                                                                    console.log("paymentSettings", paymentSettings);
-                                                                    if (paymentSettings.NBK_bin.includes(card6_bin)) {
-                                                                        setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "NBK", subplan_id: "a5Is2wQH" });
-                                                                    } else if (paymentSettings.WARBA_bin.includes(card6_bin)) {
-                                                                        setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "WARBA", subplan_id: "a5Is2wQH" });
-                                                                    } else if (paymentSettings.BOUBYAN_bin.includes(card6_bin)) {
-                                                                        setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "BOUBYAN", subplan_id: "" });
-                                                                    } else {
-                                                                        setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
-                                                                    }
+                                                                /** Identify the card first 6 digits is which associated with BANK  */
+                                                                let card_bin = (e.bin), card6_bin = Number(card_bin.slice(0, 6));
+                                                                console.log("card6_bin", typeof (card6_bin), card6_bin);
+                                                                console.log("paymentSettings", paymentSettings);
+                                                                if (paymentSettings?.NBK_bin.includes(card6_bin)) {
+                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "NBK", subplan_id: "a5Is2wQH" });
+                                                                } else if (paymentSettings?.WARBA_bin.includes(card6_bin)) {
+                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "WARBA", subplan_id: "a5Is2wQH" });
+                                                                } else if (paymentSettings?.BOUBYAN_bin.includes(card6_bin)) {
+                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "BOUBYAN", subplan_id: "" });
+                                                                } else {
+                                                                    // setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
                                                                 }
-                                                            }}
-                                                        >
+                                                            }}>
                                                             <CardNumber />
                                                             <ExpiryDate />
                                                             <Cvv />
@@ -2254,39 +2140,7 @@ function CheckoutPage(props: any) {
                                                         </label>
                                                     </div>
                                                 </div>
-                                            </>
-                                        }
-                                        <div className={styles["choose-best-subscription-plan"]}>
-
-                                            {subscriptionPlansBanks.bank == "BOUBYAN" && mobileView && "اختر الباقة المناسبة"}
-                                        </div>
-
-                                        {subscriptionPlansBanks.bank == "BOUBYAN" && mobileView &&
-                                            <>
-                                                <div className={styles["subscription-plans-box"]}>
-                                                    <div className="d-flex flex-column align-items-right justify-content-center">
-                                                        <div>
-
-                                                            <input onClick={() => {
-                                                                setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                                            }} type="radio" name="subscription-plans" value="شهر مجانًا ثم 9 دك/ش" className="form-check-input" />
-                                                            <label htmlFor="شهر مجانًا ثم 9 دك/ش">
-                                                                شهر مجانًا ثم 9 دك/ش
-                                                            </label>
-                                                        </div>
-                                                        <div>
-
-                                                            <input onClick={() => {
-                                                                setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "ZhbwbyzM" })
-                                                            }} type="radio" name="subscription-plans" value="اشتراك سنوي - 54 دك/س" className="form-check-input" />
-                                                            <label htmlFor="اشتراك سنوي - 54 دك/س">
-                                                                اشتراك سنوي - 54 دك/س
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </>
-                                        }
+                                            </>}
                                         {/* PAYPAL Payment end */}
 
                                         {/* KNET Payment */}
@@ -2306,10 +2160,271 @@ function CheckoutPage(props: any) {
                                             </div>}
                                         {/* KNET Payment end */}
                                     </>}
-
                             </div>}
+                        {mobileView == true && <div className={styles["checkout__cart-sticky-card-div"]}>
+
+                            {checkoutType == "subscription" ? !mobileView && <></>
+                                :
+                                <div className={styles["checkout__cart-sticky-card"]}>
+                                    <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
+                                    <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
+                                    <div style={{ position: "relative" }}>
+                                        <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
+                                            <Form onSubmit={() => { promoCodeHandler(event) }}>
+                                                <Form.Control
+                                                    type="text"
+                                                    name="couponField"
+                                                    placeholder={isCouponApplied.status ? isCouponApplied.value : "ادخل الكوبون هنا"}
+                                                    className={
+                                                        styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
+                                                    }
+                                                    onChange={() => { setErrorMessage("") }}
+                                                    disabled={isCouponApplied.status ? true : false}
+                                                />
+                                                {
+                                                    isCouponApplied.status ?
+                                                        <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
+                                                        :
+                                                        <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
+                                                            تطبيق
+                                                        </Button>
+                                                }
+                                            </Form>
+                                        </div>
+                                        {
+                                            errorMessage !== "" && cartItems?.data?.length !== 0 &&
+                                            <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
+                                                {errorMessage}
+                                            </div>
+                                        }
+                                    </div>
+                                    <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
+                                        <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
+                                            السعر الإجمالي
+                                        </div>
+                                        {cartItems?.data?.length !== 0 ?
+
+                                            <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
+                                                <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                            : <React.Fragment />
+                                        }
+                                    </div>
+                                    {
+                                        isCouponApplied.status == true && cartItems?.data?.length !== 0 &&
+
+                                        <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
+                                            <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
+                                                الكوبون
+                                            </div>
+                                            <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
+                                                <span> {isCouponApplied?.discounted_amount?.toFixed(2)}- </span>
+                                                <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_symbol}</span>
+                                            </div>
+
+                                        </div>
+                                    }
+                                    <div className={styles["checkout__cart-sticky-card__guarantee-box"]}
+                                    >
+                                        <div
+                                            className={
+                                                styles["checkout__cart-sticky-card__guarantee-box__icon"]
+                                            }
+                                        >
+                                            <GuaranteeIcon />
+                                        </div>
+                                        <div
+                                            className={
+                                                styles["checkout__cart-sticky-card__guarantee-box__text-box"]
+                                            }
+                                        >
+                                            <div
+                                                className={
+                                                    styles[
+                                                    "checkout__cart-sticky-card__guarantee-box__text-box__major"
+                                                    ]
+                                                }
+                                            >
+                                                ٣٠ يوم ضمان ذهبي استرداد كامل المبلغ
+                                            </div>
+                                            <div
+                                                className={
+                                                    styles[
+                                                    "checkout__cart-sticky-card__guarantee-box__text-box__minor"
+                                                    ]
+                                                }
+                                            >
+                                                اذا لم تكن راضي عن محتوى الدورة
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
+                                        <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
+                                            السعر النهائي
+                                        </div>
+                                        {cartItems?.data?.length !== 0 ?
+                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
+                                                <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
+                                                } </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                            : <React.Fragment />}
+                                    </div>
+
+                                    {step == "added-courses" ?
+                                        <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
+                                            JSON.stringify(cartItems?.data) == "null" ||
+                                            JSON.stringify(cartItems?.data) == "undefined"} onClick={() => {
+                                                window.scrollTo({ top: 0, behavior: "smooth" });
+                                                userStatus.isUserAuthenticated ?
+                                                    setStep("payment-types")
+                                                    :
+                                                    Router.push({
+                                                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
+                                                        query: { from: "checkout" }
+                                                    })
+                                            }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
 
 
+                                            الدفع
+
+                                        </Button>
+                                        :
+                                        <div className="position-relative">
+                                            <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>
+
+                                            {/** VISAMASTER option **/}
+                                            {paymentMethod == "VISA" && <VisamasterPaymentButtonComponent />}
+                                            {/** VISAMASTER option end **/}
+
+                                            {/** PayPal option **/}
+                                            {paymentMethod == "PAYPAL" &&
+                                                <div className={styles["checkout__cart-sticky-card__paypal"]}>
+                                                    <PayPalButtons
+                                                        style={{
+                                                            color: "blue",
+                                                            shape: "pill",
+                                                            label: "pay",
+                                                            tagline: false,
+                                                            layout: "horizontal",
+                                                        }}
+                                                        createOrder={(data: any, actions: any): any => {
+                                                            setIsSpinnerExist(true);
+                                                            const localStorageItems: any = localStorage.getItem("cart_items");
+                                                            let usdAmount: any = "";
+                                                            let checkoutDetails: any = {};
+
+                                                            return (async function () {
+                                                                await axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                                                    "action": "web",
+                                                                    "checkout_token": "",
+                                                                    "items": localStorageItems,
+                                                                    "coupon_code": localStorage.getItem("coupon_code"),
+                                                                    "payment_method": "paypal",
+                                                                    "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                                                                }).then((response: any) => {
+                                                                    setIsSpinnerExist(false);
+                                                                    if (tokenValidationCheck(response)) {
+                                                                        if (JSON.stringify(response.status).startsWith("2")) {
+                                                                            localStorage.setItem("successUrl", response.data.data.success_url);
+                                                                            localStorage.setItem("failureUrl", response.data.data.failure_url);
+                                                                            localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                                                            localStorage.setItem("paymentId", response.data.data.payment_id);
+                                                                            usdAmount = response.data.data.amount_usd;
+                                                                            setCheckoutTransactionDetails(response.data.data);
+                                                                        } else {
+                                                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                        }
+                                                                    }
+                                                                }).catch((error: any) => {
+                                                                    setIsSpinnerExist(false);
+                                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                    console.log("error", error);
+                                                                })
+
+                                                                return actions.order.create({
+                                                                    purchase_units: [
+                                                                        {
+                                                                            amount: {
+                                                                                // charge users $499 per order
+                                                                                value: checkoutType == "subscription" ? 29.56 : usdAmount,
+                                                                            },
+                                                                        },
+                                                                    ],
+                                                                    // remove the applicaiton_context object if you need your users to add a shipping address
+                                                                    application_context: {
+                                                                        shipping_preference: "NO_SHIPPING",
+                                                                    },
+                                                                }).then((orderID: any) => {
+                                                                    setOrderID(orderID);
+                                                                    return orderID;
+                                                                });
+                                                            })()
+                                                        }}
+                                                        onApprove={(data: any, actions: any) => {
+                                                            return actions.order.capture().then(function (details: any) {
+                                                                const { payer } = details;
+                                                                setBillingDetails(payer);
+                                                                setSucceeded(true);
+                                                                axiosInstance.get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
+                                                                    .then(function (response: any) {
+                                                                        setIsSpinnerExist(false);
+                                                                        if (tokenValidationCheck(response)) {
+                                                                            if (response.status.toString().startsWith("2")) {
+                                                                                localStorage.removeItem("checkoutTransactionId");
+                                                                                localStorage.removeItem("paymentId");
+                                                                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                                                dispatch(setInvoiceDetails(response.data.data));
+                                                                                let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+                                                                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                                localStorage.setItem("cart", "[]");
+                                                                                localStorage.removeItem("coupon_code");
+                                                                                localStorage.removeItem("affiliate_id");
+                                                                                localStorage.removeItem("cced");
+                                                                                dispatch(setCartItems([]));
+                                                                            } else {
+                                                                                dispatch(setTransactionStatus(false));
+                                                                                dispatch(setInvoiceDetails({}));
+                                                                            }
+                                                                        }
+                                                                    }).catch(function (error) {
+                                                                        setIsSpinnerExist(false);
+                                                                    });
+                                                            })
+                                                        }}
+                                                    />
+                                                </div>
+                                            }
+                                            {/** PayPal option end **/}
+
+                                            {/** KNET option **/}
+                                            {paymentMethod == "KNET" && <KnetButtonComponent />}
+                                            {/** KNET option end **/}
+                                        </div>
+                                    }
+
+                                    {step == "added-courses" && <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
+                                        <span>
+                                            <Link href="/courses?type=all">
+                                                اكمل البحث عن دورات أخرى
+                                            </Link>
+                                        </span>
+                                        <ArrowLeftIcon color="#af151f" />
+
+                                    </div>}
+
+                                    {step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
+                                        <PaySafeIcon color="#6c757d" />
+
+                                        <span> ادفع بأمان وسهولة عبر تدرب </span>
+                                    </div>}
+
+                                </div>
+                            }
+
+                        </div>}
 
                         {checkoutType !== "subscription" &&
                             <>
@@ -2328,10 +2443,8 @@ function CheckoutPage(props: any) {
                                     </div>
                                 }
 
-                                {cartItems?.data?.length ? cartItems?.data?.map((it: any, i: number) => { 
+                                {cartItems?.data?.length ? cartItems?.data?.map((it: any, i: number) => {
                                     /* style={{display: temporaryRemoval?.includes(it.id) ? "none" :"flex"}}  */
-                                    // console.log("cartItems", cartItems);
-
                                     return (
                                         !temporaryRemoval?.includes(it.id) && <div key={i} className={styles["checkout__cards-outer-box__card"]}>
 
@@ -2365,14 +2478,14 @@ function CheckoutPage(props: any) {
 
                                                     <div className={styles["checkout__cards-outer-box__card__price"]}>
                                                         <span> {it.discounted_price == 0 ? "مجانًا" : it.discounted_price} </span>
-                                                        <span> {it.discounted_price !== 0 && it.currency_code} </span>
+                                                        <span> {it.discounted_price !== 0 && it.currency_symbol} </span>
                                                     </div>
 
                                                     {
                                                         it.price > it.discounted_price &&
                                                         <div className={styles["checkout__cards-outer-box__card__old-price"]}>
                                                             <span> {it.price} </span>
-                                                            <span> {it.currency_code} </span>
+                                                            <span> {it.currency_symbol} </span>
                                                         </div>
                                                     }
 
@@ -2387,201 +2500,200 @@ function CheckoutPage(props: any) {
                                     )
                                 }) : <React.Fragment />}
                             </>}
-
-
                     </Col>
                     {/* Subscription summary Desktop view */}
-                    {mobileView == false &&
-                        <Col className={styles["checkout__cart-sticky-card-col"]}>
-                            {
-                                checkoutType == "subscription" ?
-                                    <div className={styles["checkout__cart-sticky-card"]}>
+                    {mobileView == false && <Col className={styles["checkout__cart-sticky-card-col"]}>
+                        {
+                            checkoutType == "subscription" ?
+                                <div className={styles["checkout__cart-sticky-card"]}>
+                                    <div className={styles["checkout__cart-sticky-card__subscribe-box"]}>
+                                        {/* <div>
+                                        قيمة الاشتراك
+                                        </div>
+                                        <div>
+                                            <span>100</span>
+                                            <span>دك/شهرياً</span>
+                                        </div> 
+                                        */}
+                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
 
-
-                                        <div className={styles["checkout__cart-sticky-card__subscribe-box"]}>
-                                            {/* <div>
-                            قيمة الاشتراك
-                            </div>
-                            <div>
-                                <span>100</span>
-                                <span>دك/شهرياً</span>
-                            </div> */}
-                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
-
-                                                {/* <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
-                                                            أفضل قيمة
-                                                        </div>
-                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                                            <input onClick={() => {
-                                                                setThreePlansSelection("monthly");
-                                                                // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                                            }} type="radio" name="subscription-plans" value="٦ دك / ش" className="form-check-input" />
-                                                            <label htmlFor="٦ دك / ش">
-                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                                                    سنوي
-                                                                </div>
-                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                                                    <span>
-                                                                        ٦ دك / ش
-                                                                    </span>
-                                                                    <span>
-                                                                        ستوفر 60%
-                                                                    </span>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-
+                                            {paymentSettings && <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
+                                                        أفضل قيمة
                                                     </div>
 
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                                            <input onClick={() => {
-                                                                setThreePlansSelection("monthly");
-                                                                // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                                            }} type="radio" name="subscription-plans" value="٩ دك / ش" className="form-check-input" />
-                                                            <label htmlFor="٩ دك / ش">
-                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                                                    ٦
-                                                                    شهور
-                                                                </div>
-                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                                                    <span>
-                                                                        ٩ دك / ش
-                                                                    </span>
-                                                                    <span>
-                                                                        ستوفر 40%
-                                                                    </span>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                                            <input onClick={() => {
-                                                                setThreePlansSelection("monthly");
-                                                                // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                                            }} type="radio" name="subscription-plans" value="٦ دك / ش" className="form-check-input" />
-                                                            <label htmlFor="٦ دك / ش">
-                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                                                    شهري
-                                                                </div>
-                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                                                    <span>
-                                                                        ١٥ دك / ش
-                                                                    </span>
-                                                                </div>
-                                                            </label>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div> */}
-
-                                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
-                                                    ملخص الاشتراك
-                                                </div>
-                                                <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
-                                                    <div>
-
-                                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old"]}>
-                                                            السعر الأصلي
-                                                        </div>
-                                                        <div
-                                                            className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price"]}>
-                                                            {subscriptionPlansBanks.bank == "NBK" ||
-                                                                subscriptionPlansBanks.bank == "WARBA" ||
-                                                                (subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "a5Is2wQH") ||
-                                                                subscriptionPlansBanks.subplan_id == "" &&
-                                                                "15 KD"}
-                                                            {subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "ZhbwbyzM" && "180 KD"}
-
-                                                        </div>
-                                                    </div>
-                                                    <div>
-
-                                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new"]}>
-                                                            السعر بعد الخصم
-
-                                                        </div>
-                                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price"]}>
-                                                            <div>
-                                                                {subscriptionPlansBanks.bank == "NBK" ||
-                                                                    subscriptionPlansBanks.bank == "WARBA" ||
-                                                                    (subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "a5Is2wQH") ||
-                                                                    subscriptionPlansBanks.subplan_id == "" &&
-                                                                    "9 KD"}
-                                                                {subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "ZhbwbyzM" && "54 KD"}
-
+                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                        <input onClick={() => {
+                                                            // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
+                                                            // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
+                                                            setThreePlansSelection("yearly");
+                                                            setPaypalPlanId(paymentSettings?.subscription_plans[2].paypal_id);
+                                                        }} type="radio" checked={threePlansSelection == "yearly"} name="subscription-plans" value={paymentSettings?.subscription_plans[2].name_label} className="form-check-input" />
+                                                        <label htmlFor={paymentSettings?.subscription_plans[2].name_label}>
+                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                                {paymentSettings?.subscription_plans[2].name_label}
                                                             </div>
-                                                        </div>
+                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                                <span>
+                                                                    {paymentSettings?.subscription_plans[2].sale_label}
+                                                                </span>
+                                                                <span>
+                                                                    {paymentSettings?.subscription_plans[2].discount_label}
+                                                                </span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                        <input onClick={() => {
+                                                            // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
+                                                            // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" });
+                                                            setThreePlansSelection("midYearly");
+                                                            setPaypalPlanId(paymentSettings?.subscription_plans[1].paypal_id);
+
+                                                        }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[1].name_label} className="form-check-input" />
+                                                        <label htmlFor={paymentSettings?.subscription_plans[1].name_label}>
+                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                                {paymentSettings?.subscription_plans[1].name_label}
+                                                            </div>
+                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                                <span>
+                                                                    {paymentSettings?.subscription_plans[1].sale_label}
+                                                                </span>
+                                                                <span>
+                                                                    {paymentSettings?.subscription_plans[1].discount_label}
+                                                                </span>
+                                                            </div>
+                                                        </label>
                                                     </div>
 
                                                 </div>
-                                                {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
-                                                    <div className={styles["monthly-subscription__subscription-timer"]}>
-                                                        ستوفر ٤٠٪ العرض سينتهي خلال
-                                                        <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-                                                    </div>}
-                                                {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
+
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                        <input onClick={() => {
+                                                            // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
+                                                            // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" });
+                                                            setThreePlansSelection("monthly");
+                                                            setPaypalPlanId(paymentSettings?.subscription_plans[0].paypal_id);
+                                                        }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[0].name_label} className="form-check-input" />
+                                                        <label htmlFor={paymentSettings?.subscription_plans[0].name_label}>
+                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                                {paymentSettings?.subscription_plans[0].name_label}
+                                                            </div>
+                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                                <span>
+                                                                    {paymentSettings?.subscription_plans[0].sale_label}
+                                                                </span>
+                                                                <span>
+                                                                    {paymentSettings?.subscription_plans[0].discount_label}
+                                                                </span>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            {
+                                            }
 
-                                                paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>
+                                                ملخص الاشتراك
+                                            </div>
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
+                                                <div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old"]}>
+                                                        السعر الأصلي
+                                                    </div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price"]}>
+                                                        {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].original_price}
+                                                        {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].original_price}
+                                                        {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].original_price}
+                                                        { paymentSettings?.currency_symbol }
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new"]}>
+                                                        السعر بعد الخصم
+                                                    </div>
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total__new-price"]}>
+                                                        <div>
+                                                            {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].total_pay}
+                                                            {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].total_pay}
+                                                            {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].total_pay}
+                                                            { paymentSettings?.currency_symbol }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
+                                                <div className={styles["monthly-subscription__subscription-timer"]}>
+                                                    {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].discount_label}
+                                                    {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].discount_label}
+                                                    {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].discount_label}
+                                                    العرض سينتهي خلال
+                                                    <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+                                                </div>}
+                                            {/* <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>ستوفر ٣٠٪؜ العرض سينتهي قريباً</div> */}
+                                        </div>
 
-                                                <PayPalButtons
-                                                    style={{
-                                                        color: "blue",
-                                                        shape: "pill",
-                                                        label: "subscribe",
-                                                        tagline: false,
-                                                        layout: "horizontal",
-                                                    }}
+                                        {
+                                            paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
+                                            <PayPalButtons
+                                                style={{
+                                                    color: "blue",
+                                                    shape: "pill",
+                                                    label: "subscribe",
+                                                    tagline: false,
+                                                    layout: "horizontal",
+                                                }}
+                                                createSubscription={(data: any, actions: any): any => {
+                                                    
+                                                    setIsSpinnerExist(true);
+                                                    return (
+                                                        axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                                            "action": "web",
+                                                            "payment_method": "paypal",
+                                                            "checkout_type": "subscription",
+                                                            'page_id': courseDetailsData?.data?.course_details?.id,
+                                                        })
+                                                            .then((response: any) => {
+                                                                setIsSpinnerExist(false);
+                                                                if (tokenValidationCheck(response)) {
+                                                                    if (JSON.stringify(response.status).startsWith("2")) {
+                                                                        localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                                                        localStorage.setItem("paymentId", response.data.data.payment_id);
+                                                                        setCheckoutTransactionDetails(response.data.data);
 
-                                                    createSubscription={(data: any, actions: any): any => {
-                                                        setIsSpinnerExist(true);
-                                                        return (
-                                                            axiosInstance.post(`payments/payouts`, {
-                                                                "action": "web",
-                                                                "payment_method": "paypal",
-                                                                "checkout_type": "subscription",
-                                                                'page_id': courseDetailsData?.data?.course_details?.id,
-                                                            })
-                                                                .then((response: any) => {
-                                                                    setIsSpinnerExist(false);
-                                                                    if (tokenValidationCheck(response)) {
-                                                                        if (JSON.stringify(response.status).startsWith("2")) {
-                                                                            localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
-                                                                            localStorage.setItem("paymentId", response.data.data.payment_id);
-                                                                            setCheckoutTransactionDetails(response.data.data);
+                                                                        // setPaypalPlanId(paymentSettings?.paypal.planid);
+                                                                        console.log("paymentSettings", paymentSettings);
+                                                                        console.log("paypalPlanId", paypalPlanId);
 
-                                                                            return actions.subscription.create({
-                                                                                plan_id: paymentSettings?.paypal.planid,
-                                                                                purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
-                                                                            });
+                                                                        return actions.subscription.create({
+                                                                            plan_id: paypalPlanId || paymentSettings?.paypal.planid,
+                                                                            purchase_units: [{ amount: { value: paymentSettings?.usd_amount } }],
+                                                                        });
 
-                                                                        } else {
-                                                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                                                        }
+                                                                    } else {
+                                                                        setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
                                                                     }
+                                                                }
 
-                                                                }).catch((error: any) => {
-                                                                    setIsSpinnerExist(false);
-                                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                                                    console.log("error", error);
-                                                                })
-                                                        )
+                                                            }).catch((error: any) => {
+                                                                setIsSpinnerExist(false);
+                                                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                console.log("error", error);
+                                                            })
+                                                    )
 
 
-                                                    }}
-                                                    onApprove={(data: any, actions: any): any => {
-                                                        setSucceeded(true);
+                                                }}
+                                                onApprove={(data: any, actions: any): any => {
+                                                    setSucceeded(true);
 
-                                                        axiosInstance
-                                                            .get(`payments/details?payment_method=paypal&
+                                                    axiosInstance
+                                                        .get(`payments/details?payment_method=paypal&
                                                 checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&
                                                 paypal_order_id=${data.orderID}&
                                                 subscription_id=${data.subscriptionID}&
@@ -2589,367 +2701,335 @@ function CheckoutPage(props: any) {
                                                 page_id=${courseDetailsData?.data?.course_details?.id}&
                                                 checkout_type=subscription&
                                                 payment_id=${localStorage.getItem("paymentId")}`)
-                                                            .then(function (response: any) {
-                                                                setIsSpinnerExist(false);
-                                                                if (tokenValidationCheck(response)) {
+                                                        .then(function (response: any) {
+                                                            setIsSpinnerExist(false);
+                                                            if (tokenValidationCheck(response)) {
 
-                                                                    if (response.status.toString().startsWith("2")) {
+                                                                if (response.status.toString().startsWith("2")) {
 
-                                                                        localStorage.removeItem("checkoutTransactionId");
-                                                                        localStorage.removeItem("paymentId");
-                                                                        dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                        dispatch(setInvoiceDetails(response.data.data));
+                                                                    localStorage.removeItem("checkoutTransactionId");
+                                                                    localStorage.removeItem("paymentId");
+                                                                    dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                                    dispatch(setInvoiceDetails(response.data.data));
 
-                                                                        let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
-                                                                        let customData = {};
-                                                                        if (!is_trial_free) {
-                                                                            customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
-                                                                        }
-                                                                        FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
-
-                                                                        localStorage.setItem("cart", "[]");
-                                                                        localStorage.removeItem("coupon_code");
-                                                                        localStorage.removeItem("affiliate_id");
-                                                                        localStorage.removeItem("cced");
-                                                                        dispatch(setCartItems([]));
-                                                                    } else {
-                                                                        dispatch(setTransactionStatus(false));
-                                                                        dispatch(setInvoiceDetails({}));
+                                                                    let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
+                                                                    let customData = {};
+                                                                    if (!is_trial_free) {
+                                                                        customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
                                                                     }
+                                                                    FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+
+                                                                    localStorage.setItem("cart", "[]");
+                                                                    localStorage.removeItem("coupon_code");
+                                                                    localStorage.removeItem("affiliate_id");
+                                                                    localStorage.removeItem("cced");
+                                                                    dispatch(setCartItems([]));
+                                                                } else {
+                                                                    dispatch(setTransactionStatus(false));
+                                                                    dispatch(setInvoiceDetails({}));
                                                                 }
-                                                            })
-                                                            .catch(function (error) {
-                                                                setIsSpinnerExist(false);
-                                                                console.log(error);
-                                                            });
-                                                    }}
-                                                />
-                                            }
-                                            {
-
-                                                paymentMethod == "VISA" &&
-                                                <VisamasterSubscriptionButtonComponent />
-                                            }
-                                            <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
-                                                لا يوجد إلتزام ، إلغاء الإشتراك في أي وقت
-                                            </div>
-                                        </div>
-
-                                        {/* { step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
-                    <PaySafeIcon color="#6c757d" />
-                    <span> ادفع بأمان وسهولة عبر تدرب </span>
-                </div>} */}
-                                    </div>
-                                    :
-                                    <div className={styles["checkout__cart-sticky-card"]}>
-                                        <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
-
-                                        <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
-
-                                        <div style={{ position: "relative" }}>
-                                            <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
-                                                <Form onSubmit={() => { promoCodeHandler(event) }}>
-
-                                                    <Form.Control
-                                                        type="text"
-                                                        name="couponField"
-                                                        placeholder={isCouponApplied.status ? isCouponApplied.value : "ادخل الكوبون هنا"}
-                                                        className={
-                                                            styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
-                                                        }
-                                                        onChange={() => { setErrorMessage("") }}
-                                                        disabled={isCouponApplied.status ? true : false}
-                                                    />
-                                                    {
-                                                        isCouponApplied.status ?
-                                                            <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
-
-                                                            :
-                                                            <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
-                                                                تطبيق
-                                                            </Button>
-
-                                                    }
-                                                </Form>
-
-
-                                            </div>
-                                            {
-                                                errorMessage !== "" && cartItems?.data?.length !== 0 &&
-                                                <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
-                                                    {errorMessage}
-                                                </div>
-                                            }
-
-                                        </div>
-
-                                        <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
-                                            <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
-                                                السعر الإجمالي
-                                            </div>
-                                            {cartItems?.data?.length !== 0 ?
-
-                                                <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
-                                                    <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
-                                                    <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
-                                                </div>
-
-                                                : <React.Fragment />}
-
-                                        </div>
-
-                                        {
-                                            cartItems?.data?.length !== 0 && isCouponApplied.status == true &&
-
-                                            <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
-                                                <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
-                                                    الكوبون
-                                                </div>
-
-                                                <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                    <span> {isCouponApplied?.discounted_amount?.toFixed(2)}- </span>
-                                                    <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
-                                                </div>
-                                            </div>
-                                        }
-
-                                        {/* Special bundle discount start */}
-
-                                        {
-                                            isCoursesInSpecialBundle && cartItems?.data?.length !== 0 &&
-
-                                            <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
-                                                <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
-                                                    الخصم
-                                                </div>
-                                                <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                    <span> {(+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)} - </span>
-                                                    <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
-                                                </div>
-                                            </div>
-                                        }
-
-                                        {/* Special bundle discount end*/}
-
-
-                                        <div className={styles["checkout__cart-sticky-card__guarantee-box"]}
-                                        >
-                                            <div
-                                                className={
-                                                    styles["checkout__cart-sticky-card__guarantee-box__icon"]
-                                                }
-                                            >
-                                                <GuaranteeIcon />
-                                            </div>
-                                            <div
-                                                className={
-                                                    styles["checkout__cart-sticky-card__guarantee-box__text-box"]
-                                                }
-                                            >
-                                                <div
-                                                    className={
-                                                        styles[
-                                                        "checkout__cart-sticky-card__guarantee-box__text-box__major"
-                                                        ]
-                                                    }
-                                                >
-                                                    ٣٠ يوم ضمان ذهبي استرداد كامل المبلغ
-                                                </div>
-                                                <div
-                                                    className={
-                                                        styles[
-                                                        "checkout__cart-sticky-card__guarantee-box__text-box__minor"
-                                                        ]
-                                                    }
-                                                >
-                                                    اذا لم تكن راضي عن محتوى الدورة
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
-                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
-                                                السعر النهائي
-                                            </div>
-                                            {cartItems?.data?.length ?
-                                                <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                                                    <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
-                                                    } </span>
-                                                    <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_code}</span>
-                                                </div>
-                                                : <React.Fragment />}
-                                        </div>
-
-                                        {step == "added-courses" ?
-                                            <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
-                                                JSON.stringify(cartItems?.data) == "null" ||
-                                                JSON.stringify(cartItems?.data) == "undefined"}
-                                                onClick={() => {
-                                                    window.scrollTo({ top: 0, behavior: "smooth" });
-                                                    userStatus.isUserAuthenticated ?
-                                                        setStep("payment-types")
-                                                        :
-                                                        Router.push({
-                                                            pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
-                                                            query: { from: "checkout" }
+                                                            }
                                                         })
-                                                }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                                                        .catch(function (error) {
+                                                            setIsSpinnerExist(false);
+                                                            console.log(error);
+                                                        });
+                                                }}
+                                            />
+                                        }
+                                        {
+                                            paymentMethod == "VISA" &&
+                                            <VisamasterSubscriptionButtonComponent />
+                                        }
+                                        <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
+                                            لا يوجد إلتزام ، إلغاء الإشتراك في أي وقت
+                                        </div>
+                                    </div>
+                                </div>
+                                :
+                                <div className={styles["checkout__cart-sticky-card"]}>
+                                    <div className={styles["checkout__cart-sticky-card__title"]}>ملخص السلة</div>
+                                    <div className={styles["checkout__cart-sticky-card__do-you-have-coupon"]}>هل لديك كوبون خصم؟</div>
+                                    <div style={{ position: "relative" }}>
+                                        <div className={styles["checkout__cart-sticky-card__search-bar-container"]}>
+                                            <Form onSubmit={() => { promoCodeHandler(event) }}>
 
-                                                الدفع
+                                                <Form.Control
+                                                    type="text"
+                                                    name="couponField"
+                                                    placeholder={isCouponApplied.status ? isCouponApplied.value : "ادخل الكوبون هنا"}
+                                                    className={
+                                                        styles["checkout__cart-sticky-card__search-bar-container__search-bar"]
+                                                    }
+                                                    onChange={() => { setErrorMessage("") }}
+                                                    disabled={isCouponApplied.status ? true : false}
+                                                />
+                                                {
+                                                    isCouponApplied.status ?
+                                                        <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
 
+                                                        :
+                                                        <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
+                                                            تطبيق
+                                                        </Button>
 
-                                            </Button>
-                                            :
-                                            <div className="position-relative">
-                                                <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>
-                                                {paymentMethod == "VISA" &&
-                                                    <VisamasterPaymentButtonComponent />
                                                 }
-                                                {paymentMethod == "PAYPAL" &&
-                                                    <div className={styles["checkout__cart-sticky-card__paypal"]}>
+                                            </Form>
 
 
-                                                        <PayPalButtons
-                                                            style={{
-                                                                color: "blue",
-                                                                shape: "pill",
-                                                                label: "pay",
-                                                                tagline: false,
-                                                                layout: "horizontal",
-                                                            }}
-                                                            createOrder={(data: any, actions: any): any => {
-                                                                setIsSpinnerExist(true);
-                                                                const localStorageItems: any = localStorage.getItem("cart_items");
-                                                                let usdAmount: any = "";
-                                                                let checkoutDetails: any = {};
-
-                                                                return (async function () {
-                                                                    await axiosInstance.post(`payments/payouts`, {
-                                                                        "action": "web",
-                                                                        "checkout_token": "",
-                                                                        "items": localStorageItems,
-                                                                        "coupon_code": localStorage.getItem("coupon_code"),
-                                                                        "payment_method": "paypal",
-                                                                        "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
-                                                                    })
-                                                                        .then((response: any) => {
-                                                                            setIsSpinnerExist(false);
-                                                                            if (tokenValidationCheck(response)) {
-
-                                                                                if (JSON.stringify(response.status).startsWith("2")) {
-
-                                                                                    localStorage.setItem("successUrl", response.data.data.success_url);
-                                                                                    localStorage.setItem("failureUrl", response.data.data.failure_url);
-                                                                                    localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
-                                                                                    localStorage.setItem("paymentId", response.data.data.payment_id);
-                                                                                    usdAmount = response.data.data.amount_usd;
-                                                                                    setCheckoutTransactionDetails(response.data.data);
-
-                                                                                } else {
-                                                                                    setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                                                                }
-                                                                            }
-
-                                                                        }).catch((error: any) => {
-                                                                            setIsSpinnerExist(false);
-                                                                            setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
-                                                                            console.log("error", error);
-                                                                        })
-
-
-                                                                    return actions.order
-                                                                        .create({
-                                                                            purchase_units: [
-                                                                                {
-                                                                                    amount: {
-                                                                                        // charge users $499 per order
-                                                                                        value: checkoutType == "subscription" ? 29.56 : usdAmount,
-                                                                                    },
-                                                                                },
-                                                                            ],
-                                                                            // remove the applicaiton_context object if you need your users to add a shipping address
-                                                                            application_context: {
-                                                                                shipping_preference: "NO_SHIPPING",
-                                                                            },
-                                                                        })
-                                                                        .then((orderID: any) => {
-                                                                            setOrderID(orderID);
-                                                                            return orderID;
-                                                                        });
-                                                                })()
-                                                            }}
-                                                            onApprove={(data: any, actions: any) => {
-
-
-                                                                return actions.order.capture().then(function (details: any) {
-                                                                    const { payer } = details;
-                                                                    setBillingDetails(payer);
-                                                                    setSucceeded(true);
-
-                                                                    axiosInstance
-                                                                        .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
-                                                                        .then(function (response: any) {
-                                                                            setIsSpinnerExist(false);
-                                                                            if (tokenValidationCheck(response)) {
-
-                                                                                if (response.status.toString().startsWith("2")) {
-                                                                                    localStorage.removeItem("checkoutTransactionId");
-                                                                                    localStorage.removeItem("paymentId");
-                                                                                    dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                                    dispatch(setInvoiceDetails(response.data.data));
-
-                                                                                    let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                                    FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
-
-
-                                                                                    localStorage.setItem("cart", "[]");
-                                                                                    localStorage.removeItem("coupon_code");
-                                                                                    localStorage.removeItem("affiliate_id");
-                                                                                    localStorage.removeItem("cced");
-                                                                                    dispatch(setCartItems([]));
-                                                                                } else {
-                                                                                    dispatch(setTransactionStatus(false));
-                                                                                    dispatch(setInvoiceDetails({}));
-                                                                                }
-                                                                            }
-
-                                                                        })
-                                                                        .catch(function (error) {
-                                                                            setIsSpinnerExist(false);
-                                                                            console.log(error);
-                                                                        });
-                                                                })
-                                                            }}
-                                                        />
-                                                    </div>
-                                                }
-
-                                                {paymentMethod == "KNET" &&
-                                                    <KnetButtonComponent />
-                                                }
+                                        </div>
+                                        {
+                                            errorMessage !== "" && cartItems?.data?.length !== 0 &&
+                                            <div className={styles["checkout__cart-sticky-card__search-bar-container__error-msg"]}>
+                                                {errorMessage}
                                             </div>
                                         }
 
-                                        {step == "added-courses" && <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
-                                            <span>
-                                                <Link href="/courses?type=all">
-                                                    اكمل البحث عن دورات أخرى
-                                                </Link>
-                                            </span>
-                                            <ArrowLeftIcon color="#af151f" />
+                                    </div>
+                                    <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
+                                        <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
+                                            السعر الإجمالي
+                                        </div>
+                                        {cartItems?.data?.length ?
 
-                                        </div>}
+                                            <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
+                                                <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
 
-                                        {step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
+                                            : <React.Fragment />}
+
+                                    </div>
+                                    {
+                                        cartItems?.data?.length !== 0 && isCouponApplied.status == true &&
+                                        <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
+                                            <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
+                                                الكوبون
+                                            </div>
+                                            <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
+                                                <span> {isCouponApplied?.discounted_amount?.toFixed(2)}- </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    {
+                                        isCoursesInSpecialBundle && cartItems?.data?.length !== 0 &&
+
+                                        <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
+                                            <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
+                                                الخصم
+                                            </div>
+                                            <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
+                                                <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0) -
+                                                    ((cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)} - </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div className={styles["checkout__cart-sticky-card__guarantee-box"]}
+                                    >
+                                        <div
+                                            className={
+                                                styles["checkout__cart-sticky-card__guarantee-box__icon"]
+                                            }
+                                        >
+                                            <GuaranteeIcon />
+                                        </div>
+                                        <div
+                                            className={
+                                                styles["checkout__cart-sticky-card__guarantee-box__text-box"]}>
+                                            <div
+                                                className={
+                                                    styles[
+                                                    "checkout__cart-sticky-card__guarantee-box__text-box__major"
+                                                    ]}>
+                                                ٣٠ يوم ضمان ذهبي استرداد كامل المبلغ
+                                            </div>
+                                            <div
+                                                className={
+                                                    styles[
+                                                    "checkout__cart-sticky-card__guarantee-box__text-box__minor"
+                                                    ]}>
+                                                اذا لم تكن راضي عن محتوى الدورة
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
+                                        <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
+                                            السعر النهائي
+                                        </div>
+                                        {cartItems?.data?.length ?
+                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
+                                                <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
+                                                } </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                            :
+                                            <React.Fragment />
+                                        }
+                                    </div>
+
+                                    {step == "added-courses" ?
+                                        <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
+                                            JSON.stringify(cartItems?.data) == "null" ||
+                                            JSON.stringify(cartItems?.data) == "undefined"}
+                                            onClick={() => {
+                                                window.scrollTo({ top: 0, behavior: "smooth" });
+                                                userStatus.isUserAuthenticated ?
+                                                    setStep("payment-types")
+                                                    :
+                                                    Router.push({
+                                                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
+                                                        query: { from: "checkout" }
+                                                    })
+                                            }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
+                                            الدفع
+                                        </Button>
+                                        :
+                                        <div className="position-relative">
+                                            <div className={styles["checkout__server-response"]}>  {serverResponse !== "" && "حدث خطأ الرجاء المحاولة مره أخري"}  </div>
+                                            {paymentMethod == "VISA" &&
+                                                <VisamasterPaymentButtonComponent />
+                                            }
+                                            {paymentMethod == "PAYPAL" &&
+                                                <div className={styles["checkout__cart-sticky-card__paypal"]}>
+                                                    <PayPalButtons
+                                                        style={{
+                                                            color: "blue",
+                                                            shape: "pill",
+                                                            label: "pay",
+                                                            tagline: false,
+                                                            layout: "horizontal",
+                                                        }}
+                                                        createOrder={(data: any, actions: any): any => {
+                                                            setIsSpinnerExist(true);
+                                                            const localStorageItems: any = localStorage.getItem("cart_items");
+                                                            let usdAmount: any = "";
+                                                            let checkoutDetails: any = {};
+
+                                                            return (async function () {
+                                                                await axiosInstance.post(`payments/payouts/?country_code=null`, {
+                                                                    "action": "web",
+                                                                    "checkout_token": "",
+                                                                    "items": localStorageItems,
+                                                                    "coupon_code": localStorage.getItem("coupon_code"),
+                                                                    "payment_method": "paypal",
+                                                                    "checkout_type": checkoutType == "subscription" ? "subscription" : "cart"
+                                                                })
+                                                                    .then((response: any) => {
+                                                                        setIsSpinnerExist(false);
+                                                                        if (tokenValidationCheck(response)) {
+
+                                                                            if (JSON.stringify(response.status).startsWith("2")) {
+
+                                                                                localStorage.setItem("successUrl", response.data.data.success_url);
+                                                                                localStorage.setItem("failureUrl", response.data.data.failure_url);
+                                                                                localStorage.setItem("checkoutTransactionId", response.data.data.checkout_transaction_id);
+                                                                                localStorage.setItem("paymentId", response.data.data.payment_id);
+                                                                                usdAmount = response.data.data.amount_usd;
+                                                                                setCheckoutTransactionDetails(response.data.data);
+
+                                                                            } else {
+                                                                                setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                            }
+                                                                        }
+
+                                                                    }).catch((error: any) => {
+                                                                        setIsSpinnerExist(false);
+                                                                        setServerResponse("حدث خطأ برجاء المحاولة مره أخري");
+                                                                        console.log("error", error);
+                                                                    })
+
+
+                                                                return actions.order
+                                                                    .create({
+                                                                        purchase_units: [
+                                                                            {
+                                                                                amount: {
+                                                                                    // charge users $499 per order
+                                                                                    value: checkoutType == "subscription" ? 29.56 : usdAmount,
+                                                                                },
+                                                                            },
+                                                                        ],
+                                                                        // remove the applicaiton_context object if you need your users to add a shipping address
+                                                                        application_context: {
+                                                                            shipping_preference: "NO_SHIPPING",
+                                                                        },
+                                                                    })
+                                                                    .then((orderID: any) => {
+                                                                        setOrderID(orderID);
+                                                                        return orderID;
+                                                                    });
+                                                            })()
+                                                        }}
+                                                        onApprove={(data: any, actions: any) => {
+                                                            return actions.order.capture().then(function (details: any) {
+                                                                const { payer } = details;
+                                                                setBillingDetails(payer);
+                                                                setSucceeded(true);
+
+                                                                axiosInstance
+                                                                    .get(`payments/details?payment_method=paypal&checkout_transaction_id=${localStorage.getItem("checkoutTransactionId")}&paypal_order_id=${data.orderID}&checkout_type=cart&payment_id=${localStorage.getItem("paymentId")}`)
+                                                                    .then(function (response: any) {
+                                                                        setIsSpinnerExist(false);
+                                                                        if (tokenValidationCheck(response)) {
+
+                                                                            if (response.status.toString().startsWith("2")) {
+                                                                                localStorage.removeItem("checkoutTransactionId");
+                                                                                localStorage.removeItem("paymentId");
+                                                                                dispatch(setTransactionStatus(response.data.data.is_successful));
+                                                                                dispatch(setInvoiceDetails(response.data.data));
+
+                                                                                let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+                                                                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+
+
+                                                                                localStorage.setItem("cart", "[]");
+                                                                                localStorage.removeItem("coupon_code");
+                                                                                localStorage.removeItem("affiliate_id");
+                                                                                localStorage.removeItem("cced");
+                                                                                dispatch(setCartItems([]));
+                                                                            } else {
+                                                                                dispatch(setTransactionStatus(false));
+                                                                                dispatch(setInvoiceDetails({}));
+                                                                            }
+                                                                        }
+
+                                                                    })
+                                                                    .catch(function (error) {
+                                                                        setIsSpinnerExist(false);
+                                                                        console.log(error);
+                                                                    });
+                                                            })
+                                                        }}
+                                                    />
+                                                </div>
+                                            }
+                                            {paymentMethod == "KNET" &&
+                                                <KnetButtonComponent />
+                                            }
+                                        </div>
+                                    }
+                                    {step == "added-courses" && <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
+                                        <span>
+                                            <Link href="/courses?type=all">
+                                                اكمل البحث عن دورات أخرى
+                                            </Link>
+                                        </span>
+                                        <ArrowLeftIcon color="#af151f" />
+                                    </div>}
+
+                                    {
+                                        step == "payment-types" && <div className={styles["checkout__cart-sticky-card__pay-safely"]}>
                                             <PaySafeIcon color="#6c757d" />
                                             <span> ادفع بأمان وسهولة عبر تدرب </span>
-                                        </div>}
-
-                                    </div>
-                            }
-
-                        </Col>}
-
+                                        </div>
+                                    }
+                                </div>
+                        }
+                    </Col>}
                 </Row>}
 
                 {step == "added-courses" && JSON.stringify(localStateCartItems) !== "[]" && localStateCartItems !== null && localStateCartItems !== undefined && <Row id="similar-courses-row" className={styles["checkout__similar-courses-row"]}>
@@ -3126,7 +3206,7 @@ function CheckoutPage(props: any) {
                                                                     ]
                                                                 }
                                                             >
-                                                                {course.discounted_price !== 0 && !course.is_purchased && !course.is_in_user_subscription && course.currency_code}
+                                                                {course.discounted_price !== 0 && !course.is_purchased && !course.is_in_user_subscription && course.currency_symbol}
                                                             </span>
                                                         </div>
                                                         {
@@ -3155,7 +3235,7 @@ function CheckoutPage(props: any) {
                                                                         ]
                                                                     }
                                                                 >
-                                                                    {course.currency_code}
+                                                                    {course.currency_symbol}
                                                                 </span>
                                                             </div>
                                                         }
@@ -3227,7 +3307,6 @@ function CheckoutPage(props: any) {
                 </Row>}
 
                 {step == "begin-learning" && (isTransactionSucceeded ? <SuccessState /> : <FailedState />)}
-
                 {
                     checkoutType == 'subscription' &&
                     <div className={styles["checkout__cart-fixed-card"]}>
@@ -3235,14 +3314,11 @@ function CheckoutPage(props: any) {
                             <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
                                 السعر الأصلي
                             </span>
-                            <span
-                                className={styles["checkout__cart_subscribe_price-total_orignal"]}>
-                                {subscriptionPlansBanks.bank == "NBK" ||
-                                    subscriptionPlansBanks.bank == "WARBA" ||
-                                    (subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "a5Is2wQH") ||
-                                    subscriptionPlansBanks.subplan_id == "" &&
-                                    "١٥ دك / ش"}
-                                {subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "ZhbwbyzM" && "١٨٠ دك / ش"}
+                            <span className={styles["checkout__cart_subscribe_price-total_original"]}>
+                                {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].original_price}
+                                {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].original_price}
+                                {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].original_price}
+                                { paymentSettings?.currency_symbol }
                             </span>
                         </div>
                         <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
@@ -3250,20 +3326,18 @@ function CheckoutPage(props: any) {
                                 السعر بعد الخصم
                             </span>
                             <span className={styles["checkout__cart-sticky-card__subscribe-summary__details__todays-total"]}>
-                                {subscriptionPlansBanks.bank == "NBK" ||
-                                    subscriptionPlansBanks.bank == "WARBA" ||
-                                    (subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "a5Is2wQH") ||
-                                    subscriptionPlansBanks.subplan_id == "" &&
-                                    "٩ دك / ش"}
-                                {subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "ZhbwbyzM" && "٥٤ دك / ش"}
+                                {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].total_pay}
+                                {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].total_pay}
+                                {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].total_pay}
+                                { paymentSettings?.currency_symbol }
                             </span>
                         </div>
 
                         {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__details__exp"]}>
-                                ستوفر
-                                {subscriptionPlansBanks.bank == "BOUBYAN" && subscriptionPlansBanks.subplan_id == "ZhbwbyzM" && "٥٠٪"}
-                                {subscriptionPlansBanks.subplan_id == "" && "٤٠٪"}
+                                {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].discount_label}
+                                {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].discount_label}
+                                {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].discount_label}
                                 العرض سينتهي خلال
                                 <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
                             </div>}
@@ -3281,9 +3355,10 @@ function CheckoutPage(props: any) {
                                 }}
 
                                 createSubscription={(data: any, actions: any): any => {
+
                                     setIsSpinnerExist(true);
                                     return (
-                                        axiosInstance.post(`payments/payouts`, {
+                                        axiosInstance.post(`payments/payouts/?country_code=null`, {
                                             "action": "web",
                                             "payment_method": "paypal",
                                             "checkout_type": "subscription",
@@ -3297,9 +3372,12 @@ function CheckoutPage(props: any) {
                                                         localStorage.setItem("paymentId", response.data.data.payment_id);
                                                         setCheckoutTransactionDetails(response.data.data);
 
+                                                        // setPaypalPlanId(paymentSettings?.paypal.planid);
+                                                        console.log("paymentSettings", paymentSettings);
+
                                                         return actions.subscription.create({
-                                                            plan_id: paymentSettings?.paypal.planid,
-                                                            purchase_units: [{ amount: { value: paymentSettings.usd_amount } }],
+                                                            plan_id: paypalPlanId || paymentSettings?.paypal.planid,
+                                                            purchase_units: [{ amount: { value: paymentSettings?.usd_amount } }],
                                                         });
 
                                                     } else {
@@ -3372,12 +3450,10 @@ function CheckoutPage(props: any) {
                         <div className={styles["checkout__cart-sticky-card__subscribe-summary__cancel-sub"]}>
                             لا يوجد إلتزام ، إلغاء الإشتراك في أي وقت
                         </div>
-
                     </div>
                 }
             </>
         </PayPalScriptProvider>
-
     );
 }
 

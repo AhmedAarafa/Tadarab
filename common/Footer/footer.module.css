@@ -10,15 +10,9 @@
 }
 
 .footer__inquiries-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
 }
 
 .footer__inquiries-box__trainer-img {
@@ -29,7 +23,6 @@
   width: 3.75rem;
   height: 3.75rem;
 }
-
 .footer__inquiries-box__trainer-img img {
   border-radius: 50%;
   width: 3.75rem;
@@ -54,7 +47,7 @@
 .footer__inquiry-field {
   border: 0 !important;
   padding: 1rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   width: 85%;
   height: 5.625rem;
   font-size: 1.063rem;
@@ -63,56 +56,35 @@
   resize: none;
   overflow: hidden;
 }
-
 .footer__inquiry-field:active, .footer__inquiry-field:focus {
   outline: 0 !important;
   -webkit-appearance: none;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
-
-.footer__inquiry-field::-webkit-input-placeholder {
+.footer__inquiry-field::-moz-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-
 .footer__inquiry-field:-ms-input-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-
-.footer__inquiry-field::-ms-input-placeholder {
-  color: rgba(34, 34, 34, 0.5);
-}
-
 .footer__inquiry-field::placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
 
 .footer__name-email-fields-box {
   width: 85%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .footer__name-field {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   border: 0 !important;
   padding: 0 1.5rem 0 0;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   width: 49%;
   height: 3.125rem;
   font-size: 1.063rem;
@@ -120,43 +92,28 @@
   margin: 0.75rem 0 0 0;
   display: inline-block;
 }
-
 .footer__name-field:active, .footer__name-field:focus {
   outline: 0 !important;
   -webkit-appearance: none;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
-
-.footer__name-field::-webkit-input-placeholder {
+.footer__name-field::-moz-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-
 .footer__name-field:-ms-input-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-
-.footer__name-field::-ms-input-placeholder {
-  color: rgba(34, 34, 34, 0.5);
-}
-
 .footer__name-field::placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
 
 .footer__email-field {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: unset;
-      -ms-flex-pack: unset;
-          justify-content: unset;
+  align-items: center;
+  justify-content: unset;
   border: 0 !important;
   padding: 0 1.5rem 0 0;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   width: 49%;
   height: 3.125rem;
   font-size: 1.063rem;
@@ -164,39 +121,29 @@
   margin: 0.75rem 0 0 0;
   display: inline-block;
 }
-
 .footer__email-field:active, .footer__email-field:focus {
   outline: 0 !important;
   -webkit-appearance: none;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
 }
-
-.footer__email-field::-webkit-input-placeholder {
+.footer__email-field::-moz-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-
 .footer__email-field:-ms-input-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-
-.footer__email-field::-ms-input-placeholder {
-  color: rgba(34, 34, 34, 0.5);
-}
-
 .footer__email-field::placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
 
 .footer__send-btn {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
+  box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
   font-weight: 700;
   padding: 0.375rem 0.75rem;
   border-radius: 0.625rem;
-  font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
@@ -207,17 +154,12 @@
   height: 3.125rem;
   margin: 1.875rem 0 0 0.5rem;
 }
-
 .footer__send-btn:hover {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .footer__send-btn:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
-
 .footer__send-btn:hover, .footer__send-btn:active {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
@@ -228,7 +170,6 @@
   list-style-type: none;
   padding: 0;
 }
-
 .footer__training-courses-list li,
 .footer__about-tadarab-list li {
   font-size: 1rem;
@@ -239,7 +180,6 @@
   width: -moz-fit-content;
   width: fit-content;
 }
-
 .footer__training-courses-list li:nth-of-type(1),
 .footer__about-tadarab-list li:nth-of-type(1) {
   font-size: 1.25rem;
@@ -266,12 +206,10 @@
   color: white;
   margin-top: 1.875rem;
 }
-
 .footer__cross-platforms div,
 .footer__pay-box div {
   margin-bottom: 0.8rem;
 }
-
 .footer__cross-platforms img,
 .footer__pay-box img {
   width: 8rem;
@@ -282,31 +220,25 @@
 .footer__pay-box div {
   margin-bottom: 0.4rem;
 }
-
 .footer__pay-box img {
   margin-left: 0.45rem;
 }
-
 .footer__pay-box img:nth-of-type(1) {
   width: 2.01875rem;
   height: 1.275rem;
 }
-
 .footer__pay-box img:nth-of-type(2) {
   width: 3.24105rem;
   height: 1.275rem;
 }
-
 .footer__pay-box img:nth-of-type(3) {
   width: 2.2848rem;
   height: 1.275rem;
 }
-
 .footer__pay-box img:nth-of-type(4) {
   width: 1.53rem;
   height: 1.53rem;
 }
-
 .footer__pay-box img:nth-of-type(5) {
   width: 3.3rem;
   height: 1.3rem;
@@ -318,7 +250,6 @@
   color: white;
   margin-top: 1.875rem;
 }
-
 .footer__location div:nth-of-type(2),
 .footer__email div:nth-of-type(2) {
   font-size: 0.85rem;
@@ -332,7 +263,6 @@
 .footer__contacts-box__contacts {
   margin-top: 5rem;
 }
-
 .footer__contacts-box__contacts svg {
   margin-left: 1.5rem;
 }
@@ -354,7 +284,7 @@
   position: absolute;
   bottom: -3rem;
   border-radius: 0.7rem;
-  margin-right: calc(calc(85% - 12.1875rem)/2);
+  margin-right: calc((85% - 12.1875rem) / 2);
 }
 
 .footer__info-msg--success {
@@ -381,15 +311,9 @@
     margin-bottom: 3rem;
   }
   .footer__inquiries-box {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     margin: 5.438rem 0 2.5rem 0;
   }
   .footer__inquiries-box__trainer-img {
@@ -425,19 +349,12 @@
   .footer__inquiry-field:active, .footer__inquiry-field:focus {
     outline: 0 !important;
     -webkit-appearance: none;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
   }
   .footer__name-field {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     border: 0 !important;
     padding: 0 3.438rem 0 0;
     width: 100%;
@@ -449,19 +366,12 @@
   .footer__name-field:active, .footer__name-field:focus {
     outline: 0 !important;
     -webkit-appearance: none;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
   }
   .footer__email-field {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: unset;
-        -ms-flex-pack: unset;
-            justify-content: unset;
+    align-items: center;
+    justify-content: unset;
     border: 0 !important;
     padding: 0 3.438rem 0 0;
     width: 100%;
@@ -473,18 +383,16 @@
   .footer__email-field:active, .footer__email-field:focus {
     outline: 0 !important;
     -webkit-appearance: none;
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
   }
   .footer__send-btn {
-    -webkit-box-shadow: none !important;
-            box-shadow: none !important;
+    box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
     font-weight: 700;
     padding: 0.375rem 0.75rem;
     border-radius: 0.625rem;
-    font-family: 'Almarai', sans-serif;
+    font-family: "Almarai", sans-serif;
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
@@ -497,26 +405,24 @@
     margin: 1.813rem 0 0 0;
   }
   .footer__send-btn:hover {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .footer__send-btn:active {
-    -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
   }
   .footer__send-btn:hover, .footer__send-btn:active {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
   .footer__training-courses-list,
-  .footer__about-tadarab-list {
+.footer__about-tadarab-list {
     list-style-type: none;
     padding: 0 0 4.063rem 0;
     border-bottom: 0.03rem solid rgba(119, 119, 119, 0.6);
     margin: 6.5rem 0 0 0;
   }
   .footer__training-courses-list li,
-  .footer__about-tadarab-list li {
+.footer__about-tadarab-list li {
     font-size: 2.5rem;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 3.125rem;
@@ -526,7 +432,7 @@
     width: fit-content;
   }
   .footer__training-courses-list li:nth-of-type(1),
-  .footer__about-tadarab-list li:nth-of-type(1) {
+.footer__about-tadarab-list li:nth-of-type(1) {
     font-size: 3.75rem;
     font-weight: 800;
     color: white;
@@ -551,22 +457,22 @@
     margin-left: 1.2rem;
   }
   .footer__cross-platforms,
-  .footer__pay-box {
+.footer__pay-box {
     font-size: 2rem;
     color: white;
     margin-top: 1.875rem;
   }
   .footer__cross-platforms div,
-  .footer__pay-box div {
+.footer__pay-box div {
     margin-bottom: 2.031rem;
   }
   .footer__location div:nth-of-type(1),
-  .footer__email div:nth-of-type(1) {
+.footer__email div:nth-of-type(1) {
     font-size: 2rem;
     margin-top: 1.875rem;
   }
   .footer__location div:nth-of-type(2),
-  .footer__email div:nth-of-type(2) {
+.footer__email div:nth-of-type(2) {
     font-size: 1.9rem;
     color: rgba(255, 255, 255, 0.7);
   }
@@ -597,15 +503,9 @@
     text-align: center;
   }
   .footer__contacts-box__contacts {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: center;
     margin-top: 10.938rem;
   }
   .footer__contacts-box__contacts svg {
@@ -619,21 +519,19 @@
     margin-top: 1.125rem;
   }
   .footer__info-msg--success,
-  .footer__info-msg--error {
+.footer__info-msg--error {
     font-size: 2.3rem;
     padding: 1.25rem 5rem;
     bottom: -7.5rem;
     border-radius: 1.75rem;
-    margin-right: calc(calc(100% - 12.1875rem*2.5)/2);
+    margin-right: calc((100% - 30.46875rem) / 2);
   }
 }
-
 @media (min-width: 1960px) {
   .footer {
     position: static;
     bottom: 0;
-    margin: 0 calc((1978px - 100vw)/2);
+    margin: 0 calc((1978px - 100vw) / 2);
     margin-top: 5rem;
   }
-}
-/*# sourceMappingURL=footer.module.css.map */
+}/*# sourceMappingURL=footer.module.css.map */
