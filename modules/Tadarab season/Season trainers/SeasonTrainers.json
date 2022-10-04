@@ -1,9 +1,5 @@
 [
     {
-        "name":"إبراهيم الخليفي",
-        "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/elkholefy.png"
-    },
-    {
         "name":"أحمد الملا",
         "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/elmolla.png"
     },
@@ -12,24 +8,28 @@
         "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/eman.png"
     },
     {
+        "name":"إبراهيم الخليفي",
+        "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/elkholefy.png"
+    },
+    {
         "name":"هنادي المباركي",
         "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/hanadi.png"
-    },
-    {
-        "name":"منى الهزيم",
-        "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/mona-el-hazim.png"
-    },
-    {
-        "name":"منيرة عثمان",
-        "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/mounira.png"
     },
     {
         "name":"عثمان العصفور",
         "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/othman.png"
     },
     {
+        "name":"منى الهزيم",
+        "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/mona-el-hazim.png"
+    },
+    {
         "name":"عبدالعزيز العبيد",
         "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/abd-elaziz-copy.png"
+    },
+    {
+        "name":"منيرة عثمان",
+        "img_src":"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/mounira.png"
     },
     {
         "name":"بسام الجزاف",

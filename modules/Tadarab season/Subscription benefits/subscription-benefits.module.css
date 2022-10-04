@@ -1,6 +1,6 @@
 .subscription-benefits {
   padding: 5rem 1.6rem;
-  background-color: #2d2d37;
+  background-color: #0E0B1D;
 }
 
 .subscription-benefits__title {
@@ -10,6 +10,9 @@
   font-size: 2.5rem;
   font-weight: 700;
   color: white;
+}
+.subscription-benefits__title * {
+  padding-right: 3rem;
 }
 
 .subscription-benefits__benefits {
@@ -68,6 +71,9 @@
     justify-content: center;
     text-align: center;
     font-size: 5rem;
+  }
+  .subscription-benefits__title * {
+    padding-right: 0;
   }
   .subscription-benefits__benefits__list-item {
     display: flex;

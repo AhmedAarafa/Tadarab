@@ -45,7 +45,11 @@ export default function TrainingSteps() {
                         </div>
                     </div>
 
+
                     <div className={styles["tadarab-steps__video"]}>
+                    <div className={styles["tadarab-steps__video-title"]}>
+                        شاهد قبل الحذف
+                    </div>
                         <TadarabVideoPlayer Source={"https://vod-progressive.akamaized.net/exp=1664801383~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F4532%2F9%2F247664084%2F895955866.mp4~hmac=b6e5b42bcfdeebc9d74652cd7c7af225a2757b4285ecb5b7c05c0a8d1108a42b/vimeo-prod-skyfire-std-us/01/4532/9/247664084/895955866.mp4"} Poster={"https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/%D8%A7%D9%84%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A-%D9%88%D9%81%D9%86-%D8%A7%D9%84%D8%AF%D9%8A%D9%83%D9%88%D8%B1-%D8%AF%D9%84%D8%A7%D9%84-%D8%A7%D9%84%D9%88%D9%87%D9%8A%D8%A8.jpg"} />
                     </div>
                 </Col>

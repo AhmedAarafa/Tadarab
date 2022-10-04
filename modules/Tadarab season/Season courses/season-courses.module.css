@@ -1,5 +1,5 @@
 .season-courses {
-  margin: 5rem 0rem;
+  margin: 0 0rem 5rem 0;
 }
 
 .season-courses__title {
@@ -76,11 +76,11 @@
 }
 
 .season-courses__cards-carousel {
-  margin-top: 2rem;
+  margin-top: 3.25rem;
   margin-bottom: 0;
 }
 .season-courses__cards-carousel > div {
-  padding: 0 1.6rem !important;
+  padding: 0 2.6rem !important;
 }
 .season-courses__cards-carousel > div:before {
   content: "";
@@ -95,20 +95,20 @@
   pointer-events: none;
 }
 .season-courses__cards-carousel > div > div:nth-child(1), .season-courses__cards-carousel > div > div:nth-child(2) {
-  top: 41% !important;
+  top: 39% !important;
 }
 .season-courses__cards-carousel > div > div:nth-child(4) {
-  padding-bottom: 2rem !important;
+  padding-bottom: 3.25rem !important;
 }
 
 .season-courses__cards-carousel__card,
 .season-courses__cards-carousel__card--paid {
-  width: 15rem;
+  width: 24.375rem;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  box-shadow: 0 0.4rem 1.0504rem rgba(0, 0, 0, 0.1019607843);
-  border-radius: 0.68rem;
+  box-shadow: 0 0.65rem 1.7069rem rgba(0, 0, 0, 0.1019607843);
+  border-radius: 1.105rem;
   position: relative;
   display: inline-block;
 }
@@ -127,7 +127,7 @@
   border-radius: 0.75rem;
   padding: 0.12rem 0.7rem;
   color: white;
-  font-size: 0.6rem;
+  font-size: 0.975rem;
   font-weight: 700;
   background-color: var(--primary-red);
 }
@@ -140,8 +140,8 @@
   padding: 0.12rem 0.7rem;
   color: white;
   left: 0rem;
-  right: 0.16rem;
-  font-size: 0.6rem;
+  right: 0.26rem;
+  font-size: 0.975rem;
   font-weight: 700;
   color: var(--dark-black);
   display: flex;
@@ -152,15 +152,15 @@
   color: white;
 }
 .season-courses__cards-carousel__course-card__duration-chip > div svg {
-  width: 1.2rem !important;
-  height: 1.2rem !important;
+  width: 1.95rem !important;
+  height: 1.95rem !important;
 }
 
 .season-courses__cards-carousel__card__trainer-img {
   width: 100%;
-  height: 10rem;
+  height: 16.25rem;
   display: block;
-  border-radius: 0.68rem;
+  border-radius: 1.105rem;
   cursor: pointer !important;
 }
 
@@ -174,13 +174,13 @@
 
 .season-courses__cards-carousel__card__card-body__card-header {
   position: relative;
-  margin-top: 0.64rem;
+  margin-top: 1.04rem;
   padding: 0 0 1rem 0;
-  border-bottom: 0.04rem solid rgba(34, 34, 34, 0.1);
+  border-bottom: 0.065rem solid rgba(34, 34, 34, 0.1);
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__title {
-  font-size: 0.8504rem;
+  font-size: 1.3819rem;
   font-weight: 800;
   color: var(--dark-black);
   margin: 0;
@@ -193,7 +193,7 @@
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__author {
-  font-size: 0.6504rem;
+  font-size: 1.0569rem;
   color: var(--grey);
   width: 13.4375rem;
   text-overflow: ellipsis;
@@ -203,9 +203,9 @@
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__para {
-  font-size: 0.6504rem;
+  font-size: 1.0569rem;
   color: var(--grey);
-  margin-top: 0.8rem;
+  margin-top: 1.3rem;
   width: 100%;
   display: -webkit-box;
   overflow: hidden;
@@ -215,14 +215,14 @@
 }
 
 .season-courses__cards-carousel__card__card-body__checkout-details {
-  margin-top: 0.64rem;
+  margin-top: 1.04rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .season-courses__cards-carousel__card__card-body__checkout-details__price {
-  font-size: 1rem;
+  font-size: 1.625rem;
   font-weight: 800;
   color: var(--dark-black);
 }
@@ -237,7 +237,7 @@
   align-items: center;
   justify-content: center;
   display: inline-flex;
-  margin-right: 0.24rem;
+  margin-right: 0.39rem;
   padding: 0 !important;
   width: 2.25rem;
   height: 2.25rem;
@@ -251,25 +251,25 @@
 }
 
 .season-courses__cards-carousel__card__live-icon {
-  width: 2.0504rem;
-  height: 2.0504rem;
+  width: 3.3319rem;
+  height: 3.3319rem;
   background-color: #FF0000;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: -0.96rem;
-  left: 6.8rem;
+  bottom: -1.56rem;
+  left: 11.05rem;
   -webkit-animation: ripple 1000ms infinite;
           animation: ripple 1000ms infinite;
 }
 .season-courses__cards-carousel__card__live-icon svg {
-  width: 1.4rem;
-  height: 1.6rem;
-  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.0784313725);
+  width: 2.275rem;
+  height: 2.6rem;
+  box-shadow: 0 0 0.4875rem rgba(0, 0, 0, 0.0784313725);
   opacity: 0.4;
-  margin-left: 0.12rem;
+  margin-left: 0.195rem;
 }
 
 @-webkit-keyframes ripple {
@@ -277,7 +277,7 @@
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05), 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05);
   }
   100% {
-    box-shadow: 0 0 0 0.5rem rgba(255, 0, 0, 0.1), 0 0 0 0.6rem rgba(255, 255, 255, 0), 0 0 0 1.0504rem rgba(255, 0, 0, 0.1), 0 0 0 1.1504rem rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0.8125rem rgba(255, 0, 0, 0.1), 0 0 0 0.975rem rgba(255, 255, 255, 0), 0 0 0 1.7069rem rgba(255, 0, 0, 0.1), 0 0 0 1.8694rem rgba(255, 255, 255, 0);
   }
 }
 
@@ -286,7 +286,7 @@
     box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05), 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05);
   }
   100% {
-    box-shadow: 0 0 0 0.5rem rgba(255, 0, 0, 0.1), 0 0 0 0.6rem rgba(255, 255, 255, 0), 0 0 0 1.0504rem rgba(255, 0, 0, 0.1), 0 0 0 1.1504rem rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0.8125rem rgba(255, 0, 0, 0.1), 0 0 0 0.975rem rgba(255, 255, 255, 0), 0 0 0 1.7069rem rgba(255, 0, 0, 0.1), 0 0 0 1.8694rem rgba(255, 255, 255, 0);
   }
 }
 .season-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
@@ -320,11 +320,11 @@
 
 @media (max-width: 1200px) {
   .season-courses__cards-carousel {
-    margin-top: 2.6rem;
-    margin-bottom: 7.28rem;
+    margin-top: 3.2rem;
+    margin-bottom: 8.96rem;
   }
   .season-courses__cards-carousel > div {
-    padding: 0 2.08rem !important;
+    padding: 0 2.56rem !important;
   }
   .season-courses__cards-carousel > div:before {
     content: "";
@@ -342,47 +342,47 @@
     top: 41% !important;
   }
   .season-courses__cards-carousel > div > div:nth-child(1):after, .season-courses__cards-carousel > div > div:nth-child(2):after {
-    font-size: 1.04rem !important;
-    box-shadow: 0 0 1.3rem rgba(0, 0, 0, 0.2) !important;
+    font-size: 1.28rem !important;
+    box-shadow: 0 0 1.6rem rgba(0, 0, 0, 0.2) !important;
   }
   .season-courses__cards-carousel > div > div:nth-child(1) {
-    right: 1.04rem !important;
+    right: 1.28rem !important;
   }
   .season-courses__cards-carousel > div > div:nth-child(1):after {
-    padding: 1.56rem 1.2272rem 1.56rem 1.3312rem !important;
+    padding: 1.92rem 1.5104rem 1.92rem 1.6384rem !important;
   }
   .season-courses__cards-carousel > div > div:nth-child(2) {
-    left: 1.04rem !important;
+    left: 1.28rem !important;
   }
   .season-courses__cards-carousel > div > div:nth-child(2):after {
-    padding: 1.56rem 1.3312rem 1.56rem 1.2272rem !important;
+    padding: 1.92rem 1.6384rem 1.92rem 1.5104rem !important;
   }
   .season-courses__cards-carousel > div > div:nth-child(4) {
-    padding-bottom: 2.6rem !important;
+    padding-bottom: 3.2rem !important;
   }
   .season-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
   .season-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
-    font-size: 0.84552rem;
+    font-size: 1.04064rem;
   }
   .season-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
-    margin-top: -0.52rem;
+    margin-top: -0.64rem;
   }
   .season-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
-    font-size: 0.91rem;
+    font-size: 1.12rem;
   }
   .season-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
   }
   .season-courses__cards-carousel__card,
 .season-courses__cards-carousel__card--paid {
-    width: 19.5rem;
+    width: 24rem;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    box-shadow: 0 0.52rem 1.36552rem rgba(0, 0, 0, 0.1019607843);
-    border-radius: 0.884rem;
+    box-shadow: 0 0.64rem 1.68064rem rgba(0, 0, 0, 0.1019607843);
+    border-radius: 1.088rem;
     position: relative;
     display: inline-block;
   }
@@ -399,7 +399,7 @@
     border-radius: 0.75rem;
     padding: 0.12rem 0.7rem;
     color: white;
-    font-size: 0.78rem;
+    font-size: 0.96rem;
     font-weight: 700;
     background-color: var(--primary-red);
   }
@@ -411,8 +411,8 @@
     padding: 0.12rem 0.7rem;
     color: white;
     left: 0rem;
-    right: 0.208rem;
-    font-size: 0.78rem;
+    right: 0.256rem;
+    font-size: 0.96rem;
     font-weight: 700;
     color: var(--dark-black);
     display: flex;
@@ -420,48 +420,48 @@
     justify-content: unset;
   }
   .season-courses__cards-carousel__course-card__duration-chip > div svg {
-    width: 1.56rem !important;
-    height: 1.56rem !important;
+    width: 1.92rem !important;
+    height: 1.92rem !important;
   }
   .season-courses__cards-carousel__card__trainer-img {
     width: 100%;
-    height: 13rem;
+    height: 16rem;
     display: block;
-    border-radius: 0.884rem;
+    border-radius: 1.088rem;
   }
   .season-courses__cards-carousel__card__card-body {
     padding: 0.316rem 0.79rem 0 0.79rem;
   }
   .season-courses__cards-carousel__card__card-body__card-header {
     position: relative;
-    margin-top: 0.832rem;
-    padding: 0 0 1.04rem 0;
-    border-bottom: 0.052rem solid rgba(34, 34, 34, 0.1);
+    margin-top: 1.024rem;
+    padding: 0 0 1.28rem 0;
+    border-bottom: 0.064rem solid rgba(34, 34, 34, 0.1);
   }
   .season-courses__cards-carousel__card__card-body__card-header__course-details__title {
-    font-size: 1.10552rem;
+    font-size: 1.36064rem;
     font-weight: 800;
     color: var(--dark-black);
     width: 17.5rem;
   }
   .season-courses__cards-carousel__card__card-body__card-header__course-details__author {
-    font-size: 0.84552rem;
+    font-size: 1.04064rem;
     color: var(--grey);
     width: 17.5rem;
   }
   .season-courses__cards-carousel__card__card-body__card-header__course-details__para {
-    font-size: 0.84552rem;
+    font-size: 1.04064rem;
     color: var(--grey);
-    margin-top: 1.04rem;
+    margin-top: 1.28rem;
   }
   .season-courses__cards-carousel__card__card-body__checkout-details {
-    margin-top: 0.832rem;
+    margin-top: 1.024rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .season-courses__cards-carousel__card__card-body__checkout-details__price {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--dark-black);
   }
@@ -475,7 +475,7 @@
     align-items: center;
     justify-content: center;
     display: inline-flex;
-    margin-right: 0.312rem;
+    margin-right: 0.384rem;
     padding: 0 !important;
     width: 2.565rem;
     height: 2.565rem;
@@ -488,32 +488,32 @@
     height: 2.06682rem;
   }
   .season-courses__cards-carousel__card__live-icon {
-    width: 2.66552rem;
-    height: 2.66552rem;
+    width: 3.28064rem;
+    height: 3.28064rem;
     background-color: #FF0000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: -1.248rem;
-    left: 8.84rem;
+    bottom: -1.536rem;
+    left: 10.88rem;
     -webkit-animation: ripple 1000ms infinite;
             animation: ripple 1000ms infinite;
   }
   .season-courses__cards-carousel__card__live-icon svg {
-    width: 1.82rem;
-    height: 2.08rem;
-    box-shadow: 0 0 0.39rem rgba(0, 0, 0, 0.0784313725);
+    width: 2.24rem;
+    height: 2.56rem;
+    box-shadow: 0 0 0.48rem rgba(0, 0, 0, 0.0784313725);
     opacity: 0.4;
-    margin-left: 0.156rem;
+    margin-left: 0.192rem;
   }
   @-webkit-keyframes ripple {
     0% {
       box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05), 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05);
     }
     100% {
-      box-shadow: 0 0 0 0.65rem rgba(255, 0, 0, 0.1), 0 0 0 0.78rem rgba(255, 255, 255, 0), 0 0 0 1.36552rem rgba(255, 0, 0, 0.1), 0 0 0 1.49552rem rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 0.8rem rgba(255, 0, 0, 0.1), 0 0 0 0.96rem rgba(255, 255, 255, 0), 0 0 0 1.68064rem rgba(255, 0, 0, 0.1), 0 0 0 1.49552rem rgba(255, 255, 255, 0);
     }
   }
   @keyframes ripple {
@@ -521,7 +521,7 @@
       box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05), 0 0 0 0 rgba(255, 0, 0, 0.1), 0 0 0 0 rgba(255, 0, 0, 0.05);
     }
     100% {
-      box-shadow: 0 0 0 0.65rem rgba(255, 0, 0, 0.1), 0 0 0 0.78rem rgba(255, 255, 255, 0), 0 0 0 1.36552rem rgba(255, 0, 0, 0.1), 0 0 0 1.49552rem rgba(255, 255, 255, 0);
+      box-shadow: 0 0 0 0.8rem rgba(255, 0, 0, 0.1), 0 0 0 0.96rem rgba(255, 255, 255, 0), 0 0 0 1.68064rem rgba(255, 0, 0, 0.1), 0 0 0 1.49552rem rgba(255, 255, 255, 0);
     }
   }
 }
@@ -735,7 +735,7 @@
 }
 @media (max-width: 575px) {
   .season-courses {
-    margin: 10rem 0rem;
+    margin: 0 0 5rem 0;
   }
   .season-courses__cards-carousel {
     margin-top: 4.5rem;

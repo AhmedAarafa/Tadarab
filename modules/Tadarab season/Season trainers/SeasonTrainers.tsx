@@ -14,6 +14,11 @@ export default function SeasonTrainers() {
     return (
         <>
             <Row>
+                <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["season-trainers__title"]}>
+                    <h2>
+                        <span> مدربين موسم تدرب</span>
+                    </h2>
+                </Col>
                 <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 3 }} className={styles["season-trainers__cards-carousel"]}>
                     <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{ "clickable": true }}
                         breakpoints={{

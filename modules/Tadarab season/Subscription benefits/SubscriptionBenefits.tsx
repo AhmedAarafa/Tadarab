@@ -28,9 +28,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
-                                <span className={styles["subscription-benefits--important"]}>
-                                    700
-                                </span>
+                                700
                                 دورة تدريبية).
                             </span>
                         </div>
@@ -39,9 +37,7 @@ export default function SubscriptionBenefits() {
                                 <TickIcon />
                             </div>
                             <span>
-                                <span className={styles["subscription-benefits--important"]}>
-                                    دورات جديدة
-                                </span>
+                                دورات جديدة
                                 تضاف شهريًا.
                             </span>
                         </div>
@@ -51,10 +47,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 عدد لا نهائي من
-                                <span className={styles["subscription-benefits--important"]}>
-
-                                    شهادات
-                                </span>
+                                شهادات
                                 إتمام الدورات.
                             </span>
                         </div>
@@ -64,10 +57,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 ملخصات
-                                <span className={styles["subscription-benefits--important"]}>
-
-                                    كتب إلكترونية
-                                </span>
+                                كتب إلكترونية
                                 حصرية.
                             </span>
                         </div>
@@ -77,9 +67,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 دورات
-                                <span className={styles["subscription-benefits--important"]}>
-                                    بث مباشر
-                                </span>
+                                بث مباشر
                                 تفاعلية حصرية.
                             </span>
                         </div>
@@ -89,9 +77,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 إمكانية متابعة الدورات من
-                                <span className={styles["subscription-benefits--important"]}>
-                                    أي جهاز
-                                </span>
+                                أي جهاز
                                 وبأي وقت.
                             </span>
                         </div>
@@ -101,9 +87,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 إمكانية
-                                <span className={styles["subscription-benefits--important"]}>
-                                    تحميل وطباعة المرفقات
-                                </span>
+                                تحميل وطباعة المرفقات
                                 والتمارين لسهولة التطبيق.
                             </span>
                         </div>
@@ -113,9 +97,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 لا يوجد التزام، يمكنك
-                                <span style={{ fontWeight: "700" }} className={styles["subscription-benefits--important"]}>
-                                    إلغاء الاشتراك
-                                </span>
+                                إلغاء الاشتراك
                                 في أي وقت.
                             </span>
                         </div>

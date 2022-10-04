@@ -1,7 +1,8 @@
 @import "../../../styles/mixins";
 
 .latest-courses {
-    background-color: #2d2d37; 
+    background-color: #0E0B1D;
+    border-radius: 5rem 0 0 0;
 }
 
 .latest-courses__title {
@@ -171,7 +172,7 @@
 
         &>div:nth-child(1),
         &>div:nth-child(2) {
-            top: 48% !important
+            top: 46% !important
         }
 
         &>div:nth-child(3) {
@@ -925,6 +926,10 @@
 
 @media (max-width:575px) {
 
+    .latest-courses {
+        border-radius: 0;
+    }
+
     .latest-courses__title {
         span {
             font-size: 4.688rem;
@@ -939,7 +944,7 @@
         padding: 0 3rem 0 4rem;
         font-size: 2.2rem;
         list-style-type: none;
-        color: #0E0B1D;
+        color: white;
         @include flex(center, flex-start);
         flex-wrap: wrap;
 
@@ -959,6 +964,7 @@
 
     .latest-courses__departments-list__item--active {
         text-underline-offset: 0.2rem*2.92;
+        text-decoration: underline 0.3rem var(--pale-red);
     }
 
 

@@ -160,20 +160,8 @@ export default function SeasonCourses() {
                 <Row className={styles["season-courses"]}>
                     <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["season-courses__title"]}>
                         <h2>
-                            <span> الدورات </span>
-                            <span> المباشرة </span>
+                            <span>دورات موسم تدرب  </span>
                         </h2>
-                    </Col>
-                    <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["season-courses__see-more-btn-col"]}>
-
-                        <Button className={styles["season-courses__see-more-btn"]}
-                            onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`) }}
-                        >
-                            اعرض المزيد
-                            <ChevronLeftIcon color="#af151f" />
-
-                        </Button>
-
                     </Col>
 
                     <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 2 }} className={styles["season-courses__cards-carousel"]}>
@@ -186,58 +174,107 @@ export default function SeasonCourses() {
                                     slidesPerView: 3,
                                 },
                                 "981": {
-                                    slidesPerView: 4,
+                                    slidesPerView: 3,
                                 },
                                 "1201": {
-                                    slidesPerView: 5,
+                                    slidesPerView: 3,
                                 },
                             }} className="mySwiper">
 
                             {liveCourses?.map((lc: any, i: number) => {
                                 return (
-                                    <SwiperSlide key={i}>
-                                        <Card className={`${lc.price == 0 ? styles["season-courses__cards-carousel__card"] : styles["season-courses__cards-carousel__card--paid"]} 
+                                    <>
+                                        <SwiperSlide key={i}>
+                                            <Card className={`${lc.price == 0 ? styles["season-courses__cards-carousel__card"] : styles["season-courses__cards-carousel__card--paid"]} 
                     `}>
-                                            {lc.categories[0] !== undefined && lc.categories[0].title !== null && lc.categories[0].title !== "" &&
+                                                {lc.categories[0] !== undefined && lc.categories[0].title !== null && lc.categories[0].title !== "" &&
 
+                                                    <div
+                                                        className={
+                                                            styles[
+                                                            "season-courses__cards-carousel__course-card__category-chip"
+                                                            ]
+                                                        }
+                                                        style={{ backgroundColor: `${lc.categories[0] !== undefined && lc.categories[0].color}` }}
+                                                    >
+                                                        {lc.categories[0] !== undefined && lc.categories[0].title}
+                                                    </div>
+                                                }
                                                 <div
                                                     className={
                                                         styles[
-                                                        "season-courses__cards-carousel__course-card__category-chip"
+                                                        "season-courses__cards-carousel__course-card__duration-chip"
                                                         ]
                                                     }
-                                                    style={{ backgroundColor: `${lc.categories[0] !== undefined && lc.categories[0].color}` }}
                                                 >
-                                                    {lc.categories[0] !== undefined && lc.categories[0].title}
+                                                    <div>
+                                                        {lc.full_date == Math.floor(Date.now() / 1000) && <LiveIcon />}
+                                                    </div>
+                                                    <div>
+
+                                                        {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
+                                                    </div>
                                                 </div>
-                                            }
-                                            <div
-                                                className={
-                                                    styles[
-                                                    "season-courses__cards-carousel__course-card__duration-chip"
-                                                    ]
+
+                                                {/* <Link href={`/webinar/${lc.slug}`}> */}
+                                                <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src="images/eman.png" alt='trainer image'
+                                                    className={styles["season-courses__cards-carousel__card__trainer-img"]} />
+                                                {/* </Link> */}
+
+                                                {(lc.webinar_type == "live" || lc.webinar_type == "replay") &&
+                                                    <div className={styles["season-courses__cards-carousel__card__live-icon"]}>
+                                                        <PlayIcon />
+
+                                                    </div>
                                                 }
-                                            >
-                                                <div>
-                                                    {lc.full_date == Math.floor(Date.now() / 1000) && <LiveIcon />}
+                                            </Card>
+                                        </SwiperSlide>
+                                        <SwiperSlide>
+                                            <Card className={`${lc.price == 0 ? styles["season-courses__cards-carousel__card"] : styles["season-courses__cards-carousel__card--paid"]} 
+                `}>
+                                                {lc.categories[0] !== undefined && lc.categories[0].title !== null && lc.categories[0].title !== "" &&
+
+                                                    <div
+                                                        className={
+                                                            styles[
+                                                            "season-courses__cards-carousel__course-card__category-chip"
+                                                            ]
+                                                        }
+                                                        style={{ backgroundColor: `${lc.categories[0] !== undefined && lc.categories[0].color}` }}
+                                                    >
+                                                        {lc.categories[0] !== undefined && lc.categories[0].title}
+                                                    </div>
+                                                }
+                                                <div
+                                                    className={
+                                                        styles[
+                                                        "season-courses__cards-carousel__course-card__duration-chip"
+                                                        ]
+                                                    }
+                                                >
+                                                    <div>
+                                                        {lc.full_date == Math.floor(Date.now() / 1000) && <LiveIcon />}
+                                                    </div>
+                                                    <div>
+
+                                                        {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
+                                                    </div>
                                                 </div>
-                                                <div>
 
-                                                    {lc.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{lc.short_date}</span>}
-                                                </div>
-                                            </div>
+                                                {/* <Link href={`/webinar/${lc.slug}`}> */}
+                                                <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src="images/eman.png" alt='trainer image'
+                                                    className={styles["season-courses__cards-carousel__card__trainer-img"]} />
+                                                {/* </Link> */}
 
-                                            {/* <Link href={`/webinar/${lc.slug}`}> */}
-                                            <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src="images/eman.png" alt='trainer image'
-                                                className={styles["season-courses__cards-carousel__card__trainer-img"]} />
-                                            {/* </Link> */}
-                                    
-                                            {(lc.webinar_type == "live" || lc.webinar_type == "replay") && <div className={styles["season-courses__cards-carousel__card__live-icon"]}>
-                                                <PlayIcon />
+                                                {(lc.webinar_type == "live" || lc.webinar_type == "replay") &&
+                                                    <div className={styles["season-courses__cards-carousel__card__live-icon"]}>
+                                                        <PlayIcon />
 
-                                            </div>}
-                                        </Card>
-                                    </SwiperSlide>
+                                                    </div>
+                                                }
+                                            </Card>
+                                        </SwiperSlide>
+                                    </>
 
                                 )
                             })

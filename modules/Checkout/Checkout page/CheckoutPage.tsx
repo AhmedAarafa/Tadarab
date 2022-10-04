@@ -62,7 +62,7 @@ function CheckoutPage(props: any) {
     const [threePlansSelection, setThreePlansSelection] = useState("yearly"); // monthly, yearly, midYearly
     const [subscriptionPlansBanks, setSubscriptionPlansBanks] = useState({ card_bin: 0, bank: "", subplan_id: "" }); // NBK, BOUBYAN, WARBA
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
-    const [paypalPlanId, setPaypalPlanId] = useState<any>(paymentSettings?.subscription_plans[2].paypal_id || "P-9H733381WX8930338MMVMYIY");
+    const [paypalPlanId, setPaypalPlanId] = useState<any>("P-9H733381WX8930338MMVMYIY");
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cartItems);
     const userStatus = useSelector((state: any) => state.userAuthentication);

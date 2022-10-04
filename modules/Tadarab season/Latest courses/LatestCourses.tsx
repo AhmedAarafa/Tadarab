@@ -142,8 +142,8 @@ function LatestCourses() {
             <Row className={styles["latest-courses"]}>
                 <Col xs={12} className={styles["latest-courses__title"]}>
                     <h2>
-                        <span>الدورات </span>
-                        <span>التدريبية</span>
+                        <span>استكشف دورات </span>
+                       <span>تدرب</span>
                     </h2>
                 </Col>
                 <Col

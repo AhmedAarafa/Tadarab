@@ -1,5 +1,6 @@
 .latest-courses {
-  background-color: #2d2d37;
+  background-color: #0E0B1D;
+  border-radius: 5rem 0 0 0;
 }
 
 .latest-courses__title {
@@ -179,7 +180,7 @@
   margin-bottom: -9.5rem;
 }
 .latest-courses__cards-carousel > div > div:nth-child(1), .latest-courses__cards-carousel > div > div:nth-child(2) {
-  top: 48% !important;
+  top: 46% !important;
 }
 .latest-courses__cards-carousel > div > div:nth-child(3) {
   display: none;
@@ -913,6 +914,9 @@
   }
 }
 @media (max-width: 575px) {
+  .latest-courses {
+    border-radius: 0;
+  }
   .latest-courses__title {
     text-align: center;
     padding: 0;
@@ -925,7 +929,7 @@
     padding: 0 3rem 0 4rem;
     font-size: 2.2rem;
     list-style-type: none;
-    color: #0E0B1D;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -943,6 +947,8 @@
   }
   .latest-courses__departments-list__item--active {
     text-underline-offset: 0.584rem;
+    -webkit-text-decoration: underline 0.3rem var(--pale-red);
+            text-decoration: underline 0.3rem var(--pale-red);
   }
   .latest-courses__cards-carousel {
     margin: 0.5rem 0 0 0;

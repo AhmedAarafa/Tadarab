@@ -109,7 +109,6 @@
   display: inline-flex;
   background-size: cover;
   background-repeat: no-repeat;
-  cursor: pointer;
 }
 
 .season-trainers__cards-carousel__card__card-body {
@@ -127,7 +126,6 @@
   font-size: 1rem;
   font-weight: 700;
   margin: 2rem 0 0.2504rem 0;
-  cursor: pointer;
 }
 
 .season-trainers__cards-carousel__card__job-title,
