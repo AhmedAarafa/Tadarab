@@ -2,13 +2,13 @@
 
 
 .faq__row {
-    background-color: rgba(0, 20, 37, 0.04);
+    background-color: #2d2d37; 
     padding: 2rem 8.75rem 3rem 8.75rem;
 }
 
 .faq__title {
     font-size: 1.5rem;
-    color: var(--dark-black);
+    color: white;
 
     div:nth-of-type(2) {
         font-weight: 800;
@@ -81,7 +81,7 @@
     margin: 1.625rem 0 7.125rem 0;
 
     span:nth-of-type(1) {
-        color: var(--dark-black);
+        color: white;
     }
 
     span:nth-of-type(2) {

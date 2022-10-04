@@ -11,7 +11,7 @@ export default function TadarabBenefits() {
             <Row>
                 <Col xs={12} className={styles["tadarab-benefits"]}>
                     <div className={styles["tadarab-benefits__img"]}>
-                        <img src="https://www.linkpicture.com/q/image-3_14.png" />
+                        <img src="images/UnlimitedTadarabSeason.png" />
                     </div>
                     <div>
                         <div className={styles["tadarab-benefits__title"]}>

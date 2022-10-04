@@ -228,100 +228,10 @@ export default function SeasonCourses() {
                                             </div>
 
                                             {/* <Link href={`/webinar/${lc.slug}`}> */}
-                                            <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src={lc.image} alt='trainer image'
+                                            <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src="images/eman.png" alt='trainer image'
                                                 className={styles["season-courses__cards-carousel__card__trainer-img"]} />
                                             {/* </Link> */}
-                                            <Card.Body className={styles["season-courses__cards-carousel__card__card-body"]}>
-                                                <div className={styles["season-courses__cards-carousel__card__card-body__card-header"]}>
-                                                    <div className={styles["season-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                                                        {/* <Link href={`/webinar/${lc.slug}`}>  */}
-                                                        <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} title={lc.title} className={styles["season-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
-                                                        {/* </Link> */}
-                                                        <Link href={`/trainer/${lc.trainer?.slug}`}>
-
-                                                            <div title={lc.trainer?.name_ar} className={styles["season-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
-                                                        </Link>
-                                                    </div>
-                                                    <div className={styles["season-courses__cards-carousel__card__card-body__card-header__course-details__para"]}>
-                                                        {lc.details}
-                                                    </div>
-                                                </div>
-
-
-                                                <div className={styles["season-courses__cards-carousel__card__card-body__checkout-details"]}>
-                                                    {/* <Link href={`/webinar/${lc.slug}`}> */}
-                                                    <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }}>
-                                                        <div
-                                                            className={
-                                                                styles[
-                                                                "season-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                                                ]
-                                                            }
-                                                        >
-                                                            {lc.discounted_price !== 0 && !lc.is_purchased && <span
-                                                                className={
-                                                                    styles[
-                                                                    "season-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                {lc.currency_symbol}
-                                                            </span>}
-
-                                                            <span
-                                                                className={
-                                                                    styles[
-                                                                    "season-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                {lc.is_purchased && "تم الشراء"}
-
-                                                                {!lc.is_purchased && (lc.discounted_price == 0 ? "مجانًا" : lc.discounted_price)}
-                                                            </span>
-
-                                                        </div>
-                                                        {(lc.price > lc.discounted_price) && !lc.is_purchased &&
-                                                            <div
-                                                                className={
-                                                                    styles[
-                                                                    "season-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                <span
-                                                                    className={
-                                                                        styles[
-                                                                        "season-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                                                        ]
-                                                                    }
-                                                                >
-                                                                    {lc.currency_symbol}
-                                                                </span>
-                                                                <span
-                                                                    className={
-                                                                        styles[
-                                                                        "season-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                                                        ]
-                                                                    }
-                                                                >
-                                                                    {lc.price}
-                                                                </span>
-
-                                                            </div>
-                                                        }
-                                                    </div>
-                                                    {/* </Link> */}
-                                                    {!lc.is_purchased && <Button className={styles["season-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
-
-                                                        {(lc.discounted_price == 0 && lc.webinar_type == "soon") ?
-                                                            <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
-                                                            :
-                                                            <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
-
-                                                    </Button>}
-                                                </div>
-                                            </Card.Body>
+                                    
                                             {(lc.webinar_type == "live" || lc.webinar_type == "replay") && <div className={styles["season-courses__cards-carousel__card__live-icon"]}>
                                                 <PlayIcon />
 

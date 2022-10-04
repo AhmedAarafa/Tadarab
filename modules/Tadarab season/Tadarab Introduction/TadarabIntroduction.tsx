@@ -13,7 +13,7 @@ export default function TadarabIntroduction() {
                         أكبر حدث تدريبي
                         ٢٠٢٢
                     </div>
-                    <img className={styles["tadarab-introduction__description-box__img"]} src="https://www.linkpicture.com/q/image-2_25.png" />
+                    <img className={styles["tadarab-introduction__description-box__img"]} src="images/TadarabSeason.png" />
                     <div className={styles["tadarab-introduction__description-box__brief"]}>
                         أول موسم تدريبي بالخليج والشرق والأوسط يهدف لتطوير المتدرب وطرح
                         أكبر عدد من الدورات التدريبية مقدمة من أفضل الخبراء بالخليج

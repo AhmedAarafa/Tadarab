@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./training-steps.module.css";
 import { Row, Col, Button, Form } from "react-bootstrap";
-import { LearnersOutlinedIcon, CoursesIcon, TrainersIcon, ExperienceIcon } from "common/Icons/Icons";
+import { LearnersOutlinedIcon, LearnIcon, InteractIcon, ApplyIcon } from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
 
 export default function TrainingSteps() {
@@ -15,7 +15,7 @@ export default function TrainingSteps() {
                     <div className={styles["tadarab-steps__steps"]}>
                         <div className={styles["tadarab-steps__steps__step"]}>
                             <div className={styles["tadarab-steps__steps__step__icon"]}>
-                                <TrainersIcon color="#af151f" />
+                                <InteractIcon />
                             </div>
                             <div className={styles["tadarab-steps__steps__step__title"]}>تفاعل</div>
                             <div className={styles["tadarab-steps__steps__step__brief"]}>
@@ -25,7 +25,7 @@ export default function TrainingSteps() {
                         </div>
                         <div className={styles["tadarab-steps__steps__step"]}>
                             <div className={styles["tadarab-steps__steps__step__icon"]}>
-                                <CoursesIcon color="#af151f" />
+                                <ApplyIcon />
                             </div>
                             <div className={styles["tadarab-steps__steps__step__title"]}>تطبيق</div>
                             <div className={styles["tadarab-steps__steps__step__brief"]}>
@@ -35,7 +35,7 @@ export default function TrainingSteps() {
                         </div>
                         <div className={styles["tadarab-steps__steps__step"]}>
                             <div className={styles["tadarab-steps__steps__step__icon"]}>
-                                <LearnersOutlinedIcon color="#af151f" />
+                                <LearnIcon />
                             </div>
                             <div className={styles["tadarab-steps__steps__step__title"]}>تعلم</div>
                             <div className={styles["tadarab-steps__steps__step__brief"]}>

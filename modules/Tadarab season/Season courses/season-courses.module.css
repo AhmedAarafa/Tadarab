@@ -104,24 +104,13 @@
 .season-courses__cards-carousel__card,
 .season-courses__cards-carousel__card--paid {
   width: 15rem;
-  height: 21.0625rem;
-  padding-bottom: 0.8rem;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   box-shadow: 0 0.4rem 1.0504rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 0.68rem;
   position: relative;
   display: inline-block;
-}
-.season-courses__cards-carousel__card:after,
-.season-courses__cards-carousel__card--paid:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 10rem;
-  display: inline-block;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.6) 100%);
-  pointer-events: none !important;
 }
 
 .season-courses__cards-carousel__card--paid:after {
@@ -171,7 +160,7 @@
   width: 100%;
   height: 10rem;
   display: block;
-  border-radius: 0.68rem 0.68rem 0 0;
+  border-radius: 0.68rem;
   cursor: pointer !important;
 }
 
@@ -389,24 +378,13 @@
   .season-courses__cards-carousel__card,
 .season-courses__cards-carousel__card--paid {
     width: 19.5rem;
-    height: 26rem;
-    padding-bottom: 1.04rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     box-shadow: 0 0.52rem 1.36552rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 0.884rem;
     position: relative;
     display: inline-block;
-  }
-  .season-courses__cards-carousel__card:after,
-.season-courses__cards-carousel__card--paid:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 13rem;
-    display: inline-block;
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
-    pointer-events: none !important;
   }
   .season-courses__cards-carousel__card--paid:after {
     content: "";
@@ -449,7 +427,7 @@
     width: 100%;
     height: 13rem;
     display: block;
-    border-radius: 0.884rem 0.884rem 0 0;
+    border-radius: 0.884rem;
   }
   .season-courses__cards-carousel__card__card-body {
     padding: 0.316rem 0.79rem 0 0.79rem;
@@ -607,23 +585,13 @@
   .season-courses__cards-carousel__card,
 .season-courses__cards-carousel__card--paid {
     width: 25.3125rem;
-    height: 34rem;
-    padding-bottom: 1.35rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     box-shadow: 0 0.675rem 1.77255rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.1475rem;
     position: relative;
     display: inline-block;
-  }
-  .season-courses__cards-carousel__card:after,
-.season-courses__cards-carousel__card--paid:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 16.875rem;
-    display: inline-block;
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
   }
   .season-courses__cards-carousel__card--paid:after {
     content: "";
@@ -666,7 +634,7 @@
     width: 100%;
     height: 16.875rem;
     display: block;
-    border-radius: 1.1475rem 1.1475rem 0 0;
+    border-radius: 1.1475rem;
   }
   .season-courses__cards-carousel__card__card-body {
     padding: 0.316rem 0.79rem 0 0.79rem;
@@ -863,21 +831,11 @@
   .season-courses__cards-carousel__card,
 .season-courses__cards-carousel__card--paid {
     width: 45rem;
-    height: 60rem;
-    padding-bottom: 2.4rem;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
     box-shadow: 0 1.2rem 3.1512rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 2.04rem;
-  }
-  .season-courses__cards-carousel__card:after,
-.season-courses__cards-carousel__card--paid:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 30rem;
-    display: inline-block;
-    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
   }
   .season-courses__cards-carousel__card--paid:after {
     content: "";
@@ -921,7 +879,7 @@
   .season-courses__cards-carousel__card__trainer-img {
     width: 100%;
     height: 30rem;
-    border-radius: 2.04rem 2.04rem 0 0;
+    border-radius: 2.04rem;
   }
   .season-courses__cards-carousel__card__card-body {
     padding: 0.96rem 2.4rem 0 2.4rem;

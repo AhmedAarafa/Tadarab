@@ -11,6 +11,7 @@ const SeasonCourses = dynamic(() => import("modules/Tadarab season/Season course
 const LatestCourses = dynamic(() => import("modules/Tadarab season/Latest courses/LatestCourses"));
 const SubscriptionBenefits = dynamic(() => import("modules/Tadarab season/Subscription benefits/SubscriptionBenefits"));
 const Faq = dynamic(() => import("modules/Tadarab season/Faq/Faq"));
+const SeasonTrainers = dynamic(() => import("modules/Tadarab season/Season trainers/SeasonTrainers"));
 
 export default function TadarabSeason() {
     return (
@@ -20,6 +21,7 @@ export default function TadarabSeason() {
                 <TadarabBenefits />
                 <TrainingSteps />
                 <SeasonCourses />
+                <SeasonTrainers />
                 <LatestCourses />
                 <SubscriptionBenefits />
                 <Faq />

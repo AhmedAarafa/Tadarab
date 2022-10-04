@@ -1,6 +1,6 @@
 .subscription-benefits {
   padding: 5rem 1.6rem;
-  background-color: rgba(0, 20, 37, 0.04);
+  background-color: #2d2d37;
 }
 
 .subscription-benefits__title {
@@ -9,10 +9,12 @@
   justify-content: flex-start;
   font-size: 2.5rem;
   font-weight: 700;
+  color: white;
 }
 
 .subscription-benefits__benefits {
   margin: 0.2rem 0 0 0;
+  color: white;
 }
 .subscription-benefits__benefits div {
   margin-top: 0.2rem;

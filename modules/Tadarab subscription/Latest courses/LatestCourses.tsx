@@ -6,9 +6,7 @@ import {
   Row,
   Col,
   Button,
-  Card,
-  OverlayTrigger,
-  Popover,
+  Card
 } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
@@ -42,7 +40,7 @@ function LatestCourses() {
   const [filterType, setFilterType] = useState("best-seller");
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
-    const homePageCoursesRef = useRef([]);
+  const homePageCoursesRef = useRef([]);
 
 
   const handleFilterType = (type: string) => {
