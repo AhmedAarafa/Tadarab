@@ -12,6 +12,7 @@ const LatestCourses = dynamic(() => import("modules/Tadarab season/Latest course
 const SubscriptionBenefits = dynamic(() => import("modules/Tadarab season/Subscription benefits/SubscriptionBenefits"));
 const Faq = dynamic(() => import("modules/Tadarab season/Faq/Faq"));
 const SeasonTrainers = dynamic(() => import("modules/Tadarab season/Season trainers/SeasonTrainers"));
+const StickySignupBar = dynamic(() => import("modules/Tadarab season/Sticky signup bar/StickySignupBar"));
 
 export default function TadarabSeason() {
     return (
@@ -25,6 +26,7 @@ export default function TadarabSeason() {
                 <LatestCourses />
                 <SubscriptionBenefits />
                 <Faq />
+                <StickySignupBar />
             </Container>
         </>
     )

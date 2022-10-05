@@ -8,8 +8,8 @@
 
 .tadarab-benefits__img {
     img {
-        width: 4.375rem*2;
-        height: 4.375rem*2;
+        width: 17.3125rem;
+        height: 10.3125rem;
         border-radius: 0.8rem;
     }
 }
@@ -53,10 +53,10 @@
 
     .tadarab-benefits__img {
         width: 100%;
+        @include flex(center,center);
         img {
-            width: 100%;
-            height: 33rem;
-            border-radius: 0.8rem*2.2;
+            width: 90%;
+            height: 29rem;
         }
     }
 

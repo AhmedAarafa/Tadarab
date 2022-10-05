@@ -1,7 +1,7 @@
 @import "../../../styles/mixins";
 
 .tadarab-introduction {
-    margin: 5rem 3rem;
+    margin: 6rem 3rem;
 }
 
 .tadarab-introduction__description-box {
@@ -15,7 +15,10 @@
 .tadarab-introduction__video {
     @include flex(flex-start, flex-end);
     img {
+        // margin-top: 1rem;
         border-radius: 2rem;
+        width: 83rem*0.6;
+        height: 46rem*0.6;
     }
 }
 

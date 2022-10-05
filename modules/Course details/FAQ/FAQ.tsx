@@ -1,7 +1,6 @@
 import React , {useEffect, useState} from "react";
 import styles from "./faq.module.css";
 import { Accordion } from "react-bootstrap";
-import './utils';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { openSuppotConvInNewTab, contactUsHandler } from "modules/_Shared/utils/contactUs";
 

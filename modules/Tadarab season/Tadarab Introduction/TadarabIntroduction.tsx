@@ -31,7 +31,7 @@ export default function TadarabIntroduction() {
                     </div>
                 </Col>
                 <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 2 }} className={styles["tadarab-introduction__video"]}>
-                    <img src="https://woodfordoil.com/wp-content/uploads/2018/02/placeholder.jpg" />
+                    <img src="images/TadarabSeasonTrainers.gif" />
                 </Col>
             </Row>
         </>

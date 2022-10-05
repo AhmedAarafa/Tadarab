@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./subscription-benefits.module.css";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { TickIcon } from "common/Icons/Icons";
 
 export default function SubscriptionBenefits() {
@@ -17,8 +17,11 @@ export default function SubscriptionBenefits() {
                         </span>
                         ؟
                     </div>
+                    <Button>
+                        انشاء حساب جديد
+                    </Button>
                 </Col>
-                <Col className={styles["subscription-benefits__benefits"]} sm={{ span: 6, order: 2 }} xs={{ span: 12, order: 2 }}>
+                <Col sm={{ span: 6, order: 2 }} xs={{ span: 12, order: 2 }}>
 
                     <div className={styles["subscription-benefits__benefits"]}>
 
@@ -102,6 +105,9 @@ export default function SubscriptionBenefits() {
                             </span>
                         </div>
                     </div>
+                    <Button>
+                        انشاء حساب جديد
+                    </Button>
                 </Col>
             </Row>
         </>
