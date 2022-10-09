@@ -18,36 +18,7 @@ export default function TadarabBenefits() {
                             موسم تدرب أكتوبر ٢٠٢٢ ضمن اشتراك تدرب
                         </div>
                         <div className={styles["tadarab-benefits__benefits-box"]}>
-                            <div className={styles["tadarab-benefits__benefits-box__benefits"]}>
-                                <div>
-                                    <TickIcon />
-                                </div>
-                                <span>مشاهدة بلا حدود لجميع دورات تدرب أكثر من ٨٥٠ دورة تدريبية</span>
-                            </div>
-                            <div className={styles["tadarab-benefits__benefits-box__benefits"]}>
-                                <div>
-                                    <TickIcon />
-                                </div>
-                                <span>مشاهدة جميع دورات الموسم التدريبي أثناء البث المباشر او مسجلة في اي  وقت  ومن اي مكان</span>
-                            </div>
-                            <div className={styles["tadarab-benefits__benefits-box__benefits"]}>
-                                <div>
-                                    <TickIcon />
-                                </div>
-                                <span>شهادات أتمام الدورات بلا حدود</span>
-                            </div>
-                            <div className={styles["tadarab-benefits__benefits-box__benefits"]}>
-                                <div>
-                                    <TickIcon />
-                                </div>
-                                <span>أمكانية حضور دورات الموسم التدريبي داخل الأستديو أثناء البث المباشر ( عدد محدود ) </span>
-                            </div>
-                            <div className={styles["tadarab-benefits__benefits-box__benefits"]}>
-                                <div>
-                                    <TickIcon />
-                                </div>
-                                <span>لا يوجد التزام، يمكنك الغاء الاشتراك في اي وقت</span>
-                            </div>
+                            احصل على جميع دورات موسم تدرب خلال شهر أكتوبر ٢٠٢٢ بالاضافة لجميع دورات تدرب أكثر من ٨٥٠ دورة تدريبية + دورات جديدة تضاف كل شهر باشتراك  شهري واحد يمكنك المتابعة من اي جهاز وفي اي مكان بالعالم
                         </div>
                     </div>
 

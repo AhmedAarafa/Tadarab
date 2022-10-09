@@ -1,3 +1,18 @@
+Version 2.3.2 (05th Oct 2022)
+1)  Update sitemap (main)
+2)  Rename sitemap files and update URL slug courses to course on sitemap(course and course category).
+
+Version 2.3.1 (04th Oct 2022)
+1)  Solve confliction all courses with new added redirection /courses/[slug] to /coruse/[slug].
+2)  Add event label on GA-4 tracking.
+
+Version 2.3.0 (03rd Oct 2022)
+1)  Add dynamic subscription plans.
+2)  Make dynamic currency on subscription plans.
+3)  Replace currency_code to currency_symbol
+4)  Add dynamic subscription prices on single course page.
+5)  Add redirection /courses/[slug] to /coruse/[slug].
+
 Version 2.2.0 (19th Sep 2022)
 1)  All courses page course items permalinks wrong.
 

@@ -17,7 +17,6 @@ export default function StickySignupBar() {
     useEffect(() => {
         scrollingHandler();
         window.addEventListener("scroll", () => {
-            console.log(window.scrollY);
             scrollingHandler();
         });
         return () => {
@@ -32,10 +31,10 @@ export default function StickySignupBar() {
     return (
         <>
             <div id="sticky-signup-bar" className={styles["sticky-signup-bar"]}>
-                <div>احصل على كل الدورات باشتراك يبدأ من ٦ دك/ش </div>
                 <Button id="sticky-signup-bar-btn">
                     انشاء حساب جديد
                 </Button>
+                <div>احصل على كل الدورات باشتراك يبدأ من ٦ دك/ش </div>
             </div>
         </>
     )

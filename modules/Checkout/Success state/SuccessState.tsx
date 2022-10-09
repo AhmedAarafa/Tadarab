@@ -28,13 +28,15 @@ export default function SuccessState() {
             checkoutType = (invoiceDetails?.data?.transaction_details?.checkout_type);
             if(checkoutType == "cart"){
                 tadarabGA.tadarab_fire_traking_GA_code("purchase", {
-                    id: invoiceDetails?.data?.transaction_details.invoice_no,
-                    revenue: invoiceDetails?.data?.transaction_details.amount_usd,
-                    coupon:invoiceDetails?.data?.transaction_details.coupon,
-                    products: invoiceDetails?.data?.transaction_details.transaction_items,
-                    uid:invoiceDetails?.data?.ga_tracking.uid,
-                    cid:invoiceDetails?.data?.ga_tracking.cid,
-                    email:invoiceDetails?.data?.transaction_details.email
+                    id: invoiceDetails?.data?.transaction_details?.invoice_no,
+                    revenue: invoiceDetails?.data?.transaction_details?.amount_usd,
+                    coupon:invoiceDetails?.data?.transaction_details?.coupon,
+                    products: invoiceDetails?.data?.transaction_details?.transaction_items,
+                    uid:invoiceDetails?.data?.ga_tracking?.uid,
+                    cid:invoiceDetails?.data?.ga_tracking?.cid,
+                    email:invoiceDetails?.data?.transaction_details?.email,
+                    subscription_elabel:invoiceDetails?.data?.transaction_details?.subscription_elabel,
+                    subscription_label:invoiceDetails?.data?.transaction_details?.subscription_label
                 });
             }else if(checkoutType=='subscription'){
                 dispatch(setIsUserAuthenticated({
@@ -47,7 +49,8 @@ export default function SuccessState() {
                     revenue: invoiceDetails?.data?.transaction_details?.amount_usd,
                     date:invoiceDetails?.data?.transaction_details?.date_ymd,
                     cid:invoiceDetails?.data?.ga_tracking?.cid,
-                    is_trial_free:invoiceDetails?.data?.ga_tracking?.is_trial_free
+                    is_trial_free:invoiceDetails?.data?.transaction_details?.is_trial_free,
+                    free_trial_label:invoiceDetails?.data?.transaction_details?.free_trial_label
                 });
             }
         }

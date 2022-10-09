@@ -1,15 +1,21 @@
 .tadarab-benefits {
   background-color: rgba(0, 20, 37, 0.04);
-  padding: 3rem 3rem;
+  padding: 3rem 7rem 3rem 3rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+}
+.tadarab-benefits div:nth-of-type(2) {
+  font-size: 0.9rem;
+}
+.tadarab-benefits div:nth-of-type(2) * {
+  padding: 0 2rem 0 6rem;
 }
 
 .tadarab-benefits__img img {
-  width: 17.3125rem;
-  height: 10.3125rem;
-  border-radius: 0.8rem;
+  width: 10.3875rem;
+  height: 6.1875rem;
+  margin-top: 1rem;
 }
 
 .tadarab-benefits__title {
@@ -19,27 +25,11 @@
 
 .tadarab-benefits__benefits-box {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   padding: 0.5rem 0 0 0;
-}
-
-.tadarab-benefits__benefits-box__benefits {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0.2rem;
-}
-.tadarab-benefits__benefits-box__benefits span {
-  font-size: 1.05rem;
-  color: var(--grey);
-  width: 100%;
-}
-.tadarab-benefits__benefits-box__benefits svg {
-  width: 1.2rem;
-  height: 100%;
-  margin-left: 0.5rem;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 575px) {
@@ -50,6 +40,14 @@
     justify-content: flex-start;
     flex-direction: column;
   }
+  .tadarab-benefits div:nth-of-type(2) {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+  }
+  .tadarab-benefits div:nth-of-type(2) * {
+    padding: 0 2rem;
+    text-align: center;
+  }
   .tadarab-benefits__img {
     width: 100%;
     display: flex;
@@ -57,8 +55,9 @@
     justify-content: center;
   }
   .tadarab-benefits__img img {
-    width: 90%;
-    height: 29rem;
+    width: 70%;
+    height: 20rem;
+    margin-top: 0;
   }
   .tadarab-benefits__title {
     font-size: 3.6rem;
@@ -68,18 +67,5 @@
   }
   .tadarab-benefits__benefits-box {
     padding: 1.1rem 0 0 0;
-  }
-  .tadarab-benefits__benefits-box__benefits {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0.66rem;
-  }
-  .tadarab-benefits__benefits-box__benefits span {
-    font-size: 2.31rem;
-  }
-  .tadarab-benefits__benefits-box__benefits svg {
-    width: 2.64rem;
-    margin-left: 1.1rem;
   }
 }/*# sourceMappingURL=tadarab-benefits.module.css.map */

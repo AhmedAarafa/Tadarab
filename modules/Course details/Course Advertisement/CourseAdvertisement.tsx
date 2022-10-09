@@ -130,51 +130,7 @@ export default function CourseAdvertisement(theOption: any) {
                     <TadarabVideoPlayer />
                   </>
               }
-              {
-                ((theOption?.liveWebinarDetails?.webinar_type) && (theOption?.liveWebinarDetails?.webinar_type == 'soon')) &&
-                <div className={styles["live-webinar-countdown"]}>
-                  <div className={styles["live-webinar-countdown__offer-available"]}>
-                    <div>بث مباشر</div>
-                    <div>علي تدرب</div>
-                  </div>
-                  <div>
-                    <div className={styles["live-webinar-countdown__countdown-box"]}>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>يوم</div>
-                        <div>{toDisplayValues[0]}</div>
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                        :
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>ساعة</div>
-                        <div>
-                          {toDisplayValues[1]}
-                        </div>
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                        :
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>دقيقة</div>
-                        <div>
-                          {toDisplayValues[2]}
-                        </div>
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                        :
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>ثانية</div>
-                        <div>
-                          {toDisplayValues[3]}
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              }
+           
             </div>
 
             <h1 className={styles["course-ad__course-title"]}>

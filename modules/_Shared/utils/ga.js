@@ -145,7 +145,7 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 				'event': 'GTMevent',
 				'eventCategory': 'subscription',
 				'eventAction': 'free-trial',
-				'eventLabel': '7-day',
+				'eventLabel': traking_data.free_trial_label,
 				'userID': traking_data.user_id,
 				'clientID': traking_data.cid,
 				'start_trial_date': traking_data.date // Date when free-trial occurred (YYYYMMDD)
@@ -155,7 +155,7 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 				'event': 'GTMecommerce',
 				'eventCategory': 'subscription',
 				'eventAction': 'purchase',
-				'eventLabel': '1', /* number of payments */
+				'eventLabel': traking_data.subscription_elabel, /* number of payments */
 				'ecommerce': {
 					'currencyCode': 'USD',
 					'purchase': {
@@ -168,8 +168,8 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 							'coupon': ''
 						},
 						'products': [{
-							'id': 'Paid Subscription',
-							'name': 'Paid Subscription',
+							'id': ("Paid Subscription - "+traking_data.subscription_label),
+							'name': ("Paid Subscription - "+traking_data.subscription_label),
 							'category': 'online-subscription-purchase',
 							'brand': 'Tadarab',
 							'variant': '1', /* number of payments */
@@ -180,7 +180,8 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 				},
 			   'userID': traking_data.user_id,
 			   'clientID': traking_data.cid,
-			   'acquisition_date': traking_data.date
+			   'acquisition_date': traking_data.date,
+			   'number_of_payments': traking_data.subscription_elabel
 			});
 		}
 	}else if(traking_type=='unsubscribe'){

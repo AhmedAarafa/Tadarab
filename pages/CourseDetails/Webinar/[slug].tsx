@@ -35,8 +35,8 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import dynamic from 'next/dynamic';
 import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
-import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
-import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 
 
 function CourseDetails() {
@@ -82,18 +82,18 @@ function CourseDetails() {
       tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
       MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
       window.addEventListener("scroll", function () {
-        tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null ;
-        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+        tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
         const projectsSection: any = document.getElementById("practical-projects-section");
         const reviewsSection: any = document.getElementById("reviews-section");
-    const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
-        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
-        window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
-        window.scrollY >= courseSubscribersSection?.offsetTop
+        const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
+        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
+          window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
+          window.scrollY >= courseSubscribersSection?.offsetTop
         ) {
           setColFullWidth(true);
-        } else if (window.scrollY < projectsSection?.offsetTop || 
-          window.scrollY < reviewsSection?.offsetTop || 
+        } else if (window.scrollY < projectsSection?.offsetTop ||
+          window.scrollY < reviewsSection?.offsetTop ||
           window.scrollY < courseSubscribersSection?.offsetTop) {
           setColFullWidth(false);
         }
@@ -115,17 +115,17 @@ function CourseDetails() {
          align-items:center;
          justify-content:space-around;
          top:${navbar?.offsetHeight}px;
-         ` : null ;
-         MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+         ` : null;
+            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
          display:flex;
          align-items:center;
          justify-content:space-evenly;
          bottom:0;
-         `: null ;
+         `: null;
 
           } else if (window.scrollY < addToCartBtn.offsetTop) {
-            tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null ;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+            tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
           }
         }
 
@@ -142,18 +142,18 @@ function CourseDetails() {
         MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
         window.addEventListener("scroll", function () {
           tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none`: null;
+          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
 
           const projectsSection: any = document.getElementById("practical-projects-section");
           const reviewsSection: any = document.getElementById("reviews-section");
-    const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
-          if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
-          window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
-          window.scrollY >= courseSubscribersSection?.offsetTop
+          const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
+          if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
+            window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
+            window.scrollY >= courseSubscribersSection?.offsetTop
           ) {
             setColFullWidth(true);
-          } else if (window.scrollY < projectsSection?.offsetTop || 
-            window.scrollY < reviewsSection?.offsetTop || 
+          } else if (window.scrollY < projectsSection?.offsetTop ||
+            window.scrollY < reviewsSection?.offsetTop ||
             window.scrollY < courseSubscribersSection?.offsetTop) {
             setColFullWidth(false);
           }
@@ -172,24 +172,24 @@ function CourseDetails() {
             align-items:center;
             justify-content:space-around;
             top:${navbar?.offsetHeight}px;
-            ` : null ;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+            ` : null;
+              MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
             display:flex;
             align-items:center;
             justify-content:space-evenly;
             bottom:0;
-            ` : null ;
+            ` : null;
             } else if (window.scrollY < addToCartBtn?.offsetTop) {
-              tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null ;
+              tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
               MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
             }
           }
         });
       }
     });
-    
-    if (Router.query.slug){
-      axiosInstance.get(`webinar/${slug}`).then(function (response:any){
+
+    if (Router.query.slug) {
+      axiosInstance.get(`webinar/${slug}`).then(function (response: any) {
         toggleLoader("hide");
         const data: Course = response?.data?.data?.archive_course;
         setCourseId(response?.data?.data?.archive_course.course_details.id);
@@ -197,8 +197,8 @@ function CourseDetails() {
         webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
         dispatch(setCourseDetailsData(data));
         setLiveWebinar(webinardetails);
-        FBPixelEventsHandler(response.data.fb_tracking_events, null); 
-      }).catch(function (error){
+        FBPixelEventsHandler(response.data.fb_tracking_events, null);
+      }).catch(function (error) {
         toggleLoader("hide");
       });
     }
@@ -212,55 +212,55 @@ function CourseDetails() {
       });
     };
   }, [Router.query]);
-  
+
   return (
     <>
-    <MetaTagsGenerator title={courseDetailsData?.data?.seo_title} 
-    description={courseDetailsData?.data?.seo_metadesc} 
-    img={courseDetailsData?.data?.seo_image} />
+      <MetaTagsGenerator title={courseDetailsData?.data?.seo_title}
+        description={courseDetailsData?.data?.seo_metadesc}
+        img={courseDetailsData?.data?.seo_image} />
       <Container fluid="xxl">
-        {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
+        {((JSON.stringify(courseDetailsData?.data) !== "[]") && (!courseDetailsData?.data?.course_details?.is_purchased)) &&
           <>
             <MobileNavTabsBar />
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
-              <Col xs={12} sm={8}>                
-              {console.log("courseDetailsData",courseDetailsData , "liveWebinar",liveWebinar)
-              }
+              <Col xs={12} sm={8}>
+                {console.log("courseDetailsData", courseDetailsData, "liveWebinar", liveWebinar)
+                }
                 <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} />
                 {originalCardPlacement == false &&
-                  <MonthlySubscriptionCard />
+                  <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />
                 }
                 {courseDetailsData?.data?.course_details?.key_points !== null &&
-                 JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
+                  JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
                   <WhatYouWillLearn />
-                 }
-                 <CourseDetailsSection />
-                 {courseDetailsData?.data?.course_details?.tags !== null &&
-                 JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
-                <CourseKeywords />
-                 }
-                   {courseDetailsData?.data?.course_details?.requirements !== null &&
-                 JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
-                <CourseRequirements />
-                 }
-                 <CourseContent />
+                }
+                <CourseDetailsSection />
+                {courseDetailsData?.data?.course_details?.tags !== null &&
+                  JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
+                  <CourseKeywords />
+                }
+                {courseDetailsData?.data?.course_details?.requirements !== null &&
+                  JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
+                  <CourseRequirements />
+                }
+                <CourseContent />
                 <TrainerInfo />
                 {/* <GuaranteeCard /> */}
                 {/* <CourseCertificate /> */}
-                <FAQ Cid={()=>{return courseId}}/>
+                <FAQ Cid={() => { return courseId }} />
                 {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
-              </Col> 
+              </Col>
               {
                 originalCardPlacement == true &&
                 <Col xs={colFullWidth ? 12 : 4} id="card-column">
                   {originalCardPlacement == true && <MonthlySubscriptionCard />}
                 </Col>
               }
-              <PracticalProjects Cid={()=>{return courseId}}/> 
+              <PracticalProjects Cid={() => { return courseId }} />
             </Row>
             <Row className={styles["course-details__course-reviews"]}>
-              <CourseReview Cid={()=>{return courseId}}/>
+              <CourseReview Cid={() => { return courseId }} />
             </Row>
             <Row className={styles["course-details__course-subscribers"]}>
               <CourseSubscribers />
@@ -269,7 +269,7 @@ function CourseDetails() {
               <TadarabBusiness />
             </Row> */}
             <Row className={styles["course-details__comments-section"]}>
-              <CommentsSection Cid={()=>{return courseId}}/>
+              <CommentsSection Cid={() => { return courseId }} />
             </Row>
           </>
         }

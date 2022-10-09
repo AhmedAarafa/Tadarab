@@ -34,6 +34,116 @@
     top: 5.5rem;
 }
 
+.monthly-subscription__course-card-helper {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    position: unset;
+}
+
+.ribbon {
+    width: 3.75rem*0.6;
+    padding: 0.4rem 0;
+    position: absolute;
+    top: -0.375rem*0.6;
+    left: 1.5625rem*0.6;
+    text-align: center;
+    border-top-left-radius: 0.1875rem*0.6;
+    // background: #74C4AE;
+    background: #74C4AE;
+
+    div {
+        font-size: 0.65rem;
+        font-weight: 800;
+        margin: 0 0.1rem;
+        background: #74C4AE;
+
+    }
+}
+
+.ribbon:before {
+    height: 0;
+    width: 0;
+    right: -0.3438rem*0.6;
+    top: 0.0063rem*0.6;
+    border-bottom: 0.375rem*0.6 solid #65ab98;
+    border-right: 0.375rem*0.6 solid transparent;
+}
+
+.ribbon:before,
+.ribbon:after {
+    content: "";
+    position: absolute;
+}
+
+.ribbon:after {
+    height: 0;
+    width: 0;
+    bottom: -1.8438rem*0.6;
+    left: 0;
+    border-left: 1.875rem*0.6 solid #74C4AE;
+    border-right: 1.875rem*0.6 solid #74C4AE;
+    border-bottom: 1.875rem*0.6 solid transparent;
+}
+
+
+.live-webinar-countdown {
+    background-color: #F7EBEB !important;
+    box-shadow: 0 0.188rem 0.5rem #0000001A;
+    padding: 0.563rem 1rem 0.7rem 1rem;
+    border-radius: 0.625rem;
+    color: var(--primary-red);
+    @include flex(center, space-between);
+    width: 100%;
+    height: fit-content;
+    margin: 1rem 0 0 0;
+}
+
+.live-webinar-countdown__offer-available {
+
+    div:nth-of-type(2) {
+        font-size: 1rem;
+        font-weight: 800;
+    }
+
+    div:nth-of-type(1) {
+        font-size: 0.938rem;
+        margin-top: -0.2rem;
+    }
+}
+
+.live-webinar-countdown__countdown-box {
+    @include flex(center);
+}
+
+.live-webinar-countdown__countdown-box__countdown {
+    @include flex(center, center);
+    flex-direction: column;
+    width: 2.3125rem;
+
+    div:nth-of-type(1) {
+        font-size: 0.813rem;
+    }
+
+    div:nth-of-type(2) {
+        font-size: 1.063rem;
+        font-weight: 800;
+        border-radius: 0.25rem;
+        background-color: white;
+        padding: 0.313rem 0.5rem;
+        margin-top: 0.1rem;
+        @include flex(center, center);
+        width: 100%;
+    }
+}
+
+.live-webinar-countdown__countdown-box__separator {
+    font-size: 1.063rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin: 0.8rem 0.2rem 0 0.2rem;
+}
+
 .monthly-subscription__course-card__title {
     font-size: 1.25rem;
     font-weight: 800;
@@ -54,44 +164,36 @@
 
 
         span:nth-of-type(1) {
-            line-height: 1.2rem !important;
+            line-height: 1.1rem !important;
+            font-weight: 700;
+            font-size: 0.82rem;
 
             span:nth-of-type(1) {
-                margin: 0.2rem 0.2rem 0 0;
                 color: var(--primary-red);
                 font-weight: 700;
                 cursor: pointer;
                 display: inline-block;
-                line-height: 1.2rem !important;
+                margin: -1.5rem 0.2rem 0.6rem 0;
 
                 a {
                     color: var(--primary-red) !important;
                 }
             }
         }
+    }
+}
 
-        div {
-            @include flex(center, flex-start);
+.monthly_subscription__live-details-list {
+    @include flex(center, flex-start);
 
-            svg {
-                width: 0.8rem;
-                height: 0.8rem;
-                margin-left: 0.3rem;
-            }
+    div {
+        margin-bottom: 0.25rem;
+
+        svg {
+            width: 0.8rem;
+            height: 0.8rem;
+            margin-left: 0.3rem;
         }
-
-        // span:nth-of-type(2){
-        //     margin: 0 0.2rem 0 0;
-        //     color: var(--primary-red);
-        //     font-weight: 700;
-        //     cursor: pointer;
-        //     display: inline-block;
-        //     line-height: 1.2rem !important;
-
-        //     a{
-        //         color: var(--primary-red) !important;
-        //     }
-        // }
     }
 }
 
@@ -365,6 +467,11 @@
         color: var(--dark-black);
         margin-right: 1rem;
     }
+
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
 }
 
 .monthly-subscription__course-card__promo-code {
@@ -482,6 +589,56 @@
 
 @media (max-width: 575px) {
 
+    .live-webinar-countdown {
+        background-color: rgba(175, 21, 31, 0.08);
+        box-shadow: 0 0.23rem 0.62rem #0000001A;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-top: 3.5rem;
+        margin: 3rem 0 0 0;
+        @include flex(center, space-around);
+    }
+
+    .live-webinar-countdown__offer-available {
+        margin-left: 2.4rem;
+
+        div:nth-of-type(2) {
+            font-size: 2.5rem;
+        }
+
+        div:nth-of-type(1) {
+            font-size: 2.344rem;
+            margin-top: -0.248rem;
+        }
+    }
+
+    .live-webinar-countdown__countdown-box {
+        @include flex(center);
+    }
+
+    .live-webinar-countdown__countdown-box__countdown {
+        @include flex(center, center);
+        flex-direction: column;
+        width: 5rem;
+
+
+        div:nth-of-type(1) {
+            font-size: 2.031rem;
+        }
+
+        div:nth-of-type(2) {
+            font-size: 2.656rem;
+            border-radius: 0.31rem;
+            padding: 0.626rem 1rem;
+            margin-top: 0.2rem;
+        }
+    }
+
+    .live-webinar-countdown__countdown-box__separator {
+        font-size: 2.656rem;
+        margin: 2.6rem 1rem 0 1rem;
+    }
+
     .monthly-subscription__course-card {
         margin: 0 -3rem 0 0;
         padding: 1.25rem*2.5 1.625rem*2.5 0 1.625rem*2.5;
@@ -509,12 +666,16 @@
                 svg {
                     width: 0.8rem*2.5;
                     height: 0.8rem*2.5;
-                    margin-left: 0.3rem*2.5;
+                    margin-left: 1.5rem;
                 }
             }
 
             span:nth-of-type(1) {
-                line-height: 3.3rem !important;
+                line-height: 2.8rem !important;
+                font-size: 0.82rem*2.5;
+                margin-bottom: 1.5rem;
+                display: inline-block;
+
             }
 
             font-size: 0.75rem*2.7;
@@ -783,5 +944,55 @@
     .monthly-subscription__subscription-timer {
         font-size: 0.75rem*2.5;
         margin-bottom: 0.3rem*2.5;
+    }
+
+    .monthly-subscription__course-card-helper {
+        position: relative;
+    }
+
+
+
+    .ribbon {
+        width: 3.75rem*1.2;
+        padding: 2rem 0;
+        position: absolute;
+        top: -3.6rem;
+        left: -2rem;
+        text-align: center;
+        border-top-left-radius: 0.1875rem*1.2;
+        // background: #74C4AE;
+        background: #74C4AE;
+
+        div {
+            font-size: 0.65rem*1.8;
+            margin: 0 0.1rem*2;
+            background: #74C4AE;
+
+        }
+    }
+
+    .ribbon:before {
+        height: 0;
+        width: 0;
+        right: -0.3438rem*1.2;
+        top: 0.0063rem*1.2;
+        border-bottom: 0.375rem*1.2 solid #65ab98;
+        border-right: 0.375rem*1.2 solid transparent;
+    }
+
+    .ribbon:before,
+    .ribbon:after {
+        content: "";
+        position: absolute;
+    }
+
+    .ribbon:after {
+        height: 0;
+        width: 0;
+        bottom: -1.8438rem*1.2;
+        left: 0;
+        border-left: 1.875rem*1.2 solid #74C4AE;
+        border-right: 1.875rem*1.2 solid #74C4AE;
+        border-bottom: 1.875rem*1.2 solid transparent;
     }
 }

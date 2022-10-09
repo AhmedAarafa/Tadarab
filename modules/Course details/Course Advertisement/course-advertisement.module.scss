@@ -59,6 +59,7 @@
     overflow: hidden;
     border-radius: 1.375rem;
     position: relative;
+
     // &:after{
     //         content: '';
     //         position: absolute;
@@ -66,7 +67,7 @@
     //         top:0; left:0;
     //         background:rgba(0,0,0,0.3);
     //     }
-    img{
+    img {
         width: 100%;
     }
 
@@ -227,8 +228,18 @@
 }
 
 
-.tadarab-icon{display:inline-block;vertical-align:middle;position:relative;height:24px;width:24px;}
-.tadarab-icon.live-white{background:transparent url('/images/live-stream-red_24X24.png') no-repeat scroll center center/100% auto}
+.tadarab-icon {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    height: 24px;
+    width: 24px;
+}
+
+.tadarab-icon.live-white {
+    background: transparent url('/images/live-stream-red_24X24.png') no-repeat scroll center center/100% auto
+}
+
 @media (max-width: 575px) {
     .course-ad {
         margin: 10.5rem 0 0 0;
@@ -399,7 +410,7 @@
     }
 
 
-    
+
     // .live-webinar-countdown {
     //     background-color: rgba(175, 21, 31, 0.08);
     //     box-shadow: 0 0.23rem 0.62rem #0000001A;
