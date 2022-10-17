@@ -22,11 +22,12 @@ import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { setHomePageData } from "configurations/redux/actions/homePageData";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
-function LatestCourses() {
+function LatestCourses(props:any) {
     SwiperCore.use([Navigation]);
     const homePageData = useSelector((state: any) => state.homePageData);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const cartItems = useSelector((state: any) => state.cartItems);
+    // const [currencySymbol, setCurrencySymbol] = useState("");
     const [temporaryAddToCart, setTemporaryAddToCart] = useState<any>([]);
     const [localCartItems, setLocalCartItems] = useState<any>([]);
     const [isExecuted, setIsExecuted] = useState(false);
@@ -65,8 +66,10 @@ function LatestCourses() {
         axiosInstance
             .get(`home`)
             .then(function (response: any) {
-                console.log("response",response);
+                console.log("Season LAtest courses response",response.data.data[`currency_symbol`]);
+                console.log("response.data.data",response.data.data);
                 
+                props.handleCurrency({curr_symbol : response.data.data[`currency_symbol`] ,subscription_value: response.data.data.subscription_sale_price});
                 dispatch(setHomePageData(response.data.data));
                 FBPixelEventsHandler(response.data.fb_tracking_events, null);
                 toggleLoader("hide");

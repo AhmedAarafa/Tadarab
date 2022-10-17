@@ -27,62 +27,63 @@ const EducationalGuide = dynamic(() => import("modules/Home page/Educational gui
 const AboutTadarab = dynamic(() => import("modules/Home page/About Tadarab/AboutTadarab"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("modules/Home page/Tadarab unlimited/TadarabUnlimited"));
+const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season section/TadarabSeason"));
 
 function HomePage(props: any) {
   const router = useRouter();
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
-  
+
   useEffect(() => {
     toggleLoader("show");
 
-        if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
+    if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
+      axiosInstance
+        .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
+        .then((res: any) => {
+          localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+          localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+          localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
           axiosInstance
-              .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
-              .then((res:any) => {
-                localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
-                localStorage.setItem("affiliate_id", `${Router.query.aid}`);
-                localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
-                axiosInstance
-                .get(`home`)
-                .then(function (response: any) {
-                  dispatch(setHomePageData(response.data.data));
-                  FBPixelEventsHandler(response.data.fb_tracking_events, null);
-                  toggleLoader("hide");
-                })
-                .catch(function (error:any) {
-                  toggleLoader("hide");
-                  console.log(error);
-                });
-              })
-              .catch((error:any)=>{
-                console.log("error", error);
-                toggleLoader("hide");
-              });
-        }else{
+            .get(`home`)
+            .then(function (response: any) {
+              dispatch(setHomePageData(response.data.data));
+              FBPixelEventsHandler(response.data.fb_tracking_events, null);
+              toggleLoader("hide");
+            })
+            .catch(function (error: any) {
+              toggleLoader("hide");
+              console.log(error);
+            });
+        })
+        .catch((error: any) => {
+          console.log("error", error);
+          toggleLoader("hide");
+        });
+    } else {
 
-          axiosInstance
-          .get(`home`)
-          .then(function (response: any) {
-            dispatch(setHomePageData(response.data.data));
-            FBPixelEventsHandler(response.data.fb_tracking_events, null);
-            toggleLoader("hide");
-          })
-          .catch(function (error:any) {
-            toggleLoader("hide");
-            console.log(error);
-          });
-        }
+      axiosInstance
+        .get(`home`)
+        .then(function (response: any) {
+          dispatch(setHomePageData(response.data.data));
+          FBPixelEventsHandler(response.data.fb_tracking_events, null);
+          toggleLoader("hide");
+        })
+        .catch(function (error: any) {
+          toggleLoader("hide");
+          console.log(error);
+        });
+    }
 
 
-            if(localStorage.getItem("affiliate_id") &&
-            Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))){
-              localStorage.removeItem("affiliate_id");
-              localStorage.removeItem("cced");
-              localStorage.setItem("coupon_code", "");
-              
+    if (localStorage.getItem("affiliate_id") &&
+      Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
+      localStorage.removeItem("affiliate_id");
+      localStorage.removeItem("cced");
+      localStorage.setItem("coupon_code", "");
 
-            }
+
+    }
 
 
     window.addEventListener("scroll", () => {
@@ -97,12 +98,13 @@ function HomePage(props: any) {
 
 
   }, [router]);
-  
+
   return (
     <>
       <Container fluid="xxl" >
-      
+
         <HeroSection />
+        <TadarabSeason />
         <LatestCourses />
         <TadarabUnlimited />
         <CoursesDepartments />

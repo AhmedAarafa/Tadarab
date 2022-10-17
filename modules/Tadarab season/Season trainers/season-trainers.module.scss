@@ -111,11 +111,23 @@
     }
 }
 
-.season-trainers__cards-carousel__card__trainer {
+.season-trainers__cards-carousel__card__trainer-name {
     font-size: 1.25rem*0.8;
     font-weight: 700;
     margin: 2.5rem*0.8 0 0.313rem*0.8 0;
     // cursor: pointer;
+}
+
+.season-trainers__cards-carousel__card__trainer-title{
+    font-size: 0.813rem*0.8;
+    padding: 0;
+    max-height: fit-content;
+    width: 95%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .season-trainers__cards-carousel__card__job-title,
@@ -341,7 +353,7 @@
 
     .season-trainers__cards-carousel {
         padding-top: 6.406rem;
-        margin-bottom: 8rem*2.4;
+        margin-bottom: 8rem;
 
 
         &>div {

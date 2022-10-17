@@ -1,5 +1,5 @@
 .arabic-trainers {
-  margin: 3.125rem 0 0 0;
+  margin: 3.125rem 0 5rem 0;
 }
 
 .arabic-trainers__title {
@@ -317,7 +317,7 @@
 }
 @media (max-width: 575px) {
   .arabic-trainers {
-    margin: 7.1875rem 0 0 0;
+    margin: 7.1875rem 0 11.5rem 0;
   }
   .arabic-trainers__title {
     font-size: 4.3125rem;

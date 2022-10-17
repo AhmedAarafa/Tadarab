@@ -4,7 +4,7 @@ import Router, { useRouter } from "next/router";
 export default function MetaTagsGenerator(props:any) {
 
     let siteurl = "https://www.tadarab.com";let canonical=siteurl;
-    const allowedCanonical=['/Category/[slug]','/TrainerProfile/[slug]'];
+    const allowedCanonical=['/Category/[slug]','/TrainerProfile/[slug]','/CourseDetails/[slug]'];
     const router = useRouter();
     let is_allow=allowedCanonical.includes((router.route));
     if(is_allow){canonical+=router.asPath;}

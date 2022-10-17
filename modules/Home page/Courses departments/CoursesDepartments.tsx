@@ -6,11 +6,8 @@ import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
-import Link from 'next/link';
-import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ChevronLeftIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
-import Image from 'next/image';
 
 export default function CoursesDepartments() {
   SwiperCore.use([Navigation]);
@@ -22,6 +19,7 @@ export default function CoursesDepartments() {
 
     setCategories(homePageData.data?.categories || []);
   }, [homePageData]);
+
   return (
     <>
       <Row>

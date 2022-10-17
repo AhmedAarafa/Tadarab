@@ -16,8 +16,10 @@
 .season-courses__title > h2 span:nth-of-type(1) {
   color: var(--dark-black);
 }
-.season-courses__title > h2 span:nth-of-type(2) {
-  color: var(--primary-red);
+.season-courses__title > h2 div {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
 }
 
 .season-courses__see-more-btn-col {
@@ -161,7 +163,6 @@
   height: 16.25rem;
   display: block;
   border-radius: 1.105rem;
-  cursor: pointer !important;
 }
 
 .season-courses__cards-carousel__card__card-body {
@@ -189,7 +190,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  cursor: pointer !important;
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -199,7 +199,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  cursor: pointer !important;
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -774,8 +773,14 @@
     justify-content: center;
   }
   .season-courses__title h2 {
+    text-align: center;
     font-size: 4.688rem;
     padding: 7rem 0 0 0;
+  }
+  .season-courses__title h2 div {
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
   }
   .season-courses__see-more-btn-col {
     display: flex;

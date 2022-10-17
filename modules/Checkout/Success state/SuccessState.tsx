@@ -35,8 +35,6 @@ export default function SuccessState() {
                     uid:invoiceDetails?.data?.ga_tracking?.uid,
                     cid:invoiceDetails?.data?.ga_tracking?.cid,
                     email:invoiceDetails?.data?.transaction_details?.email,
-                    subscription_elabel:invoiceDetails?.data?.transaction_details?.subscription_elabel,
-                    subscription_label:invoiceDetails?.data?.transaction_details?.subscription_label
                 });
             }else if(checkoutType=='subscription'){
                 dispatch(setIsUserAuthenticated({
@@ -50,7 +48,9 @@ export default function SuccessState() {
                     date:invoiceDetails?.data?.transaction_details?.date_ymd,
                     cid:invoiceDetails?.data?.ga_tracking?.cid,
                     is_trial_free:invoiceDetails?.data?.transaction_details?.is_trial_free,
-                    free_trial_label:invoiceDetails?.data?.transaction_details?.free_trial_label
+                    free_trial_label:invoiceDetails?.data?.transaction_details?.free_trial_label,
+                    subscription_elabel:invoiceDetails?.data?.transaction_details?.subscription_elabel,
+                    subscription_label:invoiceDetails?.data?.transaction_details?.subscription_label
                 });
             }
         }
@@ -65,7 +65,6 @@ export default function SuccessState() {
         localStorage.removeItem("affiliate_id");
         localStorage.removeItem("cced");
 
-      
         return () => {
             dispatch(setCheckoutType("cart"));
             dispatch(setTransactionStatus(null));

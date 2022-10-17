@@ -34,12 +34,14 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 //import { useGoogleLogout } from 'react-google-login';
 
 function Navbar() {
+
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [expanded, setExpanded] = useState<any>(false);
   const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
   const [purchasedCoursesNav, setPurchasedCoursesNav] = useState("curriculum");
+  const [categoriesList, setCategoriesList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const handleDiscoverSidebarShow = (status: boolean) => {
     setDiscoverSidebarShow(status);
@@ -223,10 +225,6 @@ function Navbar() {
 
   useEffect(() => {
     let localStorageItems: any = localStorage.getItem("cart");
-    // console.log("cartItems",cartItems);
-    // console.log("localStorageItems",localStorageItems);
-    // if(userStatus.isUserAuthenticated === true){
-    // setLocalStateCartItems(cartItems?.data);
 
     if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined) {
 
@@ -249,8 +247,19 @@ function Navbar() {
       // dispatch(setCartItems(null));
     }
 
+    axiosInstance
+      .get(`categories`)
+      .then(function (response: any) {
+        setCategoriesList(response?.data?.data?.categories);
+        // toggleLoader("hide");
+      })
+      .catch(function (error) {
+        // toggleLoader("hide");
+        console.log(error);
+      });
 
-  }, [])
+
+  }, []);
 
   useEffect(() => {
     if (courseDetailsData?.data && JSON.stringify(courseDetailsData?.data) !== '[]') {
@@ -404,39 +413,15 @@ function Navbar() {
               </Offcanvas.Header>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
-                <Link href="/topic/family">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>الاسرة</li>
-                </Link>
-                <Link href="/topic/self-development">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>التنمية الذاتية</li>
-                </Link>
-                <Link href="/topic/health">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>الصحة</li>
-                </Link>
-                <Link href="/topic/human-resources">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>الموارد البشرية</li>
-                </Link>
-                <Link href="/topic/office">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>برامج الأوفيس</li>
-                </Link>
-                <Link href="/topic/family-and-educational-skills">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>تربية الأبناء</li>
-                </Link>
-                <Link href="/topic/technology">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>تكنولوجيا</li>
-                </Link>
-                <Link href="/topic/business">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>ريادة الأعمال</li>
-                </Link>
-                <Link href="/topic/language-and-sciences">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>علوم ولغات</li>
-                </Link>
-                <Link href="/topic/talents">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>فن وهوايات</li>
-                </Link>
-                <Link href="/topic/home">
-                  <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>منزل</li>
-                </Link>
+                {
+                  categoriesList.map((category: any, i: number) => {
+                    return (
+                      <Link key={i} href={`/topic/${category.slug}`}>
+                        <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>{category.title.replace('دورات', '')}</li>
+                      </Link>
+                    )
+                  })
+                }
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>الأقسام</div></div>
@@ -447,6 +432,10 @@ function Navbar() {
                 <Link href="/courses?type=live">
 
                   <li onClick={() => { setExpanded(false) }}>دورات مباشرة</li>
+                </Link>
+                <Link href="/tadarab-season">
+
+                  <li onClick={() => { setExpanded(false) }}>موسم تدرب </li>
                 </Link>
                 {/* <li>الاستشارات</li>
                   <li>كتيبات وملخصات</li>
@@ -549,39 +538,15 @@ function Navbar() {
                       التخصصات
                     </div>
                     <ul className={styles["navbar__discover-popover__list"]}>
-                      <Link href="/topic/family">
-                        <li>الاسرة</li>
-                      </Link>
-                      <Link href="/topic/self-development">
-                        <li>التنمية الذاتية</li>
-                      </Link>
-                      <Link href="/topic/health">
-                        <li>الصحة</li>
-                      </Link>
-                      <Link href="/topic/human-resources">
-                        <li>الموارد البشرية</li>
-                      </Link>
-                      <Link href="/topic/office">
-                        <li>برامج الأوفيس</li>
-                      </Link>
-                      <Link href="/topic/family-and-educational-skills">
-                        <li>تربية الأبناء</li>
-                      </Link>
-                      <Link href="/topic/technology">
-                        <li>تكنولوجيا</li>
-                      </Link>
-                      <Link href="/topic/business">
-                        <li>ريادة الأعمال</li>
-                      </Link>
-                      <Link href="/topic/language-and-sciences">
-                        <li>علوم ولغات</li>
-                      </Link>
-                      <Link href="/topic/talents">
-                        <li>فن وهوايات</li>
-                      </Link>
-                      <Link href="/topic/home">
-                        <li>منزل</li>
-                      </Link>
+                      {
+                        categoriesList.map((category: any, i: number) => {
+                          return (
+                            <Link key={i} href={`/topic/${category.slug}`}>
+                              <li>{category.title.replace('دورات', '')}</li>
+                            </Link>
+                          )
+                        })
+                      }
                     </ul>
                   </div>
                   <div className={styles["navbar__discover-popover__box"]}>
@@ -596,6 +561,10 @@ function Navbar() {
                       <Link href="/courses?type=live">
 
                         <li>دورات مباشرة</li>
+                      </Link>
+                      <Link href="/tadarab-season">
+
+                        <li>موسم تدرب </li>
                       </Link>
                       {/* <li>الاستشارات</li>
                           <li>كتيبات وملخصات</li>
@@ -967,7 +936,7 @@ function Navbar() {
           }
         </Nav>
 
-      </NavBar>
+      </NavBar >
     </>
   );
 }

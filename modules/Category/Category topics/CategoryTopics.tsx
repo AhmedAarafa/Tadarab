@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React from 'react'
 import { Row, Col } from "react-bootstrap";
 import styles from "./category-topics.module.css";
@@ -31,7 +32,7 @@ export default function CategoryTopics(props:any) {
                 {
                     props.data.subcategories?.map((subcategory:any, i:number)=>{
                     return(
-                        <Link href={`/topic/${subcategory.slug}`}>
+                        <Link key={i} href={`/topic/${subcategory.slug}`}>
                             <div key={i} style={{color:`${props.data.color}` , backgroundColor:`${hexToRgbA(props.data.color)}`}}>{subcategory.title}</div>
                         </Link>
                         )

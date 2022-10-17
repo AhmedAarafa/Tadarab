@@ -242,19 +242,21 @@
 
 .training-courses__course-card__card-body__checkout-details__old-price-container {
   margin-top: -0.485rem;
-  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
-          text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .training-courses__course-card__card-body__checkout-details__old-price-container__price {
   font-size: 0.7275rem;
   font-weight: 800;
   color: var(--grey);
+  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
+          text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .training-courses__course-card__card-body__checkout-details__old-price-container__currency {
   font-size: 0.60625rem;
   color: var(--grey);
+  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
+          text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .training-courses__course-card__card-body__checkout-details__icon-btn {

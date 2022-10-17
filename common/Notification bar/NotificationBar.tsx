@@ -48,7 +48,7 @@ export default function NotificationBar() {
                 <div style={{display: userStatus ? 'none' : 'flex'}} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>
-                        العرض ينتهى قريباَ | أحصل على اي عدد من الدورات بخصم ٧٠٪ أستثمر وقتك بالصيف كود الخصم S70
+                        آخر فرصة للأستفادة من العرض | بمناسبة مرور ٦ سنوات على تأسيس منصة تدرب أكثر من ٨٠٠ دورة تدريبية بخصم ٧٥٪ كود الخصم T6
                             {/* <span onClick={() => { handleSubscriptionBtn() }}>
                             أضغط هنا لمشاهدة البث
                             </span> */}

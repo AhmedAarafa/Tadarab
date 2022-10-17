@@ -1,0 +1,105 @@
+.tadarab-season {
+  padding: 2rem 3rem;
+}
+
+.tadarab-season__info-box,
+.tadarab-season__info-box__info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tadarab-season__info-box__info div:nth-of-type(1) {
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+.tadarab-season__info-box__info div:nth-of-type(2) {
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0.5rem 0 0 0;
+}
+
+.tadarab-season__info-box__logo {
+  width: 18.4375rem;
+  height: 3.875rem;
+}
+
+.tadarab-season__gif img {
+  width: 34.86rem;
+  height: 18.9rem;
+  border-radius: 1rem;
+}
+
+.tadarab-season__signup-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1.5rem 0 0 0;
+  width: 100%;
+}
+.tadarab-season__signup-box button {
+  box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: "Almarai", sans-serif;
+  border: 0 !important;
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+  background-color: white !important;
+  width: 60%;
+  font-size: 0.97rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+}
+.tadarab-season__signup-box button:hover {
+  box-shadow: none;
+}
+.tadarab-season__signup-box button:active {
+  box-shadow: none;
+}
+.tadarab-season__signup-box button:hover {
+  color: var(--primary-red) !important;
+  border: 0.125rem solid var(--primary-red) !important;
+}
+.tadarab-season__signup-box button:active {
+  background-color: var(--primary-red) !important;
+  color: white !important;
+  border: 0.125rem solid var(--primary-red) !important;
+}
+
+@media (max-width: 575px) {
+  .tadarab-season {
+    padding: 5rem;
+  }
+  .tadarab-season__info-box__info div:nth-of-type(1) {
+    font-size: 3.08rem;
+  }
+  .tadarab-season__info-box__info div:nth-of-type(2) {
+    font-size: 1.98rem;
+    margin: 1.1rem 0 0 0;
+  }
+  .tadarab-season__info-box__logo {
+    width: 40.5625rem;
+    height: 8.525rem;
+  }
+  .tadarab-season__gif img {
+    width: 100%;
+    height: 26.87rem;
+    border-radius: 2.2rem;
+    margin: 0 0 2rem 0;
+  }
+  .tadarab-season__signup-box {
+    margin: 3.3rem 0 0 0;
+  }
+  .tadarab-season__signup-box button {
+    width: 100%;
+    font-size: 2.134rem;
+    padding: 0.825rem 1.65rem;
+    border-radius: 1.375rem;
+  }
+}/*# sourceMappingURL=tadarab-season.module.css.map */

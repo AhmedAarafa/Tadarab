@@ -1,7 +1,7 @@
 @import "../../../styles/mixins";
 
 .arabic-trainers {
-    margin: 3.125rem 0 0 0;
+    margin: 3.125rem 0 5rem 0;
 }
 
 .arabic-trainers__title {
@@ -319,7 +319,7 @@
 @media (max-width:575px) {
 
     .arabic-trainers {
-        margin: 3.125rem*2.3 0 0 0;
+        margin: 3.125rem*2.3 0 5rem*2.3 0;
     }
 
     .arabic-trainers__title {

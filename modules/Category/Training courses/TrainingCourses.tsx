@@ -21,7 +21,8 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 export default function TrainingCourses(props: any) {
     const [currentPage, setCurrentPage] = useState("1");
     const [pageNumber, setPageNumber] = useState(1);
-  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+    const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+    const [pagesArray, setPagesArray] = useState<any>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const dispatch = useDispatch();
     const Router = useRouter();
@@ -162,18 +163,18 @@ export default function TrainingCourses(props: any) {
         } else {
             Router.push({
                 pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
-                query: { from: "/topic" }
+                query: { from: `/topic/${slug}` }
             })
         }
     }
 
-    
+
 
     const handleCartActionBtn = (course: any): any => {
-        setDisabledCartBtns([...disabledCartBtns,course.id]);
-    setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
-    }, 5000);
+        setDisabledCartBtns([...disabledCartBtns, course.id]);
+        setTimeout(() => {
+            setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
+        }, 5000);
         dispatch(setCheckoutType("cart"));
 
         const handleCartResponse: any = handleCart([course], `categories/${slug}/?page=${pageNumber}&limit=12`, false);
@@ -199,16 +200,44 @@ export default function TrainingCourses(props: any) {
 
     const handlePageClick = (pgNo: any) => {
         toggleLoader("show");
+        window.scrollTo({ top: 0, behavior: "smooth" });
         setCurrentPage(pgNo);
+        setPagesArray([]);
+        let startIndex: any = 0, endIndex: any = 0;
+
         axiosInstance
             .get(`categories/${slug}/?page=${pgNo}&limit=12`)
             .then(function (response: any) {
                 console.log(response.data);
                 setFilteredCourses(response?.data);
+                let totalPages = response?.data.pagination.pages;
+
+                if (totalPages <= 10) {
+                    // less than 10 total pages so show all
+                    startIndex = 1;
+                    endIndex = totalPages;
+                } else {
+                    // more than 10 total pages so calculate start and end pages
+                    if (pgNo <= 6) {
+                        startIndex = 1;
+                        endIndex = 10;
+                    } else if (pgNo + 4 >= totalPages) {
+                        startIndex = totalPages - 9;
+                        endIndex = totalPages;
+
+                    } else {
+                        startIndex = pgNo - 5;
+                        endIndex = pgNo + 4;
+                    }
+                }
+
+                // create an array of pages to ng-repeat in the pager control
+                setPagesArray([...Array((endIndex + 1) - startIndex).keys()].map(i => startIndex + i));
                 toggleLoader("hide");
 
             })
             .catch(function (error: any) {
+                toggleLoader("hide");
                 console.log(error);
             });
     }
@@ -557,13 +586,13 @@ export default function TrainingCourses(props: any) {
                                                     }
                                                 </div>
                                                 {
-                                                 !course.is_purchased && !course.is_in_user_subscription && (course.price > course.discounted_price) &&
+                                                    !course.is_purchased && !course.is_in_user_subscription && (course.price > course.discounted_price) &&
                                                     <div
                                                         className={
                                                             styles[
                                                             "training-courses__course-card__card-body__checkout-details__old-price-container"
                                                             ]
-                                                        } 
+                                                        }
                                                     >
                                                         <span
                                                             className={
@@ -588,7 +617,7 @@ export default function TrainingCourses(props: any) {
                                             </div>
 
                                             <div className="d-inline-block">
-                                                {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart  || disabledCartBtns.includes(course.id) } variant={""}
+                                                {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
                                                     className={
                                                         styles[
                                                         "training-courses__course-card__card-body__checkout-details__icon-btn"
@@ -597,7 +626,7 @@ export default function TrainingCourses(props: any) {
                                                 >
                                                     <div onClick={() =>
                                                         course.discounted_price == 0 ?
-                                                        handleFreeCoursesActionBtn(course)
+                                                            handleFreeCoursesActionBtn(course)
                                                             :
                                                             handleCartActionBtn(course)
                                                     }
@@ -606,7 +635,7 @@ export default function TrainingCourses(props: any) {
                                                             course.discounted_price == 0 ?
                                                                 <TvIcon color="#222" />
                                                                 :
-                                                                course.is_in_cart  || disabledCartBtns.includes(course.id) ?
+                                                                course.is_in_cart || disabledCartBtns.includes(course.id) ?
                                                                     <AddedToCartIcon color="#222" />
                                                                     :
                                                                     <CartIcon color="#222" />
@@ -657,32 +686,21 @@ export default function TrainingCourses(props: any) {
                                 }}
                                 className={`${currentPage == "1" && styles["disabled"]}`} />
 
-                            <Pagination.Item
-                                style={{ display: filteredCourses?.pagination?.previous ? "" : "none" }}
-                                active={currentPage == filteredCourses?.pagination?.previous}
-                                onClick={() => {
-                                    setPageNumber(filteredCourses?.pagination?.previous);
-                                    handlePageClick(filteredCourses?.pagination?.previous)
-                                }}>
-                                {filteredCourses?.pagination?.previous}
-                            </Pagination.Item>
-                            <Pagination.Item
-                                active={currentPage == filteredCourses?.pagination?.current}
-                                onClick={() => {
-                                    setPageNumber(filteredCourses?.pagination?.current);
-                                    handlePageClick(filteredCourses?.pagination?.current);
-                                }}>
-                                {filteredCourses?.pagination?.current}
-                            </Pagination.Item>
-                            <Pagination.Item
-                                style={{ display: filteredCourses?.pagination?.next ? "" : "none" }}
-                                active={currentPage == filteredCourses?.pagination?.next}
-                                onClick={() => {
-                                    setPageNumber(filteredCourses?.pagination?.next);
-                                    handlePageClick(filteredCourses?.pagination?.next)
-                                }}>
-                                {filteredCourses?.pagination?.next}
-                            </Pagination.Item>
+                            {
+                                pagesArray.map((page: any, index: any) => {
+                                    return (
+                                        page <= filteredCourses?.pagination?.pages &&
+                                        page >= 1 &&
+                                        <Pagination.Item key={index}
+                                            active={currentPage == page}
+                                            onClick={() => {
+                                                handlePageClick(page);
+                                            }}>
+                                            {page}
+                                        </Pagination.Item>
+                                    )
+                                })
+                            }
 
                             <Pagination.Next
                                 onClick={() => {

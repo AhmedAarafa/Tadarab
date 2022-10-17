@@ -41,7 +41,6 @@ function LatestCourses() {
     axiosInstance
       .get(`home/courses/?type=${type}`)
       .then(function (response: any) {
-        console.log("response//", response);
         setLatestCourses(response?.data?.data);
       })
       .catch(function (error) {
@@ -49,7 +48,6 @@ function LatestCourses() {
       });
 
   }
-
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
       const handleFavResponse: any = handleFav(course, `home/courses/?type=${filterType}`);

@@ -139,19 +139,21 @@
 
 .search-results__course-card__card-body__checkout-details__old-price-container {
   margin-top: -0.5rem;
-  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
-          text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .search-results__course-card__card-body__checkout-details__old-price-container__price {
   font-size: 0.875rem;
   font-weight: 800;
   color: var(--grey);
+  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
+          text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .search-results__course-card__card-body__checkout-details__old-price-container__currency {
   font-size: 0.625rem;
   color: var(--grey);
+  -webkit-text-decoration: line-through rgba(119, 119, 119, 0.7);
+          text-decoration: line-through rgba(119, 119, 119, 0.7);
 }
 
 .search-results__course-card__card-body__checkout-details__icon-btn {

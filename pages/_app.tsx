@@ -29,15 +29,19 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
   let canonical = "https://www.tadarab.com";
-  const allowedCanonical=['/','/TadarabSubscription','/AllCourses'];
   const router = useRouter();
+  /*const allowedCanonical=['/','/TadarabSubscription','/AllCourses'];
   let is_allow=allowedCanonical.includes((router.route));
-  if(is_allow){canonical+=((router.asPath=="/AllCourses")?"/courses":((router.asPath)?"/subscription":router.asPath));}
+  if(is_allow){canonical+=((router.asPath=="/AllCourses")?"/courses":((router.asPath)?"/subscription":router.asPath));}*/
+  canonical+=(router.asPath);
+
   return (
     <>
       <Head>
         <title>دورات تدريبية اون لاين مجانيه عن بعد - منصه تدرب </title>
-        { (is_allow)?<><link rel="canonical" href={canonical} /></>:<></> }
+        {/* { (is_allow)?<><link rel="canonical" href={canonical} /></>:<></> } */}
+        
+        <link rel="canonical" href={canonical} />
 
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

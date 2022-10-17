@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
-
-// import CategoryDescription from "modules/Category/Category description/CategoryDescription";
-// import CategoryCourses from "modules/Category/Category courses/CategoryCourses";
-// import CategoryTopics from "modules/Category/Category topics/CategoryTopics";
-// import CategoryTrainers from "modules/Category/Category trainers/CategoryTrainers";
-// import TrainingCourses from "modules/Category/Training courses/TrainingCourses";
 import { Container } from "react-bootstrap";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
 import useResize from "custom hooks/useResize";
+import Faq from "common/Subscription faqs/FAQ/Faq";
 
 const CategoryDescription = dynamic(() => import("modules/Category/Category description/CategoryDescription"));
 const CategoryCourses = dynamic(() => import("modules/Category/Category courses/CategoryCourses"));
 const CategoryTopics = dynamic(() => import("modules/Category/Category topics/CategoryTopics"));
+const CategorySkills = dynamic(() => import("modules/Category/Category skills/CategorySkills"));
 const CategoryTrainers = dynamic(() => import("modules/Category/Category trainers/CategoryTrainers"));
 const TrainingCourses = dynamic(() => import("modules/Category/Training courses/TrainingCourses"));
+const ExploreCategory = dynamic(() => import("modules/Category/Explore category/ExploreCategory"));
+const SubscriptionBenefits = dynamic(() => import("modules/Category/Subscription benefits/SubscriptionBenefits"));
+const MostPopularCourses = dynamic(() => import("modules/Category/Most popular courses/MostPopularCourses"));
+const ExploreOtherCategories = dynamic(() => import("modules/Category/Explore other categories/ExploreOtherCategories"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 
@@ -27,6 +27,7 @@ export default function Category(props: any) {
   const router = useRouter()
   const [category, setCategory] = useState<any>({});
   const [pagination, setPagination] = useState<any>({});
+  const [categoriesList, setCategoriesList] = useState([]);
   const Router = useRouter();
   const { slug } = Router.query;
   const { seoData } = props;
@@ -35,10 +36,21 @@ export default function Category(props: any) {
     toggleLoader("show");
     const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
     MOBILECHECKOUTBAR.style.cssText = `display:flex`;
+    axiosInstance
+      .get(`categories`)
+      .then(function (response: any) {
+        setCategoriesList(response?.data?.data?.categories);
+        // toggleLoader("hide");
+      })
+      .catch(function (error) {
+        toggleLoader("hide");
+        console.log(error);
+      });
   }, [])
 
   useEffect(() => {
     if (Router.query.slug) {
+      toggleLoader("show");
 
       if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
         axiosInstance
@@ -105,12 +117,18 @@ export default function Category(props: any) {
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
       <Container fluid="xxl">
-        <MobileCheckoutBar />
-        <CategoryDescription data={category} />
+        <MobileCheckoutBar data={category} />
+        <CategoryDescription data={category} categoriesList={categoriesList}/>
+        <CategorySkills data={category} />
+        <MostPopularCourses data={category} pagination={pagination} />
         {/* <CategoryCourses data={category} />  */}
         {/* <CategoryTopics data={category} /> */}
         <CategoryTrainers data={category} />
+        <ExploreOtherCategories data={category} categoriesList={categoriesList}/>
         <TrainingCourses data={category} pagination={pagination} />
+        <ExploreCategory data={category} />
+        <SubscriptionBenefits />
+        <Faq />
       </Container>
     </>
   )

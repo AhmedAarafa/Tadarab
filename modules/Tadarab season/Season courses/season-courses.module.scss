@@ -17,8 +17,10 @@
             color: var(--dark-black);
         }
 
-        span:nth-of-type(2) {
-            color: var(--primary-red);
+        div {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-top: 0.2rem;
         }
     }
 
@@ -132,8 +134,6 @@
     height: 12.5rem*1.30;
     display: block;
     border-radius: 0.85rem*1.30;
-    cursor: pointer !important;
-
 }
 
 .season-courses__cards-carousel__card__card-body {
@@ -160,7 +160,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    cursor: pointer !important;
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__author {
@@ -170,7 +169,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-    cursor: pointer !important;
 }
 
 .season-courses__cards-carousel__card__card-body__card-header__course-details__para {
@@ -389,7 +387,7 @@
         width: 100%;
         height: 12.5rem*1.28;
         display: block;
-        border-radius: 0.85rem*1.28 ;
+        border-radius: 0.85rem*1.28;
     }
 
     .season-courses__cards-carousel__card__card-body {
@@ -600,7 +598,7 @@
         width: 100%;
         height: 12.5rem*1.35;
         display: block;
-        border-radius: 0.85rem*1.35 ;
+        border-radius: 0.85rem*1.35;
 
     }
 
@@ -745,8 +743,15 @@
 
     .season-courses__title {
         h2 {
+            text-align: center;
             font-size: 4.688rem;
             padding: 7rem 0 0 0;
+
+            div {
+                font-size: 2.1rem;
+                font-weight: 700;
+                margin-top: 0.5rem;
+            }
         }
 
         @include flex(center, center);
@@ -834,7 +839,7 @@
     .season-courses__cards-carousel__card__trainer-img {
         width: 100%;
         height: 12.5rem*2.4;
-        border-radius: 0.85rem*2.4 ;
+        border-radius: 0.85rem*2.4;
 
     }
 

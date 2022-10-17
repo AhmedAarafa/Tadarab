@@ -54,8 +54,7 @@ export default function FooterSection() {
       }, 7000);
     }
 
-  }, [error])
-
+  }, [error]);
 
 
   return (
@@ -164,10 +163,10 @@ export default function FooterSection() {
               <Link href="/privacy">
                 <li>السياسات والخصوصية</li>
               </Link>
-             { userStatus.isSubscribed &&  <Link href="/unsubscribe">
+              {userStatus.isSubscribed && <Link href="/unsubscribe">
                 <li>نظام الاشتراكات</li>
               </Link>}
-        {/* <li>الدعم الفني</li>
+              {/* <li>الدعم الفني</li>
          <li>تواصل معانا</li>
          <li>الأخبار</li> */}
             </ul>

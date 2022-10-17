@@ -1,0 +1,48 @@
+@import "../../../styles/mixins";
+
+.categories-navigator {
+    display: none;
+}
+
+
+
+@media (max-width: 575px) {
+    .categories-navigator {
+        display: block;
+        margin: 10rem 0 0 0;
+        @include flex(center, center);
+
+        &>div {
+            width: 90%;
+        }
+
+        button {
+            width: 100%;
+            font-size: 2rem;
+            @include flex(center, space-between);
+            height: 5rem;
+            background-color: transparent !important;
+            border: 0 !important;
+            color: var(--dark-black) !important;
+            border-radius: 0 !important;
+            border-bottom: 0.0625rem solid #e9ecef !important;
+            margin-bottom: 3rem !important;
+
+            &+div {
+                width: 100%;
+                text-align: right;
+
+                a {
+                    font-size: 2rem;
+                    padding: 0.75rem 1rem !important;
+            color: var(--dark-black) !important;
+                    &:active {
+                        background-color: #d9dde1;
+                        color: #1e2125;
+                    }
+                }
+            }
+
+        }
+    }
+}

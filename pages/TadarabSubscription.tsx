@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,18 +10,18 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import dynamic from 'next/dynamic';
 import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 import Router, { useRouter } from "next/router";
+import Faq from "common/Subscription faqs/FAQ/Faq";
 
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const UnlimitedCourses = dynamic(() => import("modules/Tadarab subscription/Unlimited courses/UnlimitedCourses"));
 const Statistics = dynamic(() => import("modules/Tadarab subscription/Statistics/Statistics"));
 const MarketingBoxes = dynamic(() => import("modules/Tadarab subscription/Marketing boxes/MarketingBoxes"));
 const ArabicTrainers = dynamic(() => import("modules/Tadarab subscription/Arabic trainers/ArabicTrainers"));
-const Faq = dynamic(() => import("modules/Tadarab subscription/FAQ/Faq"));
 const MobileCheckoutBar = dynamic(() => import("modules/Course details/Mobile checkout bar/MobileCheckoutBar"));
 
 export default function TadarabSubscription() {
   const userAuthState = useSelector((state: any) => state.userAuthentication);
-  
+  const [subscriptionData, setSubscriptionData] = useState({});
 
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
@@ -83,10 +83,9 @@ export default function TadarabSubscription() {
       .get(`home`)
       .then(function (response: any) {
         dispatch(setHomePageData(response.data.data));
+        setSubscriptionData(response?.data?.data);
         FBPixelEventsHandler(response.data.fb_tracking_events, null);
         toggleLoader("hide");
-        
-        
       })
       .catch(function (error) {
         toggleLoader("hide");
@@ -115,7 +114,7 @@ export default function TadarabSubscription() {
   return (
     <>
       <Container fluid="xxl">
-        <MobileCheckoutBar />
+        <MobileCheckoutBar data={subscriptionData}/>
         <UnlimitedCourses />
         <Statistics />
         <MarketingBoxes />

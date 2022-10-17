@@ -6,8 +6,7 @@ import { CartIcon } from "common/Icons/Icons";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
 
-export default function MobileCheckoutBar() {
-
+export default function MobileCheckoutBar(props:any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   //const userStatus = useSelector((state:any) => state.userAuthentication);
   const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
@@ -18,9 +17,9 @@ export default function MobileCheckoutBar() {
   const dispatch = useDispatch();
   const Router = useRouter();
 
-  useEffect(() => {
-    setCourseDetails(courseDetailsData.data || []);
-  }, [courseDetailsData]);
+  // useEffect(() => {
+  //   setCourseDetails(courseDetailsData.data || []);
+  // }, [courseDetailsData]);
   useEffect(() => {
 
     // setSubscriptionTimer
@@ -147,13 +146,13 @@ export default function MobileCheckoutBar() {
             <div className={styles["monthly-subscription__subscription-value"]} >
               <span>
                 احصل على كل الدورات فقط ب
-                {courseDetails.subscription_sale_price}
-                {courseDetails.currency_symbol} / شهر
+                {` ${props?.data?.subscription_sale_price} `}
+                {props?.data?.currency_symbol} / ش
                 بدلا من
               </span>
               <span className={styles["amount-strike"]}>
-                {courseDetails.subscription_original_price}
-                {courseDetails.currency_symbol}
+                {` ${props?.data?.subscription_original_price} `}
+                {props?.data?.currency_symbol}
               </span>
             </div>
           </div>

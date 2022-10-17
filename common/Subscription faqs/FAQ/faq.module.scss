@@ -1,18 +1,15 @@
 @import "../../../styles/mixins";
 
-
-.faq__row {
-    background-color: #0E0B1D;
-    padding: 2rem 8.75rem 3rem 8.75rem;
-    margin-bottom: -5rem;
-    border-bottom: 2px solid rgba(128, 128, 128, 0.500);
+.faq__row{
+    background-color: rgba(14, 11, 29,0.02);
+    margin: 0 0 -5rem 0;
+    padding: 5.625rem 8.75rem 0 8.75rem;
 }
-
-.faq__title {
+.faq__title{
     font-size: 1.5rem;
-    color: white;
+    color: var(--dark-black);
 
-    div:nth-of-type(2) {
+    div:nth-of-type(2){
         font-weight: 800;
         margin: 0 0 2.5625rem 0;
     }
@@ -77,16 +74,14 @@
 
 }
 
-.faq__contact-us {
+.faq__contact-us{
     font-size: 1.125rem;
     font-weight: 700;
     margin: 1.625rem 0 7.125rem 0;
-
-    span:nth-of-type(1) {
-        color: white;
+    span:nth-of-type(1){
+        color: var(--dark-black);
     }
-
-    span:nth-of-type(2) {
+    span:nth-of-type(2){
         color: var(--primary-red);
         cursor: pointer;
     }
@@ -94,11 +89,10 @@
 
 @media (max-width:575px) {
 
-    .faq__row {
-        padding: 0 5rem 0 5rem;
-        margin-bottom: -12.5rem;
+    .faq__row{
+        margin: 0 0 -9rem 0;
+        padding: 5.625rem 5rem 0 5rem;
     }
-
     .faq {
         margin-top: 9.375rem;
         width: 100%;
@@ -106,7 +100,6 @@
 
     .faq__title {
         font-size: 1.5rem*2.3;
-        text-align: center;
     }
 
     .faq__accordion {
@@ -161,7 +154,7 @@
         padding: 0 3.8rem*2.3 2rem*2.3 2rem*2.3 !important;
     }
 
-    .faq__contact-us {
+    .faq__contact-us{
         font-size: 1.125rem*2.3;
         margin-top: 1.625rem*2.3;
     }

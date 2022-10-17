@@ -44,6 +44,7 @@ function CourseDetails(props: any) {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   const [courseId, setCourseId] = useState("");
+  const [courseData, setCourseData] = useState({});
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
@@ -201,12 +202,12 @@ function CourseDetails(props: any) {
                   axiosInstance
                   .get(`courses/${slug}`)
                   .then(function (response: any) {
-                    toggleLoader("hide");
           
                     const data = response?.data?.data;
                     
                     setCourseId(response?.data?.data?.course_details?.id);
                     dispatch(setCourseDetailsData(data));
+                    setCourseData(data);
           
                     let tadarabGA = new TadarabGA();
                     let referrer = "";
@@ -235,6 +236,8 @@ function CourseDetails(props: any) {
                       });
           
                     FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+                    toggleLoader("hide");
+
                   })
                   .catch(function (error) {
                     toggleLoader("hide");
@@ -247,12 +250,12 @@ function CourseDetails(props: any) {
             axiosInstance
             .get(`courses/${slug}`)
             .then(function (response: any) {
-              toggleLoader("hide");
     
               const data = response?.data?.data;
               
               setCourseId(response?.data?.data?.course_details?.id);
               dispatch(setCourseDetailsData(data));
+              setCourseData(data);
     
               let tadarabGA = new TadarabGA();
               let referrer = "";
@@ -281,6 +284,7 @@ function CourseDetails(props: any) {
                 });
     
               FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+              toggleLoader("hide");
             })
             .catch(function (error) {
               toggleLoader("hide");
@@ -328,7 +332,7 @@ function CourseDetails(props: any) {
             {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
               <>
                 <MobileNavTabsBar />
-                <MobileCheckoutBar />
+                <MobileCheckoutBar data={courseData}/>
                 <Row className={styles["course-details-row"]}>
                   <Col xs={12} sm={8}>
                     <CourseAdvertisement />

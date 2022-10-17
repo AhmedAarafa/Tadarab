@@ -45,7 +45,8 @@ export default function SeasonTrainers() {
                                         style={{ backgroundImage: `url("${trainer.img_src}")` }} >
                                         <div className={styles["season-trainers__cards-carousel__card__card-body"]}>
                                             <div className="text-center">
-                                                <div className={styles["season-trainers__cards-carousel__card__trainer"]}>{trainer.name}</div>
+                                                <div className={styles["season-trainers__cards-carousel__card__trainer-name"]}>{trainer.name}</div>
+                                                <div className={styles["season-trainers__cards-carousel__card__trainer-title"]} title={trainer.job_title}>{trainer.job_title}</div>
                                             </div>
                                         </div>
                                     </Card>

@@ -22,6 +22,7 @@ export default function TrainerProfile(props: any) {
   const router = useRouter();
   const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
   const { seoData } = props;
+  const [trainerData, setTrainerData] = useState({});
 
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export default function TrainerProfile(props: any) {
             .then(function (response: any) {
               const data: Trainer = response.data.data;
               dispatch(setTrainerProfileData(response.data));
+              setTrainerData(response?.data?.data);
               FBPixelEventsHandler(response.data.fb_tracking_events, null);
               toggleLoader("hide");
     
@@ -74,6 +76,7 @@ export default function TrainerProfile(props: any) {
         .then(function (response: any) {
           const data: Trainer = response.data.data;
           dispatch(setTrainerProfileData(response.data));
+          setTrainerData(response?.data?.data);
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
 
@@ -117,7 +120,7 @@ useResize(viewportWidthDetector);
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
       <Container fluid="xxl">
-        <MobileCheckoutBar />
+        <MobileCheckoutBar data={trainerData}/>
         <TrainerProfilePage />
       </Container>
     </>

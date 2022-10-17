@@ -109,7 +109,6 @@ export default function LiveCourses() {
 
   useEffect(() => {
     liveCoursesRef.current = homePageData?.data?.live_courses;
-    console.log("homePageData.data?.live_courses  Home",homePageData.data?.live_courses);
     
     setLiveCourses(homePageData.data?.live_courses || []);
   }, [homePageData]);

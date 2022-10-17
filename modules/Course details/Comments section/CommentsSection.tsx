@@ -180,7 +180,6 @@ export default function CommentsSection(props: any) {
     }, [])
 
     useEffect(() => {
-        console.log("commentContent", commentContent);
         return () => {
             console.log("commentContent died", commentContent);
         }

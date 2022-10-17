@@ -1,13 +1,15 @@
 @import "../../../styles/mixins";
 
 .category-trainer{
-    margin: 4rem 9rem 0 0;
+    margin: 4rem 2rem 0 0;
 }
 
 .category-trainer__title{
     font-size: 1.75rem;
     font-weight: 800;
     color: var(--dark-black);
+    width: fit-content;
+    margin-right: 1rem;
 }
 
 .category-trainer__cards-carousel{

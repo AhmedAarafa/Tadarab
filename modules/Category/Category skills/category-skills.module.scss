@@ -1,0 +1,49 @@
+@import "../../../styles/mixins";
+
+.category-skills {
+    padding: 3rem 9rem;
+}
+
+.category-skills__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--dark-black);
+}
+
+.category-skills__tag {
+    padding: 1rem 0 0 0;
+    @include flex(center, flex-start);
+    flex-wrap: wrap;
+
+    div {
+        border: 0.0625rem solid rgba(0, 0, 0, 0.20);
+        width: fit-content;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 1.125rem;
+        margin: 0 0 0.6rem 0.5rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .category-skills {
+        padding: 3rem*2.2 0 0 0;
+    }
+
+    .category-skills__title {
+        font-size: 1.75rem*2.2;
+        padding: 0 3rem 2rem 3rem;
+    }
+
+    .category-skills__tag {
+        padding: 0 1.5rem;
+
+        div {
+            border: 0.0625rem*2.2 solid rgba(0, 0, 0, 0.20);
+            padding: 0.5rem*2 1rem*2;
+            font-size: 0.875rem*2;
+            border-radius: 1.125rem*2.2;
+            margin: 0 0 0.6rem*2.2 0.5rem*2.2;
+        }
+    }
+}

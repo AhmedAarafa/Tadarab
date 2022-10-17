@@ -156,18 +156,8 @@ export default function CourseListing() {
                     }
                 }
 
-                // calculate start and end item indexes
-                // setStartAndEnd({start: (currentPage - 1) * 20, end : Math.min(startAndEnd.start + 20, response?.data.pagination.pages - 1)});
-                //  start = (currentPage - 1) * 20;
-                //  end = Math.min(start + 20, response?.data.pagination.pages - 1);
-
                 // create an array of pages to ng-repeat in the pager control
                 setPagesArray([...Array((endIndex + 1) - startIndex).keys()].map(i => startIndex + i));
-                // console.log("pagesArray", pagesArray, startIndex, endIndex);
-
-                // for (var i = startIndex; i <= endIndex; i++) {
-                //     setPagesArray([...pagesArray, i]);
-                // }
                 toggleLoader("hide");
             })
             .catch(function (error) {
@@ -570,10 +560,9 @@ export default function CourseListing() {
                                 </Card>
                         )
                     })}
-                </Col>
+                </Col> 
 
                 <Col xs={12} className={styles["course-listing__pagination"]}>
-
 
                     {!(courseListing?.pagination?.count < 20) &&
                         <Pagination>

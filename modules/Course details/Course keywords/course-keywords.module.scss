@@ -5,13 +5,12 @@
     padding: 3.438rem 0 0 0;
     border-top: 0.05rem solid rgba(34, 34, 34, 0.1);
     width: 43rem;
-
 }
 
 .course-keywords__title {
     font-size: 1.5rem;
     font-weight: 800;
-    color: var(--dark-black);
+    color: var(--dark-black); 
 }
 
 .course-keywords__tags{
@@ -30,9 +29,10 @@
 
 @media (max-width: 575px){
     .course-keywords {
-        margin-top: 9.688rem;
+        margin: 9.688rem 0 0 0;
         padding: 0 0 0 0;
         border-top: none;
+        width: 100%;
     }
     
     .course-keywords__title {
@@ -47,8 +47,6 @@
             width: fit-content;
             padding: 0.5rem*2.5 0.75rem*2.5;
             margin:0 0 0.5rem*2.5 0.3rem*2.5;
-
-            
         }
     }
 }

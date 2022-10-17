@@ -11744,14 +11744,14 @@ input:-webkit-autofill:active {
     padding: 0 !important;
   }
   .pagination a {
-    padding: 0.9375rem 1.875rem;
+    padding: 0.8625rem 1.725rem;
   }
   .pagination * {
-    font-size: 2.5rem !important;
+    font-size: 1.8rem !important;
   }
   .pagination li.active span {
-    padding: 0.9375rem 1.875rem;
-    font-size: 2.5rem !important;
+    padding: 0.8625rem 1.725rem;
+    font-size: 1.8rem !important;
   }
   .pagination li:first-child a,
 .pagination li:last-child a {

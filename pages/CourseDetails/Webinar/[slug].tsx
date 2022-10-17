@@ -189,7 +189,8 @@ function CourseDetails() {
     });
 
     if (Router.query.slug) {
-      axiosInstance.get(`webinar/${slug}`).then(function (response: any) {
+      axiosInstance.get(`webinar/${slug}`)
+      .then(function (response: any) {
         toggleLoader("hide");
         const data: Course = response?.data?.data?.archive_course;
         setCourseId(response?.data?.data?.archive_course.course_details.id);
@@ -225,8 +226,6 @@ function CourseDetails() {
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
-                {console.log("courseDetailsData", courseDetailsData, "liveWebinar", liveWebinar)
-                }
                 <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} />
                 {originalCardPlacement == false &&
                   <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />
@@ -254,7 +253,7 @@ function CourseDetails() {
               {
                 originalCardPlacement == true &&
                 <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                  {originalCardPlacement == true && <MonthlySubscriptionCard />}
+                  {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar}/>}
                 </Col>
               }
               <PracticalProjects Cid={() => { return courseId }} />
