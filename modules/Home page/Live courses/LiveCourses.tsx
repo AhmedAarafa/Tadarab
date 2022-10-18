@@ -188,16 +188,16 @@ export default function LiveCourses() {
                         </div>
                       </div>
 
-                      {/* <Link href={`/webinar/${lc.slug}`}> */}
+                      <Link href={`/webinar/${lc.slug}`}>
                       <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src={lc.image} alt='trainer image'
                         className={styles["live-courses__cards-carousel__card__trainer-img"]} />
-                      {/* </Link> */}
+                      </Link>
                       <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                           <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                            {/* <Link href={`/webinar/${lc.slug}`}>  */}
+                            <Link href={`/webinar/${lc.slug}`}> 
                             <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
-                            {/* </Link> */}
+                            </Link>
                             <Link href={`/trainer/${lc.trainer?.slug}`}>
 
                               <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>

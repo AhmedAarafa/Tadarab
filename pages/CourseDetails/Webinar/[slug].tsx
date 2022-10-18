@@ -44,6 +44,7 @@ function CourseDetails() {
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [liveWebinar, setLiveWebinar] = useState({});
+  const [allLiveWebinar, setAllLiveWebinar] = useState({});
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
@@ -191,6 +192,8 @@ function CourseDetails() {
     if (Router.query.slug) {
       axiosInstance.get(`webinar/${slug}`)
       .then(function (response: any) {
+        console.log("response",response);
+        
         toggleLoader("hide");
         const data: Course = response?.data?.data?.archive_course;
         setCourseId(response?.data?.data?.archive_course.course_details.id);
@@ -198,6 +201,7 @@ function CourseDetails() {
         webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
         dispatch(setCourseDetailsData(data));
         setLiveWebinar(webinardetails);
+        setAllLiveWebinar(response?.data?.data);
         FBPixelEventsHandler(response.data.fb_tracking_events, null);
       }).catch(function (error) {
         toggleLoader("hide");
@@ -226,9 +230,9 @@ function CourseDetails() {
             <MobileCheckoutBar />
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
-                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} />
+                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar}/>
                 {originalCardPlacement == false &&
-                  <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />
+                  <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar}/>
                 }
                 {courseDetailsData?.data?.course_details?.key_points !== null &&
                   JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
@@ -253,7 +257,7 @@ function CourseDetails() {
               {
                 originalCardPlacement == true &&
                 <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                  {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar}/>}
+                  {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar}/>}
                 </Col>
               }
               <PracticalProjects Cid={() => { return courseId }} />

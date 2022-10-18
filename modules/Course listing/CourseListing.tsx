@@ -179,8 +179,8 @@ export default function CourseListing() {
             .get(`courses/?page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
-                console.log("responseresponse",response);
-                
+                console.log("responseresponse", response);
+
                 toggleLoader("hide");
 
             })
@@ -236,13 +236,19 @@ export default function CourseListing() {
                                             {course.full_date == Math.floor(Date.now() / 1000) ? <span>مباشر الآن</span> : <span>{course.short_date}</span>}
                                         </div>
                                     </div>
-                                    <Card.Img variant="top" src={course.image} alt='trainer image'
-                                        className={styles["course-listing__cards-carousel__card__trainer-img"]} />
+                                    <Link href={`/webinar/${course.slug}`}>
+                                        <Card.Img variant="top" src={course.image} alt='trainer image'
+                                            className={styles["course-listing__cards-carousel__card__trainer-img"]} />
+                                    </Link>
                                     <Card.Body className={styles["course-listing__cards-carousel__card__card-body"]}>
                                         <div className={styles["course-listing__cards-carousel__card__card-body__card-header"]}>
                                             <div className={styles["course-listing__cards-carousel__card__card-body__card-header__course-details"]}>
-                                                <h1 title={course.title} className={styles["course-listing__cards-carousel__card__card-body__card-header__course-details__title"]}>{course.title}</h1>
-                                                <div title={course.trainer?.name_ar} className={styles["course-listing__cards-carousel__card__card-body__card-header__course-details__author"]}>{course.trainer?.name_ar}</div>
+                                                <Link href={`/webinar/${course.slug}`}>
+                                                    <h1 title={course.title} className={styles["course-listing__cards-carousel__card__card-body__card-header__course-details__title"]}>{course.title}</h1>
+                                                </Link>
+                                                <Link href={`/trainer/${course.trainer?.slug}`}>
+                                                    <div title={course.trainer?.name_ar} className={styles["course-listing__cards-carousel__card__card-body__card-header__course-details__author"]}>{course.trainer?.name_ar}</div>
+                                                </Link>
                                             </div>
                                             <div className={styles["course-listing__cards-carousel__card__card-body__card-header__course-details__para"]}>
                                                 {course.details}
@@ -560,7 +566,7 @@ export default function CourseListing() {
                                 </Card>
                         )
                     })}
-                </Col> 
+                </Col>
 
                 <Col xs={12} className={styles["course-listing__pagination"]}>
 
