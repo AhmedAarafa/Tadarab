@@ -116,7 +116,6 @@ function HomePage(props: any) {
             </div>
              } */}
         <Books />
-        <TadarabUnlimited />
         <Statistics />
         <WhyTadarab />
         <LearnFromTheBest />

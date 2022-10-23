@@ -48,9 +48,9 @@ export default function CategoryDescription(props: any) {
                         اشترك الآن لتتابع جميع
                         {` ${props?.data?.title} `}
                     </div>
-                    <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["category-description__signup-btn"]}>
+                    {userStatus == false && <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["category-description__signup-btn"]}>
                         انشاء حساب جديد
-                    </Button>
+                    </Button>}
                 </Col>
             </Row>
 

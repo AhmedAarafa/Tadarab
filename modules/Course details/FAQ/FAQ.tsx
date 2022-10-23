@@ -5,9 +5,10 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { openSuppotConvInNewTab, contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 export default function FAQ(props:any) { 
-  const [faqs, setFaqs] = useState([]);
+  const [faqs, setFaqs] = useState<any>([]);
 
   useEffect(() => {
+// console.log("props",props);
 
     if(props.Cid() !== ""){
 
@@ -15,6 +16,7 @@ export default function FAQ(props:any) {
       .get(`course/${props.Cid()}/faqs`)
       .then(function (response:any) {
           setFaqs(response.data.data);
+          
       })
       .catch(function (error) {
         console.log(error);
@@ -22,15 +24,17 @@ export default function FAQ(props:any) {
 
     }
     
-  }, [props.Cid()]);
+  }, [props]);
  
   return (
     <>
       {
-        faqs &&
+        faqs && faqs.length !== 0 &&
         <div className={styles["faq"]}>
           <div className={styles["faq__title"]}>الأسئلة الشائعة عن الدورة</div>
           <Accordion defaultActiveKey="" className={styles["faq__accordion"]}>
+    
+            {/* {console.log(faqs)} */}
             {faqs?.map((faq:any,i:any)=>{
               return(
 

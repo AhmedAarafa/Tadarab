@@ -66,9 +66,6 @@ function LatestCourses(props:any) {
         axiosInstance
             .get(`home`)
             .then(function (response: any) {
-                console.log("Season LAtest courses response",response.data.data[`currency_symbol`]);
-                console.log("response.data.data",response.data.data);
-                
                 props.handleCurrency({curr_symbol : response.data.data[`currency_symbol`] ,subscription_value: response.data.data.subscription_sale_price});
                 dispatch(setHomePageData(response.data.data));
                 FBPixelEventsHandler(response.data.fb_tracking_events, null);

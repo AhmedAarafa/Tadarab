@@ -794,6 +794,12 @@
     font-size: 1.5rem;
   }
   .live-courses__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .live-courses__title > h2 {
+    text-align: center;
     font-size: 4.688rem;
     padding: 7rem 0 0 0;
     display: flex;

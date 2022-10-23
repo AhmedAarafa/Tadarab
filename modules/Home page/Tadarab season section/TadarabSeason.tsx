@@ -3,15 +3,9 @@
 import React from 'react';
 import styles from "./tadarab-season.module.css";
 import { Row, Col, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import Router, { useRouter } from "next/router";
-import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Link from "next/link";
 
 export default function TadarabSeason() {
-    const dispatch = useDispatch();
-    const Router = useRouter();
-    const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
 
     return (
         <>
@@ -35,7 +29,7 @@ export default function TadarabSeason() {
                     </div>
                 </Col>
                 <Col sm={{ span: 6, order: 2 }} xs={{ span: 12, order: 1 }} className={styles["tadarab-season__gif"]}>
-                    <img src="images/TadarabSeasonTrainers.gif" alt="موسم تدرب" />
+                    <img src="images/trainersgif-.gif" alt="موسم تدرب" />
                 </Col>
             </Row>
         </>

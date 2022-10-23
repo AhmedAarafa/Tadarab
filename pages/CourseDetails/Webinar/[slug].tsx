@@ -45,6 +45,8 @@ function CourseDetails() {
   const [courseId, setCourseId] = useState("");
   const [liveWebinar, setLiveWebinar] = useState({});
   const [allLiveWebinar, setAllLiveWebinar] = useState({});
+  const [courseData, setCourseData] = useState({});
+  const [subscriptionInfo, setSubscriptionInfo] = useState<any>({});
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
@@ -191,22 +193,23 @@ function CourseDetails() {
 
     if (Router.query.slug) {
       axiosInstance.get(`webinar/${slug}`)
-      .then(function (response: any) {
-        console.log("response",response);
-        
-        toggleLoader("hide");
-        const data: Course = response?.data?.data?.archive_course;
-        setCourseId(response?.data?.data?.archive_course.course_details.id);
-        const webinardetails = response?.data?.data?.course_details;
-        webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
-        dispatch(setCourseDetailsData(data));
-        setLiveWebinar(webinardetails);
-        setAllLiveWebinar(response?.data?.data);
-        FBPixelEventsHandler(response.data.fb_tracking_events, null);
-      }).catch(function (error) {
-        toggleLoader("hide");
-      });
+        .then(function (response: any) {
+          toggleLoader("hide");
+          const data: Course = response?.data?.data?.archive_course;
+          setCourseId(response?.data?.data?.archive_course.course_details.id);
+          const webinardetails = response?.data?.data?.course_details;
+          webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
+          dispatch(setCourseDetailsData(data));
+          setCourseData(data);
+
+          setLiveWebinar(webinardetails);
+          setAllLiveWebinar(response?.data?.data);
+          FBPixelEventsHandler(response.data.fb_tracking_events, null);
+        }).catch(function (error) {
+          toggleLoader("hide");
+        });
     }
+    
 
     return () => {
       window.removeEventListener("resize", () => {
@@ -218,6 +221,10 @@ function CourseDetails() {
     };
   }, [Router.query]);
 
+  const subscriptionInfoHandler = (info:any) => {
+    setSubscriptionInfo(info);
+  }
+
   return (
     <>
       <MetaTagsGenerator title={courseDetailsData?.data?.seo_title}
@@ -227,12 +234,12 @@ function CourseDetails() {
         {((JSON.stringify(courseDetailsData?.data) !== "[]") && (!courseDetailsData?.data?.course_details?.is_purchased)) &&
           <>
             <MobileNavTabsBar />
-            <MobileCheckoutBar />
+            <MobileCheckoutBar data={subscriptionInfo} />
             <Row className={styles["course-details-row"]}>
               <Col xs={12} sm={8}>
-                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar}/>
+                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
                 {originalCardPlacement == false &&
-                  <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar}/>
+                  <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
                 }
                 {courseDetailsData?.data?.course_details?.key_points !== null &&
                   JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
@@ -251,13 +258,13 @@ function CourseDetails() {
                 <TrainerInfo />
                 {/* <GuaranteeCard /> */}
                 {/* <CourseCertificate /> */}
-                <FAQ Cid={() => { return courseId }} />
+                <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar}/>
                 {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
               </Col>
               {
                 originalCardPlacement == true &&
                 <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                  {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar}/>}
+                  {originalCardPlacement == true && <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />}
                 </Col>
               }
               <PracticalProjects Cid={() => { return courseId }} />

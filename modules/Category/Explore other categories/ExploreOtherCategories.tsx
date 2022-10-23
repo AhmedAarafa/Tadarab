@@ -6,12 +6,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { ChevronLeftIcon } from "common/Icons/Icons";
+import { useRouter } from 'next/router';
 
 
 export default function ExploreOtherCategories(props:any) {
     SwiperCore.use([Navigation]);
     const [categories, setCategories] = useState([]);
-  
+    const Router = useRouter();
+    const { slug } = Router.query;
+    
     useEffect(() => {
       setCategories(props?.categoriesList);
     }, [props]);
@@ -39,7 +42,7 @@ export default function ExploreOtherCategories(props:any) {
                             },
                         }} className="mySwiper">
 
-                        {categories?.map((cat: any, i: any) => {
+                        {categories?.filter((item:any) => (item.slug !== slug)).map((cat: any, i: any) => {
                             return (
                                 <SwiperSlide key={i} style={{ cursor: "pointer" }}>
 

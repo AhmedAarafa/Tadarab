@@ -1,3 +1,9 @@
+Version 2.3.8 (20th Oct 2022)
+1)  Update category page with hero banner image.
+2)  Add best selling course on category page.
+3)  Update webinar page.
+4)  Change hero image on home page.
+
 Version 2.3.7 (13th Oct 2022)
 1)  Add category keywords in single category page.
 2)  Update webinar page.

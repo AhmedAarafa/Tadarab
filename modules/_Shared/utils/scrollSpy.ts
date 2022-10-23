@@ -1,4 +1,3 @@
-import React , { useEffect , useState } from "react";
 
 export const scrollspyHandler = (helperId:any) => {
   window.addEventListener("resize" , ()=>{

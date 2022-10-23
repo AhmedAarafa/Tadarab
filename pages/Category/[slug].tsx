@@ -20,6 +20,7 @@ const ExploreCategory = dynamic(() => import("modules/Category/Explore category/
 const SubscriptionBenefits = dynamic(() => import("modules/Category/Subscription benefits/SubscriptionBenefits"));
 const MostPopularCourses = dynamic(() => import("modules/Category/Most popular courses/MostPopularCourses"));
 const ExploreOtherCategories = dynamic(() => import("modules/Category/Explore other categories/ExploreOtherCategories"));
+const Testimonials = dynamic(() => import("modules/Category/Testimonials/Testimonials"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 
@@ -127,6 +128,7 @@ export default function Category(props: any) {
         <ExploreOtherCategories data={category} categoriesList={categoriesList}/>
         <TrainingCourses data={category} pagination={pagination} />
         <ExploreCategory data={category} />
+        <Testimonials data={category} />
         <SubscriptionBenefits />
         <Faq />
       </Container>

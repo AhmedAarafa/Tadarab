@@ -2429,10 +2429,12 @@ function CheckoutPage(props: any) {
                         {checkoutType !== "subscription" &&
                             <>
                                 <div className={styles["checkout__course-content__title"]}>
-                                    <span> محتويات السلة </span>
                                     {
                                         cartItems?.data && cartItems?.data?.length > 0 &&
-                                        <span>  ({cartItems?.data?.length} دورة) </span>
+                                        <>
+                                            <span> محتويات السلة </span>
+                                            <span>  ({cartItems?.data?.length} دورة) </span>
+                                        </>
                                     }
                                 </div>
 
@@ -2450,13 +2452,13 @@ function CheckoutPage(props: any) {
 
                                             <div className={styles["checkout__cards-outer-box__card__course-img"]}>
                                                 <img loading="lazy" src={it?.image && it.image} alt="course image" />
-                                                {it.categories && it.categories[0] !== undefined && it.categories[0].title !== null && it.categories[0].title !== "" &&
+                                                {/* {it.categories && it.categories[0] !== undefined && it.categories[0].title !== null && it.categories[0].title !== "" &&
 
                                                     <div style={{ backgroundColor: `${it.categories[0] !== undefined && it.categories[0].color}` }}
                                                         className={styles["checkout__cards-outer-box__card__category-chip"]}>
                                                         {it.categories && it.categories[0] !== undefined && it.categories[0].title}
                                                     </div>
-                                                }
+                                                } */}
                                             </div>
 
                                             <div className={styles["checkout__cards-outer-box__card__trainer-info-box-container"]}>
@@ -2610,7 +2612,7 @@ function CheckoutPage(props: any) {
                                                         {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].original_price}
                                                         {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].original_price}
                                                         {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].original_price}
-                                                        { paymentSettings?.currency_symbol }
+                                                        {paymentSettings?.currency_symbol}
                                                     </div>
                                                 </div>
                                                 <div>
@@ -2622,7 +2624,7 @@ function CheckoutPage(props: any) {
                                                             {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].total_pay}
                                                             {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].total_pay}
                                                             {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].total_pay}
-                                                            { paymentSettings?.currency_symbol }
+                                                            {paymentSettings?.currency_symbol}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2649,7 +2651,7 @@ function CheckoutPage(props: any) {
                                                     layout: "horizontal",
                                                 }}
                                                 createSubscription={(data: any, actions: any): any => {
-                                                    
+
                                                     setIsSpinnerExist(true);
                                                     return (
                                                         axiosInstance.post(`payments/payouts/?country_code=null`, {
@@ -3318,7 +3320,7 @@ function CheckoutPage(props: any) {
                                 {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].original_price}
                                 {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].original_price}
                                 {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].original_price}
-                                { paymentSettings?.currency_symbol }
+                                {paymentSettings?.currency_symbol}
                             </span>
                         </div>
                         <div className={styles["checkout__cart-sticky-card__subscribe-summary__details"]}>
@@ -3329,7 +3331,7 @@ function CheckoutPage(props: any) {
                                 {threePlansSelection == "monthly" && paymentSettings?.subscription_plans[0].total_pay}
                                 {threePlansSelection == "midYearly" && paymentSettings?.subscription_plans[1].total_pay}
                                 {threePlansSelection == "yearly" && paymentSettings?.subscription_plans[2].total_pay}
-                                { paymentSettings?.currency_symbol }
+                                {paymentSettings?.currency_symbol}
                             </span>
                         </div>
 

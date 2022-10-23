@@ -972,4 +972,7 @@
     border-right: 2.25rem solid #74C4AE;
     border-bottom: 2.25rem solid transparent;
   }
+  .monthly_subscription__live-details-list {
+    display: none;
+  }
 }/*# sourceMappingURL=monthly-subscription-card.module.css.map */

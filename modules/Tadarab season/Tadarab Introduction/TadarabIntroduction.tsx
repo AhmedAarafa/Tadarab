@@ -52,15 +52,15 @@ export default function TadarabIntroduction(props: any) {
                     </Form>
                     <div className={styles["tadarab-introduction__description-box__subsc-pricing"]}>
                         يبدأ سعر الاشتراك من
-                        {` ${props?.currency.subscription_value} `}
-                        { props?.currency.curr_symbol }
+                        {` ${props?.currency.subscription_value && props?.currency.subscription_value} `}
+                        { props?.currency.curr_symbol && props?.currency.curr_symbol }
                         /
                         ش
                         يشمل جميع دورات تدرب والموسم التدريبي
                     </div>
                 </Col>
                 <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 2 }} className={styles["tadarab-introduction__video"]}>
-                    <img src="images/TadarabSeasonTrainers.gif" alt="موسم تدرب" />
+                    <img src="images/trainersgif-.gif" alt="موسم تدرب" />
                 </Col>
             </Row>
         </>

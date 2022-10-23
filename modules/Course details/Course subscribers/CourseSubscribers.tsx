@@ -54,37 +54,14 @@ export default function CourseSubscribers() {
     }, 5000);
     dispatch(setCheckoutType("cart"));
     
-    // if(userStatus?.isUserAuthenticated == true){
       const handleCartResponse:any =  handleCart([course],`courses/${slug}`,false);
       handleCartResponse.then(function(firstresponse:any) {
         firstresponse.resp.then(function(response:any){
-            // console.log("response.data.data",response.data.data);
             
           setCourseDetails(response.data.data?.related_courses);
            dispatch(setCartItems(firstresponse.cartResponse));
         })
-      //  setLocalCartItems(response.totalItems);
       })
-    // }
-    // else{
-    //   const handleCartResponse:any =  handleCart([course],`courses/1540`,false);
-    //   handleCartResponse.then(function(response:any) {
-    //       dispatch(setCartItems(response.data.data));
-
-    //       let newArray:any = courseDetails;
-    //      response.data.data?.forEach((element:any) => {
-    //       newArray.forEach((ele:any) => {
-    //           if(element.id === ele.id){
-    //             console.log(ele);
-    //             ele.is_in_cart = true;
-    //         }
-    //     });
-    // });
-    // setCourseDetails([...newArray]);
-  
-    //   })
-
-    // }
   }
 
   const handleFreeCoursesActionBtn = (course: any): any => {

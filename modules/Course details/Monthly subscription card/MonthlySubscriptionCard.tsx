@@ -19,7 +19,9 @@ import Link from "next/link";
 import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
+import { axiosInstance } from "configurations/axios/axiosConfig";
 import datesArray from "./Dates.json";
+import { tConvert } from "modules/_Shared/utils/dateFormatHandler";
 
 export default function MonthlySubscriptionCard(theOption: any) {
 
@@ -27,8 +29,8 @@ export default function MonthlySubscriptionCard(theOption: any) {
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
   const [courseDetails, setCourseDetails] = useState<any>([]);
+  const [subscriptionInfo, setSubscriptionInfo] = useState<any>({});
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
-
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const dispatch = useDispatch();
@@ -54,6 +56,23 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
     }, {});
 
+    axiosInstance
+      .get(`categories/home/?limit=20&page=1`)
+      .then(function (response: any) {
+        theOption?.subscriptionInfoHandler({
+          subscription_original_price: response?.data?.data.subscription_original_price,
+          subscription_sale_price: response?.data?.data.subscription_sale_price,
+          currency_symbol: response?.data?.data.currency_symbol
+        });
+        setSubscriptionInfo({
+          before: response?.data?.data.subscription_original_price,
+          after: response?.data?.data.subscription_sale_price,
+          currencySymbol: response?.data?.data.currency_symbol
+        });
+      })
+      .catch(function (error: any) {
+        console.log(error);
+      });
 
   }, []);
 
@@ -233,19 +252,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
     }
   }
 
-  function tConvert(time: any) {
-
-    // Check correct time format and split into components
-    time = time.match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
-
-    if (time.length > 1) { // If time format correct
-      time = time.slice(1);  // Remove full string match value
-      time[5] = +time[0] < 12 ? ' ص ' : ' م '; // Set AM/PM
-      time[0] = +time[0] % 12 || 12; // Adjust hours
-    }
-    return time.join(''); // return adjusted time or original string
-  }
-
   useResize(viewportWidthDetector);
   useResize(stickyCardHandler);
 
@@ -271,7 +277,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 </div>
                 <div>
                   <span>
-                    {theOption.liveWebinarDetails?.type !== "webinar" && "شاهد هذه الدورة + أكثر من 750 دورة تدريبية في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي"}
+                    شاهد هذه الدورة + أكثر من 850 دورة تدريبية بالإضافة للدورات المباشرة ومواسم تدرب المقدمة شهرياً في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي
                     <span>
                       <Link href="/subscription">
                         اعرف المزيد.
@@ -436,16 +442,27 @@ export default function MonthlySubscriptionCard(theOption: any) {
                   }
                   {console.log("courseDetails", courseDetails)
                   }  */}
-              <div className={styles["monthly-subscription__subscription-value"]} >
-                <span>
+              {/* 
+                    <span>
                   احصل على كل الدورات فقط ب
-                  {courseDetails.subscription_sale_price}
-                  {courseDetails.currency_symbol} / شهر
+                  {subscriptionInfo?.after}
+                  {` ${subscriptionInfo?.currencySymbol} `} / ش
                   بدلا من
                 </span>
                 <span className={styles["amount-strike"]}>
-                  {courseDetails.subscription_original_price}
-                  {courseDetails.currency_symbol}
+                  {subscriptionInfo?.before}
+                  {` ${subscriptionInfo?.currencySymbol} `}
+                </span> */}
+              <div className={styles["monthly-subscription__subscription-value"]} >
+                <span>
+                  احصل على كل الدورات فقط ب
+                  {courseDetails.subscription_sale_price || subscriptionInfo?.after}
+                  {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `} / ش
+                  بدلا من
+                </span>
+                <span className={styles["amount-strike"]}>
+                  {courseDetails.subscription_original_price || subscriptionInfo?.before}
+                  {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `}
                 </span>
               </div>
               {/* {toDisplayValues.visible && toDisplayValues.values[3] != NaN && toDisplayValues.values[3] != "NaN" && <div className={styles["monthly-subscription__subscription-value"]}>
@@ -607,11 +624,10 @@ export default function MonthlySubscriptionCard(theOption: any) {
               <div className={styles["sale-price"]}>
                 سعر الدورة
                 <span>
-                  {theOption.liveWebinarDetails?.currency_symbol}
+                  {courseDetails?.course_details?.discounted_price}
                 </span>
                 <span>
-
-                  {theOption.liveWebinarDetails?.discounted_price}
+                  {courseDetails?.course_details?.currency_symbol}
                 </span>
 
               </div>

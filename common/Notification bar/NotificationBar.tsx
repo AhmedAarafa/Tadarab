@@ -6,7 +6,6 @@ import useResize from "custom hooks/useResize";
 import { useDispatch, useSelector } from "react-redux";
 import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
-import Link from "next/link";
 
 export default function NotificationBar() {
     const [isMobileView, setIsMobileView] = useState(false);

@@ -338,6 +338,7 @@
     font-size: 2.0125rem;
     font-weight: 400;
     color: var(--grey);
+    margin-bottom: 2rem;
   }
   .live-webinar-countdown__offer-available {
     margin-left: 2.4rem;
@@ -373,5 +374,19 @@
   .live-webinar-countdown__countdown-box__separator {
     font-size: 2.656rem;
     margin: 2.6rem 1rem 0 1rem;
+  }
+  .monthly_subscription__live-details-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 2.2rem;
+  }
+  .monthly_subscription__live-details-list div {
+    margin-bottom: 0.55rem;
+  }
+  .monthly_subscription__live-details-list div svg {
+    width: 1.76rem;
+    height: 1.76rem;
+    margin-left: 0.66rem;
   }
 }/*# sourceMappingURL=course-advertisement.module.css.map */

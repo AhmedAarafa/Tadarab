@@ -8,9 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import useResize from 'custom hooks/useResize';
 import "video.js/dist/video-js.css";
 import Link from "next/link";
-import { PlayIcon } from "common/Icons/Icons";
+import { DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon } from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
-import Image from 'next/image';
+import datesArray from "./Dates.json";
+import { tConvert } from "modules/_Shared/utils/dateFormatHandler";
 
 export default function CourseAdvertisement(theOption: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
@@ -56,11 +57,6 @@ export default function CourseAdvertisement(theOption: any) {
         // what's left is seconds
         let seconds: any = delta; // in theory the modulus is not required
 
-        // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
-        // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
-        // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
-        // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
-
         days = days.toString().padStart(2, 0);
         hours = hours.toString().padStart(2, 0);
         minutes = minutes.toString().padStart(2, 0);
@@ -80,13 +76,9 @@ export default function CourseAdvertisement(theOption: any) {
 
 
   useEffect(() => {
-
-
     setCourseDetails(courseDetailsData.data || []);
-    // console.log("courseDetailsData.data",courseDetailsData);
 
   }, [courseDetailsData]);
-
 
 
   return (
@@ -126,11 +118,10 @@ export default function CourseAdvertisement(theOption: any) {
                   </>
                   :
                   <>
-                    {console.log("courseDetailsData", courseDetailsData)}
                     <TadarabVideoPlayer />
                   </>
               }
-           
+
             </div>
 
             <h1 className={styles["course-ad__course-title"]}>
@@ -139,7 +130,7 @@ export default function CourseAdvertisement(theOption: any) {
             <div className={styles["course-ad__course-description"]}>
               {courseDetailsData?.data?.course_details?.details}
             </div>
-            {isMobileView && <div className={styles["course-ad__details-list"]}>
+            {isMobileView && theOption?.liveWebinarDetails?.type !== "webinar" && <div className={styles["course-ad__details-list"]}>
               <div
                 className={
                   styles["course-ad__details-list__item"]
@@ -398,6 +389,60 @@ export default function CourseAdvertisement(theOption: any) {
                 <span>شهادة إتمام اون لاين معتمدة</span>
               </div>
             </div>}
+              { isMobileView && theOption?.liveWebinarDetails?.type == "webinar" &&
+              <>
+                <div className={styles["monthly_subscription__live-details-list"]}>
+                  <div>
+                    <CalendarIcon />
+                  </div>
+                  {theOption?.allLiveWebinar?.arabic_date &&
+                    datesArray.map((date: any, i: number) => {
+                      return (
+                        theOption?.allLiveWebinar?.arabic_date.includes(date.strangeDate)
+                        &&
+                        [theOption?.allLiveWebinar?.arabic_date.replace(date.strangeDate, date.gregorianDate).split(' ')[2],
+                        theOption?.allLiveWebinar?.arabic_date.replace(date.strangeDate, date.gregorianDate).split(' ')[1],
+                        theOption?.allLiveWebinar?.arabic_date.replace(date.strangeDate, date.gregorianDate).split(' ')[0]].join(' ')
+                      )
+                    })
+                  }
+                </div>
+                <div className={styles["monthly_subscription__live-details-list"]}>
+                  <div>
+                    <DurationIcon />
+                  </div>
+                  {` ${theOption?.allLiveWebinar?.start_time && tConvert(theOption?.allLiveWebinar?.start_time)} `}
+                  بتوقيت الكويت والسعودية
+                </div>
+                <div className={styles["monthly_subscription__live-details-list"]}>
+                  <div>
+                    <WatchLiveOrRecordedIcon />
+                  </div>
+                  شاهد الدورة بث مباشر او مسجلة بعد انتهاء البث
+
+                </div>
+                <div className={styles["monthly_subscription__live-details-list"]}>
+                  <div>
+
+                    <CertifIcon />
+                  </div>
+                  شهادة إتمام اون لاين معتمدة
+                </div>
+                <div className={styles["monthly_subscription__live-details-list"]}>
+                  <div>
+                    <DocumentIcon />
+                  </div>
+                  مرفقات حصرية جاهزة للتحميل
+                </div>
+                <div className={styles["monthly_subscription__live-details-list"]}>
+                  <div>
+                    <DevicesIcon />
+                  </div>
+                  تابع الدورة من اي لابتوب او موبايل
+                </div>
+
+              </>
+              }
           </>
         }
 
