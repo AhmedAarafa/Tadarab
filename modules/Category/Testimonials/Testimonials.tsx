@@ -47,7 +47,7 @@ export default function Testimonials(props: any) {
                                                 <div className={styles["testimonials__cards-carousel__item__container__img"]}>
                                                     <div className={styles["black-overlay"]}></div>
 
-                                                    <img loading="lazy" src={review.course_image} alt="" />
+                                                    <img loading="lazy" src={review.course_image} alt={review.course_title} />
                                                     <div
                                                         className={styles["testimonials__cards-carousel__item__container__course-details-box"]}
                                                     >
@@ -78,12 +78,15 @@ export default function Testimonials(props: any) {
                                                             <QuoteIcon />
                                                         </div>
                                                         <div className={styles["testimonials__cards-carousel__item__container__review-box__course-img"]}>
-                                                            <img loading="lazy" src={review.course_image} alt="" />
+                                                            <img loading="lazy" src={review.course_image} alt={review.course_title} />
                                                         </div>
                                                         <div className={styles["testimonials__cards-carousel__item__container__review-box__course-name"]}>
-                                                            {review.course_title}
+                                                            <img loading="lazy" src={review.trainer_image} alt={review.trainer_name} />
                                                             <div>
-                                                                {review.trainer_name}
+                                                                {review.course_title}
+                                                                <div>
+                                                                    {review.trainer_name}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

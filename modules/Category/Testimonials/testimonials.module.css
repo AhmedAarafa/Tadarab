@@ -347,6 +347,16 @@
     font-size: 2.2rem;
     color: white;
     text-shadow: 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000;
+    display: flex;
+    align-items: center;
+    justify-content: unset;
+  }
+  .testimonials__cards-carousel__item__container__review-box__course-name img {
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    margin-left: 1.5rem;
+    box-shadow: 0rem 0rem 2.5rem 0.2rem rgba(0, 0, 0, 0.6705882353);
   }
   .testimonials__cards-carousel__item__container__review-box__course-name div {
     font-size: 2rem;

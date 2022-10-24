@@ -43,6 +43,19 @@ export default function CategoryDescription(props: any) {
                     <img className={styles["category-description__img"]} src={`https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/${props.data?.slug}1.jpg`} alt={props.data?.title} />
                     <div className={styles["category-description__title"]}>
                         <h1> {props?.data?.title} </h1>
+                        <div>
+                            (
+                            {props.data?.parent_id == 0 &&
+                                <>
+                                    <span> {props.data?.subcategories_count} </span>
+                                    مواضيع
+                                    -
+                                </>
+                            }
+                            <span> {props.data?.courses_count} </span>
+                            دورة
+                            )
+                        </div>
                     </div>
                     <div className={styles["category-description__small-description"]}>
                         اشترك الآن لتتابع جميع

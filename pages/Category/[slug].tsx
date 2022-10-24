@@ -119,13 +119,13 @@ export default function Category(props: any) {
         img={seoData?.seo_image} />}
       <Container fluid="xxl">
         <MobileCheckoutBar data={category} />
-        <CategoryDescription data={category} categoriesList={categoriesList}/>
+        <CategoryDescription data={category} categoriesList={categoriesList} />
         <CategorySkills data={category} />
         <MostPopularCourses data={category} pagination={pagination} />
         {/* <CategoryCourses data={category} />  */}
         {/* <CategoryTopics data={category} /> */}
         <CategoryTrainers data={category} />
-        <ExploreOtherCategories data={category} categoriesList={categoriesList}/>
+        <ExploreOtherCategories data={category} categoriesList={categoriesList} />
         <TrainingCourses data={category} pagination={pagination} />
         <ExploreCategory data={category} />
         <Testimonials data={category} />

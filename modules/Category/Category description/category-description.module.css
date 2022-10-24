@@ -33,6 +33,9 @@
   margin: 0 14.3125rem 0 0;
 }
 
+.category-description__title {
+  font-size: 1rem;
+}
 .category-description__title h1 {
   font-size: 3.3125rem;
   font-weight: 800;
@@ -106,6 +109,9 @@
 .category-description__small-description,
 .category-description__signup-btn {
     margin: 0;
+  }
+  .category-description__title {
+    font-size: 1.8rem;
   }
   .category-description__title h1 {
     font-size: 3.975rem;

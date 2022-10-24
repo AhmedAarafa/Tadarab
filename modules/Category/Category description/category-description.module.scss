@@ -1,9 +1,10 @@
 @import "../../../styles/mixins";
 
 
-.categories-navigator{
+.categories-navigator {
     display: none;
 }
+
 .category-description-row {
     margin: 4.2rem 0 0 0;
     height: 28.125rem;
@@ -35,6 +36,8 @@
 }
 
 .category-description__title {
+    font-size: 1rem;
+
     h1 {
         font-size: 3.3125rem;
         font-weight: 800;
@@ -58,13 +61,13 @@
         color: white !important;
         border-color: white !important;
         background-color: transparent !important;
-        
+
     }
 }
 
 @media (max-width: 575px) {
 
-    .categories-navigator{
+    .categories-navigator {
         display: block;
         margin: 10rem 0 0 0;
     }
@@ -92,6 +95,8 @@
     }
 
     .category-description__title {
+        font-size: 1rem*1.8;
+
         h1 {
             font-size: 3.3125rem*1.2;
             margin: auto;

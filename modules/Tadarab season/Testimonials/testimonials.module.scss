@@ -20,23 +20,28 @@
         &>div:nth-child(1),
         &>div:nth-child(2) {
             top: 47% !important;
-            &:after{
+
+            &:after {
                 font-size: 1rem*1.2 !important;
                 box-shadow: 0 0 1.25rem*1.2 #00000033 !important;
-              }
-
-        }
-        &>div:nth-child(1){
-            right: 1rem*1.2 !important;
-            &:after{
-              padding: 1.5rem*1.2 1.18rem*1.2 1.5rem*1.2 1.28rem*1.2 !important;
             }
 
         }
-        &>div:nth-child(2){
+
+        &>div:nth-child(1) {
+            right: 1rem*1.2 !important;
+
+            &:after {
+                padding: 1.5rem*1.2 1.18rem*1.2 1.5rem*1.2 1.28rem*1.2 !important;
+            }
+
+        }
+
+        &>div:nth-child(2) {
             left: 1rem*1.2 !important;
-            &:after{
-              padding: 1.5rem*1.2 1.28rem*1.2 1.5rem*1.2 1.18rem*1.2 !important;
+
+            &:after {
+                padding: 1.5rem*1.2 1.28rem*1.2 1.5rem*1.2 1.18rem*1.2 !important;
             }
         }
 
@@ -102,7 +107,7 @@
     height: 21.438rem;
     display: inline-block;
     position: relative;
-    
+
     img {
         border-radius: 1.375rem;
         width: 100%;
@@ -159,7 +164,7 @@
 }
 
 .testimonials__cards-carousel__item__container__review-box {
-    @include flex(flex-start,space-evenly);
+    @include flex(flex-start, space-evenly);
     flex-direction: column;
     background-color: white;
     width: 46.875rem;
@@ -172,8 +177,8 @@
     right: 22.5rem;
 }
 
-.testimonials__cards-carousel__item__container__review-box__quote{
-    svg{
+.testimonials__cards-carousel__item__container__review-box__quote {
+    svg {
         width: 2.5rem;
         height: 2rem;
     }
@@ -183,6 +188,12 @@
     font-size: 1.25rem;
     color: #555555;
     margin: 1rem 0 1rem 0;
+    width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 .testimonials__cards-carousel__item__container__review-box__reviewer-details {
@@ -199,58 +210,71 @@
     }
 }
 
+.testimonials__cards-carousel__item__container__review-box__img {
+    display: flex;
+}
 
-@media (max-width:575px){
+.testimonials__cards-carousel__item__container__review-box__course-img,
+.testimonials__cards-carousel__item__container__review-box__course-name {
+    display: none;
+}
+
+
+@media (max-width:575px) {
 
     .testimonials__cards-carousel-container {
         border-radius: 0 0 5rem 5rem;
         padding-bottom: 9rem;
-    
+        padding-top: 4rem;
+
         &>div:nth-child(1) {
-            padding: 1rem 0 0 0 ;
+            padding: 1rem 0 0 0;
             height: fit-content;
             margin-bottom: 0;
-    
+
             &>div:nth-child(1),
             &>div:nth-child(2) {
                 top: 47% !important;
-                &:after{
+
+                &:after {
                     font-size: 1rem*2 !important;
                     box-shadow: 0 0 1.25rem*2 #00000033 !important;
-                  }
+                }
             }
-          
-    
+
+
             &>div:nth-child(3) {
                 bottom: 0rem;
                 display: block !important;
-    
+
                 span {
                     margin: 0 1rem 0 1rem;
                     width: 1.2rem;
                     height: 1.2rem;
                 }
             }
-    
+
             &>div:nth-child(4) {
-                padding-bottom: 2rem;
-                height: 55rem;
+                padding-bottom: 6rem;
+                // height: 55rem;
+                height: fit-content;
+
                 // margin-top: 4rem;
-    
+
                 &>div:nth-child(n) {
                     @include flex(center, flex-start);
                 }
             }
         }
-    
+
     }
-    
+
     .testimonials__title {
         font-size: 4.688rem;
         padding: 5.25rem 0 2.344rem 0;
         @include flex(center, center);
         text-align: center;
-    
+
         span:nth-of-type(2) {
             margin-right: 0.3rem;
         }
@@ -262,88 +286,131 @@
         padding: 0 12.5rem 0 12.5rem;
         text-align: center;
     }
-    
-    
+
+
     .testimonials__cards-carousel__item__container {
         width: 70.375rem;
-        height: 21.438rem;
+        // height: 21.438rem;
+        height: fit-content;
         margin-right: 7rem;
         @include flex(center);
         position: relative;
-    
+
     }
-    
+
     .testimonials__cards-carousel__item__container__img {
         display: none;
+
         img {
-        border-radius: 1.375rem*2.5;
+            border-radius: 1.375rem*2.5;
             width: 100%;
         }
     }
+
     .black-overlay {
         border-radius: 1.375rem*2.5;
     }
-    
+
     .testimonials__cards-carousel__item__container__course-details-box {
         @include flex(center);
         position: absolute;
         bottom: 2rem;
         right: 2rem;
     }
-    
+
     .testimonials__cards-carousel__item__container__course-details-box__trainer-img {
         display: inline-block;
+
         img {
-    
+
             border-radius: 50%;
             width: 2.5rem;
             height: 2.5rem;
             margin-left: 0.6rem;
         }
     }
-    
+
     .testimonials__cards-carousel__item__container__course-details-box__course-details {
         display: inline-block;
-    
+
     }
-    
+
     .testimonials__cards-carousel__item__container__course-details-box__course-details__title {
         font-size: 1.125rem;
     }
-    
+
     .testimonials__cards-carousel__item__container__course-details-box__course-details__author {
         font-size: 0.938rem;
     }
-    
+
     .testimonials__cards-carousel__item__container__review-box {
         background-color: white;
         width: 46.875rem;
         height: fit-content;
         box-shadow: 0 0 1.875rem #0000001A;
         border-radius: 3.125rem;
-        padding: 3rem 4.688rem;
+        padding: 0 4.688rem 3rem 4.688rem;
         position: static;
     }
-    
-    .testimonials__cards-carousel__item__container__review-box__quote{
-        svg{
+
+    .testimonials__cards-carousel__item__container__review-box__quote {
+        position: relative;
+        svg {
             width: 6.25rem;
             height: 7.8rem;
         }
     }
-    
+
     .testimonials__cards-carousel__item__container__review-box__review {
         font-size: 2.5rem;
         margin: 1rem 0 1.5rem 0;
     }
-    
+
     .testimonials__cards-carousel__item__container__review-box__reviewer-details {
         div:nth-of-type(1) {
             font-size: 3rem;
         }
-    
+
         div:nth-of-type(2) {
             font-size: 2.5rem;
+        }
+    }
+
+    .testimonials__cards-carousel__item__container__review-box__img {
+        display: none;
+    }
+
+    .testimonials__cards-carousel__item__container__review-box__course-img {
+        display: block;
+
+        img {
+            width: calc(100% + 9.376rem);
+            margin-right: -4.688rem;
+            border-radius: 3.125rem 3.125rem 0 0;
+            height: 34rem;
+        }
+    }
+
+    .testimonials__cards-carousel__item__container__review-box__course-name {
+        display: block;
+        position: absolute;
+        bottom: 2rem;
+        right: 0;
+        font-size: 2.2rem;
+        color: white;
+        text-shadow: 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000;
+        @include flex(center);
+
+        img {
+            border-radius: 50%;
+            width: 6rem;
+            height: 6rem;
+            margin-left: 1.5rem;
+            box-shadow: 0rem 0rem 2.5rem 0.2rem #000000ab;
+        }
+
+        div {
+            font-size: 2rem;
         }
     }
 }

@@ -34,12 +34,13 @@ export default function SubscriptionBenefits() {
                 <Col className={styles["subscription-benefits__title"]} sm={{ span: 6, order: 1 }} xs={{ span: 12, order: 1 }}>
                     <div>
                         <div>
-                            ما المميزات في اشتراك
+                            أكبر منصة تدريب بالوطن العربي
+                            اشترك في
                         </div>
                         <span className={styles["subscription-benefits--important"]}>
                             تدرب بلا حدود
                         </span>
-                        ؟
+                        الآن
                     </div>
                     <Button onClick={() => { handleSubscriptionBtn(event) }}>
                         انشاء حساب جديد
@@ -51,7 +52,7 @@ export default function SubscriptionBenefits() {
 
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
-                                <WatchIcon color="#fff"/>
+                                <WatchIcon color="#fff" />
                             </div>
                             <span>
                                 مشاهدة جميع دورات الموسم التدريبي.
