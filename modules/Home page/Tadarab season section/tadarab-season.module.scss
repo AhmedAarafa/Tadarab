@@ -2,6 +2,7 @@
 
 .tadarab-season {
     padding: 2rem 3rem;
+    background-color: var(--tadarab-bg);
 }
 
 .tadarab-season__info-box,
@@ -11,6 +12,8 @@
 }
 
 .tadarab-season__info-box__info {
+    color: var(--dark-black);
+
     div:nth-of-type(1) {
         font-weight: 700;
         font-size: 1.4rem;

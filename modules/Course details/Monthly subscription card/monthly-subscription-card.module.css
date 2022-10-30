@@ -297,7 +297,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.75rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--lightgrey);
   border: 0;
   display: flex;
   align-items: center;
@@ -314,7 +314,7 @@
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
 .monthly-subscription__course-card__actions-btns__share-btn:active,
 .monthly-subscription__course-card__actions-btns__share-btn:focus {
-  background-color: rgba(0, 0, 0, 0.07);
+  background-color: var(--hovered-lightgrey);
 }
 .monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
@@ -768,7 +768,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     display: flex;
     align-items: center;
@@ -784,7 +784,7 @@
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
 .monthly-subscription__course-card__actions-btns__share-btn:active,
 .monthly-subscription__course-card__actions-btns__share-btn:focus {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--hovered-lightgrey);
   }
   .monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
 .monthly-subscription__course-card__actions-btns__share-btn:hover,

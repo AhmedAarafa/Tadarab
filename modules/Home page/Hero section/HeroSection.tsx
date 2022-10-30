@@ -1,14 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./hero-section.module.css";
 import  {SearchIcon}  from "common/Icons/Icons";
 import Router from "next/router";
-//import Image from 'next/image';
+import { useSelector } from "react-redux";
 
 export default function HeroSection() {
   const [searchQuery, setSearchQuery] = useState("");
-
+  const themeState = useSelector((state: any) => state.themeState.theme);
+  // const [theme, setTheme] = useState(themeState);
 
   const handleSearchBarEntries = (e:any)=>{
     console.log(e.target.value);
@@ -62,7 +63,7 @@ export default function HeroSection() {
 
   return (
     <>
-      <Row className={styles["hero-section"]}>
+      <Row data-theme={themeState} className={styles["hero-section"]}>
         <Col xs={0} sm={{ span: 2, order: 'first' }}></Col>
         <Col xs={12} sm={{ span: 5, order: 'first' }}>
           <div className={styles["hero-section__container"]}>

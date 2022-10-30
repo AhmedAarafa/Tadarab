@@ -51,22 +51,22 @@
 @mixin outlined-button {
     @include generic-button;
 
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
 
     &:hover {
         // background-color: var(--primary-red) !important;
-        color: var(--primary-red) !important;
-        border: 0.125rem solid var(--primary-red) !important;
+        color: var(--outlined-btn-text) !important;
+        border: 0.125rem solid var(--outlined-btn-border) !important;
     }
 
     ;
 
     &:active {
-        background-color: var(--primary-red) !important;
-        color: white !important;
-        border: 0.125rem solid var(--primary-red) !important;
+        background-color: var(--outlined-btn-bg) !important;
+        color: var(--outlined-btn-text) !important;
+        border: 0.125rem solid var(--outlined-btn-border) !important;
     }
 
     ;
@@ -77,7 +77,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     @include flex(center, center);
     display: inline-flex;
@@ -85,14 +85,14 @@
     &:hover,
     &:active,
     &:focus {
-        background-color: rgba(0, 0, 0, 0.07);
+        background-color: var(--hovered-lightgrey);
     }
 }
 
 @mixin popover {
     box-shadow: 0 0 1.875rem #0000001A;
     position: absolute;
-    background: #fff;
+    background: var(--tadarab-bg);
     color: var(--dark-black);
     font-weight: bold;
     padding: 1.3rem 0.3rem;

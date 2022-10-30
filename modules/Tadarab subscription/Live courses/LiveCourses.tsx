@@ -25,6 +25,7 @@ export default function LiveCourses() {
   const [liveCourses, setLiveCourses] = useState<any>([]);
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const userStatus = useSelector((state: any) => state.userAuthentication);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   const handleSubscribeBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
@@ -284,7 +285,7 @@ export default function LiveCourses() {
 
                         </Link>
                         {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
-                          {lc.price == 0 ? <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
+                          {lc.price == 0 ? <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"}/> : <BellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"}/>} </div>
                             :
                             <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
                         </Button>}

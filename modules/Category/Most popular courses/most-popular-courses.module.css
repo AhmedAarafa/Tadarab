@@ -63,9 +63,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   font-size: 1.063rem;
   color: var(--primary-red);
   font-weight: 700;
@@ -86,13 +86,13 @@
   box-shadow: none;
 }
 .most-popular-courses__see-more-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .most-popular-courses__see-more-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .most-popular-courses__see-more-btn:hover, .most-popular-courses__see-more-btn:active {
   background-color: white !important;
@@ -340,7 +340,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.75rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--lightgrey);
   border: 0;
   display: flex;
   align-items: center;
@@ -350,7 +350,7 @@
   padding: 0 !important;
 }
 .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
-  background-color: rgba(0, 0, 0, 0.07);
+  background-color: var(--hovered-lightgrey);
 }
 
 .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -450,9 +450,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   width: 50%;
   height: 2.5rem;
   font-weight: 800;
@@ -465,13 +465,13 @@
   box-shadow: none;
 }
 .most-popular-courses__popover-container__btns__details-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .most-popular-courses__popover-container__btns__details-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 
 .most-popular-courses__popover-container__btns__add-to-cart-btn {
@@ -698,7 +698,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     display: flex;
     align-items: center;
@@ -715,7 +715,7 @@
     height: fit-content;
   }
   .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--hovered-lightgrey);
   }
   .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 1.8415rem;
@@ -888,7 +888,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     display: flex;
     align-items: center;
@@ -905,7 +905,7 @@
     height: fit-content;
   }
   .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--hovered-lightgrey);
   }
   .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 2.4215rem;
@@ -1101,7 +1101,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     display: flex;
     align-items: center;
@@ -1118,7 +1118,7 @@
     height: fit-content;
   }
   .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--hovered-lightgrey);
   }
   .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 3.19rem;

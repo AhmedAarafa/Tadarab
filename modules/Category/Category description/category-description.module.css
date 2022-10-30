@@ -56,9 +56,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   border-color: white !important;
   background-color: transparent !important;
   color: white !important;
@@ -71,13 +71,13 @@
   box-shadow: none;
 }
 .category-description__signup-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .category-description__signup-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .category-description__signup-btn:is(.category-description__signup-btn:hover, .category-description__signup-btn:active) {
   color: white !important;
@@ -130,9 +130,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     border-color: white !important;
     background-color: transparent !important;
     color: white !important;
@@ -149,13 +149,13 @@
     box-shadow: none;
   }
   .category-description__signup-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .category-description__signup-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .category-description__signup-btn:is(.category-description__signup-btn:hover, .category-description__signup-btn:active) {
     color: white !important;

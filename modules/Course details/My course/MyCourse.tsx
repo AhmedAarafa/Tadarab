@@ -204,50 +204,6 @@ export default function MyCourse() {
                         </Col>
                     </>
                 }
-
-                {/* myCourseNavigator == "certificate" &&
-                    <>
-                        <Col xs={12} sm={8} className={styles["my-course__certificate"]}>
-                            <div id="course-certificate">
-                                <img src="/images/شهادة3 website.jpg" alt="course certificate" />
-                                <div className={styles["my-course__certificate__date"]}>{todaysDate}</div>
-                                <div className={styles["my-course__certificate__course-name"]}>{courseDetailsData.data?.course_details?.title}</div>
-                                <div className={styles["my-course__certificate__trainer-name"]}>{courseDetailsData.data?.course_details?.trainer?.name_ar}</div>
-                                <div className={styles["my-course__certificate__learner-name"]}>{userInfo?.first_name}</div>
-
-                            </div>
-                        </Col>
-                        <Col xs={12} sm={4} className={styles["my-course__actions-box"]}>
-                            <div className={styles["my-course__actions-box__texts"]}>
-                                <CongratulationsIcon />
-                                <div>شهادة اتمام الدورة</div>
-                                <div>
-                                    مبرووووك يا
-                                    <span>
-                                        {userInfo?.first_name}
-                                    </span>
-
-                                </div>
-                                <div>لقد فعلتها ! لقد نجحت في إتمام الدورة بنجاح يمكنك الآن تحميل الشهادة ومشاركتها مع أصدقائك</div>
-
-                            </div>
-                            <div className={styles["my-course__actions-box__action-btns"]}>
-                                <Button>
-                                    <FileDownloadIcon color="#fff" />
-                                    <span>
-                                        تحميل الشهادة
-                                    </span>
-                                </Button> 
-                                <Button>
-                                    <ShareIcon />
-                                    <span>
-                                        مشاركة الشهادة
-                                    </span>
-                                </Button>
-                            </div>
-                        </Col>
-                    </>
-                */}
             </Row>
 
             <div className={styles["my-course__certificate"]} style={{ display: "none", position: "fixed", bottom: "0", left: "0" }} id="course-certificate">

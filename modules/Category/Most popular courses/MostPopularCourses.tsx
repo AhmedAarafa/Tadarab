@@ -146,7 +146,7 @@ export default function MostPopularCourses(props: any) {
                         <span>اكتشف أفضل الدورات</span>
                         <div>
                             تخصص
-                            {` ${props?.data?.title?.replace('دورات', '')} `}
+                            {` ${props?.data?.title} `}
                         </div>
                     </h2>
                 </Col>
@@ -302,6 +302,9 @@ export default function MostPopularCourses(props: any) {
                                                                 {
                                                                     course.discounted_price == 0 ?
                                                                         <TvIcon color="#fff" />
+                                                                        :
+                                                                        course.is_in_cart ?
+                                                                        <AddedToCartIcon color="#fff" />
                                                                         :
                                                                         <CartIcon color="#fff" />
                                                                 }

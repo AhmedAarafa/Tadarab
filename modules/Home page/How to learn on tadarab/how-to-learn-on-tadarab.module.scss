@@ -20,9 +20,9 @@
     @include flex(flex-start,space-evenly);
     flex-direction: column;
     height: 100%;
+    color: var(--dark-black);
     h3{
         font-size: 1.875rem;
-        color: var(--dark-black);
         font-weight: 800;
         display: inline-block;
         div{

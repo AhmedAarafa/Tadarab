@@ -31,7 +31,8 @@ function LatestCourses() {
   const [latestCourses, setLatestCourses] = useState<any>([]);
   const [filterType, setFilterType] = useState("best-seller");
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
-  // const [cartItems, setCartItems] = useState<any>([]);
+  const themeState = useSelector((state: any) => state.themeState.theme);
+
   const dispatch = useDispatch();
   const homePageCoursesRef = useRef([]);
 
@@ -158,7 +159,7 @@ function LatestCourses() {
 
   return (
     <>
-      <Row className={styles["latest-courses"]}>
+      <Row data-theme={themeState} className={styles["latest-courses"]}>
         <Col xs={12} className={styles["latest-courses__title"]}>
           <h2>
             <span>الدورات </span>
@@ -187,7 +188,7 @@ function LatestCourses() {
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["latest-courses__see-more-btn-col"]}>
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more" onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=${filterType}`) }}>
             اعرض المزيد
-            <ChevronLeftIcon color="#af151f" />
+            <ChevronLeftIcon color={ themeState == "light" ? "#af151f" : "#f5f5f5"} />
           </Button>
         </Col>
 
@@ -343,6 +344,9 @@ function LatestCourses() {
                                 {
                                   course.discounted_price == 0 ?
                                     <TvIcon color="#fff" />
+                                    :
+                                    course.is_in_cart ?
+                                    <AddedToCartIcon color="#fff" />
                                     :
                                     <CartIcon color="#fff" />
                                 }
@@ -556,12 +560,12 @@ function LatestCourses() {
 
                                 {
                                   course.discounted_price == 0 ?
-                                    <TvIcon color="#222" />
+                                    <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                     :
                                     (course.is_in_cart) || disabledCartBtns.includes(course.id) ?
-                                      <AddedToCartIcon color="#222" />
+                                      <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                       :
-                                      <CartIcon color="#222" />
+                                      <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                 }
                               </div>
 
@@ -581,7 +585,7 @@ function LatestCourses() {
                                   course.is_in_favorites ?
                                     <AddedToFavouriteIcon color="#af151f" />
                                     :
-                                    <FavouriteIcon color="#222" />
+                                    <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                 }
 
                               </div>

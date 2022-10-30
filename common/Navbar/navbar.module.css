@@ -1,5 +1,5 @@
 .navbar {
-  background-color: white;
+  background-color: var(--tadarab-bg);
   box-shadow: 0 0.313rem 1.313rem rgba(0, 0, 0, 0.0784313725);
   padding: 0.6rem 0rem;
   z-index: 6 !important;
@@ -228,9 +228,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
 }
 .navbar__sign-in-btn:hover {
   box-shadow: none;
@@ -239,13 +239,13 @@
   box-shadow: none;
 }
 .navbar__sign-in-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .navbar__sign-in-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 
 .navbar_responsive-search-icon div svg {
@@ -351,7 +351,7 @@
   position: static !important;
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
   position: absolute;
-  background: #fff;
+  background: var(--tadarab-bg);
   color: var(--dark-black);
   font-weight: bold;
   padding: 1.3rem 0.3rem;
@@ -377,7 +377,7 @@
 .navbar__cart-popover {
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
   position: absolute;
-  background: #fff;
+  background: var(--tadarab-bg);
   color: var(--dark-black);
   font-weight: bold;
   padding: 1.3rem 0.3rem;
@@ -539,10 +539,10 @@
   font-weight: 700;
   color: var(--dark-black);
   padding: 3.125rem 0 3.125rem 0;
-  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.05);
+  border-bottom: 0.05rem solid var(--borders-grey);
 }
 .sidebar-list li:first-child {
-  border-top: 0.05rem solid rgba(34, 34, 34, 0.05);
+  border-top: 0.05rem solid var(--borders-grey);
 }
 
 .sidebar-list__discover-sidebar__list:nth-of-type(1) div {
@@ -675,9 +675,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   margin-top: 1.8rem;
 }
 .sidebar-list__sign-in-btn:hover {
@@ -687,19 +687,19 @@
   box-shadow: none;
 }
 .sidebar-list__sign-in-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .sidebar-list__sign-in-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 
 .navbar__account-icon__dropdown {
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
   position: absolute;
-  background: #fff;
+  background: var(--tadarab-bg);
   color: var(--dark-black);
   font-weight: bold;
   padding: 1.3rem 0.3rem;

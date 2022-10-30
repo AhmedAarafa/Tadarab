@@ -37,9 +37,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   font-size: 1.063rem;
   color: var(--primary-red);
   font-weight: 700;
@@ -58,13 +58,13 @@
   box-shadow: none;
 }
 .similar-books__see-more-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .similar-books__see-more-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .similar-books__see-more-btn:hover, .similar-books__see-more-btn:active {
   background-color: white !important;
@@ -72,9 +72,6 @@
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
 }
 
-.similar-books__cards-carousel {
-  background-color: white;
-}
 .similar-books__cards-carousel > div {
   padding: 0.5rem 2rem !important;
 }
@@ -145,9 +142,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   width: 100%;
   height: 2.75rem;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -164,13 +161,13 @@
   box-shadow: none;
 }
 .similar-books__cards-carousel__card__download-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .similar-books__cards-carousel__card__download-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .similar-books__cards-carousel__card__download-btn:hover, .similar-books__cards-carousel__card__download-btn:active {
   background-color: var(--primary-red) !important;
@@ -192,9 +189,6 @@
 }
 
 @media (max-width: 1200px) {
-  .similar-books__cards-carousel {
-    background-color: white;
-  }
   .similar-books__cards-carousel > div {
     padding: 0.665rem 2.66rem !important;
   }
@@ -264,9 +258,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     width: 100%;
     height: 3.6575rem;
     border: 0.16625rem solid rgba(175, 21, 31, 0.2) !important;
@@ -283,13 +277,13 @@
     box-shadow: none;
   }
   .similar-books__cards-carousel__card__download-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__cards-carousel__card__download-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__cards-carousel__card__download-btn:hover, .similar-books__cards-carousel__card__download-btn:active {
     background-color: var(--primary-red) !important;
@@ -311,9 +305,6 @@
   }
 }
 @media (max-width: 980px) {
-  .similar-books__cards-carousel {
-    background-color: white;
-  }
   .similar-books__cards-carousel > div {
     padding: 0.675rem 2.7rem !important;
   }
@@ -383,9 +374,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     width: 100%;
     height: 3.7125rem;
     border: 0.16875rem solid rgba(175, 21, 31, 0.2) !important;
@@ -402,13 +393,13 @@
     box-shadow: none;
   }
   .similar-books__cards-carousel__card__download-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__cards-carousel__card__download-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__cards-carousel__card__download-btn:hover, .similar-books__cards-carousel__card__download-btn:active {
     background-color: var(--primary-red) !important;
@@ -454,9 +445,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     font-size: 3.2953rem;
     width: 100%;
     margin: 0 2.5rem;
@@ -474,13 +465,13 @@
     box-shadow: none;
   }
   .similar-books__see-more-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__see-more-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__see-more-btn svg {
     width: 1.55rem;
@@ -491,7 +482,6 @@
     border: 0.3875rem solid rgba(175, 21, 31, 0.2) !important;
   }
   .similar-books__cards-carousel {
-    background-color: white;
     margin-bottom: 5rem;
   }
   .similar-books__cards-carousel > div {
@@ -547,9 +537,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     width: 100%;
     height: 8.525rem;
     border: 0.3875rem solid rgba(175, 21, 31, 0.2) !important;
@@ -566,13 +556,13 @@
     box-shadow: none;
   }
   .similar-books__cards-carousel__card__download-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__cards-carousel__card__download-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .similar-books__cards-carousel__card__download-btn svg {
     width: 3.3264rem;

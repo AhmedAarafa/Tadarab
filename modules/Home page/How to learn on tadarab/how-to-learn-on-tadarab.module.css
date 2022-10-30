@@ -17,10 +17,10 @@
   justify-content: space-evenly;
   flex-direction: column;
   height: 100%;
+  color: var(--dark-black);
 }
 .how-to-learn-on-tadarab__content h3 {
   font-size: 1.875rem;
-  color: var(--dark-black);
   font-weight: 800;
   display: inline-block;
 }

@@ -372,7 +372,10 @@ function LatestCourses() {
                                 course.discounted_price == 0 ?
                                   <TvIcon color="#fff" />
                                   :
-                                  <CartIcon color="#fff" />
+                                  course.is_in_cart ?
+                                    <AddedToCartIcon color="#fff" />
+                                    :
+                                    <CartIcon color="#fff" />
                               }
                               {
                                 course.discounted_price == 0 ?

@@ -10,13 +10,14 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ChevronLeftIcon, DownloadIcon } from "common/Icons/Icons";
 import Link from "next/link";
 import Router from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Books() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state: any) => state.homePageData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [books, setBooks] = useState([]);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
     setBooks(homePageData.data?.books || []);
@@ -24,8 +25,7 @@ export default function Books() {
 
   return (
     <>
-      <Row className={styles["books__row"]}>
-
+      <Row data-theme={themeState} className={styles["books__row"]}>
 
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 1 }} className={styles["books__title"]}>
           <h2>
@@ -93,7 +93,7 @@ export default function Books() {
                           {userStatus.isUserAuthenticated ?
                             <>
                               <a href={book?.ebook_link} target="_blank" rel="noreferrer">
-                                <DownloadIcon color="#af151f" />
+                                <DownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                 <span> تحميل مجاني </span>
                               </a>
                             </>
@@ -104,7 +104,7 @@ export default function Books() {
                                 query: { from: "ebook" }
                               })
                             }}>
-                              <DownloadIcon color="#af151f" />
+                              <DownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                               <span>  تحميل مجاني </span>
                             </a>
                           }

@@ -9,7 +9,7 @@
   font-size: 2rem;
   font-weight: 800;
 }
-.courses-departments__container__title span:nth-of-type {
+.courses-departments__container__title span:nth-of-type(1) {
   color: var(--dark-black);
 }
 .courses-departments__container__title span:nth-of-type(2) {
@@ -33,9 +33,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   font-size: 1.063rem;
   color: var(--primary-red);
   font-weight: 700;
@@ -54,13 +54,13 @@
   box-shadow: none;
 }
 .courses-departments__container__show-all-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .courses-departments__container__show-all-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active {
   background-color: white !important;
@@ -88,6 +88,7 @@
   align-items: center;
   justify-content: center;
   display: inline-flex;
+  background-color: var(--tadarab-bg);
 }
 .courses-departments__cards-carousel__departments-card:hover {
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
@@ -345,9 +346,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     font-size: 2.3386rem;
     color: var(--primary-red);
     font-weight: 700;
@@ -367,13 +368,13 @@
     box-shadow: none;
   }
   .courses-departments__container__show-all-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .courses-departments__container__show-all-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .courses-departments__container__show-all-btn svg {
     width: 1.25rem;

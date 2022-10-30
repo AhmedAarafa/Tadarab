@@ -32,9 +32,9 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   font-size: 1.063rem;
   color: var(--primary-red);
   font-weight: 700;
@@ -54,13 +54,13 @@
   box-shadow: none;
 }
 .season-trainers__see-more-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .season-trainers__see-more-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .season-trainers__see-more-btn:hover, .season-trainers__see-more-btn:active {
   background-color: white !important;
@@ -321,9 +321,9 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     font-size: 2.5512rem;
     color: var(--primary-red);
     font-weight: 700;
@@ -344,13 +344,13 @@
     box-shadow: none;
   }
   .season-trainers__see-more-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .season-trainers__see-more-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .season-trainers__see-more-btn:hover, .season-trainers__see-more-btn:active {
     background-color: white !important;

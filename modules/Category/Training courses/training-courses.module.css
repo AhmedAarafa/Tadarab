@@ -263,7 +263,7 @@
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 0.75rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--lightgrey);
   border: 0;
   display: flex;
   align-items: center;
@@ -276,7 +276,7 @@
   border-radius: 0.7275rem;
 }
 .training-courses__course-card__card-body__checkout-details__icon-btn:hover, .training-courses__course-card__card-body__checkout-details__icon-btn:active, .training-courses__course-card__card-body__checkout-details__icon-btn:focus {
-  background-color: rgba(0, 0, 0, 0.07);
+  background-color: var(--hovered-lightgrey);
 }
 
 .training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -388,7 +388,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     display: flex;
     align-items: center;
@@ -401,7 +401,7 @@
     border-radius: 1.0875rem;
   }
   .training-courses__course-card__card-body__checkout-details__icon-btn:hover, .training-courses__course-card__card-body__checkout-details__icon-btn:active, .training-courses__course-card__card-body__checkout-details__icon-btn:focus {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--hovered-lightgrey);
   }
   .training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 2.2475rem;
@@ -707,7 +707,7 @@
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--lightgrey);
     border: 0;
     display: flex;
     align-items: center;
@@ -720,7 +720,7 @@
     border-radius: 2.025rem;
   }
   .training-courses__course-card__card-body__checkout-details__icon-btn:hover, .training-courses__course-card__card-body__checkout-details__icon-btn:active, .training-courses__course-card__card-body__checkout-details__icon-btn:focus {
-    background-color: rgba(0, 0, 0, 0.07);
+    background-color: var(--hovered-lightgrey);
   }
   .training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
     width: 4.185rem;

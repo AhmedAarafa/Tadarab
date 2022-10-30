@@ -32,8 +32,9 @@ import { withRouter } from 'next/router';
 import useResize from "custom hooks/useResize";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 //import { useGoogleLogout } from 'react-google-login';
+import { setTheme } from "configurations/redux/actions/themeToggler";
 
-function Navbar() {
+function Navbar(props: any) {
 
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
@@ -46,6 +47,7 @@ function Navbar() {
   const handleDiscoverSidebarShow = (status: boolean) => {
     setDiscoverSidebarShow(status);
   }
+  const themeState = useSelector((state: any) => state.themeState.theme);
   const [localStateCartItems, setLocalStateCartItems] = useState<any>(null);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const cartItems = useSelector((state: any) => state.cartItems);
@@ -273,7 +275,6 @@ function Navbar() {
   }, [courseDetailsData, myCourseNavigator, router.asPath])
 
 
-
   useEffect(() => {
     setLocalStateCartItems(cartItems?.data);
 
@@ -372,7 +373,7 @@ function Navbar() {
 
   return (
     <>
-      <NavBar id="nav" fixed="top"
+      <NavBar data-theme={themeState} id="nav" fixed="top"
         style={{
           justifyContent: (isCoursePurchased && !isMobileView) ? "right" : "",
           paddingRight: isCoursePurchased ? "0.6rem" : ""
@@ -398,7 +399,7 @@ function Navbar() {
           <ul className={styles["sidebar-list"]}>
             <li id="discover" className={styles["sidebar-list__item"]} onClick={() => { handleDiscoverSidebarShow(true) }}>
               استكشف
-              <NextIcon color="#222" />
+              <NextIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
             </li>
 
             <Offcanvas id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2" backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
@@ -406,7 +407,7 @@ function Navbar() {
                 <Offcanvas.Title className={styles["sidebar-list__discover-sidebar__title"]}>
                   استكشف
                   <div id="back-btn" className={styles["sidebar-list__discover-sidebar__title__back-btn"]}>
-                    <BackIcon color="#222" />
+                    <BackIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                     <span id="back-btn-text"> الرجوع </span>
                   </div>
                 </Offcanvas.Title>
@@ -417,7 +418,7 @@ function Navbar() {
                   categoriesList.map((category: any, i: number) => {
                     return (
                       <Link key={i} href={`/topic/${category.slug}`}>
-                        <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>{category.title.replace('دورات', '')}</li>
+                        <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>{category.title}</li>
                       </Link>
                     )
                   })
@@ -527,7 +528,7 @@ function Navbar() {
                 onMouseOut={() => popoverHandler("out")}
                 className={styles["navbar__links"]} id="discover" >
                 استكشف
-                <DropDownIcon color="#222" />
+                <DropDownIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
               </Nav.Link>
               <div id="discover-popover__wrapper" onMouseOver={() => popoverHandler("over")}
                 onMouseOut={() => popoverHandler("out")}
@@ -542,7 +543,7 @@ function Navbar() {
                         categoriesList.map((category: any, i: number) => {
                           return (
                             <Link key={i} href={`/topic/${category.slug}`}>
-                              <li>{category.title.replace('دورات', '')}</li>
+                              <li>{category.title}</li>
                             </Link>
                           )
                         })
@@ -605,6 +606,12 @@ function Navbar() {
               </div>
               {!userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
+              <Nav.Link style={{ color: "brown" }} onClick={() => {
+                dispatch(setTheme(themeState == "light" ? "dark" : "light"));
+                localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
+                document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
+
+              }}> DM </Nav.Link>
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
                 <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`) }} className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>
@@ -669,7 +676,7 @@ function Navbar() {
               const searchBox: any = document.getElementById("responsive-search-field");
               searchBox.focus();
             }}>
-              <SearchIcon color="#222" />
+              <SearchIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
             </div>
             <div id="search-box-overlay" className={styles["search-box-overlay"]}
               onClick={(e: any) => {
@@ -905,7 +912,7 @@ function Navbar() {
           >
             <div className={styles["navbar__cart-icon-container"]} id="carticon"
               onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
-              <CartIcon color="#222" />
+              <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
               <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
               {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
 
@@ -929,7 +936,7 @@ function Navbar() {
               }>
                 <div onClick={() => { closeDropdown("account") }} className={styles["navbar__account-icon"]}>
 
-                  <AccountIcon />
+                  <AccountIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                 </div>
               </OverlayTrigger>
             </>

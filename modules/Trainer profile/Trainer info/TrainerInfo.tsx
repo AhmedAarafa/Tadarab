@@ -165,12 +165,9 @@ export default function TrainerInfo() {
             </div>
           </div>
         </div>
-
-
       </div>
 
       <div className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box"]}>
-
         <div id="brief-about-trainer" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer"]}>
           <h2 className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title"]}>نبذة عن المدرب</h2>
           <p id="bio" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para"]}

@@ -29,21 +29,21 @@
 .learn-from-the-best__see-more-btn{
     @include outlined-button;
     font-size: 1.063rem;
-    color: var(--primary-red);
+    color: var(--outlined-btn-text);
     font-weight: 700;
     width: 13.25rem;
     height: 2.75rem;
-    border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
     border-radius: 0.75rem;
     margin-left: 3rem;
     @include flex(center, space-around);
-    // display: none !important;
+    background-color: var(--tadarab-light-bg) !important;
 
     &:hover,
     &:active {
-        background-color: white !important;
-        color: var(--primary-red) !important;
-        border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+        // background-color: white !important;
+        color: var(--outlined-btn-text) !important;
+        border: 0.125rem solid var(--outlined-btn-border) !important;
     }
 
     svg{
@@ -60,7 +60,7 @@
 
     &>div {
         padding: 0 2rem !important;
-        @include inset-box-shadow(white);
+        @include inset-box-shadow(--tadarab-light-bg);
         &>div:nth-child(1),
         &>div:nth-child(2) {
             top: 43% !important;
@@ -135,7 +135,7 @@
     
         &>div {
             padding: 0 2rem*1.05 !important;
-            @include inset-box-shadow(white);
+            // @include inset-box-shadow(white);
             &>div:nth-child(1),
             &>div:nth-child(2) {
                 top: 43% !important;
@@ -203,7 +203,7 @@
     
         &>div {
             padding: 0 2rem*1.335 !important;
-            @include inset-box-shadow(white);
+            // @include inset-box-shadow(white);
             &>div:nth-child(1),
             &>div:nth-child(2) {
                 top: 43% !important;
@@ -290,17 +290,18 @@
         font-weight: 700;
         width: 13.25rem*2.4;
         height: 2.75rem*2.4;
-        border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+        border-width: 0.125rem*2.4 !important;
         border-radius: 0.75rem*2.4;
         margin: 5rem 7.3rem 0 7.3rem;
         width: 100%;
         @include flex(center, center);
+    background-color: var(--tadarab-light-bg) !important;
     
         &:hover,
         &:active {
-            background-color: white !important;
-            color: var(--primary-red) !important;
-            border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+            // background-color: white !important;
+            // color: var(--primary-red) !important;
+            border-width: 0.125rem*2.4 !important;
         }
 
         svg{

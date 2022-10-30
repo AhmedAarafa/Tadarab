@@ -1,0 +1,1 @@
+export const THEME_TOGGLER = 'THEME_TOGGLER';

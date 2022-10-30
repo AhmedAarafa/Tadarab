@@ -19,10 +19,13 @@ export default function CommentsSection(props: any) {
     const [commentsSlicer, setCommentsSlicer] = useState<any>(5);
 
     useEffect(() => {
+        let cancel = false;
+
         if (props.Cid() !== "") {
             axiosInstance
                 .get(`course/${props.Cid()}/comments`)
                 .then(function (response: any) {
+                    if (cancel) return;
                     setCourseComments(response.data.data);
                 })
                 .catch(function (error) {
@@ -30,8 +33,8 @@ export default function CommentsSection(props: any) {
                 });
         }
         return () => {
+            cancel = true;
             window.removeEventListener("resize", () => {
-                null;
             })
         }
     }, [props.Cid()])
@@ -78,7 +81,7 @@ export default function CommentsSection(props: any) {
     const handleCommentsTextArea = (e: any) => {
         e.target.value == "" ? setIsCommentTextAreaEmpty(true) : setIsCommentTextAreaEmpty(false);
         setCommentContent(e.target.value);
-        localStorage.setItem("comment_content",e.target.value);
+        localStorage.setItem("comment_content", e.target.value);
     }
 
     const isUserAuthorizedToWriteComment = () => {
@@ -99,23 +102,21 @@ export default function CommentsSection(props: any) {
                 .then((response: any) => {
                     const CommentTextBox: any = document.querySelector('[name="commentTextArea"]');
                     CommentTextBox.value = "";
-                    localStorage.setItem("comment_content","");
+                    localStorage.setItem("comment_content", "");
                     setCommentContent("");
                     setIsCommentTextAreaEmpty(true);
                     setReplyTo(0);
                     const replyIcons: any = document.querySelectorAll(`[id^="reply-icon-box"] > svg > path`);
                     const replyTexts: any = document.querySelectorAll(`[id^="reply-icon-box"] > span`);
-                    console.log("replyIcons", replyIcons);
-                    console.log("replyTexts", replyTexts);
-    
-    
+
+
                     replyIcons?.forEach((icon: any) => {
                         icon.style.cssText = `fill:#ccc`;
                     });
                     replyTexts?.forEach((text: any) => {
                         text.style.cssText = `color:#777`;
                     });
-    
+
                     axiosInstance
                         .get(`course/${props.Cid()}/comments`)
                         .then(function (response: any) {
@@ -126,7 +127,7 @@ export default function CommentsSection(props: any) {
                                     .getComputedStyle(document.getElementsByTagName("html")[0])
                                     .getPropertyValue("font-size")
                             );
-    
+
                             const noOfComments: any = response.data.data.filter((comm: any) => {
                                 return comm.reply_to_comment_id == 0
                             });
@@ -171,22 +172,21 @@ export default function CommentsSection(props: any) {
     }
 
     useEffect(() => {
-        const commentContent:any = localStorage.getItem("comment_content");
+        const commentContent: any = localStorage.getItem("comment_content");
         setCommentContent(commentContent ? commentContent : "");
-        commentContent == "" ?  setIsCommentTextAreaEmpty(true) : setIsCommentTextAreaEmpty(false) ;
-      return () => {
-        
-      }
+        commentContent == "" ? setIsCommentTextAreaEmpty(true) : setIsCommentTextAreaEmpty(false);
+        return () => {
+
+        }
     }, [])
 
-    useEffect(() => {
-        return () => {
-            console.log("commentContent died", commentContent);
-        }
-    }, [commentContent])
+    // useEffect(() => {
+    //     return () => {
+    //     }
+    // }, [commentContent])
 
-  
-    
+
+
 
     return (
         <>
@@ -201,7 +201,7 @@ export default function CommentsSection(props: any) {
                             placeholder="هل لديك تعليقاً او سؤالاً ؟ اكتب تعليقك هنا..."
                             className={styles["comments-section__input-field-container__input-field"]}
                             onChange={() => { handleCommentsTextArea(event) }}
-                            // onFocus={() => { isUserAuthorizedToWriteComment() }}
+                        // onFocus={() => { isUserAuthorizedToWriteComment() }}
                         />
                         <Button type="submit" className={`${isCommentTextAreaEmpty ?
                             styles["comments-section__input-field-container__btn--dimmed"]

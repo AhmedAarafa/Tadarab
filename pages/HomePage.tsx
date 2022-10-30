@@ -33,6 +33,7 @@ function HomePage(props: any) {
   const router = useRouter();
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
     toggleLoader("show");
@@ -101,7 +102,8 @@ function HomePage(props: any) {
 
   return (
     <>
-      <Container fluid="xxl" >
+
+      <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
 
         <HeroSection />
         <TadarabSeason />

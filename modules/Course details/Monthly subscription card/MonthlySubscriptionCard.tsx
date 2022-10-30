@@ -39,6 +39,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
   useEffect(() => {
     subscriptionCounter();
+    let cancel: boolean = false;
 
     // setSubscriptionTimer
     document.cookie.split('; ').reduce((prev: any, current: any) => {
@@ -59,6 +60,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
     axiosInstance
       .get(`categories/home/?limit=20&page=1`)
       .then(function (response: any) {
+        if (cancel) return;
         theOption?.subscriptionInfoHandler({
           subscription_original_price: response?.data?.data.subscription_original_price,
           subscription_sale_price: response?.data?.data.subscription_sale_price,
@@ -74,67 +76,11 @@ export default function MonthlySubscriptionCard(theOption: any) {
         console.log(error);
       });
 
+    return () => {
+      cancel = true;
+    }
+
   }, []);
-
-  // useEffect(() => {
-
-  //   if (subscriptionTimer !== 0) {
-  //     document.cookie.split('; ').reduce((prev: any, current: any) => {
-  //       const [name, ...value] = current.split('=');
-  //       if (prev) {
-  //         prev[name] = value.join('=');
-  //         setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
-  //         if (Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1) {
-
-  //           let interval = setInterval(() => {
-
-  //             // get total seconds between the times
-  //             let delta: any = Math.sign(Number(prev['subscription-countdown']) - ((Math.floor(Date.now() / 1000)))) !== -1 ?
-  //               Math.abs(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))))
-  //               :
-  //               clearInterval(interval);
-  //             ;
-
-  //             // calculate (and subtract) whole days
-  //             let days: any = Math.floor(delta / 86400);
-  //             delta -= days * 86400;
-
-  //             // calculate (and subtract) whole hours
-  //             let hours: any = Math.floor(delta / 3600) % 24;
-  //             delta -= hours * 3600;
-
-  //             // calculate (and subtract) whole minutes
-  //             let minutes: any = Math.floor(delta / 60) % 60;
-  //             delta -= minutes * 60;
-
-  //             // what's left is seconds
-  //             let seconds: any = delta; // in theory the modulus is not required
-
-  //             days = days.toString().padStart(2, 0);
-  //             hours = hours.toString().padStart(2, 0);
-  //             minutes = minutes.toString().padStart(2, 0);
-  //             seconds = seconds.toString().padStart(2, 0);
-
-  //             if (days == '00' && hours == '00' && minutes == '00' && seconds == '00') {
-  //               setToDisplayValues({ ...toDisplayValues, visible: false });
-  //               clearInterval(interval);
-
-  //             } else {
-
-  //               setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
-  //               return { days, hours, minutes, seconds }
-  //             }
-  //           }, 1000);
-
-  //         }
-  //       }
-
-  //       return prev;
-  //     }, {});
-
-  //   }
-
-  // }, [subscriptionTimer]);
 
 
   useEffect(() => {
@@ -143,11 +89,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
   useEffect(() => {
 
-
     if (theOption?.liveWebinarDetails?.full_date) {
-
-      // function timerHandler(date: any) {
-
       setInterval(() => {
         // get total seconds between the times
         let delta: any = Math.abs(theOption?.liveWebinarDetails?.full_date - (Math.floor(Date.now() / 1000)));
@@ -176,9 +118,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
         return { days, hours, minutes, seconds }
       }, 1000);
-
-
-      // }
     }
   }, [theOption]);
 
@@ -438,10 +377,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
               {/* <div className={styles["monthly-subscription__subscription-value"]}>
             احصل على كل الدورات فقط ب 9 دك / شهر.
             </div> */}
-              {/* {console.log("theOption?.liveWebinarDetails", theOption)
-                  }
-                  {console.log("courseDetails", courseDetails)
-                  }  */}
               {/* 
                     <span>
                   احصل على كل الدورات فقط ب
@@ -473,9 +408,9 @@ export default function MonthlySubscriptionCard(theOption: any) {
           </div> */
               }
 
-              {/* <div className={styles["monthly-subscription__or-box"]}>
+              {theOption?.liveWebinarDetails?.type !== "webinar" && <div className={styles["monthly-subscription__or-box"]}>
                 أو
-              </div> */}
+              </div>}
             </>
             :
             <div className={styles["monthly-subscription__course-card__course-title"]}>

@@ -32,20 +32,21 @@
   border-radius: 0.625rem;
   font-family: "Almarai", sans-serif;
   border: 0 !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  background-color: white !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
   font-size: 1.063rem;
-  color: var(--primary-red);
+  color: var(--outlined-btn-text);
   font-weight: 700;
   width: 13.25rem;
   height: 2.75rem;
-  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
   border-radius: 0.75rem;
   margin-left: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background-color: var(--tadarab-light-bg) !important;
 }
 .learn-from-the-best__see-more-btn:hover {
   box-shadow: none;
@@ -54,18 +55,17 @@
   box-shadow: none;
 }
 .learn-from-the-best__see-more-btn:hover {
-  color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .learn-from-the-best__see-more-btn:active {
-  background-color: var(--primary-red) !important;
-  color: white !important;
-  border: 0.125rem solid var(--primary-red) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
-  background-color: white !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .learn-from-the-best__see-more-btn svg {
   width: 0.5rem;
@@ -82,7 +82,7 @@
   content: "";
   display: block;
   position: absolute;
-  box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+  box-shadow: -2.813rem 0 2.5rem -3.125rem --tadarab-light-bg inset, 2.813rem 0 2.5rem -3.125rem --tadarab-light-bg inset;
   top: 0;
   left: 0;
   width: 100%;
@@ -154,18 +154,6 @@
   .learn-from-the-best__cards-carousel > div {
     padding: 0 2.1rem !important;
   }
-  .learn-from-the-best__cards-carousel > div:before {
-    content: "";
-    display: block;
-    position: absolute;
-    box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    pointer-events: none;
-  }
   .learn-from-the-best__cards-carousel > div > div:nth-child(1), .learn-from-the-best__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;
   }
@@ -219,18 +207,6 @@
   }
   .learn-from-the-best__cards-carousel > div {
     padding: 0 2.67rem !important;
-  }
-  .learn-from-the-best__cards-carousel > div:before {
-    content: "";
-    display: block;
-    position: absolute;
-    box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    pointer-events: none;
   }
   .learn-from-the-best__cards-carousel > div > div:nth-child(1), .learn-from-the-best__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;
@@ -306,21 +282,22 @@
     border-radius: 0.625rem;
     font-family: "Almarai", sans-serif;
     border: 0 !important;
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
-    background-color: white !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
     font-size: 2.5512rem;
     color: var(--primary-red);
     font-weight: 700;
     width: 31.8rem;
     height: 6.6rem;
-    border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;
+    border-width: 0.3rem !important;
     border-radius: 1.8rem;
     margin: 5rem 7.3rem 0 7.3rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--tadarab-light-bg) !important;
   }
   .learn-from-the-best__see-more-btn:hover {
     box-shadow: none;
@@ -329,18 +306,16 @@
     box-shadow: none;
   }
   .learn-from-the-best__see-more-btn:hover {
-    color: var(--primary-red) !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .learn-from-the-best__see-more-btn:active {
-    background-color: var(--primary-red) !important;
-    color: white !important;
-    border: 0.125rem solid var(--primary-red) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
-    background-color: white !important;
-    color: var(--primary-red) !important;
-    border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;
+    border-width: 0.3rem !important;
   }
   .learn-from-the-best__see-more-btn svg {
     width: 1.2rem;

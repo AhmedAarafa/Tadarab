@@ -17,6 +17,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
+
 export default function LiveCourses() {
   SwiperCore.use([Navigation]);
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function LiveCourses() {
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const liveCoursesRef = useRef([]);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   const handleSubscribeBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
@@ -109,7 +111,7 @@ export default function LiveCourses() {
 
   useEffect(() => {
     liveCoursesRef.current = homePageData?.data?.live_courses;
-    
+
     setLiveCourses(homePageData.data?.live_courses || []);
   }, [homePageData]);
 
@@ -118,7 +120,7 @@ export default function LiveCourses() {
       {
         (liveCourses !== null && JSON.stringify(liveCourses) !== "[]") &&
 
-        <Row >
+        <Row className={styles["live-courses-row"]} data-theme={themeState}>
           <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["live-courses__title"]}>
             <h2>
               <span> الدورات </span>
@@ -128,11 +130,9 @@ export default function LiveCourses() {
           <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["live-courses__see-more-btn-col"]}>
 
             <Button className={styles["live-courses__see-more-btn"]}
-              onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`) }}
-            >
+              onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=live`) }}>
               اعرض المزيد
-              <ChevronLeftIcon color="#af151f" />
-
+              <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
             </Button>
 
           </Col>
@@ -189,14 +189,14 @@ export default function LiveCourses() {
                       </div>
 
                       <Link href={`/webinar/${lc.slug}`}>
-                      <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src={lc.image} alt='trainer image'
-                        className={styles["live-courses__cards-carousel__card__trainer-img"]} />
+                        <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src={lc.image} alt='trainer image'
+                          className={styles["live-courses__cards-carousel__card__trainer-img"]} />
                       </Link>
                       <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                           <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                            <Link href={`/webinar/${lc.slug}`}> 
-                            <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
+                            <Link href={`/webinar/${lc.slug}`}>
+                              <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
                             </Link>
                             <Link href={`/trainer/${lc.trainer?.slug}`}>
 
@@ -276,9 +276,9 @@ export default function LiveCourses() {
                           {!lc.is_purchased && <Button className={styles["live-courses__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={lc.is_in_cart || disabledCartBtns.includes(lc.id)} variant={""}>
 
                             {(lc.discounted_price == 0 && lc.webinar_type == "soon") ?
-                              <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon /> : <BellIcon />} </div>
+                              <div onClick={() => handleSubscribeBtn(lc)}> {lc.is_subscribed_to ? <ContainedBellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} /> : <BellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />} </div>
                               :
-                              <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                              <div onClick={() => handleCartActionBtn(lc)}> {(lc.is_in_cart || disabledCartBtns.includes(lc.id) ? <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} /> : <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />)} </div>}
 
                           </Button>}
                         </div>

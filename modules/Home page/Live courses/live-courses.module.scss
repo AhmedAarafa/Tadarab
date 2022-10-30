@@ -1,5 +1,14 @@
 @import "../../../styles/mixins";
 
+.live-courses-row {
+    [data-theme='light'] {
+        --box-shadow: white;
+    }
+
+    [data-theme='dark'] {
+        --box-shadow: black;
+    }
+}
 
 .live-courses__title {
     font-size: 2rem;
@@ -26,22 +35,23 @@
     padding: 4rem 3rem 0 3rem;
 }
 
-.live-courses__see-more-btn {
+.live-courses__see-more-btn { 
     @include outlined-button;
     font-size: 1.063rem;
-    color: var(--primary-red);
+    color: var(--outlined-btn-text);
     font-weight: 700;
     width: 10rem;
     height: 2.75rem;
-    border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
     border-radius: 0.75rem;
     @include flex(center, space-around);
+    background-color: var(--tadarab-light-bg) !important;
 
     &:hover,
     &:active {
-        background-color: white !important;
-        color: var(--primary-red) !important;
-        border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+        // background-color: var(--outlined-btn-bg) !important;
+        color: var(--outlined-btn-text) !important;
+        border: 0.125rem solid var(--outlined-btn-border) !important;
     }
 
     svg {
@@ -56,10 +66,9 @@
     margin-top: 2.5rem*0.8;
     margin-bottom: 0;
 
-
     &>div {
         padding: 0 2rem*0.8 !important;
-        @include inset-box-shadow(white);
+        @include inset-box-shadow(var(--box-shadow));
 
         &>div:nth-child(1),
         &>div:nth-child(2) {
@@ -82,6 +91,8 @@
     border-radius: 0.85rem*0.8;
     position: relative;
     display: inline-block;
+    background-color: var(--tadarab-bg);
+
 
     &:after {
         content: '';
@@ -169,7 +180,7 @@
     position: relative;
     margin-top: 0.8rem*0.8;
     padding: 0 0 1rem 0;
-    border-bottom: 0.05rem*0.8 solid rgba(34, 34, 34, 0.1);
+    border-bottom: 0.05rem*0.8 solid var(--borders-grey);
 
     // &:before {
     //     content: "";
@@ -458,7 +469,7 @@
         position: relative;
         margin-top: 0.8rem*1.04;
         padding: 0 0 1rem*1.04 0;
-        border-bottom: 0.05rem*1.04 solid rgba(34, 34, 34, 0.1);
+        border-bottom: 0.05rem*1.04 solid var(--borders-grey);
 
     }
 
@@ -695,7 +706,7 @@
         position: relative;
         margin-top: 0.8rem*1.35;
         padding: 0 0 1rem*1.35 0;
-        border-bottom: 0.05rem*1.35 solid rgba(34, 34, 34, 0.1);
+        border-bottom: 0.05rem*1.35 solid var(--borders-grey);
 
     }
 
@@ -824,6 +835,7 @@
 
     .live-courses__title {
         @include flex(center, center);
+
         &>h2 {
             text-align: center;
             font-size: 4.688rem;
@@ -843,14 +855,15 @@
         font-size: 1.063rem*2.4;
         width: 100%;
         height: 2.75rem*2.4;
-        border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+        border-width: 0.125rem*2.4 !important;
         border-radius: 0.75rem*2.4;
         @include flex(center, center);
         margin: 0 7.3rem 0 7.3rem;
+        background-color: var(--tadarab-light-bg) !important;
 
         &:hover,
         &:active {
-            border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
+            border-width: 0.125rem*2.4 !important;
         }
 
         svg {
@@ -950,7 +963,7 @@
         position: relative;
         margin-top: 0.8rem*2.4;
         padding: 0 0 1rem*2.4 0;
-        border-bottom: 0.05rem*2.4 solid rgba(34, 34, 34, 0.1);
+        border-bottom: 0.05rem*2.4 solid var(--borders-grey);
 
     }
 

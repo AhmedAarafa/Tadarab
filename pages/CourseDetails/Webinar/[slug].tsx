@@ -57,7 +57,7 @@ function CourseDetails() {
     subscriptionCounter();
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("course-subscribers__course-card");
-    })
+    });
 
     return () => {
       window.removeEventListener("scroll", () => {
@@ -231,7 +231,7 @@ function CourseDetails() {
         description={courseDetailsData?.data?.seo_metadesc}
         img={courseDetailsData?.data?.seo_image} />
       <Container fluid="xxl">
-        {((JSON.stringify(courseDetailsData?.data) !== "[]") && (!courseDetailsData?.data?.course_details?.is_purchased)) &&
+        {((JSON.stringify(courseDetailsData?.data) !== "{}") && (courseDetailsData?.data?.course_details?.is_purchased)) &&
           <>
             <MobileNavTabsBar />
             <MobileCheckoutBar data={subscriptionInfo} />

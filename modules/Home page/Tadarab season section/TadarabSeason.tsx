@@ -1,15 +1,17 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useState } from 'react';
 import styles from "./tadarab-season.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function TadarabSeason() {
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     return (
         <>
-            <Row className={styles["tadarab-season"]}>
+            <Row data-theme={themeState} className={styles["tadarab-season"]}>
                 <Col sm={{ span: 6, order: 1 }} xs={{ span: 12, order: 2 }} className={styles["tadarab-season__info-box"]}>
                     <div className={styles["tadarab-season__info-box__info"]}>
                         <div>

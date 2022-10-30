@@ -9,13 +9,13 @@ import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon}  from "common/Icons/Icons";
 import Link from 'next/link';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function LearnFromTheBest() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state:any) => state.homePageData);
-
   const [trainers, setTrainers] = useState([]);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
   
@@ -37,7 +37,7 @@ export default function LearnFromTheBest() {
           <Link href="/trainers">
             <Button className={styles["learn-from-the-best__see-more-btn"]}>
                 اعرض كل المدربين 
-                <ChevronLeftIcon color="#af151f"/>
+                <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"}/>
             </Button>
           </Link>
         </Col> 

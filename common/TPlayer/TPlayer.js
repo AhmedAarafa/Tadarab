@@ -419,9 +419,9 @@ export function TPlayerPlayList (){
 										<div>{freelec.title}</div> {/* Lecture Title */}
 										{/* Lecture time duration */}
 										<div>
-											{duration_calculator(freelec.duration).h !==0 && (duration_calculator(freelec.duration).h.toString().length == 1 ? `0${duration_calculator(freelec.duration).h}:`:`${duration_calculator(freelec.duration).h}:`)}
-											{duration_calculator(freelec.duration).m !==0 && (duration_calculator(freelec.duration).m.toString().length == 1 ? `0${duration_calculator(freelec.duration).m}:` :`${duration_calculator(freelec.duration).m}:`)}
-											{duration_calculator(freelec.duration).s !==0 && (duration_calculator(freelec.duration).s.toString().length == 1 ?`0${duration_calculator(freelec.duration).s}` :`${duration_calculator(freelec.duration).s}`)}
+										    {duration_calculator(freelec.duration).h !==0 ? `${duration_calculator(freelec.duration).h.toString().padStart(2,"0")}:` : '00:'}
+											{duration_calculator(freelec.duration).m !==0 ? `${duration_calculator(freelec.duration).m.toString().padStart(2,"0")}:` : '00:'}
+											{duration_calculator(freelec.duration).s !==0 ? `${duration_calculator(freelec.duration).s.toString().padStart(2,"0")}` : '00'}
 										</div>
 									</div>
 								</div>
@@ -479,9 +479,9 @@ export function TPlayerPlayList (){
 																<div>{lec.title}</div> {/* Lecture Title */}
 																{/* Lecture time duration */}
 																<div>
-																	{duration_calculator(lec.duration).h !==0 && (duration_calculator(lec.duration).h.toString().length == 1 ? `0${duration_calculator(lec.duration).h}:`:`${duration_calculator(lec.duration).h}:`)}
-																	{duration_calculator(lec.duration).m !==0 && (duration_calculator(lec.duration).m.toString().length == 1 ? `0${duration_calculator(lec.duration).m}:` :`${duration_calculator(lec.duration).m}:`)}
-																	{duration_calculator(lec.duration).s !==0 && (duration_calculator(lec.duration).s.toString().length == 1 ?`0${duration_calculator(lec.duration).s}` :`${duration_calculator(lec.duration).s}`)}
+																{duration_calculator(lec.duration).h !==0 ? `${duration_calculator(lec.duration).h.toString().padStart(2,"0")}:` : '00:'}
+															    {duration_calculator(lec.duration).m !==0 ? `${duration_calculator(lec.duration).m.toString().padStart(2,"0")}:` : '00:'}
+															    {duration_calculator(lec.duration).s !==0 ? `${duration_calculator(lec.duration).s.toString().padStart(2,"0")}` : '00'}
 																</div>
 															</div>
 														</div>
@@ -568,11 +568,13 @@ export function TPlayerPaidPlayList (){
                                                             <div>{lec.title}</div>
                                                         </div>
                                                     </div>
-
+													{
+	                                           console.log('h,m,s',duration_calculator(lec.duration).h,duration_calculator(lec.duration).m,duration_calculator(lec.duration).s)
+											}
                                                     <div className={styles["purchased-course-content__accordion__body__list-item__duration"]}>
-													        {duration_calculator(lec.duration).h !==0 && (duration_calculator(lec.duration).h.toString().length == 1 ? `0${duration_calculator(lec.duration).h}:`:`${duration_calculator(lec.duration).h}:`)}
-															{duration_calculator(lec.duration).m !==0 && (duration_calculator(lec.duration).m.toString().length == 1 ? `0${duration_calculator(lec.duration).m}:` :`${duration_calculator(lec.duration).m}:`)}
-															{duration_calculator(lec.duration).s !==0 && (duration_calculator(lec.duration).s.toString().length == 1 ?`0${duration_calculator(lec.duration).s}` :`${duration_calculator(lec.duration).s}`)}
+													        {duration_calculator(lec.duration).h !==0 ? `${duration_calculator(lec.duration).h.toString().padStart(2,"0")}:` : '00:'}
+															{duration_calculator(lec.duration).m !==0 ? `${duration_calculator(lec.duration).m.toString().padStart(2,"0")}:` : '00:'}
+															{duration_calculator(lec.duration).s !==0 ? `${duration_calculator(lec.duration).s.toString().padStart(2,"0")}` : '00'}
                                                     </div>
 													</div>
 												</a>

@@ -42,7 +42,10 @@ export default function CategoryDescription(props: any) {
                 <Col xs={12} className={styles["category-description"]}>
                     <img className={styles["category-description__img"]} src={`https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/${props.data?.slug}1.jpg`} alt={props.data?.title} />
                     <div className={styles["category-description__title"]}>
-                        <h1> {props?.data?.title} </h1>
+                        <h1> {`
+                        دورات
+                        ${props?.data?.title}
+                        `} </h1>
                         <div>
                             (
                             {props.data?.parent_id == 0 &&
