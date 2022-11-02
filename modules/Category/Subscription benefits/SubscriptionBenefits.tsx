@@ -34,12 +34,7 @@ export default function SubscriptionBenefits() {
                 <Col className={styles["subscription-benefits__title"]} sm={{ span: 6, order: 1 }} xs={{ span: 12, order: 1 }}>
                     <div>
                         <div>
-                            أكبر منصة تدريب بالوطن العربي
-                            اشترك في
-                        <span className={styles["subscription-benefits--important"]}>
-                            تدرب بلا حدود
-                        </span>
-                        الآن
+                            أكبر محتوى تدريبي عربي باشتراك واحد
                         </div>
                     </div>
                     <Button onClick={() => { handleSubscriptionBtn(event) }}>
@@ -52,14 +47,6 @@ export default function SubscriptionBenefits() {
 
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
-                                <WatchIcon color="#fff" />
-                            </div>
-                            <span>
-                                مشاهدة جميع دورات الموسم التدريبي.
-                            </span>
-                        </div>
-                        <div className={styles["subscription-benefits__benefits__list-item"]}>
-                            <div>
                                 <InfiniteWatchingIcon />
                             </div>
                             <span>
@@ -68,30 +55,16 @@ export default function SubscriptionBenefits() {
                                 دورة تدريبية).
                             </span>
                         </div>
-                        <div className={styles["subscription-benefits__benefits__list-item"]}>
-                            <div>
-                                <DiscoverTrainersIcon />
-                            </div>
-                            <span>
-                                التعرف على خبرات أكثر من 400 مدرباً وخبيراً.
-                            </span>
-                        </div>
-                        <div className={styles["subscription-benefits__benefits__list-item"]}>
-                            <div>
-                                <DiscoverTracksIcon />
-                            </div>
-                            <span>
-                                التعرف على الكثير من المجالات العديدة والمتنوعة والمتخصصة.
-                            </span>
-                        </div>
+
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
                                 <ReactiveLiveIcon />
                             </div>
                             <span>
-                                دورات بث مباشر تفاعلية حصرية.
+                                دورات بث مباشر حصرية للمشتركين.
                             </span>
                         </div>
+
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
                                 <MonthlyAddedCoursesIcon />
@@ -100,14 +73,34 @@ export default function SubscriptionBenefits() {
                                 دورات جديدة تضاف شَهْرِيًّا.
                             </span>
                         </div>
+
+                        <div className={styles["subscription-benefits__benefits__list-item"]}>
+                            <div>
+                                <WatchIcon color="#fff" />
+                            </div>
+                            <span>
+                                مشاهدة مواسم تدرب الحصرية للمشتركين.
+                            </span>
+                        </div>
+
+                        <div className={styles["subscription-benefits__benefits__list-item"]}>
+                            <div>
+                                <DiscoverTrainersIcon />
+                            </div>
+                            <span>
+                                التعرف على خبرات أكثر من 400 مدرباً وخبيراً.
+                            </span>
+                        </div>
+
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
                                 <UnlimitedCertificatesIcon />
                             </div>
                             <span>
-                                عدد لا نهائي من شهادات إتمام الدورات
+                                شهادات إتمام الدورات بلا حدود.
                             </span>
                         </div>
+
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
                                 <UnlimitedBooksIcon />
@@ -116,6 +109,7 @@ export default function SubscriptionBenefits() {
                                 ملخصات كتب إلكترونية حصرية.
                             </span>
                         </div>
+
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
                                 <WatchEverywhereIcon />
@@ -124,14 +118,7 @@ export default function SubscriptionBenefits() {
                                 إمكانية متابعة الدورات من أي جهاز وبأي وقت.
                             </span>
                         </div>
-                        <div className={styles["subscription-benefits__benefits__list-item"]}>
-                            <div>
-                                <DownloadAttachmentsIcon />
-                            </div>
-                            <span>
-                                إمكانية تحميل وطباعة المرفقات والتمارين لسهولة التطبيق.
-                            </span>
-                        </div>
+
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
                                 <CancelSubscriptionIcon />
@@ -140,6 +127,34 @@ export default function SubscriptionBenefits() {
                                 لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
                             </span>
                         </div>
+
+                        {/* <div className={styles["subscription-benefits__benefits__list-item"]}>
+                            <div>
+                                <WatchIcon color="#fff" />
+                            </div>
+                            <span>
+                                مشاهدة جميع دورات الموسم التدريبي.
+                            </span>
+                        </div>
+                       
+                        <div className={styles["subscription-benefits__benefits__list-item"]}>
+                            <div>
+                                <DiscoverTracksIcon />
+                            </div>
+                            <span>
+                                التعرف على الكثير من المجالات العديدة والمتنوعة والمتخصصة.
+                            </span>
+                        </div>
+                     
+                        <div className={styles["subscription-benefits__benefits__list-item"]}>
+                            <div>
+                                <DownloadAttachmentsIcon />
+                            </div>
+                            <span>
+                                إمكانية تحميل وطباعة المرفقات والتمارين لسهولة التطبيق.
+                            </span>
+                        </div> */}
+
 
 
                     </div>

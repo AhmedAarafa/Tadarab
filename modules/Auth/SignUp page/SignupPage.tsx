@@ -45,6 +45,7 @@ export default function SignupPage() {
   const [countryCallingCode, setCountryCallingCode] = useState("20");
   const [countryCode, setCountryCode] = useState("EG");
   const [errorMessage, setErrorMessage] = useState("");
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   // const [response, setResponse] = useState();
   const [isVisible, setIsVisible] = useState(false);
@@ -306,7 +307,7 @@ export default function SignupPage() {
 
   return (
     <>
-      <Row className={styles["register"]}>
+      <Row data-theme={themeState} className={styles["register"]}>
         <Col xs={{ span: 12, order: 2 }} sm={{ span: 6, order: 1 }} className={styles["register__register-box"]}>
           <div className={styles["register__register-box__title"]}>
             <div> انشاء حساب جديد </div>

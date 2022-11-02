@@ -7,11 +7,13 @@ import SwiperCore, { Navigation, Pagination } from 'swiper';
 import "swiper/css";
 import { QuoteIcon } from "common/Icons/Icons";
 import usersReviews from "./Testimonials.json";
+import { useSelector } from "react-redux";
 
 export default function Testimonials(props: any) {
     SwiperCore.use([Navigation]);
     SwiperCore.use([Pagination]);
     const [category, setCategory] = useState<any>({});
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
         setCategory(props?.data);
@@ -19,7 +21,7 @@ export default function Testimonials(props: any) {
 
     return (
         <>
-            <Row className={styles["testimonials"]}>
+            <Row data-theme={themeState} className={styles["testimonials"]}>
                 <Col xs={12} className={styles["testimonials__title"]}>
                     <span>
                         ماذا قال المتدربون عن
@@ -41,7 +43,7 @@ export default function Testimonials(props: any) {
                             {
                                 usersReviews.map((review: any, i: number) => {
                                     return (
-                                        category?.title == `دورات ${review.category_name}` &&
+                                        category?.title == `${review.category_name}` &&
                                         <SwiperSlide key={i} className={styles["testimonials__cards-carousel__item"]}>
                                             <div className={styles["testimonials__cards-carousel__item__container"]}>
                                                 <div className={styles["testimonials__cards-carousel__item__container__img"]}>

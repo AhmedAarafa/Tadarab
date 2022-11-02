@@ -44,13 +44,14 @@ export default function NotificationBar() {
     return (
         <>
             {
-                <div style={{display: userStatus ? 'none' : 'flex'}} className={styles['notification-bar']} id="notification-bar">
+                <div style={{ display: userStatus ? 'none' : 'flex' }} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>
-                        آخر فرصة للأستفادة من العرض | بمناسبة مرور ٦ سنوات على تأسيس منصة تدرب أكثر من ٨٠٠ دورة تدريبية بخصم ٧٥٪ كود الخصم T6
-                            {/* <span onClick={() => { handleSubscriptionBtn() }}>
-                            أضغط هنا لمشاهدة البث
-                            </span> */}
+                            {/* آخر فرصة للأستفادة من العرض | بمناسبة مرور ٦ سنوات على تأسيس منصة تدرب أكثر من ٨٠٠ دورة تدريبية بخصم ٧٥٪ كود الخصم T6 */}
+                            احصل على أكثر من 850 دورة تدريبية باشتراك واحد | خصم ٧٠٪ على الاشتراك السنوي  لفترة محدودة
+                            <span onClick={() => { handleSubscriptionBtn() }}>
+                                ابدأ التعلم الأن
+                            </span>
                         </div>
                     </div>
                     <div>

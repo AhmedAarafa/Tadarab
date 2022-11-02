@@ -3,7 +3,7 @@
 }
 
 .category-description-row {
-  margin: 4.2rem 0 0 0;
+  margin: 4rem 0 0 0;
   height: 28.125rem;
 }
 .category-description-row * {
@@ -24,7 +24,6 @@
   left: 0;
   width: 100%;
   height: 28.125rem;
-  z-index: -1;
 }
 
 .category-description__title,
@@ -35,6 +34,7 @@
 
 .category-description__title {
   font-size: 1rem;
+  z-index: 2;
 }
 .category-description__title h1 {
   font-size: 3.3125rem;
@@ -43,8 +43,9 @@
 }
 
 .category-description__small-description {
-  font-size: 1.25rem;
-  margin-top: 1rem;
+  font-size: 0.7rem;
+  margin-top: 0.8rem;
+  z-index: 2;
 }
 
 .category-description__signup-btn {
@@ -63,6 +64,7 @@
   background-color: transparent !important;
   color: white !important;
   margin-top: 1rem;
+  z-index: 2;
 }
 .category-description__signup-btn:hover {
   box-shadow: none;
@@ -93,6 +95,7 @@
   .category-description-row {
     margin: 0 0 0 0;
     height: 28.125rem;
+    text-align: center;
   }
   .category-description {
     display: flex;
@@ -118,7 +121,7 @@
     margin: auto;
   }
   .category-description__small-description {
-    font-size: 1.875rem;
+    font-size: 1.05rem;
     margin-top: 1.2rem;
   }
   .category-description__signup-btn {
@@ -137,7 +140,7 @@
     background-color: transparent !important;
     color: white !important;
     margin-top: 1rem;
-    font-size: 1.94rem;
+    font-size: 1.358rem;
     padding: 0.75rem 1.5rem;
     border-radius: 1.25rem;
     margin-top: 1.2rem;

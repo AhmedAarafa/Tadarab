@@ -27,6 +27,7 @@
   list-style-type: none;
   cursor: pointer;
   z-index: 3;
+  color: var(--dark-black);
 }
 .latest-courses__departments-list li::before {
   content: "-";
@@ -68,7 +69,8 @@
   width: 10rem;
   height: 2.75rem;
   z-index: 5;
-  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--tadarab-light-bg) !important;
   border-radius: 0.75rem;
   margin-left: 3rem;
   display: flex;
@@ -91,9 +93,8 @@
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .latest-courses__see-more-btn:hover, .latest-courses__see-more-btn:active {
-  background-color: white !important;
-  color: var(--primary-red) !important;
-  border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
 }
 .latest-courses__see-more-btn svg {
   width: 0.5rem;
@@ -145,7 +146,7 @@
 }
 .latest-courses__popover-container--left::after {
   left: 100%;
-  border-color: transparent transparent transparent white;
+  border-color: transparent transparent transparent var(--tadarab-bg);
 }
 
 .latest-courses__popover-container--right {
@@ -153,7 +154,7 @@
 }
 .latest-courses__popover-container--right::after {
   right: 100%;
-  border-color: transparent white transparent transparent;
+  border-color: transparent var(--tadarab-bg) transparent transparent;
 }
 
 .latest-courses__cards-carousel__course-card:hover .popover-wrapper {
@@ -173,7 +174,7 @@
   content: "";
   display: block;
   position: absolute;
-  box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+  box-shadow: -2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset, 2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset;
   top: 0;
   left: 0;
   width: 100%;
@@ -201,6 +202,7 @@
   position: relative;
   display: inline-block;
   overflow: visible;
+  background-color: var(--tadarab-bg);
 }
 .latest-courses__cards-carousel__course-card:after {
   content: "";
@@ -1125,7 +1127,7 @@
     font-size: 2.6575rem;
     width: 100%;
     height: 6.875rem;
-    border: 0.3125rem solid rgba(175, 21, 31, 0.2) !important;
+    border-width: 0.3125rem !important;
     border-radius: 1.875rem;
     margin: 3rem 8.5rem 9.75rem 8.5rem;
     display: flex;
@@ -1133,7 +1135,7 @@
     justify-content: center;
   }
   .latest-courses__see-more-btn:hover, .latest-courses__see-more-btn:active {
-    border: 0.3125rem solid rgba(175, 21, 31, 0.2) !important;
+    border-width: 0.3125rem !important;
   }
   .latest-courses__see-more-btn svg {
     width: 1.25rem;

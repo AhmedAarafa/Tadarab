@@ -1,6 +1,11 @@
 @import "../../../styles/mixins";
 
 
+.sign-in {
+    background-color: var(--tadarab-light-bg);
+    margin-bottom: -5rem;
+}
+
 .sign-in__img {
     img {
         width: 39rem;
@@ -42,11 +47,12 @@
         height: 3.125rem;
         box-shadow: 0 0.1875rem 1.25rem #0000001A;
         border-radius: 0.75rem;
-        padding:0rem 0.7rem;
-        font-size:0.7rem;
+        padding: 0rem 0.7rem;
+        font-size: 0.7rem;
         @include flex(center, flex-start);
         margin-left: 0.75rem;
         cursor: pointer;
+        background-color: var(--tadarab-bg);
 
         svg {
             width: 1.5rem;
@@ -67,7 +73,7 @@
     margin: 1.5625rem 0 0 0;
     position: relative;
     //display: none !important;
-    
+
     &:before {
         content: '';
         position: absolute;
@@ -97,6 +103,7 @@
     padding: 0.8125rem 1.1875rem 0.8125rem 0.5rem;
     height: 3.125rem;
     @include flex(center);
+    background-color: white;
 }
 
 
@@ -265,6 +272,10 @@
 
 
 @media (max-width:575px) {
+    .sign-in {
+        margin-bottom: -5rem*2.5;
+    }
+
     .server-error-msg {
         font-size: 0.75rem*2.4;
         margin: 2rem*2.3 -0.75rem 0 0;

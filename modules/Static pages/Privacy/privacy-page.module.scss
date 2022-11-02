@@ -1,9 +1,11 @@
 @import "../../../styles/mixins";
 
-.privacy-policy{
+.privacy-policy {
+    color: var(--dark-black);
     padding: 8rem;
+    margin-bottom: -5rem;
 
-    *{
+    * {
         font-size: 1rem !important;
     }
 }
@@ -11,10 +13,12 @@
 
 
 @media (max-width: 575px) {
-    
-    .privacy-policy{
+
+    .privacy-policy {
         padding: 12rem 5rem;
-        *{
+        margin-bottom: -5rem*2.5;
+
+        * {
             font-size: 1rem*2 !important;
         }
     }

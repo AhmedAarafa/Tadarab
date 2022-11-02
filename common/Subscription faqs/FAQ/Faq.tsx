@@ -2,11 +2,13 @@ import React from 'react';
 import styles from "./faq.module.css";
 import { Row,Col,Accordion } from "react-bootstrap";
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
+import { useSelector } from "react-redux";
 
 export default function Faq() {
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   return (
-    <Row className={styles["faq__row"]}>
+    <Row data-theme={themeState} className={styles["faq__row"]}>
         <Col xs={12} className={styles["faq"]}>
             <div className={styles["faq__title"]}>
                 <div>الأسئلة الشائعة</div>

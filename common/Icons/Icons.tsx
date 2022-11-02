@@ -457,38 +457,31 @@ export function BackIcon(props: { color: string }) {
 
 export function DarkModeIcon() {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="1.688rem"
-      height="1.5rem"
-      viewBox="0 0 26.848 24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="26.848" height="24" viewBox="0 0 26.848 24">
       <g id="dark" transform="translate(-27.996 -18.17)">
-        <path
-          id="Path_15039"
-          data-name="Path 15039"
-          d="M190.834,58.929h-1.952V56.976a.976.976,0,0,0-1.953,0v1.953h-1.952a.976.976,0,1,0,0,1.953h1.952v1.953a.976.976,0,0,0,1.953,0V60.881h1.952a.976.976,0,1,0,0-1.953Z"
-          transform="translate(-136.967 -34.82)"
-          fill="#fff"
-          opacity="0.3"
-        />
-        <path
-          id="Path_15040"
-          data-name="Path 15040"
-          d="M144.86,19.438h.86v.86a.86.86,0,0,0,1.719,0v-.86h.86a.86.86,0,0,0,0-1.719h-.86v-.86a.86.86,0,0,0-1.719,0v.86h-.86a.86.86,0,0,0,0,1.719Z"
-          transform="translate(-102.157 2.17)"
-          fill="#fff"
-          opacity="0.3"
-        />
-        <path
-          id="Path_15041"
-          data-name="Path 15041"
-          d="M50.994,45.165a.975.975,0,0,0-.263.043,10.254,10.254,0,0,1-12.6-12.614.976.976,0,0,0-1.216-1.216A12.2,12.2,0,1,0,51.956,46.416a.976.976,0,0,0-.962-1.251Z"
-          transform="translate(0 -13.168)"
-          fill="#fff"
-        />
+        <path id="Path_15039" data-name="Path 15039" d="M190.834,58.929h-1.952V56.976a.976.976,0,0,0-1.953,0v1.953h-1.952a.976.976,0,1,0,0,1.953h1.952v1.953a.976.976,0,0,0,1.953,0V60.881h1.952a.976.976,0,1,0,0-1.953Z" transform="translate(-136.967 -34.82)" fill="#fff" opacity="0.3" />
+        <path id="Path_15040" data-name="Path 15040" d="M144.86,19.438h.86v.86a.86.86,0,0,0,1.719,0v-.86h.86a.86.86,0,0,0,0-1.719h-.86v-.86a.86.86,0,0,0-1.719,0v.86h-.86a.86.86,0,0,0,0,1.719Z" transform="translate(-102.157 2.17)" fill="#fff" opacity="0.3" />
+        <path id="Path_15041" data-name="Path 15041" d="M50.994,45.165a.975.975,0,0,0-.263.043,10.254,10.254,0,0,1-12.6-12.614.976.976,0,0,0-1.216-1.216A12.2,12.2,0,1,0,51.956,46.416a.976.976,0,0,0-.962-1.251Z" transform="translate(0 -13.168)" fill="#fff" />
       </g>
     </svg>
+  );
+}
+export function LightModeIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+      <g id="light" transform="translate(-0.243 -0.244)">
+        <circle id="Ellipse_402" data-name="Ellipse 402" cx="6" cy="6" r="6" transform="translate(7.243 7.244)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_292" data-name="Line 292" y2="2" transform="translate(13.243 1.244)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_293" data-name="Line 293" y2="2" transform="translate(13.243 23.244)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_294" data-name="Line 294" x2="1.587" y2="1.587" transform="translate(4.549 4.549)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_295" data-name="Line 295" x2="1.587" y2="1.587" transform="translate(20.35 20.35)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_296" data-name="Line 296" x2="2" transform="translate(1.243 13.244)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_297" data-name="Line 297" x2="2" transform="translate(23.243 13.244)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_298" data-name="Line 298" y1="1.587" x2="1.587" transform="translate(4.549 20.35)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+        <line id="Line_299" data-name="Line 299" y1="1.587" x2="1.587" transform="translate(20.35 4.549)" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
+      </g>
+    </svg>
+
   );
 }
 

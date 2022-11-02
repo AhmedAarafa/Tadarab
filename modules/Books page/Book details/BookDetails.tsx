@@ -14,6 +14,7 @@ export default function BookDetails(props: any) {
     const [showMore, setShowMore] = useState(true);
     const [isTooMuchContent, setIsTooMuchContent] = useState(false);
     const userStatus = useSelector((state: any) => state.userAuthentication);
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
 
@@ -142,7 +143,7 @@ export default function BookDetails(props: any) {
 
     return (
         <>
-            <Row className={styles["book-details"]}>
+            <Row data-theme={themeState} className={styles["book-details"]}>
                 <Col sm={{ span: 3, order: 1 }} xs={{ span: 12, order: 1 }}>
                     <div className={styles["book-details__book-preview"]}>
                         <img loading="lazy" src={props?.data?.image} alt="ebook image" />

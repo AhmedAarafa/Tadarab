@@ -10,6 +10,7 @@
 .how-to-start__title-box__title {
   font-size: 2.5rem;
   font-weight: 800;
+  color: var(--dark-black);
 }
 .how-to-start__title-box__title span {
   color: var(--primary-red);
@@ -51,6 +52,7 @@
 .how-to-start__title {
   font-size: 2rem;
   font-weight: 800;
+  color: var(--dark-black);
 }
 
 .how-to-start__title--important {

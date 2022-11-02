@@ -1,5 +1,9 @@
 @import "../../../styles/mixins";
 
+.register{
+    background-color: var(--tadarab-light-bg);
+    margin-bottom: -5rem;
+}
 
 .register__img {
     img {
@@ -47,6 +51,7 @@
         @include flex(center, flex-start);
         margin-left: 0.75rem;
         cursor: pointer;
+        background-color: var(--tadarab-bg);
 
         button {
             width: 100%;
@@ -114,6 +119,7 @@
     padding: 0.8125rem 1.1875rem 0.8125rem 0.5rem;
     height: 3.125rem;
     @include flex(center);
+    background-color: white;
 }
 
 .register__register-box__registeration-form-box__name-field-container {
@@ -381,6 +387,11 @@
 
 
 @media (max-width:575px) {
+
+    .register{
+        margin-bottom: -5rem*2.5;
+    }
+
     .server-error-msg {
         font-size: 0.75rem*2.4;
         margin: 2rem*2.3 -0.75rem 0 0;

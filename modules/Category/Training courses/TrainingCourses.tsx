@@ -27,6 +27,7 @@ export default function TrainingCourses(props: any) {
     const dispatch = useDispatch();
     const Router = useRouter();
     const { slug } = Router.query;
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     const [showMore, setShowMore] = useState<any>({
         first: true,
@@ -633,12 +634,12 @@ export default function TrainingCourses(props: any) {
                                                         className={styles["training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                                         {
                                                             course.discounted_price == 0 ?
-                                                                <TvIcon color="#222" />
+                                                                <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                                 :
                                                                 course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                                                    <AddedToCartIcon color="#222" />
+                                                                    <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                                     :
-                                                                    <CartIcon color="#222" />
+                                                                    <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                         }
                                                     </div>
                                                 </Button>}
@@ -660,7 +661,7 @@ export default function TrainingCourses(props: any) {
                                                             course.is_in_favorites ?
                                                                 <AddedToFavouriteIcon color="#af151f" />
                                                                 :
-                                                                <FavouriteIcon color="#222" />
+                                                                <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                         }
                                                     </div>
 

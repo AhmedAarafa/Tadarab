@@ -37,7 +37,8 @@ import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
-
+import NotFound from "pages/404";
+import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -47,6 +48,7 @@ function CourseDetails() {
   const [allLiveWebinar, setAllLiveWebinar] = useState({});
   const [courseData, setCourseData] = useState({});
   const [subscriptionInfo, setSubscriptionInfo] = useState<any>({});
+  const [isFound, setIsFound] = useState(true);
   const dispatch = useDispatch();
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
@@ -195,6 +197,7 @@ function CourseDetails() {
       axiosInstance.get(`webinar/${slug}`)
         .then(function (response: any) {
           toggleLoader("hide");
+          setIsFound(NotFoundRoutesHandler(response));
           const data: Course = response?.data?.data?.archive_course;
           setCourseId(response?.data?.data?.archive_course.course_details.id);
           const webinardetails = response?.data?.data?.course_details;
@@ -209,7 +212,7 @@ function CourseDetails() {
           toggleLoader("hide");
         });
     }
-    
+
 
     return () => {
       window.removeEventListener("resize", () => {
@@ -221,7 +224,7 @@ function CourseDetails() {
     };
   }, [Router.query]);
 
-  const subscriptionInfoHandler = (info:any) => {
+  const subscriptionInfoHandler = (info: any) => {
     setSubscriptionInfo(info);
   }
 
@@ -230,60 +233,66 @@ function CourseDetails() {
       <MetaTagsGenerator title={courseDetailsData?.data?.seo_title}
         description={courseDetailsData?.data?.seo_metadesc}
         img={courseDetailsData?.data?.seo_image} />
-      <Container fluid="xxl">
-        {((JSON.stringify(courseDetailsData?.data) !== "{}") && (courseDetailsData?.data?.course_details?.is_purchased)) &&
-          <>
-            <MobileNavTabsBar />
-            <MobileCheckoutBar data={subscriptionInfo} />
-            <Row className={styles["course-details-row"]}>
-              <Col xs={12} sm={8}>
-                <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
-                {originalCardPlacement == false &&
-                  <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
-                }
-                {courseDetailsData?.data?.course_details?.key_points !== null &&
-                  JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
-                  <WhatYouWillLearn />
-                }
-                <CourseDetailsSection />
-                {courseDetailsData?.data?.course_details?.tags !== null &&
-                  JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
-                  <CourseKeywords />
-                }
-                {courseDetailsData?.data?.course_details?.requirements !== null &&
-                  JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
-                  <CourseRequirements />
-                }
-                <CourseContent />
-                <TrainerInfo />
-                {/* <GuaranteeCard /> */}
-                {/* <CourseCertificate /> */}
-                <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar}/>
-                {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
-              </Col>
-              {
-                originalCardPlacement == true &&
-                <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                  {originalCardPlacement == true && <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />}
-                </Col>
-              }
-              <PracticalProjects Cid={() => { return courseId }} />
-            </Row>
-            <Row className={styles["course-details__course-reviews"]}>
-              <CourseReview Cid={() => { return courseId }} />
-            </Row>
-            <Row className={styles["course-details__course-subscribers"]}>
-              <CourseSubscribers />
-            </Row>
-            {/* <Row className={styles["course-details__tadarab-business"]}>
+      {
+        isFound ?
+          <Container fluid="xxl">
+            {((JSON.stringify(courseDetailsData?.data) !== "{}") && (courseDetailsData?.data?.course_details?.is_purchased)) &&
+              <>
+                <MobileNavTabsBar />
+                <MobileCheckoutBar data={subscriptionInfo} />
+                <Row className={styles["course-details-row"]}>
+                  <Col xs={12} sm={8}>
+                    <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
+                    {originalCardPlacement == false &&
+                      <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
+                    }
+                    {courseDetailsData?.data?.course_details?.key_points !== null &&
+                      JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
+                      <WhatYouWillLearn />
+                    }
+                    <CourseDetailsSection />
+                    {courseDetailsData?.data?.course_details?.tags !== null &&
+                      JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
+                      <CourseKeywords />
+                    }
+                    {courseDetailsData?.data?.course_details?.requirements !== null &&
+                      JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
+                      <CourseRequirements />
+                    }
+                    <CourseContent />
+                    <TrainerInfo />
+                    {/* <GuaranteeCard /> */}
+                    {/* <CourseCertificate /> */}
+                    <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar} />
+                    {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
+                  </Col>
+                  {
+                    originalCardPlacement == true &&
+                    <Col xs={colFullWidth ? 12 : 4} id="card-column">
+                      {originalCardPlacement == true && <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />}
+                    </Col>
+                  }
+                  <PracticalProjects Cid={() => { return courseId }} />
+                </Row>
+                <Row className={styles["course-details__course-reviews"]}>
+                  <CourseReview Cid={() => { return courseId }} />
+                </Row>
+                <Row className={styles["course-details__course-subscribers"]}>
+                  <CourseSubscribers />
+                </Row>
+                {/* <Row className={styles["course-details__tadarab-business"]}>
               <TadarabBusiness />
             </Row> */}
-            <Row className={styles["course-details__comments-section"]}>
-              <CommentsSection Cid={() => { return courseId }} />
-            </Row>
-          </>
-        }
-      </Container>
+                <Row className={styles["course-details__comments-section"]}>
+                  <CommentsSection Cid={() => { return courseId }} />
+                </Row>
+              </>
+            }
+          </Container>
+          :
+          <NotFound />
+
+      }
 
     </>
   );

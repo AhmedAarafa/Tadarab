@@ -97,7 +97,6 @@ function HomePage(props: any) {
       })
     }
 
-
   }, [router]);
 
   return (
@@ -106,7 +105,7 @@ function HomePage(props: any) {
       <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
 
         <HeroSection />
-        <TadarabSeason />
+        {/* <TadarabSeason /> */}
         <LatestCourses />
         <TadarabUnlimited />
         <CoursesDepartments />

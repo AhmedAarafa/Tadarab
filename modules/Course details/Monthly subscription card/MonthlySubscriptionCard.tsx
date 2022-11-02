@@ -198,10 +198,10 @@ export default function MonthlySubscriptionCard(theOption: any) {
     <>
       <div className={styles["monthly-subscription__course-card"]} id="sub-sticky-card">
         <div className={styles["monthly-subscription__course-card-helper"]}>
-          {theOption.liveWebinarDetails?.type == "webinar" && <div className={styles["ribbon"]}>
+          {/* {theOption.liveWebinarDetails?.type == "webinar" && <div className={styles["ribbon"]}>
             <div>موسم</div>
             <div>تدرب</div>
-          </div>}
+          </div>} */}
           {!courseDetails?.subscription_exclude ?
             <>
               <div

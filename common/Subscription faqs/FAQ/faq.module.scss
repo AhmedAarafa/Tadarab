@@ -1,15 +1,24 @@
 @import "../../../styles/mixins";
 
-.faq__row{
-    background-color: rgba(14, 11, 29,0.02);
+.faq__row {
+    background-color: var(--faq-bg);
     margin: 0 0 -5rem 0;
     padding: 5.625rem 8.75rem 0 8.75rem;
+
+    &[data-theme='light'] {
+        --faq-bg: rgba(14, 11, 29, 0.02);
+    }
+
+    &[data-theme='dark'] {
+        --faq-bg: #1B1829;
+    }
 }
-.faq__title{
+
+.faq__title {
     font-size: 1.5rem;
     color: var(--dark-black);
 
-    div:nth-of-type(2){
+    div:nth-of-type(2) {
         font-weight: 800;
         margin: 0 0 2.5625rem 0;
     }
@@ -27,7 +36,7 @@
     margin-top: 1.25rem;
     @include flex(flex-start);
     flex-direction: column;
-
+    background-color: var(--tadarab-bg);
 }
 
 .faq__accordion__header {
@@ -41,7 +50,7 @@
         font-size: 1.125rem;
         font-weight: 800;
         color: var(--dark-black) !important;
-        background-color: white !important;
+        background-color: var(--tadarab-bg) !important;
         padding: 1.5rem !important;
         border-radius: 1.25rem !important;
         direction: ltr !important;
@@ -74,14 +83,16 @@
 
 }
 
-.faq__contact-us{
+.faq__contact-us {
     font-size: 1.125rem;
     font-weight: 700;
     margin: 1.625rem 0 7.125rem 0;
-    span:nth-of-type(1){
+
+    span:nth-of-type(1) {
         color: var(--dark-black);
     }
-    span:nth-of-type(2){
+
+    span:nth-of-type(2) {
         color: var(--primary-red);
         cursor: pointer;
     }
@@ -89,10 +100,11 @@
 
 @media (max-width:575px) {
 
-    .faq__row{
-        margin: 0 0 -9rem 0;
+    .faq__row {
+        margin: 0 0 -13rem 0;
         padding: 5.625rem 5rem 0 5rem;
     }
+
     .faq {
         margin-top: 9.375rem;
         width: 100%;
@@ -154,7 +166,7 @@
         padding: 0 3.8rem*2.3 2rem*2.3 2rem*2.3 !important;
     }
 
-    .faq__contact-us{
+    .faq__contact-us {
         font-size: 1.125rem*2.3;
         margin-top: 1.625rem*2.3;
     }

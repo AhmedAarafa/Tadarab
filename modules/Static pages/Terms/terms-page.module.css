@@ -1,5 +1,7 @@
 .terms-and-conditions {
+  color: var(--dark-black);
   padding: 8rem;
+  margin-bottom: -5rem;
 }
 .terms-and-conditions * {
   font-size: 1rem !important;
@@ -11,6 +13,7 @@
 @media (max-width: 575px) {
   .terms-and-conditions {
     padding: 12rem 5rem;
+    margin-bottom: -12.5rem;
   }
   .terms-and-conditions * {
     font-size: 1.8rem !important;

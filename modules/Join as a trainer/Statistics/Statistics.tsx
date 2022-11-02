@@ -3,25 +3,14 @@ import React,{ useState, useEffect } from "react";
 import styles from "./statistics.module.css";
 import { Row, Col } from "react-bootstrap";
 import { LearnersOutlinedIcon, CoursesIcon, TrainersIcon, ExperienceIcon } from "common/Icons/Icons";
-import {animateValue} from "modules/_Shared/utils/statsticsAnimatedValues";
+import { useSelector } from "react-redux";
 
 export default function Statistics() {
   const [startCounter, setStartCounter] = useState<any>(false);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
     const stasticsSection:any = document.getElementById("animated-stastics-section") ;
-    // const rootFontSize = parseFloat(
-    //   window
-    //   .getComputedStyle(document.getElementsByTagName("html")[0]) 
-    //   .getPropertyValue("font-size")
-    // );
-    
-    // window.addEventListener("scroll" , ()=>{
-    //   if((window.scrollY + (15*rootFontSize)) >= (stasticsSection?.offsetTop) ){
-    //     setStartCounter(true);
-    //   }
-      
-    // })
   
     return () => {
       window.removeEventListener("scroll" , ()=>{
@@ -33,7 +22,7 @@ export default function Statistics() {
 
   return (
     <>
-      <Row className="d-flex justify-content-center">
+      <Row data-theme={themeState} className={styles["statistics-row"]} >
         <Col xs={12} sm={10} className="d-flex justify-content-center">
             <div id="animated-stastics-section" className={styles["statistics"]}>
 

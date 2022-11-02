@@ -25,6 +25,7 @@ export default function TadarabSubscription() {
 
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   if(userAuthState.isUserAuthenticated && userAuthState.isSubscribed){
     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
@@ -113,7 +114,7 @@ export default function TadarabSubscription() {
 
   return (
     <>
-      <Container fluid="xxl">
+      <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
         <MobileCheckoutBar data={subscriptionData}/>
         <UnlimitedCourses />
         <Statistics />

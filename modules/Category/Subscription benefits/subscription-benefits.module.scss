@@ -13,6 +13,11 @@
     font-weight: 700;
     color: white;
 
+    &>div {
+        padding: 0 5rem;
+        text-align: center;
+    }
+
     button {
         @include contained-button;
         margin-top: 1rem;

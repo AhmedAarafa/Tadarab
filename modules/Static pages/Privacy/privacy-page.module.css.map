@@ -1,1 +1,1 @@
-{"version":3,"sources":["privacy-page.module.scss","privacy-page.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;ACDJ;ADGI;EACI,0BAAA;ACDR;;ADOA;EAEI;IACI,mBAAA;ECLN;EDMM;IACI,0BAAA;ECJV;AACF","file":"privacy-page.module.css"}
+{"version":3,"sources":["privacy-page.module.scss","privacy-page.module.css"],"names":[],"mappings":"AAEA;EACI,wBAAA;EACA,aAAA;EACA,oBAAA;ACDJ;ADGI;EACI,0BAAA;ACDR;;ADOA;EAEI;IACI,mBAAA;IACA,uBAAA;ECLN;EDOM;IACI,0BAAA;ECLV;AACF","file":"privacy-page.module.css"}

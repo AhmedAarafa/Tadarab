@@ -8,18 +8,18 @@ import Image from 'next/image';
 import * as Yup from 'yup';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
+import { useSelector } from "react-redux";
 
 interface ForgetPasswordFormValues {
     email:string;
   };
 
   
-  
-  
   export default function ForgetPasswordPage() {
       const [fieldBlur, setFieldBlur] = useState({email:""});
       const [validationAfterSubmit, setValidationAfterSubmit] = useState({email:false});
       const [serverResponse, setServerResponse] = useState({value : "" , color:"", bgcolor:""});
+      const themeState = useSelector((state: any) => state.themeState.theme);
 
       function validationSchema() {
          return Yup.object().shape({
@@ -47,7 +47,7 @@ interface ForgetPasswordFormValues {
 
     return (
         <>
-        <Row className={styles["forget-password"]}>
+        <Row data-theme={themeState} className={styles["forget-password"]}>
             <Col xs={{span:12 , order:2}} sm={{span:7 , order:1}} className={styles["forget-password__forget-password-box"]}>
                 <div className={styles["forget-password__forget-password-box__title"]}>
                     <div> نسيت كلمة المرور؟ </div>

@@ -426,7 +426,7 @@ function Navbar(props: any) {
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>الأقسام</div></div>
-                <Link href="/courses?type=all">
+                <Link href="/courses">
 
                   <li onClick={() => { setExpanded(false) }}>دورات تدريبية</li>
                 </Link>
@@ -434,10 +434,9 @@ function Navbar(props: any) {
 
                   <li onClick={() => { setExpanded(false) }}>دورات مباشرة</li>
                 </Link>
-                <Link href="/tadarab-season">
-
+                {/* <Link href="/tadarab-season">
                   <li onClick={() => { setExpanded(false) }}>موسم تدرب </li>
-                </Link>
+                </Link> */}
                 {/* <li>الاستشارات</li>
                   <li>كتيبات وملخصات</li>
                   <li>مقالات</li> */}
@@ -555,7 +554,7 @@ function Navbar(props: any) {
                       الأقسام
                     </div>
                     <ul className={styles["navbar__discover-popover__list"]}>
-                      <Link href="/courses?type=all">
+                      <Link href="/courses">
 
                         <li>دورات تدريبية</li>
                       </Link>
@@ -563,10 +562,10 @@ function Navbar(props: any) {
 
                         <li>دورات مباشرة</li>
                       </Link>
-                      <Link href="/tadarab-season">
+                      {/* <Link href="/tadarab-season">
 
                         <li>موسم تدرب </li>
-                      </Link>
+                      </Link> */}
                       {/* <li>الاستشارات</li>
                           <li>كتيبات وملخصات</li>
                           <li>مقالات</li> */}
@@ -610,8 +609,8 @@ function Navbar(props: any) {
                 dispatch(setTheme(themeState == "light" ? "dark" : "light"));
                 localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
                 document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
-
               }}> DM </Nav.Link>
+
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
                 <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`) }} className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>

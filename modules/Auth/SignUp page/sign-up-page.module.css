@@ -1,3 +1,8 @@
+.register {
+  background-color: var(--tadarab-light-bg);
+  margin-bottom: -5rem;
+}
+
 .register__img img {
   width: 39rem;
   height: 26rem;
@@ -43,6 +48,7 @@
   justify-content: flex-start;
   margin-left: 0.75rem;
   cursor: pointer;
+  background-color: var(--tadarab-bg);
 }
 .register__register-box__register-with div button {
   width: 100%;
@@ -104,6 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: unset;
+  background-color: white;
 }
 
 .register__register-box__registeration-form-box__name-field-container {
@@ -359,6 +366,9 @@
 }
 
 @media (max-width: 575px) {
+  .register {
+    margin-bottom: -12.5rem;
+  }
   .server-error-msg {
     font-size: 1.8rem;
     margin: 4.6rem -0.75rem 0 0;

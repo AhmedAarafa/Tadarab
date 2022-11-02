@@ -37,8 +37,10 @@ import TPlayer from "common/TPlayer/TPlayer";
 import dynamic from 'next/dynamic';
 import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
-import {toggleLoader} from "modules/_Shared/utils/toggleLoader";
-import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
+import NotFound from "pages/404";
+import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
 
 function CourseDetails(props: any) {
   const [colFullWidth, setColFullWidth] = useState(false);
@@ -46,6 +48,7 @@ function CourseDetails(props: any) {
   const [courseId, setCourseId] = useState("");
   const [courseData, setCourseData] = useState({});
   const dispatch = useDispatch();
+  const [isFound, setIsFound] = useState(true);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
   const { slug } = Router.query;
@@ -64,7 +67,7 @@ function CourseDetails(props: any) {
       })
     }
   }, []);
-  
+
   useEffect(() => {
 
     const rootFontSize = parseFloat(
@@ -82,18 +85,18 @@ function CourseDetails(props: any) {
       tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
       MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
       window.addEventListener("scroll", function () {
-        tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null ;
-        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+        tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
         const projectsSection: any = document.getElementById("practical-projects-section");
         const reviewsSection: any = document.getElementById("reviews-section");
-    const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
-        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
-        window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
-        window.scrollY >= courseSubscribersSection?.offsetTop
+        const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
+        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
+          window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
+          window.scrollY >= courseSubscribersSection?.offsetTop
         ) {
           setColFullWidth(true);
-        } else if (window.scrollY < projectsSection?.offsetTop || 
-          window.scrollY < reviewsSection?.offsetTop || 
+        } else if (window.scrollY < projectsSection?.offsetTop ||
+          window.scrollY < reviewsSection?.offsetTop ||
           window.scrollY < courseSubscribersSection?.offsetTop) {
           setColFullWidth(false);
         }
@@ -113,17 +116,17 @@ function CourseDetails(props: any) {
          align-items:center;
          justify-content:space-around;
          top:${navbar?.offsetHeight}px;
-         ` : null ;
-         MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+         ` : null;
+            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
          display:flex;
          align-items:center;
          justify-content:space-evenly;
          bottom:0;
-         `: null ;
+         `: null;
 
           } else if (window.scrollY < addToCartBtn.offsetTop) {
-            tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null ;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+            tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
           }
         }
 
@@ -138,18 +141,18 @@ function CourseDetails(props: any) {
         MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
         window.addEventListener("scroll", function () {
           tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none`: null;
+          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
 
           const projectsSection: any = document.getElementById("practical-projects-section");
           const reviewsSection: any = document.getElementById("reviews-section");
           const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
-          if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
-          window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
-          window.scrollY >= courseSubscribersSection?.offsetTop
+          if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
+            window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
+            window.scrollY >= courseSubscribersSection?.offsetTop
           ) {
             setColFullWidth(true);
-          } else if (window.scrollY < projectsSection?.offsetTop || 
-            window.scrollY < reviewsSection?.offsetTop || 
+          } else if (window.scrollY < projectsSection?.offsetTop ||
+            window.scrollY < reviewsSection?.offsetTop ||
             window.scrollY < courseSubscribersSection?.offsetTop) {
             setColFullWidth(false);
           }
@@ -170,15 +173,15 @@ function CourseDetails(props: any) {
             align-items:center;
             justify-content:space-around;
             top:${navbar?.offsetHeight}px;
-            ` : null ;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+            ` : null;
+              MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
             display:flex;
             align-items:center;
             justify-content:space-evenly;
             bottom:0;
-            ` : null ;
+            ` : null;
             } else if (window.scrollY < addToCartBtn?.offsetTop) {
-              tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null ;
+              tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
               MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
             }
           }
@@ -187,122 +190,123 @@ function CourseDetails(props: any) {
       }
     });
 
-    
 
-    if (Router.query.slug) {   
 
-          if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
+    if (Router.query.slug) {
+
+      if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
+        axiosInstance
+          .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
+          .then((res: any) => {
+            localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
+            localStorage.setItem("affiliate_id", `${Router.query.aid}`);
+            localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
+
             axiosInstance
-                .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
-                .then((res:any) => {
-                  localStorage.setItem("coupon_code", res?.data?.data?.coupon_code);
-                  localStorage.setItem("affiliate_id", `${Router.query.aid}`);
-                  localStorage.setItem("cced", JSON.stringify(  Math.floor(new Date().getTime() / 1000) + 604800  ));
+              .get(`courses/${slug}`)
+              .then(function (response: any) {
+                setIsFound(NotFoundRoutesHandler(response));
 
-                  axiosInstance
-                  .get(`courses/${slug}`)
-                  .then(function (response: any) {
-          
-                    const data = response?.data?.data;
-                    
-                    setCourseId(response?.data?.data?.course_details?.id);
-                    dispatch(setCourseDetailsData(data));
-                    setCourseData(data);
-          
-                    let tadarabGA = new TadarabGA();
-                    let referrer = "";
-                    let myHost = window.location.host;
-                    if (document.referrer.includes(myHost)) {
-                      document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
-                        ?
-                        referrer = "homepage"
-                        :
-                        referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
-          
-                    } else {
-                      referrer = "homepage";
-                    }
-                    tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
-                      {
-                        products: [{
-                          name: data?.course_details?.title,
-                          id: data?.course_details?.id,
-                          price: data?.course_details?.discounted_price_usd,
-                          brand: "Tadarab",
-                          category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
-                          variant: "Single Course"
-                        }],
-                        list: referrer
-                      });
-          
-                    FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
-                    toggleLoader("hide");
+                const data = response?.data?.data;
 
-                  })
-                  .catch(function (error) {
-                    toggleLoader("hide");
+                setCourseId(response?.data?.data?.course_details?.id);
+                dispatch(setCourseDetailsData(data));
+                setCourseData(data);
+
+                let tadarabGA = new TadarabGA();
+                let referrer = "";
+                let myHost = window.location.host;
+                if (document.referrer.includes(myHost)) {
+                  document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
+                    ?
+                    referrer = "homepage"
+                    :
+                    referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
+
+                } else {
+                  referrer = "homepage";
+                }
+                tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
+                  {
+                    products: [{
+                      name: data?.course_details?.title,
+                      id: data?.course_details?.id,
+                      price: data?.course_details?.discounted_price_usd,
+                      brand: "Tadarab",
+                      category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
+                      variant: "Single Course"
+                    }],
+                    list: referrer
                   });
-                })
-                .catch((error:any)=>{
-                  console.log("error", error);
-                });
-          }else{
-            axiosInstance
-            .get(`courses/${slug}`)
-            .then(function (response: any) {
-    
-              const data = response?.data?.data;
-              
-              setCourseId(response?.data?.data?.course_details?.id);
-              dispatch(setCourseDetailsData(data));
-              setCourseData(data);
-    
-              let tadarabGA = new TadarabGA();
-              let referrer = "";
-              let myHost = window.location.host;
-              if (document.referrer.includes(myHost)) {
-                document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
-                  ?
-                  referrer = "homepage"
-                  :
-                  referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
-    
-              } else {
-                referrer = "homepage";
-              }
-              tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
-                {
-                  products: [{
-                    name: data?.course_details?.title,
-                    id: data?.course_details?.id,
-                    price: data?.course_details?.discounted_price_usd,
-                    brand: "Tadarab",
-                    category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
-                    variant: "Single Course"
-                  }],
-                  list: referrer
-                });
-    
-              FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
-              toggleLoader("hide");
-            })
-            .catch(function (error) {
-              toggleLoader("hide");
-            });
-          }
 
-          if(localStorage.getItem("affiliate_id") &&
-          Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))){
-            localStorage.removeItem("affiliate_id");
-            localStorage.removeItem("cced");
-            localStorage.setItem("coupon_code", "");
+                FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+                toggleLoader("hide");
 
-          }
+              })
+              .catch(function (error) {
+                toggleLoader("hide");
+              });
+          })
+          .catch((error: any) => {
+            console.log("error", error);
+          });
+      } else {
+        axiosInstance
+          .get(`courses/${slug}`)
+          .then(function (response: any) {
+            setIsFound(NotFoundRoutesHandler(response));
+            const data = response?.data?.data;
 
-     
+            setCourseId(response?.data?.data?.course_details?.id);
+            dispatch(setCourseDetailsData(data));
+            setCourseData(data);
+
+            let tadarabGA = new TadarabGA();
+            let referrer = "";
+            let myHost = window.location.host;
+            if (document.referrer.includes(myHost)) {
+              document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0] == ""
+                ?
+                referrer = "homepage"
+                :
+                referrer = document.referrer.replace(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`, '').split('/')[0]
+
+            } else {
+              referrer = "homepage";
+            }
+            tadarabGA.tadarab_fire_traking_GA_code("product_details_views",
+              {
+                products: [{
+                  name: data?.course_details?.title,
+                  id: data?.course_details?.id,
+                  price: data?.course_details?.discounted_price_usd,
+                  brand: "Tadarab",
+                  category: data?.course_details?.categories && data?.course_details?.categories[0]?.title,
+                  variant: "Single Course"
+                }],
+                list: referrer
+              });
+
+            FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
+            toggleLoader("hide");
+          })
+          .catch(function (error) {
+            toggleLoader("hide");
+          });
+      }
+
+      if (localStorage.getItem("affiliate_id") &&
+        Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
+        localStorage.removeItem("affiliate_id");
+        localStorage.removeItem("cced");
+        localStorage.setItem("coupon_code", "");
+
+      }
+
+
     }
 
- 
+
 
     return () => {
       window.removeEventListener("resize", () => {
@@ -320,78 +324,83 @@ function CourseDetails(props: any) {
 
   return (
     <>
-   {seoData &&
-    <MetaTagsGenerator title={seoData?.seo_title} 
-    description={seoData?.seo_metadesc} 
-    img={seoData?.seo_image} />}
-      <Container fluid="xxl">
+      {seoData &&
+        <MetaTagsGenerator title={seoData?.seo_title}
+          description={seoData?.seo_metadesc}
+          img={seoData?.seo_image} />}
 
-        {
-          courseDetailsData?.data && 
-          <>
-            {((JSON.stringify(courseDetailsData?.data) !== "[]")&&(!courseDetailsData?.data?.course_details?.is_purchased)) &&
+      {
+        isFound ?
+          <Container fluid="xxl">
+            {
+              courseDetailsData?.data &&
               <>
-                <MobileNavTabsBar />
-                <MobileCheckoutBar data={courseData}/>
-                <Row className={styles["course-details-row"]}>
-                  <Col xs={12} sm={8}>
-                    <CourseAdvertisement />
-                    {originalCardPlacement == false &&
-                      <MonthlySubscriptionCard />
-                    }
-                    {courseDetailsData?.data?.course_details?.key_points !== null &&
-                    JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
-                      <WhatYouWillLearn />
-                    }
-                    <CourseDetailsSection />
-                    {courseDetailsData?.data?.course_details?.tags !== null &&
-                    JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
-                    <CourseKeywords />
-                    }
-                    {courseDetailsData?.data?.course_details?.requirements !== null &&
-                    JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
-                    <CourseRequirements />
-                    }
-                    <CourseContent />
-                    <TrainerInfo />
-                    <GuaranteeCard />
-                    <CourseCertificate />
-                    <FAQ Cid={()=>{return courseId}}/>
-                    <SpecialOffer Cid={()=>{return courseId}}/>
-                  </Col>
-                  {
-                    originalCardPlacement == true &&
-                    <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                      {originalCardPlacement == true && <MonthlySubscriptionCard />}
-                    </Col>
-                  }
-                  <PracticalProjects Cid={()=>{return courseId}}/> 
-                </Row>
-                <Row className={styles["course-details__course-reviews"]}>
-                  <CourseReview Cid={()=>{return courseId}}/>
-                </Row>
-                <Row className={styles["course-details__course-subscribers"]}>
-                  <CourseSubscribers />
-                </Row>
-                {/* <Row className={styles["course-details__tadarab-business"]}>
+                {((JSON.stringify(courseDetailsData?.data) !== "[]") && (!courseDetailsData?.data?.course_details?.is_purchased)) &&
+                  <>
+                    <MobileNavTabsBar />
+                    <MobileCheckoutBar data={courseData} />
+                    <Row className={styles["course-details-row"]}>
+                      <Col xs={12} sm={8}>
+                        <CourseAdvertisement />
+                        {originalCardPlacement == false &&
+                          <MonthlySubscriptionCard />
+                        }
+                        {courseDetailsData?.data?.course_details?.key_points !== null &&
+                          JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
+                          <WhatYouWillLearn />
+                        }
+                        <CourseDetailsSection />
+                        {courseDetailsData?.data?.course_details?.tags !== null &&
+                          JSON.stringify(courseDetailsData?.data?.course_details?.tags) !== "[]" &&
+                          <CourseKeywords />
+                        }
+                        {courseDetailsData?.data?.course_details?.requirements !== null &&
+                          JSON.stringify(courseDetailsData?.data?.course_details?.requirements) !== "[]" &&
+                          <CourseRequirements />
+                        }
+                        <CourseContent />
+                        <TrainerInfo />
+                        <GuaranteeCard />
+                        <CourseCertificate />
+                        <FAQ Cid={() => { return courseId }} />
+                        <SpecialOffer Cid={() => { return courseId }} />
+                      </Col>
+                      {
+                        originalCardPlacement == true &&
+                        <Col xs={colFullWidth ? 12 : 4} id="card-column">
+                          {originalCardPlacement == true && <MonthlySubscriptionCard />}
+                        </Col>
+                      }
+                      <PracticalProjects Cid={() => { return courseId }} />
+                    </Row>
+                    <Row className={styles["course-details__course-reviews"]}>
+                      <CourseReview Cid={() => { return courseId }} />
+                    </Row>
+                    <Row className={styles["course-details__course-subscribers"]}>
+                      <CourseSubscribers />
+                    </Row>
+                    {/* <Row className={styles["course-details__tadarab-business"]}>
                   <TadarabBusiness />
                 </Row> */}
-                <Row className={styles["course-details__comments-section"]}>
-                  <CommentsSection Cid={()=>{return courseId}}/>
-                </Row>
+                    <Row className={styles["course-details__comments-section"]}>
+                      <CommentsSection Cid={() => { return courseId }} />
+                    </Row>
+                  </>
+                }
+                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse />}
               </>
             }
-            {(courseDetailsData?.data?.course_details?.is_purchased) &&  <MyCourse/>}
-          </>
-        }
-      </Container>
+          </Container>
+          :
+          <NotFound />
+      }
 
     </>
   );
 }
 
 export async function getServerSideProps(context: any) {
-  try{
+  try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/${context?.params?.slug}`)
     const seoData = await res.json()
     return { props: { seoData: seoData.data } }

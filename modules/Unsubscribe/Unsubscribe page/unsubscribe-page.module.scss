@@ -1,7 +1,8 @@
 @import "../../../styles/mixins";
 
 .unsubscribe-page {
-    padding: 5.5rem 2rem 0 2rem;
+    padding: 5.5rem 2rem 5rem 2rem;
+    margin-bottom: -5rem;
     @include flex(center, center);
 }
 
@@ -28,6 +29,7 @@
 .unsubscribe-page__subscription-pros__list {
     list-style-type: none;
     padding: 1rem 0.5rem 0 0 !important;
+    color: var(--dark-black);
 
     li {
         font-size: 1rem;
@@ -43,14 +45,16 @@
 
 .unsubscribe-page__cancel-subscription {
     padding: 0.5rem 2rem;
+    color: var(--dark-black);
 
     a {
         font-size: 0.85rem;
         font-weight: 400;
         cursor: pointer;
         color: var(--dark-black);
+
         &:is(&:hover, &:active) {
-           color: var(--primary-red);
+            color: var(--primary-red);
         }
     }
 }
@@ -59,7 +63,8 @@
 @media (max-width: 575px) {
 
     .unsubscribe-page {
-        padding: 10rem 5rem 0 5rem;
+        padding: 10rem 5rem 5rem*2.5 5rem;
+        margin-bottom: -5rem*2.5;
         @include flex(center, center);
     }
 

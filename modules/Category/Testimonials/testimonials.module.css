@@ -1,11 +1,11 @@
 .testimonials {
-  background-color: rgba(0, 20, 37, 0.04);
+  background-color: var(--tadarab-light-bg);
 }
 
 .testimonials__cards-carousel-container {
   border-radius: 0 0 5rem 5rem;
   padding-bottom: 2rem;
-  background-color: white;
+  background-color: var(--tadarab-light-bg);
 }
 .testimonials__cards-carousel-container > div:nth-child(1) {
   padding-top: 0.5rem;
@@ -54,7 +54,7 @@
   font-size: 2rem;
   font-weight: 800;
   padding: 4rem 3rem 0.8rem 3rem;
-  background-color: white;
+  background-color: var(--tadarab-light-bg);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: var(--tadarab-light-bg);
   font-size: 1.063rem;
   color: var(--grey);
 }
@@ -147,7 +147,7 @@
   align-items: flex-start;
   justify-content: space-evenly;
   flex-direction: column;
-  background-color: white;
+  background-color: var(--tadarab-bg);
   width: 46.875rem;
   height: 16.875rem;
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);
@@ -168,7 +168,7 @@
 
 .testimonials__cards-carousel__item__container__review-box__review {
   font-size: 1.25rem;
-  color: #555555;
+  color: var(--grey);
   margin: 1rem 0 1rem 0;
   width: 100%;
   display: -webkit-box;
@@ -303,7 +303,6 @@
     font-size: 0.938rem;
   }
   .testimonials__cards-carousel__item__container__review-box {
-    background-color: white;
     width: 46.875rem;
     height: -webkit-fit-content;
     height: -moz-fit-content;

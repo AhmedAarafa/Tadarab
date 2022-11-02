@@ -13,6 +13,8 @@ import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
 import useResize from "custom hooks/useResize";
+import NotFound from "pages/404";
+import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
 
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
@@ -23,6 +25,7 @@ export default function TrainerProfile(props: any) {
   const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
   const { seoData } = props;
   const [trainerData, setTrainerData] = useState({});
+  const [isFound, setIsFound] = useState(true);
 
 
   useEffect(() => {
@@ -53,38 +56,40 @@ export default function TrainerProfile(props: any) {
             localStorage.setItem("cced", JSON.stringify(Math.floor(new Date().getTime() / 1000) + 604800));
 
             axiosInstance
-            .get(`trainers/${slug}/?limit=10&page=1`)
-            .then(function (response: any) {
-              const data: Trainer = response.data.data;
-              dispatch(setTrainerProfileData(response.data));
-              setTrainerData(response?.data?.data);
-              FBPixelEventsHandler(response.data.fb_tracking_events, null);
-              toggleLoader("hide");
-    
-            })
-            .catch(function (error) {
-              toggleLoader("hide");
-              console.log(error);
-            });
+              .get(`trainers/${slug}/?limit=10&page=1`)
+              .then(function (response: any) {
+                setIsFound(NotFoundRoutesHandler(response));
+                const data: Trainer = response.data.data;
+                dispatch(setTrainerProfileData(response.data));
+                setTrainerData(response?.data?.data);
+                FBPixelEventsHandler(response.data.fb_tracking_events, null);
+                toggleLoader("hide");
+
+              })
+              .catch(function (error) {
+                toggleLoader("hide");
+                console.log(error);
+              });
           })
           .catch((error: any) => {
             console.log("error", error);
           });
       } else {
         axiosInstance
-        .get(`trainers/${slug}/?limit=10&page=1`)
-        .then(function (response: any) {
-          const data: Trainer = response.data.data;
-          dispatch(setTrainerProfileData(response.data));
-          setTrainerData(response?.data?.data);
-          FBPixelEventsHandler(response.data.fb_tracking_events, null);
-          toggleLoader("hide");
+          .get(`trainers/${slug}/?limit=10&page=1`)
+          .then(function (response: any) {
+            setIsFound(NotFoundRoutesHandler(response));
+            const data: Trainer = response.data.data;
+            dispatch(setTrainerProfileData(response.data));
+            setTrainerData(response?.data?.data);
+            FBPixelEventsHandler(response.data.fb_tracking_events, null);
+            toggleLoader("hide");
 
-        })
-        .catch(function (error) {
-          toggleLoader("hide");
-          console.log(error);
-        });
+          })
+          .catch(function (error) {
+            toggleLoader("hide");
+            console.log(error);
+          });
       }
 
       if (localStorage.getItem("affiliate_id") &&
@@ -95,7 +100,7 @@ export default function TrainerProfile(props: any) {
 
       }
 
-      
+
     }
 
 
@@ -104,12 +109,12 @@ export default function TrainerProfile(props: any) {
   const viewportWidthDetector = () => {
     const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
     if (window.innerWidth >= 576) {
-      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null ;
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
     } else {
-      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:flex` : null ;
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:flex` : null;
     }
-}
-useResize(viewportWidthDetector);
+  }
+  useResize(viewportWidthDetector);
 
 
 
@@ -119,10 +124,15 @@ useResize(viewportWidthDetector);
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
-      <Container fluid="xxl">
-        <MobileCheckoutBar data={trainerData}/>
-        <TrainerProfilePage />
-      </Container>
+      {
+        isFound ?
+          <Container fluid="xxl">
+            <MobileCheckoutBar data={trainerData} />
+            <TrainerProfilePage />
+          </Container>
+          :
+          <NotFound />
+      }
     </>
   );
 }

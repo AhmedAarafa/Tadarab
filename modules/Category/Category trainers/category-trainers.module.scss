@@ -79,7 +79,6 @@
     
         &>div {
             padding: 0 2rem*0.95 !important;
-            @include inset-box-shadow(white);
             &>div:nth-child(1),
             &>div:nth-child(2) {
                 top: 43% !important;
@@ -143,7 +142,6 @@
     
         &>div {
             padding: 0 2rem*1.335 !important;
-            @include inset-box-shadow(white);
             &>div:nth-child(1),
             &>div:nth-child(2) {
                 top: 43% !important;

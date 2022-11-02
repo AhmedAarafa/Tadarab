@@ -1,12 +1,6 @@
 .latest-courses {
   background-color: var(--tadarab-light-bg);
 }
-.latest-courses[data-theme=light] {
-  --slider-box-shadow: white;
-}
-.latest-courses[data-theme=dark] {
-  --slider-box-shadow: black;
-}
 
 .latest-courses__title {
   margin-top: 2rem;
@@ -85,7 +79,7 @@
   border: 0.125rem solid var(--outlined-btn-border) !important;
   border-radius: 0.75rem;
   margin-left: 3rem;
-  background-color: var(--tadarab-btn-bg) !important;
+  background-color: var(--tadarab-light-bg) !important;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -188,7 +182,7 @@
   content: "";
   display: block;
   position: absolute;
-  box-shadow: -2.813rem 0 2.5rem -3.125rem var(--slider-box-shadow) inset, 2.813rem 0 2.5rem -3.125rem var(--slider-box-shadow) inset;
+  box-shadow: -2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset, 2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset;
   top: 0;
   left: 0;
   width: 100%;
@@ -947,7 +941,7 @@
     padding: 0 3rem 0 4rem;
     font-size: 2.2rem;
     list-style-type: none;
-    color: #0E0B1D;
+    color: var(--grey);
     display: flex;
     align-items: center;
     justify-content: flex-start;

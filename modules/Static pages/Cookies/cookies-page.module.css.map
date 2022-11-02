@@ -1,1 +1,1 @@
-{"version":3,"sources":["cookies-page.module.scss","cookies-page.module.css"],"names":[],"mappings":"AAEA;EACI,aAAA;ACDJ;ADEI;EACI,0BAAA;ACAR;ADEI;EACI,4BAAA;ACAR;;ADKA;EACI;IACI,mBAAA;ECFN;EDGM;IACI,4BAAA;ECDV;EDGM;IACI,4BAAA;ECDV;AACF","file":"cookies-page.module.css"}
+{"version":3,"sources":["cookies-page.module.scss","cookies-page.module.css"],"names":[],"mappings":"AAEA;EACI,wBAAA;EACA,aAAA;EACA,oBAAA;ACDJ;ADGI;EACI,0BAAA;ACDR;ADII;EACI,4BAAA;ACFR;;ADOA;EAEI;IACI,mBAAA;IACA,uBAAA;ECLN;EDOM;IACI,4BAAA;ECLV;EDQM;IACI,4BAAA;ECNV;AACF","file":"cookies-page.module.css"}

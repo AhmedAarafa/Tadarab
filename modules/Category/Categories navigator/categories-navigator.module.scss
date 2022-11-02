@@ -9,7 +9,7 @@
 @media (max-width: 575px) {
     .categories-navigator {
         display: block;
-        margin: 10rem 0 0 0;
+        padding: 10rem 0 0 0;
         @include flex(center, center);
 
         &>div {

@@ -1,3 +1,8 @@
+.sign-in {
+  background-color: var(--tadarab-light-bg);
+  margin-bottom: -5rem;
+}
+
 .sign-in__img img {
   width: 39rem;
   height: 26rem;
@@ -43,6 +48,7 @@
   justify-content: flex-start;
   margin-left: 0.75rem;
   cursor: pointer;
+  background-color: var(--tadarab-bg);
 }
 .sign-in__sign-in-box__sign-in-with div svg {
   width: 1.5rem;
@@ -89,6 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: unset;
+  background-color: white;
 }
 
 .sign-in__sign-in-box__sign-in-form-box__email-field-container {
@@ -257,6 +264,9 @@
 }
 
 @media (max-width: 575px) {
+  .sign-in {
+    margin-bottom: -12.5rem;
+  }
   .server-error-msg {
     font-size: 1.8rem;
     margin: 4.6rem -0.75rem 0 0;

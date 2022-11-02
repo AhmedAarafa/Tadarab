@@ -30,7 +30,7 @@
   content: "";
   display: block;
   position: absolute;
-  box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
+  box-shadow: -2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset, 2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset;
   top: 0;
   left: 0;
   width: 100%;
@@ -190,18 +190,6 @@
   .arabic-trainers__cards-carousel > div {
     padding: 0 2.1rem !important;
   }
-  .arabic-trainers__cards-carousel > div:before {
-    content: "";
-    display: block;
-    position: absolute;
-    box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    pointer-events: none;
-  }
   .arabic-trainers__cards-carousel > div > div:nth-child(1), .arabic-trainers__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;
   }
@@ -255,18 +243,6 @@
   }
   .arabic-trainers__cards-carousel > div {
     padding: 0 2.67rem !important;
-  }
-  .arabic-trainers__cards-carousel > div:before {
-    content: "";
-    display: block;
-    position: absolute;
-    box-shadow: -2.813rem 0 2.5rem -3.125rem white inset, 2.813rem 0 2.5rem -3.125rem white inset;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 200;
-    pointer-events: none;
   }
   .arabic-trainers__cards-carousel > div > div:nth-child(1), .arabic-trainers__cards-carousel > div > div:nth-child(2) {
     top: 43% !important;

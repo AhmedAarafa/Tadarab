@@ -83,6 +83,7 @@
   align-items: center;
   justify-content: center;
   display: inline-flex;
+  background-color: var(--tadarab-bg);
 }
 .explore-other-categories__cards-carousel__departments-card:hover {
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);

@@ -1974,7 +1974,7 @@ function CheckoutPage(props: any) {
 
                                     {step == "added-courses" && <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                                         <span>
-                                            <Link href="/courses?type=all">
+                                            <Link href="/courses">
                                                 اكمل البحث عن دورات أخرى
                                             </Link>
                                         </span>
@@ -2752,7 +2752,7 @@ function CheckoutPage(props: any) {
                                     }
                                     {step == "added-courses" && <div className={styles["checkout__cart-sticky-card__complete-surfing-courses"]}>
                                         <span>
-                                            <Link href="/courses?type=all">
+                                            <Link href="/courses">
                                                 اكمل البحث عن دورات أخرى
                                             </Link>
                                         </span>

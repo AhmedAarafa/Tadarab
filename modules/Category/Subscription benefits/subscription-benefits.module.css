@@ -12,6 +12,10 @@
   font-weight: 700;
   color: white;
 }
+.subscription-benefits__title > div {
+  padding: 0 5rem;
+  text-align: center;
+}
 .subscription-benefits__title button {
   box-shadow: none !important;
   text-transform: none;

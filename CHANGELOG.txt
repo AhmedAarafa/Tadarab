@@ -1,3 +1,7 @@
+Version 2.3.9 (30th Oct 2022)
+1)  Update category page in phone view.
+2)  Double checkout box issue fixed.
+
 Version 2.3.8 (20th Oct 2022)
 1)  Update category page with hero banner image.
 2)  Add best selling course on category page.

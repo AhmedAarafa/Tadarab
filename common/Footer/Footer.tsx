@@ -113,7 +113,7 @@ export default function FooterSection() {
           </Col>
           <Col xs={{ span: 12, order: 2 }} sm={{ span: 2, order: 2 }}>
             <ul className={styles["footer__training-courses-list"]}>
-              <Link href="/courses?type=all">
+              <Link href="/courses">
                 <li>دورات تدريبية</li>
               </Link>
               <Link href="/courses?type=best-seller">

@@ -61,6 +61,7 @@
     text-align: center;
     @include flex(center, center);
     display: inline-flex;
+    background-color: var(--tadarab-bg);
 
 
     &:hover {

@@ -142,14 +142,13 @@
     background-color: var(--tadarab-light-bg) !important;
     border-radius: 0.75rem;
     @include flex(center, center);
-    margin-top: 1rem;
+    margin-top: 1rem; 
     color: var(--download-btn-text) !important;
 
     &:hover,
     &:active {
         background-color: var(--primary-red) !important;
         border: 0.125rem solid var(--outlined-btn-border) !important;
-
         color: var(--download-btn-text) !important;
 
         span {

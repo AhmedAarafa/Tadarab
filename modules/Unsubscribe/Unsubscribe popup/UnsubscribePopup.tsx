@@ -10,6 +10,7 @@ import Link from "next/link";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router from "next/router";
 import TadarabGA from "modules/_Shared/utils/ga";
+import { useSelector } from 'react-redux';
 
 export default function UnsubscribePopup(props: any) {
     const [categories, setCategories] = useState([]);
@@ -23,6 +24,8 @@ export default function UnsubscribePopup(props: any) {
             others: e.target.value
         })
     };
+  const themeState = useSelector((state: any) => state.themeState.theme);
+
 
     const setReason = (reason: string) => {
         setUnsubscriptionReasons({
@@ -68,11 +71,11 @@ export default function UnsubscribePopup(props: any) {
 
     return (
         <>
-            <Modal show={props.show} onHide={props.handleClose()} onExited={() => { setStep(1) }}>
+            <Modal data-theme={themeState} className={styles["unsubscribe-popup__modal"]} show={props.show} onHide={props.handleClose()} onExited={() => { setStep(1) }}>
                 {step == 1 &&
                     <>
                         <Modal.Header closeButton className={styles["unsubscribe-popup__header"]}>
-                            <Modal.Title >التعلم رحلة لا تنتهى</Modal.Title>
+                            <Modal.Title className={styles["unsubscribe-popup__title"]}>التعلم رحلة لا تنتهى</Modal.Title>
                         </Modal.Header>
 
                         <Modal.Body className={styles["unsubscribe-popup__body"]}>

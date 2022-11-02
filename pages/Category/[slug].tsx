@@ -9,6 +9,9 @@ import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
 import useResize from "custom hooks/useResize";
 import Faq from "common/Subscription faqs/FAQ/Faq";
+import NotFound from "pages/404";
+import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
+import { useSelector } from 'react-redux';
 
 const CategoryDescription = dynamic(() => import("modules/Category/Category description/CategoryDescription"));
 const CategoryCourses = dynamic(() => import("modules/Category/Category courses/CategoryCourses"));
@@ -32,6 +35,8 @@ export default function Category(props: any) {
   const Router = useRouter();
   const { slug } = Router.query;
   const { seoData } = props;
+  const [isFound, setIsFound] = useState(true);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
     toggleLoader("show");
@@ -40,6 +45,7 @@ export default function Category(props: any) {
     axiosInstance
       .get(`categories`)
       .then(function (response: any) {
+        setIsFound(NotFoundRoutesHandler(response));
         setCategoriesList(response?.data?.data?.categories);
         // toggleLoader("hide");
       })
@@ -47,7 +53,7 @@ export default function Category(props: any) {
         toggleLoader("hide");
         console.log(error);
       });
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (Router.query.slug) {
@@ -117,21 +123,27 @@ export default function Category(props: any) {
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
-      <Container fluid="xxl">
-        <MobileCheckoutBar data={category} />
-        <CategoryDescription data={category} categoriesList={categoriesList} />
-        <CategorySkills data={category} />
-        <MostPopularCourses data={category} pagination={pagination} />
-        {/* <CategoryCourses data={category} />  */}
-        {/* <CategoryTopics data={category} /> */}
-        <CategoryTrainers data={category} />
-        <ExploreOtherCategories data={category} categoriesList={categoriesList} />
-        <TrainingCourses data={category} pagination={pagination} />
-        <ExploreCategory data={category} />
-        <Testimonials data={category} />
-        <SubscriptionBenefits />
-        <Faq />
-      </Container>
+      {
+        isFound ?
+          <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
+            <MobileCheckoutBar data={category} />
+            <CategoryDescription data={category} categoriesList={categoriesList} />
+            <CategorySkills data={category} />
+            <MostPopularCourses data={category} pagination={pagination} />
+            {/* <CategoryCourses data={category} />  */}
+            {/* <CategoryTopics data={category} /> */}
+            <CategoryTrainers data={category} />
+            <ExploreOtherCategories data={category} categoriesList={categoriesList} />
+            <TrainingCourses data={category} pagination={pagination} />
+            <ExploreCategory data={category} />
+            <Testimonials data={category} />
+            <SubscriptionBenefits />
+            <Faq />
+          </Container>
+          :
+          <NotFound />
+
+      }
     </>
   )
 }

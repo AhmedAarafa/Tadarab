@@ -2,14 +2,20 @@
 import React from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
+import { useSelector } from 'react-redux';
 
 export default function NotFound() {
+  const themeState = useSelector((state: any) => state.themeState.theme);
+
     return (
         <>
             <style jsx>{`
-                 .page-not-found-col {
+                .page-not-found-col {
                     text-align:center;
-                    margin: 8rem 0 0 0;
+                    margin: 8rem 0 -5rem 0;
+                    width:100%;
+                    height:100%;
+                    background-color: var(--tadarab-light-bg) !important;
                 }
 
                 .page-not-found-title{
@@ -21,7 +27,7 @@ export default function NotFound() {
                 .page-not-found-brief{
                     font-size: 1.5rem;
                     font-weight: 700;
-                    color: #222;
+                    color: var(--dark-black);
                     margin: 0 0 1.5rem 0;
                 }
                 .page-not-found-button{
@@ -68,9 +74,9 @@ export default function NotFound() {
                     }
             `}
             </style>
-            <Container fluid="xxl">
-                <Row>
-                    <Col xs={12} >
+            <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
+                <Row >
+                    <Col xs={12} className='page-not-found-row'>
                         <div className='page-not-found-col'>
                             <div className='page-not-found-title'>
                                 الصفحة غير موجودة

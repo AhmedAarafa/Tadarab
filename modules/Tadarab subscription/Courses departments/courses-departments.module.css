@@ -9,7 +9,7 @@
   font-size: 2rem;
   font-weight: 800;
 }
-.courses-departments__container__title span:nth-of-type {
+.courses-departments__container__title span:nth-of-type(1) {
   color: var(--dark-black);
 }
 .courses-departments__container__title span:nth-of-type(2) {
@@ -45,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  display: none !important;
 }
 .courses-departments__container__show-all-btn:hover {
   box-shadow: none;
@@ -88,6 +89,7 @@
   align-items: center;
   justify-content: center;
   display: inline-flex;
+  background-color: var(--tadarab-bg);
 }
 .courses-departments__cards-carousel__departments-card:hover {
   box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);

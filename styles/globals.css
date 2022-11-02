@@ -11600,6 +11600,11 @@ input:-webkit-autofill:active {
   padding: 0 2rem;
 }
 
+.page-item a {
+  border-color: var(--tadarab-light-bg);
+  background-color: var(--tadarab-bg);
+}
+
 @media (min-width: 1400px) {
   .container-xxl {
     max-width: 1961px !important;

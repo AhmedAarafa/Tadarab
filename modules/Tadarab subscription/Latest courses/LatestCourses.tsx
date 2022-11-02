@@ -41,6 +41,7 @@ function LatestCourses() {
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
   const homePageCoursesRef = useRef([]);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
 
   const handleFilterType = (type: string) => {
@@ -228,9 +229,9 @@ function LatestCourses() {
 
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["latest-courses__see-more-btn-col"]}>
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more"
-            onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=all`) }}>
+            onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses`) }}>
             اعرض المزيد
-            <ChevronLeftIcon color="#af151f" />
+            <ChevronLeftIcon color={ themeState == "light" ? "#af151f" : "#f5f5f5"} />
           </Button>
         </Col>
 

@@ -11,7 +11,7 @@ export default function UnsubscribePage() {
     const handleShow = () => setShow(true);
 
     return (
-        <Row className={styles["unsubscribe-page"]}>
+        <Row className={styles["unsubscribe-page"]}>  
             <Col xs={12}>
                 <div className={styles["unsubscribe-page__title"]}>
                     نظام الاشتراكات

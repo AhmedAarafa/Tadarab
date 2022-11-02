@@ -8,6 +8,8 @@
     margin: 0 0 7rem 0;
     @include flex(unset, center);
     flex-direction: column;
+    color: var(--dark-black);
+
     &:nth-of-type(1){
         padding-right: 8.75rem;
     }

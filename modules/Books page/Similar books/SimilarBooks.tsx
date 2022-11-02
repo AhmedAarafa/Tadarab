@@ -13,10 +13,11 @@ import Router from "next/router";
 export default function SimilarBooks(props: any) {
     SwiperCore.use([Navigation]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     return (
         <>
-            <Row className={styles["similar-books__row"]}>
+            <Row data-theme={themeState} className={styles["similar-books__row"]}>
 
 
                 <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 1 }} className={styles["similar-books__title"]}>
@@ -87,7 +88,7 @@ export default function SimilarBooks(props: any) {
                                                         <>
                                                             <a href={props?.data?.ebook_link}
                                                                 target="_blank" rel="noreferrer">
-                                                                <DownloadIcon color="#af151f" />
+                                                                <DownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                 <span>  تحميل مجاني </span>
                                                             </a>
                                                         </>
@@ -98,7 +99,7 @@ export default function SimilarBooks(props: any) {
                                                                 query: { from: "ebook" }
                                                             })
                                                         }}>
-                                                            <DownloadIcon color="#af151f" />
+                                                            <DownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                             <span>  تحميل مجاني </span>
                                                         </a>
                                                     }

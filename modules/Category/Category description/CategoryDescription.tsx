@@ -13,6 +13,7 @@ export default function CategoryDescription(props: any) {
     const dispatch = useDispatch();
     const Router = useRouter();
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
+    const userSubscInfo = useSelector((state: any) => state.userAuthentication.isSubscribed);
     const [categoriesList, setCategoriesList] = useState([]);
 
 
@@ -40,7 +41,7 @@ export default function CategoryDescription(props: any) {
             <CategoriesNavigator data={props} />
             <Row className={styles["category-description-row"]}>
                 <Col xs={12} className={styles["category-description"]}>
-                    <img className={styles["category-description__img"]} src={`https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/${props.data?.slug}1.jpg`} alt={props.data?.title} />
+                    <img className={styles["category-description__img"]} src={`https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/${props?.data?.slug}1.jpg`} alt={props.data?.title} />
                     <div className={styles["category-description__title"]}>
                         <h1> {`
                         دورات
@@ -60,13 +61,29 @@ export default function CategoryDescription(props: any) {
                             )
                         </div>
                     </div>
-                    <div className={styles["category-description__small-description"]}>
-                        اشترك الآن لتتابع جميع
-                        {` ${props?.data?.title} `}
-                    </div>
-                    {userStatus == false && <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["category-description__signup-btn"]}>
-                        انشاء حساب جديد
+                    {userSubscInfo == false && <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["category-description__signup-btn"]}>
+                       {userStatus ?
+                       "ابدأ التعلم الاّن"
+                       :
+                       "انشاء حساب جديد"
+                       }
                     </Button>}
+                    {userSubscInfo == false &&
+                        <div className={styles["category-description__small-description"]}>
+                            اشترك الآن لتتابع جميع دورات
+                            {` ${props?.data?.title} `}
+                            باشتراك يبدأ من
+                            {` ${props?.data?.subscription_sale_price}`}
+                            {` ${props?.data?.currency_symbol}`}
+                            /
+                            ش
+                            بدلاً من
+                            <span style={{ textDecoration: "line-through var(--pale-red)" }}>
+                                {` ${props?.data?.subscription_original_price}`}
+                                {` ${props?.data?.currency_symbol}`}
+                            </span>
+                        </div>
+                    }
                 </Col>
             </Row>
 

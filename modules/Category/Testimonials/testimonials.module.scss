@@ -1,13 +1,13 @@
 @import "../../../styles/mixins";
 
 .testimonials {
-    background-color: rgba(0, 20, 37, 0.04);
+    background-color: var(--tadarab-light-bg);
 }
 
 .testimonials__cards-carousel-container {
     border-radius: 0 0 5rem 5rem;
     padding-bottom: 2rem;
-    background-color: white;
+    background-color: var(--tadarab-light-bg);
 
     &>div:nth-child(1) {
         padding-top: 0.5rem;
@@ -70,7 +70,7 @@
     font-size: 2rem;
     font-weight: 800;
     padding: 4rem 3rem 0.8rem 3rem;
-    background-color: white;
+    background-color: var(--tadarab-light-bg);
     @include flex(center, center);
 
     span:nth-of-type(1) {
@@ -85,7 +85,7 @@
 
 .testimonials__breif {
     @include flex(center, center);
-    background-color: white;
+    background-color: var(--tadarab-light-bg);
     font-size: 1.063rem;
     color: var(--grey);
 }
@@ -164,7 +164,7 @@
 .testimonials__cards-carousel__item__container__review-box {
     @include flex(flex-start, space-evenly);
     flex-direction: column;
-    background-color: white;
+    background-color: var(--tadarab-bg);
     width: 46.875rem;
     height: 16.875rem;
     box-shadow: 0 0 1.875rem #0000001A;
@@ -186,7 +186,7 @@
 
 .testimonials__cards-carousel__item__container__review-box__review {
     font-size: 1.25rem;
-    color: #555555;
+    color: var(--grey);
     margin: 1rem 0 1rem 0;
     width: 100%;
     display: -webkit-box;
@@ -339,7 +339,6 @@
     }
 
     .testimonials__cards-carousel__item__container__review-box {
-        background-color: white;
         width: 46.875rem;
         height: fit-content;
         box-shadow: 0 0 1.875rem #0000001A;
@@ -395,13 +394,14 @@
         text-shadow: 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000, 0.1875rem 0.1875rem 2.2rem #000000;
         @include flex(center);
 
-        img{
+        img {
             border-radius: 50%;
             width: 6rem;
             height: 6rem;
             margin-left: 1.5rem;
             box-shadow: 0rem 0rem 2.5rem 0.2rem #000000ab;
         }
+
         div {
             font-size: 2rem;
         }

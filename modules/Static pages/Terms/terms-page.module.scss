@@ -1,23 +1,30 @@
 @import "../../../styles/mixins";
 
-.terms-and-conditions{
+.terms-and-conditions {
+    color: var(--dark-black);
     padding: 8rem;
-    *{
+    margin-bottom: -5rem;
+
+    * {
         font-size: 1rem !important;
     }
-    h4{
+
+    h4 {
         font-size: 1.5rem !important;
     }
 }
 
 
 @media (max-width: 575px) {
-    .terms-and-conditions{
+    .terms-and-conditions {
         padding: 12rem 5rem;
-        *{
+        margin-bottom: -5rem*2.5;
+
+        * {
             font-size: 1rem*1.8 !important;
         }
-        h4{
+
+        h4 {
             font-size: 1.5rem*1.8 !important;
         }
     }

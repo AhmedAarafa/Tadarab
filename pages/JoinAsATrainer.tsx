@@ -8,6 +8,7 @@ import { Container } from "react-bootstrap";
 // import HowToStart from 'modules/Join as a trainer/How to start/HowToStart';
 // import Faq from 'modules/Join as a trainer/FAQ/Faq';
 // import Footer from 'common/Footer/Footer';
+import { useSelector } from "react-redux";
 
 import dynamic from 'next/dynamic';
 const StartTraining = dynamic(() => import("modules/Join as a trainer/Start training/StartTraining"));
@@ -20,9 +21,11 @@ const Faq = dynamic(() => import('modules/Join as a trainer/FAQ/Faq'));
 
 
 export default function JoinAsATrainer() {
+  const themeState = useSelector((state: any) => state.themeState.theme);
+
   return (
     <>
-      <Container fluid="xxl">
+      <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}> 
         <StartTraining />
         <SuccessfulInvestment />
         <Statistics />

@@ -25,6 +25,7 @@ export default function ChangePasswordPage() {
     const [serverResponse, setServerResponse] = useState({value : "" , color:"" , bgcolor:""});
     const [fieldBlur, setFieldBlur] = useState({password:"",repeatedPassword:"",oldPassword:""});
     const userStatus = useSelector((state: any) => state.userAuthentication);
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
 
     function validationSchema() {
@@ -133,7 +134,7 @@ export default function ChangePasswordPage() {
       
     return (
         <>
-        <Row className={styles["reset-password"]}>
+        <Row data-theme={themeState} className={styles["reset-password"]}>
             <Col xs={{span:12 , order:2}} sm={{span:7 , order:1}} className={styles["reset-password__reset-password-box"]}>
                 
                 <div className={styles["reset-password__reset-password-box__title"]}>

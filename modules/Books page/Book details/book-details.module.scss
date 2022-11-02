@@ -2,6 +2,7 @@
 
 .book-details {
     padding: 6.5rem 10rem 0 10rem;
+    background-color: var(--tadarab-light-bg);
 }
 
 .book-details__book-preview {
@@ -13,8 +14,11 @@
         box-shadow: 0 0 3rem #00000033;
         border-radius: 0.625rem;
     }
-    a{
-        &:hover,&:active{
+
+    a {
+
+        &:hover,
+        &:active {
             color: white !important;
         }
     }
@@ -73,7 +77,7 @@
 .book-details__book-info__book-chip {
     width: 3.6875rem;
     height: 1.75rem;
-    background-color: #F2F2F2;
+    background-color: var(--lightgrey);
     border-radius: 0.5rem;
     font-size: 0.875rem;
     color: var(--grey);
@@ -176,7 +180,7 @@
     font-size: 1.125rem;
     font-weight: 800;
     width: 100%;
-    background-color: white;
+    background-color: var(--tadarab-light-bg);
     color: #AF151F;
     position: absolute;
     bottom: 0rem;
@@ -199,7 +203,7 @@
 .book-details__book-info__book-brief__brief--fadeout-effect {
     position: absolute;
     background-image: linear-gradient(rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 1) 100%);
+            var(--tadarab-light-bg) 100%);
     width: 100%;
     bottom: 3rem;
     height: 4rem;
@@ -209,7 +213,6 @@
 .mobile-download-bar {
     display: none;
 }
-
 
 @media (max-width:575px) {
 
@@ -373,12 +376,16 @@
         position: fixed;
         bottom: 0;
         width: 100%;
-        background-color: white;
+        background-color: var(--tadarab-bg);
         z-index: 8;
         margin: 0 -5rem;
-        background: linear-gradient(transparent 0%, white 5%, white 90%, white 100%);
-        a{
-            &:hover,&:active{
+        background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
+        color: var(--dark-black);
+
+        a {
+
+            &:hover,
+            &:active {
                 color: white !important;
             }
         }
@@ -412,7 +419,7 @@
 
             &:hover,
             &:active {
-                background-color: rgba(0, 0, 0, 0.08) !important; 
+                background-color: rgba(0, 0, 0, 0.08) !important;
                 border: none !important;
 
             }
