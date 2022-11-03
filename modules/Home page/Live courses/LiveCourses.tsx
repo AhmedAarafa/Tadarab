@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { ChevronLeftIcon, LiveIcon, PlayIcon, CartIcon, FavouriteIcon, AddedToCartIcon, ContainedBellIcon, AddedToFavouriteIcon, BellIcon } from "common/Icons/Icons";
+import { ChevronLeftIcon, LiveIcon, PlayIcon, CartIcon, AddedToCartIcon, ContainedBellIcon, BellIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
 import { handleFav } from "modules/_Shared/utils/handleFav";
@@ -21,7 +21,6 @@ import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck
 export default function LiveCourses() {
   SwiperCore.use([Navigation]);
   const dispatch = useDispatch();
-
   const homePageData = useSelector((state: any) => state.homePageData);
   const [liveCourses, setLiveCourses] = useState<any>([]);
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
@@ -95,7 +94,6 @@ export default function LiveCourses() {
       })
     })
   }
-
   const liveCourseWatchingHandler = (slug: string, webinarType: any) => {
     if (webinarType == "soon") {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);
@@ -108,10 +106,8 @@ export default function LiveCourses() {
     }
   }
 
-
   useEffect(() => {
     liveCoursesRef.current = homePageData?.data?.live_courses;
-
     setLiveCourses(homePageData.data?.live_courses || []);
   }, [homePageData]);
 
@@ -188,16 +184,16 @@ export default function LiveCourses() {
                         </div>
                       </div>
 
-                      <Link href={`/webinar/${lc.slug}`}>
+                      {/* <Link href={`/webinar/${lc.slug}`}> */}
                         <Card.Img onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} variant="top" src={lc.image} alt='trainer image'
                           className={styles["live-courses__cards-carousel__card__trainer-img"]} />
-                      </Link>
+                      {/* </Link> */}
                       <Card.Body className={styles["live-courses__cards-carousel__card__card-body"]}>
                         <div className={styles["live-courses__cards-carousel__card__card-body__card-header"]}>
                           <div className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details"]}>
-                            <Link href={`/webinar/${lc.slug}`}>
+                            {/* <Link href={`/webinar/${lc.slug}`}> */}
                               <div onClick={() => { liveCourseWatchingHandler(lc.slug, lc.webinar_type) }} title={lc.title} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__title"]}>{lc.title}</div>
-                            </Link>
+                            {/* </Link> */}
                             <Link href={`/trainer/${lc.trainer?.slug}`}>
 
                               <div title={lc.trainer?.name_ar} className={styles["live-courses__cards-carousel__card__card-body__card-header__course-details__author"]}>{lc.trainer?.name_ar}</div>
