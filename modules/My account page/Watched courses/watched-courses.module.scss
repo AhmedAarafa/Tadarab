@@ -11,6 +11,7 @@
     z-index: 5;
     background-color: white;
     color: var(--dark-black);
+    background-color: var(--tadarab-light-bg);
 }
 
 .watched-courses__departments-list {
@@ -53,11 +54,11 @@
 
 .watched-courses__cards-carousel {
     padding: 1.938rem 0 0rem 0;
-    background-color: white;
+    background-color: var(--tadarab-light-bg);
 
     &>div {
         padding: 0 2rem 4rem 2rem !important;
-        @include inset-box-shadow(white);
+        @include inset-box-shadow(var(--tadarab-light-bg));
 
         &>div:nth-child(1),
         &>div:nth-child(2) {
@@ -83,6 +84,7 @@
     position: relative;
     display: inline-block;
     overflow: visible;
+    background-color: var(--tadarab-bg);
 
     &:after {
         content: '';
@@ -250,9 +252,10 @@
     font-weight: 700 !important;
     padding: 0.5rem 1rem;
     border-radius: 0.7rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    // background-color: rgba(0, 0, 0, 0.05);
     color: var(--dark-black);
     cursor: pointer;
+    background-color: var(--lightgrey);
 }
 
 .watched-courses__cards-carousel__course-card__card-body__watching-progress-box {

@@ -1,17 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
 import styles from "./trainer-info.module.css";
-import { Row, Col, Button, Form } from "react-bootstrap";
-import TrainerCourses from "../Trainer courses/TrainerCourses";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { LearnersIcon, CoursesNumberIcon, DropDownIcon } from "common/Icons/Icons";
-import Image from 'next/image';
 
 export default function TrainerInfo() {
   const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
   const [trainerProfile, setTrainerProfile] = useState({});
   const [showMore, setShowMore] = useState(true);
   const [isTooMuchContent, setIsTooMuchContent] = useState(false);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   function showMoreHandler() {
     const showMoreIcon: any = document.querySelector("#read-more-icon2 > svg");
@@ -130,7 +128,7 @@ export default function TrainerInfo() {
   }, [trainerProfileData]);
 
   return (
-    <div className={styles["trainer-profile__trainer-info-col"]}>
+    <div data-theme={themeState} className={styles["trainer-profile__trainer-info-col"]}>
 
       <div className={styles["trainer-profile__trainer-info-col__trainer-info-box"]}>
 
@@ -171,7 +169,7 @@ export default function TrainerInfo() {
         <div id="brief-about-trainer" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer"]}>
           <h2 className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__title"]}>نبذة عن المدرب</h2>
           <p id="bio" className={styles["trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer__para"]}
-          dangerouslySetInnerHTML={{__html: trainerProfileData.data?.data?.bio}}
+            dangerouslySetInnerHTML={{ __html: trainerProfileData.data?.data?.bio }}
           ></p>
           {isTooMuchContent &&
             <>

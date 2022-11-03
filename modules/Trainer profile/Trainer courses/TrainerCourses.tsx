@@ -32,9 +32,10 @@ export default function TrainerCourses() {
 
     const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
     const [trainerProfile, setTrainerProfile] = useState<any>({});
-  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+    const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [trainerSlug, setTrainerSlug] = useState<any>("");
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
         setTrainerProfile(trainerProfileData?.data || {});
@@ -65,9 +66,9 @@ export default function TrainerCourses() {
     }
 
     const handleCartActionBtn = (course: any): any => {
-        setDisabledCartBtns([...disabledCartBtns,course.id]);
+        setDisabledCartBtns([...disabledCartBtns, course.id]);
         setTimeout(() => {
-          setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
+            setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
         }, 5000);
         dispatch(setCheckoutType("cart"));
 
@@ -312,19 +313,19 @@ export default function TrainerCourses() {
                                             >
                                                 <div onClick={() =>
                                                     course?.discounted_price == 0 ?
-                                                    handleFreeCoursesActionBtn(course)
+                                                        handleFreeCoursesActionBtn(course)
                                                         :
                                                         handleCartActionBtn(course)}
                                                     className={styles["trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
 
                                                     {
                                                         course.discounted_price == 0 ?
-                                                            <TvIcon color="#222" />
+                                                            <TvIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
                                                             :
                                                             course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                                                <AddedToCartIcon color="#222" />
+                                                                <AddedToCartIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
                                                                 :
-                                                                <CartIcon color="#222" />
+                                                                <CartIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
                                                     }
                                                 </div>
                                             </Button>}
@@ -342,7 +343,7 @@ export default function TrainerCourses() {
                                                         course.is_in_favorites ?
                                                             <AddedToFavouriteIcon color="#af151f" />
                                                             :
-                                                            <FavouriteIcon color="#222" />
+                                                            <FavouriteIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
                                                     }
                                                 </div>
                                             </Button>

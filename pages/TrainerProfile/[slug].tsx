@@ -26,6 +26,7 @@ export default function TrainerProfile(props: any) {
   const { seoData } = props;
   const [trainerData, setTrainerData] = useState({});
   const [isFound, setIsFound] = useState(true);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
 
   useEffect(() => {
@@ -124,9 +125,11 @@ export default function TrainerProfile(props: any) {
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
+        {console.log("seoData",seoData)
+        }
       {
         isFound ?
-          <Container fluid="xxl">
+          <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
             <MobileCheckoutBar data={trainerData} />
             <TrainerProfilePage />
           </Container>

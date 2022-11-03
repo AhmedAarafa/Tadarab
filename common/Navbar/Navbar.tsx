@@ -388,7 +388,7 @@ function Navbar(props: any) {
         </Link>
 
         <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />
-        <NavBar.Offcanvas onHide={() => { handleDiscoverSidebarShow(false) }}
+        <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
           id="offcanvasNavbar1"
           aria-labelledby="offcanvasNavbarLabel1"
           placement="end"
@@ -402,7 +402,7 @@ function Navbar(props: any) {
               <NextIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
             </li>
 
-            <Offcanvas id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2" backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
+            <Offcanvas data-theme={themeState} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2" backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
               <Offcanvas.Header className={styles["sidebar-list__discover-sidebar"]}>
                 <Offcanvas.Title className={styles["sidebar-list__discover-sidebar__title"]}>
                   استكشف
@@ -605,11 +605,11 @@ function Navbar(props: any) {
               </div>
               {!userStatus.isSubscribed == true && <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
-              <Nav.Link style={{ color: "brown" }} onClick={() => {
+              {/* <Nav.Link style={{ color: "brown" }} onClick={() => {
                 dispatch(setTheme(themeState == "light" ? "dark" : "light"));
                 localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
                 document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
-              }}> DM </Nav.Link>
+              }}> DM </Nav.Link> */}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&

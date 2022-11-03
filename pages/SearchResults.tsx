@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import MetaTagsGenerator from 'modules/_Shared/utils/MetaTagsGenerator';
 import Router, { useRouter } from 'next/router';
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { useSelector } from "react-redux";
 
 import dynamic from 'next/dynamic';
 const SearchResultsPage = dynamic(() => import("modules/Search Results/SearchResultsPage"));
@@ -13,6 +13,7 @@ const NotificationBar = dynamic(() => import("common/Notification bar/Notificati
 export default function SearchResults(props: any) {
   const { seoData } = props;
   const router = useRouter();
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
 
@@ -45,7 +46,7 @@ export default function SearchResults(props: any) {
         <MetaTagsGenerator title={seoData?.seo_title}
           description={seoData?.seo_metadesc}
           img={seoData?.seo_image} />}
-      <Container fluid="xxl">
+      <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
         <SearchResultsPage />
       </Container>
     </>

@@ -50,7 +50,7 @@ export default function TrainersList() {
 
   return (
     <>
-      <Row>
+      <Row className={styles["trainers-list-row"]}>
 
         <Col xs={12} className={styles["trainers-list"]}>
           {trainersList?.data?.map((trainer: any, i: number) => {

@@ -197,7 +197,7 @@ export default function CourseListing() {
             <MetaTagsGenerator title={courseListing?.data?.seo_title}
                 description={courseListing?.data?.seo_metadesc}
                 img={courseListing?.data?.seo_image} />
-            <Row>
+            <Row className={styles["course-listing-row"]}>
                 <Col xs={12} className={styles["course-listing__title"]}>
                     النتائج
                 </Col>
@@ -327,8 +327,8 @@ export default function CourseListing() {
                                                             handleFreeCoursesActionBtn(course)
                                                             :
                                                             handleCartActionBtn(course)}> {(course.discounted_price == 0 ?
-                                                                <TvIcon color="#222" />
-                                                                : course.is_in_cart || disabledCartBtns.includes(course.id) ? <AddedToCartIcon color="#222" /> : <CartIcon color="#222" />)} </div>}
+                                                                <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
+                                                                : course.is_in_cart || disabledCartBtns.includes(course.id) ? <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} /> : <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />)} </div>}
                                             </Button>}
                                         </div>
                                     </Card.Body>
@@ -528,12 +528,12 @@ export default function CourseListing() {
                                                         className={styles["course-listing__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                                         {
                                                             course.discounted_price == 0 ?
-                                                                <TvIcon color="#222" />
+                                                                <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                                 :
                                                                 course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                                                    <AddedToCartIcon color="#222" />
+                                                                    <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                                     :
-                                                                    <CartIcon color="#222" />
+                                                                    <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                         }
                                                     </div>
 
@@ -553,7 +553,7 @@ export default function CourseListing() {
                                                             course.is_in_favorites ?
                                                                 <AddedToFavouriteIcon color="#af151f" />
                                                                 :
-                                                                <FavouriteIcon color="#222" />
+                                                                <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                         }
 
                                                     </div>

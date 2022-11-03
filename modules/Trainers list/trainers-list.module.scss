@@ -1,13 +1,16 @@
 @import "../../styles/mixins";
 
+.trainers-list-row{
+    margin-bottom: -5rem;
+}
 
 .trainers-list {
     padding: 7rem 9rem 0 9rem;
-    @include flex(center,space-evenly);
+    @include flex(center, space-evenly);
     flex-wrap: wrap;
 }
 
-.trainers-list__cards-carousel__card{
+.trainers-list__cards-carousel__card {
     width: 18.75rem*0.8;
     height: 21.875rem*0.8;
     box-shadow: 0 0.5rem*0.8 1.313rem*0.8 #0000001A;
@@ -15,48 +18,51 @@
     color: white;
     position: relative;
     overflow: hidden;
-    @include flex(unset,flex-end);
+    @include flex(unset, flex-end);
     display: inline-flex;
     margin-bottom: 1.5rem*0.8;
     // background: transparent url('/images/trainer img.png') no-repeat padding-box;
-    background-size: cover; 
+    background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
 }
 
-.trainers-list__cards-carousel__card__card-body{
+.trainers-list__cards-carousel__card__card-body {
     padding: 0;
     // background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%,
-     rgba(0, 0, 0, 0.14) 10% ,
-     rgba(0, 0, 0, 0.24) 20% ,
-     rgba(0, 0, 0, 0.34) 30% ,
-     rgba(0, 0, 0, 0.44) 40% ,
-     rgba(0, 0, 0, 0.54) 50% ,
-     rgba(0, 0, 0, 0.64) 60% ,
-     rgba(0, 0, 0, 0.74) 70% ,
-     rgba(0, 0, 0, 0.84) 80% ,
-     rgba(0, 0, 0, 0.84) 90% ,
-      rgba(0, 0, 0, 0.84) 100%);
-      
+            rgba(0, 0, 0, 0.14) 10%,
+            rgba(0, 0, 0, 0.24) 20%,
+            rgba(0, 0, 0, 0.34) 30%,
+            rgba(0, 0, 0, 0.44) 40%,
+            rgba(0, 0, 0, 0.54) 50%,
+            rgba(0, 0, 0, 0.64) 60%,
+            rgba(0, 0, 0, 0.74) 70%,
+            rgba(0, 0, 0, 0.84) 80%,
+            rgba(0, 0, 0, 0.84) 90%,
+            rgba(0, 0, 0, 0.84) 100%);
+
     padding: 0 1rem 1.5rem*0.8 1rem;
-    div{
+
+    div {
         height: fit-content;
     }
 }
 
-.trainers-list__cards-carousel__card__trainer{
+.trainers-list__cards-carousel__card__trainer {
     font-size: 1.25rem*0.8;
     font-weight: 700;
     margin: 2.5rem*0.8 0 0.313rem*0.8 0;
     cursor: pointer;
 }
+
 .trainers-list__cards-carousel__card__job-title,
-.trainers-list__cards-carousel__card__job-history{
+.trainers-list__cards-carousel__card__job-history {
     font-size: 0.813rem*0.8;
     padding: 0;
 }
-.trainers-list__cards-carousel__card__job-history{
+
+.trainers-list__cards-carousel__card__job-history {
     max-height: fit-content;
     width: 95%;
     display: -webkit-box;
@@ -66,8 +72,8 @@
     -webkit-box-orient: vertical;
 }
 
-.trainers-list__pagination{
-    @include flex(center,center);
+.trainers-list__pagination {
+    @include flex(center, center);
     padding: 2rem 0 5rem 0;
 }
 
@@ -78,126 +84,140 @@
 
 
 
-@media (max-width: 1200px){
-    
-.trainers-list {
-    padding: 7rem 9rem 0 9rem;
-    @include flex(center,space-evenly);
-    flex-wrap: wrap;
-}
-
-.trainers-list__cards-carousel__card{
-    width: 18.75rem*1.05;
-    height: 21.875rem*1.05;
-    box-shadow: 0 0.5rem*1.05 1.313rem*1.05 #0000001A;
-    border-radius: 0.75rem*1.05;
-    @include flex(unset,flex-end);
-    display: inline-flex;
-    margin-bottom: 1.5rem*1.05;
-}
-
-.trainers-list__cards-carousel__card__card-body{
-    padding: 0;
-    padding: 0 1rem 1.5rem*1.05 1rem;
-    div{
-        height: fit-content;
-    }
-}
-
-.trainers-list__cards-carousel__card__trainer{
-    font-size: 1.25rem*1.05;
-    margin: 2.5rem*1.05 0 0.313rem*1.05 0;
-}
-.trainers-list__cards-carousel__card__job-title,
-.trainers-list__cards-carousel__card__job-history{
-    font-size: 0.813rem*1.05;
-    padding: 0;
-}
-.trainers-list__cards-carousel__card__job-history{
-    max-height: fit-content;
-    width: 95%;
-}
-
-}
-@media (max-width: 980px){
-
-        
-.trainers-list {
-    padding: 7rem 9rem 0 9rem;
-    @include flex(center,space-evenly);
-    flex-wrap: wrap;
-}
-
-.trainers-list__cards-carousel__card{
-    width: 18.75rem*1.5;
-    height: 21.875rem*1.5;
-    box-shadow: 0 0.5rem*1.5 1.313rem*1.5 #0000001A;
-    border-radius: 0.75rem*1.5;
-    @include flex(unset,flex-end);
-    display: inline-flex;
-    margin-bottom: 1.5rem*1.5;
-}
-
-.trainers-list__cards-carousel__card__card-body{
-    padding: 0;
-    padding: 0 1rem 1.5rem*1.5 1rem;
-    div{
-        height: fit-content;
-    }
-}
-
-.trainers-list__cards-carousel__card__trainer{
-    font-size: 1.25rem*1.5;
-    margin: 2.5rem*1.5 0 0.313rem*1.5 0;
-}
-.trainers-list__cards-carousel__card__job-title,
-.trainers-list__cards-carousel__card__job-history{
-    font-size: 0.813rem*1.5;
-    padding: 0;
-}
-.trainers-list__cards-carousel__card__job-history{
-    max-height: fit-content;
-    width: 95%;
-}
-
-
-}
-@media (max-width: 575px){
+@media (max-width: 1200px) {
 
     .trainers-list {
-        padding: 7rem*2.4 5rem 0 5rem;
-        @include flex(center,space-evenly);
+        padding: 7rem 9rem 0 9rem;
+        @include flex(center, space-evenly);
         flex-wrap: wrap;
     }
-    
-    .trainers-list__cards-carousel__card{
+
+    .trainers-list__cards-carousel__card {
+        width: 18.75rem*1.05;
+        height: 21.875rem*1.05;
+        box-shadow: 0 0.5rem*1.05 1.313rem*1.05 #0000001A;
+        border-radius: 0.75rem*1.05;
+        @include flex(unset, flex-end);
+        display: inline-flex;
+        margin-bottom: 1.5rem*1.05;
+    }
+
+    .trainers-list__cards-carousel__card__card-body {
+        padding: 0;
+        padding: 0 1rem 1.5rem*1.05 1rem;
+
+        div {
+            height: fit-content;
+        }
+    }
+
+    .trainers-list__cards-carousel__card__trainer {
+        font-size: 1.25rem*1.05;
+        margin: 2.5rem*1.05 0 0.313rem*1.05 0;
+    }
+
+    .trainers-list__cards-carousel__card__job-title,
+    .trainers-list__cards-carousel__card__job-history {
+        font-size: 0.813rem*1.05;
+        padding: 0;
+    }
+
+    .trainers-list__cards-carousel__card__job-history {
+        max-height: fit-content;
+        width: 95%;
+    }
+
+}
+
+@media (max-width: 980px) {
+
+
+    .trainers-list {
+        padding: 7rem 9rem 0 9rem;
+        @include flex(center, space-evenly);
+        flex-wrap: wrap;
+    }
+
+    .trainers-list__cards-carousel__card {
+        width: 18.75rem*1.5;
+        height: 21.875rem*1.5;
+        box-shadow: 0 0.5rem*1.5 1.313rem*1.5 #0000001A;
+        border-radius: 0.75rem*1.5;
+        @include flex(unset, flex-end);
+        display: inline-flex;
+        margin-bottom: 1.5rem*1.5;
+    }
+
+    .trainers-list__cards-carousel__card__card-body {
+        padding: 0;
+        padding: 0 1rem 1.5rem*1.5 1rem;
+
+        div {
+            height: fit-content;
+        }
+    }
+
+    .trainers-list__cards-carousel__card__trainer {
+        font-size: 1.25rem*1.5;
+        margin: 2.5rem*1.5 0 0.313rem*1.5 0;
+    }
+
+    .trainers-list__cards-carousel__card__job-title,
+    .trainers-list__cards-carousel__card__job-history {
+        font-size: 0.813rem*1.5;
+        padding: 0;
+    }
+
+    .trainers-list__cards-carousel__card__job-history {
+        max-height: fit-content;
+        width: 95%;
+    }
+
+
+}
+
+@media (max-width: 575px) {
+
+    .trainers-list-row{
+        margin-bottom: -5rem*2.5;
+    }
+    .trainers-list {
+        padding: 7rem*2.4 5rem 0 5rem;
+        @include flex(center, space-evenly);
+        flex-wrap: wrap;
+    }
+
+    .trainers-list__cards-carousel__card {
         width: 18.75rem*2.4;
         height: 21.875rem*2.4;
         box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
         border-radius: 0.75rem*2.4;
-        @include flex(unset,flex-end);
+        @include flex(unset, flex-end);
         display: inline-flex;
         margin-bottom: 1.5rem*2.4;
     }
-    
-    .trainers-list__cards-carousel__card__card-body{
+
+    .trainers-list__cards-carousel__card__card-body {
         padding: 0;
         padding: 0 1rem 1.5rem*2.4 1rem;
-        div{
+
+        div {
             height: fit-content;
         }
     }
-    
-    .trainers-list__cards-carousel__card__trainer{
+
+    .trainers-list__cards-carousel__card__trainer {
         font-size: 1.25rem*2.4;
         margin: 2.5rem*2.4 0 0.313rem*2.4 0;
     }
+
     .trainers-list__cards-carousel__card__job-title,
-    .trainers-list__cards-carousel__card__job-history{
+    .trainers-list__cards-carousel__card__job-history {
         font-size: 0.813rem*2.4;
         padding: 0;
     }
-    .trainers-list__cards-carousel__card__job-history{
+
+    .trainers-list__cards-carousel__card__job-history {
         max-height: fit-content;
         width: 95%;
     }

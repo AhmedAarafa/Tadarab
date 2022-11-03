@@ -1,3 +1,7 @@
+.search-results-row {
+  margin-bottom: -5rem;
+}
+
 .search-results {
   padding: 2rem 9rem 0 9rem;
   display: flex;
@@ -31,6 +35,7 @@
   display: inline-block;
   overflow: visible;
   margin: 0 0 2rem 0;
+  background-color: var(--tadarab-bg);
 }
 .search-results__course-card:after {
   content: "";
@@ -80,7 +85,7 @@
   justify-content: unset;
   position: relative;
   padding: 0 0 0.7813rem 0;
-  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+  border-bottom: 0.05rem solid var(--borders-grey);
 }
 
 .search-results__course-card__card-body__card-header__trainer-img-box {
@@ -200,12 +205,15 @@
   font-weight: 700 !important;
   padding: 0.5rem 1rem;
   border-radius: 0.7rem;
-  background-color: rgba(0, 0, 0, 0.05);
   color: var(--dark-black);
   cursor: pointer;
+  background-color: var(--lightgrey);
 }
 
 @media (max-width: 575px) {
+  .search-results-row {
+    margin-bottom: -12.5rem;
+  }
   .search-results {
     padding: 5rem 5rem 0 5rem;
     display: flex;
@@ -261,7 +269,7 @@
     justify-content: unset;
     position: relative;
     padding: 0 0 1.95325rem 0;
-    border-bottom: 0.125rem solid rgba(34, 34, 34, 0.1);
+    border-bottom-width: 0.125rem;
   }
   .search-results__course-card__card-body__card-header__trainer-img-box {
     font-size: 1.25rem;

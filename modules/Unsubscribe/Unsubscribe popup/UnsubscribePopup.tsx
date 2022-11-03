@@ -78,7 +78,7 @@ export default function UnsubscribePopup(props: any) {
                             <Modal.Title className={styles["unsubscribe-popup__title"]}>التعلم رحلة لا تنتهى</Modal.Title>
                         </Modal.Header>
 
-                        <Modal.Body className={styles["unsubscribe-popup__body"]}>
+                        <Modal.Body className={styles["unsubscribe-popup__body"]}> 
                             <div>
                                 مازال لديك مئات الدورات التدريبية لم تستفيد منها يمكنك الإطلاع على اقسام الدورات بالاسفل
                                 واستكشاف المزيد من الفرص لكسب المهارات وتعلم شيء جديد.

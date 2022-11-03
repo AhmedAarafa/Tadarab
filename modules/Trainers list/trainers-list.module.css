@@ -1,3 +1,7 @@
+.trainers-list-row {
+  margin-bottom: -5rem;
+}
+
 .trainers-list {
   padding: 7rem 9rem 0 9rem;
   display: flex;
@@ -161,6 +165,9 @@
   }
 }
 @media (max-width: 575px) {
+  .trainers-list-row {
+    margin-bottom: -12.5rem;
+  }
   .trainers-list {
     padding: 16.8rem 5rem 0 5rem;
     display: flex;

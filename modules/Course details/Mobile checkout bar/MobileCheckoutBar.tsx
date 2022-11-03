@@ -146,15 +146,16 @@ export default function MobileCheckoutBar(props:any) {
             </div> */}
             <div className={styles["monthly-subscription__subscription-value"]} >
               <span>
-                احصل على كل الدورات فقط ب
+              احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
+                {/* احصل على كل الدورات فقط ب
                 {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
                 {props?.data?.currency_symbol && props?.data?.currency_symbol} / ش
-                بدلا من
+                بدلا من */}
               </span>
-              <span className={styles["amount-strike"]}>
+              {/* <span className={styles["amount-strike"]}>
                 {` ${props?.data?.subscription_original_price && props?.data?.subscription_original_price} `}
                 {props?.data?.currency_symbol && props?.data?.currency_symbol}
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

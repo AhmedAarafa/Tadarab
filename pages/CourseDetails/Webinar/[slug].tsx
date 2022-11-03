@@ -202,7 +202,7 @@ function CourseDetails() {
           setCourseId(response?.data?.data?.archive_course.course_details.id);
           const webinardetails = response?.data?.data?.course_details;
           webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
-          dispatch(setCourseDetailsData(data));
+          dispatch(setCourseDetailsData(data)); 
           setCourseData(data);
 
           setLiveWebinar(webinardetails);
@@ -233,10 +233,11 @@ function CourseDetails() {
       <MetaTagsGenerator title={courseDetailsData?.data?.seo_title}
         description={courseDetailsData?.data?.seo_metadesc}
         img={courseDetailsData?.data?.seo_image} />
+        {/*  (courseDetailsData?.data?.course_details?.is_purchased) && */}
       {
         isFound ?
           <Container fluid="xxl">
-            {((JSON.stringify(courseDetailsData?.data) !== "{}") && (courseDetailsData?.data?.course_details?.is_purchased)) &&
+            {((JSON.stringify(courseDetailsData?.data) !== "{}")) &&
               <>
                 <MobileNavTabsBar />
                 <MobileCheckoutBar data={subscriptionInfo} />
@@ -263,7 +264,7 @@ function CourseDetails() {
                     <TrainerInfo />
                     {/* <GuaranteeCard /> */}
                     {/* <CourseCertificate /> */}
-                    <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar} />
+                    <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar} /> 
                     {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
                   </Col>
                   {

@@ -10,6 +10,7 @@ export default function TrainerAccountsCard() {
     const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
     const [trainerProfile, setTrainerProfile] = useState<any>({});
     const userStatus = useSelector((state:any) => state.userAuthentication);
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
         setTrainerProfile(trainerProfileData?.data?.data || {});
@@ -37,41 +38,41 @@ export default function TrainerAccountsCard() {
                 { trainerProfile.social_link_facebook !== "" 
                 &&
                  <Button href={trainerProfile.social_link_facebook} target="_blank">
-                <FbIcon color="#222"/>
+                <FbIcon color={themeState== "light" ? "#222" : "#f5f5f5" }/>
                     <span>فيسبوك</span>
                 </Button>}
 
                 { trainerProfile.social_link_twitter !== "" 
                 &&  <Button href={trainerProfile.social_link_twitter} target="_blank">
-                <TwitterIcon color="#222"/>
+                <TwitterIcon color={themeState== "light" ? "#222" : "#f5f5f5" }/>
                     <span>تويتر</span>
                 </Button>}
 
                 {trainerProfile.social_link_instagram !== "" 
                 &&
                 <Button href={trainerProfile.social_link_instagram} target="_blank">
-                <InstagramIcon color="#222"/>
+                <InstagramIcon color={themeState== "light" ? "#222" : "#f5f5f5" }/>
                     <span>انستجرام</span>
                 </Button>}
 
                 {trainerProfile.social_link_linkedin !== "" 
                 &&
                  <Button href={trainerProfile.social_link_linkedin} target="_blank">
-                <LinkedinIcon color="#222"/>
+                <LinkedinIcon color={themeState== "light" ? "#222" : "#f5f5f5" }/>
                     <span>لينكدان</span>
                 </Button>}
 
                 {trainerProfile.social_link_snapchat !== "" 
                 &&
                  <Button href={trainerProfile.social_link_snapchat} target="_blank">
-                <SnapChatIcon color="#222"/>
+                <SnapChatIcon color={themeState== "light" ? "#222" : "#f5f5f5" }/>
                     <span>سناب شات</span>
                 </Button>}
 
                 {trainerProfile.social_link_youtube !== "" 
                 &&
                  <Button href={trainerProfile.social_link_youtube} target="_blank">
-                <YoutubeIcon color="#222"/>
+                <YoutubeIcon color={themeState== "light" ? "#222" : "#f5f5f5" }/>
                     <span>يوتيوب</span>
                 </Button>}
               

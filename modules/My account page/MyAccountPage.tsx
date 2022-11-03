@@ -47,6 +47,7 @@ export default function MyAccountPage() {
     price: [],
     levels: []
   });
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   const handleFavActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
@@ -147,9 +148,6 @@ export default function MyAccountPage() {
     });
   }, [showMore])
 
-
-
-
   const showMoreHandler = (order: any) => {
     switch (order) {
       case "first":
@@ -171,8 +169,6 @@ export default function MyAccountPage() {
     }
 
   }
-
-
 
   const handleCategoriesFilters = (categoryId: any) => {
 
@@ -302,7 +298,7 @@ export default function MyAccountPage() {
 
   return (
     <>
-      <Row className={styles["my-account__row"]}>
+      <Row data-theme={themeState} className={styles["my-account__row"]}>
 
         {
           (!isUserPurchasedAnyCourses &&

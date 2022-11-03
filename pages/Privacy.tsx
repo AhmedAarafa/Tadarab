@@ -10,7 +10,6 @@ export default function Privacy(props: any) {
   const { seoData } = props;
   const themeState = useSelector((state: any) => state.themeState.theme);
 
-
   return (
     <>{seoData &&
       <MetaTagsGenerator title={seoData?.seo_title}

@@ -33,6 +33,7 @@
   display: inline-block;
   overflow: hidden;
   margin: 0 0 1.6875rem 1.875rem;
+  background-color: var(--tadarab-bg);
 }
 .trainer-courses-box__trainer-courses__course-card:after {
   content: "";
@@ -80,7 +81,7 @@
   justify-content: unset;
   position: relative;
   padding: 0 0 0.7813rem 0;
-  border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+  border-bottom: 0.05rem solid var(--borders-grey);
 }
 
 .trainer-courses-box__trainer-courses__course-card__card-body__card-header__trainer-img-box {
@@ -189,9 +190,9 @@
   font-weight: 700 !important;
   padding: 0.5rem 1rem;
   border-radius: 0.7rem;
-  background-color: rgba(0, 0, 0, 0.05);
   color: var(--dark-black);
   cursor: pointer;
+  background-color: var(--lightgrey);
 }
 
 .trainer-courses-box__pagination {
@@ -264,7 +265,7 @@
     justify-content: unset;
     position: relative;
     padding: 0 0 1.95325rem 0;
-    border-bottom: 0.125rem solid rgba(34, 34, 34, 0.1);
+    border-bottom-width: 0.125rem;
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__card-header__trainer-img-box {
     font-size: 1.25rem;

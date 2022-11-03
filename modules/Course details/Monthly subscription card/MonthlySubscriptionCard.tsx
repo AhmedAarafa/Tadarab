@@ -390,15 +390,16 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 </span> */}
               <div className={styles["monthly-subscription__subscription-value"]} >
                 <span>
-                  احصل على كل الدورات فقط ب
-                  {courseDetails.subscription_sale_price || subscriptionInfo?.after}
+                احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
+                  {/* احصل على كل الدورات فقط ب */}
+                  {/* {courseDetails.subscription_sale_price || subscriptionInfo?.after}
                   {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `} / ش
-                  بدلا من
+                  بدلا من */}
                 </span>
-                <span className={styles["amount-strike"]}>
+                {/* <span className={styles["amount-strike"]}>
                   {courseDetails.subscription_original_price || subscriptionInfo?.before}
                   {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `}
-                </span>
+                </span> */}
               </div>
               {/* {toDisplayValues.visible && toDisplayValues.values[3] != NaN && toDisplayValues.values[3] != "NaN" && <div className={styles["monthly-subscription__subscription-value"]}>
               <div style={{color:'#af151f'}}>ستوفر ٤٠٪؜ العرض سينتهي خلال &nbsp;&nbsp;<span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span></div>

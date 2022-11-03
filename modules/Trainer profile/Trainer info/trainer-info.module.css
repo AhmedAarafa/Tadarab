@@ -1,3 +1,12 @@
+.trainer-profile__trainer-info-col[data-theme=light] {
+  --trainer-stastics-bg: rgba(175, 21, 31, 0.05);
+  --stastics-numbers: #af151f;
+}
+.trainer-profile__trainer-info-col[data-theme=dark] {
+  --trainer-stastics-bg: #0E0B1D;
+  --stastics-numbers: #f5f5f5;
+}
+
 .trainer-profile__trainer-info-col__trainer-info-box {
   display: flex;
   align-items: unset;
@@ -45,7 +54,7 @@
   justify-content: unset;
   width: 41.875rem;
   height: 6.25rem;
-  background-color: rgba(175, 21, 31, 0.05);
+  background-color: var(--trainer-stastics-bg);
   border-radius: 1.25rem;
   padding: 2.25rem;
   margin: 1.75rem 0 0 0;
@@ -82,7 +91,7 @@
 .trainer-profile__trainer-info-col__stastics-box__stastics__number-of-learners div:nth-of-type(2) {
   font-size: 1.875rem;
   font-weight: 800;
-  color: var(--primary-red);
+  color: var(--stastics-numbers);
 }
 
 .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer {
@@ -111,7 +120,7 @@
   font-size: 1.125rem;
   font-weight: 800;
   width: 100%;
-  background-color: white;
+  background-color: var(--tadarab-light-bg);
   color: #AF151F;
   position: absolute;
   bottom: 0rem;
@@ -130,7 +139,7 @@
 
 .trainer-profile__trainer-info-col__brief-about-trainer-box__brief-about-trainer--fadeout-effect {
   position: absolute;
-  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, var(--tadarab-light-bg) 100%);
   width: 100%;
   bottom: 3rem;
   height: 4rem;

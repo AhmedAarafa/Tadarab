@@ -15,9 +15,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
+import { useSelector } from 'react-redux';
 
 export default function WatchedCourses(props: any) {
     const [watchedCourses, setWatchedCourses] = useState<any>([]);
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
         setWatchedCourses(props.data || []);
@@ -25,8 +27,8 @@ export default function WatchedCourses(props: any) {
 
     return (
         <>
-            { watchedCourses.length !== 0 && <Row className={styles["watched-courses"]}>
-                <Col xs={12} className={styles["watched-courses__title"]}>
+            { watchedCourses.length !== 0 && <Row data-theme={themeState} className={styles["watched-courses"]}>
+                <Col  xs={12} className={styles["watched-courses__title"]}>
                     <span>دوراتي </span>
                     <span>التدريبية</span>
                 </Col>

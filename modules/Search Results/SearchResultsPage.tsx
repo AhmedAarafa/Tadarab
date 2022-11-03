@@ -15,7 +15,6 @@ import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
-import Image from 'next/image';
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 export default function SearchResultsPage() {
@@ -25,6 +24,7 @@ export default function SearchResultsPage() {
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const dispatch = useDispatch();
     const router = useRouter();
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
@@ -47,34 +47,14 @@ export default function SearchResultsPage() {
         }, 5000);
         dispatch(setCheckoutType("cart"));
 
-        // if(userStatus?.isUserAuthenticated == true){
         const handleCartResponse: any = handleCart([course], `courses/?keyword=${router.query.q}&page=${currentPage}&limit=16`, false);
         handleCartResponse.then(function (firstresponse: any) {
             firstresponse.resp.then(function (response: any) {
                 setSearchResults(response?.data);
                 dispatch(setCartItems(firstresponse.cartResponse));
             })
-            //  setLocalCartItems(response.totalItems);
         })
-        // }
-        // else{
-        //   const handleCartResponse:any =  handleCart([course],`home`,false);
-        //   handleCartResponse.then(function(response:any) {
-        //     // console.log(response.data.data);
-        //       dispatch(setCartItems(response.data.data));
-        //       let newArray:any = searchResults; 
-        //      response.data.data?.forEach((element:any) => {
-        //       newArray.forEach((ele:any) => {
-        //           if(element.id === ele.id){
-        //             // console.log(ele);
-        //             ele.is_in_cart = true;
-        //         }
-        //     });
-        // });
-        // setSearchResults([...newArray]);
-
-        //   })
-        // }
+    
     }
 
     const handleFreeCoursesActionBtn = (course: any): any => {
@@ -105,13 +85,9 @@ export default function SearchResultsPage() {
         }
     }, []);
 
-
-
     useEffect(() => {
         setCurrentPage("1");
         if (router.query && router.query.q) {
-            // console.log("router.query.q",router.query.q);
-
             axiosInstance
                 .get(`courses/?keyword=${router.query.q}&page=1&limit=16`)
                 .then(function (response: any) {
@@ -150,7 +126,7 @@ export default function SearchResultsPage() {
             <MetaTagsGenerator title={searchResults?.data?.seo_title}
                 description={searchResults?.data?.seo_metadesc}
                 img={searchResults?.data?.seo_image} />
-            <Row >
+            <Row className={styles["search-results-row"]}>
                 <Col xs={12} className={styles["search-results__total-search-results"]}>
                     <div>
                         نتائج البحث
@@ -358,12 +334,12 @@ export default function SearchResultsPage() {
                                                     className={styles["search-results__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
                                                     {
                                                         course.discounted_price == 0 ?
-                                                            <TvIcon color="#222" />
+                                                            <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                             :
                                                             course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                                                <AddedToCartIcon color="#222" />
+                                                                <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                                 :
-                                                                <CartIcon color="#222" />
+                                                                <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                     }
                                                 </div>
 
@@ -383,7 +359,7 @@ export default function SearchResultsPage() {
                                                         course.is_in_favorites ?
                                                             <AddedToFavouriteIcon color="#af151f" />
                                                             :
-                                                            <FavouriteIcon color="#222" />
+                                                            <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
                                                     }
 
                                                 </div>

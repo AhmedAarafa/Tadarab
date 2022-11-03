@@ -47,6 +47,7 @@ function CourseDetails(props: any) {
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [courseData, setCourseData] = useState({});
+  const [liveWebinar, setLiveWebinar] = useState({});
   const dispatch = useDispatch();
   const [isFound, setIsFound] = useState(true);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
@@ -208,6 +209,9 @@ function CourseDetails(props: any) {
                 setIsFound(NotFoundRoutesHandler(response));
 
                 const data = response?.data?.data;
+                const webinardetails = response?.data?.data?.course_details;
+                setLiveWebinar(webinardetails);
+
 
                 setCourseId(response?.data?.data?.course_details?.id);
                 dispatch(setCourseDetailsData(data));
@@ -256,7 +260,8 @@ function CourseDetails(props: any) {
           .then(function (response: any) {
             setIsFound(NotFoundRoutesHandler(response));
             const data = response?.data?.data;
-
+            const webinardetails = response?.data?.data?.course_details;
+            setLiveWebinar(webinardetails);
             setCourseId(response?.data?.data?.course_details?.id);
             dispatch(setCourseDetailsData(data));
             setCourseData(data);
@@ -343,7 +348,7 @@ function CourseDetails(props: any) {
                       <Col xs={12} sm={8}>
                         <CourseAdvertisement />
                         {originalCardPlacement == false &&
-                          <MonthlySubscriptionCard />
+                          <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />
                         }
                         {courseDetailsData?.data?.course_details?.key_points !== null &&
                           JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
@@ -368,7 +373,7 @@ function CourseDetails(props: any) {
                       {
                         originalCardPlacement == true &&
                         <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                          {originalCardPlacement == true && <MonthlySubscriptionCard />}
+                          {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />}
                         </Col>
                       }
                       <PracticalProjects Cid={() => { return courseId }} />

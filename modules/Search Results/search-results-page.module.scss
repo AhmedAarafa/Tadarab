@@ -1,5 +1,9 @@
 @import "../../styles/mixins";
 
+.search-results-row{
+    margin-bottom: -5rem;
+}
+
 .search-results {
     padding: 2rem 9rem 0 9rem;
     @include flex(center,space-evenly);
@@ -31,6 +35,7 @@
     display: inline-block;
     overflow: visible;
     margin: 0 0 2rem 0;
+    background-color: var(--tadarab-bg);
 
     &:after {
         content: '';
@@ -74,7 +79,7 @@
     @include flex(center);
     position: relative;
     padding: 0 0 0.7813rem 0;
-    border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+    border-bottom: 0.05rem solid var(--borders-grey);
 }
 
 .search-results__course-card__card-body__card-header__trainer-img-box {
@@ -122,6 +127,7 @@
     font-size: 1.25rem;
     font-weight: 800;
     color: var(--dark-black);
+    // background-color: var(--lightgrey);
 }
 
 .search-results__course-card__card-body__checkout-details__price-container__currency {
@@ -185,12 +191,17 @@
     font-weight: 700 !important;
     padding: 0.5rem 1rem;
     border-radius: 0.7rem;
-    background-color: rgba(0, 0, 0, 0.05);
+    // background-color: rgba(0, 0, 0, 0.05);
     color: var(--dark-black);
     cursor: pointer;
+    background-color: var(--lightgrey);
 }
 
 @media (max-width: 575px) {
+
+    .search-results-row{
+        margin-bottom: -5rem*2.5;
+    }
 
     .search-results {
         padding: 5rem 5rem 0 5rem;
@@ -249,7 +260,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*2.5 0;
-        border-bottom: 0.05rem*2.5 solid rgba(34, 34, 34, 0.1);
+        border-bottom-width: 0.05rem*2.5;
     }
 
     .search-results__course-card__card-body__card-header__trainer-img-box {

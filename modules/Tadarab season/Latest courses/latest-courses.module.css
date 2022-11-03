@@ -520,9 +520,9 @@
   font-weight: 700 !important;
   padding: 0.5rem 1rem;
   border-radius: 0.7rem;
-  background-color: rgba(0, 0, 0, 0.05);
   color: var(--dark-black);
   cursor: pointer;
+  background-color: var(--lightgrey);
 }
 
 @media (max-width: 1024px) {

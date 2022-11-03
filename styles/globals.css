@@ -10285,6 +10285,7 @@ textarea.form-control-lg {
   --hamburger-menu-icon: url("/images/menu.svg");
   --close-icon: url("/images/close.svg");
   --swiper-bullets: #000;
+  --close-btn: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
 }
 
 [data-theme=dark] {
@@ -10305,6 +10306,7 @@ textarea.form-control-lg {
   --hamburger-menu-icon: url("/images/menu_dark.svg");
   --close-icon: url("/images/close_dark.svg");
   --swiper-bullets: #f5f5f5;
+  --close-btn: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f5f5f5'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
 }
 
 html,
@@ -11445,11 +11447,11 @@ div[id^=popover-latest-courses-card] {
   padding: 0 !important;
 }
 #offcanvasNavbar3 .btn-close {
-  background-image: url("/images/close.svg") !important;
+  background-image: var(--close-icon) !important;
   border-radius: 1.5rem !important;
   background-size: 2.5rem 2.5rem;
   padding: 4rem 1.9rem 1.9rem 3.8rem !important;
-  background-color: white !important;
+  background-color: var(--tadarab-bg) !important;
   margin-left: -8.7rem !important;
   margin-top: -1rem !important;
   opacity: 1 !important;
