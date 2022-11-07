@@ -28,7 +28,6 @@ const withAuth = (Component: any) => {
         dispatch(setTheme("light"));
         document.body.setAttribute("data-theme", "light");
         localStorage.setItem("theme", "light");
-
       } else {
         const themeStored: any = localStorage.getItem("theme");
         dispatch(setTheme(themeStored));

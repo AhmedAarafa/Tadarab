@@ -148,7 +148,7 @@ export default function FooterSection() {
               <Link href="/join-as-trainer">
                 <li>انضم كمدرب</li>
               </Link>
-              <Link href="/my-account">
+              <Link href="/subscription">
                 <li>تدرب بلا حدود</li>
               </Link>
               <Link href="/terms">

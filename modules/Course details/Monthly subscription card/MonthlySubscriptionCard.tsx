@@ -492,32 +492,32 @@ export default function MonthlySubscriptionCard(theOption: any) {
           <div
             className={styles["monthly-subscription__course-card__actions-btns"]}
           >
-            {theOption.liveWebinarDetails?.type !== "webinar" &&
+            {courseDetails.course_details?.type !== "webinar" &&
               <Button onClick={() => {
-                theOption.liveWebinarDetails?.discounted_price == 0 ?
+                courseDetails.course_details?.discounted_price == 0 ?
                   handleFreeCoursesActionBtn(courseDetails.course_details)
                   :
                   handleCartActionBtn(courseDetails.course_details);
-              }} disabled={theOption.liveWebinarDetails?.is_in_cart || disabledCartBtns.includes(theOption.liveWebinarDetails?.id)}
+              }} disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)}
                 className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
               >
                 {
-                  theOption.liveWebinarDetails?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                  courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
                     <></>
                     :
-                    theOption.liveWebinarDetails?.discounted_price == 0 ?
+                    courseDetails.course_details?.discounted_price == 0 ?
                       <TvIcon color="#222" />
                       :
                       <CartIcon color="#222" />
                 }
                 {
-                  theOption.liveWebinarDetails?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                  courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
                     <span>سجل لمشاهدة البث المباشر مجاناَ</span>
                     :
-                    theOption.liveWebinarDetails?.discounted_price == 0 ?
+                    courseDetails.course_details?.discounted_price == 0 ?
                       <span> ابدأ الآن مجانًا </span>
                       :
-                      theOption.liveWebinarDetails?.is_in_cart ?
+                      courseDetails.course_details?.is_in_cart ?
                         <span> تمت الإضافة </span>
                         :
                         <span> امتلك هذه الدورة </span>
@@ -741,31 +741,29 @@ export default function MonthlySubscriptionCard(theOption: any) {
           </div> */}
             <div className={styles["monthly-subscription__course-card__actions-btns"]}
             >
-              {theOption.liveWebinarDetails?.type !== "webinar" &&
+              {courseDetails.course_details?.type !== "webinar" &&
                 <Button onClick={() => {
-                  theOption.liveWebinarDetails?.discounted_price == 0 ?
+                  courseDetails.course_details?.discounted_price == 0 ?
                     handleFreeCoursesActionBtn(courseDetails.course_details)
                     :
-                    handleCartActionBtn(theOption.liveWebinarDetails)
+                    handleCartActionBtn(courseDetails.course_details)
                 }}
-                  disabled={theOption.liveWebinarDetails?.is_in_cart || disabledCartBtns.includes(theOption.liveWebinarDetails?.id)}
+                  disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)}
                   className={
                     styles[
                     "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
-                    ]
-                  }
-                >
+                    ]}>
                   {
-                    theOption.liveWebinarDetails?.discounted_price == 0 ?
+                    courseDetails.course_details?.discounted_price == 0 ?
                       <TvIcon color="#222" />
                       :
                       <CartIcon color="#222" />
                   }
                   {
-                    theOption.liveWebinarDetails?.discounted_price == 0 ?
+                    courseDetails.course_details?.discounted_price == 0 ?
                       <span> ابدأ الآن مجانًا </span>
                       :
-                      theOption.liveWebinarDetails?.is_in_cart ?
+                      courseDetails.course_details?.is_in_cart ?
                         <span> تمت الإضافة </span>
                         :
                         <span> امتلك هذه الدورة </span>
