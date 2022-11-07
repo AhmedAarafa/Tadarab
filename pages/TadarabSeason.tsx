@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Router, { useRouter } from "next/router";
 import Testimonials from "modules/Tadarab season/Testimonials/Testimonials";
 import Faq from "common/Subscription faqs/FAQ/Faq";
+import withAuth from 'configurations/auth guard/AuthGuard';
 
 const TadarabIntroduction = dynamic(() => import("modules/Tadarab season/Tadarab Introduction/TadarabIntroduction"));
 const TadarabBenefits = dynamic(() => import("modules/Tadarab season/Tadarab benefits/TadarabBenefits"));
@@ -15,7 +16,7 @@ const SubscriptionBenefits = dynamic(() => import("modules/Tadarab season/Subscr
 const SeasonTrainers = dynamic(() => import("modules/Tadarab season/Season trainers/SeasonTrainers"));
 const StickySignupBar = dynamic(() => import("modules/Tadarab season/Sticky signup bar/StickySignupBar"));
 
-export default function TadarabSeason() {
+function TadarabSeason() {
     const [currency, setCurrency] = useState<any>({});
 
     const handleCurrency = (CS:any) => {
@@ -39,3 +40,6 @@ export default function TadarabSeason() {
         </>
     )
 }
+
+export default withAuth(TadarabSeason);
+

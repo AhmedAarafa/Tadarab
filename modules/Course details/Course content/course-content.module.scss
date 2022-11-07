@@ -46,6 +46,7 @@
     border-radius: 0.75rem 0.75rem 0 0 !important;
     margin-bottom: 1.5rem;
     border: 0 !important;
+    background-color: var(--tadarab-bg);
 }
 
 .purchased-course-content__accordion__item {
@@ -168,7 +169,7 @@
 .purchased-course-content__accordion__body__list-item {
     @include flex(center, space-between);
     margin-bottom: 1.5rem;
-    border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
+    border-bottom: 0.05rem solid var(--borders-grey);
     padding-bottom: 1rem;
     cursor: pointer !important;
 }

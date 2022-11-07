@@ -51,6 +51,7 @@ function CourseDetails(props: any) {
   const dispatch = useDispatch();
   const [isFound, setIsFound] = useState(true);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
+  const themeState = useSelector((state: any) => state.themeState.theme);
   const Router = useRouter();
   const { slug } = Router.query;
   const { seoData } = props;
@@ -91,10 +92,12 @@ function CourseDetails(props: any) {
         const projectsSection: any = document.getElementById("practical-projects-section");
         const reviewsSection: any = document.getElementById("reviews-section");
         const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
-        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
-          window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
-          window.scrollY >= courseSubscribersSection?.offsetTop
-        ) {
+        if (window.scrollY >= (
+          // projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
+          // window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
+          // window.scrollY >= 
+          courseSubscribersSection?.offsetTop
+        ) ){
           setColFullWidth(true);
         } else if (window.scrollY < projectsSection?.offsetTop ||
           window.scrollY < reviewsSection?.offsetTop ||
@@ -147,10 +150,12 @@ function CourseDetails(props: any) {
           const projectsSection: any = document.getElementById("practical-projects-section");
           const reviewsSection: any = document.getElementById("reviews-section");
           const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
-          if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
-            window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
-            window.scrollY >= courseSubscribersSection?.offsetTop
-          ) {
+          if (window.scrollY >= (
+            // projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) ||
+            // window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
+            // window.scrollY >= 
+            courseSubscribersSection?.offsetTop
+          )) {
             setColFullWidth(true);
           } else if (window.scrollY < projectsSection?.offsetTop ||
             window.scrollY < reviewsSection?.offsetTop ||
@@ -336,7 +341,7 @@ function CourseDetails(props: any) {
 
       {
         isFound ?
-          <Container fluid="xxl">
+          <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
             {
               courseDetailsData?.data &&
               <>

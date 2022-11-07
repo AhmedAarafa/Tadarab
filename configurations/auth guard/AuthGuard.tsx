@@ -27,18 +27,12 @@ const withAuth = (Component: any) => {
       if (localStorage.getItem("theme") === null) {
         dispatch(setTheme("light"));
         document.body.setAttribute("data-theme", "light");
-        localStorage.setItem("theme","light");
-        
+        localStorage.setItem("theme", "light");
+
       } else {
-        if (localStorage.getItem("theme") == "light") {
-          dispatch(setTheme("light"));
-          document.body.setAttribute("data-theme", "light");
-          localStorage.setItem("theme","light");
-        } else if (localStorage.getItem("theme") == "dark") {
-          dispatch(setTheme("dark"));
-          document.body.setAttribute("data-theme", "dark");
-          localStorage.setItem("theme","dark");
-        }
+        const themeStored: any = localStorage.getItem("theme");
+        dispatch(setTheme(themeStored));
+        document.body.setAttribute("data-theme", themeStored);
       }
 
     }, []);

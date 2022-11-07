@@ -3,10 +3,11 @@ import { Container } from "react-bootstrap";
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { useSelector } from "react-redux";
+import withAuth from 'configurations/auth guard/AuthGuard';
 
 const InstructorTermsPage = dynamic(() => import("modules/Static pages/Instructor terms/InstructorTermsPage"));
 
-export default function InstructorTerms(props: any) {
+function InstructorTerms(props: any) {
   const { seoData } = props;
   const themeState = useSelector((state: any) => state.themeState.theme);
 
@@ -23,6 +24,9 @@ export default function InstructorTerms(props: any) {
     </>
   )
 }
+
+export default withAuth(InstructorTerms); 
+
 export async function getServerSideProps() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}static/instructor-terms`)

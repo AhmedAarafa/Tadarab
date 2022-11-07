@@ -27,6 +27,7 @@ export default function CourseSubscribers() {
   const [courseDetails, setCourseDetails] = useState<any>([]);
   const [courseSubscribers, setCourseSubscribers] = useState([]);
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   // const [cartItems, setCartItems] = useState<any>([]);
   const dispatch = useDispatch();
@@ -346,12 +347,12 @@ export default function CourseSubscribers() {
 
                                     {
                                       course?.discounted_price == 0 ?
-                                      <TvIcon color="#222" />
+                                      <TvIcon color={themeState =="light" ? "#222" : "#f5f5f5"} />
                                       :
                                   course?.is_in_cart  || disabledCartBtns.includes(course?.id)  ?
-                                  <AddedToCartIcon color="#222"/>
+                                  <AddedToCartIcon color={themeState =="light" ? "#222" : "#f5f5f5"}/>
                                    : 
-                                   <CartIcon color="#222"/>
+                                   <CartIcon color={themeState =="light" ? "#222" : "#f5f5f5"}/>
                                    }
                                     </div>
 
@@ -369,7 +370,7 @@ export default function CourseSubscribers() {
                                         course?.is_in_favorites ?
                                         <AddedToFavouriteIcon color="#af151f"/>
                                         : 
-                                        <FavouriteIcon color="#222"/>
+                                        <FavouriteIcon color={themeState == "light" ? "#222" : "#f5f5f5"}/>
                                         }
                                     </div>
                                     </Button>

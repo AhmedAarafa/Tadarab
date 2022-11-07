@@ -1,3 +1,9 @@
+.success-state-row {
+  background-color: var(--tadarab-light-bg);
+  margin-bottom: -5rem;
+  padding-bottom: 5rem;
+}
+
 .success-state {
   margin-top: 9rem;
   display: flex;
@@ -78,6 +84,7 @@
   height: 28.125rem;
   box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
+  background-color: var(--tadarab-bg);
 }
 
 .success-state-row__invoice-box__title {
@@ -111,6 +118,7 @@
 .success-state-row__invoice-box__details-box__details div:nth-of-type(1) {
   color: var(--grey);
   padding: 0 0 0 0.5rem;
+  background-color: var(--tadarab-bg);
 }
 .success-state-row__invoice-box__details-box__details div:nth-of-type(2) {
   color: var(--dark-black);

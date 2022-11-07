@@ -156,14 +156,15 @@
 
 
 .navbar__dark-mode-icon {
-    background-color: #0E0B1D;
+    // background-color: var(--tadarab-light-bg);
     border-radius: 50%;
     @include flex (center, center);
-    padding: 0 0 0 0.2rem;
+    padding: 0 0 0 0.1rem;
     width: 2.75rem;
     height: 2.75rem;
     margin: 0 1.0625rem 0 0;
-    display: none !important;
+    cursor: pointer;
+    // display: none !important;
 
     svg {
         width: 1.5rem;
@@ -305,10 +306,13 @@
     height: fit-content;
     margin-bottom: 0 !important;
 
-    &>li {
-        padding-bottom: 0.85rem;
-        cursor: pointer;
+    a {
+        color: inherit;
+        &>li {
+            padding-bottom: 0.85rem;
+            cursor: pointer;
 
+        }
     }
 
 }
@@ -565,7 +569,7 @@
 .sidebar-list__dark-mode-box {
     @include flex(center, space-between);
     margin-top: 2.5rem;
-    display: none;
+    cursor: pointer;
 
     span {
         font-size: 2.656rem;
@@ -863,8 +867,8 @@
     }
 
     .navbar__search-bar-container {
-        // width: calc(100vw - 50.75rem);
-        width: calc(100vw - 46.31rem);
+        width: calc(100vw - 50.75rem);
+        // width: calc(100vw - 46.31rem);
     }
 
     .navbar__purchased-course-nav {

@@ -4,11 +4,12 @@ import Router, { useRouter }  from "next/router";
 import { useEffect } from "react";
 import { useSelector } from "react-redux"; 
 import dynamic from 'next/dynamic';
+import withAuth from "configurations/auth guard/AuthGuard";
 
 
 const SignupPage = dynamic(() => import("modules/Auth/SignUp page/SignupPage"));
 
-export default function SignUp() {
+function SignUp() {
 
   // const { isUserAuthenticated } = useSelector((state:any) => state.userAuthentication);
 
@@ -24,3 +25,6 @@ export default function SignUp() {
     </>
   );
 }
+
+export default withAuth(SignUp);
+

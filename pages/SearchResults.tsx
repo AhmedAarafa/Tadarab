@@ -7,10 +7,11 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useSelector } from "react-redux";
 
 import dynamic from 'next/dynamic';
+import withAuth from 'configurations/auth guard/AuthGuard';
 const SearchResultsPage = dynamic(() => import("modules/Search Results/SearchResultsPage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
-export default function SearchResults(props: any) {
+function SearchResults(props: any) {
   const { seoData } = props;
   const router = useRouter();
   const themeState = useSelector((state: any) => state.themeState.theme);
@@ -52,6 +53,10 @@ export default function SearchResults(props: any) {
     </>
   )
 }
+
+export default withAuth(SearchResults); 
+
+
 export async function getServerSideProps(context: any) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/?keyword=${context?.query?.q}&page=1&limit=16`)

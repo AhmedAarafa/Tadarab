@@ -73,6 +73,7 @@
   box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
   height: 10.0625rem;
+  background-color: var(--tadarab-bg);
   display: flex;
   align-items: flex-start;
   justify-content: unset;
@@ -258,6 +259,7 @@
     font-size: 2.813rem;
     border-radius: 1.875rem;
     height: 6.875rem;
+    background-color: var(--tadarab-light-bg) !important;
   }
   .show-all-reviews-btn:hover {
     box-shadow: none;

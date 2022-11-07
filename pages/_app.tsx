@@ -15,15 +15,17 @@ import Script from "next/script";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
 import Router, { useRouter } from "next/router";
+import { setTheme } from "configurations/redux/actions/themeToggler";
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // const dispatch = useDispatch();
+
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
-    localStorage.setItem("theme", "light");
-    document.body.setAttribute("data-theme", "light");
+    
     if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'production') {
       // console.log = function() {}
     }
@@ -106,7 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       <Provider store={store}>
         <NotificationBar />
-        <Navbar  />
+        <Navbar />
         <Component {...pageProps} />
         <Footer />
       </Provider>
@@ -115,4 +117,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   )
 }
 
-export default MyApp
+export default MyApp;

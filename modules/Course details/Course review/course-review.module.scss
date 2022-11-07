@@ -89,6 +89,7 @@
     box-shadow: 0 0 1.25rem #0000001A;
     border-radius: 1.25rem;
     height: 10.0625rem;
+    background-color: var(--tadarab-bg);
 
 
     @include flex(flex-start);
@@ -296,6 +297,7 @@
         font-size: 2.813rem;
         border-radius: 1.875rem;
         height: 6.875rem;
+        background-color: var(--tadarab-light-bg)  !important;
     }
 
     .course-review__mobile-view {

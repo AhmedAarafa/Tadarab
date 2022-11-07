@@ -3,8 +3,9 @@ import React from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import { useSelector } from 'react-redux';
+import withAuth from 'configurations/auth guard/AuthGuard';
 
-export default function NotFound() {
+function NotFound() {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
     return (
@@ -97,3 +98,5 @@ export default function NotFound() {
         </>
     )
 }
+
+export default withAuth(NotFound); 

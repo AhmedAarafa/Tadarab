@@ -48,8 +48,10 @@ function CourseDetails() {
   const [allLiveWebinar, setAllLiveWebinar] = useState({});
   const [courseData, setCourseData] = useState({});
   const [subscriptionInfo, setSubscriptionInfo] = useState<any>({});
+  const themeState = useSelector((state: any) => state.themeState.theme);
   const [isFound, setIsFound] = useState(true);
   const dispatch = useDispatch();
+
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
   const { slug } = Router.query;
@@ -236,7 +238,7 @@ function CourseDetails() {
         {/*  (courseDetailsData?.data?.course_details?.is_purchased) && */}
       {
         isFound ?
-          <Container fluid="xxl">
+          <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
             {((JSON.stringify(courseDetailsData?.data) !== "{}")) &&
               <>
                 <MobileNavTabsBar />

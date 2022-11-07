@@ -4,7 +4,7 @@
     margin-top: 4rem;
     width: 43.75rem;
     // height: 7.5rem;
-    background-color: #F7E7E8;
+    background-color: var(--pale-red-bg);
     border-radius: 1.375rem;
     padding: 1.438rem 0.313rem 0.313rem 0.313rem;
 }
@@ -24,7 +24,7 @@
 
 .special-offer__cards-outer-box {
     border-radius: 1.375rem;
-    background-color: white;
+    background-color: var(--tadarab-light-bg);
     padding: 1.7rem 2rem 2.25rem 2rem;
     flex-direction: column;
     @include flex(center);
@@ -88,7 +88,7 @@
     }
 
     div {
-        background-color: rgba(175, 21, 31, 0.1);
+        background-color: var(--pale-red-bg);
         padding: 0.8rem;
         border-radius: 50%;
         @include flex(center, center);
@@ -304,7 +304,7 @@
 }
 
 .special-offer__cards-outer-box__card__offer-duration-box {
-    background-color: rgba(175, 21, 31, 0.08);
+    background-color: var(--pale-red-bg);
     box-shadow: 0 0.188rem 0.5rem #0000001A;
     padding: 0.563rem 1rem 0.7rem 1rem;
     border-radius: 0.625rem;
@@ -354,7 +354,7 @@
 .special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator {
     font-size: 1.063rem;
     font-weight: 800;
-    color: var(--dark-black);
+    color: #222;
     margin: 0.8rem 0.2rem 0 0.2rem;
 }
 
@@ -462,7 +462,7 @@
         }
 
         div {
-            background-color: rgba(175, 21, 31, 0.1);
+            background-color: var(--pale-red-bg);
             padding: 1.2rem;
             border-radius: 50%;
             @include flex(center, center);
@@ -633,7 +633,6 @@
     }
 
     .special-offer__cards-outer-box__card__offer-duration-box {
-        background-color: rgba(175, 21, 31, 0.08);
         box-shadow: 0 0.23rem 0.62rem #0000001A;
         padding: 1.5rem;
         border-radius: 1rem;

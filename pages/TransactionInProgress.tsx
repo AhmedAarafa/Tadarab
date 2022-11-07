@@ -7,9 +7,10 @@ import { setTransactionStatus } from "configurations/redux/actions/transactionSt
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
 import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
+import withAuth from 'configurations/auth guard/AuthGuard';
 
 
-export default function TransactionInProgress() {
+function TransactionInProgress() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [serverResponse, setServerResponse] = useState("الرجاء الإنتظار حتي تستكمل هذه العملية");
@@ -99,3 +100,5 @@ export default function TransactionInProgress() {
     </>
   )
 }
+
+export default withAuth(TransactionInProgress);

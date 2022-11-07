@@ -125,8 +125,6 @@ export default function TrainerProfile(props: any) {
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
-        {console.log("seoData",seoData)
-        }
       {
         isFound ?
           <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>

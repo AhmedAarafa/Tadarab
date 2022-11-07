@@ -11,6 +11,7 @@ import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 import dynamic from 'next/dynamic';
+import withAuth from 'configurations/auth guard/AuthGuard';
 const StartTraining = dynamic(() => import("modules/Join as a trainer/Start training/StartTraining"));
 const SuccessfulInvestment = dynamic(() => import("modules/Join as a trainer/Successful investment/SuccessfulInvestment"));
 const Statistics = dynamic(() => import("modules/Join as a trainer/Statistics/Statistics"));
@@ -20,7 +21,7 @@ const HowToStart = dynamic(() => import('modules/Join as a trainer/How to start/
 const Faq = dynamic(() => import('modules/Join as a trainer/FAQ/Faq'));
 
 
-export default function JoinAsATrainer() {
+function JoinAsATrainer() {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
   return (
@@ -38,3 +39,6 @@ export default function JoinAsATrainer() {
     </>
   )
 }
+
+export default withAuth(JoinAsATrainer); 
+

@@ -3,7 +3,7 @@
   width: 43rem;
   height: 19rem;
   border-radius: 1.25rem;
-  border: 0.063rem solid rgba(34, 34, 34, 0.1);
+  border: 0.063rem solid var(--borders-grey);
   padding: 1.875rem;
   padding-bottom: 3rem;
   position: relative;
@@ -33,15 +33,15 @@
 .what-you-will-learn__read-more {
   font-size: 1.125rem;
   font-weight: 800;
-  width: 100%;
+  width: 93%;
   flex-grow: 2;
-  background-color: white;
   color: var(--primary-red);
   position: absolute;
   bottom: 0rem;
   padding: 0.7rem 0 1.4rem 0;
   cursor: pointer;
   z-index: 3;
+  background-color: var(--tadarab-light-bg);
 }
 .what-you-will-learn__read-more span {
   margin-left: 0.5rem;
@@ -98,7 +98,6 @@
     font-weight: 800;
     width: 85%;
     flex-grow: 2;
-    background-color: white;
     color: var(--primary-red);
     position: absolute;
     bottom: 0rem;

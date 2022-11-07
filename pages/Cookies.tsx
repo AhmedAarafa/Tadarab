@@ -3,10 +3,11 @@ import { Container } from "react-bootstrap";
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { useSelector } from "react-redux";
+import withAuth from 'configurations/auth guard/AuthGuard';
 
 const CookiesTermsPage = dynamic(() => import("modules/Static pages/Cookies/CookiesPage"));
 
-export default function InstructorTerms(props: any) {
+function InstructorTerms(props: any) {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
 
@@ -23,6 +24,9 @@ export default function InstructorTerms(props: any) {
         </>
     )
 }
+
+export default withAuth(InstructorTerms); 
+
 
 export async function getServerSideProps() {
     try{

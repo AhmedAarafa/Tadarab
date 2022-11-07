@@ -24,7 +24,7 @@
     margin-top: 1.25rem;
     @include flex(flex-start);
     flex-direction: column;
-
+    background-color: var(--tadarab-bg);
 }
 
 .faq__accordion__header {
@@ -38,7 +38,7 @@
         font-size: 1.125rem;
         font-weight: 800;
         color: var(--dark-black) !important;
-        background-color: white !important;
+        background-color: var(--tadarab-bg) !important;
         padding: 1.5rem !important;
         border-radius: 1.25rem !important;
         direction: ltr !important;

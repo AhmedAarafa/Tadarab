@@ -2,11 +2,12 @@ import React from 'react';
 import { Container } from "react-bootstrap";
 import dynamic from 'next/dynamic';
 import { useSelector } from "react-redux";
+import withAuth from 'configurations/auth guard/AuthGuard';
 
 const MyAccountPage = dynamic(() => import("modules/My account page/MyAccountPage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
-export default function MyAccount() {
+function MyAccount() {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
     return (
@@ -17,3 +18,5 @@ export default function MyAccount() {
         </>
     )
 }
+
+export default withAuth(MyAccount); 

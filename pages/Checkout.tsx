@@ -4,10 +4,13 @@ import { Container } from "react-bootstrap";
 import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents";
 import dynamic from 'next/dynamic';
 import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
+import { useSelector } from "react-redux";
+import withAuth from "configurations/auth guard/AuthGuard";
 
 const CheckoutPage = dynamic(() => import("modules/Checkout/Checkout page/CheckoutPage"));
 
-export default function Checkout() {
+function Checkout() {
+  const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
     subscriptionCounter();
@@ -20,13 +23,16 @@ export default function Checkout() {
         return;
       })
     }
-  }, [])
+  }, []);
 
   return (
     <>
-    <Container fluid="xxl">
+    <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
       <CheckoutPage />
     </Container>    
     </>
   );
 }
+
+export default withAuth(Checkout); 
+

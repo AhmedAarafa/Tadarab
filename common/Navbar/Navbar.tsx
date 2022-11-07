@@ -17,7 +17,7 @@ import Image from 'next/image';
 import { popoverHandler, notificationBarHandler } from "./utils";
 import {
   TadarabLogo, NextIcon, BackIcon, DarkModeIcon, DropDownIcon, SearchIcon,
-  FavouriteIcon, CartIcon, AccountIcon, ThreeDotsIcon, CertificateIcon, LessonPlayIcon
+  FavouriteIcon, CartIcon, AccountIcon, ThreeDotsIcon, CertificateIcon, LessonPlayIcon, LightModeIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
@@ -144,14 +144,14 @@ function Navbar(props: any) {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 50.75rem)` :
             searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
           // searchBar.style.cssText=`width:28rem`;
           // searchBar.style.cssText=`width:31.75rem`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width:42rem` :
-            searchBar.style.cssText = `width:36rem`;
+            searchBar.style.cssText = `width:39rem` :
+            searchBar.style.cssText = `width:32rem`;
         }
       }
       window.addEventListener("resize", () => {
@@ -160,14 +160,14 @@ function Navbar(props: any) {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width: calc(100vw - 48.6rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 50.75rem)` :
               searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
             // searchBar.style.cssText=`width:28rem`;
             // searchBar.style.cssText=`width:31.75rem`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width:42rem` :
-              searchBar.style.cssText = `width:36rem`;
+              searchBar.style.cssText = `width:39rem` :
+              searchBar.style.cssText = `width:32rem`;
           }
         }
       });
@@ -181,12 +181,12 @@ function Navbar(props: any) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           userStatus.isSubscribed == true ?
             searchBar.style.cssText = `width: calc(100vw - 44rem)` :
-            searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+            searchBar.style.cssText = `width: calc(100vw - 60rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
           userStatus.isSubscribed == true ?
             searchBar.style.cssText = `width:38.5rem` :
-            searchBar.style.cssText = `width:32.5rem`;
+            searchBar.style.cssText = `width:28rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
       }
@@ -198,12 +198,12 @@ function Navbar(props: any) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
             userStatus.isSubscribed == true ?
               searchBar.style.cssText = `width: calc(100vw - 44rem)` :
-              searchBar.style.cssText = `width: calc(100vw - 50rem)`;
+              searchBar.style.cssText = `width: calc(100vw - 60rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
             userStatus.isSubscribed == true ?
               searchBar.style.cssText = `width:38.5rem` :
-              searchBar.style.cssText = `width:32.5rem`;
+              searchBar.style.cssText = `width:28rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
         }
@@ -417,8 +417,10 @@ function Navbar(props: any) {
                 {
                   categoriesList.map((category: any, i: number) => {
                     return (
-                      <Link key={i} href={`/topic/${category.slug}`}>
-                        <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>{category.title}</li>
+                      <Link key={i} href={`/topic/${category.slug}`} passHref>
+                        <a>
+                          <li onClick={() => { setExpanded(false); handleDiscoverSidebarShow(false); }}>{category.title}</li>
+                        </a>
                       </Link>
                     )
                   })
@@ -426,13 +428,15 @@ function Navbar(props: any) {
               </ul>
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>الأقسام</div></div>
-                <Link href="/courses">
-
-                  <li onClick={() => { setExpanded(false) }}>دورات تدريبية</li>
+                <Link href="/courses" passHref>
+                  <a>
+                    <li onClick={() => { setExpanded(false) }}>دورات تدريبية</li>
+                  </a>
                 </Link>
-                <Link href="/courses?type=live">
-
-                  <li onClick={() => { setExpanded(false) }}>دورات مباشرة</li>
+                <Link href="/courses?type=live" passHref>
+                  <a>
+                    <li onClick={() => { setExpanded(false) }}>دورات مباشرة</li>
+                  </a>
                 </Link>
                 {/* <Link href="/tadarab-season">
                   <li onClick={() => { setExpanded(false) }}>موسم تدرب </li>
@@ -485,10 +489,27 @@ function Navbar(props: any) {
             }
           </ul>
           <div className={styles["sidebar-list__dark-mode-box"]}>
-            <span>تغيير للوضع الداكن</span>
-            <div className={styles["sidebar-list__dark-mode-box__icon"]}>
-
-              <DarkModeIcon />
+            <span>
+              تغيير للوضع 
+              {
+                themeState == "light" ?
+                  "  الداكن "   
+                  :
+                  " النهاري "
+              }
+             
+              </span>
+            <div className={styles["sidebar-list__dark-mode-box__icon"]} onClick={() => {
+              dispatch(setTheme(themeState == "light" ? "dark" : "light"));
+              localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
+              document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
+            }} style={{ backgroundColor: themeState == "light" ? "#0E0B1D" : "#1B1829" }}>
+              {
+                themeState == "light" ?
+                  <DarkModeIcon />
+                  :
+                  <LightModeIcon />
+              }
             </div>
 
           </div>
@@ -541,8 +562,10 @@ function Navbar(props: any) {
                       {
                         categoriesList.map((category: any, i: number) => {
                           return (
-                            <Link key={i} href={`/topic/${category.slug}`}>
-                              <li>{category.title}</li>
+                            <Link key={i} href={`/topic/${category.slug}`} passHref>
+                              <a>
+                                <li>{category.title}</li>
+                              </a>
                             </Link>
                           )
                         })
@@ -554,13 +577,15 @@ function Navbar(props: any) {
                       الأقسام
                     </div>
                     <ul className={styles["navbar__discover-popover__list"]}>
-                      <Link href="/courses">
-
-                        <li>دورات تدريبية</li>
+                      <Link href="/courses" passHref>
+                        <a>
+                          <li>دورات تدريبية</li>
+                        </a>
                       </Link>
-                      <Link href="/courses?type=live">
-
-                        <li>دورات مباشرة</li>
+                      <Link href="/courses?type=live" passHref>
+                        <a>
+                          <li>دورات مباشرة</li>
+                        </a>
                       </Link>
                       {/* <Link href="/tadarab-season">
 
@@ -650,9 +675,18 @@ function Navbar(props: any) {
               </div> */}
             </>
           }
-          {userStatus.isUserAuthenticated && <div className={styles["navbar__dark-mode-icon"]}>
-            <DarkModeIcon />
-          </div>}
+          <div onClick={() => {
+            dispatch(setTheme(themeState == "light" ? "dark" : "light"));
+            localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
+            document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
+          }} className={styles["navbar__dark-mode-icon"]} style={{ backgroundColor: themeState == "light" ? "#0E0B1D" : "#1B1829" }}>
+            {
+              themeState == "light" ?
+                <DarkModeIcon />
+                :
+                <LightModeIcon />
+            }
+          </div>
 
           {userStatus.isUserAuthenticated && !isCoursePurchased && <div className={styles["navbar__fav-icon"]}>
             <FavouriteIcon color="#222" />

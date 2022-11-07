@@ -4,7 +4,7 @@ import styles from "./monthly-subscription-card.module.css"
 import { Button } from "react-bootstrap";
 import {
   CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon, GuaranteeIcon,
-  TvIcon, TickIcon, DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon
+  TvIcon, DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon, DarkModeCalendarIcon,DarkModeWatchLiveOrRecordedIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image';
@@ -33,6 +33,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
+  const themeState = useSelector((state: any) => state.themeState.theme);
   const dispatch = useDispatch();
   const Router = useRouter();
   const { slug } = Router.query;
@@ -231,7 +232,12 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     <>
                       <div className={styles["monthly_subscription__live-details-list"]}>
                         <div>
-                          <CalendarIcon />
+                          {
+                            themeState == "light" ?
+                              <CalendarIcon />
+                              :
+                              <DarkModeCalendarIcon />
+                          }
                         </div>
                         {theOption?.allLiveWebinar?.arabic_date &&
                           datesArray.map((date: any, i: number) => {
@@ -247,14 +253,19 @@ export default function MonthlySubscriptionCard(theOption: any) {
                       </div>
                       <div className={styles["monthly_subscription__live-details-list"]}>
                         <div>
-                          <DurationIcon />
+                          <DurationIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
                         </div>
                         {` ${theOption?.allLiveWebinar?.start_time && tConvert(theOption?.allLiveWebinar?.start_time)} `}
                         بتوقيت الكويت والسعودية
                       </div>
                       <div className={styles["monthly_subscription__live-details-list"]}>
                         <div>
-                          <WatchLiveOrRecordedIcon />
+                          {
+                            themeState == "light" ?
+                              <WatchLiveOrRecordedIcon />
+                              :
+                              <DarkModeWatchLiveOrRecordedIcon />
+                          }
                         </div>
                         شاهد الدورة بث مباشر او مسجلة بعد انتهاء البث
 
@@ -262,19 +273,19 @@ export default function MonthlySubscriptionCard(theOption: any) {
                       <div className={styles["monthly_subscription__live-details-list"]}>
                         <div>
 
-                          <CertifIcon />
+                          <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"} />
                         </div>
                         شهادة إتمام اون لاين معتمدة
                       </div>
                       <div className={styles["monthly_subscription__live-details-list"]}>
                         <div>
-                          <DocumentIcon />
+                          <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
                         </div>
                         مرفقات حصرية جاهزة للتحميل
                       </div>
                       <div className={styles["monthly_subscription__live-details-list"]}>
                         <div>
-                          <DevicesIcon />
+                          <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
                         </div>
                         تابع الدورة من اي لابتوب او موبايل
                       </div>
@@ -390,7 +401,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 </span> */}
               <div className={styles["monthly-subscription__subscription-value"]} >
                 <span>
-                احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
+                  احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
                   {/* احصل على كل الدورات فقط ب */}
                   {/* {courseDetails.subscription_sale_price || subscriptionInfo?.after}
                   {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `} / ش
@@ -541,19 +552,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
           {/* Price end */}
           <div className={styles["course-price"]}>
-            {/* Orignal price start */}
-            {theOption.liveWebinarDetails?.price != theOption.liveWebinarDetails?.discounted_price &&
-              <div className={styles["orignal-price"]}>
-                بدلاً من
-                <span>
-                  {theOption.liveWebinarDetails?.currency_symbol}
-                </span>
-                <span>
-                  {theOption.liveWebinarDetails?.price}
-                </span>
-              </div>
-            }
-            {/* Orignal price end */}
 
             {/* Sale price start */}
             {theOption.liveWebinarDetails?.discounted_price !== 0 && theOption.liveWebinarDetails?.type !== "webinar" &&
@@ -565,10 +563,24 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 <span>
                   {courseDetails?.course_details?.currency_symbol}
                 </span>
-
               </div>
             }
             {/* Sale price end */}
+
+            {/* Orignal price start */}
+            {theOption.liveWebinarDetails?.price != theOption.liveWebinarDetails?.discounted_price &&
+              <div className={styles["orignal-price"]}>
+                بدلاً من
+                <span>
+                  {` ${courseDetails?.course_details?.currency_symbol} `}
+                </span>
+                <span>
+                  {courseDetails?.course_details?.price}
+                </span>
+              </div>
+            }
+            {/* Orignal price end */}
+
           </div>
           {/* Price end */}
 
@@ -608,37 +620,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
             className={styles["monthly-subscription__course-card__details-list"]}
           >
-            {/* {theOption.liveWebinarDetails?.type == "webinar" &&
-            <>
-              <div
-                className={
-                  styles["monthly-subscription__course-card__details-list__item"]
-                }
-              >
-                <DurationIcon />
-
-                <span>تاريخ الدورة</span>
-              </div>
-              <div
-                className={
-                  styles["monthly-subscription__course-card__details-list__item"]
-                }
-              >
-                <DurationIcon />
-                <span>الوقت بالساعة بتوقيت الكويت والسعودية</span>
-              </div>
-              <div
-                className={
-                  styles["monthly-subscription__course-card__details-list__item"]
-                }
-              >
-                <div>
-                  <DurationIcon />
-                </div>
-                <span>شاهد الدورة بث مباشر او مسجلة بعد انتهاء البث</span>
-              </div>
-            </>
-          } */}
             {theOption.liveWebinarDetails?.type !== "webinar" &&
               <>
                 <div
@@ -646,7 +627,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles["monthly-subscription__course-card__details-list__item"]
                   }
                 >
-                  <DurationIcon />
+                  <DurationIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
 
                   <span>{Math.round(courseDetailsData?.data?.total_duration / 60 / 60)} ساعات تدريبية</span>
                 </div>
@@ -655,7 +636,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles["monthly-subscription__course-card__details-list__item"]
                   }
                 >
-                  <CertifIcon />
+                  <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"} />
 
                   <span>شهادة إتمام اون لاين معتمدة</span>
                 </div>
@@ -664,7 +645,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles["monthly-subscription__course-card__details-list__item"]
                   }
                 >
-                  <DocumentIcon />
+                  <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
 
                   <span>مرفقات حصرية جاهزة للتحميل</span>
                 </div>
@@ -673,7 +654,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles["monthly-subscription__course-card__details-list__item"]
                   }
                 >
-                  <DevicesIcon />
+                  <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"}/>
 
                   <span>تابع الدورة من اي لابتوب او موبايل</span>
                 </div>

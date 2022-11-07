@@ -1,3 +1,9 @@
+.failed-state-row {
+  background-color: var(--tadarab-light-bg);
+  margin-bottom: -5rem;
+  padding-bottom: 5rem;
+}
+
 .failed-state {
   margin-top: 9rem;
   display: flex;
@@ -77,6 +83,7 @@
   height: 28.125rem;
   box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
+  background-color: var(--tadarab-bg);
 }
 
 .failed-state-row__invoice-box__title {
@@ -104,7 +111,7 @@
   font-size: 0.75rem;
 }
 .failed-state-row__invoice-box__details-box__details div {
-  background-color: white;
+  background-color: var(--tadarab-bg);
   z-index: 1;
 }
 .failed-state-row__invoice-box__details-box__details div:nth-of-type(1) {

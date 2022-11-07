@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic';
 import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 import Router, { useRouter } from "next/router";
 import Faq from "common/Subscription faqs/FAQ/Faq";
+import withAuth from "configurations/auth guard/AuthGuard";
 
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const UnlimitedCourses = dynamic(() => import("modules/Tadarab subscription/Unlimited courses/UnlimitedCourses"));
@@ -19,7 +20,7 @@ const MarketingBoxes = dynamic(() => import("modules/Tadarab subscription/Market
 const ArabicTrainers = dynamic(() => import("modules/Tadarab subscription/Arabic trainers/ArabicTrainers"));
 const MobileCheckoutBar = dynamic(() => import("modules/Course details/Mobile checkout bar/MobileCheckoutBar"));
 
-export default function TadarabSubscription() {
+function TadarabSubscription() {
   const userAuthState = useSelector((state: any) => state.userAuthentication);
   const [subscriptionData, setSubscriptionData] = useState({});
 
@@ -125,3 +126,5 @@ export default function TadarabSubscription() {
     </>
   );
 }
+
+export default withAuth(TadarabSubscription);

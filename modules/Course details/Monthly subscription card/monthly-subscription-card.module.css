@@ -13,7 +13,7 @@
 }
 .course-price .sale-price {
   font-size: 0.9rem;
-  color: black;
+  color: var(--dark-black);
 }
 .course-price span {
   margin: 0 0.1rem 0 0;
@@ -28,6 +28,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 5.5rem;
+  background-color: var(--tadarab-bg);
 }
 
 .monthly-subscription__course-card-helper {
@@ -80,7 +81,7 @@
 }
 
 .live-webinar-countdown {
-  background-color: #F7EBEB !important;
+  background-color: var(--pale-red-bg) !important;
   box-shadow: 0 0.188rem 0.5rem rgba(0, 0, 0, 0.1019607843);
   padding: 0.563rem 1rem 0.7rem 1rem;
   border-radius: 0.625rem;
@@ -136,7 +137,7 @@
 .live-webinar-countdown__countdown-box__separator {
   font-size: 1.063rem;
   font-weight: 800;
-  color: var(--dark-black);
+  color: #222;
   margin: 0.8rem 0.2rem 0 0.2rem;
 }
 
@@ -256,7 +257,7 @@
   border-radius: 0.75rem;
   width: 100%;
   height: 3.125rem;
-  background-color: white !important;
+  background-color: var(--tadarab-bg) !important;
   border: 0.063rem solid var(--dark-black) !important;
   color: var(--dark-black) !important;
 }
@@ -522,6 +523,7 @@
   position: fixed;
   background-color: white;
   margin-right: -8.5rem;
+  background-color: var(--tadarab-bg);
 }
 
 .monthly-subscription__sticky-top-course-card__checkout-box {
@@ -603,7 +605,7 @@
 
 @media (max-width: 575px) {
   .live-webinar-countdown {
-    background-color: rgba(175, 21, 31, 0.08);
+    background-color: var(--pale-red-bg);
     box-shadow: 0 0.23rem 0.62rem rgba(0, 0, 0, 0.1019607843);
     padding: 1.5rem;
     border-radius: 1rem;
@@ -737,8 +739,8 @@
     border-radius: 1.875rem;
     width: 100%;
     height: 7.8125rem;
-    background-color: white !important;
-    border: 0.1575rem solid var(--dark-black) !important;
+    background-color: var(--tadarab-bg) !important;
+    border: 0.063rem solid var(--dark-black) !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover {
     box-shadow: none;
@@ -751,7 +753,7 @@
     border: 0.125rem solid #9d151e !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
-    border: 0.1575rem solid var(--dark-black) !important;
+    border-width: 0.1575rem !important;
     background-color: var(--primary-red) !important;
     color: white !important;
   }
