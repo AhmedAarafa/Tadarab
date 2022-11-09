@@ -88,7 +88,7 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.latest-courses__see-more-btn:hover, .latest-courses__see-more-btn:active {
+.latest-courses__see-more-btn:is(.latest-courses__see-more-btn:hover, .latest-courses__see-more-btn:active) {
   background-color: white !important;
   color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -275,7 +275,7 @@
   margin-right: 0.3rem;
   padding: 0 !important;
 }
-.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
 
@@ -481,7 +481,7 @@
     height: -moz-fit-content;
     height: fit-content;
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -670,7 +670,7 @@
     height: -moz-fit-content;
     height: fit-content;
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -851,7 +851,7 @@
     height: -moz-fit-content;
     height: fit-content;
   }
-  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -880,7 +880,7 @@
     align-items: center;
     justify-content: center;
   }
-  .latest-courses__see-more-btn:hover, .latest-courses__see-more-btn:active {
+  .latest-courses__see-more-btn:is(.latest-courses__see-more-btn:hover, .latest-courses__see-more-btn:active) {
     border: 0.3125rem solid rgba(175, 21, 31, 0.2) !important;
   }
   .latest-courses__see-more-btn svg {

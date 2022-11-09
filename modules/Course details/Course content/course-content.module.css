@@ -467,7 +467,7 @@
     color: var(--outlined-btn-text) !important;
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
-  .course-content__show-more-btn:hover, .course-content__show-more-btn:active {
+  .course-content__show-more-btn:is(.course-content__show-more-btn:hover, .course-content__show-more-btn:active) {
     border: 0.125rem solid var(--pale-red) !important;
   }
   .purchased-course-playlist__progress-box {

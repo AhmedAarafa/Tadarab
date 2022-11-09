@@ -37,7 +37,7 @@
 .sticky-signup-bar button:active {
   box-shadow: none;
 }
-.sticky-signup-bar button:hover, .sticky-signup-bar button:active {
+.sticky-signup-bar button:is(.sticky-signup-bar button:hover, .sticky-signup-bar button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }

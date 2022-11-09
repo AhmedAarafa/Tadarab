@@ -42,7 +42,7 @@
 .unlimited-courses__subscribe-btn:active {
   box-shadow: none;
 }
-.unlimited-courses__subscribe-btn:hover, .unlimited-courses__subscribe-btn:active {
+.unlimited-courses__subscribe-btn:is(.unlimited-courses__subscribe-btn:hover, .unlimited-courses__subscribe-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -145,7 +145,7 @@
 .unlimited-courses__search-bar__btn:active {
   box-shadow: none;
 }
-.unlimited-courses__search-bar__btn:hover, .unlimited-courses__search-bar__btn:active {
+.unlimited-courses__search-bar__btn:is(.unlimited-courses__search-bar__btn:hover, .unlimited-courses__search-bar__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -280,7 +280,7 @@
   .unlimited-courses__search-bar__btn:active {
     box-shadow: none;
   }
-  .unlimited-courses__search-bar__btn:hover, .unlimited-courses__search-bar__btn:active {
+  .unlimited-courses__search-bar__btn:is(.unlimited-courses__search-bar__btn:hover, .unlimited-courses__search-bar__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

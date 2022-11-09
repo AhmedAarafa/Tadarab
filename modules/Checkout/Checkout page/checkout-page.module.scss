@@ -397,8 +397,7 @@
     height: 2.5rem;
     margin-left: 0.4rem;
 
-    &:hover,
-    &:active {
+    &:is(&:hover, &:active) {
         background-color: #000f1d !important;
         border: 0.125rem solid #000f1d !important;
     }
@@ -1117,8 +1116,7 @@
         color: var(--dark-black) !important;
         border: 0.0625rem solid #2222228c !important;
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             background-color: transparent !important;
             color: var(--dark-black) !important;
             border: 0.0625rem solid #2222228c !important;
@@ -2000,8 +1998,7 @@
         height: 2.5rem*2.2;
         margin-left: 0.4rem*2.2;
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             background-color: #000f1d !important;
             border: 0.125rem*2.2 solid #000f1d !important;
         }
@@ -2570,8 +2567,7 @@
             padding: 0.8rem;
             border: 0.0625rem*2 solid #2222228c !important;
 
-            &:hover,
-            &:active {
+            &:is(&:hover, &:active) {
                 border: 0.0625rem*2 solid #2222228c !important;
             }
 

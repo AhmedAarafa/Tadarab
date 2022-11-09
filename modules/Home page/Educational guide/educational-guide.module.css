@@ -74,7 +74,7 @@
 .educational-guide__container__details-box__btn:active {
   box-shadow: none;
 }
-.educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active {
+.educational-guide__container__details-box__btn:is(.educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -145,7 +145,7 @@
   .educational-guide__container__details-box__btn:active {
     box-shadow: none;
   }
-  .educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active {
+  .educational-guide__container__details-box__btn:is(.educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

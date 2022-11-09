@@ -68,9 +68,12 @@
 .comments-section__input-field-container__btn--dimmed:active {
   box-shadow: none;
 }
-.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
+.comments-section__input-field-container__btn:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
 .comments-section__input-field-container__btn--dimmed:hover,
-.comments-section__input-field-container__btn--dimmed:active {
+.comments-section__input-field-container__btn--dimmed:active),
+.comments-section__input-field-container__btn--dimmed:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
+.comments-section__input-field-container__btn--dimmed:hover,
+.comments-section__input-field-container__btn--dimmed:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -324,9 +327,12 @@
 .comments-section__input-field-container__btn--dimmed:active {
     box-shadow: none;
   }
-  .comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
+  .comments-section__input-field-container__btn:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
 .comments-section__input-field-container__btn--dimmed:hover,
-.comments-section__input-field-container__btn--dimmed:active {
+.comments-section__input-field-container__btn--dimmed:active),
+.comments-section__input-field-container__btn--dimmed:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
+.comments-section__input-field-container__btn--dimmed:hover,
+.comments-section__input-field-container__btn--dimmed:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

@@ -54,7 +54,7 @@
 .failed-state__btn:active {
   box-shadow: none;
 }
-.failed-state__btn:hover, .failed-state__btn:active {
+.failed-state__btn:is(.failed-state__btn:hover, .failed-state__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -178,7 +178,7 @@
   .failed-state__btn:active {
     box-shadow: none;
   }
-  .failed-state__btn:hover, .failed-state__btn:active {
+  .failed-state__btn:is(.failed-state__btn:hover, .failed-state__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

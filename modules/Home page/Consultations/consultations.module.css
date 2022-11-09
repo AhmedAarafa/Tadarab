@@ -141,7 +141,7 @@
 .consultations__cards-carousel__card__btn:active {
   box-shadow: none;
 }
-.consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+.consultations__cards-carousel__card__btn:is(.consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -289,7 +289,7 @@
   .consultations__cards-carousel__card__btn:active {
     box-shadow: none;
   }
-  .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+  .consultations__cards-carousel__card__btn:is(.consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -437,7 +437,7 @@
   .consultations__cards-carousel__card__btn:active {
     box-shadow: none;
   }
-  .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+  .consultations__cards-carousel__card__btn:is(.consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -569,7 +569,7 @@
   .consultations__cards-carousel__card__btn:active {
     box-shadow: none;
   }
-  .consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active {
+  .consultations__cards-carousel__card__btn:is(.consultations__cards-carousel__card__btn:hover, .consultations__cards-carousel__card__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

@@ -62,7 +62,7 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active {
+.courses-departments__container__show-all-btn:is(.courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active) {
   background-color: white !important;
   color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -381,7 +381,7 @@
     height: 2.1875rem;
     margin: 0.5rem 2.063rem 0 0;
   }
-  .courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active {
+  .courses-departments__container__show-all-btn:is(.courses-departments__container__show-all-btn:hover, .courses-departments__container__show-all-btn:active) {
     background-color: white !important;
     color: var(--primary-red) !important;
     border: 0.275rem solid rgba(175, 21, 31, 0.2) !important;

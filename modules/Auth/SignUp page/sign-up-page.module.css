@@ -312,7 +312,7 @@
 .register__register-box__registeration-form-box__make-new-acc-btn:active {
   box-shadow: none;
 }
-.register__register-box__registeration-form-box__make-new-acc-btn:hover, .register__register-box__registeration-form-box__make-new-acc-btn:active {
+.register__register-box__registeration-form-box__make-new-acc-btn:is(.register__register-box__registeration-form-box__make-new-acc-btn:hover, .register__register-box__registeration-form-box__make-new-acc-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -648,7 +648,7 @@
   .register__register-box__registeration-form-box__make-new-acc-btn:active {
     box-shadow: none;
   }
-  .register__register-box__registeration-form-box__make-new-acc-btn:hover, .register__register-box__registeration-form-box__make-new-acc-btn:active {
+  .register__register-box__registeration-form-box__make-new-acc-btn:is(.register__register-box__registeration-form-box__make-new-acc-btn:hover, .register__register-box__registeration-form-box__make-new-acc-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

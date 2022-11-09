@@ -121,7 +121,7 @@
 .tadarab-for-companies__titles-box__btn:active {
   box-shadow: none;
 }
-.tadarab-for-companies__titles-box__btn:hover, .tadarab-for-companies__titles-box__btn:active {
+.tadarab-for-companies__titles-box__btn:is(.tadarab-for-companies__titles-box__btn:hover, .tadarab-for-companies__titles-box__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -235,7 +235,7 @@
   .tadarab-for-companies__titles-box__btn:active {
     box-shadow: none;
   }
-  .tadarab-for-companies__titles-box__btn:hover, .tadarab-for-companies__titles-box__btn:active {
+  .tadarab-for-companies__titles-box__btn:is(.tadarab-for-companies__titles-box__btn:hover, .tadarab-for-companies__titles-box__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

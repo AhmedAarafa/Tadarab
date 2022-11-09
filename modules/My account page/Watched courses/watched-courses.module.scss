@@ -1019,8 +1019,7 @@
         margin: 3rem 8.5rem 9.75rem 8.5rem;
         @include flex(center, center);
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             border: 0.125rem*2.5 solid rgba(175, 21, 31, 0.2) !important;
         }
 

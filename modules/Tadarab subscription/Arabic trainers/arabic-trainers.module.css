@@ -175,7 +175,7 @@
 .arabic-trainers__search-bar__btn:active {
   box-shadow: none;
 }
-.arabic-trainers__search-bar__btn:hover, .arabic-trainers__search-bar__btn:active {
+.arabic-trainers__search-bar__btn:is(.arabic-trainers__search-bar__btn:hover, .arabic-trainers__search-bar__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -400,7 +400,7 @@
   .arabic-trainers__search-bar__btn:active {
     box-shadow: none;
   }
-  .arabic-trainers__search-bar__btn:hover, .arabic-trainers__search-bar__btn:active {
+  .arabic-trainers__search-bar__btn:is(.arabic-trainers__search-bar__btn:hover, .arabic-trainers__search-bar__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

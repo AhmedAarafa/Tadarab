@@ -12,7 +12,7 @@
   box-shadow: 0 0 3rem rgba(0, 0, 0, 0.2);
   border-radius: 0.625rem;
 }
-.book-details__book-preview a:hover, .book-details__book-preview a:active {
+.book-details__book-preview a:is(.book-details__book-preview a:hover, .book-details__book-preview a:active) {
   color: white !important;
 }
 .book-details__book-preview button {
@@ -38,7 +38,7 @@
 .book-details__book-preview button:nth-of-type(1):active {
   box-shadow: none;
 }
-.book-details__book-preview button:nth-of-type(1):hover, .book-details__book-preview button:nth-of-type(1):active {
+.book-details__book-preview button:nth-of-type(1):is(.book-details__book-preview button:nth-of-type(1):hover, .book-details__book-preview button:nth-of-type(1):active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -70,11 +70,11 @@
 .book-details__book-preview button:nth-of-type(2):active {
   box-shadow: none;
 }
-.book-details__book-preview button:nth-of-type(2):hover, .book-details__book-preview button:nth-of-type(2):active {
+.book-details__book-preview button:nth-of-type(2):is(.book-details__book-preview button:nth-of-type(2):hover, .book-details__book-preview button:nth-of-type(2):active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-.book-details__book-preview button:nth-of-type(2):hover, .book-details__book-preview button:nth-of-type(2):active {
+.book-details__book-preview button:nth-of-type(2):is(.book-details__book-preview button:nth-of-type(2):hover, .book-details__book-preview button:nth-of-type(2):active) {
   background-color: rgba(0, 0, 0, 0.08) !important;
   border: none !important;
 }
@@ -371,7 +371,7 @@
     background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
     color: var(--dark-black);
   }
-  .mobile-download-bar a:hover, .mobile-download-bar a:active {
+  .mobile-download-bar a:is(.mobile-download-bar a:hover, .mobile-download-bar a:active) {
     color: white !important;
   }
   .mobile-download-bar button {
@@ -400,7 +400,7 @@
   .mobile-download-bar button:nth-of-type(1):active {
     box-shadow: none;
   }
-  .mobile-download-bar button:nth-of-type(1):hover, .mobile-download-bar button:nth-of-type(1):active {
+  .mobile-download-bar button:nth-of-type(1):is(.mobile-download-bar button:nth-of-type(1):hover, .mobile-download-bar button:nth-of-type(1):active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -433,11 +433,11 @@
   .mobile-download-bar button:nth-of-type(2):active {
     box-shadow: none;
   }
-  .mobile-download-bar button:nth-of-type(2):hover, .mobile-download-bar button:nth-of-type(2):active {
+  .mobile-download-bar button:nth-of-type(2):is(.mobile-download-bar button:nth-of-type(2):hover, .mobile-download-bar button:nth-of-type(2):active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-  .mobile-download-bar button:nth-of-type(2):hover, .mobile-download-bar button:nth-of-type(2):active {
+  .mobile-download-bar button:nth-of-type(2):is(.mobile-download-bar button:nth-of-type(2):hover, .mobile-download-bar button:nth-of-type(2):active) {
     background-color: rgba(0, 0, 0, 0.08) !important;
     border: none !important;
   }

@@ -360,7 +360,7 @@
 .special-offer__cards-outer-box__card__add-to-cart-btn:active {
   box-shadow: none;
 }
-.special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active {
+.special-offer__cards-outer-box__card__add-to-cart-btn:is(.special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -664,7 +664,7 @@
   .special-offer__cards-outer-box__card__add-to-cart-btn:active {
     box-shadow: none;
   }
-  .special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active {
+  .special-offer__cards-outer-box__card__add-to-cart-btn:is(.special-offer__cards-outer-box__card__add-to-cart-btn:hover, .special-offer__cards-outer-box__card__add-to-cart-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

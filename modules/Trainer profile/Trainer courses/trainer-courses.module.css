@@ -171,7 +171,7 @@
   padding: 0 !important;
   border-radius: 0.675rem;
 }
-.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:hover, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:active, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:focus {
+.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:is(.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:hover, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:active, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
 
@@ -323,7 +323,7 @@
     padding: 0 !important;
     border-radius: 1.875rem;
   }
-  .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:hover, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:active, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:focus {
+  .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:is(.trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:hover, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:active, .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .trainer-courses-box__trainer-courses__course-card__card-body__checkout-details__icon-btn__cart-icon svg {

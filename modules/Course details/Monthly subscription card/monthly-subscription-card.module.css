@@ -267,16 +267,16 @@
 .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
   box-shadow: none;
 }
-.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
+.monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
+.monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
   background-color: var(--primary-red) !important;
   border: 0.063rem solid var(--primary-red) !important;
   color: white !important;
 }
-.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover svg *, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active svg * {
+.monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) svg * {
   fill: white;
 }
 .monthly-subscription__course-card__actions-btns__add-to-cart-btn svg {
@@ -311,26 +311,36 @@
   border: 0.063rem solid var(--dark-black) !important;
   color: var(--dark-black) !important;
 }
-.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active, .monthly-subscription__course-card__actions-btns__fav-btn:focus,
+.monthly-subscription__course-card__actions-btns__fav-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active, .monthly-subscription__course-card__actions-btns__fav-btn:focus,
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
 .monthly-subscription__course-card__actions-btns__share-btn:active,
-.monthly-subscription__course-card__actions-btns__share-btn:focus {
+.monthly-subscription__course-card__actions-btns__share-btn:focus),
+.monthly-subscription__course-card__actions-btns__share-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active, .monthly-subscription__course-card__actions-btns__fav-btn:focus,
+.monthly-subscription__course-card__actions-btns__share-btn:hover,
+.monthly-subscription__course-card__actions-btns__share-btn:active,
+.monthly-subscription__course-card__actions-btns__share-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
-.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
+.monthly-subscription__course-card__actions-btns__fav-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
-.monthly-subscription__course-card__actions-btns__share-btn:active {
+.monthly-subscription__course-card__actions-btns__share-btn:active),
+.monthly-subscription__course-card__actions-btns__share-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
+.monthly-subscription__course-card__actions-btns__share-btn:hover,
+.monthly-subscription__course-card__actions-btns__share-btn:active) {
   background-color: var(--primary-red) !important;
   border: 0.063rem solid var(--primary-red) !important;
   color: white !important;
 }
-.monthly-subscription__course-card__actions-btns__fav-btn:hover svg *, .monthly-subscription__course-card__actions-btns__fav-btn:active svg *,
-.monthly-subscription__course-card__actions-btns__share-btn:hover svg *,
-.monthly-subscription__course-card__actions-btns__share-btn:active svg * {
+.monthly-subscription__course-card__actions-btns__fav-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
+.monthly-subscription__course-card__actions-btns__share-btn:hover,
+.monthly-subscription__course-card__actions-btns__share-btn:active) svg *,
+.monthly-subscription__course-card__actions-btns__share-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
+.monthly-subscription__course-card__actions-btns__share-btn:hover,
+.monthly-subscription__course-card__actions-btns__share-btn:active) svg * {
   fill: white;
 }
 
-.monthly-subscription__course-card__actions-btns__share-btn:hover svg *, .monthly-subscription__course-card__actions-btns__share-btn:active svg * {
+.monthly-subscription__course-card__actions-btns__share-btn:is(.monthly-subscription__course-card__actions-btns__share-btn:hover, .monthly-subscription__course-card__actions-btns__share-btn:active) svg * {
   fill: white;
 }
 
@@ -397,7 +407,7 @@
 .monthly-subscription__subscribe-btn-box__btn:active {
   box-shadow: none;
 }
-.monthly-subscription__subscribe-btn-box__btn:hover, .monthly-subscription__subscribe-btn-box__btn:active {
+.monthly-subscription__subscribe-btn-box__btn:is(.monthly-subscription__subscribe-btn-box__btn:hover, .monthly-subscription__subscribe-btn-box__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -434,7 +444,7 @@
 .monthly-subscription__subscribe-btn-box__btn--video-player:active {
   box-shadow: none;
 }
-.monthly-subscription__subscribe-btn-box__btn--video-player:hover, .monthly-subscription__subscribe-btn-box__btn--video-player:active {
+.monthly-subscription__subscribe-btn-box__btn--video-player:is(.monthly-subscription__subscribe-btn-box__btn--video-player:hover, .monthly-subscription__subscribe-btn-box__btn--video-player:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -748,11 +758,11 @@
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
     box-shadow: none;
   }
-  .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
+  .monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-  .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active {
+  .monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
     border-width: 0.1575rem !important;
     background-color: var(--primary-red) !important;
     color: white !important;
@@ -782,15 +792,22 @@
     border-radius: 1.875rem;
     border: 0.1575rem solid var(--dark-black) !important;
   }
-  .monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active, .monthly-subscription__course-card__actions-btns__fav-btn:focus,
+  .monthly-subscription__course-card__actions-btns__fav-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active, .monthly-subscription__course-card__actions-btns__fav-btn:focus,
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
 .monthly-subscription__course-card__actions-btns__share-btn:active,
-.monthly-subscription__course-card__actions-btns__share-btn:focus {
+.monthly-subscription__course-card__actions-btns__share-btn:focus),
+.monthly-subscription__course-card__actions-btns__share-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active, .monthly-subscription__course-card__actions-btns__fav-btn:focus,
+.monthly-subscription__course-card__actions-btns__share-btn:hover,
+.monthly-subscription__course-card__actions-btns__share-btn:active,
+.monthly-subscription__course-card__actions-btns__share-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
-  .monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
+  .monthly-subscription__course-card__actions-btns__fav-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
 .monthly-subscription__course-card__actions-btns__share-btn:hover,
-.monthly-subscription__course-card__actions-btns__share-btn:active {
+.monthly-subscription__course-card__actions-btns__share-btn:active),
+.monthly-subscription__course-card__actions-btns__share-btn:is(.monthly-subscription__course-card__actions-btns__fav-btn:hover, .monthly-subscription__course-card__actions-btns__fav-btn:active,
+.monthly-subscription__course-card__actions-btns__share-btn:hover,
+.monthly-subscription__course-card__actions-btns__share-btn:active) {
     background-color: white !important;
     border: 0.1575rem solid var(--dark-black) !important;
   }
@@ -842,7 +859,7 @@
   .monthly-subscription__subscribe-btn-box__btn:active {
     box-shadow: none;
   }
-  .monthly-subscription__subscribe-btn-box__btn:hover, .monthly-subscription__subscribe-btn-box__btn:active {
+  .monthly-subscription__subscribe-btn-box__btn:is(.monthly-subscription__subscribe-btn-box__btn:hover, .monthly-subscription__subscribe-btn-box__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

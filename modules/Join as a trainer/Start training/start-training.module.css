@@ -45,7 +45,7 @@
 .start-training__btn:active {
   box-shadow: none;
 }
-.start-training__btn:hover, .start-training__btn:active {
+.start-training__btn:is(.start-training__btn:hover, .start-training__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -99,7 +99,7 @@
   .start-training__btn:active {
     box-shadow: none;
   }
-  .start-training__btn:hover, .start-training__btn:active {
+  .start-training__btn:is(.start-training__btn:hover, .start-training__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

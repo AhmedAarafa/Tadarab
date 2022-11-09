@@ -58,7 +58,7 @@
 .how-to-learn-on-tadarab__content button:active {
   box-shadow: none;
 }
-.how-to-learn-on-tadarab__content button:hover, .how-to-learn-on-tadarab__content button:active {
+.how-to-learn-on-tadarab__content button:is(.how-to-learn-on-tadarab__content button:hover, .how-to-learn-on-tadarab__content button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -116,7 +116,7 @@
   .how-to-learn-on-tadarab__content button:active {
     box-shadow: none;
   }
-  .how-to-learn-on-tadarab__content button:hover, .how-to-learn-on-tadarab__content button:active {
+  .how-to-learn-on-tadarab__content button:is(.how-to-learn-on-tadarab__content button:hover, .how-to-learn-on-tadarab__content button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

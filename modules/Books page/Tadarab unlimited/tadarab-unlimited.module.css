@@ -61,7 +61,7 @@
 .tadarab-unlimited__brief button:active {
   box-shadow: none;
 }
-.tadarab-unlimited__brief button:hover, .tadarab-unlimited__brief button:active {
+.tadarab-unlimited__brief button:is(.tadarab-unlimited__brief button:hover, .tadarab-unlimited__brief button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -127,7 +127,7 @@
   .tadarab-unlimited-mobile-view__brief button:active {
     box-shadow: none;
   }
-  .tadarab-unlimited-mobile-view__brief button:hover, .tadarab-unlimited-mobile-view__brief button:active {
+  .tadarab-unlimited-mobile-view__brief button:is(.tadarab-unlimited-mobile-view__brief button:hover, .tadarab-unlimited-mobile-view__brief button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

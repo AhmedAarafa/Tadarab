@@ -338,7 +338,7 @@
   margin-right: 0.3rem;
   padding: 0 !important;
 }
-.my-account__course-card__card-body__checkout-details__icon-btn:hover, .my-account__course-card__card-body__checkout-details__icon-btn:active, .my-account__course-card__card-body__checkout-details__icon-btn:focus {
+.my-account__course-card__card-body__checkout-details__icon-btn:is(.my-account__course-card__card-body__checkout-details__icon-btn:hover, .my-account__course-card__card-body__checkout-details__icon-btn:active, .my-account__course-card__card-body__checkout-details__icon-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
 
@@ -637,7 +637,7 @@
     margin-right: 0.375rem;
     padding: 0 !important;
   }
-  .my-account__course-card__card-body__checkout-details__icon-btn:hover, .my-account__course-card__card-body__checkout-details__icon-btn:active, .my-account__course-card__card-body__checkout-details__icon-btn:focus {
+  .my-account__course-card__card-body__checkout-details__icon-btn:is(.my-account__course-card__card-body__checkout-details__icon-btn:hover, .my-account__course-card__card-body__checkout-details__icon-btn:active, .my-account__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .my-account__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -949,7 +949,7 @@
   .filter-sidebar__show-results button:active {
     box-shadow: none;
   }
-  .filter-sidebar__show-results button:hover, .filter-sidebar__show-results button:active {
+  .filter-sidebar__show-results button:is(.filter-sidebar__show-results button:hover, .filter-sidebar__show-results button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -1065,7 +1065,7 @@
     padding: 0 !important;
     border-radius: 1.875rem;
   }
-  .my-account__course-card__card-body__checkout-details__icon-btn:hover, .my-account__course-card__card-body__checkout-details__icon-btn:active, .my-account__course-card__card-body__checkout-details__icon-btn:focus {
+  .my-account__course-card__card-body__checkout-details__icon-btn:is(.my-account__course-card__card-body__checkout-details__icon-btn:hover, .my-account__course-card__card-body__checkout-details__icon-btn:active, .my-account__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .my-account__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -1198,7 +1198,7 @@
     height: 2.1875rem;
     margin: 0.5rem 2.063rem 0 0;
   }
-  .my-account__container__show-all-btn:hover, .my-account__container__show-all-btn:active {
+  .my-account__container__show-all-btn:is(.my-account__container__show-all-btn:hover, .my-account__container__show-all-btn:active) {
     background-color: white !important;
     color: var(--primary-red) !important;
     border: 0.275rem solid rgba(175, 21, 31, 0.2) !important;

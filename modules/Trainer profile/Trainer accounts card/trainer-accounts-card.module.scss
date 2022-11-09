@@ -52,8 +52,7 @@
         background-color: var(--tadarab-light-bg) !important;
         
         
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             border: 0.063rem solid var(--grey) !important;
             background-color: var(--outlined-btn-bg) !important;
             // background-color: white !important;
@@ -117,8 +116,7 @@
         color: var(--primary-red) !important;
         border: none !important;
 
-        &:active,
-        &:hover {
+        &:is(&:hover, &:active) {
             background-color: var(--pale-red) !important;
             color: var(--primary-red) !important;
             border: none !important;
@@ -169,8 +167,7 @@
             border-radius: 0.625rem*2;
 
 
-            &:hover,
-            &:active {
+            &:is(&:hover, &:active) {
                 border: 0.063rem solid var(--dark-black) !important;
                 background-color: white !important;
                 color: var(--dark-black) !important;

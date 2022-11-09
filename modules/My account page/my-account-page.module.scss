@@ -1408,8 +1408,7 @@
 
         }
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             background-color: white !important;
             color: var(--primary-red) !important;
             border: 0.125rem*2.2 solid rgba(175, 21, 31, 0.2) !important;

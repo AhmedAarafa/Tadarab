@@ -10,14 +10,13 @@ import {
   Button,
   Badge,
   OverlayTrigger,
-  Popover,
   Offcanvas
 } from "react-bootstrap";
 import Image from 'next/image';
 import { popoverHandler, notificationBarHandler } from "./utils";
 import {
   TadarabLogo, NextIcon, BackIcon, DarkModeIcon, DropDownIcon, SearchIcon,
-  FavouriteIcon, CartIcon, AccountIcon, ThreeDotsIcon, CertificateIcon, LessonPlayIcon, LightModeIcon
+  FavouriteIcon, CartIcon, AccountIcon, LessonPlayIcon, LightModeIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
@@ -371,6 +370,62 @@ function Navbar(props: any) {
     setDropdownOpened({ cart: false, account: false });
   }, [router.asPath]);
 
+  useEffect(() => {
+    const toggleSwitch: any = document.getElementById('themeCheckbox');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme !== null) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+
+      if (currentTheme === 'light') {
+        toggleSwitch.checked = true;
+      }
+    }
+    toggleSwitch.addEventListener('change', switchTheme, false);
+
+    return () => {
+      toggleSwitch.removeEventListener("change", () => {
+        return;
+      });
+    };
+  }, []);
+
+  const switchTheme = (e: any) => {
+    if (e.target.checked) {
+      dispatch(setTheme("light"));
+      localStorage.setItem("theme", "light");
+      document.body.setAttribute("data-theme", "light");
+    }
+    else {
+      dispatch(setTheme("dark"));
+      localStorage.setItem("theme", "dark");
+      document.body.setAttribute("data-theme", "dark");
+    }
+  }
+
+  useEffect(() => {
+    if (expanded == true) {
+      const toggleSwitch: any = document.getElementById('themeCheckbox');
+      const currentTheme = localStorage.getItem('theme');
+
+      if (currentTheme !== null) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'light') {
+          toggleSwitch.checked = true;
+        }
+      }
+      toggleSwitch.addEventListener('change', switchTheme, false);
+
+      return () => {
+        toggleSwitch.removeEventListener("change", () => {
+          return;
+        });
+      };
+    }
+  }, [expanded]);
+
+
   return (
     <>
       <NavBar data-theme={themeState} id="nav" fixed="top"
@@ -490,27 +545,21 @@ function Navbar(props: any) {
           </ul>
           <div className={styles["sidebar-list__dark-mode-box"]}>
             <span>
-              تغيير للوضع 
+              تغيير للوضع
               {
                 themeState == "light" ?
-                  "  الداكن "   
+                  "  الداكن "
                   :
                   " النهاري "
               }
-             
-              </span>
-            <div className={styles["sidebar-list__dark-mode-box__icon"]} onClick={() => {
-              dispatch(setTheme(themeState == "light" ? "dark" : "light"));
-              localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
-              document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
-            }} style={{ backgroundColor: themeState == "light" ? "#0E0B1D" : "#1B1829" }}>
-              {
-                themeState == "light" ?
-                  <DarkModeIcon />
-                  :
-                  <LightModeIcon />
-              }
-            </div>
+
+            </span>
+            {isMobileView == true && <>
+              <label className={styles["theme-switch"]}>
+                <input type="checkbox" id="themeCheckbox" />
+                <div className={`${styles["slider"]} ${styles["round"]}`}></div>
+              </label>
+            </>}
 
           </div>
           <Link href={userStatus.isUserAuthenticated ? "/my-account" : "/sign-up"}>
@@ -675,18 +724,13 @@ function Navbar(props: any) {
               </div> */}
             </>
           }
-          <div onClick={() => {
-            dispatch(setTheme(themeState == "light" ? "dark" : "light"));
-            localStorage.setItem("theme", themeState == "light" ? "dark" : "light");
-            document.body.setAttribute("data-theme", themeState == "light" ? "dark" : "light");
-          }} className={styles["navbar__dark-mode-icon"]} style={{ backgroundColor: themeState == "light" ? "#0E0B1D" : "#1B1829" }}>
-            {
-              themeState == "light" ?
-                <DarkModeIcon />
-                :
-                <LightModeIcon />
-            }
-          </div>
+
+          {isMobileView == false && <>
+            <label className={styles["theme-switch"]}>
+              <input type="checkbox" id="themeCheckbox" />
+              <div className={`${styles["slider"]} ${styles["round"]}`}></div>
+            </label>
+          </>}
 
           {userStatus.isUserAuthenticated && !isCoursePurchased && <div className={styles["navbar__fav-icon"]}>
             <FavouriteIcon color="#222" />

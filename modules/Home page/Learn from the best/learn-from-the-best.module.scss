@@ -39,8 +39,7 @@
     @include flex(center, space-around);
     background-color: var(--tadarab-light-bg) !important;
 
-    &:hover,
-    &:active {
+    &:is(&:hover, &:active) {
         // background-color: white !important;
         color: var(--outlined-btn-text) !important;
         border: 0.125rem solid var(--outlined-btn-border) !important;
@@ -297,8 +296,7 @@
         @include flex(center, center);
     background-color: var(--tadarab-light-bg) !important;
     
-        &:hover,
-        &:active {
+    &:is(&:hover, &:active) {
             // background-color: white !important;
             // color: var(--primary-red) !important;
             border-width: 0.125rem*2.4 !important;

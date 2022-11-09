@@ -63,7 +63,7 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
+.learn-from-the-best__see-more-btn:is(.learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active) {
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
@@ -314,7 +314,7 @@
     color: var(--outlined-btn-text) !important;
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
-  .learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active {
+  .learn-from-the-best__see-more-btn:is(.learn-from-the-best__see-more-btn:hover, .learn-from-the-best__see-more-btn:active) {
     border-width: 0.3rem !important;
   }
   .learn-from-the-best__see-more-btn svg {

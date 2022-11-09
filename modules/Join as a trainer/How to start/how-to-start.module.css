@@ -86,7 +86,7 @@
 .how-to-start__btn button:active {
   box-shadow: none;
 }
-.how-to-start__btn button:hover, .how-to-start__btn button:active {
+.how-to-start__btn button:is(.how-to-start__btn button:hover, .how-to-start__btn button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -182,7 +182,7 @@
   .how-to-start__btn button:active {
     box-shadow: none;
   }
-  .how-to-start__btn button:hover, .how-to-start__btn button:active {
+  .how-to-start__btn button:is(.how-to-start__btn button:hover, .how-to-start__btn button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

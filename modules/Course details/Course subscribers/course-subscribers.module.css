@@ -190,7 +190,7 @@
   padding: 0 !important;
   border-radius: 0.5775rem;
 }
-.course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+.course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
 
@@ -340,7 +340,7 @@
     padding: 0 !important;
     border-radius: 0.7725rem;
   }
-  .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -486,7 +486,7 @@
     padding: 0 !important;
     border-radius: 1.05rem;
   }
-  .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -641,7 +641,7 @@
     padding: 0 !important;
     border-radius: 2.025rem;
   }
-  .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {

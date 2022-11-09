@@ -68,7 +68,7 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.tadarab-business__details__btn button:hover, .tadarab-business__details__btn button:active {
+.tadarab-business__details__btn button:is(.tadarab-business__details__btn button:hover, .tadarab-business__details__btn button:active) {
   background-color: transparent !important;
   color: white !important;
   border: 0.063rem solid white !important;
@@ -162,7 +162,7 @@
     color: var(--outlined-btn-text) !important;
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
-  .tadarab-business__details__btn button:hover, .tadarab-business__details__btn button:active {
+  .tadarab-business__details__btn button:is(.tadarab-business__details__btn button:hover, .tadarab-business__details__btn button:active) {
     background-color: transparent !important;
     color: white !important;
     border: 0.1449rem solid white !important;

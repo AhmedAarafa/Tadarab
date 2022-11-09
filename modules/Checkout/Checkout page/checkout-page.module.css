@@ -403,11 +403,11 @@
 .checkout__cart-sticky-card__search-bar__btn:active {
   box-shadow: none;
 }
-.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+.checkout__cart-sticky-card__search-bar__btn:is(.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+.checkout__cart-sticky-card__search-bar__btn:is(.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active) {
   background-color: #000f1d !important;
   border: 0.125rem solid #000f1d !important;
 }
@@ -511,7 +511,7 @@
 .checkout__cart-sticky-card__purchasing-btn:active {
   box-shadow: none;
 }
-.checkout__cart-sticky-card__purchasing-btn:hover, .checkout__cart-sticky-card__purchasing-btn:active {
+.checkout__cart-sticky-card__purchasing-btn:is(.checkout__cart-sticky-card__purchasing-btn:hover, .checkout__cart-sticky-card__purchasing-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -738,7 +738,7 @@
   padding: 0 !important;
   border-radius: 0.5775rem;
 }
-.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
 
@@ -946,7 +946,7 @@
 .checkout__cart-sticky-card__subscribe-box button:active {
   box-shadow: none;
 }
-.checkout__cart-sticky-card__subscribe-box button:hover, .checkout__cart-sticky-card__subscribe-box button:active {
+.checkout__cart-sticky-card__subscribe-box button:is(.checkout__cart-sticky-card__subscribe-box button:hover, .checkout__cart-sticky-card__subscribe-box button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -1120,7 +1120,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.monthly-subscription__subscription-plans-dropdown button:hover, .monthly-subscription__subscription-plans-dropdown button:active {
+.monthly-subscription__subscription-plans-dropdown button:is(.monthly-subscription__subscription-plans-dropdown button:hover, .monthly-subscription__subscription-plans-dropdown button:active) {
   background-color: transparent !important;
   color: var(--dark-black) !important;
   border: 0.0625rem solid rgba(34, 34, 34, 0.5490196078) !important;
@@ -1375,7 +1375,7 @@
     padding: 0 !important;
     border-radius: 0.7725rem;
   }
-  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -1533,7 +1533,7 @@
     padding: 0 !important;
     border-radius: 1.05rem;
   }
-  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -1891,11 +1891,11 @@
   .checkout__cart-sticky-card__search-bar__btn:active {
     box-shadow: none;
   }
-  .checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+  .checkout__cart-sticky-card__search-bar__btn:is(.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-  .checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active {
+  .checkout__cart-sticky-card__search-bar__btn:is(.checkout__cart-sticky-card__search-bar__btn:hover, .checkout__cart-sticky-card__search-bar__btn:active) {
     background-color: #000f1d !important;
     border: 0.275rem solid #000f1d !important;
   }
@@ -1983,7 +1983,7 @@
   .checkout__cart-sticky-card__purchasing-btn:active {
     box-shadow: none;
   }
-  .checkout__cart-sticky-card__purchasing-btn:hover, .checkout__cart-sticky-card__purchasing-btn:active {
+  .checkout__cart-sticky-card__purchasing-btn:is(.checkout__cart-sticky-card__purchasing-btn:hover, .checkout__cart-sticky-card__purchasing-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -2262,7 +2262,7 @@
     padding: 0 !important;
     border-radius: 2.025rem;
   }
-  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus {
+  .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:is(.checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:hover, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:active, .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .checkout__similar-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
@@ -2340,7 +2340,7 @@
   .checkout__cart-sticky-card__subscribe-box button:active {
     box-shadow: none;
   }
-  .checkout__cart-sticky-card__subscribe-box button:hover, .checkout__cart-sticky-card__subscribe-box button:active {
+  .checkout__cart-sticky-card__subscribe-box button:is(.checkout__cart-sticky-card__subscribe-box button:hover, .checkout__cart-sticky-card__subscribe-box button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -2405,7 +2405,7 @@
     padding: 0.8rem;
     border: 0.125rem solid rgba(34, 34, 34, 0.5490196078) !important;
   }
-  .monthly-subscription__subscription-plans-dropdown button:hover, .monthly-subscription__subscription-plans-dropdown button:active {
+  .monthly-subscription__subscription-plans-dropdown button:is(.monthly-subscription__subscription-plans-dropdown button:hover, .monthly-subscription__subscription-plans-dropdown button:active) {
     border: 0.125rem solid rgba(34, 34, 34, 0.5490196078) !important;
   }
   .monthly-subscription__subscription-plans-dropdown button + div {

@@ -57,8 +57,7 @@
     border-radius: 0.75rem;
     @include flex(center, space-around);
 
-    &:hover,
-    &:active {
+    &:is(&:hover, &:active) {
         // background-color: white !important;
         color: var(--outlined-btn-text) !important;
         border: 0.125rem solid var(--outlined-btn-border) !important;
@@ -145,8 +144,7 @@
     margin-top: 1rem; 
     color: var(--download-btn-text) !important;
 
-    &:hover,
-    &:active {
+    &:is(&:hover, &:active) {
         background-color: var(--primary-red) !important;
         border: 0.125rem solid var(--outlined-btn-border) !important;
         color: var(--download-btn-text) !important;
@@ -256,8 +254,7 @@
         margin-top: 1rem*1.33;
         background-color: var(--tadarab-light-bg) !important;
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             // background-color: var(--primary-red) !important;
             border-width: 0.125rem*1.33 !important;
 
@@ -369,8 +366,7 @@
         @include flex(center, center);
         margin-top: 1rem*1.35;
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             // background-color: var(--primary-red) !important;
             border-width: 0.125rem*1.35 !important;
 
@@ -436,8 +432,7 @@
             margin-right: 2.063rem;
         }
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             border-width: 0.125rem*3.1 !important;
         }
 
@@ -509,8 +504,7 @@
             height: 1.25rem*2.8;
         }
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             background-color: var(--primary-red) !important;
             border-width: 0.125rem*3.1 !important;
 

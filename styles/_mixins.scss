@@ -18,11 +18,15 @@
 
     &:hover {
         box-shadow: none;
-    };
+    }
+
+    ;
 
     &:active {
         box-shadow: none;
-    };
+    }
+
+    ;
 
 }
 
@@ -33,7 +37,7 @@
     border: 0.125rem solid var(--primary-red) !important;
 
 
-    &:hover, &:active {
+    &:is(&:hover, &:active) {
         background-color: #9d151e !important;
         border: 0.125rem solid #9d151e !important;
     }
@@ -82,9 +86,7 @@
     @include flex(center, center);
     display: inline-flex;
 
-    &:hover,
-    &:active,
-    &:focus {
+    &:is(&:hover, &:active, &:focus) {
         background-color: var(--hovered-lightgrey);
     }
 }

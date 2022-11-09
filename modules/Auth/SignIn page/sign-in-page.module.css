@@ -197,7 +197,7 @@
 .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
   box-shadow: none;
 }
-.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover, .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
+.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:is(.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover, .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -452,7 +452,7 @@
   .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
     box-shadow: none;
   }
-  .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover, .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active {
+  .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:is(.sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:hover, .sign-in__sign-in-box__sign-in-form-box__make-new-acc-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

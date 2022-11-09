@@ -17,8 +17,7 @@
 
     a {
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             color: white !important;
         }
     }
@@ -46,8 +45,7 @@
         border: none !important;
         display: none !important;
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             background-color: rgba(0, 0, 0, 0.08) !important;
             border: none !important;
 
@@ -384,8 +382,7 @@
 
         a {
 
-            &:hover,
-            &:active {
+            &:is(&:hover, &:active) {
                 color: white !important;
             }
         }
@@ -417,8 +414,7 @@
             border: none !important;
             display: none !important;
 
-            &:hover,
-            &:active {
+            &:is(&:hover, &:active) {
                 background-color: rgba(0, 0, 0, 0.08) !important;
                 border: none !important;
 

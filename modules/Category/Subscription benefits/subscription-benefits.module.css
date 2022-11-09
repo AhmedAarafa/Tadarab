@@ -36,7 +36,7 @@
 .subscription-benefits__title button:active {
   box-shadow: none;
 }
-.subscription-benefits__title button:hover, .subscription-benefits__title button:active {
+.subscription-benefits__title button:is(.subscription-benefits__title button:hover, .subscription-benefits__title button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -120,7 +120,7 @@
   .subscription-benefits__benefits + button:active {
     box-shadow: none;
   }
-  .subscription-benefits__benefits + button:hover, .subscription-benefits__benefits + button:active {
+  .subscription-benefits__benefits + button:is(.subscription-benefits__benefits + button:hover, .subscription-benefits__benefits + button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

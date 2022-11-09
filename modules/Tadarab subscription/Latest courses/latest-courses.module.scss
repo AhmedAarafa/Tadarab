@@ -76,8 +76,7 @@
     margin-left: 3rem;
     @include flex(center, space-around);
 
-    &:hover,
-    &:active {
+    &:is(&:hover, &:active) {
         // background-color: var(--tadarab-light-bg) !important;
         color: var(--outlined-btn-text) !important;
         border: 0.125rem solid var(--outlined-btn-border) !important;
@@ -434,8 +433,7 @@
     margin-left: 0.8rem;
 
 
-    &:active,
-    &:hover {
+    &:is(&:hover, &:active) {
         background-color: #000f1d !important;
         border: 0.063rem solid #001425 !important;
     }
@@ -1148,8 +1146,7 @@
         margin: 3rem 8.5rem 9.75rem 8.5rem;
         @include flex(center, center);
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             // color: var(--outlined-btn-text) !important;
             border-width: 0.125rem*2.5 !important;
         }

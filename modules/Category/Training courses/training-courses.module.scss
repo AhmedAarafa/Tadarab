@@ -108,17 +108,14 @@
                     margin: 0 0 0.5rem 0.5rem;
                 }
 
-                &:hover,
-                &:active {
+                &:is(&:hover, &:active) {
                     background-color: rgba(0, 0, 0, 0.05) !important;
                     color: var(--dark-black) !important;
                 }
             }
         }
 
-        &:hover,
-        &:active,
-        &:focus {
+        &:is(&:hover, &:active, &:focus) {
             background-color: white !important;
             border: 0 !important;
             color: var(--dark-black) !important;

@@ -62,7 +62,7 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.season-trainers__see-more-btn:hover, .season-trainers__see-more-btn:active {
+.season-trainers__see-more-btn:is(.season-trainers__see-more-btn:hover, .season-trainers__see-more-btn:active) {
   background-color: white !important;
   color: var(--primary-red) !important;
   border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -352,7 +352,7 @@
     color: var(--outlined-btn-text) !important;
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
-  .season-trainers__see-more-btn:hover, .season-trainers__see-more-btn:active {
+  .season-trainers__see-more-btn:is(.season-trainers__see-more-btn:hover, .season-trainers__see-more-btn:active) {
     background-color: white !important;
     color: var(--primary-red) !important;
     border: 0.3rem solid rgba(175, 21, 31, 0.2) !important;

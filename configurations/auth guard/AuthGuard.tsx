@@ -25,9 +25,9 @@ const withAuth = (Component: any) => {
       }
 
       if (localStorage.getItem("theme") === null) {
-        dispatch(setTheme("light"));
-        document.body.setAttribute("data-theme", "light");
-        localStorage.setItem("theme", "light");
+        dispatch(setTheme("dark"));
+        document.body.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
       } else {
         const themeStored: any = localStorage.getItem("theme");
         dispatch(setTheme(themeStored));

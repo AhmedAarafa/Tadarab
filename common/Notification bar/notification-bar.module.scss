@@ -25,8 +25,7 @@
             text-underline-offset: 0.2rem;
             color: #0645ad;
 
-            &:hover,
-            &:active {
+            &:is(&:hover, &:active) {
                 color: #0645ad;
                 cursor: pointer;
                 text-decoration: underline;
@@ -56,8 +55,7 @@
             span,a {
                 margin-right: 0.2rem*2.5;
                 text-underline-offset: 0.2rem*2.5;
-                &:hover,
-                &:active {
+                &:is(&:hover, &:active) {
                     text-underline-offset: 0.2rem*2.5;
                 }
             }

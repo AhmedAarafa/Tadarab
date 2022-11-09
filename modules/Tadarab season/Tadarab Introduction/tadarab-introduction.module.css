@@ -80,7 +80,7 @@
 .tadarab-introduction__description-box__form button:active {
   box-shadow: none;
 }
-.tadarab-introduction__description-box__form button:hover, .tadarab-introduction__description-box__form button:active {
+.tadarab-introduction__description-box__form button:is(.tadarab-introduction__description-box__form button:hover, .tadarab-introduction__description-box__form button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -160,7 +160,7 @@
   .tadarab-introduction__description-box__form button:active {
     box-shadow: none;
   }
-  .tadarab-introduction__description-box__form button:hover, .tadarab-introduction__description-box__form button:active {
+  .tadarab-introduction__description-box__form button:is(.tadarab-introduction__description-box__form button:hover, .tadarab-introduction__description-box__form button:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

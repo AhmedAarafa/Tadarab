@@ -35,9 +35,7 @@
     border-radius: 0.75rem;
     @include flex(center, space-around);
 
-    &:hover,
-    &:focus,
-    &:active {
+    &:is(&:hover, &:active, &:focus) {
         background-color: white !important;
         color: var(--primary-red) !important;
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -824,9 +822,7 @@
         @include flex(center, center);
         margin: 0 7.3rem 0 7.3rem;
 
-        &:hover,
-        &:focus,
-        &:active {
+        &:is(&:hover, &:active, &:focus) {
             border: 0.125rem*2.4 solid rgba(175, 21, 31, 0.2) !important;
             background-color: white !important;
             color: var(--primary-red) !important;

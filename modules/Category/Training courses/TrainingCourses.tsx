@@ -154,7 +154,6 @@ export default function TrainingCourses(props: any) {
         price: "الكل"
     });
 
-
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
             const handleFavResponse: any = handleFav(course, `categories/${slug}/?page=${pageNumber}&limit=12`);
@@ -168,8 +167,6 @@ export default function TrainingCourses(props: any) {
             })
         }
     }
-
-
 
     const handleCartActionBtn = (course: any): any => {
         setDisabledCartBtns([...disabledCartBtns, course.id]);
@@ -273,7 +270,7 @@ export default function TrainingCourses(props: any) {
                     <li>
                         <input className="form-check-input" type="checkbox" id="topics" name="topics" />
                         <span >
-                                        كل المواضيع
+                            كل المواضيع
                         </span>
                     </li>
 

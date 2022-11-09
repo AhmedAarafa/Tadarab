@@ -123,7 +123,7 @@
 .join-us__start-now button:active {
   box-shadow: none;
 }
-.join-us__start-now button:hover, .join-us__start-now button:active {
+.join-us__start-now button:is(.join-us__start-now button:hover, .join-us__start-now button:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }

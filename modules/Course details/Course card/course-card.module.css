@@ -88,7 +88,7 @@
 .course-details__course-card__actions-btns__add-to-cart-btn:active {
   box-shadow: none;
 }
-.course-details__course-card__actions-btns__add-to-cart-btn:hover, .course-details__course-card__actions-btns__add-to-cart-btn:active {
+.course-details__course-card__actions-btns__add-to-cart-btn:is(.course-details__course-card__actions-btns__add-to-cart-btn:hover, .course-details__course-card__actions-btns__add-to-cart-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -112,10 +112,14 @@
   height: 3.125rem;
   margin-right: 0.6rem;
 }
-.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
+.course-details__course-card__actions-btns__fav-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
 .course-details__course-card__actions-btns__share-btn:hover,
 .course-details__course-card__actions-btns__share-btn:active,
-.course-details__course-card__actions-btns__share-btn:focus {
+.course-details__course-card__actions-btns__share-btn:focus),
+.course-details__course-card__actions-btns__share-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
+.course-details__course-card__actions-btns__share-btn:hover,
+.course-details__course-card__actions-btns__share-btn:active,
+.course-details__course-card__actions-btns__share-btn:focus) {
   background-color: var(--hovered-lightgrey);
 }
 
@@ -298,7 +302,7 @@
   .course-details__course-card__actions-btns__add-to-cart-btn:active {
     box-shadow: none;
   }
-  .course-details__course-card__actions-btns__add-to-cart-btn:hover, .course-details__course-card__actions-btns__add-to-cart-btn:active {
+  .course-details__course-card__actions-btns__add-to-cart-btn:is(.course-details__course-card__actions-btns__add-to-cart-btn:hover, .course-details__course-card__actions-btns__add-to-cart-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
@@ -326,10 +330,14 @@
     margin-right: 1.5rem;
     border-radius: 1.875rem;
   }
-  .course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
+  .course-details__course-card__actions-btns__fav-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
 .course-details__course-card__actions-btns__share-btn:hover,
 .course-details__course-card__actions-btns__share-btn:active,
-.course-details__course-card__actions-btns__share-btn:focus {
+.course-details__course-card__actions-btns__share-btn:focus),
+.course-details__course-card__actions-btns__share-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
+.course-details__course-card__actions-btns__share-btn:hover,
+.course-details__course-card__actions-btns__share-btn:active,
+.course-details__course-card__actions-btns__share-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .course-details__course-card__actions-btns__fav-btn svg,

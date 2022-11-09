@@ -74,8 +74,7 @@
     margin-left: 3rem;
     @include flex(center, space-around);
 
-    &:hover,
-    &:active {
+    &:is(&:hover, &:active) {
         background-color: white !important;
         color: var(--primary-red) !important;
         border: 0.125rem solid rgba(175, 21, 31, 0.2) !important;
@@ -925,8 +924,7 @@
         margin: 3rem 8.5rem 9.75rem 8.5rem;
         @include flex(center, center);
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             border: 0.125rem*2.5 solid rgba(175, 21, 31, 0.2) !important;
         }
 

@@ -48,8 +48,7 @@
         border: 0.063rem solid white !important;
         @include flex(center, center);
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             background-color: transparent !important;
             color: white !important;
             border: 0.063rem solid white !important;
@@ -129,8 +128,7 @@
             border: 0.063rem*2.3 solid white !important;
             @include flex(center, center);
 
-            &:hover,
-            &:active {
+            &:is(&:hover, &:active) {
                 background-color: transparent !important;
                 color: white !important;
                 border: 0.063rem*2.3 solid white !important;

@@ -78,7 +78,7 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.books__see-more-btn:hover, .books__see-more-btn:active {
+.books__see-more-btn:is(.books__see-more-btn:hover, .books__see-more-btn:active) {
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
@@ -186,15 +186,15 @@
   color: var(--outlined-btn-text) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
 }
-.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active {
+.books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--outlined-btn-border) !important;
   color: var(--download-btn-text) !important;
 }
-.books__cards-carousel__card__download-btn:hover span, .books__cards-carousel__card__download-btn:active span {
+.books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
   color: white !important;
 }
-.books__cards-carousel__card__download-btn:hover svg *, .books__cards-carousel__card__download-btn:active svg * {
+.books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
   color: white !important;
   fill: white !important;
 }
@@ -291,13 +291,13 @@
     color: var(--outlined-btn-text) !important;
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
-  .books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
     border-width: 0.16625rem !important;
   }
-  .books__cards-carousel__card__download-btn:hover span, .books__cards-carousel__card__download-btn:active span {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
     color: white !important;
   }
-  .books__cards-carousel__card__download-btn:hover svg *, .books__cards-carousel__card__download-btn:active svg * {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
     color: white !important;
     fill: white !important;
   }
@@ -393,13 +393,13 @@
     color: var(--outlined-btn-text) !important;
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
-  .books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
     border-width: 0.16875rem !important;
   }
-  .books__cards-carousel__card__download-btn:hover span, .books__cards-carousel__card__download-btn:active span {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
     color: white !important;
   }
-  .books__cards-carousel__card__download-btn:hover svg *, .books__cards-carousel__card__download-btn:active svg * {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
     color: white !important;
     fill: white !important;
   }
@@ -470,7 +470,7 @@
     height: 2.7125rem;
     margin-right: 2.063rem;
   }
-  .books__see-more-btn:hover, .books__see-more-btn:active {
+  .books__see-more-btn:is(.books__see-more-btn:hover, .books__see-more-btn:active) {
     border-width: 0.3875rem !important;
   }
   .books__cards-carousel {
@@ -549,15 +549,15 @@
     width: 3.3264rem;
     height: 3.5rem;
   }
-  .books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
     background-color: var(--primary-red) !important;
     border-width: 0.3875rem !important;
     color: white !important;
   }
-  .books__cards-carousel__card__download-btn:hover span, .books__cards-carousel__card__download-btn:active span {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
     color: white !important;
   }
-  .books__cards-carousel__card__download-btn:hover svg *, .books__cards-carousel__card__download-btn:active svg * {
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
     color: white !important;
     fill: white !important;
   }

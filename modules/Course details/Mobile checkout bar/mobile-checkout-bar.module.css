@@ -54,7 +54,7 @@
 .mobile-checkout-bar__subscribe-btn:active {
   box-shadow: none;
 }
-.mobile-checkout-bar__subscribe-btn:hover, .mobile-checkout-bar__subscribe-btn:active {
+.mobile-checkout-bar__subscribe-btn:is(.mobile-checkout-bar__subscribe-btn:hover, .mobile-checkout-bar__subscribe-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }

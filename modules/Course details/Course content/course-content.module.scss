@@ -482,8 +482,7 @@
         font-size: 2.5rem;
         border-radius: 1.5rem;
 
-        &:hover,
-        &:active {
+        &:is(&:hover, &:active) {
             border: 0.125rem solid var(--pale-red) !important;
         }
 

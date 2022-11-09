@@ -47,7 +47,7 @@
 .join-as-a-trainer__btn:active {
   box-shadow: none;
 }
-.join-as-a-trainer__btn:hover, .join-as-a-trainer__btn:active {
+.join-as-a-trainer__btn:is(.join-as-a-trainer__btn:hover, .join-as-a-trainer__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
@@ -88,7 +88,7 @@
   .join-as-a-trainer__btn:active {
     box-shadow: none;
   }
-  .join-as-a-trainer__btn:hover, .join-as-a-trainer__btn:active {
+  .join-as-a-trainer__btn:is(.join-as-a-trainer__btn:hover, .join-as-a-trainer__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
