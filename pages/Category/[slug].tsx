@@ -151,7 +151,8 @@ export default function Category(props: any) {
 export async function getServerSideProps(context: any) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}categories/${context?.params?.slug}/?page=1&limit=12`)
-    const seoData = await res.json()
+    const seoData = await res.json();
+    toggleLoader("show");
     return { props: { seoData: seoData.data } };
   } catch {
     return { props: { seoData: {} } };

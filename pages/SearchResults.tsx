@@ -5,6 +5,7 @@ import MetaTagsGenerator from 'modules/_Shared/utils/MetaTagsGenerator';
 import Router, { useRouter } from 'next/router';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useSelector } from "react-redux";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 import dynamic from 'next/dynamic';
 import withAuth from 'configurations/auth guard/AuthGuard';
@@ -60,7 +61,8 @@ export default withAuth(SearchResults);
 export async function getServerSideProps(context: any) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}courses/?keyword=${context?.query?.q}&page=1&limit=16`)
-    const seoData = await res.json()
+    const seoData = await res.json();
+    toggleLoader("show");
     return { props: { seoData: seoData.data, queryParams: context.query } };
   } catch {
     return { props: { seoData: {} } };

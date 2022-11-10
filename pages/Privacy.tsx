@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import MetaTagsGenerator from 'modules/_Shared/utils/MetaTagsGenerator';
 import { useSelector } from "react-redux";
 import withAuth from 'configurations/auth guard/AuthGuard';
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 const PrivacyPage = dynamic(() => import("modules/Static pages/Privacy/PrivacyPage"));
 
@@ -28,7 +29,8 @@ export default withAuth(Privacy);
 export async function getServerSideProps() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}static/privacy-policy`)
-    const seoData = await res.json()
+    const seoData = await res.json();
+    toggleLoader("show");
     return { props: { seoData: seoData.data } }
   } catch {
     return { props: { seoData: {} } }

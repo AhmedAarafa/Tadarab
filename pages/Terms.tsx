@@ -5,6 +5,8 @@ import MetaTagsGenerator from 'modules/_Shared/utils/MetaTagsGenerator';
 import { useSelector } from "react-redux";
 import SuccessState from "modules/Checkout/Success state/SuccessState";
 import withAuth from 'configurations/auth guard/AuthGuard';
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+
 const TermsPage = dynamic(() => import("modules/Static pages/Terms/TermsPage"));
 
 function Terms(props: any) {
@@ -29,7 +31,8 @@ export default withAuth(Terms);
 export async function getServerSideProps() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}static/terms`)
-    const seoData = await res.json()
+    const seoData = await res.json();
+    toggleLoader("show");
     return { props: { seoData: seoData.data } }
   } catch {
     return { props: { seoData: {} } }

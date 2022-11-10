@@ -141,7 +141,8 @@ export default function TrainerProfile(props: any) {
 export async function getServerSideProps(context: any) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}trainers/${context?.params?.slug}/?limit=10&page=1`)
-    const seoData = await res.json()
+    const seoData = await res.json();
+    toggleLoader("show");
     return { props: { seoData: seoData.data } }
   } catch {
     return { props: { seoData: {} } }
