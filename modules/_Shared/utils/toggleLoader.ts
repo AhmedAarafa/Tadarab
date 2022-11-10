@@ -7,10 +7,12 @@ export const toggleLoader = (status: string) => {
     switch (status) {
       case "show":
         // document.body.classList.add("loading-indicator");
+        document.body.style.cssText = `overflow:hidden`;
         loader.style.cssText = `display : flex`;
         break;
       case "hide":
         setTimeout(() => {
+          document.body.style.cssText = `overflow:visible`;
           loader.style.cssText = `display : none`;
         }, 500);
         // setTimeout(() => {

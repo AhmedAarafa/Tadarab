@@ -23,7 +23,7 @@ function Privacy(props: any) {
   )
 }
 
-export default withAuth(Privacy);
+export default withAuth(Privacy); 
 
 export async function getServerSideProps() {
   try {
