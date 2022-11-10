@@ -73,7 +73,7 @@ export default function SubscriptionBenefits() {
                                 <DiscoverTrainersIcon />
                             </div>
                             <span>
-                                التعرف على خبرات أكثر من 400 مدرباً وخبيراً.
+                                التعرف على خبرات أكثر من 500 مدرباً وخبيراً.
                             </span>
                         </div>
                         <div className={styles["subscription-benefits__benefits__list-item"]}>

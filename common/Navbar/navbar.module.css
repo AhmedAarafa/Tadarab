@@ -821,7 +821,7 @@
 }
 
 input:checked + .slider:before {
-  transform: translateX(1.9rem);
+  transform: translateX(86%);
   background-image: url("/images/dark.svg");
   background-size: 1.3rem 1.3rem;
   background-repeat: no-repeat;
@@ -1005,13 +1005,6 @@ input:checked + .slider:before {
     height: 3.22rem;
     width: 8.74rem;
   }
-  .slider {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    transition: 0.4s;
-  }
   .slider:before {
     bottom: -25%;
     height: 150%;
@@ -1021,7 +1014,6 @@ input:checked + .slider:before {
     background-size: 2.99rem 2.99rem;
   }
   input:checked + .slider:before {
-    transform: translateX(4.37rem);
     background-size: 2.99rem 2.99rem;
   }
   .slider.round {

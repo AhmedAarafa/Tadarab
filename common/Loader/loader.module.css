@@ -1,0 +1,123 @@
+.overlay-loader {
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: var(--desktop-loader-bg-image);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 800;
+  padding-bottom: 3rem;
+  overflow: hidden;
+}
+.overlay-loader > div:nth-of-type(1) {
+  color: #af151f;
+  font-size: 5.5rem;
+  text-shadow: 0.025rem 0.0875rem 0.3rem rgba(54, 48, 80, 0.5);
+}
+.overlay-loader > div:nth-of-type(2) {
+  color: var(--grey);
+  font-size: 1.8rem;
+  margin-top: -1.7rem;
+}
+
+.bouncing-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot1,
+.dot2,
+.dot3,
+.dot4,
+.dot5 {
+  background-color: #363050;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 50%;
+  margin: 1rem 0.4rem 0.4rem 0.4rem;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.099) 0%, rgba(0, 0, 0, 0) 100%);
+  -webkit-animation: bounce 0.8s 0.5s linear infinite;
+          animation: bounce 0.8s 0.5s linear infinite;
+  border: 0.08rem solid rgba(54, 48, 80, 0.5);
+}
+
+.dot1 {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+
+.dot2 {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+
+.dot3 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+.dot4 {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+
+.dot5 {
+  -webkit-animation-delay: 0.1s;
+          animation-delay: 0.1s;
+}
+
+@-webkit-keyframes bounce {
+  0%, 50%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.6);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes bounce {
+  0%, 50%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.6);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+}
+@media (max-width: 575px) {
+  .overlay-loader {
+    padding-bottom: 7.5rem;
+    background-image: var(--mobile-loader-bg-image);
+  }
+  .overlay-loader > div:nth-of-type(1) {
+    font-size: 8.25rem;
+    text-shadow: 0.3125rem 0.46875rem 1.875rem rgba(54, 48, 80, 0.5);
+  }
+  .overlay-loader > div:nth-of-type(2) {
+    font-size: 2.7rem;
+    margin-top: -2.55rem;
+  }
+  .dot1,
+.dot2,
+.dot3,
+.dot4,
+.dot5 {
+    width: 2.21rem;
+    height: 2.21rem;
+    margin: 1.7rem 0.68rem 0.68rem 0.68rem;
+    border-width: 0.16rem;
+  }
+}/*# sourceMappingURL=loader.module.css.map */

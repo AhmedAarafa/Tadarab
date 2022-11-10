@@ -16,6 +16,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
 import Router, { useRouter } from "next/router";
 import { setTheme } from "configurations/redux/actions/themeToggler";
+import Loader from 'common/Loader/Loader';
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
@@ -107,6 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/*<!-- End Facebook Pixel Code -->*/}
 
       <Provider store={store}>
+        <Loader />
         <NotificationBar />
         <Navbar />
         <Component {...pageProps} />

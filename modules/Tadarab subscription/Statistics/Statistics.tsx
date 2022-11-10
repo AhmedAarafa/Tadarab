@@ -182,7 +182,7 @@ export default function Statistics() {
                   </div>
                 </div>
                 <div className={styles["statistics__details__counter"]}>
-                  <span id="users-count">+2.6</span>
+                  <span id="users-count">+2.9</span>
                   {/* <span id="users-count">+{startCounter ? animateValue("users-count", 0, 2, 5000) : ""}</span> */}
                   <span>مليون</span>
                 </div>
@@ -198,7 +198,7 @@ export default function Statistics() {
                 </div>
                 <div className={styles["statistics__details__counter"]}>
                   {/* <span id="edu-courses-count">+{startCounter ? animateValue("edu-courses-count", 0, 500, 5000) : "0"}</span> */}
-                  <span id="edu-courses-count">+750</span>
+                  <span id="edu-courses-count">+900</span>
                 </div>
                 <div className={styles["statistics__details__unit"]}>دورة تدريبية</div>
               </div>
@@ -210,7 +210,7 @@ export default function Statistics() {
 
                 </div>
                 <div className={styles["statistics__details__counter"]}>
-                  <span id="trainers-count">+400</span>
+                  <span id="trainers-count">+500</span>
                   {/* <span id="trainers-count">+{startCounter ? animateValue("trainers-count", 0, 400, 5000) : "0"}</span> */}
                 </div>
                 <div className={styles["statistics__details__unit"]}>خبير ومدرب</div>
