@@ -1,8 +1,8 @@
-@import "../../../styles/mixins"; 
+@import "../../../styles/mixins";
 
-.mobile-checkout-bar{
+.mobile-checkout-bar {
     background-color: var(--tadarab-bg);
-    padding:10px 0px;
+    padding: 10px 0px;
     box-shadow: 0 -0.781rem 3.281rem #00000014;
     @include flex(center, center);
     position: fixed;
@@ -14,21 +14,23 @@
 }
 
 .monthly-subscription__subscription-value {
-    span.amount-strike{
+    span.amount-strike {
         text-decoration: line-through rgba(175, 21, 31, 0.5);
     }
 }
 
-.monthly-subscription__subscription-timer{
+.monthly-subscription__subscription-timer {
     font-size: 0.75*2.5rem;
     text-align: center;
     margin-bottom: 0.3rem;
-    span{
+    color: var(--dark-black);
+
+    span {
         color: red;
     }
 }
 
-.mobile-checkout-bar__subscribe-btn{
+.mobile-checkout-bar__subscribe-btn {
     @include flex(center, center);
     @include contained-button;
     padding: 0.9375rem 1.875rem;
@@ -37,21 +39,23 @@
     height: 6.5rem;
     margin-top: 0.4rem;
     flex-direction: column;
-    div:nth-of-type(2){
+
+    div:nth-of-type(2) {
         font-size: 0.9375rem*1.7;
     }
 
-    svg{
-        width:3.281rem;
-        height:2.8rem;
+    svg {
+        width: 3.281rem;
+        height: 2.8rem;
         margin-left: 0.3rem;
     }
-    span{
+
+    span {
         font-size: 2.188rem;
         font-weight: 700;
     }
 
-    &+div{
+    &+div {
         font-size: 1.8rem;
         text-align: center;
         margin-top: 0.2rem;
@@ -90,6 +94,6 @@
     font-weight: 800;
 }
 
-.mobile-checkout-bar__course-card__old-price-box__currency{
+.mobile-checkout-bar__course-card__old-price-box__currency {
     font-size: 1.719rem;
 }

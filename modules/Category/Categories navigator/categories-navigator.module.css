@@ -30,14 +30,15 @@
   .categories-navigator button + div {
     width: 100%;
     text-align: right;
+    background-color: var(--tadarab-bg);
   }
   .categories-navigator button + div a {
     font-size: 2rem;
     padding: 0.75rem 1rem !important;
     color: var(--dark-black) !important;
   }
-  .categories-navigator button + div a:active {
-    background-color: #d9dde1;
+  .categories-navigator button + div a:is(.categories-navigator button + div a:hover, .categories-navigator button + div a:active, .categories-navigator button + div a:focus) {
+    background-color: var(--lightgrey);
     color: #1e2125;
   }
 }/*# sourceMappingURL=categories-navigator.module.css.map */

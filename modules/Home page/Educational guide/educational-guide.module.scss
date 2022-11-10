@@ -51,6 +51,10 @@
     color: white;
     padding: 2.063rem 0 2.063rem 0;
 
+    &>div:nth-of-type(1) {
+        margin-bottom: 1rem;
+    }
+
 }
 
 .educational-guide__container__details-box__btn {
@@ -106,6 +110,10 @@
     .educational-guide__container__details-box__breif {
         font-size: 2rem;
         padding: 2.219rem 4.609rem 2.5rem 4.609rem;
+
+        &>div:nth-of-type(1) {
+            margin-bottom: 1rem*2.3;
+        }
 
     }
 

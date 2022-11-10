@@ -31,13 +31,15 @@
             &+div {
                 width: 100%;
                 text-align: right;
+                background-color: var(--tadarab-bg);
 
                 a {
                     font-size: 2rem;
                     padding: 0.75rem 1rem !important;
-            color: var(--dark-black) !important;
-                    &:active {
-                        background-color: #d9dde1;
+                    color: var(--dark-black) !important;
+
+                    &:is(&:hover, &:active, &:focus) {
+                        background-color: var(--lightgrey);
                         color: #1e2125;
                     }
                 }

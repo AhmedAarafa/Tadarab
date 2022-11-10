@@ -1,18 +1,15 @@
-Version 2.4.2 (06th Nov 2022)
+Version 2.4.3 (06th Nov 2022)
 1) Category page modifications.
 2) Hide Tadarab season page.
 3) Homepage content changes.
 4) Subscription text change on bottom of CTA button.
+
+Version 2.4.2 (06th Nov 2022)
+1) Revoke 2.3.9 during build error.
 
 Version 2.4.1 (02nd Nov 2022)
 1)  Revoke 2.3.9 during build error.
 2)  Subscription text change on bottom of CTA button.
-
-Version 2.4.0 (02nd Nov 2022)
-1) Category page modifications.
-2) Hide Tadarab season page.
-3) Homepage content changes.
-4) Subscription text change on bottom of CTA button.
 
 Version 2.4.0 (02nd Nov 2022)
 1) Category page modifications.
