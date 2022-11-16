@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
-    
+
     if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'production') {
       // console.log = function() {}
     }
@@ -78,6 +78,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:site" content="@tadarab_" key="twitter-site" />
         <meta name="twitter:creator" content="@tadarab_" key="twitter-creator" />
         <meta name="twitter:image" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" key="twitter-image" />
+        <script src="//widget.manychat.com/414102_7667f.js" defer="defer"></script>
+        <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
       </Head>
       {/* <body> */}
 
