@@ -75,7 +75,8 @@ export default function LearnFromTheBest() {
                                   <div className={styles["learn-from-the-best__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
                               </Link>
                                   <div className={styles["learn-from-the-best__cards-carousel__card__job-title"]}>{trainer.title}</div>
-                                  <div className={styles["learn-from-the-best__cards-carousel__card__job-history"]}>{trainer.bio} </div>
+                                  <div className={styles["learn-from-the-best__cards-carousel__card__job-history"]} 
+                                   dangerouslySetInnerHTML={{ __html: trainer.bio}}></div>
                               </div>
                           </div>
                       

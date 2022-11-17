@@ -1212,6 +1212,177 @@ function CheckoutPage(props: any) {
 
                 {(step == "added-courses" || step == "payment-types") && <Row className={styles["checkout"]}>
                     <Col className={styles["checkout__course-content"]}>
+
+                        {/** Payment options **/}
+                        {step == "payment-types" &&
+                            <div id="select-payment-method" className={styles["checkout__payment-method-box"]}>
+                                {!(paymentSettings == null) && !(paymentSettings == undefined) &&
+                                    <>
+                                        <div className={styles["checkout__payment-method-box__title"]} >
+                                            حدد وسيلة الدفع المناسبة لك
+                                        </div>
+                                        {/* VisaMaster Payment */}
+                                        {(!(paymentSettings?.visamaster == null) && !(paymentSettings?.visamaster == undefined) && (paymentSettings?.visamaster.length != 0)) &&
+                                            <>
+                                                <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
+                                                    <div className="d-flex align-items-center">
+                                                        <input onClick={() => { radioBtnsHandler() }} type="radio" name="payment-type" value="VISA" className="form-check-input" />
+                                                        <label htmlFor="visa">
+                                                            <div className={styles["checkout__payment-method-box__payment-method__images"]}>
+                                                                <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/visa.png" alt="VISA" />
+                                                                <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
+                                                            </div>
+                                                            <div className={styles["checkout__payment-method-box__payment-method__text"]}>
+                                                                بطاقات الائتمان / الخصم المباشر
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                    <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
+                                                        <Frames
+                                                            config={{
+                                                                debug: false,
+                                                                publicKey: `${paymentSettings?.visamaster?.public_key}`,
+                                                                localization: {
+                                                                    cardNumberPlaceholder: 'رقم البطاقة',
+                                                                    expiryMonthPlaceholder: '(YY) سنة',
+                                                                    expiryYearPlaceholder: '(MM) شهر ',
+                                                                    cvvPlaceholder: ' الرقم السري (CVV)',
+                                                                },
+                                                                environment: process.env.NEXT_PUBLIC_ENVIRONMENT,
+                                                                style: {
+                                                                    base: {
+                                                                        fontSize: '1.2em',
+                                                                        padding: '0 1.5rem',
+                                                                        textAlign: "right",
+                                                                        direction: "ltr",
+                                                                        fontFamily: "'Almarai', sans-serif !important",
+                                                                        color: '#222222',
+                                                                        border: '0.0625rem solid #2222221A',
+                                                                        borderRadius: '0.75rem',
+                                                                        backgroundColor: "white"
+                                                                    },
+                                                                    autofill: {
+                                                                        backgroundColor: 'yellow',
+                                                                    },
+                                                                    hover: {
+                                                                        color: '#222222',
+                                                                    },
+                                                                    focus: {
+                                                                        color: '#222222',
+                                                                    },
+                                                                    valid: {
+                                                                        color: 'green',
+                                                                    },
+                                                                    invalid: {
+                                                                        color: 'red',
+                                                                        border: "1px solid red"
+                                                                    },
+                                                                    placeholder: {
+                                                                        base: {
+                                                                            color: 'gray',
+                                                                            direction: "rtl",
+                                                                            textAlign: "right"
+                                                                        },
+                                                                        focus: {
+                                                                            direction: "rtl",
+                                                                            textAlign: "right"
+                                                                        }
+                                                                    },
+                                                                },
+                                                            }}
+                                                            ready={() => {
+                                                                setIsVisaMasterFrameReady(true);
+                                                                setIsSpinnerExist(false);
+                                                            }}
+                                                            frameActivated={(e: any) => { }}
+                                                            frameFocus={(e: any) => { }}
+                                                            frameBlur={(e: any) => { }}
+                                                            frameValidationChanged={(e: any) => {
+                                                            }}
+                                                            paymentMethodChanged={(e: any) => { }}
+                                                            cardValidationChanged={(e: any) => {
+
+                                                                const submitBtn: any = document.getElementById("paynow_button");
+                                                                if (Frames.isCardValid()) {
+                                                                    if (submitBtn) {
+                                                                        setIsFinalizePaymentBtnEnabled(true);
+                                                                    }
+                                                                }
+                                                                // else {
+                                                                //     submitBtn ? submitBtn.style.cssText = `pointer-events:none;opacity:0.7` : null;
+                                                                // }
+                                                            }}
+                                                            cardSubmitted={(e: any) => {
+                                                                console.log("cardSubmitted", e);
+                                                            }}
+                                                            cardTokenized={(e: any) => {
+                                                                console.log("cardTokenized", e);
+                                                            }
+                                                            }
+                                                            cardTokenizationFailed={(e: any) => {
+                                                            }}
+                                                            cardBinChanged={(e: any) => {
+                                                                /** Identify the card first 6 digits is which associated with BANK  */
+                                                                let card_bin = (e.bin), card6_bin = Number(card_bin.slice(0, 6));
+                                                                console.log("card6_bin", typeof (card6_bin), card6_bin);
+                                                                console.log("paymentSettings", paymentSettings);
+                                                                if (paymentSettings?.NBK_bin.includes(card6_bin)) {
+                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "NBK", subplan_id: "a5Is2wQH" });
+                                                                } else if (paymentSettings?.WARBA_bin.includes(card6_bin)) {
+                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "WARBA", subplan_id: "a5Is2wQH" });
+                                                                } else if (paymentSettings?.BOUBYAN_bin.includes(card6_bin)) {
+                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "BOUBYAN", subplan_id: "" });
+                                                                } else {
+                                                                    // setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
+                                                                }
+                                                            }}>
+                                                            <CardNumber />
+                                                            <ExpiryDate />
+                                                            <Cvv />
+                                                        </Frames>
+                                                    </div>
+                                                </div>
+                                            </>}
+                                        {/* VisaMaster Payment end */}
+
+                                        {/* PAYPAL Payment */}
+                                        {(!(paymentSettings?.paypal == null) && !(paymentSettings?.paypal == undefined) && (paymentSettings?.paypal?.length != 0)) &&
+                                            <>
+                                                <div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
+                                                    <div className="d-flex align-items-center">
+                                                        <input onClick={() => radioBtnsHandler()} type="radio" name="payment-type" value="PAYPAL" className="form-check-input" />
+                                                        <label htmlFor="paypal">
+                                                            <div className={styles["checkout__payment-method-box__payment-method__images"]}>
+                                                                <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__paypal"]} src="/images/paypal.png" alt="PAYPAL" />
+                                                            </div>
+                                                            <div className={styles["checkout__payment-method-box__payment-method__text"]}>
+                                                                الدفع عن طريق باي بال
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </>}
+                                        {/* PAYPAL Payment end */}
+
+                                        {/* KNET Payment */}
+                                        {checkoutType !== "subscription" &&
+                                            <div id="payment-method3" className={styles["checkout__payment-method-box__payment-method"]}>
+                                                <div className="d-flex align-items-center">
+                                                    <input onClick={() => radioBtnsHandler()} type="radio" name="payment-type" value="KNET" className="form-check-input" />
+                                                    <label htmlFor="knet">
+                                                        <div className={styles["checkout__payment-method-box__payment-method__images"]}>
+                                                            <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__knet"]} src="/images/knet.png" alt="PAYPAL" />
+                                                        </div>
+                                                        <div className={styles["checkout__payment-method-box__payment-method__text"]}>
+                                                            الدفع عن طريق كي - نت
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>}
+                                        {/* KNET Payment end */}
+                                    </>}
+                            </div>}
+
                         {/** terms & policy end **/}
                         {
                             checkoutType == "subscription" &&
@@ -1229,7 +1400,7 @@ function CheckoutPage(props: any) {
                                     <span>
                                         مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
                                         <span className={styles["checkout__subscription-benefits__title--important"]}>
-                                            700
+                                            850
                                         </span>
                                         دورة تدريبية).
                                     </span></div>
@@ -1376,7 +1547,7 @@ function CheckoutPage(props: any) {
 
                                     {paymentSettings &&
                                         <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
-                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                            <div style={{ backgroundColor: `${threePlansSelection == "yearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
                                                     أفضل قيمة
                                                 </div>
@@ -1404,7 +1575,7 @@ function CheckoutPage(props: any) {
 
                                             </div>
 
-                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                            <div style={{ backgroundColor: `${threePlansSelection == "midYearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                     <input onClick={() => {
                                                         setThreePlansSelection("midYearly");
@@ -1429,7 +1600,7 @@ function CheckoutPage(props: any) {
 
                                             </div>
 
-                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                            <div style={{ backgroundColor: `${threePlansSelection == "monthly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                     <input onClick={() => {
                                                         setThreePlansSelection("monthly");
@@ -1750,176 +1921,8 @@ function CheckoutPage(props: any) {
 
                         </div>}
 
-                        {/** Payment options **/}
-                        {step == "payment-types" &&
-                            <div id="select-payment-method" className={styles["checkout__payment-method-box"]}>
-                                {!(paymentSettings == null) && !(paymentSettings == undefined) &&
-                                    <>
-                                        <div className={styles["checkout__payment-method-box__title"]} >
-                                            حدد وسيلة الدفع المناسبة لك
-                                        </div>
-                                        {/* VisaMaster Payment */}
-                                        {(!(paymentSettings?.visamaster == null) && !(paymentSettings?.visamaster == undefined) && (paymentSettings?.visamaster.length != 0)) &&
-                                            <>
-                                                <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
-                                                    <div className="d-flex align-items-center">
-                                                        <input onClick={() => { radioBtnsHandler() }} type="radio" name="payment-type" value="VISA" className="form-check-input" />
-                                                        <label htmlFor="visa">
-                                                            <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                                                                <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/visa.png" alt="VISA" />
-                                                                <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__master-card"]} src="/images/Mastercard.png" alt="MASTER CARD" />
-                                                            </div>
-                                                            <div className={styles["checkout__payment-method-box__payment-method__text"]}>
-                                                                بطاقات الائتمان / الخصم المباشر
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    <div id="card-info-box" className={styles["checkout__payment-method-box__payment-method__card-info"]}>
-                                                        <Frames
-                                                            config={{
-                                                                debug: false,
-                                                                publicKey: `${paymentSettings?.visamaster?.public_key}`,
-                                                                localization: {
-                                                                    cardNumberPlaceholder: 'رقم البطاقة',
-                                                                    expiryMonthPlaceholder: '(YY) سنة',
-                                                                    expiryYearPlaceholder: '(MM) شهر ',
-                                                                    cvvPlaceholder: ' الرقم السري (CVV)',
-                                                                },
-                                                                environment: process.env.NEXT_PUBLIC_ENVIRONMENT,
-                                                                style: {
-                                                                    base: {
-                                                                        fontSize: '1.2em',
-                                                                        padding: '0 1.5rem',
-                                                                        textAlign: "right",
-                                                                        direction: "ltr",
-                                                                        fontFamily: "'Almarai', sans-serif !important",
-                                                                        color: '#222222',
-                                                                        border: '0.0625rem solid #2222221A',
-                                                                        borderRadius: '0.75rem',
-                                                                        backgroundColor:"white"
-                                                                    },
-                                                                    autofill: {
-                                                                        backgroundColor: 'yellow',
-                                                                    },
-                                                                    hover: {
-                                                                        color: '#222222',
-                                                                    },
-                                                                    focus: {
-                                                                        color: '#222222',
-                                                                    },
-                                                                    valid: {
-                                                                        color: 'green',
-                                                                    },
-                                                                    invalid: {
-                                                                        color: 'red',
-                                                                        border: "1px solid red"
-                                                                    },
-                                                                    placeholder: {
-                                                                        base: {
-                                                                            color: 'gray',
-                                                                            direction: "rtl",
-                                                                            textAlign: "right"
-                                                                        },
-                                                                        focus: {
-                                                                            direction: "rtl",
-                                                                            textAlign: "right"
-                                                                        }
-                                                                    },
-                                                                },
-                                                            }}
-                                                            ready={() => {
-                                                                setIsVisaMasterFrameReady(true);
-                                                                setIsSpinnerExist(false);
-                                                            }}
-                                                            frameActivated={(e: any) => { }}
-                                                            frameFocus={(e: any) => { }}
-                                                            frameBlur={(e: any) => { }}
-                                                            frameValidationChanged={(e: any) => {
-                                                            }}
-                                                            paymentMethodChanged={(e: any) => { }}
-                                                            cardValidationChanged={(e: any) => {
 
-                                                                const submitBtn: any = document.getElementById("paynow_button");
-                                                                if (Frames.isCardValid()) {
-                                                                    if (submitBtn) {
-                                                                        setIsFinalizePaymentBtnEnabled(true);
-                                                                    }
-                                                                }
-                                                                // else {
-                                                                //     submitBtn ? submitBtn.style.cssText = `pointer-events:none;opacity:0.7` : null;
-                                                                // }
-                                                            }}
-                                                            cardSubmitted={(e: any) => {
-                                                                console.log("cardSubmitted", e);
-                                                            }}
-                                                            cardTokenized={(e: any) => {
-                                                                console.log("cardTokenized", e);
-                                                            }
-                                                            }
-                                                            cardTokenizationFailed={(e: any) => {
-                                                            }}
-                                                            cardBinChanged={(e: any) => {
-                                                                /** Identify the card first 6 digits is which associated with BANK  */
-                                                                let card_bin = (e.bin), card6_bin = Number(card_bin.slice(0, 6));
-                                                                console.log("card6_bin", typeof (card6_bin), card6_bin);
-                                                                console.log("paymentSettings", paymentSettings);
-                                                                if (paymentSettings?.NBK_bin.includes(card6_bin)) {
-                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "NBK", subplan_id: "a5Is2wQH" });
-                                                                } else if (paymentSettings?.WARBA_bin.includes(card6_bin)) {
-                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "WARBA", subplan_id: "a5Is2wQH" });
-                                                                } else if (paymentSettings?.BOUBYAN_bin.includes(card6_bin)) {
-                                                                    // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "BOUBYAN", subplan_id: "" });
-                                                                } else {
-                                                                    // setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
-                                                                }
-                                                            }}>
-                                                            <CardNumber />
-                                                            <ExpiryDate />
-                                                            <Cvv />
-                                                        </Frames>
-                                                    </div>
-                                                </div>
-                                            </>}
-                                        {/* VisaMaster Payment end */}
 
-                                        {/* PAYPAL Payment */}
-                                        {(!(paymentSettings?.paypal == null) && !(paymentSettings?.paypal == undefined) && (paymentSettings?.paypal?.length != 0)) &&
-                                            <>
-                                                <div id="payment-method2" className={styles["checkout__payment-method-box__payment-method"]}>
-                                                    <div className="d-flex align-items-center">
-                                                        <input onClick={() => radioBtnsHandler()} type="radio" name="payment-type" value="PAYPAL" className="form-check-input" />
-                                                        <label htmlFor="paypal">
-                                                            <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                                                                <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__paypal"]} src="/images/paypal.png" alt="PAYPAL" />
-                                                            </div>
-                                                            <div className={styles["checkout__payment-method-box__payment-method__text"]}>
-                                                                الدفع عن طريق باي بال
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </>}
-                                        {/* PAYPAL Payment end */}
-
-                                        {/* KNET Payment */}
-                                        {checkoutType !== "subscription" &&
-                                            <div id="payment-method3" className={styles["checkout__payment-method-box__payment-method"]}>
-                                                <div className="d-flex align-items-center">
-                                                    <input onClick={() => radioBtnsHandler()} type="radio" name="payment-type" value="KNET" className="form-check-input" />
-                                                    <label htmlFor="knet">
-                                                        <div className={styles["checkout__payment-method-box__payment-method__images"]}>
-                                                            <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__knet"]} src="/images/knet.png" alt="PAYPAL" />
-                                                        </div>
-                                                        <div className={styles["checkout__payment-method-box__payment-method__text"]}>
-                                                            الدفع عن طريق كي - نت
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </div>}
-                                        {/* KNET Payment end */}
-                                    </>}
-                            </div>}
-                            
                         {checkoutType !== "subscription" &&
                             <>
                                 <div className={styles["checkout__course-content__title"]}>
@@ -2014,7 +2017,7 @@ function CheckoutPage(props: any) {
                                         <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
 
                                             {paymentSettings && <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
-                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                <div style={{ backgroundColor: `${threePlansSelection == "yearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
                                                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
                                                         أفضل قيمة
                                                     </div>
@@ -2042,7 +2045,7 @@ function CheckoutPage(props: any) {
                                                     </div>
                                                 </div>
 
-                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                <div style={{ backgroundColor: `${threePlansSelection == "midYearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
                                                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                         <input onClick={() => {
                                                             // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
@@ -2068,7 +2071,7 @@ function CheckoutPage(props: any) {
 
                                                 </div>
 
-                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                                <div style={{ backgroundColor: `${threePlansSelection == "monthly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
                                                     <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                         <input onClick={() => {
                                                             // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");

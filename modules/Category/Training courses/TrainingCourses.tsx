@@ -67,9 +67,7 @@ export default function TrainingCourses(props: any) {
         setFilterSidebarShow(status);
     }
     const handleFilters = (filterType: any, text: any, value: any, elementId: any): any => {
-        console.log('filterType', filterType);
-        console.log('text', text);
-        console.log('value', value);
+ 
         let checkedElement: any = document.getElementById(elementId);
 
         switch (filterType) {
@@ -77,28 +75,7 @@ export default function TrainingCourses(props: any) {
                 //Update UI
                 setFilters({ ...filters, orderby: text });
                 //Arrange or re-render the courses
-                /*
-                if(value = 'asc'){
-                    let sorted = props.data.courses.sort(function(a:any, b:any) {
-                        console.log('a', a);
-                        return parseFloat(a.id) - parseFloat(b.id);
-                    });
-                    console.log('sorted', sorted);
-
-                    setFilteredCourses(sorted);
-                }
-                else if(value = 'desc'){
-                    let sorted = props.data.courses.sort(function(a:any, b:any) {
-                        return parseFloat(b.id) - parseFloat(a.id);
-                    });
-
-                    setFilteredCourses(sorted);
-
-                }
-                else if(value = 'best-seller'){
-
-                }
-                */
+            
                 break;
             case "level":
                 //Update UI

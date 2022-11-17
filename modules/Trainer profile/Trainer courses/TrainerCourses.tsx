@@ -354,53 +354,51 @@ export default function TrainerCourses() {
                         );
                     })}
                 </div>
-                <div className={styles["trainer-courses-box__pagination"]}>
-                    {
-                        trainerProfile?.pagination?.count > 10 && <Pagination>
-                            <Pagination.Prev
-                                onClick={() => {
-                                    setPageNumber(trainerProfile?.pagination?.current - 1);
-                                    handlePageClick(trainerProfile?.pagination?.current - 1)
-                                }}
-                                className={`${currentPage == "1" && styles["disabled"]}`} />
+                {trainerProfile?.pagination?.count > 10 && <div className={styles["trainer-courses-box__pagination"]}>
+                    <Pagination>
+                        <Pagination.Prev
+                            onClick={() => {
+                                setPageNumber(trainerProfile?.pagination?.current - 1);
+                                handlePageClick(trainerProfile?.pagination?.current - 1)
+                            }}
+                            className={`${currentPage == "1" && styles["disabled"]}`} />
 
-                            <Pagination.Item
-                                style={{ display: trainerProfile?.pagination?.previous ? "" : "none" }}
-                                active={currentPage == trainerProfile?.pagination?.previous}
-                                onClick={() => {
-                                    setPageNumber(trainerProfile?.pagination?.previous);
-                                    handlePageClick(trainerProfile?.pagination?.previous)
-                                }}>
-                                {trainerProfile?.pagination?.previous}
-                            </Pagination.Item>
-                            <Pagination.Item
-                                active={currentPage == trainerProfile?.pagination?.current}
-                                onClick={() => {
-                                    setPageNumber(trainerProfile?.pagination?.current);
-                                    handlePageClick(trainerProfile?.pagination?.current);
-                                }}>
-                                {trainerProfile?.pagination?.current}
-                            </Pagination.Item>
-                            <Pagination.Item
-                                style={{ display: trainerProfile?.pagination?.next ? "" : "none" }}
-                                active={currentPage == trainerProfile?.pagination?.next}
-                                onClick={() => {
-                                    setPageNumber(trainerProfile?.pagination?.next);
-                                    handlePageClick(trainerProfile?.pagination?.next)
-                                }}>
-                                {trainerProfile?.pagination?.next}
-                            </Pagination.Item>
+                        <Pagination.Item
+                            style={{ display: trainerProfile?.pagination?.previous ? "" : "none" }}
+                            active={currentPage == trainerProfile?.pagination?.previous}
+                            onClick={() => {
+                                setPageNumber(trainerProfile?.pagination?.previous);
+                                handlePageClick(trainerProfile?.pagination?.previous)
+                            }}>
+                            {trainerProfile?.pagination?.previous}
+                        </Pagination.Item>
+                        <Pagination.Item
+                            active={currentPage == trainerProfile?.pagination?.current}
+                            onClick={() => {
+                                setPageNumber(trainerProfile?.pagination?.current);
+                                handlePageClick(trainerProfile?.pagination?.current);
+                            }}>
+                            {trainerProfile?.pagination?.current}
+                        </Pagination.Item>
+                        <Pagination.Item
+                            style={{ display: trainerProfile?.pagination?.next ? "" : "none" }}
+                            active={currentPage == trainerProfile?.pagination?.next}
+                            onClick={() => {
+                                setPageNumber(trainerProfile?.pagination?.next);
+                                handlePageClick(trainerProfile?.pagination?.next)
+                            }}>
+                            {trainerProfile?.pagination?.next}
+                        </Pagination.Item>
 
-                            <Pagination.Next
-                                onClick={() => {
-                                    setPageNumber(trainerProfile?.pagination?.current + 1);
-                                    handlePageClick(trainerProfile?.pagination?.current + 1)
-                                }}
-                                className={`${currentPage == trainerProfile?.pagination?.pages && styles["disabled"]}`} />
-                        </Pagination>
-                    }
+                        <Pagination.Next
+                            onClick={() => {
+                                setPageNumber(trainerProfile?.pagination?.current + 1);
+                                handlePageClick(trainerProfile?.pagination?.current + 1)
+                            }}
+                            className={`${currentPage == trainerProfile?.pagination?.pages && styles["disabled"]}`} />
+                    </Pagination>
 
-                </div>
+                </div>}
             </div>
 
 

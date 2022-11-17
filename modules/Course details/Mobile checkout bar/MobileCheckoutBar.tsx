@@ -135,27 +135,17 @@ export default function MobileCheckoutBar(props:any) {
                 :
                 <>
                   <div>
-                    <span>اشترك في تدرب بلا حدود </span>
+                    <span>اشترك لمشاهدة الدورة </span>
                   </div>
                 </>
             }
           </Button>
           <div>
-            {/* <div className={styles["monthly-subscription__subscription-value"]}>
-              احصل على كل الدورات فقط ب 9 دك / شهر.
-            </div> */}
             <div className={styles["monthly-subscription__subscription-value"]} >
               <span>
-              احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
-                {/* احصل على كل الدورات فقط ب
-                {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
+              احصل على كل الدورات باشتراك واحد يبدأ من {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
                 {props?.data?.currency_symbol && props?.data?.currency_symbol} / ش
-                بدلا من */}
               </span>
-              {/* <span className={styles["amount-strike"]}>
-                {` ${props?.data?.subscription_original_price && props?.data?.subscription_original_price} `}
-                {props?.data?.currency_symbol && props?.data?.currency_symbol}
-              </span> */}
             </div>
           </div>
         </div>

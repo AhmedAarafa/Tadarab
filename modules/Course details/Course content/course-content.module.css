@@ -55,6 +55,7 @@
 .course-content__accordion__header,
 .purchased-course-content__accordion__header {
   border-radius: 0.75rem 0.75rem 0 0 !important;
+  background-color: var(--tadarab-bg) !important;
 }
 .course-content__accordion__header button,
 .purchased-course-content__accordion__header button {
@@ -63,6 +64,7 @@
   justify-content: space-between;
   border-radius: 0.75rem 0.75rem 0 0 !important;
   padding-bottom: 1.3rem !important;
+  text-align: right !important;
 }
 .course-content__accordion__header button::after,
 .purchased-course-content__accordion__header button::after {
@@ -78,7 +80,6 @@
   border-radius: 0 !important;
 }
 .purchased-course-content__accordion__header button {
-  background-color: white !important;
   border-radius: 0 !important;
 }
 .purchased-course-content__accordion__header button[aria-expanded=true]::after {
@@ -116,15 +117,12 @@
 .purchased-course-content__accordion__body {
   padding-bottom: 0.1rem;
   border-radius: 0 0 0.75rem 0.75rem !important;
+  background-color: var(--accordion-body) !important;
 }
 .course-content__accordion__body .course-content__accordion__body__list-item:last-child,
 .purchased-course-content__accordion__body .course-content__accordion__body__list-item:last-child {
   border: 0;
   padding: 0;
-}
-
-.purchased-course-content__accordion__body {
-  background-color: #faf9f9 !important;
 }
 
 .course-content__accordion__header__details-box {
@@ -316,6 +314,7 @@
   .course-content__accordion__header,
 .purchased-course-content__accordion__header {
     border-radius: 1.875rem 1.875rem 0 0 !important;
+    background-color: var(--tadarab-bg) !important;
   }
   .course-content__accordion__header button,
 .purchased-course-content__accordion__header button {

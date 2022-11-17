@@ -26,6 +26,7 @@ export default function TrainerProfile(props: any) {
   const { seoData } = props;
   const [trainerData, setTrainerData] = useState({});
   const [isFound, setIsFound] = useState(true);
+  const [isCheckoutBarVisible, setIsCheckoutBarVisible] = useState(false);
   const themeState = useSelector((state: any) => state.themeState.theme);
 
 
@@ -33,6 +34,7 @@ export default function TrainerProfile(props: any) {
     toggleLoader("show");
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("trainer-courses__course-card");
+        setIsCheckoutBarVisible(window.scrollY > 500 ? true : false);
     })
 
     return () => {
@@ -41,7 +43,7 @@ export default function TrainerProfile(props: any) {
       })
     }
 
-  }, [])
+  }, []);
 
   useEffect(() => {
     const { slug } = router.query;
@@ -128,7 +130,7 @@ export default function TrainerProfile(props: any) {
       {
         isFound ?
           <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
-            <MobileCheckoutBar data={trainerData} />
+            { isCheckoutBarVisible && <MobileCheckoutBar data={trainerData} />}
             <TrainerProfilePage />
           </Container>
           :

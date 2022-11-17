@@ -15,6 +15,12 @@
   font-weight: 800;
   padding-bottom: 3rem;
 }
+.overlay-loader * {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 .overlay-loader > div:nth-of-type(1) {
   color: #af151f;
   font-size: 5.5rem;

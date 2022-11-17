@@ -308,7 +308,6 @@
 .checkout__subscription-benefits {
     margin: 0 0 2rem 0;
     order: 1;
-    border-bottom: 0.1rem solid rgba(119, 119, 119, 0.2);
     padding-bottom: 2rem;
 
     div {
@@ -748,8 +747,11 @@
 
 
 .checkout__payment-method-box {
-    margin: 0 0 2.3125rem 0;
+    padding: 0 0 2.3125rem 0;
+    margin-bottom: 2rem;
     order: 1;
+    border-bottom: 0.1rem solid rgba(119, 119, 119, 0.2);
+
 }
 
 .checkout__payment-method-box__title {
@@ -1174,6 +1176,7 @@
 
 .checkout__cart-sticky-card__subscription-plans {
     margin-bottom: 0.8rem;
+    box-shadow: 0 0 1.25rem*2.5 #0000001A;
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box {
@@ -1185,6 +1188,7 @@
 
 .checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
     margin: -1.625rem -1.625rem 0 -1.625rem;
+    border-radius: 1.25rem 1.25rem 0 0;
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box--active {
@@ -1344,7 +1348,7 @@
             right: 0;
             bottom: -1rem*1.03;
             width: 100%;
-            border-bottom-width: 0.05rem*1.03 ;
+            border-bottom-width: 0.05rem*1.03;
         }
     }
 
@@ -1536,7 +1540,7 @@
             right: 0;
             bottom: -1rem*1.37;
             width: 100%;
-            border-bottom-width: 0.05rem*1.37 ;
+            border-bottom-width: 0.05rem*1.37;
         }
     }
 
@@ -1641,7 +1645,7 @@
 @media (max-width:575px) {
 
     .checkout__start-free {
-        margin: 15rem 0 0 0;
+        margin: 9rem 0 0 0;
         text-align: center;
 
         div:nth-of-type(1) {
@@ -1726,7 +1730,7 @@
     }
 
     .checkout__stepper-box__stepper__step-number {
-        border-width: 0.0625rem*1.8 ;
+        border-width: 0.0625rem*1.8;
         border-radius: 50%;
         width: 2.25rem*1.8;
         height: 2.25rem*1.8;
@@ -1942,7 +1946,7 @@
 
     .checkout__cart-sticky-card {
         width: 100%;
-        box-shadow: 0rem*2.2 0rem*2.2 1.25rem*2.2 #0000001A;
+        box-shadow: 0rem*2.5 0rem*2.5 1.25rem*2.5 #0000001A;
         border-radius: 1.25rem*2.2;
         padding: 1.625rem*2.2;
         position: static;
@@ -2667,6 +2671,8 @@
 
     .checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
         margin: -1.625rem*2.2 -1.625rem*2.2 0 -1.625rem*2.2;
+        border-radius: 1.25rem*2 1.25rem*2 0 0;
+
     }
 
     .checkout__cart-sticky-card__subscription-plans__plan-box--active {

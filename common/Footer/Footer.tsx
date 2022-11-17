@@ -194,10 +194,10 @@ export default function FooterSection() {
                 <div>الموقع</div>
                 <div>الكويت - مدينة الكويت ، المرقاب ، مجمع الوطنية الدور 4 مكتب 412</div>
               </div>
-              <div className={styles["footer__email"]}>
+              {/* <div className={styles["footer__email"]}>
                 <div>البريد الإلكتروني</div>
                 <div>info@tadarab.com</div>
-              </div>
+              </div> */}
             </div>
           </Col>
 

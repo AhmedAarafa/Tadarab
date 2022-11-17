@@ -24,6 +24,15 @@ const withAuth = (Component: any) => {
         dispatch(setIsUserAuthenticated({ ...userAuthState, isUserAuthenticated: false, token: null, id: 0, isSubscribed: false }));
       }
 
+      // console.log("THEME", window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      //   // if system is Dark
+      //   console.log("The system prefers DARK theme");
+      // } else {
+      //   console.log("The system prefers Light theme");
+      //   // if system is Light
+      // }
+
       if (localStorage.getItem("theme") === null) {
         dispatch(setTheme("dark"));
         document.body.setAttribute("data-theme", "dark");

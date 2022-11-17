@@ -1,0 +1,483 @@
+@import "../../styles/mixins";
+
+.add-to-cart-popup {
+
+    &>div:nth-of-type(1) {
+        &>div:nth-of-type(1) {
+            padding: 0 1.5rem;
+            background-color: var(--tadarab-bg);
+            margin: 0 auto;
+            width: 40rem;
+            background-color: var(--accordion-body);
+
+            &>div:nth-of-type(1) {
+                padding: 1rem 0;
+                @include flex(center, space-between);
+                border: 0;
+
+                &>button {
+                    @include icon-button;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    border-radius: 0.75rem;
+                    margin: 0;
+                    padding: 0;
+                    background-image: var(--add-to-cart-close-icon);
+                    background-repeat: no-repeat;
+                    opacity: 1;
+                }
+
+                div {
+                    width: 90%;
+                    @include flex(center, space-between);
+
+                    &>span {
+                        color: var(--dark-black);
+                        font-size: 1.1rem;
+                        font-weight: 800;
+
+                        &>svg {
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            margin-left: 0.75rem;
+                        }
+                    }
+                }
+            }
+
+            &>div:nth-of-type(2) {
+                color: var(--dark-black);
+                background-color: var(--tadarab-bg);
+                margin: 0 -1.5rem;
+                padding: 1.5rem;
+                border-radius: 0.8rem;
+            }
+        }
+    }
+}
+
+.add-to-cart-popup__go-to-cart {
+    @include contained-button;
+    font-size: 1rem;
+    font-weight: 700;
+    width: 10rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #0e0b1dba !important;
+    border: 0 !important;
+
+    &:is(&:hover, &:active) {
+        background-color: #0E0B1D !important;
+        border: 0 !important;
+    }
+
+    svg {
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+}
+
+.add-to-cart-popup__special-bundle-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #af151f;
+}
+
+.add-to-cart-popup__special-bundle-container {
+    @include flex(center, center);
+    gap: 1rem;
+    flex-direction: column;
+    margin-top: 1.2rem;
+}
+
+.add-to-cart-popup__special-bundle-container:nth-of-type(4) {
+    svg {
+        display: none;
+    }
+}
+
+.add-to-cart-popup__special-bundle-container__course-box {
+    width: 100%;
+    height: 9.375rem;
+    box-shadow: 0 0 0.8rem var(--drop-shadow);
+    border-radius: 0.75rem;
+    @include flex(center);
+
+    &+svg {
+        width: 1.625rem;
+        height: 1.625rem;
+    }
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-img {
+    width: fit-content;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 4rem;
+        display: inline-block;
+        // background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+        border-radius: 0 0.75rem 0.75rem 0;
+    }
+
+    img {
+        height: 9.375rem;
+        width: 14.75rem;
+        border-radius: 0 0.75rem 0.75rem 0;
+    }
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-img__category-chip {
+    @include categories-chip;
+    top: 0.8rem;
+    left: auto;
+    right: 0.8rem;
+    background-color: #7B2CBF;
+    font-size: 0.7rem;
+    padding: 0.11rem 0.8rem 0.14rem 0.8rem;
+    z-index: 1;
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box {
+    padding: 1.25rem;
+    width: 100%;
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__trainer-img {
+    img {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        margin-left: 0.5rem
+    }
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box__details {
+    @include flex(flex-start, flex-start);
+    margin-bottom: 0.625rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 0.05rem solid var(--borders-grey);
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__course-info__course-title,
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__course-info__trainer-name {
+    width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__course-info__course-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--dark-black);
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__course-info__trainer-name {
+    font-size: 0.75rem;
+    color: var(--grey);
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__prices-box__price {
+    color: var(--dark-black);
+
+    span:nth-of-type(1) {
+        font-weight: 800;
+        font-size: 1.125rem;
+        // margin-left: 0.25rem;
+    }
+
+    span:nth-of-type(2) {
+        font-size: 0.9rem;
+    }
+}
+
+.add-to-cart-popup__special-bundle-container__course-box__prices-box__old-price {
+    color: var(--grey);
+    margin-top: -0.5rem;
+
+    span {
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
+    }
+
+    span:nth-of-type(1) {
+        font-weight: 800;
+        font-size: 0.75rem;
+
+    }
+
+    span:nth-of-type(2) {
+        font-size: 0.65rem;
+
+    }
+}
+
+.add-to-cart-popup__checkout-box {
+    margin-top: 1rem;
+    @include flex(center, space-between);
+}
+
+.add-to-cart-popup__checkout-box__prices-box__price {
+    color: var(--dark-black);
+
+    span:nth-of-type(1) {
+        font-weight: 800;
+        font-size: 2.25rem;
+    }
+
+    span:nth-of-type(2) {
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+}
+
+.add-to-cart-popup__checkout-box__prices-box__old-price {
+    color: var(--grey);
+    margin-top: -0.5rem;
+
+    span {
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
+    }
+
+    span:nth-of-type(1),
+    span:nth-of-type(3) {
+        font-weight: 700;
+        font-size: 1.125rem;
+    }
+
+    span:nth-of-type(2) {
+        font-size: 1.375rem;
+        font-weight: 700;
+    }
+
+}
+
+.add-to-cart-popup__checkout-box__checkout-btn {
+    button {
+        @include flex(center, center);
+        @include contained-button;
+        width: 18.75rem;
+        height: 3.125rem;
+        margin-top: 0.75rem;
+        box-shadow: 0 0.25rem 1.25rem #AF151F4D;
+
+        span {
+            font-size: 1.063rem;
+            font-weight: 700;
+            margin-right: 1.25rem;
+        }
+
+        svg {
+            width: 1.375rem;
+            height: 1.25rem;
+        }
+    }
+}
+
+
+@media (max-width:575px) {
+
+    .add-to-cart-popup {
+        &>div:nth-of-type(1) {
+            @include flex(center, center);
+
+            &>div:nth-of-type(1) {
+                padding: 0 1.5rem*1.8;
+                width: 100%;
+
+                &>div:nth-of-type(1) {
+                    padding: 1rem*1.8 0;
+
+                    &>button {
+                        @include icon-button;
+                        width: 2.5rem*1.8;
+                        height: 2.5rem*1.8;
+                        border-radius: 0.75rem*1.8;
+                    }
+
+                    div {
+                        width: 90%;
+
+                        &>span {
+                            font-size: 1.1rem*1.6;
+
+                            &>svg {
+                                width: 1.5rem*1.6;
+                                height: 1.5rem*1.6;
+                                margin-left: 0.75rem;
+                            }
+                        }
+                    }
+                }
+
+                &>div:nth-of-type(2) {
+                    margin: 0 -1.5rem*1.8;
+                    padding: 1.5rem*1.8;
+                    border-radius: 0.8rem*1.8;
+                }
+            }
+        }
+    }
+
+    .add-to-cart-popup__go-to-cart {
+        font-size: 1rem*1.8;
+        width: 10rem*1.8;
+        height: 2.5rem*1.8;
+        border-radius: 0.625rem*1.8;
+        margin-left: 0.3rem;
+
+        svg {
+            width: 0.75rem*1.8;
+            height: 0.75rem*1.8;
+        }
+    }
+
+    .add-to-cart-popup__special-bundle-title {
+        font-size: 1.25rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container {
+        gap: 1rem*1.8;
+        margin-top: 1.2rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box {
+        height: 9.375rem*1.8;
+        box-shadow: 0 0 0.8rem*1.8 var(--drop-shadow);
+        border-radius: 0.75rem*1.8;
+
+        &+svg {
+            width: 1.625rem*1.8;
+            height: 1.625rem*1.8;
+        }
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-img {
+
+        &:after {
+            height: 4rem*1.8;
+            background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border-radius: 0 0.75rem*1.8 0.75rem*1.8 0;
+        }
+
+        img {
+            height: 9.375rem*1.8;
+            width: 14.75rem*1.8;
+            border-radius: 0 0.75rem*1.8 0.75rem*1.8 0;
+        }
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-img__category-chip {
+        top: 0.8rem*1.8;
+        right: 0.8rem*1.8;
+        font-size: 0.7rem*1.8;
+        padding: 0.11rem*1.8 0.8rem*1.8 0.14rem*1.8 0.8rem*1.8;
+        border-radius: 0.75rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-details-box {
+        padding: 1.25rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__trainer-img {
+        img {
+            width: 2.5rem*1.8;
+            height: 2.5rem*1.8;
+            margin-left: 0.5rem*1.8;
+        }
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-details-box__details {
+        margin-bottom: 0.625rem*1.8;
+        padding-bottom: 0.625rem*1.8;
+        border-bottom-width: 0.05rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__course-info__course-title {
+        font-size: 0.9rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__course-details-box__details__course-info__trainer-name {
+        font-size: 0.75rem*1.8;
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__prices-box__price {
+        span:nth-of-type(1) {
+            font-size: 1.125rem*1.8;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 0.9rem*1.8;
+        }
+    }
+
+    .add-to-cart-popup__special-bundle-container__course-box__prices-box__old-price {
+        margin-top: -0.5rem;
+
+        span:nth-of-type(1) {
+            font-size: 0.75rem*1.8;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 0.65rem*1.8;
+        }
+    }
+
+    .add-to-cart-popup__checkout-box {
+        margin-top: 1rem*1.8;
+    }
+
+    .add-to-cart-popup__checkout-box__prices-box__price {
+        span:nth-of-type(1) {
+            font-size: 2.25rem*1.8;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 1.25rem*1.8;
+        }
+    }
+
+    .add-to-cart-popup__checkout-box__prices-box__old-price {
+        margin-top: -0.5rem*1.8;
+
+        span:nth-of-type(1),
+        span:nth-of-type(3) {
+            font-size: 1.125rem*1.8;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 1.375rem*1.8;
+        }
+
+    }
+
+    .add-to-cart-popup__checkout-box__checkout-btn {
+        button {
+            width: 18.75rem*1.6;
+            height: 3.125rem*1.8;
+            margin-top: 0.75rem*1.8;
+            box-shadow: 0 0.25rem*1.8 1.25rem*1.8 #AF151F4D;
+            border-radius: 0.625rem*1.8;
+
+            span {
+                font-size: 1.063rem*1.8;
+                margin-right: 1.25rem;
+            }
+
+            svg {
+                width: 1.375rem*1.8;
+                height: 1.25rem*1.8;
+            }
+        }
+    }
+}

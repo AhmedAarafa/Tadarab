@@ -28,6 +28,9 @@ export default function StickySignupBar() {
         const stickyBar: any = document.getElementById("sticky-signup-bar");
         if (window.scrollY > 400) {
             stickyBar ? stickyBar.style.display = "flex" : null;
+            if(window.innerWidth <= 576){
+                stickyBar ? stickyBar.style.display = "none" : null;
+            }
         }
         else {
             stickyBar ? stickyBar.style.display = "none" : null;
@@ -54,7 +57,7 @@ export default function StickySignupBar() {
                 <Button id="sticky-signup-bar-btn" onClick={() => { handleSubscriptionBtn(event) }}>
                     انشاء حساب جديد
                 </Button>
-                <div>احصل على كل الدورات والموسم باشتراك يبدأ من ٦ دك/ش </div>
+                <div>احصل على كل الدورات باشتراك يبدأ من ٦ دك/ش </div>
             </div>
         </>
     )

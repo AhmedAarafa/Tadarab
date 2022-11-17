@@ -47,7 +47,7 @@ export default function Statistics() {
 
               	مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
                 <span className={styles["marketing-boxes__title--important"]}>
-                 700
+                 850
                 </span>
                   دورة تدريبية).
               </span>

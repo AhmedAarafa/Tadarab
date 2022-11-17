@@ -14,7 +14,7 @@ const SeasonCourses = dynamic(() => import("modules/Tadarab season/Season course
 const LatestCourses = dynamic(() => import("modules/Tadarab season/Latest courses/LatestCourses"));
 const SubscriptionBenefits = dynamic(() => import("modules/Tadarab season/Subscription benefits/SubscriptionBenefits"));
 const SeasonTrainers = dynamic(() => import("modules/Tadarab season/Season trainers/SeasonTrainers"));
-const StickySignupBar = dynamic(() => import("modules/Tadarab season/Sticky signup bar/StickySignupBar"));
+const StickySignupBar = dynamic(() => import("common/Sticky signup bar/StickySignupBar"));
 
 function TadarabSeason() {
     const [currency, setCurrency] = useState<any>({});
@@ -35,7 +35,7 @@ function TadarabSeason() {
                 <LatestCourses handleCurrency={handleCurrency} />
                 <SubscriptionBenefits />
                 <Faq />
-                <StickySignupBar />
+                <StickySignupBar /> 
             </Container>
         </>
     )

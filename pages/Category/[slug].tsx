@@ -25,7 +25,7 @@ const MostPopularCourses = dynamic(() => import("modules/Category/Most popular c
 const ExploreOtherCategories = dynamic(() => import("modules/Category/Explore other categories/ExploreOtherCategories"));
 const Testimonials = dynamic(() => import("modules/Category/Testimonials/Testimonials"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
-
+const StickySignupBar = dynamic(() => import("common/Sticky signup bar/StickySignupBar"));
 
 export default function Category(props: any) {
   const router = useRouter()
@@ -125,7 +125,7 @@ export default function Category(props: any) {
         img={seoData?.seo_image} />}
       {
         isFound ?
-          <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
+          <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
             <MobileCheckoutBar data={category} />
             <CategoryDescription data={category} categoriesList={categoriesList} />
             <CategorySkills data={category} />
@@ -139,6 +139,7 @@ export default function Category(props: any) {
             <Testimonials data={category} />
             <SubscriptionBenefits />
             <Faq />
+            <StickySignupBar />
           </Container>
           :
           <NotFound />

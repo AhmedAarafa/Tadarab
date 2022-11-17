@@ -142,7 +142,6 @@ export default function MyAccountPage() {
       console.log("markedCategory", markedCategory);
       console.log("filters", filters);
       markedCategory.forEach((cat: any) => {
-        console.log("markedCategory", cat);
         cat.checked = true;
       })
     });
@@ -205,7 +204,6 @@ export default function MyAccountPage() {
       // let markedCategory: any = document.getElementById(`cat-${catId}`);
       let markedCategory: any = document.querySelectorAll(`[id="cat-${catId}"]`);
       markedCategory.forEach((cat: any) => {
-        console.log("markedCategory", cat);
         cat.checked = true;
       })
     });
@@ -214,7 +212,6 @@ export default function MyAccountPage() {
       // let markedPriceCB: any = document.getElementById(`prices-${priceType}`);
       let markedPriceCB: any = document.querySelectorAll(`[id="prices-${priceType}"]`);
       markedPriceCB.forEach((priceCB: any) => {
-        console.log("markedPriceCB", priceCB);
         priceCB.checked = true;
       })
     });
@@ -222,7 +219,6 @@ export default function MyAccountPage() {
     filters.levels.forEach((level: any) => {
       let markedLevelCB: any = document.querySelectorAll(`[id="level-${level}"]`);
       markedLevelCB.forEach((levelCB: any) => {
-        console.log("levelCB", levelCB);
         levelCB.checked = true;
       })
     });

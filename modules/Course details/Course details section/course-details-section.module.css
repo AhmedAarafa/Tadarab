@@ -16,7 +16,7 @@
 }
 
 .course-details-section__para {
-  color: var(--grey);
+  color: var(--grey) !important;
 }
 
 .course-details-section__read-more {

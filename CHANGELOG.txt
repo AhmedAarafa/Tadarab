@@ -1,3 +1,9 @@
+Version 2.4.4 (13th Nov 2022)
+1) Dark mode finalization.
+2) Loader modifications to fit light/dark theme.
+3) Subscription sticky bar text's color adjustment.
+4) Added dynamic price on subscription text.
+
 Version 2.4.3 (06th Nov 2022)
 1) Category page modifications.
 2) Hide Tadarab season page.

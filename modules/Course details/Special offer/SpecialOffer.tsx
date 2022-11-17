@@ -9,11 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
-import Image from 'next/image';
 
 export default function SpecialOffer(props: any) {
     const [specialBundleData, setSpecialBundleData] = useState<any>();
-    // const [dateToCompare, setDateToCompare] = useState(0);
     const [toDisplayValues, setToDisplayValues] = useState<any>([]);
     const [disabled, setDisabled] = useState(false);
     const dispatch = useDispatch();
@@ -21,14 +19,12 @@ export default function SpecialOffer(props: any) {
     const { slug } = Router.query;
 
     useEffect(() => {
-
         if (props.Cid() !== "") {
-
             axiosInstance
                 .get(`course/${props.Cid()}/special-bundle`)
                 .then(function (response: any) {
                     setSpecialBundleData(response?.data?.data);
-
+                    timerImplementer();
                     response?.data?.data?.courses?.forEach((course: any) => {
                         if (course.is_in_cart || course.is_purchased) {
                             setDisabled(true);
@@ -36,63 +32,18 @@ export default function SpecialOffer(props: any) {
                         }
                     })
 
-                    if (document.cookie.indexOf('timer') > -1) {
-                        document.cookie.split('; ').reduce((prev: any, current: any) => {
-                            const [name, ...value] = current.split('=');
-                            if (prev) {
-                                prev[name] = value.join('=');
-                                if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
-
-                                    let now = new Date();
-                                    let time = now.getTime();
-                                    time += response?.data?.data.countdown * 3600 * 1000;
-                                    now.setTime(time);
-                                    document.cookie =
-                                        'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60)) +
-                                        '; expires=' + (new Date(now)).toUTCString() +
-                                        '; path=/';
-
-                                    timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60));
-                                    console.log("response?.data?.data?.countdown", response?.data?.data?.countdown);
-
-
-                                } else {
-                                    if (prev.timer) {
-                                        timerHandler(prev.timer);
-                                        // console.log("prev.timer", prev.timer);
-                                    }
-                                }
-                            }
-
-                            return prev;
-                        }, {});
-
-                    } else {
-
-                        let now = new Date();
-                        let time = now.getTime();
-                        time += response?.data?.data.countdown * 3600 * 1000;
-                        now.setTime(time);
-                        document.cookie =
-                            'timer=' + ((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60)) +
-                            '; expires=' + (new Date(now)).toUTCString() +
-                            '; path=/';
-                        timerHandler((Math.floor(Date.now() / 1000)) + (parseInt(response?.data?.data?.countdown) * 60 * 60));
-                    }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
 
         }
-
-
     }, [props.Cid()]);
 
 
-    function timerHandler(dateAfter: any) {
+    const timerHandler = (dateAfter: any) => {
 
-        setInterval(() => {
+        const timerInterval = setInterval(() => {
             // get total seconds between the times
             let delta: any = Math.abs(dateAfter - (Math.floor(Date.now() / 1000)));
 
@@ -111,15 +62,15 @@ export default function SpecialOffer(props: any) {
             // what's left is seconds
             let seconds: any = delta; // in theory the modulus is not required
 
-            // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
-            // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
-            // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
-            // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
-
             days = days.toString().padStart(2, 0);
             hours = hours.toString().padStart(2, 0);
             minutes = minutes.toString().padStart(2, 0);
             seconds = seconds.toString().padStart(2, 0);
+
+            if (days == "00" && hours == "00" && minutes == "00" && seconds == "00") {
+                clearInterval(timerInterval);
+                timerImplementer();
+            }
 
             setToDisplayValues([days, hours, minutes, seconds]);
             return { days, hours, minutes, seconds }
@@ -145,6 +96,49 @@ export default function SpecialOffer(props: any) {
             })
         })
 
+    }
+
+    const timerImplementer = () => {
+        if (document.cookie.indexOf('timer') > -1) {
+            document.cookie.split('; ').reduce((prev: any, current: any) => {
+                const [name, ...value] = current.split('=');
+                if (prev) {
+                    prev[name] = value.join('=');
+                    if ((prev.timer <= (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+
+                        let now = new Date();
+                        let time = now.getTime();
+                        time += 2 * 3600 * 1000;
+                        now.setTime(time);
+                        document.cookie =
+                            'timer=' + ((Math.floor(Date.now() / 1000)) + (2 * 60 * 60)) +
+                            '; expires=Thu, 01 Jan 2050 00:00:01 GMT' +
+                            '; path=/';
+                        timerHandler((Math.floor(Date.now() / 1000)) + (2 * 60 * 60));
+
+
+                    } else {
+                        if (prev.timer) {
+                            timerHandler(prev.timer);
+                        }
+                    }
+                }
+
+                return prev;
+            }, {});
+
+        } else {
+
+            let now = new Date();
+            let time = now.getTime();
+            time += 2 * 3600 * 1000;
+            now.setTime(time);
+            document.cookie =
+                'timer=' + ((Math.floor(Date.now() / 1000)) + (2 * 60 * 60)) +
+                '; expires=Thu, 01 Jan 2050 00:00:01 GMT' +
+                '; path=/';
+            timerHandler((Math.floor(Date.now() / 1000)) + (2 * 60 * 60));
+        }
     }
 
     return (
@@ -274,63 +268,66 @@ export default function SpecialOffer(props: any) {
                                 }
                             </div>
 
-                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-checkout-box"]}>
-                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box"]}>
-                                    <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__offer-available"]}>
-                                        <div>العرض</div>
-                                        <div>متاح خلال</div>
-                                    </div>
-                                    <div>
-                                        <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box"]}>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
-                                                <div>يوم</div>
-                                                <div>{toDisplayValues[0]}</div>
-                                            </div>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator"]}>
-                                                :
-                                            </div>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
-                                                <div>ساعة</div>
-                                                <div>
-                                                    {toDisplayValues[1]}
-                                                </div>
-                                            </div>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator"]}>
-                                                :
-                                            </div>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
-                                                <div>دقيقة</div>
-                                                <div>
-                                                    {toDisplayValues[2]}
-                                                </div>
-                                            </div>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator"]}>
-                                                :
-                                            </div>
-                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
-                                                <div>ثانية</div>
-                                                <div>
-                                                    {toDisplayValues[3]}
-                                                </div>
-                                            </div>
+                            {
+                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-checkout-box"]}>
+                                    <div className={styles["special-offer__cards-outer-box__card__offer-duration-box"]}>
+                                        <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__offer-available"]}>
+                                            <div>العرض</div>
+                                            <div>متاح خلال</div>
                                         </div>
+                                        <div>
+                                            <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box"]}>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
+                                                    <div>يوم</div>
+                                                    <div>{toDisplayValues[0]}</div>
+                                                </div>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator"]}>
+                                                    :
+                                                </div>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
+                                                    <div>ساعة</div>
+                                                    <div>
+                                                        {toDisplayValues[1]}
+                                                    </div>
+                                                </div>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator"]}>
+                                                    :
+                                                </div>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
+                                                    <div>دقيقة</div>
+                                                    <div>
+                                                        {toDisplayValues[2]}
+                                                    </div>
+                                                </div>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__separator"]}>
+                                                    :
+                                                </div>
+                                                <div className={styles["special-offer__cards-outer-box__card__offer-duration-box__countdown-box__countdown"]}>
+                                                    <div>ثانية</div>
+                                                    <div>
+                                                        {toDisplayValues[3]}
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                        </div>
+                                    </div>
+                                    <div className="w-100">
+                                        <Button disabled={disabled} onClick={() => { handleCartActionBtn(specialBundleData?.courses) }}
+                                            className={styles["special-offer__cards-outer-box__card__add-to-cart-btn"]}>
+                                            <CartIcon color="#fff" />
+
+                                            <span>
+                                                {disabled ?
+                                                    "تمت الإضافة" :
+                                                    "احصل على العرض"}
+                                            </span>
+
+                                        </Button>
                                     </div>
                                 </div>
-                                <div className="w-100">
-                                    <Button disabled={disabled} onClick={() => { handleCartActionBtn(specialBundleData?.courses) }}
-                                        className={styles["special-offer__cards-outer-box__card__add-to-cart-btn"]}>
-                                        <CartIcon color="#fff" />
+                            }
 
-                                        <span>
-                                            {disabled ?
-                                                "تمت الإضافة" :
-                                                "احصل على العرض"}
-                                        </span>
-
-                                    </Button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

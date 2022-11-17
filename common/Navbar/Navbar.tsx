@@ -95,7 +95,7 @@ function Navbar(props: any) {
         e.target.id == ("show-results")
       ) {
         const closeBtn: any = document.getElementsByClassName(`btn-close`)[0];
-        closeBtn.style.cssText = ` display:none !important`;
+        closeBtn ? closeBtn.style.cssText = ` display:none !important` : null;
         const discoverSidebar: any = document.getElementById("offcanvasNavbar2");
         discoverSidebar ?
           discoverSidebar.style.cssText = `

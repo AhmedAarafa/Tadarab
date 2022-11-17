@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./latest-courses.module.css";
-import {Row, Col, Button, Card} from "react-bootstrap";
+import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
@@ -19,23 +19,23 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
+import AddToCartPopup from "common/Add to cart popup/AddToCartPopup";
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state: any) => state.homePageData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const cartItems = useSelector((state: any) => state.cartItems);
-  const [temporaryAddToCart, setTemporaryAddToCart] = useState<any>([]);
-  const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [isExecuted, setIsExecuted] = useState(false);
   const [latestCourses, setLatestCourses] = useState<any>([]);
   const [filterType, setFilterType] = useState("best-seller");
+  const [isCartModalVisible, setIsCartModalVisible] = useState(false);
+  const [specialBundleCourseId, setSpecialBundleCourseId] = useState(0);
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const themeState = useSelector((state: any) => state.themeState.theme);
 
   const dispatch = useDispatch();
   const homePageCoursesRef = useRef([]);
-
 
   const handleFilterType = (type: string) => {
     setFilterType(type);
@@ -76,6 +76,8 @@ function LatestCourses() {
         setLatestCourses(response.data.data.best_seller_courses);
         dispatch(setCartItems(firstresponse.cartResponse));
         setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
+        setIsCartModalVisible(true);
+        setSpecialBundleCourseId(course.id);
       })
     })
 
@@ -188,7 +190,7 @@ function LatestCourses() {
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["latest-courses__see-more-btn-col"]}>
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more" onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=${filterType}`) }}>
             اعرض المزيد
-            <ChevronLeftIcon color={ themeState == "light" ? "#af151f" : "#f5f5f5"} />
+            <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
           </Button>
         </Col>
 
@@ -346,9 +348,9 @@ function LatestCourses() {
                                     <TvIcon color="#fff" />
                                     :
                                     course.is_in_cart ?
-                                    <AddedToCartIcon color="#fff" />
-                                    :
-                                    <CartIcon color="#fff" />
+                                      <AddedToCartIcon color="#fff" />
+                                      :
+                                      <CartIcon color="#fff" />
                                 }
                                 {
                                   course.discounted_price == 0 ?
@@ -606,6 +608,8 @@ function LatestCourses() {
           </Swiper>
         </Col>
       </Row>
+      <AddToCartPopup setSpecialBundleCourseId={setSpecialBundleCourseId} specialBundleCourseId={specialBundleCourseId}
+       isCartModalVisible={isCartModalVisible} setIsCartModalVisible={setIsCartModalVisible}  />
     </>
   );
 }

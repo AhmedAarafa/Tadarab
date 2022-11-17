@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
 import styles from "./monthly-subscription-card.module.css"
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import {
-  CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon, GuaranteeIcon,
-  TvIcon, DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon, DarkModeCalendarIcon,DarkModeWatchLiveOrRecordedIcon
+  CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon, GuaranteeIcon, TickIcon,
+  TvIcon, DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon, DarkModeCalendarIcon, DarkModeWatchLiveOrRecordedIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image';
@@ -29,6 +29,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
   const [courseDetails, setCourseDetails] = useState<any>([]);
+  const [isAddingToCartInProgress, setIsAddingToCartInProgress] = useState(false);
   const [subscriptionInfo, setSubscriptionInfo] = useState<any>({});
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
@@ -39,7 +40,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
   const { slug } = Router.query;
 
   useEffect(() => {
-    subscriptionCounter();
+    // subscriptionCounter();
     let cancel: boolean = false;
 
     // setSubscriptionTimer
@@ -162,6 +163,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
   const handleCartActionBtn = (course: any): any => {
     setDisabledCartBtns([...disabledCartBtns, course.id]);
+    setIsAddingToCartInProgress(true);
     setTimeout(() => {
       setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
     }, 5000);
@@ -178,6 +180,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
         firstresponse.resp.then(function (response: any) {
           setCourseDetails(response.data.data);
           dispatch(setCartItems(firstresponse.cartResponse));
+          setIsAddingToCartInProgress(false);
         })
       })
     }
@@ -206,7 +209,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
           {!courseDetails?.subscription_exclude ?
             <>
               <div
-
                 className={styles["monthly-subscription__course-card__title"]}
               >
                 <div>
@@ -216,13 +218,34 @@ export default function MonthlySubscriptionCard(theOption: any) {
                   </span>
                 </div>
                 <div>
+                  <div className={styles["monthly-subscription__subscription-benefits"]}>
+                    <div>
+                      <TickIcon />
+                    </div>
+                    مشاهدة  لجميع الدورات بالمنصة (أكثر من850دورة تدريبية).
+                  </div>
+                  <div className={styles["monthly-subscription__subscription-benefits"]}>
+                    <div>
+                      <TickIcon />
+                    </div>
+                    دورات جديدة تضاف شهريًا.
+                  </div>
+                  <div className={styles["monthly-subscription__subscription-benefits"]}>
+                    <div>
+                      <TickIcon />
+                    </div>
+                    عدد لا نهائي من شهادات إتمام الدورات.
+                  </div>
+                  <div className={styles["monthly-subscription__subscription-benefits"]}>
+                    <div>
+                      <TickIcon />
+                    </div>
+                    لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
+                  </div>
                   <span>
-                    شاهد هذه الدورة + أكثر من 850 دورة تدريبية بالإضافة للدورات المباشرة ومواسم تدرب المقدمة شهرياً في جميع التخصصات مقدمة من افضل المدربين بالخليج  والوطن العربي
-                    <span>
-                      <Link href="/subscription">
-                        اعرف المزيد.
-                      </Link>
-                    </span>
+                    <Link href="/subscription">
+                      اعرف المزيد.
+                    </Link>
                   </span>
                   {/* {console.log("theOption?.liveWebinarDetails", theOption)
                   }
@@ -290,34 +313,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
                         تابع الدورة من اي لابتوب او موبايل
                       </div>
 
-                      {/* <div>
-                    <div>
-
-                      <TickIcon />
-                    </div>
-                    مشاهدة بلا حدود لأكثر من ٧٥٠ دورة تدريبية في جميع المجالات.
-                  </div>
-                  <div>
-                    <div>
-
-                      <TickIcon />
-                    </div>
-                    عدد لا نهائي من شهادات إتمام الدورات.
-                  </div>
-                  <div>
-                    <div>
-
-                      <TickIcon />
-                    </div>
-                    دورات جديدة تضاف شهرياَ.
-                  </div>
-                  <div>
-                    <div>
-
-                      <TickIcon />
-                    </div>
-                    لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
-                  </div> */}
                     </>}
 
                 </div>
@@ -372,53 +367,19 @@ export default function MonthlySubscriptionCard(theOption: any) {
               }
 
               <div className={styles["monthly-subscription__subscribe-btn-box"]}>
-                {/* {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
-              <div className={styles["monthly-subscription__subscription-timer"]}>
-              عرض ٧ أيام تجربة مجانية ينتهي اليوم خلال
-                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-              </div>} */}
                 <Button id="monthly-subscribe-btn" className={styles["monthly-subscription__subscribe-btn-box__btn"]}
                   onClick={() => handleSubscriptionBtn()}>
                   <div>
-                    <span>اشترك في تدرب بلا حدود </span>
+                    <span>اشترك لمشاهدة الدورة </span>
                   </div>
-                </Button>
+                </Button> 
               </div>
-
-              {/* <div className={styles["monthly-subscription__subscription-value"]}>
-            احصل على كل الدورات فقط ب 9 دك / شهر.
-            </div> */}
-              {/* 
-                    <span>
-                  احصل على كل الدورات فقط ب
-                  {subscriptionInfo?.after}
-                  {` ${subscriptionInfo?.currencySymbol} `} / ش
-                  بدلا من
-                </span>
-                <span className={styles["amount-strike"]}>
-                  {subscriptionInfo?.before}
-                  {` ${subscriptionInfo?.currencySymbol} `}
-                </span> */}
               <div className={styles["monthly-subscription__subscription-value"]} >
                 <span>
-                  احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
-                  {/* احصل على كل الدورات فقط ب */}
-                  {/* {courseDetails.subscription_sale_price || subscriptionInfo?.after}
+                  احصل على كل الدورات باشتراك واحد يبدأ من {courseDetails.subscription_sale_price || subscriptionInfo?.after}
                   {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `} / ش
-                  بدلا من */}
                 </span>
-                {/* <span className={styles["amount-strike"]}>
-                  {courseDetails.subscription_original_price || subscriptionInfo?.before}
-                  {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `}
-                </span> */}
               </div>
-              {/* {toDisplayValues.visible && toDisplayValues.values[3] != NaN && toDisplayValues.values[3] != "NaN" && <div className={styles["monthly-subscription__subscription-value"]}>
-              <div style={{color:'#af151f'}}>ستوفر ٤٠٪؜ العرض سينتهي خلال &nbsp;&nbsp;<span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span></div>
-            </div>} */}
-              {/* <div className={styles["monthly-subscription__watch-this-course"]}>
-          شاهد هذه الدورة + 600 دورة اخرى
-          </div> */
-              }
 
               {theOption?.liveWebinarDetails?.type !== "webinar" && <div className={styles["monthly-subscription__or-box"]}>
                 أو
@@ -488,6 +449,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
             </div>
           }
         </div> */}
+        {/* disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)} */}
 
           <div
             className={styles["monthly-subscription__course-card__actions-btns"]}
@@ -497,11 +459,16 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 courseDetails.course_details?.discounted_price == 0 ?
                   handleFreeCoursesActionBtn(courseDetails.course_details)
                   :
+                  courseDetails.course_details?.is_in_cart ? 
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
+                  :
                   handleCartActionBtn(courseDetails.course_details);
-              }} disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)}
+              }} disabled={isAddingToCartInProgress}
                 className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
               >
-                {
+                {isAddingToCartInProgress == true ?
+                  <Spinner animation='border' />
+                  :
                   courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
                     <></>
                     :
@@ -518,7 +485,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                       <span> ابدأ الآن مجانًا </span>
                       :
                       courseDetails.course_details?.is_in_cart ?
-                        <span> تمت الإضافة </span>
+                        <span> اذهب إلى السلة</span>
                         :
                         <span> امتلك هذه الدورة </span>
                 }
@@ -654,7 +621,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles["monthly-subscription__course-card__details-list__item"]
                   }
                 >
-                  <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"}/>
+                  <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
 
                   <span>تابع الدورة من اي لابتوب او موبايل</span>
                 </div>
@@ -753,7 +720,9 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles[
                     "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
                     ]}>
-                  {
+                  {isAddingToCartInProgress == true ?
+                    <Spinner animation='border' />
+                    :
                     courseDetails.course_details?.discounted_price == 0 ?
                       <TvIcon color="#222" />
                       :
@@ -764,7 +733,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                       <span> ابدأ الآن مجانًا </span>
                       :
                       courseDetails.course_details?.is_in_cart ?
-                        <span> تمت الإضافة </span>
+                        <span> اذهب إلى السلة</span>
                         :
                         <span> امتلك هذه الدورة </span>
                   }

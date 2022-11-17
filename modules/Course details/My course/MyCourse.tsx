@@ -21,6 +21,7 @@ export default function MyCourse() {
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const myCourseNavigator = useSelector((state: any) => state.myCourseNavigator);
     const dispatch = useDispatch();
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     const [isMobileView, setIsMobileView] = useState(false);
 
@@ -121,7 +122,7 @@ export default function MyCourse() {
                                                             <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                                 <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
                                                                     <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                                        <AttachmentsIcon />
+                                                                        <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"}/>
                                                                     </div>
                                                                     <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                                         <div>{att?.title}</div>
@@ -131,12 +132,12 @@ export default function MyCourse() {
                                                                     {att.is_trainer_certificate ?
 
                                                                         <div onClick={() => { handleCaptureClick() }}>
-                                                                            <FileDownloadIcon color="#af151f" />
+                                                                            <FileDownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                         </div>
                                                                         :
                                                                         <Link href={att.link} passHref>
                                                                             <a target="_blank" rel="noopener">
-                                                                                <FileDownloadIcon color="#af151f" />
+                                                                                <FileDownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                             </a>
                                                                         </Link>
                                                                     }
@@ -174,7 +175,7 @@ export default function MyCourse() {
                                                         <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                             <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
                                                                 <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                                    <AttachmentsIcon />
+                                                                    <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"}/>
                                                                 </div>
                                                                 <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                                     <div>{att?.title}</div>
@@ -184,12 +185,12 @@ export default function MyCourse() {
                                                                 {att.is_trainer_certificate ?
 
                                                                     <div onClick={() => { handleCaptureClick() }}>
-                                                                        <FileDownloadIcon color="#af151f" />
+                                                                        <FileDownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                     </div>
                                                                     :
                                                                     <Link href={att.link} passHref>
                                                                         <a target="_blank" rel="noopener">
-                                                                            <FileDownloadIcon color="#af151f" />
+                                                                            <FileDownloadIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                         </a>
                                                                     </Link>
                                                                 }
