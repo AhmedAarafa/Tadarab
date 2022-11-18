@@ -39,6 +39,7 @@ export default function TrainerCourses() {
 
     useEffect(() => {
         setTrainerProfile(trainerProfileData?.data || {});
+        
     }, [trainerProfileData]);
 
     useEffect(() => {

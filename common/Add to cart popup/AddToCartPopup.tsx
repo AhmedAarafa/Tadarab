@@ -42,7 +42,6 @@ export default function AddToCartPopup(props: any) {
     }
 
     useEffect(() => {
-        console.log(props);
         setShow(props?.isCartModalVisible);
         if (props?.specialBundleCourseId) {
             axiosInstance

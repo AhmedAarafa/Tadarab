@@ -1112,6 +1112,13 @@
   border-width: 0.4rem;
 }
 
+.payment-options-spinner div {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--primary-red) !important;
+  border-width: 0.2rem;
+}
+
 .monthly-subscription__subscription-plans-dropdown button {
   font-size: 0.8rem;
   background-color: transparent !important;
@@ -1169,9 +1176,10 @@
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box {
-  border-bottom: 0.0625rem solid var(--borders-grey);
+  border: 0.0625rem solid var(--borders-grey);
   padding: 0.5rem 1.625rem;
   margin: 0 -1.625rem;
+  background-color: var(--tadarab-bg);
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box:nth-of-type(1) {
@@ -1180,8 +1188,9 @@
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box--active {
-  border: 0.0625rem solid red;
+  border: 0.0625rem solid rgba(175, 21, 31, 0.6039215686);
   border-radius: 0.5rem;
+  background-color: var(--tadarab-light-bg);
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip {
@@ -2400,6 +2409,12 @@
     color: var(--primary-red) !important;
     border-width: 0.8rem;
   }
+  .payment-options-spinner div {
+    width: 5rem;
+    height: 5rem;
+    color: var(--primary-red) !important;
+    border-width: 0.48rem;
+  }
   .monthly-subscription__subscription-plans-dropdown button {
     font-size: 1.6rem;
     width: 100%;
@@ -2476,7 +2491,7 @@
     margin-bottom: 1.76rem;
   }
   .checkout__cart-sticky-card__subscription-plans__plan-box {
-    border-bottom: 0.1375rem solid var(--borders-grey);
+    border-width: 0.1375rem;
     padding: 1.1rem 3.575rem;
     margin: 0 -3.575rem;
   }
@@ -2485,7 +2500,7 @@
     border-radius: 2.5rem 2.5rem 0 0;
   }
   .checkout__cart-sticky-card__subscription-plans__plan-box--active {
-    border: 0.0625rem solid red;
+    border-width: 0.1375rem;
     border-radius: 1.1rem;
   }
   .checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip {

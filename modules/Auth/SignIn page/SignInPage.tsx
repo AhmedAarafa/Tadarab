@@ -157,6 +157,8 @@ export default function SignInPage() {
                 }
               } else if (router.query && router.query.from_subscription) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+              } else if (router.query && router.query.type) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
               } else {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
               }
@@ -338,6 +340,8 @@ export default function SignInPage() {
 
                     } else if (router.query && router.query.from_subscription) {
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
+                    } else if (router.query && router.query.type) {
+                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
                     } else {
                       if (response.data.data?.is_in_user_subscription) {
                         Router.push('/my-account');

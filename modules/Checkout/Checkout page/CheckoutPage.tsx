@@ -1545,9 +1545,9 @@ function CheckoutPage(props: any) {
                             {checkoutType == "subscription" ?
                                 <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
 
-                                    {paymentSettings &&
+                                    {paymentSettings ?
                                         <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
-                                            <div style={{ backgroundColor: `${threePlansSelection == "yearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                            <div className={`${styles["checkout__cart-sticky-card__subscription-plans__plan-box"]} ${threePlansSelection == "yearly" && styles["checkout__cart-sticky-card__subscription-plans__plan-box--active"]}`}>
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
                                                     أفضل قيمة
                                                 </div>
@@ -1575,7 +1575,7 @@ function CheckoutPage(props: any) {
 
                                             </div>
 
-                                            <div style={{ backgroundColor: `${threePlansSelection == "midYearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                            <div className={`${styles["checkout__cart-sticky-card__subscription-plans__plan-box"]} ${threePlansSelection == "midYearly" && styles["checkout__cart-sticky-card__subscription-plans__plan-box--active"]}`}>
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                     <input onClick={() => {
                                                         setThreePlansSelection("midYearly");
@@ -1600,7 +1600,7 @@ function CheckoutPage(props: any) {
 
                                             </div>
 
-                                            <div style={{ backgroundColor: `${threePlansSelection == "monthly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
+                                            <div className={`${styles["checkout__cart-sticky-card__subscription-plans__plan-box"]} ${threePlansSelection == "monthly" && styles["checkout__cart-sticky-card__subscription-plans__plan-box--active"]}`}>
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                     <input onClick={() => {
                                                         setThreePlansSelection("monthly");
@@ -1625,7 +1625,12 @@ function CheckoutPage(props: any) {
 
                                             </div>
 
-                                        </div>}
+                                        </div>
+                                        :
+                                        <div className={styles["payment-options-spinner"]}>
+                                            <Spinner animation="border" style={{ display: "block", margin: "auto" }} />
+                                        </div>
+                                    }
 
                                 </div>
                                 :
@@ -2016,85 +2021,90 @@ function CheckoutPage(props: any) {
                                         */}
                                         <div className={styles["checkout__cart-sticky-card__subscribe-summary"]}>
 
-                                            {paymentSettings && <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
-                                                <div style={{ backgroundColor: `${threePlansSelection == "yearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
-                                                        أفضل قيمة
+                                            {paymentSettings ?
+                                                <div className={styles["checkout__cart-sticky-card__subscription-plans"]}>
+                                                    <div className={`${styles["checkout__cart-sticky-card__subscription-plans__plan-box"]} ${threePlansSelection == "yearly" && styles["checkout__cart-sticky-card__subscription-plans__plan-box--active"]}`}>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
+                                                            أفضل قيمة
+                                                        </div>
+
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                            <input onClick={() => {
+                                                                // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
+                                                                // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
+                                                                setThreePlansSelection("yearly");
+                                                                setPaypalPlanId(paymentSettings?.subscription_plans[2].paypal_id);
+                                                            }} type="radio" checked={threePlansSelection == "yearly"} name="subscription-plans" value={paymentSettings?.subscription_plans[2].name_label} className="form-check-input" />
+                                                            <label htmlFor={paymentSettings?.subscription_plans[2].name_label}>
+                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                                    {paymentSettings?.subscription_plans[2].name_label}
+                                                                </div>
+                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                                    <span>
+                                                                        {paymentSettings?.subscription_plans[2].sale_label}
+                                                                    </span>
+                                                                    <span>
+                                                                        {paymentSettings?.subscription_plans[2].discount_label}
+                                                                    </span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
                                                     </div>
 
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                                        <input onClick={() => {
-                                                            // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
-                                                            // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" })
-                                                            setThreePlansSelection("yearly");
-                                                            setPaypalPlanId(paymentSettings?.subscription_plans[2].paypal_id);
-                                                        }} type="radio" checked={threePlansSelection == "yearly"} name="subscription-plans" value={paymentSettings?.subscription_plans[2].name_label} className="form-check-input" />
-                                                        <label htmlFor={paymentSettings?.subscription_plans[2].name_label}>
-                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                                                {paymentSettings?.subscription_plans[2].name_label}
-                                                            </div>
-                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                                                <span>
-                                                                    {paymentSettings?.subscription_plans[2].sale_label}
-                                                                </span>
-                                                                <span>
-                                                                    {paymentSettings?.subscription_plans[2].discount_label}
-                                                                </span>
-                                                            </div>
-                                                        </label>
+                                                    <div className={`${styles["checkout__cart-sticky-card__subscription-plans__plan-box"]} ${threePlansSelection == "midYearly" && styles["checkout__cart-sticky-card__subscription-plans__plan-box--active"]}`}>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                            <input onClick={() => {
+                                                                // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
+                                                                // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" });
+                                                                setThreePlansSelection("midYearly");
+                                                                setPaypalPlanId(paymentSettings?.subscription_plans[1].paypal_id);
+
+                                                            }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[1].name_label} className="form-check-input" />
+                                                            <label htmlFor={paymentSettings?.subscription_plans[1].name_label}>
+                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                                    {paymentSettings?.subscription_plans[1].name_label}
+                                                                </div>
+                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                                    <span>
+                                                                        {paymentSettings?.subscription_plans[1].sale_label}
+                                                                    </span>
+                                                                    <span>
+                                                                        {paymentSettings?.subscription_plans[1].discount_label}
+                                                                    </span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div className={`${styles["checkout__cart-sticky-card__subscription-plans__plan-box"]} ${threePlansSelection == "monthly" && styles["checkout__cart-sticky-card__subscription-plans__plan-box--active"]}`}>
+                                                        <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
+                                                            <input onClick={() => {
+                                                                // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
+                                                                // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" });
+                                                                setThreePlansSelection("monthly");
+                                                                setPaypalPlanId(paymentSettings?.subscription_plans[0].paypal_id);
+                                                            }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[0].name_label} className="form-check-input" />
+                                                            <label htmlFor={paymentSettings?.subscription_plans[0].name_label}>
+                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
+                                                                    {paymentSettings?.subscription_plans[0].name_label}
+                                                                </div>
+                                                                <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
+                                                                    <span>
+                                                                        {paymentSettings?.subscription_plans[0].sale_label}
+                                                                    </span>
+                                                                    <span>
+                                                                        {paymentSettings?.subscription_plans[0].discount_label}
+                                                                    </span>
+                                                                </div>
+                                                            </label>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div style={{ backgroundColor: `${threePlansSelection == "midYearly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                                        <input onClick={() => {
-                                                            // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
-                                                            // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" });
-                                                            setThreePlansSelection("midYearly");
-                                                            setPaypalPlanId(paymentSettings?.subscription_plans[1].paypal_id);
-
-                                                        }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[1].name_label} className="form-check-input" />
-                                                        <label htmlFor={paymentSettings?.subscription_plans[1].name_label}>
-                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                                                {paymentSettings?.subscription_plans[1].name_label}
-                                                            </div>
-                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                                                <span>
-                                                                    {paymentSettings?.subscription_plans[1].sale_label}
-                                                                </span>
-                                                                <span>
-                                                                    {paymentSettings?.subscription_plans[1].discount_label}
-                                                                </span>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-
+                                                :
+                                                <div className={styles["payment-options-spinner"]}>
+                                                    <Spinner animation="border" style={{ display: "block", margin: "auto" }} />
                                                 </div>
-
-                                                <div style={{ backgroundColor: `${threePlansSelection == "monthly" ? "var(--tadarab-light-bg)" : "var(--tadarab-bg)"}` }} className={styles["checkout__cart-sticky-card__subscription-plans__plan-box"]}>
-                                                    <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
-                                                        <input onClick={() => {
-                                                            // setDropdownSubscriptionPlan("شهر مجانًا ثم 9 دك/ش");
-                                                            // setSubscriptionPlansBanks({ ...subscriptionPlansBanks, subplan_id: "a5Is2wQH" });
-                                                            setThreePlansSelection("monthly");
-                                                            setPaypalPlanId(paymentSettings?.subscription_plans[0].paypal_id);
-                                                        }} type="radio" name="subscription-plans" value={paymentSettings?.subscription_plans[0].name_label} className="form-check-input" />
-                                                        <label htmlFor={paymentSettings?.subscription_plans[0].name_label}>
-                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__plan"]}>
-                                                                {paymentSettings?.subscription_plans[0].name_label}
-                                                            </div>
-                                                            <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box__pricing"]}>
-                                                                <span>
-                                                                    {paymentSettings?.subscription_plans[0].sale_label}
-                                                                </span>
-                                                                <span>
-                                                                    {paymentSettings?.subscription_plans[0].discount_label}
-                                                                </span>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             }
 
                                             <div className={styles["checkout__cart-sticky-card__subscribe-summary__title"]}>

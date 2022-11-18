@@ -466,7 +466,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
               }} disabled={isAddingToCartInProgress}
                 className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
               >
-                {isAddingToCartInProgress == true ?
+                {isAddingToCartInProgress == true ? 
                   <Spinner animation='border' />
                   :
                   courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?

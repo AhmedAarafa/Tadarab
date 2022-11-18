@@ -147,7 +147,7 @@ export default function TrainerInfo() {
         <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics"]}>
           <CoursesNumberIcon color="#af151f" />
           <div className={styles["trainer-profile__trainer-info-col__stastics-box__stastics__number-of-courses"]}>
-            <div>عدد الدورات</div>
+            <div>عدد الدورات</div> 
             <div>{trainerProfileData.data?.data?.courses?.length}</div>
           </div>
         </div>

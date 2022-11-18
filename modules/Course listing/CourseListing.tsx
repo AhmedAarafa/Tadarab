@@ -18,7 +18,7 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 import Image from 'next/image';
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
-// import CustomPagination from "./CustomPagination";
+import CoverPhotoSection from "./Free courses page components/Cover photo section/CoverPhotoSection";
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
@@ -198,6 +198,7 @@ export default function CourseListing() {
                 description={courseListing?.data?.seo_metadesc}
                 img={courseListing?.data?.seo_image} />
             <Row className={styles["course-listing-row"]}>
+                <CoverPhotoSection />
                 <Col xs={12} className={styles["course-listing__title"]}>
                     النتائج
                 </Col>
@@ -320,7 +321,7 @@ export default function CourseListing() {
                                                 }
                                             </div>
                                             {!course.is_purchased && <Button className={styles["course-listing__cards-carousel__card__card-body__checkout-details__btn-box"]} disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}>
-                                                {course.price == 0 ? <div onClick={() => handleSubscribeBtn(course)}> {course.is_subscribed_to ? <ContainedBellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"}/> : <BellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"}/>} </div>
+                                                {course.price == 0 ? <div onClick={() => handleSubscribeBtn(course)}> {course.is_subscribed_to ? <ContainedBellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} /> : <BellIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />} </div>
                                                     :
                                                     <div onClick={() =>
                                                         course?.discounted_price == 0 ?
