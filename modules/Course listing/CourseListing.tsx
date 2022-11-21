@@ -16,15 +16,24 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
-import Image from 'next/image';
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import CoverPhotoSection from "./Free courses page components/Cover photo section/CoverPhotoSection";
+import DiscoverFreeCourses from "./Free courses page components/Discover free courses/DiscoverFreeCourses";
+import LiveCourses from "./Free courses page components/Live courses/LiveCourses";
+import Books from "./Free courses page components/Books/Books";
+import Trainers from "./Free courses page components/Trainers/Trainers";
+import PaidCourses from "./Free courses page components/Paid courses/PaidCourses";
+import AboutFreeCourses from "./Free courses page components/About free courses/AboutFreeCourses";
+import Testimonials from "./Free courses page components/Testimonials/Testimonials";
+import Statistics from "common/Statistics/Statistics";
+import Categories from "./Free courses page components/Categories/Categories";
+import Faqs from "./Free courses page components/FAQs/Faqs";
+import StickySignupBar from './Free courses page components/Sticky signup bar/StickySignupBar';
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [pagesArray, setPagesArray] = useState<any>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    // const [startAndEnd, setStartAndEnd] = useState({start:0,end:9});
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const dispatch = useDispatch();
@@ -64,6 +73,7 @@ export default function CourseListing() {
         })
 
     }
+
     const handleSubscribeBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
 
@@ -124,7 +134,6 @@ export default function CourseListing() {
         }
     }
 
-
     const handlePageClick = (pgNo: any) => {
 
         toggleLoader("show");
@@ -167,23 +176,16 @@ export default function CourseListing() {
             });
     }
 
-
     useEffect(() => {
         toggleLoader("show");
     }, [])
-
-
-
 
     useEffect(() => {
         axiosInstance
             .get(`courses/?page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
-                console.log("responseresponse", response);
-
                 toggleLoader("hide");
-
             })
             .catch(function (error) {
                 toggleLoader("hide");
@@ -198,7 +200,22 @@ export default function CourseListing() {
                 description={courseListing?.data?.seo_metadesc}
                 img={courseListing?.data?.seo_image} />
             <Row className={styles["course-listing-row"]}>
-                <CoverPhotoSection />
+                {router?.query && router?.query?.type == "free" &&
+                    <>
+                        <CoverPhotoSection />
+                        <Trainers />
+                        <DiscoverFreeCourses />
+                        <LiveCourses />
+                        <Books />
+                        <AboutFreeCourses />
+                        <Testimonials />
+                        <Statistics />
+                        <PaidCourses />
+                        <Categories />
+                        {/* <Faqs /> */}
+                        <StickySignupBar />
+                    </>
+                }
                 <Col xs={12} className={styles["course-listing__title"]}>
                     النتائج
                 </Col>

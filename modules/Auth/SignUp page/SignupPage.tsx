@@ -156,6 +156,8 @@ export default function SignupPage() {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
       } else if (router.query.from.startsWith("course")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
+      } else if (router.query.from == "free") {
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
       } else {
         Router.back();
       }
@@ -213,6 +215,8 @@ export default function SignupPage() {
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                } else if (router.query.from == "free") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                 } else {
                   Router.back();
                 }
@@ -279,6 +283,8 @@ export default function SignupPage() {
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                } else if (router.query.from == "free") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                 } else {
                   Router.back();
                 }
@@ -434,6 +440,8 @@ export default function SignupPage() {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                           } else if (router.query.from.startsWith("course")) {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                          } else if (router.query.from == "free") {
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                           } else {
                             Router.back();
                           }

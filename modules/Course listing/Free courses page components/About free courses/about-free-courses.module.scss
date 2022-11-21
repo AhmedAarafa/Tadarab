@@ -1,0 +1,34 @@
+@import "../../../../styles/mixins";
+
+.about-free-courses {
+    padding: 4rem 6rem 0 6rem;
+    text-align: center;
+}
+
+.about-free-courses__title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin-bottom: 1rem;
+}
+
+.about-free-courses__brief {
+    font-size: 1.2rem;
+    color: var(--grey);
+}
+
+
+@media (max-width:575px) {
+    .about-free-courses {
+        padding: 4rem*2.5 3rem 0 3rem;
+    }
+
+    .about-free-courses__title {
+        font-size: 4rem;
+        margin-bottom: 1rem*2.5;
+    }
+
+    .about-free-courses__brief {
+        font-size: 1.2rem*2;
+    }
+}

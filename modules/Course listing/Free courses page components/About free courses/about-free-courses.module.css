@@ -1,0 +1,29 @@
+.about-free-courses {
+  padding: 4rem 6rem 0 6rem;
+  text-align: center;
+}
+
+.about-free-courses__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin-bottom: 1rem;
+}
+
+.about-free-courses__brief {
+  font-size: 1.2rem;
+  color: var(--grey);
+}
+
+@media (max-width: 575px) {
+  .about-free-courses {
+    padding: 10rem 3rem 0 3rem;
+  }
+  .about-free-courses__title {
+    font-size: 4rem;
+    margin-bottom: 2.5rem;
+  }
+  .about-free-courses__brief {
+    font-size: 2.4rem;
+  }
+}/*# sourceMappingURL=about-free-courses.module.css.map */

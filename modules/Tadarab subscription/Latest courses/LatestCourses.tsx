@@ -4,7 +4,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from "./latest-courses.module.css";
 import {
   Row,
-  Col,
+  Col, 
   Button,
   Card
 } from "react-bootstrap";
@@ -14,7 +14,8 @@ import "swiper/css";
 import 'tippy.js/dist/tippy.css';
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { ChevronLeftIcon, LearnersIcon, TickIcon, CartIcon, TvIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon } from "common/Icons/Icons";
+import { ChevronLeftIcon, LearnersIcon, TickIcon, CartIcon, TvIcon,
+   FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems";
@@ -22,10 +23,10 @@ import withAuth from "configurations/auth guard/AuthGuard";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
+import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { setHomePageData } from "configurations/redux/actions/homePageData";
-import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 
 function LatestCourses() {
   SwiperCore.use([Navigation]);
@@ -33,7 +34,6 @@ function LatestCourses() {
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const cartItems = useSelector((state: any) => state.cartItems);
 
-  const [localCartItems, setLocalCartItems] = useState<any>([]);
   const [isFnExecuted, setIsFnExecuted] = useState(false);
   const [latestCourses, setLatestCourses] = useState<any>([]);
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
@@ -126,7 +126,6 @@ function LatestCourses() {
     axiosInstance
       .get(`home`)
       .then(function (response: any) {
-        console.log("response", response);
 
         dispatch(setHomePageData(response.data.data));
         FBPixelEventsHandler(response.data.fb_tracking_events, null);
@@ -197,8 +196,6 @@ function LatestCourses() {
 
     }
   }
-
-
 
   return (
     <>

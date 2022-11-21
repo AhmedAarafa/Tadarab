@@ -190,7 +190,7 @@
 
 .monthly_subscription__live-details-list {
     @include flex(center, flex-start);
-
+    color: var(--dark-black);
     div {
         margin-bottom: 0.25rem;
 

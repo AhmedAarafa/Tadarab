@@ -474,6 +474,7 @@
     .monthly_subscription__live-details-list {
         @include flex(center, flex-start);
         font-size: 2.2rem;
+        color: var(--dark-black);
 
         div {
             margin-bottom: 0.25rem*2.2;

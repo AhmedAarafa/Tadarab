@@ -1,0 +1,28 @@
+[{
+    "trainer_name": "بشير الرشيدي",
+    "course_title": "هل تعرف نفسك",
+    "reviewer_name": "عائشة",
+    "reviewer_country": "السعودية",
+    "review": "دورة رائعة شرح المدرب بسيط وسهل جزاكم الله كل خير",
+    "course_image": "https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/%D9%87%D9%84-%D8%AA%D8%B9%D8%B1%D9%81-%D9%86%D9%81%D8%B3%D9%83.jpg",
+    "trainer_image": "https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/56-Bashir.png"
+},
+{
+    "trainer_name": "أحمد السليماني",
+    "course_title": "مهارات التعليم عن بعد",
+    "reviewer_name": "ياسر عبدالله",
+    "reviewer_country": "الكويت",
+    "review": "دورة رائعة ومثرية",
+    "course_image": "https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/%D9%85%D9%87%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%B9%D9%86-%D8%A8%D8%B9%D8%AF.jpg",
+    "trainer_image": "https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/%D8%A3%D8%AD%D9%85%D8%AF-%D8%A7%D9%84%D8%B3%D9%84%D9%85%D8%A7%D9%86%D9%8A.jpg"
+},
+{
+    "trainer_name": "زيد اللهيب",
+    "course_title": "دولاب الخزاف",
+    "reviewer_name": "أبرار",
+    "reviewer_country": "الإمارات",
+    "review": "جداً جميلة الدورة رغم بساطتها",
+    "course_image": "https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/%D8%AF%D9%88%D9%84%D8%A7%D8%A8-%D8%A7%D9%84%D8%AE%D8%B2%D8%A7%D9%81.jpg",
+    "trainer_image": "https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/53-zaid-1.png"
+}
+]

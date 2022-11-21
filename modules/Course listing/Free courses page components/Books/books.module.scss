@@ -1,0 +1,532 @@
+@import "../../../../styles/mixins";
+
+
+.books__row {
+    background-color: var(--tadarab-light-bg);
+
+    // background-color: #0E0B1D;
+    &[data-theme='light'] {
+        --box-shadow: white;
+        --download-btn-text: #af151f;
+    }
+
+    &[data-theme='dark'] {
+        --box-shadow: black;
+        --download-btn-text: #f5f5f5;
+
+    }
+}
+
+.books__title {
+    font-size: 2rem;
+    font-weight: 800;
+    padding: 4rem 3rem 3.125rem 3rem;
+    background-color: var(--tadarab-light-bg);
+    @include flex(center, flex-start);
+
+    &>h2 {
+        font-weight: 800;
+
+        span {
+            display: inline-block;
+            color: var(--dark-black);
+        }
+    }
+
+}
+
+.see-more-btn-col {
+    padding: 0 0 3.125rem 3rem;
+    @include flex(flex-end, flex-end);
+    border-radius: 5rem 0 0 0;
+}
+
+.books__see-more-btn {
+    @include outlined-button;
+    font-size: 1.063rem;
+    color: var(--outlined-btn-text);
+    font-weight: 700;
+    width: 18.75rem;
+    height: 2.75rem;
+    // border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg);
+    border-radius: 0.75rem;
+    @include flex(center, space-around);
+
+    &:is(&:hover, &:active) {
+        // background-color: white !important;
+        color: var(--outlined-btn-text) !important;
+        border: 0.125rem solid var(--outlined-btn-border) !important;
+    }
+
+}
+
+
+
+.books__cards-carousel {
+    background-color: var(--tadarab-light-bg);
+
+    &>div {
+        padding: 0.5rem 2rem !important;
+        @include inset-box-shadow(var(--tadarab-light-bg));
+
+        &>div:nth-child(1),
+        &>div:nth-child(2) {
+            top: 29% !important;
+        }
+
+    }
+
+}
+
+.books__cards-carousel__card {
+    width: 13.25rem;
+    // height: 25rem;
+    height: 27.875rem;
+    border-radius: 0.5rem;
+    border: 0;
+    display: inline-block;
+    background-color: var(--tadarab-light-bg);
+
+
+    div:nth-of-type(1) {
+        padding: 0.5rem 0;
+    }
+}
+
+.books__cards-carousel__card__book-img {
+    width: 100%;
+    border-radius: 0.5rem;
+    height: 18.75rem;
+
+    // box-shadow: 0 0 0.5rem #00000033;
+    &:hover {
+        transform: scale(1.03);
+    }
+
+    cursor: pointer;
+}
+
+.books__cards-carousel__card__card-body__title {
+    font-size: 1.063rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin: 0;
+    line-height: 1.5;
+    padding: 0.5rem 0 0 0;
+    width: 13.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+
+}
+
+.books__cards-carousel__card__card-body__category {
+    font-size: 1rem;
+    color: var(--grey);
+    width: 13.25rem;
+    cursor: pointer;
+}
+
+.books__cards-carousel__card__download-btn {
+    @include outlined-button;
+    width: 100%;
+    height: 2.75rem;
+    // border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--tadarab-light-bg) !important;
+    border-radius: 0.75rem;
+    @include flex(center, center);
+    margin-top: 1rem;
+    color: var(--download-btn-text) !important;
+
+    &:is(&:hover, &:active) {
+        background-color: var(--primary-red) !important;
+        // border: 0.125rem solid var(--outlined-btn-border) !important;
+        color: var(--download-btn-text) !important;
+
+        span {
+            color: white !important;
+        }
+
+        svg {
+            * {
+                color: white !important;
+                fill: white !important;
+            }
+        }
+    }
+
+
+    span {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--download-btn-text) !important;
+        margin-right: 0.5rem;
+    }
+}
+
+
+
+@media (max-width:1200px) {
+
+    .books__cards-carousel {
+
+        &>div {
+            padding: 0.5rem*1.33 2rem*1.33 !important;
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 29% !important;
+
+                &:after {
+                    font-size: 1rem*1.33 !important;
+                    box-shadow: 0 0 1.25rem*1.33 #00000033 !important;
+                }
+            }
+
+            &>div:nth-child(1) {
+                right: 1rem*1.33 !important;
+
+                &:after {
+                    padding: 1.5rem*1.33 1.18rem*1.33 1.5rem*1.33 1.28rem*1.33 !important;
+                }
+
+            }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.33 !important;
+
+                &:after {
+                    padding: 1.5rem*1.33 1.28rem*1.33 1.5rem*1.33 1.18rem*1.33 !important;
+                }
+            }
+
+        }
+
+    }
+
+    .books__cards-carousel__card {
+        width: 13.25rem*1.33;
+        // height: 25rem*1.33;
+        height: 27.875rem*1.33;
+        border-radius: 0.5rem*1.33;
+        border: 0;
+        display: inline-block;
+
+        div:nth-of-type(1) {
+            padding: 0.5rem*1.33 0;
+        }
+    }
+
+    .books__cards-carousel__card__book-img {
+        width: 100%;
+        border-radius: 0.5rem*1.33;
+        height: 18.75rem*1.33;
+        // box-shadow: 0 0 0.5rem*1.33 #00000033;
+    }
+
+    .books__cards-carousel__card__card-body__title {
+        font-size: 1.063rem*1.33;
+        font-weight: 800;
+        color: var(--dark-black);
+        width: 17rem;
+    }
+
+    .books__cards-carousel__card__card-body__category {
+        font-size: 1rem*1.33;
+        color: var(--grey);
+        width: 17rem;
+
+    }
+
+    .books__cards-carousel__card__download-btn {
+        @include outlined-button;
+        width: 100%;
+        height: 2.75rem*1.33;
+        border-width: 0.125rem*1.33 !important;
+        border-radius: 0.75rem*1.33;
+        @include flex(center, center);
+        margin-top: 1rem*1.33;
+        background-color: var(--tadarab-light-bg) !important;
+
+        &:is(&:hover, &:active) {
+            // background-color: var(--primary-red) !important;
+            border-width: 0.125rem*1.33 !important;
+
+            // color: white !important;
+
+            span {
+
+                color: white !important;
+            }
+
+            svg {
+                * {
+
+                    color: white !important;
+                    fill: white !important;
+                }
+            }
+        }
+
+
+        span {
+            font-size: 1rem*1.33;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-right: 0.5rem*1.33;
+        }
+    }
+}
+
+@media (max-width:980px) {
+
+    .books__cards-carousel {
+
+        &>div {
+            padding: 0.5rem*1.35 2rem*1.35 !important;
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 29% !important;
+
+                &:after {
+                    font-size: 1rem*1.35 !important;
+                    box-shadow: 0 0 1.25rem*1.35 #00000033 !important;
+                }
+            }
+
+            &>div:nth-child(1) {
+                right: 1rem*1.35 !important;
+
+                &:after {
+                    padding: 1.5rem*1.35 1.18rem*1.35 1.5rem*1.35 1.28rem*1.35 !important;
+                }
+
+            }
+
+            &>div:nth-child(2) {
+                left: 1rem*1.35 !important;
+
+                &:after {
+                    padding: 1.5rem*1.35 1.28rem*1.35 1.5rem*1.35 1.18rem*1.35 !important;
+                }
+            }
+
+        }
+
+    }
+
+    .books__cards-carousel__card {
+        width: 13.25rem*1.35;
+        // height: 25rem*1.35;
+        height: 27.875rem*1.35;
+        border-radius: 0.5rem*1.35;
+        border: 0;
+        display: inline-block;
+
+        div:nth-of-type(1) {
+            padding: 0.5rem*1.35 0;
+        }
+    }
+
+    .books__cards-carousel__card__book-img {
+        width: 100%;
+        border-radius: 0.5rem*1.35;
+        height: 18.75rem*1.35;
+        // box-shadow: 0 0 0.5rem*1.35 #00000033;
+    }
+
+    .books__cards-carousel__card__card-body__title {
+        font-size: 1.063rem*1.35;
+        font-weight: 800;
+        color: var(--dark-black);
+        width: 17rem;
+
+    }
+
+    .books__cards-carousel__card__card-body__category {
+        font-size: 1rem*1.35;
+        color: var(--grey);
+        width: 17rem;
+
+    }
+
+    .books__cards-carousel__card__download-btn {
+        @include outlined-button;
+        width: 100%;
+        height: 2.75rem*1.35;
+        border-width: 0.125rem*1.35 !important;
+        border-radius: 0.75rem*1.35;
+        @include flex(center, center);
+        margin-top: 1rem*1.35;
+
+        &:is(&:hover, &:active) {
+            // background-color: var(--primary-red) !important;
+            border-width: 0.125rem*1.35 !important;
+
+            // color: white !important;
+
+            span {
+
+                color: white !important;
+            }
+
+            svg {
+                * {
+
+                    color: white !important;
+                    fill: white !important;
+                }
+            }
+        }
+
+
+        span {
+            font-size: 1rem*1.35;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-right: 0.5rem*1.35;
+        }
+    }
+
+}
+
+@media (max-width:575px) {
+
+    .books__title {
+        
+        span {
+            font-size: 4.688rem;
+        }
+        
+        padding: 4rem*2.5 0 3rem 0;
+        @include flex(center, center);
+
+    }
+
+    .see-more-btn-col {
+        padding: 5.688rem 0 0 0;
+        @include flex(unset, flex-end);
+        display: none;
+        border-radius: 0;
+    }
+
+    .books__see-more-btn {
+        @include outlined-button;
+        font-size: 1.063rem*3.1;
+        width: 100%;
+        margin: 0 2.5rem;
+        height: 2.75rem*3.1;
+        border-width: 0.125rem*3.1 !important;
+        border-radius: 0.75rem*3.1;
+        @include flex(center, center);
+
+        svg {
+            width: 0.5rem*3.1;
+            height: 0.875rem*3.1;
+            margin-right: 2.063rem;
+        }
+
+        &:is(&:hover, &:active) {
+            border-width: 0.125rem*3.1 !important;
+        }
+
+    }
+
+
+    .books__cards-carousel {
+        margin-bottom: 5rem;
+
+        &>div {
+            padding: 0.5rem*3.1 2rem*3.1 !important;
+
+            &>div:nth-child(1),
+            &>div:nth-child(2) {
+                top: 29% !important;
+            }
+
+
+        }
+
+    }
+
+    .books__cards-carousel__card {
+        width: 13.25rem*3.1;
+        // height: 25rem*3.1;
+        height: 27.875rem*3.1;
+        border-radius: 0.5rem*3.1;
+        border: 0;
+        display: inline-block;
+
+        div:nth-of-type(1) {
+            padding: 0.5rem*3.1 0;
+        }
+    }
+
+    .books__cards-carousel__card__book-img {
+        width: 100%;
+        border-radius: 0.5rem*3.1;
+        height: 18.75rem*3.1;
+        // box-shadow: 0 0 0.5rem*3.1 #00000033;
+    }
+
+    .books__cards-carousel__card__card-body__title {
+        font-size: 1.063rem*3.1;
+        font-weight: 800;
+        color: var(--dark-black);
+        width: 41rem;
+    }
+
+    .books__cards-carousel__card__card-body__category {
+        font-size: 1rem*3.1;
+        color: var(--grey);
+        width: 41rem;
+    }
+
+    .books__cards-carousel__card__download-btn {
+        @include outlined-button;
+        width: 100%;
+        height: 2.75rem*3.1;
+        border-width: 0.125rem*3.1 !important;
+        border-radius: 0.75rem*3.1;
+        @include flex(center, center);
+        margin-top: 1rem*3.1;
+        background-color: var(--tadarab-light-bg) !important;
+
+
+        svg {
+            width: 1.188rem*2.8;
+            height: 1.25rem*2.8;
+        }
+
+        &:is(&:hover, &:active) {
+            background-color: var(--primary-red) !important;
+            border-width: 0.125rem*3.1 !important;
+
+            color: white !important;
+
+            span {
+
+                color: white !important;
+            }
+
+            svg {
+
+                * {
+                    color: white !important;
+                    fill: white !important;
+                }
+            }
+        }
+
+
+        span {
+            font-size: 1rem*3.1;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-right: 0.5rem*3.1;
+        }
+    }
+}

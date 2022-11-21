@@ -15,7 +15,7 @@ import withAuth from "configurations/auth guard/AuthGuard";
 
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const UnlimitedCourses = dynamic(() => import("modules/Tadarab subscription/Unlimited courses/UnlimitedCourses"));
-const Statistics = dynamic(() => import("modules/Tadarab subscription/Statistics/Statistics"));
+const Statistics = dynamic(() => import("common/Statistics/Statistics"));
 const MarketingBoxes = dynamic(() => import("modules/Tadarab subscription/Marketing boxes/MarketingBoxes"));
 const ArabicTrainers = dynamic(() => import("modules/Tadarab subscription/Arabic trainers/ArabicTrainers"));
 const MobileCheckoutBar = dynamic(() => import("modules/Course details/Mobile checkout bar/MobileCheckoutBar"));

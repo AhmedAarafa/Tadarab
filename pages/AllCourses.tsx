@@ -7,8 +7,6 @@ import withAuth from 'configurations/auth guard/AuthGuard';
 const CourseListing = dynamic(() => import("modules/Course listing/CourseListing"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
-
-
 function AllCourses() {
   const themeState = useSelector((state: any) => state.themeState.theme);
     return (

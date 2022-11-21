@@ -6,7 +6,6 @@ import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-// import 'tippy.js/dist/tippy.css';
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ChevronLeftIcon, LearnersIcon, TickIcon, CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";

@@ -1,0 +1,563 @@
+.books__row {
+  background-color: var(--tadarab-light-bg);
+}
+.books__row[data-theme=light] {
+  --box-shadow: white;
+  --download-btn-text: #af151f;
+}
+.books__row[data-theme=dark] {
+  --box-shadow: black;
+  --download-btn-text: #f5f5f5;
+}
+
+.books__title {
+  font-size: 2rem;
+  font-weight: 800;
+  padding: 4rem 3rem 3.125rem 3rem;
+  background-color: var(--tadarab-light-bg);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.books__title > h2 {
+  font-weight: 800;
+}
+.books__title > h2 span {
+  display: inline-block;
+  color: var(--dark-black);
+}
+
+.see-more-btn-col {
+  padding: 0 0 3.125rem 3rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border-radius: 5rem 0 0 0;
+}
+
+.books__see-more-btn {
+  box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: "Almarai", sans-serif;
+  border: 0 !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  font-size: 1.063rem;
+  color: var(--outlined-btn-text);
+  font-weight: 700;
+  width: 18.75rem;
+  height: 2.75rem;
+  background-color: var(--outlined-btn-bg);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.books__see-more-btn:hover {
+  box-shadow: none;
+}
+.books__see-more-btn:active {
+  box-shadow: none;
+}
+.books__see-more-btn:hover {
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+}
+.books__see-more-btn:active {
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+}
+.books__see-more-btn:is(.books__see-more-btn:hover, .books__see-more-btn:active) {
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+}
+
+.books__cards-carousel {
+  background-color: var(--tadarab-light-bg);
+}
+.books__cards-carousel > div {
+  padding: 0.5rem 2rem !important;
+}
+.books__cards-carousel > div:before {
+  content: "";
+  display: block;
+  position: absolute;
+  box-shadow: -2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset, 2.813rem 0 2.5rem -3.125rem var(--tadarab-light-bg) inset;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  pointer-events: none;
+}
+.books__cards-carousel > div > div:nth-child(1), .books__cards-carousel > div > div:nth-child(2) {
+  top: 29% !important;
+}
+
+.books__cards-carousel__card {
+  width: 13.25rem;
+  height: 27.875rem;
+  border-radius: 0.5rem;
+  border: 0;
+  display: inline-block;
+  background-color: var(--tadarab-light-bg);
+}
+.books__cards-carousel__card div:nth-of-type(1) {
+  padding: 0.5rem 0;
+}
+
+.books__cards-carousel__card__book-img {
+  width: 100%;
+  border-radius: 0.5rem;
+  height: 18.75rem;
+  cursor: pointer;
+}
+.books__cards-carousel__card__book-img:hover {
+  transform: scale(1.03);
+}
+
+.books__cards-carousel__card__card-body__title {
+  font-size: 1.063rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin: 0;
+  line-height: 1.5;
+  padding: 0.5rem 0 0 0;
+  width: 13.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.books__cards-carousel__card__card-body__category {
+  font-size: 1rem;
+  color: var(--grey);
+  width: 13.25rem;
+  cursor: pointer;
+}
+
+.books__cards-carousel__card__download-btn {
+  box-shadow: none !important;
+  text-transform: none;
+  font-size: 0.97rem;
+  font-weight: 700;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.625rem;
+  font-family: "Almarai", sans-serif;
+  border: 0 !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+  background-color: var(--outlined-btn-bg) !important;
+  width: 100%;
+  height: 2.75rem;
+  background-color: var(--tadarab-light-bg) !important;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  color: var(--download-btn-text) !important;
+}
+.books__cards-carousel__card__download-btn:hover {
+  box-shadow: none;
+}
+.books__cards-carousel__card__download-btn:active {
+  box-shadow: none;
+}
+.books__cards-carousel__card__download-btn:hover {
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+}
+.books__cards-carousel__card__download-btn:active {
+  background-color: var(--outlined-btn-bg) !important;
+  color: var(--outlined-btn-text) !important;
+  border: 0.125rem solid var(--outlined-btn-border) !important;
+}
+.books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
+  background-color: var(--primary-red) !important;
+  color: var(--download-btn-text) !important;
+}
+.books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
+  color: white !important;
+}
+.books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
+  color: white !important;
+  fill: white !important;
+}
+.books__cards-carousel__card__download-btn span {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--download-btn-text) !important;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+  .books__cards-carousel > div {
+    padding: 0.665rem 2.66rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1), .books__cards-carousel > div > div:nth-child(2) {
+    top: 29% !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1):after, .books__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.33rem !important;
+    box-shadow: 0 0 1.6625rem rgba(0, 0, 0, 0.2) !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1) {
+    right: 1.33rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1):after {
+    padding: 1.995rem 1.5694rem 1.995rem 1.7024rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(2) {
+    left: 1.33rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(2):after {
+    padding: 1.995rem 1.7024rem 1.995rem 1.5694rem !important;
+  }
+  .books__cards-carousel__card {
+    width: 17.6225rem;
+    height: 37.07375rem;
+    border-radius: 0.665rem;
+    border: 0;
+    display: inline-block;
+  }
+  .books__cards-carousel__card div:nth-of-type(1) {
+    padding: 0.665rem 0;
+  }
+  .books__cards-carousel__card__book-img {
+    width: 100%;
+    border-radius: 0.665rem;
+    height: 24.9375rem;
+  }
+  .books__cards-carousel__card__card-body__title {
+    font-size: 1.41379rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    width: 17rem;
+  }
+  .books__cards-carousel__card__card-body__category {
+    font-size: 1.33rem;
+    color: var(--grey);
+    width: 17rem;
+  }
+  .books__cards-carousel__card__download-btn {
+    box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: "Almarai", sans-serif;
+    border: 0 !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    width: 100%;
+    height: 3.6575rem;
+    border-width: 0.16625rem !important;
+    border-radius: 0.9975rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.33rem;
+    background-color: var(--tadarab-light-bg) !important;
+  }
+  .books__cards-carousel__card__download-btn:hover {
+    box-shadow: none;
+  }
+  .books__cards-carousel__card__download-btn:active {
+    box-shadow: none;
+  }
+  .books__cards-carousel__card__download-btn:hover {
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__cards-carousel__card__download-btn:active {
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
+    border-width: 0.16625rem !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
+    color: white !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
+    color: white !important;
+    fill: white !important;
+  }
+  .books__cards-carousel__card__download-btn span {
+    font-size: 1.33rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-right: 0.665rem;
+  }
+}
+@media (max-width: 980px) {
+  .books__cards-carousel > div {
+    padding: 0.675rem 2.7rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1), .books__cards-carousel > div > div:nth-child(2) {
+    top: 29% !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1):after, .books__cards-carousel > div > div:nth-child(2):after {
+    font-size: 1.35rem !important;
+    box-shadow: 0 0 1.6875rem rgba(0, 0, 0, 0.2) !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1) {
+    right: 1.35rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1):after {
+    padding: 2.025rem 1.593rem 2.025rem 1.728rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(2) {
+    left: 1.35rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(2):after {
+    padding: 2.025rem 1.728rem 2.025rem 1.593rem !important;
+  }
+  .books__cards-carousel__card {
+    width: 17.8875rem;
+    height: 37.63125rem;
+    border-radius: 0.675rem;
+    border: 0;
+    display: inline-block;
+  }
+  .books__cards-carousel__card div:nth-of-type(1) {
+    padding: 0.675rem 0;
+  }
+  .books__cards-carousel__card__book-img {
+    width: 100%;
+    border-radius: 0.675rem;
+    height: 25.3125rem;
+  }
+  .books__cards-carousel__card__card-body__title {
+    font-size: 1.43505rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    width: 17rem;
+  }
+  .books__cards-carousel__card__card-body__category {
+    font-size: 1.35rem;
+    color: var(--grey);
+    width: 17rem;
+  }
+  .books__cards-carousel__card__download-btn {
+    box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: "Almarai", sans-serif;
+    border: 0 !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    width: 100%;
+    height: 3.7125rem;
+    border-width: 0.16875rem !important;
+    border-radius: 1.0125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.35rem;
+  }
+  .books__cards-carousel__card__download-btn:hover {
+    box-shadow: none;
+  }
+  .books__cards-carousel__card__download-btn:active {
+    box-shadow: none;
+  }
+  .books__cards-carousel__card__download-btn:hover {
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__cards-carousel__card__download-btn:active {
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
+    border-width: 0.16875rem !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
+    color: white !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
+    color: white !important;
+    fill: white !important;
+  }
+  .books__cards-carousel__card__download-btn span {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-right: 0.675rem;
+  }
+}
+@media (max-width: 575px) {
+  .books__title {
+    padding: 10rem 0 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .books__title span {
+    font-size: 4.688rem;
+  }
+  .see-more-btn-col {
+    padding: 5.688rem 0 0 0;
+    display: flex;
+    align-items: unset;
+    justify-content: flex-end;
+    display: none;
+    border-radius: 0;
+  }
+  .books__see-more-btn {
+    box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: "Almarai", sans-serif;
+    border: 0 !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    font-size: 3.2953rem;
+    width: 100%;
+    margin: 0 2.5rem;
+    height: 8.525rem;
+    border-width: 0.3875rem !important;
+    border-radius: 2.325rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .books__see-more-btn:hover {
+    box-shadow: none;
+  }
+  .books__see-more-btn:active {
+    box-shadow: none;
+  }
+  .books__see-more-btn:hover {
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__see-more-btn:active {
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__see-more-btn svg {
+    width: 1.55rem;
+    height: 2.7125rem;
+    margin-right: 2.063rem;
+  }
+  .books__see-more-btn:is(.books__see-more-btn:hover, .books__see-more-btn:active) {
+    border-width: 0.3875rem !important;
+  }
+  .books__cards-carousel {
+    margin-bottom: 5rem;
+  }
+  .books__cards-carousel > div {
+    padding: 1.55rem 6.2rem !important;
+  }
+  .books__cards-carousel > div > div:nth-child(1), .books__cards-carousel > div > div:nth-child(2) {
+    top: 29% !important;
+  }
+  .books__cards-carousel__card {
+    width: 41.075rem;
+    height: 86.4125rem;
+    border-radius: 1.55rem;
+    border: 0;
+    display: inline-block;
+  }
+  .books__cards-carousel__card div:nth-of-type(1) {
+    padding: 1.55rem 0;
+  }
+  .books__cards-carousel__card__book-img {
+    width: 100%;
+    border-radius: 1.55rem;
+    height: 58.125rem;
+  }
+  .books__cards-carousel__card__card-body__title {
+    font-size: 3.2953rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    width: 41rem;
+  }
+  .books__cards-carousel__card__card-body__category {
+    font-size: 3.1rem;
+    color: var(--grey);
+    width: 41rem;
+  }
+  .books__cards-carousel__card__download-btn {
+    box-shadow: none !important;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-weight: 700;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.625rem;
+    font-family: "Almarai", sans-serif;
+    border: 0 !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    background-color: var(--outlined-btn-bg) !important;
+    width: 100%;
+    height: 8.525rem;
+    border-width: 0.3875rem !important;
+    border-radius: 2.325rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3.1rem;
+    background-color: var(--tadarab-light-bg) !important;
+  }
+  .books__cards-carousel__card__download-btn:hover {
+    box-shadow: none;
+  }
+  .books__cards-carousel__card__download-btn:active {
+    box-shadow: none;
+  }
+  .books__cards-carousel__card__download-btn:hover {
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__cards-carousel__card__download-btn:active {
+    background-color: var(--outlined-btn-bg) !important;
+    color: var(--outlined-btn-text) !important;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+  }
+  .books__cards-carousel__card__download-btn svg {
+    width: 3.3264rem;
+    height: 3.5rem;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) {
+    background-color: var(--primary-red) !important;
+    border-width: 0.3875rem !important;
+    color: white !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) span {
+    color: white !important;
+  }
+  .books__cards-carousel__card__download-btn:is(.books__cards-carousel__card__download-btn:hover, .books__cards-carousel__card__download-btn:active) svg * {
+    color: white !important;
+    fill: white !important;
+  }
+  .books__cards-carousel__card__download-btn span {
+    font-size: 3.1rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-right: 1.55rem;
+  }
+}/*# sourceMappingURL=books.module.css.map */

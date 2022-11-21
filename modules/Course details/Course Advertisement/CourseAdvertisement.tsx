@@ -8,7 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import useResize from 'custom hooks/useResize';
 import "video.js/dist/video-js.css";
 import Link from "next/link";
-import { DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon } from "common/Icons/Icons";
+import {
+  DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon,
+  DarkModeCalendarIcon, DarkModeWatchLiveOrRecordedIcon
+} from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
 import datesArray from "./Dates.json";
 import { tConvert } from "modules/_Shared/utils/dateFormatHandler";
@@ -133,7 +136,7 @@ export default function CourseAdvertisement(theOption: any) {
               <div
                 className={
                   styles["course-ad__details-list__item"]}>
-               <DurationIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"}/>
+                <DurationIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
 
                 <span>{Math.round(courseDetailsData?.data?.total_duration / 60 / 60)} ساعات تدريبية</span>
 
@@ -141,7 +144,7 @@ export default function CourseAdvertisement(theOption: any) {
               <div
                 className={
                   styles["course-ad__details-list__item"]}>
-               <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"}/>
+                <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
 
                 <span>مرفقات حصرية جاهزة للتحميل</span>
               </div>
@@ -152,14 +155,14 @@ export default function CourseAdvertisement(theOption: any) {
               <div
                 className={
                   styles["course-ad__details-list__item"]}>
-                <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"}/>
+                <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
 
                 <span>المشاهدة من أي موبايل او لابتوب</span>
               </div>
               <div
                 className={
                   styles["course-ad__details-list__item"]}>
-                <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"}/>
+                <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"} />
 
                 <span>شهادة إتمام اون لاين معتمدة</span>
               </div>
@@ -168,7 +171,12 @@ export default function CourseAdvertisement(theOption: any) {
               <>
                 <div className={styles["monthly_subscription__live-details-list"]}>
                   <div>
-                    <CalendarIcon />
+                    {
+                      themeState == "light" ?
+                        <CalendarIcon />
+                        :
+                        <DarkModeCalendarIcon />
+                    }
                   </div>
                   {theOption?.allLiveWebinar?.arabic_date &&
                     datesArray.map((date: any, i: number) => {
@@ -184,14 +192,19 @@ export default function CourseAdvertisement(theOption: any) {
                 </div>
                 <div className={styles["monthly_subscription__live-details-list"]}>
                   <div>
-                    <DurationIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"}/>
+                    <DurationIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
                   </div>
                   {` ${theOption?.allLiveWebinar?.start_time && tConvert(theOption?.allLiveWebinar?.start_time)} `}
                   بتوقيت الكويت والسعودية
                 </div>
                 <div className={styles["monthly_subscription__live-details-list"]}>
                   <div>
-                    <WatchLiveOrRecordedIcon />
+                    {
+                      themeState == "light" ?
+                        <WatchLiveOrRecordedIcon />
+                        :
+                        <DarkModeWatchLiveOrRecordedIcon />
+                    }
                   </div>
                   شاهد الدورة بث مباشر او مسجلة بعد انتهاء البث
 
@@ -199,19 +212,19 @@ export default function CourseAdvertisement(theOption: any) {
                 <div className={styles["monthly_subscription__live-details-list"]}>
                   <div>
 
-                    <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"}/>
+                    <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"} />
                   </div>
                   شهادة إتمام اون لاين معتمدة
                 </div>
                 <div className={styles["monthly_subscription__live-details-list"]}>
                   <div>
-                    <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"}/>
+                    <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
                   </div>
                   مرفقات حصرية جاهزة للتحميل
                 </div>
                 <div className={styles["monthly_subscription__live-details-list"]}>
                   <div>
-                    <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"}/>
+                    <DevicesIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
                   </div>
                   تابع الدورة من اي لابتوب او موبايل
                 </div>

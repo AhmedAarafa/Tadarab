@@ -1,5 +1,6 @@
 .books__row {
   background-color: var(--tadarab-light-bg);
+  margin-bottom: 4rem;
 }
 .books__row[data-theme=light] {
   --box-shadow: white;
