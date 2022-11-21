@@ -1,6 +1,7 @@
 .sticky-signup-bar {
   width: 100%;
   position: fixed;
+  display: none;
   bottom: 0;
   background-color: rgba(25, 28, 33, 0.95);
   height: 5rem;
