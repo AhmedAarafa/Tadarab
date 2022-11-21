@@ -2,7 +2,6 @@
   font-size: 2rem;
   font-weight: 800;
   padding: 4rem 3rem 0 3rem;
-  margin-top: 3rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -258,12 +257,12 @@
 }
 @media (max-width: 575px) {
   .free-courses-trainers__title {
-    padding: 6rem 3rem 0 3rem;
+    padding: 0 3rem 0 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 10rem;
+    margin-top: 5rem;
   }
   .free-courses-trainers__title span {
     font-size: 4rem;
@@ -326,7 +325,7 @@
     margin: 0.5rem 2.063rem 0 0;
   }
   .free-courses-trainers__cards-carousel {
-    padding-top: 6.406rem;
+    padding-top: 4rem;
   }
   .free-courses-trainers__cards-carousel > div {
     padding: 0 4.8rem !important;
@@ -338,26 +337,26 @@
     top: 43% !important;
   }
   .free-courses-trainers__cards-carousel__card {
-    width: 45rem;
-    height: 52.5rem;
-    box-shadow: 0 1.2rem 3.1512rem rgba(0, 0, 0, 0.1019607843);
-    border-radius: 1.8rem;
+    width: 37.5rem;
+    height: 43.75rem;
+    box-shadow: 0 1rem 2.626rem rgba(0, 0, 0, 0.1019607843);
+    border-radius: 1.5rem;
     display: flex;
     align-items: unset;
     justify-content: flex-end;
   }
   .free-courses-trainers__cards-carousel__card__card-body {
     padding: 0;
-    padding: 0 2rem 3.6rem 2rem;
+    padding: 0 2rem 3rem 2rem;
   }
   .free-courses-trainers__cards-carousel__card__trainer {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin: 6rem 0 0.7512rem 0;
+    margin: 5rem 0 0.626rem 0;
   }
   .free-courses-trainers__cards-carousel__card__job-title,
 .free-courses-trainers__cards-carousel__card__job-history {
-    font-size: 1.9512rem;
+    font-size: 1.626rem;
     padding: 0;
   }
 }/*# sourceMappingURL=trainers.module.css.map */

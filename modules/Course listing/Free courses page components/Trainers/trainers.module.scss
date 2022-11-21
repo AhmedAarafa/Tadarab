@@ -4,7 +4,6 @@
     font-size: 2rem;
     font-weight: 800;
     padding: 4rem 3rem 0 3rem;
-    margin-top: 3rem;
 
     @include flex(center, flex-start);
 
@@ -264,10 +263,10 @@
 @media (max-width:575px){
 
     .free-courses-trainers__title{
-        padding: 6rem 3rem 0 3rem;
+        padding: 0 3rem 0 3rem;
         @include flex(center, center);
         text-align: center;
-        margin-top: 4rem*2.5;
+        margin-top: 5rem;
         
         span{
             font-size: 4rem;
@@ -314,7 +313,7 @@
 
     
 .free-courses-trainers__cards-carousel{
-    padding-top: 6.406rem;
+    padding-top: 4rem;
 
     &>div {
         padding: 0 2rem*2.4 !important;
@@ -330,27 +329,27 @@
 }
 
 .free-courses-trainers__cards-carousel__card{
-    width: 18.75rem*2.4;
-    height: 21.875rem*2.4;
-    box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
-    border-radius: 0.75rem*2.4;
+    width: 18.75rem*2;
+    height: 21.875rem*2;
+    box-shadow: 0 0.5rem*2 1.313rem*2 #0000001A;
+    border-radius: 0.75rem*2;
     @include flex(unset,flex-end);
 }
 
 .free-courses-trainers__cards-carousel__card__card-body{
     padding: 0;
     // background: transparent linear-gradient(180deg, #00000000 0%, #000000a1 30%, #000000E6 100%) 0% 0% no-repeat padding-box;
-    padding: 0 2rem 1.5rem*2.4 2rem;
+    padding: 0 2rem 1.5rem*2 2rem;
 }
 
 .free-courses-trainers__cards-carousel__card__trainer{
-    font-size: 1.25rem*2.4;
+    font-size: 1.25rem*2;
     font-weight: 700;
-    margin: 2.5rem*2.4 0 0.313rem*2.4 0;
+    margin: 2.5rem*2 0 0.313rem*2 0;
 }
 .free-courses-trainers__cards-carousel__card__job-title,
 .free-courses-trainers__cards-carousel__card__job-history{
-    font-size: 0.813rem*2.4;
+    font-size: 0.813rem*2;
     padding: 0; 
 }
 

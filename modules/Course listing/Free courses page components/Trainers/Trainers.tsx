@@ -28,7 +28,7 @@ export default function Trainers() {
                         breakpoints={{
 
                             "50": {
-                                slidesPerView: 1,
+                                slidesPerView: 1.1,
                             },
                             "576": {
                                 slidesPerView: 3,
@@ -52,7 +52,6 @@ export default function Trainers() {
                                             <div className={styles["free-courses-trainers__cards-carousel__card__card-body"]}>
                                                 <div className="text-center">
                                                     <Link href={`/trainer/${trainer?.slug}`}>
-
                                                         <div className={styles["free-courses-trainers__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
                                                     </Link>
                                                     <div className={styles["free-courses-trainers__cards-carousel__card__job-title"]}>{trainer.title}</div>

@@ -20,7 +20,7 @@ export default function CoverPhotoSection() {
                 <div className={styles["cover-photo-box__sign-up-section"]}>
                     <Link href="/sign-up?type=free">
                         <Button className={styles["cover-photo-box__sign-up-btn"]}>
-                            انشاء حساب جديد
+                            ابدأ التعلم الآن
                         </Button>
                     </Link>
                     <div className={styles["cover-photo-box__brief"]}>

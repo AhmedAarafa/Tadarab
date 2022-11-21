@@ -42,7 +42,7 @@ export default function StickySignupBar() {
                 <div id="free-courses-page-sticky-signup-bar" className={styles["sticky-signup-bar"]}>
                     <Link href="/sign-up?type=free">
                         <Button id="free-courses-page-sticky-signup-bar-btn" >
-                            انشاء حساب جديد
+                            ابدأ التعلم الآن
                         </Button>
                     </Link>
                     <div>قم بإنشاء حساب لتتابع الدورات المجانية الآن</div>

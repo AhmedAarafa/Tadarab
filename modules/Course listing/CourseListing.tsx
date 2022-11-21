@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Row, Col, Button, Card, Pagination } from "react-bootstrap";
 import styles from "./course-listing.module.css";
 import Router, { useRouter } from "next/router";
@@ -29,6 +29,7 @@ import Statistics from "common/Statistics/Statistics";
 import Categories from "./Free courses page components/Categories/Categories";
 import Faqs from "./Free courses page components/FAQs/Faqs";
 import StickySignupBar from './Free courses page components/Sticky signup bar/StickySignupBar';
+import { useInView } from "react-cool-inview";
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
@@ -39,7 +40,7 @@ export default function CourseListing() {
     const dispatch = useDispatch();
     const router = useRouter();
     const themeState = useSelector((state: any) => state.themeState.theme);
-
+   
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
             const handleFavResponse: any = handleFav(
@@ -178,7 +179,7 @@ export default function CourseListing() {
 
     useEffect(() => {
         toggleLoader("show");
-    }, [])
+    }, []);
 
     useEffect(() => {
         axiosInstance
@@ -203,8 +204,8 @@ export default function CourseListing() {
                 {router?.query && router?.query?.type == "free" &&
                     <>
                         <CoverPhotoSection />
-                        <Trainers />
                         <DiscoverFreeCourses />
+                        <Trainers />
                         <LiveCourses />
                         <Books />
                         <AboutFreeCourses />

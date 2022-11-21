@@ -1,6 +1,6 @@
 .discover-free-courses {
   background-color: var(--tadarab-light-bg);
-  padding-top: 4rem;
+  padding-top: 7rem;
 }
 
 .discover-free-courses__title {
@@ -287,7 +287,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 9.688rem;
+  width: 10rem;
 }
 
 .discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
@@ -296,7 +296,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 9.688rem;
+  width: 10rem;
   cursor: pointer;
 }
 
@@ -926,7 +926,7 @@
 }
 @media (max-width: 575px) {
   .discover-free-courses {
-    padding-top: 10rem;
+    padding-top: 8rem;
   }
   .discover-free-courses__title {
     text-align: center;
@@ -954,16 +954,16 @@
     z-index: 3;
   }
   .discover-free-courses__departments-list li::before {
-    padding-left: 1.46rem;
+    padding-left: 1.1rem;
   }
   .discover-free-courses__departments-list__item--active {
-    text-underline-offset: 0.584rem;
+    text-underline-offset: 0.44rem;
   }
   .discover-free-courses__cards-carousel {
     margin: 0.5rem 0 0 0;
   }
   .discover-free-courses__cards-carousel > div {
-    padding: 4.088rem 5.84rem !important;
+    padding: 0 4.4rem 3.08rem 4.4rem !important;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -974,20 +974,20 @@
     top: 46% !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1):after, .discover-free-courses__cards-carousel > div > div:nth-child(2):after {
-    font-size: 2.92rem !important;
-    box-shadow: 0 0 3.65rem rgba(0, 0, 0, 0.2) !important;
+    font-size: 2.2rem !important;
+    box-shadow: 0 0 2.75rem rgba(0, 0, 0, 0.2) !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1) {
-    right: 2.92rem !important;
+    right: 2.2rem !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1):after {
-    padding: 4.38rem 3.4456rem 4.38rem 3.7376rem !important;
+    padding: 3.3rem 2.596rem 3.3rem 2.816rem !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(2) {
-    left: 2.92rem !important;
+    left: 2.2rem !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(2):after {
-    padding: 4.38rem 3.7376rem 4.38rem 3.4456rem !important;
+    padding: 3.3rem 2.816rem 3.3rem 2.596rem !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(3) {
     display: none;
@@ -998,10 +998,10 @@
     height: fit-content;
   }
   .discover-free-courses__cards-carousel__course-card {
-    width: 43.8rem;
-    height: 51.83rem;
-    box-shadow: 0 1.46rem 3.83396rem rgba(0, 0, 0, 0.1019607843);
-    border-radius: 2.19rem;
+    width: 33rem;
+    height: 39.05rem;
+    box-shadow: 0 1.1rem 2.8886rem rgba(0, 0, 0, 0.1019607843);
+    border-radius: 1.65rem;
     position: relative;
     display: inline-block;
   }
@@ -1011,10 +1011,10 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 14.6rem;
+    height: 11rem;
     display: inline-block;
     background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-    border-radius: 2.19rem;
+    border-radius: 1.65rem;
   }
   .discover-free-courses__cards-carousel__course-card__category-chip {
     position: absolute;
@@ -1023,19 +1023,19 @@
     border-radius: 0.75rem;
     padding: 0.12rem 0.7rem;
     color: white;
-    top: 2.92rem;
-    left: 3.504rem;
-    border-radius: 2.19rem;
-    padding: 0.3504rem 2.044rem;
-    font-size: 2.19rem;
+    top: 2.2rem;
+    left: 2.64rem;
+    border-radius: 1.65rem;
+    padding: 0.264rem 1.54rem;
+    font-size: 1.65rem;
   }
   .discover-free-courses__cards-carousel__course-card__course-img {
     width: 100%;
-    height: 29.2rem;
-    border-radius: 2.19rem 2.19rem 0 0;
+    height: 22rem;
+    border-radius: 1.65rem 1.65rem 0 0;
   }
   .discover-free-courses__cards-carousel__course-card__card-body {
-    padding: 1.752rem 2.92rem;
+    padding: 1.32rem 2.2rem;
     display: flex;
     align-items: unset;
     justify-content: space-between;
@@ -1047,55 +1047,55 @@
     align-items: center;
     justify-content: unset;
     position: relative;
-    padding: 0 0 2.281396rem 0;
-    border-bottom: 0.146rem solid var(--borders-grey);
+    padding: 0 0 1.71886rem 0;
+    border-bottom: 0.11rem solid var(--borders-grey);
   }
   .discover-free-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
     display: inline-block;
-    font-size: 1.46rem;
+    font-size: 1.1rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;
-    width: 7.3rem;
-    height: 7.3rem;
-    margin-left: 1.752rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-left: 1.32rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details {
     display: inline-block;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
-    font-size: 2.555rem;
+    font-size: 1.925rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 28.5rem;
+    width: 22rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
-    font-size: 2.37396rem;
-    width: 28.5rem;
+    font-size: 1.7886rem;
+    width: 22rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details {
-    margin-top: 2.92rem;
+    margin-top: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
-    font-size: 3.65rem;
+    font-size: 2.75rem;
     font-weight: 800;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
-    font-size: 2.37396rem;
+    font-size: 1.7886rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
-    margin-top: -1.46rem;
+    margin-top: -1.1rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
-    font-size: 2.555rem;
+    font-size: 1.925rem;
     font-weight: 800;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
-    font-size: 1.825rem;
+    font-size: 1.375rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
     width: 2.25rem;
@@ -1107,9 +1107,9 @@
     align-items: center;
     justify-content: center;
     display: inline-flex;
-    margin-right: 0.876rem;
+    margin-right: 0.66rem;
     padding: 0 !important;
-    border-radius: 1.875rem;
+    border-radius: 1.65rem;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
@@ -1121,13 +1121,13 @@
     background-color: var(--hovered-lightgrey);
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon svg {
-    width: 3.19rem;
-    height: 3.52rem;
+    width: 2.9rem;
+    height: 3.2rem;
     margin: 0.85rem 1rem 0.85rem 1.05rem;
   }
   .discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon svg {
-    width: 2.8886rem;
-    height: 2.475rem;
+    width: 2.626rem;
+    height: 2.25rem;
     margin: 1.3rem 1.15rem 1.3rem 1.15rem;
   }
   .discover-free-courses__see-more-btn-col {
@@ -1137,27 +1137,27 @@
     margin-bottom: 10rem;
   }
   .discover-free-courses__see-more-btn {
-    font-size: 2.6575rem;
+    font-size: 2.3386rem;
     width: 100%;
-    height: 6.875rem;
-    border-width: 0.3125rem !important;
-    border-radius: 1.875rem;
+    height: 6.05rem;
+    border-width: 0.275rem !important;
+    border-radius: 1.65rem;
     margin: 2rem 8.5rem 0 8.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .discover-free-courses__see-more-btn:is(.discover-free-courses__see-more-btn:hover, .discover-free-courses__see-more-btn:active) {
-    border-width: 0.3125rem !important;
+    border-width: 0.275rem !important;
   }
   .discover-free-courses__see-more-btn svg {
-    width: 1.25rem;
-    height: 2.1875rem;
+    width: 1.1rem;
+    height: 1.925rem;
     margin: 0.2rem 2.063rem 0 0;
   }
   .watch-subscribed-course {
-    font-size: 2.25rem !important;
-    padding: 1.25rem 2.5rem;
-    border-radius: 1.75rem;
+    font-size: 1.98rem !important;
+    padding: 1.1rem 2.2rem;
+    border-radius: 1.54rem;
   }
 }/*# sourceMappingURL=discover-free-courses.module.css.map */
