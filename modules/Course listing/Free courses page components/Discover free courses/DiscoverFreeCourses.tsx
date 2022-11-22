@@ -26,7 +26,7 @@ export default function DiscoverFreeCourses() {
     SwiperCore.use([Navigation]);
 
     useEffect(() => {
-        // toggleLoader("show");
+        toggleLoader("show");
     }, []);
 
     useEffect(() => {
@@ -34,10 +34,10 @@ export default function DiscoverFreeCourses() {
             .get(`courses/?page=1&limit=10&type=free`)
             .then(function (response: any) {
                 setFreeCourses(response?.data);
-                // toggleLoader("hide");
+                toggleLoader("hide");
             })
             .catch(function (error) {
-                // toggleLoader("hide");
+                toggleLoader("hide");
                 console.log(error);
             });
 
