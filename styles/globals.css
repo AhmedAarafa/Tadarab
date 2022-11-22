@@ -11601,6 +11601,13 @@ input:-webkit-autofill:active {
   transform: scaleX(-1);
 }
 
+iframe[name^=blank_f32c471d2835f] > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(1):before {
+  color: red;
+  background-image: url("/images/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
 .btn:disabled {
   pointer-events: none !important;
   opacity: 0.85 !important;
