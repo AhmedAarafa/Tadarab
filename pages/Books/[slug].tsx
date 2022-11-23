@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 const BookDetails = dynamic(() => import("modules/Books page/Book details/BookDetails"));
 const SimilarBooks = dynamic(() => import("modules/Books page/Similar books/SimilarBooks"));
-const TadarabUnlimited = dynamic(() => import("modules/Books page/Tadarab unlimited/TadarabUnlimited"));
+const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 
 export default function Books() {
     const Router = useRouter();

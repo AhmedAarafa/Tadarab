@@ -1551,6 +1551,7 @@ function CheckoutPage(props: any) {
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
                                                     أفضل قيمة
                                                 </div>
+                                                <img src="/images/guarantee7days.png" alt="ضمان 7 أيام" />
                                                 <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                     <input onClick={() => {
                                                         setThreePlansSelection("yearly");
@@ -2027,6 +2028,7 @@ function CheckoutPage(props: any) {
                                                         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
                                                             أفضل قيمة
                                                         </div>
+                                                            <img src="/images/guarantee7days.png" alt="ضمان 7 أيام" />
 
                                                         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                             <input onClick={() => {

@@ -73,7 +73,7 @@ export default function LiveCourses() {
     } else {
       Router.push({
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "homepage" }
+        query: { from: "" }
       })
 
     }

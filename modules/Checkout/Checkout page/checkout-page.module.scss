@@ -1111,8 +1111,8 @@
     }
 }
 
-.payment-options-spinner{
-    div{
+.payment-options-spinner {
+    div {
         width: 2.5rem;
         height: 2.5rem;
         color: var(--primary-red) !important;
@@ -1215,6 +1215,14 @@
     border-radius: 0.5rem;
     width: fit-content;
     padding: 0.1rem 0.6rem;
+    display: inline-flex;
+
+    &+img {
+        width: 5rem;
+        height: 3.75rem;
+        margin: -2rem auto -1.5rem -2rem;
+        display: block;
+    }
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
@@ -2572,8 +2580,8 @@
         }
     }
 
-    .payment-options-spinner{
-        div{
+    .payment-options-spinner {
+        div {
             width: 5rem;
             height: 5rem;
             color: var(--primary-red) !important;
@@ -2706,6 +2714,12 @@
         border-radius: 0.5rem*2.2;
         width: fit-content;
         padding: 0.1rem*2.2 0.6rem*2.2;
+
+        &+img {
+            width: 5rem*2.2;
+            height: 3.75rem*2.2;
+            margin: -2rem*2 auto -1.5rem*2 -2rem*2;
+        }
     }
 
     .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {

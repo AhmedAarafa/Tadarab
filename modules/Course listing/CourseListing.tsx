@@ -6,7 +6,10 @@ import styles from "./course-listing.module.css";
 import Router, { useRouter } from "next/router";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
-import { AddedToCartIcon, AddedToFavouriteIcon, CartIcon, FavouriteIcon, PlayIcon, LiveIcon, ContainedBellIcon, BellIcon, TvIcon } from "common/Icons/Icons";
+import {
+    AddedToCartIcon, AddedToFavouriteIcon, CartIcon, FavouriteIcon,
+    PlayIcon, LiveIcon, ContainedBellIcon, BellIcon, TvIcon
+} from "common/Icons/Icons";
 import Link from 'next/link';
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
@@ -29,7 +32,12 @@ import Statistics from "common/Statistics/Statistics";
 import Categories from "./Free courses page components/Categories/Categories";
 import Faqs from "./Free courses page components/FAQs/Faqs";
 import StickySignupBar from './Free courses page components/Sticky signup bar/StickySignupBar';
-import { useInView } from "react-cool-inview";
+import CoverPhotoSection2 from './All courses page components/Cover photot section/CoverPhotoSection';
+import BestCoursesInCategory from './All courses page components/Best courses in category/BestCoursesInCategory';
+import LatestCourses from './All courses page components/Latest courses/LatestCourses';
+import Trainers2 from './All courses page components/Trainers/Trainers';
+import TadarabUnlimited from "common/Tadarab unlimited/TadarabUnlimited";
+import TadarabForBusiness from "common/Tadarab for business/TadarabForBusiness";
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
@@ -40,7 +48,7 @@ export default function CourseListing() {
     const dispatch = useDispatch();
     const router = useRouter();
     const themeState = useSelector((state: any) => state.themeState.theme);
-   
+
     const handleFavActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
             const handleFavResponse: any = handleFav(
@@ -175,6 +183,7 @@ export default function CourseListing() {
                 console.log(error);
                 toggleLoader("hide");
             });
+
     }
 
     useEffect(() => {
@@ -186,13 +195,12 @@ export default function CourseListing() {
             .get(`courses/?page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
-                toggleLoader("hide");
+                // toggleLoader("hide");
             })
             .catch(function (error) {
                 toggleLoader("hide");
                 console.log(error);
             });
-
     }, [router.query]);
 
     return (
@@ -217,7 +225,26 @@ export default function CourseListing() {
                         <StickySignupBar />
                     </>
                 }
-                {!router?.query || router?.query?.type !== "free"
+                {
+                    (JSON.stringify(router?.query) == "{}" || (router?.query && router?.query?.type == "all"))
+                    &&
+                    <>
+                        <CoverPhotoSection2 />
+                        <div className={styles["course-listing__categories-section"]}>
+                            <Categories />
+                        </div>
+                        <BestCoursesInCategory title="business" />
+                        <TadarabUnlimited />
+                        <BestCoursesInCategory title="family-and-educational-skills" />
+                        <LatestCourses />
+                        <Trainers2 />
+                        <DiscoverFreeCourses />
+                        <TadarabForBusiness />
+                        <Faqs />
+                    </>
+                }
+                {
+                    router?.query && router?.query?.type == "best-seller"
                     &&
                     <>
                         <Col xs={12} className={styles["course-listing__title"]}>

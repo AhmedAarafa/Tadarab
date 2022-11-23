@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./faq.module.css";
 import { Accordion } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { openSuppotConvInNewTab, contactUsHandler } from "modules/_Shared/utils/contactUs";
+import { openSupportConvInNewTab, contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 export default function FAQ(props: any) {
   const [faqs, setFaqs] = useState<any>([]);

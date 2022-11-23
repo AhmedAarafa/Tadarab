@@ -22,10 +22,10 @@ const Statistics = dynamic(() => import("common/Statistics/Statistics"));
 const WhyTadarab = dynamic(() => import("modules/Home page/Why Tadarab/WhyTadarab"));
 const LearnFromTheBest = dynamic(() => import("modules/Home page/Learn from the best/LearnFromTheBest"));
 const JoinAsATrainer = dynamic(() => import("modules/Home page/Join as a trainer/JoinAsATrainer"));
-const EducationalGuide = dynamic(() => import("modules/Home page/Educational guide/EducationalGuide"));
+const TadarabForBusiness = dynamic(() => import("common/Tadarab for business/TadarabForBusiness"));
 const AboutTadarab = dynamic(() => import("modules/Home page/About Tadarab/AboutTadarab"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
-const TadarabUnlimited = dynamic(() => import("modules/Home page/Tadarab unlimited/TadarabUnlimited"));
+const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season section/TadarabSeason"));
 
 function HomePage(props: any) {
@@ -120,7 +120,7 @@ function HomePage(props: any) {
         <WhyTadarab />
         <LearnFromTheBest />
         <JoinAsATrainer />
-        <EducationalGuide />
+        <TadarabForBusiness />
         <AboutTadarab />
         <JoinUs />
       </Container>

@@ -47,7 +47,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         {/* { (is_allow)?<><link rel="canonical" href={canonical} /></>:<></> } */}
 
         <link rel="canonical" href={canonical} />
-
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content="Tadarab" />

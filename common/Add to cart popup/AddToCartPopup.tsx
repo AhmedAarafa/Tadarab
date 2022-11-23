@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react';
 import styles from "./add-to-cart-popup.module.css";
@@ -9,6 +10,7 @@ import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { useDispatch } from "react-redux";
 import { setCartItems } from "configurations/redux/actions/cartItems";
+import Link from 'next/link';
 
 export default function AddToCartPopup(props: any) {
     const [show, setShow] = useState(false);
@@ -65,13 +67,15 @@ export default function AddToCartPopup(props: any) {
                             <ModalAddedToCartIcon />
                             تم إضافة الدورة بنجاح للسلة
                         </span>
-                        <Button className={styles["add-to-cart-popup__go-to-cart"]}>
-                            <span>
-                                اذهب للسلة
-                            </span>
-                            <ArrowLeftIcon color="#fff" />
-                            {/* color={themeState == "light" ? "#f5f5f5" : "#222"} */}
-                        </Button>
+                        <Link href="/checkout">
+                            <Button className={styles["add-to-cart-popup__go-to-cart"]}>
+                                <span>
+                                    اذهب للسلة
+                                </span>
+                                <ArrowLeftIcon color="#fff" />
+                                {/* color={themeState == "light" ? "#f5f5f5" : "#222"} */}
+                            </Button>
+                        </Link>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

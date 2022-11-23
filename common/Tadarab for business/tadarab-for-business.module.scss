@@ -1,10 +1,11 @@
-@import "../../../styles/mixins";
+@import "../../styles/mixins";
 
-.educational-guide {
+
+.tadarab-for-business {
     @include flex(unset, center);
 }
 
-.educational-guide__container {
+.tadarab-for-business__container {
     background-color: #0E0B1D;
     width: 73rem;
     height: 26.25rem;
@@ -14,7 +15,7 @@
 
 }
 
-.educational-guide__container__img {
+.tadarab-for-business__container__img {
     width: fit-content;
     margin-right: 5rem;
     border-radius: 1rem;
@@ -27,13 +28,13 @@
     }
 }
 
-.educational-guide__container__details-box {
+.tadarab-for-business__container__details-box {
     width: 34.5rem;
     margin-right: 4.844rem;
 
 }
 
-.educational-guide__container__details-box__title {
+.tadarab-for-business__container__details-box__title {
     font-size: 1.875rem;
     font-weight: 800;
 
@@ -46,7 +47,7 @@
     }
 }
 
-.educational-guide__container__details-box__breif {
+.tadarab-for-business__container__details-box__breif {
     font-size: 1.063rem;
     color: white;
     padding: 2.063rem 0 2.063rem 0;
@@ -57,7 +58,7 @@
 
 }
 
-.educational-guide__container__details-box__btn {
+.tadarab-for-business__container__details-box__btn {
     @include contained-button;
     width: 10rem;
     height: 3.125rem;
@@ -69,11 +70,11 @@
 
 @media (max-width:575px) {
 
-    .educational-guide {
+    .tadarab-for-business {
         @include flex(unset, center);
     }
 
-    .educational-guide__container {
+    .tadarab-for-business__container {
         width: 73rem;
         height: fit-content;
         border-radius: 6rem;
@@ -83,7 +84,7 @@
 
     }
 
-    .educational-guide__container__img {
+    .tadarab-for-business__container__img {
         width: fit-content;
         // margin-right: 15rem;
         border-radius: 2.5rem;
@@ -96,18 +97,18 @@
         }
     }
 
-    .educational-guide__container__details-box {
+    .tadarab-for-business__container__details-box {
         text-align: center;
         width: 100%;
         margin-right: 0rem;
 
     }
 
-    .educational-guide__container__details-box__title {
+    .tadarab-for-business__container__details-box__title {
         font-size: 3.5rem;
     }
 
-    .educational-guide__container__details-box__breif {
+    .tadarab-for-business__container__details-box__breif {
         font-size: 2rem;
         padding: 2.219rem 4.609rem 2.5rem 4.609rem;
 
@@ -117,7 +118,7 @@
 
     }
 
-    .educational-guide__container__details-box__btn {
+    .tadarab-for-business__container__details-box__btn {
         @include contained-button;
         width: 40rem;
         height: 7.5rem;

@@ -3,8 +3,8 @@
 
 
 .categories__container {
-    padding: 1rem 3rem 0 3rem;
-    @include flex(center, space-between)
+    padding: 2rem 3rem 0 3rem;
+    @include flex(center, space-between);
 }
 
 .categories__container__title {
@@ -40,7 +40,7 @@
 }
 
 .categories__cards-carousel {
-    margin-top: 1rem;
+    margin-top: 0rem;
 
     &>div {
         padding: 1.5rem 2rem !important;

@@ -1,6 +1,6 @@
 .discover-free-courses {
   background-color: var(--tadarab-light-bg);
-  padding-top: 7rem;
+  padding-top: 4rem;
 }
 
 .discover-free-courses__title {
@@ -932,6 +932,7 @@
     text-align: center;
     padding: 0;
     margin: 6rem 0 3.906rem 0;
+    padding: 0 1rem;
   }
   .discover-free-courses__title span {
     font-size: 4rem;

@@ -1203,6 +1203,13 @@
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.1rem 0.6rem;
+  display: inline-flex;
+}
+.checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip + img {
+  width: 5rem;
+  height: 3.75rem;
+  margin: -2rem auto -1.5rem -2rem;
+  display: block;
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
@@ -2512,6 +2519,11 @@
     width: -moz-fit-content;
     width: fit-content;
     padding: 0.22rem 1.32rem;
+  }
+  .checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip + img {
+    width: 11rem;
+    height: 8.25rem;
+    margin: -4rem auto -3rem -4rem;
   }
   .checkout__cart-sticky-card__subscription-plans__plan-box__inner-box {
     display: flex;

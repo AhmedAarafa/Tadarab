@@ -234,11 +234,8 @@ function Navbar(props: any) {
         .then(function (response: any) {
           dispatch(setCartItems(response?.data?.data));
           setLocalStateCartItems(cartItems?.data);
-          // toggleLoader("hide");
-
         })
         .catch(function (error) {
-          // toggleLoader("hide");
           console.log(error);
         });
 
@@ -252,10 +249,8 @@ function Navbar(props: any) {
       .get(`categories`)
       .then(function (response: any) {
         setCategoriesList(response?.data?.data?.categories);
-        // toggleLoader("hide");
       })
       .catch(function (error) {
-        // toggleLoader("hide");
         console.log(error);
       });
 

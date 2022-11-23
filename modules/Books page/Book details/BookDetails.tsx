@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Router from "next/router";
 
 const WhatYouWillLearn = dynamic(() => import("modules/Books page/What you will learn/WhatYouWillLearn"));
-const TadarabUnlimited = dynamic(() => import("modules/Books page/Tadarab unlimited/TadarabUnlimited"));
+const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 
 export default function BookDetails(props: any) {
     const [showMore, setShowMore] = useState(true);

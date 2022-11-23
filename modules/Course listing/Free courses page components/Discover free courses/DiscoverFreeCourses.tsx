@@ -25,11 +25,12 @@ export default function DiscoverFreeCourses() {
     const router = useRouter();
     SwiperCore.use([Navigation]);
 
-    useEffect(() => {
-        toggleLoader("show");
-    }, []);
+    // useEffect(() => {
+    //     toggleLoader("show");
+    // }, []);
 
     useEffect(() => {
+        // toggleLoader("show");
         axiosInstance
             .get(`courses/?page=1&limit=10&type=free`)
             .then(function (response: any) {
@@ -41,7 +42,7 @@ export default function DiscoverFreeCourses() {
                 console.log(error);
             });
 
-    }, [router.query]);
+    }, []);
 
     const handleFreeCoursesActionBtn = (course: any): any => {
         if (userStatus.isUserAuthenticated == true) {
@@ -76,7 +77,7 @@ export default function DiscoverFreeCourses() {
         <Row data-theme={themeState} className={styles["discover-free-courses"]}>
             <Col xs={12} className={styles["discover-free-courses__title"]}>
                 <h2>
-                    <span> اكتشف جميع الدورات المجانية </span>
+                    <span> استكشف الدورات المجانية </span>
                 </h2>
             </Col>
 

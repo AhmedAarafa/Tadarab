@@ -1,10 +1,10 @@
-.educational-guide {
+.tadarab-for-business {
   display: flex;
   align-items: unset;
   justify-content: center;
 }
 
-.educational-guide__container {
+.tadarab-for-business__container {
   background-color: #0E0B1D;
   width: 73rem;
   height: 26.25rem;
@@ -15,7 +15,7 @@
   justify-content: unset;
 }
 
-.educational-guide__container__img {
+.tadarab-for-business__container__img {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -23,38 +23,38 @@
   border-radius: 1rem;
   background-color: white;
 }
-.educational-guide__container__img img {
+.tadarab-for-business__container__img img {
   width: 16.25rem;
   height: 16.25rem;
   border-radius: 1.875rem;
 }
 
-.educational-guide__container__details-box {
+.tadarab-for-business__container__details-box {
   width: 34.5rem;
   margin-right: 4.844rem;
 }
 
-.educational-guide__container__details-box__title {
+.tadarab-for-business__container__details-box__title {
   font-size: 1.875rem;
   font-weight: 800;
 }
-.educational-guide__container__details-box__title span:nth-of-type(1) {
+.tadarab-for-business__container__details-box__title span:nth-of-type(1) {
   color: white;
 }
-.educational-guide__container__details-box__title span:nth-of-type(2) {
+.tadarab-for-business__container__details-box__title span:nth-of-type(2) {
   color: var(--primary-red);
 }
 
-.educational-guide__container__details-box__breif {
+.tadarab-for-business__container__details-box__breif {
   font-size: 1.063rem;
   color: white;
   padding: 2.063rem 0 2.063rem 0;
 }
-.educational-guide__container__details-box__breif > div:nth-of-type(1) {
+.tadarab-for-business__container__details-box__breif > div:nth-of-type(1) {
   margin-bottom: 1rem;
 }
 
-.educational-guide__container__details-box__btn {
+.tadarab-for-business__container__details-box__btn {
   box-shadow: none !important;
   text-transform: none;
   font-size: 0.97rem;
@@ -71,24 +71,24 @@
   font-size: 1rem;
   font-weight: 700;
 }
-.educational-guide__container__details-box__btn:hover {
+.tadarab-for-business__container__details-box__btn:hover {
   box-shadow: none;
 }
-.educational-guide__container__details-box__btn:active {
+.tadarab-for-business__container__details-box__btn:active {
   box-shadow: none;
 }
-.educational-guide__container__details-box__btn:is(.educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active) {
+.tadarab-for-business__container__details-box__btn:is(.tadarab-for-business__container__details-box__btn:hover, .tadarab-for-business__container__details-box__btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
 
 @media (max-width: 575px) {
-  .educational-guide {
+  .tadarab-for-business {
     display: flex;
     align-items: unset;
     justify-content: center;
   }
-  .educational-guide__container {
+  .tadarab-for-business__container {
     width: 73rem;
     height: -webkit-fit-content;
     height: -moz-fit-content;
@@ -100,34 +100,34 @@
     justify-content: center;
     flex-direction: column;
   }
-  .educational-guide__container__img {
+  .tadarab-for-business__container__img {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 2.5rem;
     margin: 5.5rem 0rem 3rem 0;
   }
-  .educational-guide__container__img img {
+  .tadarab-for-business__container__img img {
     width: 35rem;
     height: 35rem;
     border-radius: 1.875rem;
   }
-  .educational-guide__container__details-box {
+  .tadarab-for-business__container__details-box {
     text-align: center;
     width: 100%;
     margin-right: 0rem;
   }
-  .educational-guide__container__details-box__title {
+  .tadarab-for-business__container__details-box__title {
     font-size: 3.5rem;
   }
-  .educational-guide__container__details-box__breif {
+  .tadarab-for-business__container__details-box__breif {
     font-size: 2rem;
     padding: 2.219rem 4.609rem 2.5rem 4.609rem;
   }
-  .educational-guide__container__details-box__breif > div:nth-of-type(1) {
+  .tadarab-for-business__container__details-box__breif > div:nth-of-type(1) {
     margin-bottom: 2.3rem;
   }
-  .educational-guide__container__details-box__btn {
+  .tadarab-for-business__container__details-box__btn {
     box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
@@ -145,14 +145,14 @@
     border-radius: 1.95rem;
     margin-bottom: 5rem;
   }
-  .educational-guide__container__details-box__btn:hover {
+  .tadarab-for-business__container__details-box__btn:hover {
     box-shadow: none;
   }
-  .educational-guide__container__details-box__btn:active {
+  .tadarab-for-business__container__details-box__btn:active {
     box-shadow: none;
   }
-  .educational-guide__container__details-box__btn:is(.educational-guide__container__details-box__btn:hover, .educational-guide__container__details-box__btn:active) {
+  .tadarab-for-business__container__details-box__btn:is(.tadarab-for-business__container__details-box__btn:hover, .tadarab-for-business__container__details-box__btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
-}/*# sourceMappingURL=educational-guide.module.css.map */
+}/*# sourceMappingURL=tadarab-for-business.module.css.map */

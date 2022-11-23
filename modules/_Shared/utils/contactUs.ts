@@ -6,7 +6,7 @@ export const contactUsHandler = () => {
   contactUsForm.select();
 };
 
-export const openSuppotConvInNewTab = (supportWPLink:String) => {
+export const openSupportConvInNewTab = (supportWPLink:String) => {
     const WINDOW:any = window;
     WINDOW.open(supportWPLink, '_blank').focus();
 };

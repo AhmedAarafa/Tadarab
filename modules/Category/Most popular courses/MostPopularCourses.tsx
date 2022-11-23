@@ -564,7 +564,6 @@ export default function MostPopularCourses(props: any) {
                     </Swiper>
                 </Col>
             </Row>
-
         </>
     )
 }

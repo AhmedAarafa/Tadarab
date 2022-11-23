@@ -8,22 +8,25 @@ import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { ChevronLeftIcon } from "common/Icons/Icons";
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 export default function Categories() {
     SwiperCore.use([Navigation]);
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
+        // toggleLoader("show");
+
         axiosInstance
-        .get(`categories`)
-        .then(function (response: any) {
-          setCategories(response?.data?.data?.categories);
-          // toggleLoader("hide");
-        })
-        .catch(function (error:any) {
-        //   toggleLoader("hide");
-          console.log(error);
-        });
+            .get(`categories`)
+            .then(function (response: any) {
+                setCategories(response?.data?.data?.categories);
+                // toggleLoader("hide");
+            })
+            .catch(function (error: any) {
+                // toggleLoader("hide");
+                console.log(error);
+            });
     }, []);
 
     return (
