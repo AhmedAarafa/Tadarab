@@ -31,8 +31,11 @@ export default function TadarabUnlimited() {
                         </Col>
                         <Col xs={7} className={styles["tadarab-unlimited__brief"]}>
                             <h3>
-                                <span> اكتشف </span>
-                                <span> تدرب بلا حدود </span>
+                                <span> اشترك </span>
+                                <span>
+                                    في
+                                    تدرب بلا حدود
+                                </span>
                             </h3>
                             <div className={styles["tadarab-unlimited__subscription-points"]}>
                                 <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 850 دورة تدريبية).</div>
@@ -42,7 +45,7 @@ export default function TadarabUnlimited() {
                             </div>
                             <Link href="/subscription">
                                 <Button>
-                                    اكتشف الآن
+                                    اشترك الآن
                                 </Button>
                             </Link>
                         </Col>
@@ -59,8 +62,11 @@ export default function TadarabUnlimited() {
                         </div>
                         <div className={styles["tadarab-unlimited-mobile-view__brief"]}>
                             <div>
-                                <span> اكتشف </span>
-                                <span> تدرب بلا حدود </span>
+                                <span> اشترك </span>
+                                <span>
+                                    في
+                                    تدرب بلا حدود
+                                </span>
                             </div>
                             <div className={styles["tadarab-unlimited__subscription-points"]}>
                                 <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 850 دورة تدريبية).</div>
@@ -70,7 +76,7 @@ export default function TadarabUnlimited() {
                             </div>
                             <Link href="/subscription">
                                 <Button>
-                                    اكتشف الآن
+                                    اشترك الآن
                                 </Button>
                             </Link>
                         </div>

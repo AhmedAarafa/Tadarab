@@ -32,7 +32,7 @@ export default function Trainers() {
             <Row>
                 <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["trainers__title"]}>
                     <h2>
-                       <span>أفضل المدربين</span>
+                      <span>تعلم من الأفضل</span>
                     </h2>
                 </Col>
 

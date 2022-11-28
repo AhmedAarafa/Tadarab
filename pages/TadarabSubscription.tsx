@@ -12,6 +12,7 @@ import {subscriptionCounter} from "modules/_Shared/utils/subscriptionCounter";
 import Router, { useRouter } from "next/router";
 import Faq from "common/Subscription faqs/FAQ/Faq";
 import withAuth from "configurations/auth guard/AuthGuard";
+import LatestCourses from "modules/Tadarab subscription/Latest courses/LatestCourses";
 
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const UnlimitedCourses = dynamic(() => import("modules/Tadarab subscription/Unlimited courses/UnlimitedCourses"));
@@ -118,6 +119,7 @@ function TadarabSubscription() {
       <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
         <MobileCheckoutBar data={subscriptionData}/>
         <UnlimitedCourses />
+        <LatestCourses />
         <Statistics />
         <MarketingBoxes />
         <ArabicTrainers />

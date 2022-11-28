@@ -488,6 +488,11 @@ function Navbar(props: any) {
                     <li onClick={() => { setExpanded(false) }}>دورات مباشرة</li>
                   </a>
                 </Link>
+                <Link href="/courses?type=free" passHref>
+                  <a>
+                    <li onClick={() => { setExpanded(false) }}>دورات مجانية</li>
+                  </a>
+                </Link>
                 {/* <Link href="/tadarab-season">
                   <li onClick={() => { setExpanded(false) }}>موسم تدرب </li>
                 </Link> */}
@@ -629,6 +634,11 @@ function Navbar(props: any) {
                       <Link href="/courses?type=live" passHref>
                         <a>
                           <li>دورات مباشرة</li>
+                        </a>
+                      </Link>
+                      <Link href="/courses?type=free" passHref>
+                        <a>
+                          <li>دورات مجانية</li>
                         </a>
                       </Link>
                       {/* <Link href="/tadarab-season">

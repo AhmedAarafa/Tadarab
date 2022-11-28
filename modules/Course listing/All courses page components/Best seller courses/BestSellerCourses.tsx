@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from "react";
-import styles from "./latest-courses.module.css";
+import styles from "./best-seller-courses.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
@@ -12,18 +12,17 @@ import { useSelector } from "react-redux";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
-export default function LatestCourses() {
+export default function BestSellerCourses() {
     SwiperCore.use([Navigation]);
     const themeState = useSelector((state: any) => state.themeState.theme);
-    const [latestCourses, setLatestCourses] = useState<any>([]);
-
+    const [bestSellerCourses, setBestSellerCourses] = useState<any>([]);
 
     useEffect(() => {
 
         axiosInstance
-            .get(`home/courses/?type=latest`)
+            .get(`home/courses/?type=best-seller`)
             .then(function (response: any) {
-                setLatestCourses(response?.data?.data);
+                setBestSellerCourses(response?.data?.data);
                 // toggleLoader("hide");
             })
             .catch(function (error) {
@@ -33,14 +32,14 @@ export default function LatestCourses() {
 
     return (
         <>
-            <Row data-theme={themeState} className={styles["latest-courses"]}>
-                <Col xs={12} className={styles["latest-courses__title"]}>
+            <Row data-theme={themeState} className={styles["best-seller-courses"]}>
+                <Col xs={12} className={styles["best-seller-courses__title"]}>
                     <h2>
-                        <span>أحدث الدورات</span>
+                        <span>الدورات الأكثر مشاهدة </span>
                     </h2>
                 </Col>
 
-                <Col xs={{ span: 12, order: 2 }} className={styles["latest-courses__cards-carousel"]}>
+                <Col xs={{ span: 12, order: 2 }} className={styles["best-seller-courses__cards-carousel"]}>
                     <Swiper
                         dir="rtl"
                         slidesPerView={5}
@@ -63,13 +62,13 @@ export default function LatestCourses() {
                         }}
                         className="mySwiper">
                         {
-                            latestCourses?.map((course: any, i: number) => {
+                            bestSellerCourses?.map((course: any, i: number) => {
                                 return (
                                     <SwiperSlide key={i}>
 
                                         <Card
                                             className={
-                                                styles["latest-courses__cards-carousel__course-card"]
+                                                styles["best-seller-courses__cards-carousel__course-card"]
                                             }>
 
                                             {
@@ -78,7 +77,7 @@ export default function LatestCourses() {
                                                 <div
                                                     className={
                                                         styles[
-                                                        "latest-courses__cards-carousel__course-card__category-chip"
+                                                        "best-seller-courses__cards-carousel__course-card__category-chip"
                                                         ]
                                                     }
                                                     style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
@@ -96,7 +95,7 @@ export default function LatestCourses() {
                                                         alt="course image"
                                                         className={
                                                             styles[
-                                                            "latest-courses__cards-carousel__course-card__course-img"
+                                                            "best-seller-courses__cards-carousel__course-card__course-img"
                                                             ]
                                                         }
                                                     />
@@ -106,20 +105,20 @@ export default function LatestCourses() {
                                             <Card.Body
                                                 className={
                                                     styles[
-                                                    "latest-courses__cards-carousel__course-card__card-body"
+                                                    "best-seller-courses__cards-carousel__course-card__card-body"
                                                     ]
                                                 }
                                             >
                                                 <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
                                                     className={
                                                         styles[
-                                                        "latest-courses__cards-carousel__course-card__card-body__card-header"
+                                                        "best-seller-courses__cards-carousel__course-card__card-body__card-header"
                                                         ]
                                                     }
                                                 >
                                                     <div
                                                         className={
-                                                            styles["latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
+                                                            styles["best-seller-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
                                                             ]
                                                         }
                                                     >
@@ -133,7 +132,7 @@ export default function LatestCourses() {
                                                     <div
                                                         className={
                                                             styles[
-                                                            "latest-courses__cards-carousel__course-card__card-body__card-header__course-details"
+                                                            "best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details"
                                                             ]
                                                         }
                                                     >
@@ -142,7 +141,7 @@ export default function LatestCourses() {
                                                                 title={course.title}
                                                                 className={
                                                                     styles[
-                                                                    "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
+                                                                    "best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
                                                                     ]
                                                                 }
                                                             >
@@ -153,7 +152,7 @@ export default function LatestCourses() {
                                                             <div title={course.trainer?.name_ar}
                                                                 className={
                                                                     styles[
-                                                                    "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
+                                                                    "best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                                                     ]
                                                                 }
                                                             >
@@ -164,9 +163,7 @@ export default function LatestCourses() {
                                                 </div>
 
                                             </Card.Body>
-
                                         </Card>
-
                                     </SwiperSlide>
                                 );
                             })

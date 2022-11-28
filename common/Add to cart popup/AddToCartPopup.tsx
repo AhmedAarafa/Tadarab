@@ -11,6 +11,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { useDispatch } from "react-redux";
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import Link from 'next/link';
+import Router from 'next/router';
 
 export default function AddToCartPopup(props: any) {
     const [show, setShow] = useState(false);
@@ -38,6 +39,8 @@ export default function AddToCartPopup(props: any) {
                 setDisabled(true);
                 setSpecialBundleData(response?.data?.data);
                 dispatch(setCartItems(firstresponse.cartResponse));
+                setShow(false);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`);
             })
         })
 

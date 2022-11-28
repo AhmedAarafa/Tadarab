@@ -11,6 +11,7 @@ import Router from "next/router";
 import { useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 export default function Books() {
     SwiperCore.use([Navigation]);
@@ -24,7 +25,7 @@ export default function Books() {
             .then(function (response: any) {
                 FBPixelEventsHandler(response.data.fb_tracking_events, null);
                 setBooks(response?.data?.data?.books);
-                // toggleLoader("hide");
+                toggleLoader("hide");
             })
             .catch(function (error: any) {
                 // toggleLoader("hide");

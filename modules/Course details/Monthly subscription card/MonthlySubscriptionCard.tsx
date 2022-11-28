@@ -22,6 +22,7 @@ import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import datesArray from "./Dates.json";
 import { tConvert } from "modules/_Shared/utils/dateFormatHandler";
+import AddToCartPopup from "common/Add to cart popup/AddToCartPopup";
 
 export default function MonthlySubscriptionCard(theOption: any) {
 
@@ -32,6 +33,8 @@ export default function MonthlySubscriptionCard(theOption: any) {
   const [isAddingToCartInProgress, setIsAddingToCartInProgress] = useState(false);
   const [subscriptionInfo, setSubscriptionInfo] = useState<any>({});
   const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+  const [isCartModalVisible, setIsCartModalVisible] = useState(false);
+  const [specialBundleCourseId, setSpecialBundleCourseId] = useState(0);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const themeState = useSelector((state: any) => state.themeState.theme);
@@ -181,6 +184,8 @@ export default function MonthlySubscriptionCard(theOption: any) {
           setCourseDetails(response.data.data);
           dispatch(setCartItems(firstresponse.cartResponse));
           setIsAddingToCartInProgress(false);
+          setIsCartModalVisible(true);
+          setSpecialBundleCourseId(course.id);
         })
       })
     }
@@ -222,7 +227,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     <div>
                       <TickIcon />
                     </div>
-                    مشاهدة  لجميع الدورات بالمنصة (أكثر من850دورة تدريبية).
+                    مشاهدة  لجميع الدورات بالمنصة (أكثر من 850 دورة تدريبية).
                   </div>
                   <div className={styles["monthly-subscription__subscription-benefits"]}>
                     <div>
@@ -372,7 +377,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                   <div>
                     <span>اشترك لمشاهدة الدورة </span>
                   </div>
-                </Button> 
+                </Button>
               </div>
               <div className={styles["monthly-subscription__subscription-value"]} >
                 <span>
@@ -449,7 +454,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
             </div>
           }
         </div> */}
-        {/* disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)} */}
+          {/* disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)} */}
 
           <div
             className={styles["monthly-subscription__course-card__actions-btns"]}
@@ -459,14 +464,14 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 courseDetails.course_details?.discounted_price == 0 ?
                   handleFreeCoursesActionBtn(courseDetails.course_details)
                   :
-                  courseDetails.course_details?.is_in_cart ? 
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                  :
-                  handleCartActionBtn(courseDetails.course_details);
+                  courseDetails.course_details?.is_in_cart ?
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
+                    :
+                    handleCartActionBtn(courseDetails.course_details);
               }} disabled={isAddingToCartInProgress}
                 className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
               >
-                {isAddingToCartInProgress == true ? 
+                {isAddingToCartInProgress == true ?
                   <Spinner animation='border' />
                   :
                   courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
@@ -760,6 +765,9 @@ export default function MonthlySubscriptionCard(theOption: any) {
           </div>
 
         </div>}
+
+      <AddToCartPopup setSpecialBundleCourseId={setSpecialBundleCourseId} specialBundleCourseId={specialBundleCourseId}
+        isCartModalVisible={isCartModalVisible} setIsCartModalVisible={setIsCartModalVisible} />
     </>
   )
 }

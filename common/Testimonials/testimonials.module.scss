@@ -1,10 +1,11 @@
-@import "../../../styles/mixins";
+@import "../../styles/mixins";
 
-.about-tadarab {
+
+.testimonials {
     background-color: var(--tadarab-light-bg);
 }
 
-.about-tadarab__cards-carousel-container {
+.testimonials__cards-carousel-container {
     border-radius: 0 0 5rem 5rem;
     padding-bottom: 2rem;
     // background-color: white;
@@ -66,7 +67,7 @@
 
 }
 
-.about-tadarab__title {
+.testimonials__title {
     font-size: 2rem;
     font-weight: 800;
     padding: 4rem 3rem 0.8rem 3rem;
@@ -83,7 +84,7 @@
     }
 }
 
-.about-tadarab__breif {
+.testimonials__breif {
     @include flex(center, center);
     // background-color: white;
     font-size: 1.063rem;
@@ -91,7 +92,7 @@
 }
 
 
-.about-tadarab__cards-carousel__item__container {
+.testimonials__cards-carousel__item__container {
     width: 70.375rem;
     height: 21.438rem;
     margin-right: 7rem;
@@ -100,7 +101,7 @@
 
 }
 
-.about-tadarab__cards-carousel__item__container__img {
+.testimonials__cards-carousel__item__container__img {
     width: 26.625rem;
     height: 21.438rem;
     display: inline-block;
@@ -123,7 +124,7 @@
     height: 100%;
 }
 
-.about-tadarab__cards-carousel__item__container__course-details-box {
+.testimonials__cards-carousel__item__container__course-details-box {
     @include flex(center);
     position: absolute;
     bottom: 2rem;
@@ -132,7 +133,7 @@
 
 }
 
-.about-tadarab__cards-carousel__item__container__course-details-box__trainer-img {
+.testimonials__cards-carousel__item__container__course-details-box__trainer-img {
     display: inline-block;
 
     img {
@@ -144,24 +145,24 @@
     }
 }
 
-.about-tadarab__cards-carousel__item__container__course-details-box__course-details {
+.testimonials__cards-carousel__item__container__course-details-box__course-details {
     display: inline-block;
 
 }
 
-.about-tadarab__cards-carousel__item__container__course-details-box__course-details__title {
+.testimonials__cards-carousel__item__container__course-details-box__course-details__title {
     font-size: 1.125rem;
     font-weight: 800;
     color: white;
     width: 16.8rem;
 }
 
-.about-tadarab__cards-carousel__item__container__course-details-box__course-details__author {
+.testimonials__cards-carousel__item__container__course-details-box__course-details__author {
     font-size: 0.938rem;
     color: rgba(255, 255, 255, 0.8);
 }
 
-.about-tadarab__cards-carousel__item__container__review-box {
+.testimonials__cards-carousel__item__container__review-box {
     @include flex(flex-start, space-evenly);
     flex-direction: column;
     background-color: var(--tadarab-bg);
@@ -175,7 +176,7 @@
     right: 22.5rem;
 }
 
-.about-tadarab__cards-carousel__item__container__review-box__quote {
+.testimonials__cards-carousel__item__container__review-box__quote {
     position: relative;
 
     svg {
@@ -184,7 +185,7 @@
     }
 }
 
-.about-tadarab__cards-carousel__item__container__review-box__review {
+.testimonials__cards-carousel__item__container__review-box__review {
     font-size: 1.25rem;
     color: var(--grey);
     margin: 1rem 0 1rem 0;
@@ -196,7 +197,7 @@
     -webkit-box-orient: vertical;
 }
 
-.about-tadarab__cards-carousel__item__container__review-box__reviewer-details {
+.testimonials__cards-carousel__item__container__review-box__reviewer-details {
     div:nth-of-type(1) {
 
         font-size: 1.5rem;
@@ -210,12 +211,12 @@
     }
 }
 
-.about-tadarab__cards-carousel__item__container__review-box__img {
+.testimonials__cards-carousel__item__container__review-box__img {
     display: flex;
 }
 
-.about-tadarab__cards-carousel__item__container__review-box__course-img,
-.about-tadarab__cards-carousel__item__container__review-box__course-name {
+.testimonials__cards-carousel__item__container__review-box__course-img,
+.testimonials__cards-carousel__item__container__review-box__course-name {
     display: none;
 }
 
@@ -223,7 +224,7 @@
 
 @media (max-width:575px) {
 
-    .about-tadarab__cards-carousel-container {
+    .testimonials__cards-carousel-container {
         border-radius: 0 0 5rem 5rem;
         padding-bottom: 9rem;
 
@@ -268,8 +269,8 @@
 
     }
 
-    .about-tadarab__title {
-        font-size: 4.688rem;
+    .testimonials__title {
+        font-size: 3.75rem;
         padding: 5.25rem 0 2.344rem 0;
         @include flex(center, center);
         text-align: center;
@@ -279,7 +280,7 @@
         }
     }
 
-    .about-tadarab__breif {
+    .testimonials__breif {
         @include flex(center, center);
         font-size: 2.6rem;
         padding: 0 12.5rem 0 12.5rem;
@@ -287,7 +288,7 @@
     }
 
 
-    .about-tadarab__cards-carousel__item__container {
+    .testimonials__cards-carousel__item__container {
         width: 70.375rem;
         height: fit-content;
         margin-right: 7rem;
@@ -296,7 +297,7 @@
 
     }
 
-    .about-tadarab__cards-carousel__item__container__img {
+    .testimonials__cards-carousel__item__container__img {
         display: none;
 
         img {
@@ -309,14 +310,14 @@
         border-radius: 1.375rem*2.5;
     }
 
-    .about-tadarab__cards-carousel__item__container__course-details-box {
+    .testimonials__cards-carousel__item__container__course-details-box {
         @include flex(center);
         position: absolute;
         bottom: 2rem;
         right: 2rem;
     }
 
-    .about-tadarab__cards-carousel__item__container__course-details-box__trainer-img {
+    .testimonials__cards-carousel__item__container__course-details-box__trainer-img {
         display: inline-block;
 
         img {
@@ -328,20 +329,20 @@
         }
     }
 
-    .about-tadarab__cards-carousel__item__container__course-details-box__course-details {
+    .testimonials__cards-carousel__item__container__course-details-box__course-details {
         display: inline-block;
 
     }
 
-    .about-tadarab__cards-carousel__item__container__course-details-box__course-details__title {
+    .testimonials__cards-carousel__item__container__course-details-box__course-details__title {
         font-size: 1.125rem;
     }
 
-    .about-tadarab__cards-carousel__item__container__course-details-box__course-details__author {
+    .testimonials__cards-carousel__item__container__course-details-box__course-details__author {
         font-size: 0.938rem;
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box {
+    .testimonials__cards-carousel__item__container__review-box {
         // background-color: white;
         width: 46.875rem;
         height: fit-content;
@@ -351,19 +352,19 @@
         position: static;
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box__quote {
+    .testimonials__cards-carousel__item__container__review-box__quote {
         svg {
             width: 6.25rem;
             height: 7.8rem;
         }
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box__review {
+    .testimonials__cards-carousel__item__container__review-box__review {
         font-size: 2.5rem;
         margin: 1rem 0 1.5rem 0;
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box__reviewer-details {
+    .testimonials__cards-carousel__item__container__review-box__reviewer-details {
         div:nth-of-type(1) {
             font-size: 3rem;
         }
@@ -373,11 +374,11 @@
         }
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box__img {
+    .testimonials__cards-carousel__item__container__review-box__img {
         display: none;
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box__course-img {
+    .testimonials__cards-carousel__item__container__review-box__course-img {
         display: block;
 
         img {
@@ -388,7 +389,7 @@
         }
     }
 
-    .about-tadarab__cards-carousel__item__container__review-box__course-name {
+    .testimonials__cards-carousel__item__container__review-box__course-name {
         display: block;
         position: absolute;
         bottom: 2rem;

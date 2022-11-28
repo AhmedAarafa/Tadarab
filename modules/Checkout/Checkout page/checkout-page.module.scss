@@ -269,15 +269,16 @@
 .checkout__cards-outer-box__card__old-price {
     color: var(--grey);
     margin-top: -0.5rem;
-    text-decoration: line-through rgba(175, 21, 31, 0.5);
-
+    
     span:nth-of-type(1) {
         font-size: 0.9375rem;
         font-weight: 800;
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
     }
-
+    
     span:nth-of-type(2) {
         font-size: 0.75rem;
+        text-decoration: line-through rgba(175, 21, 31, 0.5);
     }
 }
 
@@ -1190,6 +1191,7 @@
 
 .checkout__cart-sticky-card__subscription-plans__plan-box {
     border: 0.0625rem solid var(--borders-grey);
+    border-width: 0.2rem 0.0625rem;
     // border-bottom: none;
     padding: 0.5rem 1.625rem;
     margin: 0 -1.625rem;
@@ -1202,7 +1204,7 @@
 }
 
 .checkout__cart-sticky-card__subscription-plans__plan-box--active {
-    border: 0.0625rem solid #af151f9a;
+    border: 0.2rem solid #af151f9a;
     border-radius: 0.5rem;
     background-color: var(--tadarab-light-bg);
 }
@@ -1218,9 +1220,9 @@
     display: inline-flex;
 
     &+img {
-        width: 5rem;
-        height: 3.75rem;
-        margin: -2rem auto -1.5rem -2rem;
+        width: 8rem;
+        height: 6rem;
+        margin: -2.5rem auto -3.2rem -2.5rem;
         display: block;
     }
 }
@@ -2691,7 +2693,7 @@
     }
 
     .checkout__cart-sticky-card__subscription-plans__plan-box {
-        border-width: 0.0625rem*2.2;
+        border-width: 0.2rem*2.2;
         padding: 0.5rem*2.2 1.625rem*2.2;
         margin: 0 -1.625rem*2.2;
     }
@@ -2703,7 +2705,7 @@
     }
 
     .checkout__cart-sticky-card__subscription-plans__plan-box--active {
-        border-width: 0.0625rem*2.2;
+        border-width: 0.2rem*2.2;
         border-radius: 0.5rem*2.2;
     }
 
@@ -2716,9 +2718,9 @@
         padding: 0.1rem*2.2 0.6rem*2.2;
 
         &+img {
-            width: 5rem*2.2;
-            height: 3.75rem*2.2;
-            margin: -2rem*2 auto -1.5rem*2 -2rem*2;
+            width: 8rem*2.2;
+            height: 6rem*2.2;
+            margin: -2.5rem*2 auto -3.2rem*2.5 -2.5rem*2;
         }
     }
 

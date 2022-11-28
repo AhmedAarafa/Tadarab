@@ -51,44 +51,11 @@ function LatestCourses() {
       /* home/courses/?type=${type} */
       .then(function (response: any) {
         setLatestCourses(response.data.data);
-        // console.log("response.data.data.courses",response.data.data.courses);
       })
       .catch(function (error) {
         console.log(error);
       });
 
-  }
-
-  const handleFavActionBtn = (course: any): any => {
-    if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `home`);
-      handleFavResponse.then(function (response: any) {
-        setLatestCourses(response.data.data.best_seller_courses);
-      })
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "subscription" }
-      })
-    }
-
-  }
-
-  const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns, course.id]);
-    setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
-    }, 5000);
-    dispatch(setCheckoutType("cart"));
-
-    // if(userStatus?.isUserAuthenticated == true){
-    const handleCartResponse: any = handleCart([course], `home`, false);
-    handleCartResponse.then(function (firstresponse: any) {
-      firstresponse.resp.then(function (response: any) {
-        setLatestCourses(response.data.data.best_seller_courses);
-        dispatch(setCartItems(firstresponse.cartResponse));
-      })
-    })
   }
 
   useEffect(() => {
@@ -101,7 +68,6 @@ function LatestCourses() {
       axiosInstance
         .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
         .then(function (response: any) {
-          // console.log(response);
           let newArray: any = homePageData?.data?.best_seller_courses || [];
           (response?.data?.data || []).forEach((element: any) => {
             newArray.forEach((ele: any) => {
@@ -162,13 +128,11 @@ function LatestCourses() {
               element.getClientRects()[0].left;
 
             if (cardRightBoundary > cardLeftBoundary) {
-              console.log("right");
               relatedWrapper.style.cssText = `left: 100% ;
                    bottom: -${((relatedWrapper?.offsetHeight - element?.offsetHeight) / 2)}px`;
               relatedPopover.classList.remove(styles["latest-courses__popover-container--left"]);
               relatedPopover.classList.add(styles["latest-courses__popover-container--right"]);
             } else if (cardRightBoundary < cardLeftBoundary) {
-              console.log("left");
               relatedWrapper.style.cssText = `right: 100%;
                    bottom: -${((relatedWrapper?.offsetHeight - element?.offsetHeight) / 2)}px`;
               relatedPopover.style.cssText = `left: 0%;`;
@@ -490,141 +454,6 @@ function LatestCourses() {
                                 {course.trainer.name_ar}
                               </div>
                             </Link>
-                          </div>
-                        </div>
-
-                        <div
-                          className={
-                            styles[
-                            "latest-courses__cards-carousel__course-card__card-body__checkout-details"
-                            ]
-                          }
-                        >
-                          <div >
-                            <div
-                              className={
-                                styles[
-                                "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                ]
-                              }
-                            >
-                              {course.discounted_price !== 0 && !course.is_purchased && <span
-                                className={
-                                  styles[
-                                  "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                  ]
-                                }
-                              >
-                                {!course.is_in_user_subscription && course.currency_symbol}
-                              </span>}
-
-                              <span
-                                className={
-                                  styles[
-                                  "latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                  ]
-                                }
-                              >
-                                {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
-                                {
-                                  !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
-                                }
-                                {
-                                  course.is_in_user_subscription &&
-                                  <Link href={`/course/${course.slug}`}>
-                                    <span className={styles["watch-subscribed-course"]}>
-                                      شاهد الدورة
-                                    </span>
-                                  </Link>
-
-                                }
-                              </span>
-
-                            </div>
-                            {
-                              (course.price > course.discounted_price) && !course.is_purchased &&
-                              <div
-                                className={
-                                  styles[
-                                  "latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                  ]
-                                }
-                              >
-                                <span
-                                  className={
-                                    styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                    ]
-                                  }
-                                >
-                                  {course.currency_symbol}
-                                </span>
-                                <span
-                                  className={
-                                    styles[
-                                    "latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                    ]
-                                  }
-                                >
-                                  {course.price}
-                                </span>
-
-                              </div>
-                            }
-
-
-                          </div>
-
-                          <div >
-                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
-                              className={
-                                styles[
-                                "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                              }
-                            >
-                              <div onClick={() => handleCartActionBtn(course)}
-                                className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
-                                {/* {
-                                    // console.log(localCartItems.includes(course.id))
-                                    console.log(cartItems.data?.map((item:any)=>{
-                                     return item.id == course.id
-                                    }))
-                                    
-                                  } */}
-                                {
-                                  course.discounted_price == 0 ?
-                                    <TvIcon color="#222" />
-                                    :
-                                    course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                      <AddedToCartIcon color="#222" />
-                                      :
-                                      <CartIcon color="#222" />
-                                }
-                              </div>
-
-                            </Button>}
-                            <Button
-                              className={
-                                styles[
-                                "latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                ]
-                              }
-                            >
-
-                              <div onClick={() => handleFavActionBtn(course)}
-                                className={styles["latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
-                                {
-                                  course.is_in_favorites ?
-                                    <AddedToFavouriteIcon color="#af151f" />
-                                    :
-                                    <FavouriteIcon color="#222" />
-                                }
-
-                              </div>
-
-
-                            </Button>
                           </div>
                         </div>
                       </Card.Body>

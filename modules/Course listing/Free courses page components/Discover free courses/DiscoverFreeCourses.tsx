@@ -30,7 +30,7 @@ export default function DiscoverFreeCourses() {
     // }, []);
 
     useEffect(() => {
-        // toggleLoader("show");
+        toggleLoader("show");
         axiosInstance
             .get(`courses/?page=1&limit=10&type=free`)
             .then(function (response: any) {
@@ -77,7 +77,7 @@ export default function DiscoverFreeCourses() {
         <Row data-theme={themeState} className={styles["discover-free-courses"]}>
             <Col xs={12} className={styles["discover-free-courses__title"]}>
                 <h2>
-                    <span> استكشف الدورات المجانية </span>
+                    <span> الدورات المجانية </span>
                 </h2>
             </Col>
 
@@ -191,137 +191,6 @@ export default function DiscoverFreeCourses() {
                                                 </div>
                                             </div>
 
-                                            <div
-                                                className={
-                                                    styles[
-                                                    "discover-free-courses__cards-carousel__course-card__card-body__checkout-details"
-                                                    ]}>
-                                                <div >
-                                                    <div
-                                                        className={
-                                                            styles[
-                                                            "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__price-container"
-                                                            ]
-                                                        }
-                                                    >
-                                                        {course.discounted_price !== 0 && !course.is_purchased && <span
-                                                            className={
-                                                                styles[
-                                                                "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
-                                                                ]
-                                                            }
-                                                        >
-                                                            {!course.is_in_user_subscription && course.currency_symbol}
-                                                        </span>}
-
-                                                        <span
-                                                            className={
-                                                                styles[
-                                                                "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price"
-                                                                ]
-                                                            }
-                                                        >
-                                                            {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
-                                                            {
-                                                                !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
-                                                            }
-                                                            {
-                                                                course.is_in_user_subscription &&
-                                                                <Link href={`/course/${course.slug}`}>
-                                                                    <span className={styles["watch-subscribed-course"]}>
-                                                                        شاهد الدورة
-                                                                    </span>
-                                                                </Link>
-
-                                                            }
-                                                        </span>
-
-                                                    </div>
-                                                    {
-                                                        (course.price > course.discounted_price) && !course.is_purchased &&
-                                                        <div
-                                                            className={
-                                                                styles[
-                                                                "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container"
-                                                                ]
-                                                            }
-                                                        >
-                                                            <span
-                                                                className={
-                                                                    styles[
-                                                                    "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                {course.currency_symbol}
-                                                            </span>
-                                                            <span
-                                                                className={
-                                                                    styles[
-                                                                    "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                {course.price}
-                                                            </span>
-
-                                                        </div>
-                                                    }
-
-
-                                                </div>
-
-                                                <div >
-                                                    {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
-                                                        className={
-                                                            styles[
-                                                            "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                                            ]
-                                                        }
-                                                    >
-                                                        <div onClick={() =>
-                                                            course?.discounted_price == 0 ?
-                                                                handleFreeCoursesActionBtn(course)
-                                                                :
-                                                                handleCartActionBtn(course)}
-                                                            className={styles["discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
-
-                                                            {
-                                                                course.discounted_price == 0 ?
-                                                                    <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                    :
-                                                                    (course.is_in_cart) || disabledCartBtns.includes(course.id) ?
-                                                                        <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                        :
-                                                                        <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                            }
-                                                        </div>
-
-                                                    </Button>}
-
-                                                    <Button
-                                                        className={
-                                                            styles[
-                                                            "discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn"
-                                                            ]
-                                                        }
-                                                    >
-
-                                                        <div onClick={() => handleFavActionBtn(course)}
-                                                            className={styles["discover-free-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
-                                                            {
-                                                                course.is_in_favorites ?
-                                                                    <AddedToFavouriteIcon color="#af151f" />
-                                                                    :
-                                                                    <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                            }
-
-                                                        </div>
-
-
-                                                    </Button>
-                                                </div>
-                                            </div>
                                         </Card.Body>
 
                                     </Card>

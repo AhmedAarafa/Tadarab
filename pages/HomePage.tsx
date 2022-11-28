@@ -23,7 +23,7 @@ const WhyTadarab = dynamic(() => import("modules/Home page/Why Tadarab/WhyTadara
 const LearnFromTheBest = dynamic(() => import("modules/Home page/Learn from the best/LearnFromTheBest"));
 const JoinAsATrainer = dynamic(() => import("modules/Home page/Join as a trainer/JoinAsATrainer"));
 const TadarabForBusiness = dynamic(() => import("common/Tadarab for business/TadarabForBusiness"));
-const AboutTadarab = dynamic(() => import("modules/Home page/About Tadarab/AboutTadarab"));
+const AboutTadarab = dynamic(() => import("common/Testimonials/Testimonials"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season section/TadarabSeason"));
@@ -61,7 +61,6 @@ function HomePage(props: any) {
           toggleLoader("hide");
         });
     } else {
-
       axiosInstance
         .get(`home`)
         .then(function (response: any) {

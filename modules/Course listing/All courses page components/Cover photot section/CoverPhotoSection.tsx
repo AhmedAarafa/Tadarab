@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
+import SubscriptionValues from "modules/_Shared/utils/SubscriptionValues";
 
 export default function CoverPhotoSection() {
     const dispatch = useDispatch();
@@ -31,25 +32,26 @@ export default function CoverPhotoSection() {
         <Col xs={12} className={styles["cover-photo-box"]}>
             <img src="https://s3.me-south-1.amazonaws.com/tadarab2.0-bahrain/HeroSection-copy.jpg"
                 alt="دورات مجانية" className={styles["cover-photo-box__cover-img"]} />
-            <h1 className={styles["cover-photo-box__title"]}>
-                دورات مش مجانية عن بعد
-            </h1>
+            <div className={styles["cover-photo-box__title-box"]}>
+                <h1 className={styles["cover-photo-box__title"]}>
+                    إستكشف مكتبة دورات تدرب
+                </h1>
+                <div className={styles["cover-photo-box__title-brief"]}>
+                    أكبر محتوى تدريبي بالخليج والوطن العربى
+                </div>
+            </div>
             {userStatus == false &&
                 <div className={styles["cover-photo-box__sign-up-section"]}>
                     {userSubscInfo == false && <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["cover-photo-box__signup-btn"]}>
                         {userStatus ?
                             "ابدأ التعلم الاّن"
                             :
-                            "انشاء حساب جديد"
+                            "اشترك الآن"
                         }
                     </Button>}
                     {userSubscInfo == false &&
                         <div className={styles["cover-photo-box__brief"]}>
-                            اشترك الآن لتتابع جميع الدورات
-                            باشتراك يبدأ من
-                            6 دك
-                            /
-                            ش
+                          <SubscriptionValues />
                         </div>
                     }
                 </div>

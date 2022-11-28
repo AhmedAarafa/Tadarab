@@ -16,6 +16,7 @@ export default function SpecialOffer(props: any) {
     const [disabled, setDisabled] = useState(false);
     const dispatch = useDispatch();
     const Router = useRouter();
+    const cartItems = useSelector((state: any) => state.cartItems);
     const { slug } = Router.query;
 
     useEffect(() => {
@@ -39,6 +40,22 @@ export default function SpecialOffer(props: any) {
 
         }
     }, [props.Cid()]);
+
+    useEffect(() => {
+        // console.log("specialBundleData", specialBundleData);
+        let coursesIds = '';
+        let localStorageItems: any = localStorage.getItem("cart")?.toString();
+
+        specialBundleData?.courses.forEach((c: any, i: number) => {
+            coursesIds += `${c.id.toString()}|`;
+        });
+        const regex = new RegExp(`/${coursesIds.slice(0, -1)}/g`);
+
+        if (regex.test(localStorageItems)) {
+            setDisabled(true);
+        };
+
+    }, [specialBundleData,cartItems]);
 
 
     const timerHandler = (dateAfter: any) => {
@@ -81,8 +98,6 @@ export default function SpecialOffer(props: any) {
 
     const handleCartActionBtn = (courses: any): any => {
         dispatch(setCheckoutType("cart"));
-
-
         // console.log("handleCartResponse", courses);
         const handleCartResponse: any = handleCart(courses, `course/${props.Cid()}/special-bundle`, true);
         handleCartResponse.then(function (firstresponse: any) {

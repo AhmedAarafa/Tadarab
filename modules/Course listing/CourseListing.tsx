@@ -31,13 +31,17 @@ import Testimonials from "./Free courses page components/Testimonials/Testimonia
 import Statistics from "common/Statistics/Statistics";
 import Categories from "./Free courses page components/Categories/Categories";
 import Faqs from "./Free courses page components/FAQs/Faqs";
+import Faqs2 from "common/Subscription faqs/FAQ/Faq";
 import StickySignupBar from './Free courses page components/Sticky signup bar/StickySignupBar';
 import CoverPhotoSection2 from './All courses page components/Cover photot section/CoverPhotoSection';
 import BestCoursesInCategory from './All courses page components/Best courses in category/BestCoursesInCategory';
 import LatestCourses from './All courses page components/Latest courses/LatestCourses';
+import BestSellerCourses from './All courses page components/Best seller courses/BestSellerCourses';
 import Trainers2 from './All courses page components/Trainers/Trainers';
-import TadarabUnlimited from "common/Tadarab unlimited/TadarabUnlimited";
+import TadarabUnlimited from "./All courses page components/Tadarab unlimited/TadarabUnlimited";
 import TadarabForBusiness from "common/Tadarab for business/TadarabForBusiness";
+import Testimonials2 from "common/Testimonials/Testimonials";
+import StickySignupBar2 from "./All courses page components/Sticky signup bar/StickySignupBar";
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
@@ -226,30 +230,37 @@ export default function CourseListing() {
                     </>
                 }
                 {
-                    (JSON.stringify(router?.query) == "{}" || (router?.query && router?.query?.type == "all"))
+                    (JSON.stringify(router?.query) == "{}" || (router?.query && (router?.query?.type == "all" || router?.query?.aid)))
                     &&
                     <>
                         <CoverPhotoSection2 />
                         <div className={styles["course-listing__categories-section"]}>
-                            <Categories />
+                            <BestSellerCourses />
                         </div>
+                        <Categories />
                         <BestCoursesInCategory title="business" />
                         <TadarabUnlimited />
                         <BestCoursesInCategory title="family-and-educational-skills" />
+                        <Statistics />
+                        <BestCoursesInCategory title="family" />
                         <LatestCourses />
+                        <Testimonials2 />
                         <Trainers2 />
                         <DiscoverFreeCourses />
                         <TadarabForBusiness />
-                        <Faqs />
+                        <Faqs2 />
+                        <StickySignupBar2 />
                     </>
                 }
                 {
-                    router?.query && router?.query?.type == "best-seller"
+                    router?.query && (router?.query?.type == "best-seller" || router?.query?.type == "live")
                     &&
                     <>
                         <Col xs={12} className={styles["course-listing__title"]}>
                             النتائج
                         </Col>
+                        {console.log("courseListing",courseListing)
+                        }
                         <Col xs={12} className={styles["course-listing"]}>
                             {courseListing?.data?.courses?.map((course: any, i: number) => {
 

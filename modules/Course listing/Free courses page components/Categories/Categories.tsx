@@ -15,13 +15,14 @@ export default function Categories() {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        // toggleLoader("show");
+        toggleLoader("show");
 
         axiosInstance
             .get(`categories`)
             .then(function (response: any) {
                 setCategories(response?.data?.data?.categories);
-                // toggleLoader("hide");
+                toggleLoader("hide");
+                
             })
             .catch(function (error: any) {
                 // toggleLoader("hide");
@@ -34,7 +35,7 @@ export default function Categories() {
             <Row>
                 <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["categories__container"]}>
                     <h2 className={styles["categories__container__title"]}>
-                        <span> اكتشف تخصصات تدرب </span>
+                        <span> تخصصات تدرب </span>
                     </h2>
                 </Col>
 

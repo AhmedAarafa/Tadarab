@@ -6,7 +6,8 @@
   position: relative;
   height: 28.125rem;
   z-index: 2;
-  padding: 10rem 10rem 0 0;
+  padding: 12rem 10rem 0 0;
+  color: #f5f5f5;
 }
 
 .cover-photo-box__cover-img {
@@ -19,16 +20,25 @@
   z-index: -1;
 }
 
+.cover-photo-box__title-box {
+  margin-bottom: 2rem;
+}
+
 .cover-photo-box__title {
-  font-size: 3.3125rem;
+  font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: #f5f5f5;
+}
+
+.cover-photo-box__title-brief {
+  color: #f5f5f5;
+  font-size: 1.3rem;
 }
 
 .cover-photo-box__sign-up-section {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   gap: 0.3rem;
@@ -45,7 +55,7 @@
   border: 0 !important;
   background-color: var(--primary-red) !important;
   border: 0.125rem solid var(--primary-red) !important;
-  padding: 0.375rem 2rem;
+  padding: 0.5rem 2.5rem;
 }
 .cover-photo-box__signup-btn:hover {
   box-shadow: none;
@@ -69,7 +79,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 22rem;
-    padding: 16rem 0 0 0;
+    padding: 9rem 0 0 0;
   }
   .cover-photo-box:after {
     content: "";
@@ -79,22 +89,32 @@
     padding: 14rem 0 0 0;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.7);
     margin-top: 8rem;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
   .cover-photo-box__cover-img {
     margin-top: 8rem;
   }
-  .cover-photo-box__title {
-    font-size: 2.5rem;
+  .cover-photo-box__title-box {
+    text-align: center;
     margin-bottom: 1rem;
   }
+  .cover-photo-box__title {
+    font-size: 3.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .cover-photo-box__title-brief {
+    font-size: 1.5rem;
+  }
   .cover-photo-box__sign-up-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 0.45rem;
   }
-  .cover-photo-box__sign-up-btn {
+  .cover-photo-box__signup-btn {
     box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
@@ -105,17 +125,17 @@
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
-    padding: 0.6375rem 3.4rem;
-    font-size: 1.649rem;
-    border-radius: 1.0625rem;
+    padding: 0.75rem 4rem;
+    font-size: 1.94rem;
+    border-radius: 1.25rem;
   }
-  .cover-photo-box__sign-up-btn:hover {
+  .cover-photo-box__signup-btn:hover {
     box-shadow: none;
   }
-  .cover-photo-box__sign-up-btn:active {
+  .cover-photo-box__signup-btn:active {
     box-shadow: none;
   }
-  .cover-photo-box__sign-up-btn:is(.cover-photo-box__sign-up-btn:hover, .cover-photo-box__sign-up-btn:active) {
+  .cover-photo-box__signup-btn:is(.cover-photo-box__signup-btn:hover, .cover-photo-box__signup-btn:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }

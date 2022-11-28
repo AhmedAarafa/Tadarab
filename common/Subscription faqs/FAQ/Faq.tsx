@@ -15,7 +15,7 @@ export default function Faq() {
                 <div>عن نظام تدرب بلا حدود</div>
             </div>
 
-            <Accordion defaultActiveKey="" className={styles["faq__accordion"]}>
+            <Accordion defaultActiveKey="0" className={styles["faq__accordion"]}>
 
               <Accordion.Item
                 eventKey="0"
