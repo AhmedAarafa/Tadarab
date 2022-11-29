@@ -153,6 +153,7 @@ export default function MostPopularCourses(props: any) {
                 <Col xs={{ span: 12, order: 2 }} className={styles["most-popular-courses__cards-carousel"]}>
                     <Swiper
                         dir="rtl"
+                         
                         slidesPerView={5}
                         spaceBetween={0}
                         navigation={true}

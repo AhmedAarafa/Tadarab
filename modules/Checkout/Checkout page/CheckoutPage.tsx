@@ -38,7 +38,7 @@ function CheckoutPage(props: any) {
 
     SwiperCore.use([Navigation]);
     const router = useRouter();
-    const [step, setStep] = useState("added-courses");
+    const [step, setStep] = useState("added-courses"); // added-courses payment-types begin-learning
     const [paymentSettings, setPaymentSettings] = useState<any>(null);
     const [isSpinnerExist, setIsSpinnerExist] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState<any>("VISA");
@@ -57,7 +57,6 @@ function CheckoutPage(props: any) {
     const [isDiscountLinkApplied, setIsDiscountLinkApplied] = useState(false);
     const [isFinalizePaymentBtnEnabled, setIsFinalizePaymentBtnEnabled] = useState(false);
     const [temporaryRemoval, setTemporaryRemoval] = useState<any>([]);
-    const [dropdownSubscriptionPlan, setDropdownSubscriptionPlan] = useState("");
     const [isCoursesInSpecialBundle, setIsCoursesInSpecialBundle] = useState(false);
     const [threePlansSelection, setThreePlansSelection] = useState("yearly"); // monthly, yearly, midYearly
     const [subscriptionPlansBanks, setSubscriptionPlansBanks] = useState({ card_bin: 0, bank: "", subplan_id: "" }); // NBK, BOUBYAN, WARBA
@@ -144,14 +143,6 @@ function CheckoutPage(props: any) {
             setStep("begin-learning");
             setIsTransactionSucceeded(false);
         }
-
-
-
-        // if(checkoutType == "subscription"){
-        //     setStep("payment-types");
-        // }else if(Router.query && Router.query.checkout_type == "subscription"){
-        //     setStep("payment-types");
-        // }
 
         if (document.documentElement.clientWidth <= 576) {
             stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
@@ -513,26 +504,11 @@ function CheckoutPage(props: any) {
         }
     }, [transactionStatus]);
 
-    // useEffect(() => {
-    //     axiosInstance
-    //         .get(`payments/settings/?checkout_type=${checkoutType}`, { headers: { "X-Settings-Key": `DSF68H46SD4HJ84RYJ4FGHFDGJDFGJDFN16DFG69J4D6FJ46FDN16D4J84RE96J46SFN1S6FG1N6DFJ6GM4D6F9GNM6SFJG644S65H4N1BS6H1A65F4654DGSS64DG` } })
-    //         .then(function (response: any) {
-    //             if (JSON.stringify(response.status).startsWith("2")) {
-    //                 console.log("payments-settingsssss", response?.data.data);
-    //                 if (tokenValidationCheck(response)) {
-    //                     setPaymentSettings(response?.data?.data);
-    //                 }
-    //                 if (response?.data?.data?.is_user_subscription) {
-    //                     Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
-    //                 }
-    //             }
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }, [checkoutType])
-
-
+    useEffect(() => {
+        if (router.query.ps && router.query.ps == "2") {
+            setStep("payment-types");
+        }
+    }, [router.query])
 
     useEffect(() => {
 
@@ -716,10 +692,6 @@ function CheckoutPage(props: any) {
     }, [step])
 
 
-    // useEffect(() => {
-    //     console.log("subscriptionPlansBanks", subscriptionPlansBanks);
-    // }, [subscriptionPlansBanks]);
-
 
     useEffect(() => {
         let isExecuted: boolean = false;
@@ -873,21 +845,6 @@ function CheckoutPage(props: any) {
         `: null;
     };
 
-    // useEffect(() => {
-    //     if (subscriptionPlansBanks.bank !== "BOUBYAN") {
-    //         setDropdownSubscriptionPlan("");
-    //     }
-    // }, [subscriptionPlansBanks]);
-
-    // useEffect(() => {
-    //     if (paymentMethod !== "VISA") {
-    //         setDropdownSubscriptionPlan("");
-    //         setSubscriptionPlansBanks({ card_bin: 0, bank: "", subplan_id: "" });
-    //     }
-    // }, [paymentMethod]);
-
-
-
     const promoCodeHandler = (e: any) => {
         let cartItemsIds = cartItems?.data?.map((it: any) => it.id);
 
@@ -977,6 +934,18 @@ function CheckoutPage(props: any) {
         })
     }
 
+    const checkAuthenticityToPay = () => {
+        if (userStatus.isUserAuthenticated) {
+            setStep("payment-types");
+        } else {
+            setStep("payment-types");
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
+                query: { from: "checkout" }
+            });
+        }
+
+    }
 
     // handles payment errors
     const onError = (data: any, actions: any) => {
@@ -1680,7 +1649,7 @@ function CheckoutPage(props: any) {
 
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                                         <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
-                                            السعر الإجمالي
+                                        السعر قبل الخصم
                                         </div>
                                         {cartItems?.data?.length !== 0 ?
 
@@ -1695,21 +1664,40 @@ function CheckoutPage(props: any) {
                                     </div>
 
                                     {
-                                        isCouponApplied.status == true && cartItems?.data?.length !== 0 &&
-
+                                        (cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))
+                                        !=
+                                        (cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0))
+                                        &&
                                         <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
                                             <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
-                                                الكوبون
+                                                الخصم
                                             </div>
                                             <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                <span> {isCouponApplied?.discounted_amount?.toFixed(2)} - </span>
-                                                <span>{localStateCartItems !== undefined && localStateCartItems !== null && localStateCartItems[0]?.currency_symbol}</span>
+                                                <span>
+
+                                                    {Math.ceil(100 - (((cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))
+                                                        / (cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0))) * 100))}%
+                                                </span>
                                             </div>
                                         </div>
                                     }
+
+                                    <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
+                                        <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
+                                            السعر النهائي
+                                        </div>
+                                        {cartItems?.data?.length !== 0 ?
+                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
+                                                <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
+                                                } </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                            : <React.Fragment />}
+                                    </div>
+
                                     {/* Special bundle discount start */}
 
-                                    {
+                                    {/*
                                         isCoursesInSpecialBundle && cartItems?.data?.length !== 0 &&
 
                                         <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
@@ -1722,7 +1710,7 @@ function CheckoutPage(props: any) {
                                                 <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
                                             </div>
                                         </div>
-                                    }
+                                    */}
 
                                     {/* Special bundle discount end*/}
 
@@ -1761,36 +1749,16 @@ function CheckoutPage(props: any) {
                                         </div>
                                     </div>
 
-                                    <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
-                                        <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
-                                            السعر النهائي
-                                        </div>
-                                        {cartItems?.data?.length !== 0 ?
-                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                                                <span> {isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
-                                                } </span>
-                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
-                                            </div>
-                                            : <React.Fragment />}
-                                    </div>
+
 
                                     {step == "added-courses" ?
                                         <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
                                             JSON.stringify(cartItems?.data) == "null" ||
                                             JSON.stringify(cartItems?.data) == "undefined"} onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
-                                                userStatus.isUserAuthenticated ?
-                                                    setStep("payment-types")
-                                                    :
-                                                    Router.push({
-                                                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
-                                                        query: { from: "checkout" }
-                                                    })
+                                                checkAuthenticityToPay();
                                             }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-
-
                                             الدفع
-
                                         </Button>
                                         :
                                         <div className="position-relative">
@@ -2028,7 +1996,7 @@ function CheckoutPage(props: any) {
                                                         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__best-plan-chip"]}>
                                                             أفضل قيمة
                                                         </div>
-                                                            <img src="/images/guarantee7days.png" alt="ضمان 7 أيام" />
+                                                        <img src="/images/guarantee7days.png" alt="ضمان 7 أيام" />
 
                                                         <div className={styles["checkout__cart-sticky-card__subscription-plans__plan-box__inner-box"]}>
                                                             <input onClick={() => {
@@ -2278,7 +2246,6 @@ function CheckoutPage(props: any) {
                                                 {
                                                     isCouponApplied.status ?
                                                         <input type="button" onClick={() => { handleCouponInput() }} value="إزالة" className={styles["checkout__cart-sticky-card__search-bar__btn"]} />
-
                                                         :
                                                         <Button type="submit" className={styles["checkout__cart-sticky-card__search-bar__btn"]}>
                                                             تطبيق
@@ -2297,11 +2264,14 @@ function CheckoutPage(props: any) {
                                         }
 
                                     </div>
+
+
+
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                                         <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
-                                            السعر الإجمالي
+                                            السعر قبل الخصم
                                         </div>
-                                        {cartItems?.data?.length ?
+                                        {cartItems?.data?.length !== 0 ?
 
                                             <div className={styles["checkout__cart-sticky-card__total-price-box__total-price"]}>
                                                 <span> {cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)} </span>
@@ -2311,20 +2281,42 @@ function CheckoutPage(props: any) {
                                             : <React.Fragment />}
 
                                     </div>
+
                                     {
-                                        cartItems?.data?.length !== 0 && isCouponApplied.status == true &&
+                                        (cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))
+                                        !=
+                                        (cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0))
+                                        &&
                                         <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
                                             <div className={styles["checkout__cart-sticky-card__coupon-text"]}>
-                                                الكوبون
+                                                الخصم
                                             </div>
                                             <div className={styles["checkout__cart-sticky-card__coupon-value"]}>
-                                                <span> {isCouponApplied?.discounted_amount?.toFixed(2)}- </span>
-                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                                <span>
+
+                                                    {Math.ceil(100 - (((cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))
+                                                        / (cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0))) * 100))}%
+                                                </span>
                                             </div>
                                         </div>
                                     }
 
-                                    {
+                                    <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
+                                        <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
+                                            السعر النهائي
+                                        </div>
+                                        {cartItems?.data?.length ?
+                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
+                                                <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
+                                                } </span>
+                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
+                                            </div>
+                                            :
+                                            <React.Fragment />
+                                        }
+                                    </div>
+
+                                    {/*
                                         isCoursesInSpecialBundle && cartItems?.data?.length !== 0 &&
 
                                         <div className={styles["checkout__cart-sticky-card__coupon-box"]}>
@@ -2337,7 +2329,10 @@ function CheckoutPage(props: any) {
                                                 <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
                                             </div>
                                         </div>
-                                    }
+                                    */}
+
+
+
                                     <div className={styles["checkout__cart-sticky-card__guarantee-box"]}
                                     >
                                         <div
@@ -2367,34 +2362,13 @@ function CheckoutPage(props: any) {
                                         </div>
                                     </div>
 
-                                    <div className={styles["checkout__cart-sticky-card__final-price-box"]}>
-                                        <div className={styles["checkout__cart-sticky-card__final-price-box__final-price-text"]}>
-                                            السعر النهائي
-                                        </div>
-                                        {cartItems?.data?.length ?
-                                            <div className={styles["checkout__cart-sticky-card__final-price-box__final-price"]}>
-                                                <span>{isCouponApplied.status ? isCouponApplied.total_payment_amount : (+(cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0))).toFixed(2)
-                                                } </span>
-                                                <span>{cartItems?.data?.length && cartItems?.data[0]?.currency_symbol}</span>
-                                            </div>
-                                            :
-                                            <React.Fragment />
-                                        }
-                                    </div>
-
                                     {step == "added-courses" ?
                                         <Button disabled={JSON.stringify(cartItems?.data) == "[]" ||
                                             JSON.stringify(cartItems?.data) == "null" ||
                                             JSON.stringify(cartItems?.data) == "undefined"}
                                             onClick={() => {
                                                 window.scrollTo({ top: 0, behavior: "smooth" });
-                                                userStatus.isUserAuthenticated ?
-                                                    setStep("payment-types")
-                                                    :
-                                                    Router.push({
-                                                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
-                                                        query: { from: "checkout" }
-                                                    })
+                                                checkAuthenticityToPay();
                                             }} className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
                                             الدفع
                                         </Button>

@@ -36,7 +36,7 @@ export default function ArabicTrainers() {
         </Col>
 
         <Col xs={12} className={styles["arabic-trainers__cards-carousel"]}>
-        <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
+        <Swiper dir="rtl"   slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
           
           "50": {

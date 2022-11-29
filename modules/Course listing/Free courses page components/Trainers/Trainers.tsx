@@ -28,7 +28,7 @@ export default function Trainers() {
                         breakpoints={{
 
                             "50": {
-                                slidesPerView: 1.1,
+                                slidesPerView: 1.12,
                             },
                             "576": {
                                 slidesPerView: 3,

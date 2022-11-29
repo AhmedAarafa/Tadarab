@@ -422,7 +422,7 @@
 }
 
 .checkout__cart-sticky-card__total-price-box {
-  margin: 1.5625rem 0 0 0;
+  margin: 1.4375rem 0 0 0;
 }
 
 .checkout__cart-sticky-card__coupon-box {
@@ -430,7 +430,7 @@
 }
 
 .checkout__cart-sticky-card__final-price-box {
-  margin: 1.4375rem 0 0 0;
+  margin: 0.3rem 0 0 0;
 }
 
 .checkout__cart-sticky-card__total-price-box__total-price-text,
@@ -440,22 +440,42 @@
   color: var(--grey);
 }
 
+.checkout__cart-sticky-card__total-price-box__total-price-text {
+  font-size: 0.9rem;
+}
+
+.checkout__cart-sticky-card__coupon-text {
+  font-size: 0.8rem;
+}
+
 .checkout__cart-sticky-card__total-price-box__total-price,
 .checkout__cart-sticky-card__final-price-box__final-price,
 .checkout__cart-sticky-card__coupon-value {
   color: var(--dark-black);
 }
+.checkout__cart-sticky-card__total-price-box__total-price span,
+.checkout__cart-sticky-card__final-price-box__final-price span,
+.checkout__cart-sticky-card__coupon-value span {
+  font-size: 1.25rem;
+}
 .checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(1),
 .checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(1),
 .checkout__cart-sticky-card__coupon-value span:nth-of-type(1) {
-  font-size: 1.25rem;
   font-weight: 800;
 }
 .checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(2),
 .checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(2),
 .checkout__cart-sticky-card__coupon-value span:nth-of-type(2) {
-  font-size: 1.125rem;
   font-weight: 700;
+}
+
+.checkout__cart-sticky-card__coupon-value span {
+  font-size: 0.8rem;
+}
+
+.checkout__cart-sticky-card__total-price-box__total-price span {
+  font-size: 0.9rem;
+  text-decoration: line-through;
 }
 
 .checkout__cart-sticky-card__guarantee-box {
@@ -1936,28 +1956,35 @@
     display: flex;
   }
   .checkout__cart-sticky-card__final-price-box {
-    margin: 3.1625rem 0 0 0;
+    margin: 0.66rem 0 0 0;
   }
   .checkout__cart-sticky-card__total-price-box__total-price-text,
 .checkout__cart-sticky-card__final-price-box__final-price-text,
 .checkout__cart-sticky-card__coupon-text {
     font-size: 2.475rem;
   }
-  .checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(1),
-.checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(1),
-.checkout__cart-sticky-card__coupon-value span:nth-of-type(1) {
+  .checkout__cart-sticky-card__total-price-box__total-price-text {
+    font-size: 1.98rem;
+  }
+  .checkout__cart-sticky-card__coupon-text {
+    font-size: 1.76rem;
+  }
+  .checkout__cart-sticky-card__total-price-box__total-price span,
+.checkout__cart-sticky-card__final-price-box__final-price span,
+.checkout__cart-sticky-card__coupon-value span {
     font-size: 2.75rem;
   }
-  .checkout__cart-sticky-card__total-price-box__total-price span:nth-of-type(2),
-.checkout__cart-sticky-card__final-price-box__final-price span:nth-of-type(2),
-.checkout__cart-sticky-card__coupon-value span:nth-of-type(2) {
-    font-size: 2.475rem;
+  .checkout__cart-sticky-card__coupon-value span {
+    font-size: 1.76rem;
+  }
+  .checkout__cart-sticky-card__total-price-box__total-price span {
+    font-size: 1.98rem;
   }
   .checkout__cart-sticky-card__guarantee-box {
     display: flex;
     align-items: center;
     justify-content: unset;
-    margin: 2.75rem 0 0 0;
+    margin: 2.75rem 0 1rem 0;
     padding: 1.925rem 2.75rem;
     background-color: rgba(14, 11, 29, 0.05);
     border-radius: 1.65rem;

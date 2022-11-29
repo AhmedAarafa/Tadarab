@@ -143,7 +143,7 @@ export default function SignupPage() {
     if (fieldBlur.password == "") {
       const newValidationState = validationAfterSubmit;
       newValidationState.password = true;
-      setValidationAfterSubmit(newValidationState);
+      setValidationAfterSubmit(newValidationState); 
     }
   }
 
@@ -151,20 +151,18 @@ export default function SignupPage() {
     if (router.query && router.query.from) {
       // router.push(router.back());
       if (router.query.from == "checkout") {
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth/?from=checkout`);
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth/?from=checkout?ps=2`);
       } else if (router.query.from.startsWith("webinar")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
       } else if (router.query.from.startsWith("course")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
-      } else if (router.query.from == "free") {
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
       } else {
         Router.back();
       }
 
     } else if (router.query && router.query.from_subscription) {
 
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription`);
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription&ps=2`);
     } else {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
     }
@@ -214,9 +212,7 @@ export default function SignupPage() {
 
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                } else if (router.query.from == "free") {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
                 } else {
                   Router.back();
                 }
@@ -282,9 +278,7 @@ export default function SignupPage() {
 
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                } else if (router.query.from == "free") {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
                 } else {
                   Router.back();
                 }
@@ -435,13 +429,11 @@ export default function SignupPage() {
                         // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                         if (router.query && router.query.from) {
                           if (router.query.from == "checkout") {
-                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
                           } else if (router.query.from.startsWith("webinar")) {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                           } else if (router.query.from.startsWith("course")) {
                             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                          } else if (router.query.from == "free") {
-                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                           } else {
                             Router.back();
                           }

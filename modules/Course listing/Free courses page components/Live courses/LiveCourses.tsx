@@ -142,7 +142,7 @@ export default function LiveCourses() {
                         <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{ "clickable": true }}
                             breakpoints={{
                                 "50": {
-                                    slidesPerView: 1,
+                                    slidesPerView: 1.05,
                                 },
                                 "576": {
                                     slidesPerView: 3,
@@ -290,7 +290,6 @@ export default function LiveCourses() {
                                             </div>}
                                         </Card>
                                     </SwiperSlide>
-
                                 )
                             })
                             }

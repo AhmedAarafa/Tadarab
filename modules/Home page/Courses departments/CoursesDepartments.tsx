@@ -40,7 +40,7 @@ export default function CoursesDepartments() {
         </Col>
 
         <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 2 }} className={styles['courses-departments__cards-carousel']}>
-          <Swiper dir="rtl" slidesPerView={7} navigation={true} pagination={{ "clickable": true }}
+          <Swiper dir="rtl"   slidesPerView={7} navigation={true} pagination={{ "clickable": true }}
             breakpoints={{
               "50": {
                 "slidesPerView": 2,

@@ -125,6 +125,7 @@ export default function PaidCourses() {
 
                     <Swiper
                         dir="rtl"
+                        initialSlide={1}
                         slidesPerView={5}
                         spaceBetween={0}
                         navigation={true}
@@ -132,7 +133,7 @@ export default function PaidCourses() {
                         breakpoints={{
 
                             "50": {
-                                slidesPerView: 1,
+                                slidesPerView: 1.15,
                             },
                             "576": {
                                 slidesPerView: 3,

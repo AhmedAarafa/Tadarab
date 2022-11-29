@@ -167,8 +167,7 @@ function LatestCourses() {
             <span>التدريبية</span>
           </h2>
         </Col>
-        <Col
-          xs={{ span: 12, order: 1 }} sm={9}
+        <Col xs={{ span: 12, order: 1 }} sm={9}
           className="d-flex align-items-center justify-content-start">
           <ul id="departments-list" className={styles["latest-courses__departments-list"]}>
             <li onClick={() => { handleFilterType("best-seller") }}
@@ -184,7 +183,7 @@ function LatestCourses() {
               الدورات المجانية
             </li>
           </ul>
-        </Col>
+        </Col> 
 
         <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["latest-courses__see-more-btn-col"]}>
           <Button className={styles["latest-courses__see-more-btn"]} id="see-more" onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=${filterType}`) }}>
@@ -196,6 +195,7 @@ function LatestCourses() {
         <Col xs={{ span: 12, order: 2 }} className={styles["latest-courses__cards-carousel"]}>
           <Swiper
             dir="rtl"
+             
             slidesPerView={5}
             spaceBetween={0}
             navigation={true}

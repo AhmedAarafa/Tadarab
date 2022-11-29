@@ -18,7 +18,7 @@ export default function LearnFromTheBest() {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
   useEffect(() => {
-  
+   
       setTrainers(homePageData.data?.trainers || []);
 
   }, [homePageData]);
@@ -43,7 +43,7 @@ export default function LearnFromTheBest() {
         </Col> 
 
         <Col xs={{span:12 ,order:2}} sm={{span:12 ,order:3}} className={styles["learn-from-the-best__cards-carousel"]}>
-        <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
+        <Swiper dir="rtl"   slidesPerView={4} navigation={true} pagination={{"clickable": true}} 
         breakpoints={{
           
           "50": {

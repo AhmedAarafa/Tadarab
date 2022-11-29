@@ -69,7 +69,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 22rem;
-    padding: 16rem 0 0 0;
+    padding: 9rem 0 0 0;
   }
   .cover-photo-box:after {
     content: "";
@@ -79,17 +79,20 @@
     padding: 14rem 0 0 0;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.7);
     margin-top: 8rem;
-    z-index: 1;
+    z-index: -1;
     pointer-events: none;
   }
   .cover-photo-box__cover-img {
     margin-top: 8rem;
   }
   .cover-photo-box__title {
-    font-size: 2.5rem;
+    font-size: 3.75rem;
     margin-bottom: 1rem;
+  }
+  .cover-photo-box__title-brief {
+    font-size: 1.5rem;
   }
   .cover-photo-box__sign-up-section {
     gap: 0.45rem;
@@ -105,9 +108,9 @@
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
-    padding: 0.6375rem 3.4rem;
-    font-size: 1.649rem;
-    border-radius: 1.0625rem;
+    padding: 0.75rem 4rem;
+    font-size: 1.94rem;
+    border-radius: 1.25rem;
   }
   .cover-photo-box__sign-up-btn:hover {
     box-shadow: none;

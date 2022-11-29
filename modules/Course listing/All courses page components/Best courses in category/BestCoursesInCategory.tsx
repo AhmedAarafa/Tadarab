@@ -19,6 +19,7 @@ import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import Router from "next/router";
 
 export default function BestCoursesInCategory(props: any) {
   SwiperCore.use([Navigation]);
@@ -51,27 +52,36 @@ export default function BestCoursesInCategory(props: any) {
   return (
     <>
       <Row>
-        <Col xs={12} className={styles["best-courses-in-category__title"]} id="title-section">
+        <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["best-courses-in-category__title"]} id="title-section">
           <h2 >
             <span>
               دورات
               {props?.title == "business" && " ريادة الأعمال "}
               {props?.title == "family-and-educational-skills" && " التربية "}
-              {props?.title == "family" && " الأسرة  "  }
+              {props?.title == "family" && " الأسرة  "}
             </span>
 
           </h2>
         </Col>
+
+        <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 2 }} className={styles["best-courses-in-category__see-more-btn-col"]}>
+          <Button className={styles["best-courses-in-category__see-more-btn"]} id="see-more" onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}topic/${props?.title}`) }}>
+            اعرض التخصص
+            <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
+          </Button>
+        </Col>
+
         <Col xs={{ span: 12, order: 2 }} className={styles["best-courses-in-category__cards-carousel"]}>
           <Swiper
             dir="rtl"
+            initialSlide={1}
             slidesPerView={5}
             spaceBetween={0}
             navigation={true}
             pagination={{ clickable: true }}
             breakpoints={{
               "50": {
-                slidesPerView: 1,
+                slidesPerView: 1.15,
               },
               "576": {
                 slidesPerView: 3,

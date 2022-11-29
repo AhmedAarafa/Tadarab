@@ -62,7 +62,7 @@ export default function CategoryCourses(props: any) {
                 </Col>
 
                 <Col xs={12} className={styles["category-courses__cards-carousel"]}>
-                    <Swiper dir="rtl" slidesPerView={3.8} navigation={true}
+                    <Swiper dir="rtl"   slidesPerView={3.8} navigation={true}
                         breakpoints={{
                             "50": {
                                 slidesPerView: 1,

@@ -253,14 +253,13 @@ export default function CourseListing() {
                     </>
                 }
                 {
-                    router?.query && (router?.query?.type == "best-seller" || router?.query?.type == "live")
+                    router?.query && (router?.query?.type == "best-seller" || router?.query?.type == "live" || router?.query?.type == "latest")
                     &&
                     <>
                         <Col xs={12} className={styles["course-listing__title"]}>
                             النتائج
                         </Col>
-                        {console.log("courseListing",courseListing)
-                        }
+                      
                         <Col xs={12} className={styles["course-listing"]}>
                             {courseListing?.data?.courses?.map((course: any, i: number) => {
 

@@ -483,7 +483,10 @@
     }
 }
 
-
+.my-course__comments-section{
+    padding: 0 3rem;
+    margin-top: -5rem;
+}
 
 @media (max-width: 575px) {
 
@@ -806,4 +809,10 @@
 
         }
     }
+
+    .my-course__comments-section{
+        padding: 0 3rem;
+        margin-top: -3rem*4;
+    }
+
 }

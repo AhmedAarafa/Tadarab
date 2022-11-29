@@ -5,17 +5,20 @@ import styles from "./best-seller-courses.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
+import { ChevronLeftIcon } from "common/Icons/Icons";
 import "swiper/css";
 import Link from 'next/link';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useSelector } from "react-redux";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import Router, { useRouter } from "next/router";
 
 export default function BestSellerCourses() {
     SwiperCore.use([Navigation]);
     const themeState = useSelector((state: any) => state.themeState.theme);
     const [bestSellerCourses, setBestSellerCourses] = useState<any>([]);
+    const router = useRouter();
 
     useEffect(() => {
 
@@ -33,22 +36,31 @@ export default function BestSellerCourses() {
     return (
         <>
             <Row data-theme={themeState} className={styles["best-seller-courses"]}>
-                <Col xs={12} className={styles["best-seller-courses__title"]}>
+                <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["best-seller-courses__title"]}>
                     <h2>
                         <span>الدورات الأكثر مشاهدة </span>
                     </h2>
                 </Col>
 
+                <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 2 }} className={styles["best-seller-courses__see-more-btn-col"]}>
+                    <Button className={styles["best-seller-courses__see-more-btn"]} id="see-more" onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=best-seller`) }}>
+                        اعرض المزيد
+                        <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
+                    </Button>
+                </Col>
+
+
                 <Col xs={{ span: 12, order: 2 }} className={styles["best-seller-courses__cards-carousel"]}>
                     <Swiper
                         dir="rtl"
+                        initialSlide={1}
                         slidesPerView={5}
                         spaceBetween={0}
                         navigation={true}
                         pagination={{ clickable: true }}
                         breakpoints={{
                             "50": {
-                                slidesPerView: 1,
+                                slidesPerView: 1.15,
                             },
                             "576": {
                                 slidesPerView: 3,

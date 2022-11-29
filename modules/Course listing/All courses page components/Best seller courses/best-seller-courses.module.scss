@@ -185,6 +185,37 @@
     background-color: var(--lightgrey);
 }
 
+.best-seller-courses__see-more-btn-col {
+    @include flex(flex-end, flex-end);
+}
+
+.best-seller-courses__see-more-btn {
+    @include outlined-button;
+    font-size: 1.063rem;
+    color: var(--outlined-btn-text);
+    font-weight: 700;
+    width: 10rem;
+    height: 2.75rem;
+    z-index: 5;
+    border: 0.125rem solid var(--outlined-btn-border) !important;
+    border-radius: 0.75rem;
+    margin-left: 3rem;
+    background-color: var(--tadarab-light-bg) !important;
+
+    @include flex(center, space-around);
+
+    &:is(&:hover, &:active) {
+        // background-color: white !important;
+        color: var(--outlined-btn-text) !important;
+        border: 0.125rem solid var(--outlined-btn-border) !important;
+    }
+
+    svg {
+        width: 0.5rem;
+        height: 0.875rem;
+    }
+}
+
 
 @media (max-width:1024px) {
     .popover-wrapper {
@@ -545,12 +576,38 @@
     }
 
 
+    .best-seller-courses__see-more-btn-col {
+        @include flex(center, center);
+        margin-bottom: 4rem;
+    }
+
+    .best-seller-courses__see-more-btn {
+        font-size: 1.063rem*2.5;
+        width: 100%;
+        height: 2.75rem*2.5;
+        border-width: 0.125rem*2.5 !important;
+        border-radius: 0.75rem*2.5;
+        margin: 0 8.5rem 0 8.5rem;
+        @include flex(center, center);
+
+        &:is(&:hover, &:active) {
+            border-width: 0.125rem*2.5 !important;
+        }
+
+        svg {
+            width: 0.5rem*2.5;
+            height: 0.875rem*2.5;
+            margin: 0.2rem 2.063rem 0 0;
+
+        }
+    }
+
 
     .best-seller-courses__cards-carousel {
         margin: 0.5rem 0 0 0;
 
         &>div {
-            padding: 1.4rem*2.92 2rem*2.92 !important;
+            padding: 1.4rem*2.5 2rem*2.5 !important;
             margin-top: 0;
             margin-bottom: 0;
 
@@ -563,25 +620,25 @@
                 top: 46% !important;
 
                 &:after {
-                    font-size: 1rem*2.92 !important;
-                    box-shadow: 0 0 1.25rem*2.92 #00000033 !important;
+                    font-size: 1rem*2.5 !important;
+                    box-shadow: 0 0 1.25rem*2.5 #00000033 !important;
                 }
             }
 
             &>div:nth-child(1) {
-                right: 1rem*2.92 !important;
+                right: 1rem*2.5 !important;
 
                 &:after {
-                    padding: 1.5rem*2.92 1.18rem*2.92 1.5rem*2.92 1.28rem*2.92 !important;
+                    padding: 1.5rem*2.5 1.18rem*2.5 1.5rem*2.5 1.28rem*2.5 !important;
                 }
 
             }
 
             &>div:nth-child(2) {
-                left: 1rem*2.92 !important;
+                left: 1rem*2.5 !important;
 
                 &:after {
-                    padding: 1.5rem*2.92 1.28rem*2.92 1.5rem*2.92 1.18rem*2.92 !important;
+                    padding: 1.5rem*2.5 1.28rem*2.5 1.5rem*2.5 1.18rem*2.5 !important;
                 }
             }
 
@@ -596,10 +653,10 @@
     }
 
     .best-seller-courses__cards-carousel__course-card {
-        width: 15rem*2.92;
-        height: 14rem*2.92;
-        box-shadow: 0 0.5rem*2.92 1.313rem*2.92 #0000001A;
-        border-radius: 0.75rem*2.92;
+        width: 15rem*2.5;
+        height: 14rem*2.5;
+        box-shadow: 0 0.5rem*2.5 1.313rem*2.5 #0000001A;
+        border-radius: 0.75rem*2.5;
         position: relative;
         display: inline-block;
 
@@ -609,33 +666,33 @@
             left: 0;
             top: 0;
             width: 100%;
-            height: 5rem*2.92;
+            height: 5rem*2.5;
             display: inline-block;
             background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-            border-radius: 0.75rem*2.92;
+            border-radius: 0.75rem*2.5;
 
         }
     }
 
     .best-seller-courses__cards-carousel__course-card__category-chip {
         @include categories-chip;
-        top: 1rem*2.92;
-        left: 1.2rem*2.92;
-        border-radius: 0.75rem*2.92;
-        padding: 0.12rem*2.92 0.7rem*2.92;
-        font-size: 0.75rem*2.92;
+        top: 1rem*2.5;
+        left: 1.2rem*2.5;
+        border-radius: 0.75rem*2.5;
+        padding: 0.12rem*2.5 0.7rem*2.5;
+        font-size: 0.75rem*2.5;
     }
 
 
     .best-seller-courses__cards-carousel__course-card__course-img {
         width: 100%;
-        height: 10rem*2.92;
-        border-radius: 0.75rem*2.92 0.75rem*2.92 0 0;
+        height: 10rem*2.5;
+        border-radius: 0.75rem*2.5 0.75rem*2.5 0 0;
 
     }
 
     .best-seller-courses__cards-carousel__course-card__card-body {
-        padding: 0.6rem*2.92 1rem*2.92;
+        padding: 0.6rem*2.5 1rem*2.5;
         @include flex(unset, space-between);
         flex-direction: column;
         height: 26%;
@@ -644,19 +701,19 @@
     .best-seller-courses__cards-carousel__course-card__card-body__card-header {
         @include flex(center);
         position: relative;
-        padding: 0 0 0.7813rem*2.92 0;
-        // border-bottom: 0.05rem*2.92 solid var(--borders-grey);
+        padding: 0 0 0.7813rem*2.5 0;
+        // border-bottom: 0.05rem*2.5 solid var(--borders-grey);
     }
 
     .best-seller-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
         display: inline-block;
-        font-size: 0.5rem*2.92;
+        font-size: 0.5rem*2.5;
 
         img {
             border-radius: 50%;
-            width: 2.5rem*2.92;
-            height: 2.5rem*2.92;
-            margin-left: 0.6rem*2.92;
+            width: 2.5rem*2.5;
+            height: 2.5rem*2.5;
+            margin-left: 0.6rem*2.5;
         }
     }
 
@@ -665,17 +722,17 @@
     }
 
     .best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
-        font-size: 0.875rem*2.92;
+        font-size: 0.875rem*2.5;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        width: 28.5rem;
+        width: 25.5rem;
 
     }
 
     .best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
-        font-size: 0.813rem*2.92;
-        width: 28.5rem;
+        font-size: 0.813rem*2.5;
+        width: 25.5rem;
 
     }
 

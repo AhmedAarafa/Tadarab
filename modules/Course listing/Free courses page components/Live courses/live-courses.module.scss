@@ -795,7 +795,7 @@
         margin-bottom: 0;
 
         &>div {
-            padding: 0 2rem*2.4 !important;
+            padding: 0 2rem*2.2 !important;
 
             &:before {
                 box-shadow: none;
@@ -807,30 +807,30 @@
             }
 
             &>div:nth-child(4) {
-                padding-bottom: 2.5rem*2.4 !important;
+                padding-bottom: 2.5rem*2.2 !important;
             }
         }
 
     }
 
     .live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
-        font-size: 1.25rem*2.4;
+        font-size: 1.25rem*2.2;
     }
 
     .live-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
-        font-size: 0.813rem*2.4;
+        font-size: 0.813rem*2.2;
     }
 
     .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
-        margin-top: -0.5rem*2.4;
+        margin-top: -0.5rem*2.2;
     }
 
     .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
-        font-size: 0.875rem*2.4;
+        font-size: 0.875rem*2.2;
     }
 
     .live-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
-        font-size: 0.625rem*2.4;
+        font-size: 0.625rem*2.2;
     }
 
     .live-courses__title {
@@ -838,7 +838,7 @@
 
         &>h2 {
             text-align: center;
-            font-size: 4rem;
+            font-size: 3.75rem;
             padding: 7rem 0 0 0;
             @include flex(center, center);
         }
@@ -852,17 +852,17 @@
 
     .live-courses__see-more-btn {
         @include outlined-button;
-        font-size: 1.063rem*2.4;
+        font-size: 1.063rem*2.2;
         width: 100%;
-        height: 2.75rem*2.4;
-        border-width: 0.125rem*2.4 !important;
-        border-radius: 0.75rem*2.4;
+        height: 2.75rem*2.2;
+        border-width: 0.125rem*2.2 !important;
+        border-radius: 0.75rem*2.2;
         @include flex(center, center);
         margin: 0 7.3rem 0 7.3rem;
         background-color: var(--tadarab-light-bg) !important;
 
         &:is(&:hover, &:active) {
-            border-width: 0.125rem*2.4 !important;
+            border-width: 0.125rem*2.2 !important;
         }
 
         svg {
@@ -877,11 +877,11 @@
 
     .live-courses__cards-carousel__card,
     .live-courses__cards-carousel__card--paid {
-        width: 18.75rem*2.4;
-        height: 60rem;
-        padding-bottom: 1rem*2.4;
-        box-shadow: 0 0.5rem*2.4 1.313rem*2.4 #0000001A;
-        border-radius: 0.85rem*2.4;
+        width: 18.75rem*2.2;
+        height: 56rem;
+        padding-bottom: 1rem*2.2;
+        box-shadow: 0 0.5rem*2.2 1.313rem*2.2 #0000001A;
+        border-radius: 0.85rem*2.2;
 
         &:after {
             content: '';
@@ -889,7 +889,7 @@
             left: 0;
             top: 0;
             width: 100%;
-            height: 12.5rem*2.4;
+            height: 12.5rem*2.2;
             display: inline-block;
             background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
             background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.8) 100%);
@@ -901,11 +901,11 @@
         //     left: 0;
         //     top: 0;
         //     width: 100%;
-        //     height: 8rem*2.4;
+        //     height: 8rem*2.2;
         //     display: inline-block;
         //     background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
         //     background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-        //     border-radius: 0.85rem*2.4;
+        //     border-radius: 0.85rem*2.2;
         // }
     }
 
@@ -922,108 +922,108 @@
 
     .live-courses__cards-carousel__course-card__category-chip {
         @include categories-chip;
-        font-size: 0.75rem*2.4;
-        top: 1rem*2.4;
-        left: 1.2rem*2.4;
-        border-radius: 0.75rem*2.4;
-        padding: 0.12rem*2.4 0.7rem*2.4;
+        font-size: 0.75rem*2.2;
+        top: 1rem*2.2;
+        left: 1.2rem*2.2;
+        border-radius: 0.75rem*2.2;
+        padding: 0.12rem*2.2 0.7rem*2.2;
     }
 
     .live-courses__cards-carousel__course-card__duration-chip {
         @include categories-chip;
-        font-size: 0.75rem*2.4;
-        top: 1rem*2.4;
+        font-size: 0.75rem*2.2;
+        top: 1rem*2.2;
         left: 0;
-        right: 0.2rem*2.4;
+        right: 0.2rem*2.2;
         color: var(--dark-black);
         @include flex;
 
         &>div {
 
             svg {
-                width: 1.5rem*2.4 !important;
-                height: 1.5rem*2.4 !important;
+                width: 1.5rem*2.2 !important;
+                height: 1.5rem*2.2 !important;
             }
         }
     }
 
     .live-courses__cards-carousel__card__trainer-img {
         width: 100%;
-        height: 12.5rem*2.4;
-        border-radius: 0.85rem*2.4 0.85rem*2.4 0 0;
+        height: 12.5rem*2.2;
+        border-radius: 0.85rem*2.2 0.85rem*2.2 0 0;
 
     }
 
     .live-courses__cards-carousel__card__card-body {
-        padding: 0.4rem*2.4 1rem*2.4 0 1rem*2.4;
+        padding: 0.4rem*2.2 1rem*2.2 0 1rem*2.2;
     }
 
     .live-courses__cards-carousel__card__card-body__card-header {
         position: relative;
-        margin-top: 0.8rem*2.4;
-        padding: 0 0 1rem*2.4 0;
-        border-bottom: 0.05rem*2.4 solid var(--borders-grey);
+        margin-top: 0.8rem*2.2;
+        padding: 0 0 1rem*2.2 0;
+        border-bottom: 0.05rem*2.2 solid var(--borders-grey);
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__title {
-        font-size: 1.063rem*2.4;
-        width: 40.25rem;
+        font-size: 1.063rem*2.2;
+        width: 35rem;
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__author {
-        font-size: 0.813rem*2.4;
+        font-size: 0.813rem*2.2;
         color: var(--grey);
-        width: 40.25rem;
+        width: 35rem;
 
     }
 
     .live-courses__cards-carousel__card__card-body__card-header__course-details__para {
-        font-size: 0.813rem*2.4;
+        font-size: 0.813rem*2.2;
         color: var(--grey);
-        margin-top: 1rem*2.4;
+        margin-top: 1rem*2.2;
     }
 
     .live-courses__cards-carousel__card__card-body__checkout-details {
-        margin-top: 0.8rem*2.4;
+        margin-top: 0.8rem*2.2;
         @include flex(center, space-between);
     }
 
     .live-courses__cards-carousel__card__card-body__checkout-details__price {
-        font-size: 1.25rem*2.4;
+        font-size: 1.25rem*2.2;
     }
 
     .live-courses__cards-carousel__card__card-body__checkout-details__btn-box {
         @include icon-button;
-        margin-right: 0.3rem*2.4;
+        margin-right: 0.3rem*2.2;
         padding: 0.5rem 1.2rem !important;
-        width: 2.25rem*2.4;
-        height: 2.25rem*2.4;
+        width: 2.25rem*2.2;
+        height: 2.25rem*2.2;
         border-radius: 0.75rem*2.2;
         margin-top: 0.5rem;
 
         svg {
-            width: 1.188rem*2.4;
-            height: 1.813rem*2.4;
+            width: 1.188rem*2.2;
+            height: 1.813rem*2.2;
         }
     }
 
     .live-courses__cards-carousel__card__live-icon {
-        width: 2.563rem*2.4;
-        height: 2.563rem*2.4;
+        width: 2.563rem*2.2;
+        height: 2.563rem*2.2;
         @include flex(center, center);
         position: absolute;
-        bottom: -1.2rem*2.4;
-        left: 8.5rem*2.4;
+        bottom: -1.2rem*2.2;
+        left: 8.5rem*2.2;
         animation: ripple 1000ms infinite;
 
         svg {
-            width: 1.75rem*2.4;
-            height: 2rem*2.4;
+            width: 1.75rem*2.2;
+            height: 2rem*2.2;
             box-shadow: 0 0 0.375rem #00000014;
             opacity: 0.4;
-            margin-left: 0.15rem*2.4
+            margin-left: 0.15rem*2.2
         }
     }
 
@@ -1034,7 +1034,7 @@
         }
 
         100% {
-            box-shadow: 0 0 0 0.625rem*2.4 rgba(255, 0, 0, 0.1), 0 0 0 0.75rem*2.4 rgba(255, 255, 255, 0), 0 0 0 1.313rem*2.4 rgba(255, 0, 0, 0.1), 0 0 0 1.438rem*2.4 rgba(255, 255, 255, 0);
+            box-shadow: 0 0 0 0.625rem*2.2 rgba(255, 0, 0, 0.1), 0 0 0 0.75rem*2.2 rgba(255, 255, 255, 0), 0 0 0 1.313rem*2.2 rgba(255, 0, 0, 0.1), 0 0 0 1.438rem*2.2 rgba(255, 255, 255, 0);
         }
     }
 

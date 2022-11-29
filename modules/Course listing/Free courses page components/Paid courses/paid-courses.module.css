@@ -923,7 +923,7 @@
 }
 @media (max-width: 575px) {
   .paid-courses__title {
-    font-size: 4.688rem;
+    font-size: 3.75rem;
     text-align: center;
     padding: 0;
     margin: 7.344rem 0 3.906rem 0;
@@ -955,7 +955,7 @@
     margin: 0.5rem 0 0 0;
   }
   .paid-courses__cards-carousel > div {
-    padding: 4.088rem 5.84rem !important;
+    padding: 3.5rem 5rem !important;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -966,20 +966,20 @@
     top: 46% !important;
   }
   .paid-courses__cards-carousel > div > div:nth-child(1):after, .paid-courses__cards-carousel > div > div:nth-child(2):after {
-    font-size: 2.92rem !important;
-    box-shadow: 0 0 3.65rem rgba(0, 0, 0, 0.2) !important;
+    font-size: 2.5rem !important;
+    box-shadow: 0 0 3.125rem rgba(0, 0, 0, 0.2) !important;
   }
   .paid-courses__cards-carousel > div > div:nth-child(1) {
-    right: 2.92rem !important;
+    right: 2.5rem !important;
   }
   .paid-courses__cards-carousel > div > div:nth-child(1):after {
-    padding: 4.38rem 3.4456rem 4.38rem 3.7376rem !important;
+    padding: 3.75rem 2.95rem 3.75rem 3.2rem !important;
   }
   .paid-courses__cards-carousel > div > div:nth-child(2) {
-    left: 2.92rem !important;
+    left: 2.5rem !important;
   }
   .paid-courses__cards-carousel > div > div:nth-child(2):after {
-    padding: 4.38rem 3.7376rem 4.38rem 3.4456rem !important;
+    padding: 3.75rem 3.2rem 3.75rem 2.95rem !important;
   }
   .paid-courses__cards-carousel > div > div:nth-child(3) {
     display: none;
@@ -990,10 +990,10 @@
     height: fit-content;
   }
   .paid-courses__cards-carousel__course-card {
-    width: 43.8rem;
-    height: 40.88rem;
-    box-shadow: 0 1.46rem 3.83396rem rgba(0, 0, 0, 0.1019607843);
-    border-radius: 2.19rem;
+    width: 37.5rem;
+    height: 35rem;
+    box-shadow: 0 1.25rem 3.2825rem rgba(0, 0, 0, 0.1019607843);
+    border-radius: 1.875rem;
     position: relative;
     display: inline-block;
   }
@@ -1003,10 +1003,10 @@
     left: 0;
     top: 0;
     width: 100%;
-    height: 14.6rem;
+    height: 12.5rem;
     display: inline-block;
     background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
-    border-radius: 2.19rem;
+    border-radius: 1.875rem;
   }
   .paid-courses__cards-carousel__course-card__category-chip {
     position: absolute;
@@ -1015,19 +1015,19 @@
     border-radius: 0.75rem;
     padding: 0.12rem 0.7rem;
     color: white;
-    top: 2.92rem;
-    left: 3.504rem;
-    border-radius: 2.19rem;
-    padding: 0.3504rem 2.044rem;
-    font-size: 2.19rem;
+    top: 2.5rem;
+    left: 3rem;
+    border-radius: 1.875rem;
+    padding: 0.3rem 1.75rem;
+    font-size: 1.875rem;
   }
   .paid-courses__cards-carousel__course-card__course-img {
     width: 100%;
-    height: 29.2rem;
-    border-radius: 2.19rem 2.19rem 0 0;
+    height: 25rem;
+    border-radius: 1.875rem 1.875rem 0 0;
   }
   .paid-courses__cards-carousel__course-card__card-body {
-    padding: 1.752rem 2.92rem;
+    padding: 1.5rem 2.5rem;
     display: flex;
     align-items: unset;
     justify-content: space-between;
@@ -1039,55 +1039,55 @@
     align-items: center;
     justify-content: unset;
     position: relative;
-    padding: 0 0 2.281396rem 0;
+    padding: 0 0 1.95325rem 0;
     border-bottom: none !important;
   }
   .paid-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
     display: inline-block;
-    font-size: 1.46rem;
+    font-size: 1.25rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box img {
     border-radius: 50%;
-    width: 7.3rem;
-    height: 7.3rem;
-    margin-left: 1.752rem;
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-left: 1.5rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__card-header__course-details {
     display: inline-block;
   }
   .paid-courses__cards-carousel__course-card__card-body__card-header__course-details__title {
-    font-size: 2.555rem;
+    font-size: 2.1875rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 28.5rem;
+    width: 25.5rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__card-header__course-details__author {
-    font-size: 2.37396rem;
-    width: 28.5rem;
+    font-size: 2.0325rem;
+    width: 25.5rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details {
-    margin-top: 2.92rem;
+    margin-top: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
-    font-size: 3.65rem;
+    font-size: 3.125rem;
     font-weight: 800;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
-    font-size: 2.37396rem;
+    font-size: 2.0325rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
-    margin-top: -1.46rem;
+    margin-top: -1.25rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
-    font-size: 2.555rem;
+    font-size: 2.1875rem;
     font-weight: 800;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
-    font-size: 1.825rem;
+    font-size: 1.5625rem;
   }
   .paid-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
     width: 2.25rem;
@@ -1099,7 +1099,7 @@
     align-items: center;
     justify-content: center;
     display: inline-flex;
-    margin-right: 0.876rem;
+    margin-right: 0.75rem;
     padding: 0 !important;
     border-radius: 1.875rem;
     width: -webkit-fit-content;

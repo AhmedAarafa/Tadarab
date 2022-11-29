@@ -93,19 +93,17 @@ export default function SignInPage() {
   const handleRedirection = (): any => {
     if (router.query && router.query.from) {
       if (router.query.from == "checkout") {
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=checkout`);
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=checkout?ps=2`);
       } else if (router.query.from.startsWith("webinar")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
-      } else if (router.query.from.startsWith("course"))  {
+      } else if (router.query.from.startsWith("course")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
-      } else if (router.query.from == "free") {
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
       } else {
         Router.back();
       }
 
     } else if (router.query && router.query.from_subscription) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription`);
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription&ps=2`);
     } else {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
     }
@@ -119,7 +117,7 @@ export default function SignInPage() {
       let tadarabGA = new TadarabGA();
       let clientId = tadarabGA.tadarab_get_traking_client();
       let customData = { email: googleResponse.profileObj.email, phone: "" };
-      if(googleResponse?.status!="unknown"&&googleResponse?.status!=""){
+      if (googleResponse?.status != "unknown" && googleResponse?.status != "") {
         axiosInstance.post(`social-login`, {
           "email": googleResponse?.profileObj?.email,
           "first_name": googleResponse?.profileObj?.givenName,
@@ -151,11 +149,9 @@ export default function SignInPage() {
 
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
+                } else if (router.query.from.startsWith("course")) {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                } else if (router.query.from.startsWith("course"))  {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                } else if (router.query.from == "free") {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                 } else {
                   Router.back();
                 }
@@ -185,12 +181,12 @@ export default function SignInPage() {
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {
-      if(response?.status!="unknown"&&response?.status!=""){
+      if (response?.status != "unknown" && response?.status != "") {
         let tadarabGA = new TadarabGA();
         let clientId = tadarabGA.tadarab_get_traking_client();
         let customData = { email: response?.email, phone: "" };
-        let fname = ((response?.name.split(' ')[0])?response?.name.split(' ')[0]:"");
-        let lname = ((response?.name.split(' ')[1])?response?.name.split(' ')[1]:"");
+        let fname = ((response?.name.split(' ')[0]) ? response?.name.split(' ')[0] : "");
+        let lname = ((response?.name.split(' ')[1]) ? response?.name.split(' ')[1] : "");
         axiosInstance.post(`social-login`, {
           "email": response.email,
           "first_name": fname,
@@ -222,11 +218,9 @@ export default function SignInPage() {
 
               if (router.query && router.query.from) {
                 if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
+                } else if (router.query.from.startsWith("course")) {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                } else if (router.query.from.startsWith("course"))  {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                } else if (router.query.from == "free") {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                 } else {
                   Router.back();
                 }
@@ -335,14 +329,12 @@ export default function SignInPage() {
                     if (router.query && router.query.from) {
                       // router.push(router.back());
                       if (router.query.from == "checkout") {
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
                       } else if (router.query.from.startsWith("webinar")) {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                      } else if (router.query.from == "free") {
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${router.query.from}`);
                       } else {
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                        //Router.back();
+                        // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                        Router.back();
                       }
 
                     } else if (router.query && router.query.from_subscription) {

@@ -17,6 +17,7 @@ export default function CommentsSection(props: any) {
     const [isCommentTextAreaEmpty, setIsCommentTextAreaEmpty] = useState(true);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [commentsSlicer, setCommentsSlicer] = useState<any>(5);
+    const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
         let cancel = false;
@@ -163,8 +164,8 @@ export default function CommentsSection(props: any) {
 
         } else if (window.getComputedStyle(replyIcon).fill == "rgb(204, 204, 204)") {
 
-            replyText.style.cssText = `color:#222`;
-            replyIcon.style.cssText = `fill:#222`;
+            replyText.style.cssText = `color: ${themeState == "light" ? "#222" : "#777"}`;
+            replyIcon.style.cssText = `fill: ${themeState == "light" ? "#222" : "#ccc"}`;
             CommentTextBox.focus();
             CommentTextBox.select();
             setReplyTo(commentId);

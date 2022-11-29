@@ -397,7 +397,7 @@ function CourseDetails(props: any) {
                     </Row>
                   </>
                 }
-                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse />}
+                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse Cid={() => { return courseId }}/>}
               </>
             }
           </Container>

@@ -49,7 +49,7 @@ export default function Categories() {
                 </Col>
 
                 <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 2 }} className={styles['categories__cards-carousel']}>
-                    <Swiper dir="rtl" slidesPerView={7} navigation={true} pagination={{ "clickable": true }}
+                    <Swiper dir="rtl"  initialSlide={1} slidesPerView={7} navigation={true} pagination={{ "clickable": true }}
                         breakpoints={{
                             "50": {
                                 "slidesPerView": 2,

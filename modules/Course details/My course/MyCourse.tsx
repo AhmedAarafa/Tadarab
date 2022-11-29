@@ -12,18 +12,19 @@ import useResize from "custom hooks/useResize";
 import downloadjs from 'downloadjs';
 import html2canvas from 'html2canvas';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import CommentsSection from "../Comments section/CommentsSection"
 
-export default function MyCourse() {
+export default function MyCourse(props:any) {
     const [courseDetails, setCourseDetails] = useState<any>([]);
     const [todaysDate, setTodaysDate] = useState<any>("");
     const [userInfo, setUserInfo] = useState<any>({});
+    const [isMobileView, setIsMobileView] = useState(false);
     const [downloadLink, setDownloadLink] = useState<any>("");
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const myCourseNavigator = useSelector((state: any) => state.myCourseNavigator);
     const dispatch = useDispatch();
     const themeState = useSelector((state: any) => state.themeState.theme);
 
-    const [isMobileView, setIsMobileView] = useState(false);
 
     const viewportWidthDetector = () => {
         if (window.innerWidth >= 576) {
@@ -122,7 +123,7 @@ export default function MyCourse() {
                                                             <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                                 <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
                                                                     <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                                        <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"}/>
+                                                                        <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                     </div>
                                                                     <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                                         <div>{att?.title}</div>
@@ -175,7 +176,7 @@ export default function MyCourse() {
                                                         <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                             <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
                                                                 <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                                    <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"}/>
+                                                                    <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                                 </div>
                                                                 <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                                     <div>{att?.title}</div>
@@ -203,9 +204,14 @@ export default function MyCourse() {
                                     </Accordion.Item>
                                 </Accordion>}
                         </Col>
+
+                        <Col className={styles["my-course__comments-section"]} xs={{ span: 12, order: 5 }} sm={{ span: 12, order: 5 }}>
+                            <CommentsSection Cid={props.Cid}/>
+                        </Col>
                     </>
                 }
             </Row>
+
 
             <div className={styles["my-course__certificate"]} style={{ display: "none", position: "fixed", bottom: "0", left: "0" }} id="course-certificate">
                 <img src="/images/شهادة3 website.jpg" alt="course certificate" />

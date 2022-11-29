@@ -200,6 +200,7 @@ function LatestCourses() {
 
           <Swiper
             dir="rtl"
+             
             slidesPerView={5}
             spaceBetween={0}
             navigation={true}

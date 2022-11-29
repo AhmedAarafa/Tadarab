@@ -16,6 +16,8 @@ import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import { ChevronLeftIcon } from "common/Icons/Icons";
+
 
 export default function DiscoverFreeCourses() {
     const [freeCourses, setFreeCourses] = useState<any>([]);
@@ -24,10 +26,6 @@ export default function DiscoverFreeCourses() {
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const router = useRouter();
     SwiperCore.use([Navigation]);
-
-    // useEffect(() => {
-    //     toggleLoader("show");
-    // }, []);
 
     useEffect(() => {
         toggleLoader("show");
@@ -41,56 +39,38 @@ export default function DiscoverFreeCourses() {
                 toggleLoader("hide");
                 console.log(error);
             });
-
     }, []);
-
-    const handleFreeCoursesActionBtn = (course: any): any => {
-        if (userStatus.isUserAuthenticated == true) {
-            handleFreeCourses(course);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from: "free" }
-            })
-        }
-    }
-
-    const handleCartActionBtn = (course: any): any => {
-    }
-
-    const handleFavActionBtn = (course: any): any => {
-        if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `courses/?page=1&limit=10&type=free`);
-            handleFavResponse.then(function (response: any) {
-                setFreeCourses(response.data);
-            })
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from: "free" }
-            })
-        }
-    }
 
 
     return (
         <Row data-theme={themeState} className={styles["discover-free-courses"]}>
-            <Col xs={12} className={styles["discover-free-courses__title"]}>
+            <Col xs={{ span: 12, order: 1 }} sm={{ span: 9, order: 1 }} className={styles["discover-free-courses__title"]}>
                 <h2>
                     <span> الدورات المجانية </span>
                 </h2>
             </Col>
 
-            <Col xs={12} className={styles["discover-free-courses__cards-carousel"]}>
+            {
+                router.query.type !== "free" &&
+                <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 2 }} className={styles["discover-free-courses__see-more-btn-col"]}>
+                    <Button className={styles["discover-free-courses__see-more-btn"]} id="see-more" onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}courses/?type=free`) }}>
+                        اعرض المزيد
+                        <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
+                    </Button>
+                </Col>
+            }
+
+            <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 3 }} className={styles["discover-free-courses__cards-carousel"]}>
                 <Swiper
                     dir="rtl"
+                    initialSlide={1}
                     slidesPerView={5}
                     spaceBetween={0}
                     navigation={true}
                     pagination={{ clickable: true }}
                     breakpoints={{
                         "50": {
-                            slidesPerView: 1.25,
+                            slidesPerView: 1.15,
                         },
                         "576": {
                             slidesPerView: 3,

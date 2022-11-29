@@ -18,7 +18,7 @@ export default function BrowseThroughCategories(props:any) {
             </div>
 
             <Col xs={12} className={styles['browse-through-categories__cards-carousel']}>
-                <Swiper dir="rtl" slidesPerView={7} navigation={true}
+                <Swiper dir="rtl"   slidesPerView={7} navigation={true}
                     breakpoints={{
                         "50": {
                             "slidesPerView": 2,

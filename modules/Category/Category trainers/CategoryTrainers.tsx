@@ -26,7 +26,7 @@ export default function CategoryTrainers(props: any) {
         </Col>
 
         <Col xs={12} className={styles["category-trainer__cards-carousel"]}>
-          <Swiper dir="rtl" slidesPerView={3.7} navigation={true} pagination={{ "clickable": true }}
+          <Swiper dir="rtl"   slidesPerView={3.7} navigation={true} pagination={{ "clickable": true }}
             breakpoints={{
               "50": {
                 slidesPerView: 1,

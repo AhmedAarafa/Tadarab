@@ -36,21 +36,21 @@ export default function Trainers() {
                     </h2>
                 </Col>
 
-                {/* <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 1 }} className={styles["trainers__see-more-btn-col"]}>
+                <Col xs={{ span: 12, order: 3 }} sm={{ span: 3, order: 2 }} className={styles["trainers__see-more-btn-col"]}>
                     <Link href="/trainers">
                         <Button className={styles["trainers__see-more-btn"]}>
                             اعرض كل المدربين
                             <ChevronLeftIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                         </Button>
                     </Link>
-                </Col> */}
+                </Col>
 
                 <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 3 }} className={styles["trainers__cards-carousel"]}>
                     <Swiper dir="rtl" slidesPerView={4} navigation={true} pagination={{ "clickable": true }}
                         breakpoints={{
 
                             "50": {
-                                slidesPerView: 1,
+                                slidesPerView: 1.15,
                             },
                             "576": {
                                 slidesPerView: 3,

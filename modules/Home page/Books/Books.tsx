@@ -47,7 +47,7 @@ export default function Books() {
 
 
         <Col xs={{ span: 12, order: 2 }} sm={{ span: 12, order: 2 }} className={styles["books__cards-carousel"]}>
-          <Swiper dir="rtl" slidesPerView={5} navigation={true} pagination={{ "clickable": true }}
+          <Swiper dir="rtl"   slidesPerView={5} navigation={true} pagination={{ "clickable": true }}
             breakpoints={{
               "50": {
                 slidesPerView: 1,
