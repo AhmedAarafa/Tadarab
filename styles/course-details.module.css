@@ -19,7 +19,8 @@
     padding: 0 3rem 0 0;
   }
   .course-details__comments-section {
-    padding: 0 3rem;
+    padding: 0 3rem 3rem 3rem;
+    margin-bottom: -12.5rem;
   }
   .course-details__tadarab-business {
     padding: 0 3rem;

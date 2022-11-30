@@ -24,7 +24,6 @@ import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
-import Link from "next/link";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from 'react-google-login';
@@ -41,7 +40,6 @@ interface SignUpFormValues {
 };
 
 export default function SignupPage() {
-  const [countryFlag, setCountryFlag] = useState("eg.png");
   const [countryCallingCode, setCountryCallingCode] = useState("20");
   const [countryCode, setCountryCode] = useState("EG");
   const [errorMessage, setErrorMessage] = useState("");
@@ -70,7 +68,6 @@ export default function SignupPage() {
   const updateValue = (e: any) => {
     setPhoneFieldEvent(e);
     // console.log("e",e);
-
   };
 
   useEffect(() => {
@@ -353,30 +350,6 @@ export default function SignupPage() {
                 </div>
               )}
             />
-
-            {/* <TwitterLogin
-              authCallback={responseTwitter}
-              consumerKey={`${process.env.NEXT_PUBLIC_TWITTER_API_KEY}`}
-              consumerSecret={`${process.env.NEXT_PUBLIC_TWITTER_APP_SECRET}`}
-              className={styles['register__register-box__register-with-twitter']}
-            >
-              <div>
-                <TwitterIcon color="#1DA1F2" />
-                تويتر
-              </div>
-            </TwitterLogin> */}
-
-            {/* <FacebookLogin
-              appId={`${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`}
-              autoLoad={false}
-              fields="name,email"
-              callback={responseFacebook}
-              render={(renderProps:any) => (
-                <div onClick={renderProps.onClick}>
-                  <FbIcon color="#4267B2"/>
-                 انشاء حساب بواسطة فيسبوك
-                </div>
-              )} /> */}
 
           </div>
 

@@ -33,6 +33,7 @@
     padding: 0 0 0 0;
     border-top: none;
     width: 100%;
+    order: 5;
   }
   .course-keywords__title {
     font-size: 3.15rem;

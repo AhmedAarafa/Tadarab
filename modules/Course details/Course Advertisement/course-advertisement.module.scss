@@ -48,15 +48,6 @@
         height: 25rem;
         border-radius: 1.25rem;
         box-shadow: 0 0 1.25rem #0000001A;
-        // cursor: pointer;
-
-        // &:after{
-        //     content: '';
-        //     position: absolute;
-        //     width: 100%; height:100%;
-        //     top:0; left:0;
-        //     background:rgba(0,0,0,0.6);
-        // }
     }
 }
 
@@ -68,13 +59,6 @@
     border-radius: 1.375rem;
     position: relative;
 
-    // &:after{
-    //         content: '';
-    //         position: absolute;
-    //         width: 100%; height:100%;
-    //         top:0; left:0;
-    //         background:rgba(0,0,0,0.3);
-    //     }
     img {
         width: 100%;
     }
@@ -175,22 +159,6 @@
     width: 97%;
 }
 
-
-
-
-// .live-webinar-countdown {
-//     background-color: rgba(175, 21, 31, 0.08);
-//     box-shadow: 0 0.188rem 0.5rem #0000001A;
-//     padding: 0.563rem 1rem 0.7rem 1rem;
-//     border-radius: 0.625rem;
-//     color: var(--primary-red);
-//     @include flex(center, space-between);
-//     width: 50%;
-//     margin: 2rem auto;
-//     position: absolute;
-//     bottom: 0;
-// }
-
 .live-webinar-countdown__offer-available {
     margin-left: 1.938rem;
 
@@ -250,9 +218,12 @@
     background: transparent url('/images/live-stream-red_24X24.png') no-repeat scroll center center/100% auto
 }
 
+
+
 @media (max-width: 575px) {
     .course-ad {
         margin: 10.5rem 0 0 0;
+        order: 1;
     }
 
 
@@ -485,5 +456,15 @@
                 margin-left: 0.3rem*2.2;
             }
         }
+    }
+
+    .live-webinar__signup-free {
+        @include flex(center, center);
+        @include contained-button;
+        font-size: 1rem*2.5;
+        margin: 1rem*2.5 0;
+        border-radius: 0.75rem*2.5;
+        width: 100%;
+        height: 3rem*2.5;
     }
 }

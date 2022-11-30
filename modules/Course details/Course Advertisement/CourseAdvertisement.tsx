@@ -15,6 +15,8 @@ import {
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
 import datesArray from "./Dates.json";
 import { tConvert } from "modules/_Shared/utils/dateFormatHandler";
+import { Button } from "react-bootstrap"
+import SignupPopup from "common/Signup popup/SignupPopup";
 
 export default function CourseAdvertisement(theOption: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
@@ -23,7 +25,7 @@ export default function CourseAdvertisement(theOption: any) {
   const [isMobileView, setIsMobileView] = useState(false);
   const [toDisplayValues, setToDisplayValues] = useState<any>([]);
   const themeState = useSelector((state: any) => state.themeState.theme);
-
+  const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
 
   const viewportWidthDetector = () => {
     if (window.innerWidth >= 576) {
@@ -74,8 +76,6 @@ export default function CourseAdvertisement(theOption: any) {
     }
 
   }, [theOption.liveWebinarDetails])
-
-
 
   useEffect(() => {
     setCourseDetails(courseDetailsData.data || []);
@@ -229,12 +229,18 @@ export default function CourseAdvertisement(theOption: any) {
                   تابع الدورة من اي لابتوب او موبايل
                 </div>
 
+                <Button className={styles["live-webinar__signup-free"]} onClick={()=>{ setIsSignupModalVisible(true) }}>
+                  سجل الآن مجاناً
+                </Button>
+
               </>
             }
           </>
         }
 
       </div>
+
+      <SignupPopup isSignupModalVisible={isSignupModalVisible} setIsSignupModalVisible={setIsSignupModalVisible} />
     </>
   )
 }

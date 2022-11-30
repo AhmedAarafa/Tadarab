@@ -84,6 +84,7 @@
     margin-top: 7rem;
     width: 100%;
     position: relative;
+    order: 8;
   }
   .trainer-info-section__trainer-box {
     display: flex;

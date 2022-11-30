@@ -244,7 +244,7 @@ function CourseDetails() {
                 <MobileNavTabsBar />
                 <MobileCheckoutBar data={subscriptionInfo} />
                 <Row className={styles["course-details-row"]}>
-                  <Col xs={12} sm={8}>
+                  <Col xs={12} sm={8} className='d-flex flex-column'>
                     <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
                     {originalCardPlacement == false &&
                       <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />

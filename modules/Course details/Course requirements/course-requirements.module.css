@@ -54,6 +54,7 @@
     border-radius: 3.125rem;
     border-width: 0.1575rem;
     padding: 1.75rem;
+    order: 6;
   }
   .course-requirements__mid-level {
     display: flex;

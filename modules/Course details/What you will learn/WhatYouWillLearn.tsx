@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 
 export default function WhatYouWillLearn() {
-    const [showMore, setShowMore] = useState(true);
+    const [showMore, setShowMore] = useState(false);
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [courseDetails, setCourseDetails] = useState<any>([]);

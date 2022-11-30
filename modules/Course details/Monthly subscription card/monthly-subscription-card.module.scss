@@ -97,7 +97,7 @@
     @include flex(center, space-between);
     width: 100%;
     height: fit-content;
-    margin: 1rem 0 0 0;
+    margin: 0.5rem 0 0 0;
 }
 
 .live-webinar-countdown__offer-available {
@@ -145,12 +145,13 @@
     margin: 0.8rem 0.2rem 0 0.2rem;
 }
 
-.monthly-subscription__subscription-benefits{
-    @include flex(center,flex-start);
+.monthly-subscription__subscription-benefits {
+    @include flex(center, flex-start);
     gap: 0.3rem;
     font-size: 0.7rem;
-    div{
-        svg{
+
+    div {
+        svg {
             width: 0.75rem;
             height: 0.75rem;
         }
@@ -161,6 +162,7 @@
     font-size: 1.25rem;
     font-weight: 800;
     color: var(--dark-black);
+    margin-top: 1rem;
 
     &>div:nth-of-type(1) {
         span:nth-of-type(2) {
@@ -174,25 +176,29 @@
         font-size: 0.75rem;
         font-weight: 400;
 
-            span {
-                color: var(--primary-red);
-                font-weight: 700;
-                cursor: pointer;
-                display: inline-block;
-                margin: 0.5rem 0.2rem 0.6rem 0;
+        span {
+            color: var(--primary-red);
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0.5rem 0.2rem 0.6rem 0;
 
-                a {
-                    color: var(--primary-red) !important;
-                }
+            a {
+                color: var(--primary-red) !important;
             }
+        }
     }
 }
 
 .monthly_subscription__live-details-list {
     @include flex(center, flex-start);
     color: var(--dark-black);
+    margin-top: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+
     div {
-        margin-bottom: 0.25rem;
+        margin-bottom: 0;
 
         svg {
             width: 0.8rem;
@@ -200,6 +206,16 @@
             margin-left: 0.3rem;
         }
     }
+}
+
+.monthly_subscription__signup-free {
+    @include flex(center, center);
+    @include contained-button;
+    font-size: 1rem;
+    margin: 1rem 0 0 0;
+    border-radius: 0.75rem;
+    width: 100%;
+    height: 3rem;
 }
 
 .monthly-subscription__course-card__course-title {
@@ -555,7 +571,6 @@
 .monthly-subscription__subscription-value {
     font-size: 0.75rem;
     text-align: center;
-    // font-weight: 700;
     color: var(--grey);
     margin-top: 0.3rem;
 
@@ -596,6 +611,18 @@
     font-weight: 700;
 }
 
+.monthly-subscription__secondary {
+    background-color: var(--tadarab-bg) !important;
+    border: 0.063rem solid var(--dark-black) !important;
+    color: var(--dark-black) !important;
+
+    &:is(&:hover, &:active) {
+        background-color: var(--primary-red) !important;
+        border: 0.063rem solid var(--primary-red) !important;
+        color: white !important;
+    }
+}
+
 
 @media (max-width: 575px) {
 
@@ -604,8 +631,7 @@
         box-shadow: 0 0.23rem 0.62rem #0000001A;
         padding: 1.5rem;
         border-radius: 1rem;
-        margin-top: 3.5rem;
-        margin: 3rem 0 0 0;
+        margin: 1.5rem 0 0 0;
         @include flex(center, space-around);
     }
 
@@ -651,7 +677,7 @@
 
     .monthly-subscription__course-card {
         margin: 0 -3rem 0 0;
-        padding: 1.25rem*2.5 1.625rem*2.5 0 1.625rem*2.5;
+        padding: 1.25rem*2.5 1.625rem*2.5 1.25rem*2.5 1.625rem*2.5;
         // width: 100%;
         width: calc(100% + 6rem);
         // height: 34.063rem*2.5;
@@ -659,14 +685,16 @@
         border-radius: 0;
         position: static;
         // top: 5.5rem*2.5;
+        order: 3;
     }
 
 
-    .monthly-subscription__subscription-benefits{
+    .monthly-subscription__subscription-benefits {
         gap: 0.3rem*2.5;
         font-size: 0.7rem*2.5;
-        div{
-            svg{
+
+        div {
+            svg {
                 width: 0.75rem*2.5;
                 height: 0.75rem*2.5;
             }
@@ -773,6 +801,7 @@
             font-size: 1rem*2.5;
             margin-right: 0.5rem*2.5;
         }
+
         div {
             width: 1.5rem*2.5;
             height: 1.5rem*2.5;
@@ -829,10 +858,6 @@
     .monthly-subscription__course-card__guarantee-box__text-box__minor {
         font-size: 0.813rem*2.5;
     }
-
-    .monthly-subscription__course-card__guarantee-box__text-box__major {}
-
-    .monthly-subscription__course-card__guarantee-box__text-box__minor {}
 
     .monthly-subscription__subscribe-btn-box {
         margin-top: 1.188rem*2.5;
@@ -966,53 +991,19 @@
         position: relative;
     }
 
-
-
-    .ribbon {
-        width: 3.75rem*1.2;
-        padding: 2rem 0;
-        position: absolute;
-        top: -3.6rem;
-        left: -2rem;
-        text-align: center;
-        border-top-left-radius: 0.1875rem*1.2;
-        // background: #74C4AE;
-        background: #74C4AE;
-
-        div {
-            font-size: 0.65rem*1.8;
-            margin: 0 0.1rem*2;
-            background: #74C4AE;
-
-        }
-    }
-
-    .ribbon:before {
-        height: 0;
-        width: 0;
-        right: -0.3438rem*1.2;
-        top: 0.0063rem*1.2;
-        border-bottom: 0.375rem*1.2 solid #65ab98;
-        border-right: 0.375rem*1.2 solid transparent;
-    }
-
-    .ribbon:before,
-    .ribbon:after {
-        content: "";
-        position: absolute;
-    }
-
-    .ribbon:after {
-        height: 0;
-        width: 0;
-        bottom: -1.8438rem*1.2;
-        left: 0;
-        border-left: 1.875rem*1.2 solid #74C4AE;
-        border-right: 1.875rem*1.2 solid #74C4AE;
-        border-bottom: 1.875rem*1.2 solid transparent;
-    }
-
     .monthly_subscription__live-details-list {
         display: none;
+    }
+
+    .monthly-subscription__secondary {
+        background-color: var(--tadarab-bg) !important;
+        border: 0.063rem*2.5 solid var(--dark-black) !important;
+        color: var(--dark-black) !important;
+    
+        &:is(&:hover, &:active) {
+            background-color: var(--primary-red) !important;
+            border: 0.063rem*2.5 solid var(--primary-red) !important;
+            color: white !important;
+        }
     }
 }
