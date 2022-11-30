@@ -1,5 +1,5 @@
 .tabs-responsive-bar {
-  background-color: white;
+  background-color: var(--tadarab-light-bg);
   height: 7.813rem;
   box-shadow: 0 0.625rem 4.063rem rgba(0, 0, 0, 0.1019607843);
   font-size: 2.188rem;

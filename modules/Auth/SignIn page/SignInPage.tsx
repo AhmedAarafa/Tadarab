@@ -99,6 +99,8 @@ export default function SignInPage() {
       } else if (router.query.from.startsWith("course")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
       } else {
+        console.log("back1");
+
         Router.back();
       }
 
@@ -153,6 +155,8 @@ export default function SignInPage() {
                 } else if (router.query.from.startsWith("course")) {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                 } else {
+                  console.log("back2");
+
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
@@ -222,6 +226,8 @@ export default function SignInPage() {
                 } else if (router.query.from.startsWith("course")) {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                 } else {
+                  console.log("back3");
+
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
@@ -334,6 +340,8 @@ export default function SignInPage() {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                       } else {
                         // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
+                        console.log("back4");
+
                         Router.back();
                       }
 

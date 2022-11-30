@@ -140,7 +140,7 @@ export default function SignupPopup(props: any) {
         }
     }
 
-    const validationSchema = () => {
+    const validationSchema = ():any => {
         return Yup.object().shape(signupValidationRules);
     }
 

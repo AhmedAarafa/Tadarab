@@ -1,0 +1,34 @@
+@import "../../../styles/mixins";
+
+
+.mobile-signup-bar {
+    background-color: var(--tadarab-bg);
+    padding: 10px 0px;
+    box-shadow: 0 -0.781rem 3.281rem #00000014;
+    @include flex(center, center);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 8;
+    display: none;
+    background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
+}
+
+.mobile-signup-bar__subscribe-btn {
+    @include flex(center, center);
+    @include contained-button;
+    padding: 0.9375rem 1.875rem;
+    border-radius: 1.5625rem;
+    width: 50rem;
+    height: 6.5rem;
+    margin-top: 0.4rem;
+    font-size: 2rem;
+
+}
+
+.monthly-subscription__subscription-value {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 0.2rem;
+    color: var(--dark-black);
+}

@@ -8,7 +8,6 @@ import Router, { useRouter } from "next/router";
 
 export default function MobileCheckoutBar(props:any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
-  //const userStatus = useSelector((state:any) => state.userAuthentication);
   const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
 
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
@@ -17,11 +16,7 @@ export default function MobileCheckoutBar(props:any) {
   const dispatch = useDispatch();
   const Router = useRouter();
 
-  // useEffect(() => {
-  //   setCourseDetails(courseDetailsData.data || []);
-  // }, [courseDetailsData]);
   useEffect(() => {
-
     // setSubscriptionTimer
     document.cookie.split('; ').reduce((prev: any, current: any) => {
       const [name, ...value] = current.split('=');
@@ -73,11 +68,6 @@ export default function MobileCheckoutBar(props:any) {
               // what's left is seconds
               let seconds: any = delta; // in theory the modulus is not required
 
-              // days > 0 ? (days < 10 ? days = "0" + days : days = days ) : days = "00";
-              // hours > 0 ? (hours < 10 ? hours = "0" + hours : hours = hours ) : hours = "00";
-              // minutes > 0 ? (minutes < 10 ? minutes = "0" + minutes : minutes = minutes ) : minutes = "00";
-              // seconds > 0 ? (seconds < 10 ? seconds = "0" + seconds : seconds = seconds ) : seconds = "00";
-
               days = days.toString().padStart(2, 0);
               hours = hours.toString().padStart(2, 0);
               minutes = minutes.toString().padStart(2, 0);
@@ -92,8 +82,6 @@ export default function MobileCheckoutBar(props:any) {
                 setToDisplayValues({ values: [days, hours, minutes, seconds], visible: true });
                 return { days, hours, minutes, seconds }
               }
-
-
 
             }, 1000);
 

@@ -229,9 +229,9 @@ export default function CourseAdvertisement(theOption: any) {
                   تابع الدورة من اي لابتوب او موبايل
                 </div>
 
-                <Button className={styles["live-webinar__signup-free"]} onClick={()=>{ setIsSignupModalVisible(true) }}>
+                { userStatus.isUserAuthenticated == false &&  <Button className={styles["live-webinar__signup-free"]} onClick={() => { setIsSignupModalVisible(true) }}>
                   سجل الآن مجاناً
-                </Button>
+                </Button>}
 
               </>
             }

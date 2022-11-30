@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
+    history.scrollRestoration = 'manual';
 
     if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'production') {
       // console.log = function() {}

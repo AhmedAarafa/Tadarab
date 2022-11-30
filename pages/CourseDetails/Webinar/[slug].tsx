@@ -19,6 +19,7 @@ import TadarabBusiness from "modules/Course details/Tadarab business/TadarabBusi
 import CommentsSection from "modules/Course details/Comments section/CommentsSection";
 import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileNavTabsBar";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
+import MobileSignupBar from "modules/Course details/Mobile signup bar/MobileSignupBar";
 import MyCourse from "modules/Course details/My course/MyCourse";
 import MonthlySubscriptionCard from "modules/Course details/Monthly subscription card/MonthlySubscriptionCard";
 import withAuth from "configurations/auth guard/AuthGuard";
@@ -52,6 +53,7 @@ function CourseDetails() {
   const [isFound, setIsFound] = useState(true);
   const dispatch = useDispatch();
 
+  const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const Router = useRouter();
   const { slug } = Router.query;
@@ -79,7 +81,7 @@ function CourseDetails() {
     );
     var stream_url = '';
     const tabsResponsiveBar: any = document.getElementById("tabs-responsive-bar");
-    const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+    const MOBILESIGNUPBAR: any = document.getElementById("mobile-signup-bar");
     const navbar: any = document.getElementById("nav");
     let addToCartBtn: any = null;
 
@@ -87,10 +89,10 @@ function CourseDetails() {
       let addToCartBtn: any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+      MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `display:none` : null;
       window.addEventListener("scroll", function () {
         tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+        MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `display:none` : null;
         const projectsSection: any = document.getElementById("practical-projects-section");
         const reviewsSection: any = document.getElementById("reviews-section");
         const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
@@ -123,7 +125,7 @@ function CourseDetails() {
          justify-content:space-around;
          top:${navbar?.offsetHeight}px;
          ` : null;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+            MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `
          display:flex;
          align-items:center;
          justify-content:space-evenly;
@@ -132,7 +134,7 @@ function CourseDetails() {
 
           } else if (window.scrollY < addToCartBtn.offsetTop) {
             tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+            MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `display:none` : null;
           }
         }
 
@@ -146,10 +148,10 @@ function CourseDetails() {
         let addToCartBtn: any = null;
         setOriginalCardPlacement(true);
         tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+        MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `display:none` : null;
         window.addEventListener("scroll", function () {
           tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+          MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `display:none` : null;
 
           const projectsSection: any = document.getElementById("practical-projects-section");
           const reviewsSection: any = document.getElementById("reviews-section");
@@ -180,7 +182,7 @@ function CourseDetails() {
             justify-content:space-around;
             top:${navbar?.offsetHeight}px;
             ` : null;
-              MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+              MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `
             display:flex;
             align-items:center;
             justify-content:space-evenly;
@@ -188,7 +190,7 @@ function CourseDetails() {
             ` : null;
             } else if (window.scrollY < addToCartBtn?.offsetTop) {
               tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-              MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+              MOBILESIGNUPBAR ? MOBILESIGNUPBAR.style.cssText = `display:none` : null;
             }
           }
         });
@@ -204,7 +206,7 @@ function CourseDetails() {
           setCourseId(response?.data?.data?.archive_course.course_details.id);
           const webinardetails = response?.data?.data?.course_details;
           webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
-          dispatch(setCourseDetailsData(data)); 
+          dispatch(setCourseDetailsData(data));
           setCourseData(data);
 
           setLiveWebinar(webinardetails);
@@ -235,14 +237,17 @@ function CourseDetails() {
       <MetaTagsGenerator title={courseDetailsData?.data?.seo_title}
         description={courseDetailsData?.data?.seo_metadesc}
         img={courseDetailsData?.data?.seo_image} />
-        {/*  (courseDetailsData?.data?.course_details?.is_purchased) && */}
+      {/*  (courseDetailsData?.data?.course_details?.is_purchased) && */}
       {
         isFound ?
           <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
             {((JSON.stringify(courseDetailsData?.data) !== "{}")) &&
               <>
-                <MobileNavTabsBar />
-                <MobileCheckoutBar data={subscriptionInfo} />
+                {/* <MobileNavTabsBar /> */}
+                {
+                  !userStatus &&
+                  <MobileSignupBar />
+                }
                 <Row className={styles["course-details-row"]}>
                   <Col xs={12} sm={8} className='d-flex flex-column'>
                     <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
@@ -266,7 +271,7 @@ function CourseDetails() {
                     <TrainerInfo />
                     {/* <GuaranteeCard /> */}
                     {/* <CourseCertificate /> */}
-                    <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar} /> 
+                    <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar} />
                     {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
                   </Col>
                   {
