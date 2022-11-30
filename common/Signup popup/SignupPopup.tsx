@@ -126,9 +126,6 @@ export default function SignupPopup(props: any) {
                         }
                         tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: response.data.data.email, traking_uid: response.data.data.id });
                         setIsSignupDone(true);
-                        setTimeout(() => {
-                            setShow(false);
-                        }, 1000);
 
                     } else {
                         setErrorMessage(response.data.message);
@@ -268,9 +265,7 @@ export default function SignupPopup(props: any) {
 
                                                         tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: values.email, traking_uid: response.data.data.id });
                                                         setIsSignupDone(true);
-                                                        setTimeout(() => {
-                                                            setShow(false);
-                                                        }, 1000);
+                                                     
                                                     } else {
                                                         setErrorMessage(response.data.message);
                                                     }
