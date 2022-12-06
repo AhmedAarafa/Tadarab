@@ -137,7 +137,7 @@ export default function SignupPopup(props: any) {
         }
     }
 
-    const validationSchema = ():any => {
+    const validationSchema = (): any => {
         return Yup.object().shape(signupValidationRules);
     }
 
@@ -195,6 +195,11 @@ export default function SignupPopup(props: any) {
                             <div className={styles["signup-popup__signup-succeeded"]}>
                                 <TransactionSuccessIcon />
                                 تم انشاء الحساب بنجاح
+                                <div>
+                                    سيتم إرسال رابط مشاهدة البث المباشرة
+                                    على البريد الإلكتروني
+                                    قبل بدأ الدورة
+                                </div>
                             </div>
                             :
                             <>
@@ -265,7 +270,7 @@ export default function SignupPopup(props: any) {
 
                                                         tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: values.email, traking_uid: response.data.data.id });
                                                         setIsSignupDone(true);
-                                                     
+
                                                     } else {
                                                         setErrorMessage(response.data.message);
                                                     }

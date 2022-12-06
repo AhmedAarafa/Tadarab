@@ -6,7 +6,7 @@ import 'normalize.css';
 import { Provider, useDispatch } from 'react-redux';
 import { store } from "configurations/redux/store";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef  } from 'react';
 import TransactionInProgress from "./TransactionInProgress";
 // import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Head from "next/head";
@@ -15,8 +15,8 @@ import Script from "next/script";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
 import Router, { useRouter } from "next/router";
-import { setTheme } from "configurations/redux/actions/themeToggler";
 import Loader from 'common/Loader/Loader';
+import { usePreserveScroll } from 'custom hooks/usePreserveScroll';
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
-    history.scrollRestoration = 'manual';
+    history.scrollRestoration = 'auto';
 
     if (process.env.NEXT_PUBLIC_ENVIRONMENT === 'production') {
       // console.log = function() {}
@@ -63,7 +63,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta property="og:description" content=" أنضم لآكبر منصة تعلم عن بعد في الخليج والوطن العربي أفضل دورات تدريبية معتمدة مقدمة من آكبر المدربين والخبراء على منصة تدرب" key="og-description" />
         <meta property="og:url" content="https://www.tadarab.com/" key="og-url" />
         <meta property="og:site_name" content="Tadarab" key="og-site_name" />
-
         <meta property="article:publisher" content="https://www.facebook.com/tadarabonline/" />
 
         <meta property="og:image" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" key="og-image" />

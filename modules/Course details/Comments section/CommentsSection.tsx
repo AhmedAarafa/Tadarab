@@ -181,13 +181,6 @@ export default function CommentsSection(props: any) {
         }
     }, [])
 
-    // useEffect(() => {
-    //     return () => {
-    //     }
-    // }, [commentContent])
-
-
-
 
     return (
         <>

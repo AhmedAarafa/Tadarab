@@ -2,8 +2,6 @@ import type { NextPage } from "next";
 import HomePage from "./HomePage";
 import 'normalize.css';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
-import { useEffect } from "react";
-import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 const Home: NextPage = (props: any) => {

@@ -7,7 +7,9 @@
 // @import '../node_modules/swiper/css/navigation';
 // @import '../node_modules/swiper/css/pagination';
 
-[data-theme='light'] {
+[data-theme='light'],
+::after,
+::before {
 
   --primary-red: #AF151F;
   --dark-black: #222222;
@@ -36,7 +38,9 @@
   --modal-bg: #E5E5E7;
 }
 
-[data-theme='dark'] {
+[data-theme='dark'],
+::after,
+::before {
 
   --primary-red: #AF151F;
   --dark-black: #f5f5f5;

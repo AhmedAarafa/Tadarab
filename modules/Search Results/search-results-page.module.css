@@ -97,6 +97,7 @@
   width: 2.5rem;
   height: 2.5rem;
   margin-left: 0.6rem;
+  cursor: pointer;
 }
 
 .search-results__course-card__card-body__card-header__course-details {
@@ -122,6 +123,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   width: 9.688rem;
+  cursor: pointer;
 }
 
 .search-results__course-card__card-body__checkout-details {

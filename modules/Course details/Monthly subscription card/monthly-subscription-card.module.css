@@ -226,6 +226,11 @@
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
+.monthly_subscription__signup-free + div {
+  color: var(--dark-black);
+  font-size: 0.8rem;
+  text-align: center;
+}
 
 .monthly-subscription__course-card__course-title {
   font-size: 1.1rem;

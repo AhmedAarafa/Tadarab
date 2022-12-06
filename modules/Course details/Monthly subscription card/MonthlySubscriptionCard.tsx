@@ -272,9 +272,16 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 تابع الدورة من اي لابتوب او موبايل
               </div>
 
-              {userStatus.isUserAuthenticated == false && <Button className={styles["monthly_subscription__signup-free"]} onClick={() => { setIsSignupModalVisible(true) }}>
-                سجل الآن مجاناً
-              </Button>}
+              {userStatus.isUserAuthenticated == false &&
+                <>
+                  <Button className={styles["monthly_subscription__signup-free"]} onClick={() => { setIsSignupModalVisible(true) }}>
+                    سجل الآن مجاناً
+                  </Button>
+                  <div>
+                    سجل الآن لمشاهدة البث المباشر مجاناً
+                  </div>
+                </>
+              }
 
             </>
           }
@@ -326,48 +333,50 @@ export default function MonthlySubscriptionCard(theOption: any) {
               </div>
               {
                 theOption?.liveWebinarDetails?.type == "webinar" && (theOption?.liveWebinarDetails?.webinar_type == 'soon') &&
-                <div className={styles["live-webinar-countdown"]}>
-                  <div className={styles["live-webinar-countdown__offer-available"]}>
-                    <div>بث مباشر</div>
-                    <div>علي تدرب</div>
-                  </div>
-                  <div>
-                    <div className={styles["live-webinar-countdown__countdown-box"]}>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>يوم</div>
-                        <div>{toDisplayValues[0]}</div>
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                        :
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>ساعة</div>
-                        <div>
-                          {toDisplayValues[1]}
-                        </div>
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                        :
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>دقيقة</div>
-                        <div>
-                          {toDisplayValues[2]}
-                        </div>
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
-                        :
-                      </div>
-                      <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
-                        <div>ثانية</div>
-                        <div>
-                          {toDisplayValues[3]}
-                        </div>
-                      </div>
+                <>
+                  <div className={styles["live-webinar-countdown"]}>
+                    <div className={styles["live-webinar-countdown__offer-available"]}>
+                      <div>بث مباشر</div>
+                      <div>علي تدرب</div>
                     </div>
+                    <div>
+                      <div className={styles["live-webinar-countdown__countdown-box"]}>
+                        <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                          <div>يوم</div>
+                          <div>{toDisplayValues[0]}</div>
+                        </div>
+                        <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                          :
+                        </div>
+                        <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                          <div>ساعة</div>
+                          <div>
+                            {toDisplayValues[1]}
+                          </div>
+                        </div>
+                        <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                          :
+                        </div>
+                        <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                          <div>دقيقة</div>
+                          <div>
+                            {toDisplayValues[2]}
+                          </div>
+                        </div>
+                        <div className={styles["live-webinar-countdown__countdown-box__separator"]}>
+                          :
+                        </div>
+                        <div className={styles["live-webinar-countdown__countdown-box__countdown"]}>
+                          <div>ثانية</div>
+                          <div>
+                            {toDisplayValues[3]}
+                          </div>
+                        </div>
+                      </div>
 
+                    </div>
                   </div>
-                </div>
+                </>
               }
 
               <div className={styles["monthly-subscription__subscribe-btn-box"]}>
@@ -484,10 +493,10 @@ export default function MonthlySubscriptionCard(theOption: any) {
               <div className={styles["orignal-price"]}>
                 بدلاً من
                 <span>
-                  {` ${courseDetails?.course_details?.currency_symbol} `}
+                  {courseDetails?.course_details?.price}
                 </span>
                 <span>
-                  {courseDetails?.course_details?.price}
+                  {` ${courseDetails?.course_details?.currency_symbol} `}
                 </span>
               </div>
             }

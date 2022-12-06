@@ -28,6 +28,7 @@ import TadarabGA from "modules/_Shared/utils/ga";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import Link from "next/link";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import { setPaymentStep } from "configurations/redux/actions/paymentStep";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
@@ -598,6 +599,7 @@ function CheckoutPage(props: any) {
                 break;
             case "payment-types":
                 toggleLoader("hide");
+
                 !(userStatus.isUserAuthenticated) &&
                     Router.push({
                         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth`,
@@ -691,6 +693,17 @@ function CheckoutPage(props: any) {
         }
     }, [step])
 
+    useEffect(() => {
+        if (router.asPath.includes("checkout/payment") && step == "payment-types") {
+            dispatch(setPaymentStep(true));
+        } else {
+            dispatch(setPaymentStep(false));
+        }
+        
+        return () => {
+            dispatch(setPaymentStep(false));
+          }
+    }, [router.asPath, step]);
 
 
     useEffect(() => {
@@ -1649,7 +1662,7 @@ function CheckoutPage(props: any) {
 
                                     <div className={styles["checkout__cart-sticky-card__total-price-box"]}>
                                         <div className={styles["checkout__cart-sticky-card__total-price-box__total-price-text"]}>
-                                        السعر قبل الخصم
+                                            السعر قبل الخصم
                                         </div>
                                         {cartItems?.data?.length !== 0 ?
 

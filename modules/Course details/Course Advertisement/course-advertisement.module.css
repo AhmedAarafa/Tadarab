@@ -426,4 +426,10 @@
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
+  .live-webinar__signup-free + div {
+    font-size: 2rem;
+    color: var(--dark-black);
+    text-align: center;
+    margin-top: -2rem;
+  }
 }/*# sourceMappingURL=course-advertisement.module.css.map */

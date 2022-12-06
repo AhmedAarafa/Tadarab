@@ -1,27 +1,30 @@
 @import "../../styles/mixins";
 
-.search-results-row{
+.search-results-row {
     margin-bottom: -5rem;
 }
 
 .search-results {
     padding: 2rem 9rem 0 9rem;
-    @include flex(center,space-evenly);
+    @include flex(center, space-evenly);
     flex-wrap: wrap;
 }
 
-.search-results__total-search-results{
+.search-results__total-search-results {
     padding: 6rem 9rem 0 9rem;
-    div{
+
+    div {
         font-size: 1.25rem;
         font-weight: 800;
         color: var(--dark-black);
-        span{
+
+        span {
             color: var(--primary-red);
         }
     }
 }
-.search-results__invalid-search-query{
+
+.search-results__invalid-search-query {
     color: var(--primary-red) !important;
 }
 
@@ -91,6 +94,7 @@
         width: 2.5rem;
         height: 2.5rem;
         margin-left: 0.6rem;
+        cursor: pointer;
     }
 }
 
@@ -117,6 +121,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     width: 9.688rem;
+    cursor: pointer;
+
 }
 
 .search-results__course-card__card-body__checkout-details {
@@ -176,17 +182,17 @@
     }
 }
 
-.search-results__pagination{
-    @include flex(center,center);
+.search-results__pagination {
+    @include flex(center, center);
     padding: 2rem 0 5rem 0;
 }
 
-.disabled{
+.disabled {
     pointer-events: none;
     opacity: 0.65;
 }
 
-.watch-subscribed-course{
+.watch-subscribed-course {
     font-size: 0.9rem !important;
     font-weight: 700 !important;
     padding: 0.5rem 1rem;
@@ -199,7 +205,7 @@
 
 @media (max-width: 575px) {
 
-    .search-results-row{
+    .search-results-row {
         margin-bottom: -5rem*2.5;
     }
 
@@ -209,12 +215,13 @@
         flex-wrap: wrap;
     }
 
-    .search-results__total-search-results{
+    .search-results__total-search-results {
         padding: 5rem*2.5 5rem 0 5rem;
         text-align: center;
-        div{
+
+        div {
             font-size: 1.25rem*2.5;
-         
+
         }
     }
 
@@ -265,6 +272,7 @@
 
     .search-results__course-card__card-body__card-header__trainer-img-box {
         font-size: 0.5rem*2.5;
+
         img {
             width: 2.5rem*2.5;
             height: 2.5rem*2.5;
@@ -338,7 +346,7 @@
 
     }
 
-    .watch-subscribed-course{
+    .watch-subscribed-course {
         font-size: 0.9rem*2.5 !important;
         padding: 0.5rem*2.5 1rem*2.5;
         border-radius: 0.7rem*2.5;

@@ -52,6 +52,7 @@ function Navbar(props: any) {
   const cartItems = useSelector((state: any) => state.cartItems);
   const myCourseNavigator = useSelector((state: any) => state.myCourseNavigator);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
+  const paymentStep = useSelector((state: any) => state.paymentStep);
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -430,15 +431,16 @@ function Navbar(props: any) {
         }}
         className={styles["navbar"]} expanded={expanded} expand="sm">
         <Link href="/">
-          <a className="d-flex me-0">
-            <NavBar.Brand className={styles["navbar__img"]}>
+          {/*  ${!paymentStep == false && "ms-auto ps-1"} */}
+          <a className={`d-flex`} style={{margin: (!paymentStep == false && isMobileView) ? "0 0 0 40%" : "" }}>
+            <NavBar.Brand className={styles["navbar__img"]} >
               <TadarabLogo />
             </NavBar.Brand>
           </a>
         </Link>
 
-        <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />
-        <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
+        {  !paymentStep &&  <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />}
+        { !paymentStep && <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
           id="offcanvasNavbar1"
           aria-labelledby="offcanvasNavbarLabel1"
           placement="end"
@@ -589,9 +591,9 @@ function Navbar(props: any) {
               }
             </Button>
           </Link>
-        </NavBar.Offcanvas>
+        </NavBar.Offcanvas>}
         <Nav>
-          {!isCoursePurchased &&
+          {!isCoursePurchased && !paymentStep &&
             <>
               <Nav.Link onMouseOver={() => popoverHandler("over")}
                 onMouseOut={() => popoverHandler("out")}
@@ -698,7 +700,7 @@ function Navbar(props: any) {
           }
 
           {
-            userStatus.isUserAuthenticated && isCoursePurchased &&
+            userStatus.isUserAuthenticated && isCoursePurchased && !paymentStep &&
             <>
               <div className={styles["navbar__purchased-course-name"]}>
                 {courseDetailsData?.data?.course_details?.title}
@@ -730,29 +732,29 @@ function Navbar(props: any) {
             </>
           }
 
-          {isMobileView == false && <>
+          {isMobileView == false && !paymentStep && <>
             <label className={styles["theme-switch"]}>
               <input type="checkbox" id="themeCheckbox" />
               <div className={`${styles["slider"]} ${styles["round"]}`}></div>
             </label>
           </>}
 
-          {userStatus.isUserAuthenticated && !isCoursePurchased && <div className={styles["navbar__fav-icon"]}>
+          {userStatus.isUserAuthenticated && !isCoursePurchased && !paymentStep && <div className={styles["navbar__fav-icon"]}>
             <FavouriteIcon color="#222" />
           </div>}
 
 
 
 
-          {userStatus.isUserAuthenticated == false && <Link href="/sign-up">
+          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-up">
             <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
           </Link>
           }
-          {userStatus.isUserAuthenticated == false && <Link href="/sign-in">
+          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-in">
             <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
           </Link>}
 
-          <div className={styles["navbar_responsive-search-icon"]}>
+          { !paymentStep &&  <div className={styles["navbar_responsive-search-icon"]}>
             <div onClick={() => {
               searchBoxToggler("open");
               const searchBox: any = document.getElementById("responsive-search-field");
@@ -791,9 +793,9 @@ function Navbar(props: any) {
               </div>
 
             </div>
-          </div>
+          </div>}
 
-          {(!isCoursePurchased || isMobileView) && <OverlayTrigger show={dropdownOpened.cart}
+          {(!isCoursePurchased || isMobileView) && !paymentStep && <OverlayTrigger show={dropdownOpened.cart}
             trigger='click'
             rootClose
             placement="bottom-start"
@@ -1003,7 +1005,7 @@ function Navbar(props: any) {
           }
 
           {
-            userStatus.isUserAuthenticated &&
+            userStatus.isUserAuthenticated && !paymentStep &&
             <>
               <OverlayTrigger show={dropdownOpened.account} trigger="click" placement="bottom-start" rootClose overlay={
                 <div id="navbar__account-icon__dropdown" className={styles["navbar__account-icon__dropdown"]}>

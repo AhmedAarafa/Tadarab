@@ -56,6 +56,7 @@ function CourseDetails(props: any) {
   const { slug } = Router.query;
   const { seoData } = props;
 
+
   useEffect(() => {
     toggleLoader("show");
     subscriptionCounter();

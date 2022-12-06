@@ -10,6 +10,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 export default function NotificationBar() {
     const [isMobileView, setIsMobileView] = useState(false);
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
+    const paymentStep = useSelector((state: any) => state.paymentStep);
     const dispatch = useDispatch();
     const Router = useRouter();
 

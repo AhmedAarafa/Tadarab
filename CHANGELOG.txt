@@ -1,3 +1,10 @@
+Version 2.4.5 (24th Nov 2022)
+1) All course list page changes.
+2) Course listing page modifications.
+3) Free courses page modifications.
+4) Add many chat widget.
+5) Add yearly plan guarantee label in subscription checkout page.
+
 Version 2.4.4 (13th Nov 2022)
 1) Dark mode finalization.
 2) Loader modifications to fit light/dark theme.

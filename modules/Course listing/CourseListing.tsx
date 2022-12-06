@@ -230,7 +230,16 @@ export default function CourseListing() {
                     </>
                 }
                 {
-                    (JSON.stringify(router?.query) == "{}" || (router?.query && (router?.query?.type == "all" || router?.query?.aid)))
+                    // (JSON.stringify(router?.query) == "{}" || (router?.query && (router?.query?.type == "all" || router?.query?.aid)))
+                    (router?.query.type && router?.query?.type == "all")
+                    ||
+                    (router?.query.type && router?.query?.type !== "best-seller" &&
+                        router?.query?.type !== "best-seller" &&
+                        router?.query?.type !== "best-seller")
+                    ||
+                    JSON.stringify(router?.query) == "{}"
+                    ||
+                    !router?.query.type
                     &&
                     <>
                         <CoverPhotoSection2 />
@@ -259,7 +268,7 @@ export default function CourseListing() {
                         <Col xs={12} className={styles["course-listing__title"]}>
                             النتائج
                         </Col>
-                      
+
                         <Col xs={12} className={styles["course-listing"]}>
                             {courseListing?.data?.courses?.map((course: any, i: number) => {
 

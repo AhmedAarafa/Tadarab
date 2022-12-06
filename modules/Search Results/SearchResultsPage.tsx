@@ -169,9 +169,7 @@ export default function SearchResultsPage() {
                                             className={
                                                 styles[
                                                 "search-results__course-card__course-img"
-                                                ]
-                                            }
-                                        />
+                                                ]} />
                                     </a>
                                 </Link>
 
@@ -179,23 +177,17 @@ export default function SearchResultsPage() {
                                     className={
                                         styles[
                                         "search-results__course-card__card-body"
-                                        ]
-                                    }
-                                >
+                                        ]}>
                                     <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
                                         className={
                                             styles[
                                             "search-results__course-card__card-body__card-header"
-                                            ]
-                                        }
-                                    >
+                                            ]}>
                                         <div
                                             className={
                                                 styles[
                                                 "search-results__course-card__card-body__card-header__trainer-img-box"
-                                                ]
-                                            }
-                                        >
+                                                ]}>
                                             <Link href={`/trainer/${course.trainer?.slug}`}>
                                                 <img loading="lazy"
                                                     src={course.trainer?.image}
@@ -207,9 +199,7 @@ export default function SearchResultsPage() {
                                             className={
                                                 styles[
                                                 "search-results__course-card__card-body__card-header__course-details"
-                                                ]
-                                            }
-                                        >
+                                                ]}>
                                             <Link href={`/course/${course.slug}`}>
                                                 <h1 onClick={() => { GAProductClickEventHandler(course, i) }}
                                                     title={course.title}

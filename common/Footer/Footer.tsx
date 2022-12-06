@@ -7,13 +7,19 @@ import styles from "./footer.module.css";
 import { ChevronLeftIcon, DownloadIcon, FacebookIcon, YoutubeIcon, InstagramIcon, TwitterIcon } from "common/Icons/Icons";
 import Link from "next/link";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { useSelector } from "react-redux";
+import { setPaymentStep } from "configurations/redux/actions/paymentStep";
+import { useDispatch, useSelector } from "react-redux";
+import Router, { useRouter } from "next/router";
 
 export default function FooterSection() {
-
   const [error, setError] = useState({ status: false, msg: "" });
   const userStatus = useSelector((state: any) => state.userAuthentication);
+  const paymentStep = useSelector((state: any) => state.paymentStep);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
+  // console.log("paymentStep",paymentStep);
+  
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (e.target[0].value == "" || e.target[1].value == "" || e.target[2].value == "") {
@@ -59,7 +65,7 @@ export default function FooterSection() {
 
   return (
     <>
-      <footer>
+      { !paymentStep && <footer>
 
         <Row className={styles["footer"]}>
 
@@ -229,7 +235,7 @@ export default function FooterSection() {
             </div>
           </Col>
         </Row>
-      </footer>
+      </footer>}
 
     </>
   )

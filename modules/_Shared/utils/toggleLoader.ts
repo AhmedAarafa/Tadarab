@@ -10,25 +10,25 @@ export const toggleLoader = (status: string) => {
     switch (status) {
       case "show":
         // document.body.classList.add("loading-indicator");
-        // document.body.style.cssText = `overflow:hidden`;
+        document.body.style.cssText = `overflow:hidden`;
         document.body.style.cssText = `visibility:hidden`;
-        nav.style.cssText = `display:none`;
+        nav ? nav.style.cssText = `display:none` : null;
         if (notificationBar) {
           notificationBar.style.cssText = `display:none`;
         }
-        footer.style.cssText = `display:none`;
+        footer ? (footer.style.cssText = `display:none`) : null;
         loader.style.cssText = `display : flex; visibility:visible`;
         break;
       case "hide":
         setTimeout(() => {
-          // document.body.style.cssText = `overflow:visible`;
+          document.body.style.cssText = `overflow:visible`;
           document.body.style.cssText = `visibility:visible`;
           nav.style.cssText = `display:flex`;
           if (notificationBar) {
             notificationBar.style.cssText = `display:flex`;
-            nav.style.cssText = `top:${notificationBar?.offsetHeight}px ;`;
+            nav ? nav.style.cssText = `top:${notificationBar?.offsetHeight}px ;`: null;
           }
-          footer.style.cssText = `display:block`;
+          footer ? (footer.style.cssText = `display:block`) : null;
           loader.style.cssText = `display : none; visibility:hidden`;
         }, 500);
         // setTimeout(() => {
