@@ -148,7 +148,7 @@ export default function SignupPage() {
     if (router.query && router.query.from) {
       // router.push(router.back());
       if (router.query.from == "checkout") {
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/auth/?from=checkout?ps=2`);
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
       } else if (router.query.from.startsWith("webinar")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
       } else if (router.query.from.startsWith("course")) {

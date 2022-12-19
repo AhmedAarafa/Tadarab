@@ -157,25 +157,86 @@
   font-size: 1.25rem;
   font-weight: 800;
   color: var(--dark-black);
-  margin-top: 1rem;
+  margin-top: 1rem 0 0.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.0625rem solid var(--dark-black);
+}
+.monthly-subscription__course-card__title > div:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
 }
 .monthly-subscription__course-card__title > div:nth-of-type(1) span:nth-of-type(2) {
   color: var(--primary-red);
 }
-.monthly-subscription__course-card__title > div:nth-of-type(2) {
+.monthly-subscription__course-card__title > div:nth-of-type(3) {
   margin-top: 0.3rem;
   font-size: 0.75rem;
   font-weight: 400;
 }
-.monthly-subscription__course-card__title > div:nth-of-type(2) span {
+.monthly-subscription__course-card__title > div:nth-of-type(3) span {
   color: var(--primary-red);
   font-weight: 700;
   cursor: pointer;
   display: inline-block;
   margin: 0.5rem 0.2rem 0.6rem 0;
 }
-.monthly-subscription__course-card__title > div:nth-of-type(2) span a {
+.monthly-subscription__course-card__title > div:nth-of-type(3) span a {
   color: var(--primary-red) !important;
+}
+.monthly-subscription__course-card__title input[type=radio] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0;
+  border-color: #707070 !important;
+  cursor: pointer;
+}
+.monthly-subscription__course-card__title input[type=radio]:checked {
+  background-color: white !important;
+}
+.monthly-subscription__course-card__title input[type=radio]:checked[type=radio] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+}
+
+.monthly-subscription__course-card__normal-payment {
+  color: var(--dark-black);
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0 1rem 0;
+}
+.monthly-subscription__course-card__normal-payment div:nth-of-type(1) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+.monthly-subscription__course-card__normal-payment input[type=radio] {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin: 0;
+  border-color: #707070 !important;
+  cursor: pointer;
+}
+.monthly-subscription__course-card__normal-payment input[type=radio]:checked {
+  background-color: white !important;
+}
+.monthly-subscription__course-card__normal-payment input[type=radio]:checked[type=radio] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+}
+
+.monthly-subscription__course-card__normal-payment__discounted-price {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--grey);
+  width: 100%;
+  margin-top: -0.5rem;
+  margin-right: 1.8rem;
 }
 
 .monthly_subscription__live-details-list {
@@ -305,9 +366,6 @@
   border-radius: 0.75rem;
   width: 100%;
   height: 3.125rem;
-  background-color: var(--tadarab-bg) !important;
-  border: 0.063rem solid var(--dark-black) !important;
-  color: var(--dark-black) !important;
 }
 .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover {
   box-shadow: none;
@@ -318,11 +376,6 @@
 .monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
-}
-.monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
-  background-color: var(--primary-red) !important;
-  border: 0.063rem solid var(--primary-red) !important;
-  color: white !important;
 }
 .monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) svg * {
   fill: white;
@@ -541,7 +594,7 @@
 }
 
 .monthly-subscription__course-card__details-list {
-  margin-top: 0.8rem;
+  margin-top: 1rem;
   padding-bottom: 0.8rem;
   flex-direction: column;
 }
@@ -628,9 +681,10 @@
 
 .monthly-subscription__subscription-value {
   font-size: 0.75rem;
-  text-align: center;
   color: var(--grey);
   margin-top: 0.3rem;
+  margin-right: 1.8rem;
+  font-weight: 400;
 }
 .monthly-subscription__subscription-value .amount-strike {
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -743,22 +797,59 @@
   }
   .monthly-subscription__course-card__title {
     font-size: 3.125rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.0625rem solid var(--dark-black);
   }
   .monthly-subscription__course-card__title > div:nth-of-type(1) {
-    margin: 0 0 1.5rem 0;
+    margin: 0;
   }
-  .monthly-subscription__course-card__title > div:nth-of-type(2) {
+  .monthly-subscription__course-card__title > div:nth-of-type(3) {
     margin-top: 1.5rem;
     font-size: 2.025rem;
   }
-  .monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(1) {
+  .monthly-subscription__course-card__title > div:nth-of-type(3) span:nth-of-type(1) {
     line-height: 2.8rem !important;
     font-size: 2.05rem;
     margin-bottom: 1.5rem;
     display: inline-block;
   }
-  .monthly-subscription__course-card__title > div:nth-of-type(2) span:nth-of-type(2) {
+  .monthly-subscription__course-card__title > div:nth-of-type(3) span:nth-of-type(2) {
     margin: 0 0.5rem 0 0;
+  }
+  .monthly-subscription__course-card__title input[type=radio] {
+    width: 2.7rem;
+    height: 2.7rem;
+    margin: 1.1rem 0 1.1rem 0.55rem;
+    border-color: #707070 !important;
+    cursor: pointer;
+  }
+  .monthly-subscription__course-card__title input[type=radio]:checked {
+    background-color: white !important;
+  }
+  .monthly-subscription__course-card__title input[type=radio]:checked[type=radio] {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+  }
+  .monthly-subscription__course-card__normal-payment {
+    gap: 0.5rem;
+    margin: 1rem 0 2rem 0;
+    font-size: 2.5rem;
+  }
+  .monthly-subscription__course-card__normal-payment input[type=radio] {
+    width: 2.7rem;
+    height: 2.7rem;
+    margin: 1.1rem 0 1.1rem 0.55rem;
+    border-color: #707070 !important;
+    cursor: pointer;
+  }
+  .monthly-subscription__course-card__normal-payment input[type=radio]:checked {
+    background-color: white !important;
+  }
+  .monthly-subscription__course-card__normal-payment input[type=radio]:checked[type=radio] {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23af151f'/></svg>");
+  }
+  .monthly-subscription__course-card__normal-payment__discounted-price {
+    font-size: 1.8rem;
+    margin: -1.2rem 4rem 0 0;
   }
   .monthly-subscription__course-card__course-title {
     font-size: 2.75rem;
@@ -817,8 +908,6 @@
     border-radius: 1.875rem;
     width: 100%;
     height: 7.8125rem;
-    background-color: var(--tadarab-bg) !important;
-    border: 0.063rem solid var(--dark-black) !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover {
     box-shadow: none;
@@ -832,8 +921,6 @@
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn:is(.monthly-subscription__course-card__actions-btns__add-to-cart-btn:hover, .monthly-subscription__course-card__actions-btns__add-to-cart-btn:active) {
     border-width: 0.1575rem !important;
-    background-color: var(--primary-red) !important;
-    color: white !important;
   }
   .monthly-subscription__course-card__actions-btns__add-to-cart-btn svg {
     width: 3.28125rem !important;
@@ -908,7 +995,7 @@
     font-size: 2.0325rem;
   }
   .monthly-subscription__subscribe-btn-box {
-    margin-top: 2.97rem;
+    margin-top: 1.75rem;
   }
   .monthly-subscription__subscribe-btn-box__btn {
     box-shadow: none !important;
@@ -987,11 +1074,11 @@
     padding: 2.25rem 0 3.75rem 0;
   }
   .monthly-subscription__subscription-value {
-    font-size: 1.8rem;
-    margin-top: 0.75rem;
+    font-size: 1.875rem;
   }
   .monthly-subscription__subscription-value span:nth-of-type(1) {
-    margin-right: 0.5rem;
+    display: inline-block;
+    margin: -0.5rem 2.3rem 0 0;
   }
   .monthly-subscription__subscription-value span:nth-of-type(2) {
     margin-right: 0.5rem;

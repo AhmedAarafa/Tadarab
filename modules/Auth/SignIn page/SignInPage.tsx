@@ -50,6 +50,8 @@ export default function SignInPage() {
       } else {
         if (router.query && router.query.from_subscription) {
           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        }else if (router.query && router.query.from == "checkout"){
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment`);
         }
       }
     }
@@ -99,7 +101,6 @@ export default function SignInPage() {
       } else if (router.query.from.startsWith("course")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from=${router.query.from}`);
       } else {
-        console.log("back1");
 
         Router.back();
       }
@@ -129,7 +130,6 @@ export default function SignInPage() {
           "social_token": googleResponse?.tokenObj?.access_token,
           "clientId": clientId,
         }).then((response: any) => {
-          //console.log(response);
           if (JSON.stringify(response.status).startsWith("2")) {
             FBPixelEventsHandler(response.data.fb_tracking_events, customData);
             if (response.data.data !== null) {
@@ -155,7 +155,6 @@ export default function SignInPage() {
                 } else if (router.query.from.startsWith("course")) {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                 } else {
-                  console.log("back2");
 
                   Router.back();
                 }
@@ -200,7 +199,6 @@ export default function SignInPage() {
           "social_token": response?.accessToken,
           "clientId": clientId,
         }).then((resp: any) => {
-          //console.log(resp);
           if (JSON.stringify(resp.status).startsWith("2")) {
             FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
             if (resp.data.data !== null) {
@@ -226,8 +224,6 @@ export default function SignInPage() {
                 } else if (router.query.from.startsWith("course")) {
                   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                 } else {
-                  console.log("back3");
-
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
@@ -299,7 +295,6 @@ export default function SignInPage() {
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={(values) => {
-                //console.log({ values});
                 let tadarabGA = new TadarabGA();
                 const clientId = tadarabGA.tadarab_get_traking_client();
                 axiosInstance.post(`login`, {
@@ -308,11 +303,8 @@ export default function SignInPage() {
                   "clientId": clientId,
                 }).then((response: any) => {
                   if (JSON.stringify(response.status).startsWith("2")) {
-                    //console.log("success");
                     if (response.data.data !== null) {
                       const totalItems: any = [];
-                      console.log("Response", response);
-                      console.log("totalItems", totalItems);
 
                       response.data.data.courses.data.forEach((item: any) => {
                         totalItems.push(item.id);
@@ -340,7 +332,6 @@ export default function SignInPage() {
                         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
                       } else {
                         // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}`);
-                        console.log("back4");
 
                         Router.back();
                       }
@@ -357,7 +348,6 @@ export default function SignInPage() {
                       }
                     }
                   } else {
-                    //console.log("error 4xx or 5xx");
                     setErrorMessage(response.data.message);
                     // setTimeout(() => {
                     // setErrorMessage("");

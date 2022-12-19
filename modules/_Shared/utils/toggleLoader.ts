@@ -23,7 +23,7 @@ export const toggleLoader = (status: string) => {
         setTimeout(() => {
           document.body.style.cssText = `overflow:visible`;
           document.body.style.cssText = `visibility:visible`;
-          nav.style.cssText = `display:flex`;
+          nav ? nav.style.cssText = `display:flex`: null;
           if (notificationBar) {
             notificationBar.style.cssText = `display:flex`;
             nav ? nav.style.cssText = `top:${notificationBar?.offsetHeight}px ;`: null;

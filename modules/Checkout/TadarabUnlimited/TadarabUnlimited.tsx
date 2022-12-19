@@ -5,9 +5,16 @@ import styles from "./tadarab-unlimited.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import useResize from "custom hooks/useResize";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
 export default function TadarabUnlimited() {
     const [isMobileView, setIsMobileView] = useState(false);
+    const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
+    const dispatch = useDispatch();
+    const Router = useRouter();
+    const { slug } = Router.query;
 
     const viewportWidthDetector = () => {
         if (window.innerWidth >= 576) {
@@ -17,6 +24,19 @@ export default function TadarabUnlimited() {
         }
     }
     useResize(viewportWidthDetector);
+
+
+    const handleSubscriptionBtn = () => {
+        dispatch(setCheckoutType("subscription"));
+        if (userStatus) {
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+            })
+        }
+    }
 
     return (
         <>
@@ -42,11 +62,9 @@ export default function TadarabUnlimited() {
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
                             </div>
-                            <Link href="/subscription">
-                                <Button>
-                                    اشترك الآن
-                                </Button>
-                            </Link>
+                            <Button onClick={() => { handleSubscriptionBtn() }}>
+                                اشترك الآن
+                            </Button>
                         </Col>
 
                     </Row>
@@ -73,11 +91,9 @@ export default function TadarabUnlimited() {
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
                             </div>
-                            <Link href="/subscription">
-                                <Button>
-                                    اشترك الآن
-                                </Button>
-                            </Link>
+                            <Button onClick={() => { handleSubscriptionBtn() }}>
+                                اشترك الآن
+                            </Button>
                         </div>
 
                     </div>

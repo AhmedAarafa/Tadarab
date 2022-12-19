@@ -15,6 +15,8 @@ export default function FailedState() {
 
     const invoiceDetails = useSelector((state: any) => state.invoiceDetails);
     let tadarabGA = new TadarabGA();
+    console.log("invoiceDetailsf",invoiceDetails);
+
     useEffect(() => {
 
         if (invoiceDetails) {

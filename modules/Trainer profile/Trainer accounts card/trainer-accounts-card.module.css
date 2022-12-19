@@ -263,8 +263,8 @@
     border: 0.125rem solid var(--outlined-btn-border) !important;
   }
   .trainer-accounts-card__accounts-btns a:is(.trainer-accounts-card__accounts-btns a:hover, .trainer-accounts-card__accounts-btns a:active) {
-    border: 0.063rem solid var(--dark-black) !important;
-    background-color: white !important;
+    border-width: 0.126rem !important;
+    background-color: var(--outlined-btn-bg) !important;
     color: var(--dark-black) !important;
   }
   .trainer-accounts-card__accounts-btns a svg {

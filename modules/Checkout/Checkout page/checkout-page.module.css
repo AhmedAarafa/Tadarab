@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .checkout__start-free {
   padding: 9rem 0 0 0;
   text-align: center;
@@ -1011,8 +1010,18 @@
 }
 .checkout__cart-sticky-card__subscribe-summary__details_orignal span.checkout__cart_subscribe_price-total_original {
   color: var(--dark-black);
-  -webkit-text-decoration: line-through rgb(175, 21, 31);
-          text-decoration: line-through rgb(175, 21, 31);
+  font-weight: 800;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__subs-period {
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+.checkout__cart-sticky-card__subscribe-summary__subs-period .checkout__cart-sticky-card__subscribe-summary__details__subs-period-value {
+  color: var(--dark-black);
   font-weight: 800;
 }
 
@@ -1037,7 +1046,16 @@
   font-weight: 800;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old {
+.checkout__cart-sticky-card__subscribe-summary__details__subs-period-label {
+  font-size: 0.8rem;
+  color: var(--dark-black);
+}
+.checkout__cart-sticky-card__subscribe-summary__details__subs-period-label span {
+  font-weight: 800;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old,
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__subs-period-label {
   font-size: 0.8rem;
   font-weight: 400;
 }
@@ -1049,17 +1067,20 @@
   margin-top: 0.5rem;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price {
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price,
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__subs-period {
   font-size: 0.8rem;
   font-weight: 800;
   color: var(--dark-black);
   -webkit-text-decoration: line-through rgb(175, 21, 31);
           text-decoration: line-through rgb(175, 21, 31);
   font-weight: 800;
-  padding: 0 0.5rem;
+  margin-top: 0.5rem;
 }
-.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price:before, .checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price:after {
-  content: "  ";
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__subs-period {
+  text-decoration: none;
+  margin-top: 0.5rem;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__exp {
@@ -2397,14 +2418,16 @@
     font-size: 2.8125rem;
   }
   .checkout__cart-sticky-card__subscribe-summary__details,
-.checkout__cart-sticky-card__subscribe-summary__details_orignal {
-    margin: 0 0 1.5rem 0;
+.checkout__cart-sticky-card__subscribe-summary__details_orignal,
+.checkout__cart-sticky-card__subscribe-summary__subs-period {
+    margin: 0 0 0.7rem 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 2.25rem;
   }
-  .checkout__cart-sticky-card__subscribe-summary__details__todays-total {
+  .checkout__cart-sticky-card__subscribe-summary__details__todays-total,
+.checkout__cart-sticky-card__subscribe-summary__details__subs-period-label {
     font-size: 2.2rem;
   }
   .checkout__cart-sticky-card__subscribe-summary__details__exp {

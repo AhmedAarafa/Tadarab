@@ -7,9 +7,7 @@
 // @import '../node_modules/swiper/css/navigation';
 // @import '../node_modules/swiper/css/pagination';
 
-[data-theme='light'],
-::after,
-::before {
+[data-theme='light']{
 
   --primary-red: #AF151F;
   --dark-black: #222222;
@@ -19,28 +17,26 @@
   --tadarab-bg: #fff;
   --tadarab-light-bg: #fff;
   --pale-red: #EF798A;
-  --drop-shadow:#00000033;
+  --drop-shadow: #00000033;
   --icons-green: #198754;
   --borders-grey: rgba(34, 34, 34, 0.05);
   --outlined-btn-bg: #fff;
   --outlined-btn-border: #af151f;
   --outlined-btn-text: #af151f;
-  --hamburger-menu-icon : url('/images/menu.svg');
-  --close-icon : url('/images/close.svg');
+  --hamburger-menu-icon: url('/images/menu.svg');
+  --close-icon: url('/images/close.svg');
   --swiper-bullets: #000;
   --close-btn: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
-  --accordion-btn : #f5f5f5 ;
+  --accordion-btn: #f5f5f5;
   --pale-red-bg: #af151f37;
-  --desktop-loader-bg-image : url("/images/Loader-Desktop-View1.png");
-  --mobile-loader-bg-image : url("/images/Loader-Mobile-view1.png");
+  --desktop-loader-bg-image: url("/images/Loader-Desktop-View1.png");
+  --mobile-loader-bg-image: url("/images/Loader-Mobile-view1.png");
   --accordion-body: #faf9f9;
   --add-to-cart-close-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23222'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>");
   --modal-bg: #E5E5E7;
 }
 
-[data-theme='dark'],
-::after,
-::before {
+[data-theme='dark']{
 
   --primary-red: #AF151F;
   --dark-black: #f5f5f5;
@@ -50,20 +46,20 @@
   --tadarab-bg: #0E0B1D;
   --tadarab-light-bg: #1B1829;
   --pale-red: #F7E7E8;
-  --drop-shadow:#3a3a3a;
+  --drop-shadow: #3a3a3a;
   --icons-green: #198754;
   --borders-grey: rgba(200, 200, 200, 0.05);
   --outlined-btn-bg: #0E0B1D;
   --outlined-btn-border: #707070;
   --outlined-btn-text: #f5f5f5;
-  --hamburger-menu-icon : url('/images/menu_dark.svg');
-  --close-icon : url('/images/close_dark.svg');
+  --hamburger-menu-icon: url('/images/menu_dark.svg');
+  --close-icon: url('/images/close_dark.svg');
   --swiper-bullets: #f5f5f5;
   --close-btn: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f5f5f5'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
-  --accordion-btn : #0E0B1D ;
+  --accordion-btn: #0E0B1D;
   --pale-red-bg: #f2f2f2;
-  --desktop-loader-bg-image : url("/images/DM-Loader-Desktop-View1.png");
-  --mobile-loader-bg-image : url("/images/DM-Loader-Mobile-view1.png");
+  --desktop-loader-bg-image: url("/images/DM-Loader-Desktop-View1.png");
+  --mobile-loader-bg-image: url("/images/DM-Loader-Mobile-view1.png");
   --accordion-body: #1B1829;
   --add-to-cart-close-icon: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f5f5f5'><path d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/></svg>");
   --modal-bg: #707070;
@@ -422,7 +418,7 @@ a {
   border: none !important
 }
 
-.swiper-pagination-bullet{
+.swiper-pagination-bullet {
   background-color: var(--swiper-bullets) !important;
 }
 
@@ -935,10 +931,10 @@ input,
   z-index: 10;
   color: var(--grey) !important;
   margin-top: 0 !important;
-  
+
   &:after {
-    
-    background-color:var(--tadarab-bg) !important;
+
+    background-color: var(--tadarab-bg) !important;
     font-family: swiper-icons !important;
     border-radius: 50% !important;
     font-size: 1rem !important;
@@ -1494,9 +1490,9 @@ input:-webkit-autofill:active {
   padding: 0 2rem;
 }
 
-.page-item{
-  a{
-    
+.page-item {
+  a {
+
     border-color: var(--tadarab-light-bg);
     background-color: var(--tadarab-bg);
   }

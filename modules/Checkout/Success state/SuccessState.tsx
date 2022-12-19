@@ -25,7 +25,7 @@ export default function SuccessState() {
     let tadarabGA = new TadarabGA();
     useEffect(() => {
         if(invoiceDetails){
-            checkoutType = (invoiceDetails?.data?.transaction_details?.checkout_type);
+            // checkoutType = (invoiceDetails?.data?.transaction_details?.checkout_type);
             if(checkoutType == "cart"){
                 tadarabGA.tadarab_fire_traking_GA_code("purchase", {
                     id: invoiceDetails?.data?.transaction_details?.invoice_no,
@@ -41,6 +41,8 @@ export default function SuccessState() {
                     ...userAuthState,
                     isSubscribed:true
                   }));
+                //   console.log("invoiceDetails",invoiceDetails);
+                  
                 tadarabGA.tadarab_fire_traking_GA_code("subscription", {
                     trn_id: invoiceDetails?.data?.transaction_details?.payment_id,
                     user_id: invoiceDetails?.data?.transaction_details?.user_id,

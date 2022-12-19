@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
 import styles from "./mobile-checkout-bar.module.css";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { CartIcon } from "common/Icons/Icons";
+import { CartIcon, TvIcon } from "common/Icons/Icons";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
+import AddToCartPopup from "common/Add to cart popup/AddToCartPopup";
+import { handleCart } from 'modules/_Shared/utils/handleCart';
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
+import { setCartItems } from 'configurations/redux/actions/cartItems';
+import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
 
-export default function MobileCheckoutBar(props:any) {
+export default function MobileCheckoutBar(props: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
 
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
+  const [isCartModalVisible, setIsCartModalVisible] = useState(false);
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
+  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+  const [isAddingToCartInProgress, setIsAddingToCartInProgress] = useState(false);
+  const [specialBundleCourseId, setSpecialBundleCourseId] = useState(0);
   const [courseDetails, setCourseDetails] = useState<any>([]);
   const dispatch = useDispatch();
   const Router = useRouter();
+  const { slug } = Router.query;
 
   useEffect(() => {
     // setSubscriptionTimer
@@ -22,7 +32,7 @@ export default function MobileCheckoutBar(props:any) {
       const [name, ...value] = current.split('=');
       if (prev) {
         prev[name] = value.join('=');
-        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == "NaN") {
 
         } else {
           setSubscriptionTimer(prev['subscription-countdown'] - ((Math.floor(Date.now() / 1000))));
@@ -31,9 +41,16 @@ export default function MobileCheckoutBar(props:any) {
       }
 
     }, {});
-    
+
 
   }, []);
+
+
+  useEffect(() => {
+    setCourseDetails(courseDetailsData?.data);
+  }, [courseDetailsData]);
+
+
 
   useEffect(() => {
     if (subscriptionTimer !== 0) {
@@ -107,37 +124,139 @@ export default function MobileCheckoutBar(props:any) {
     }
   }
 
+  const handleFreeCoursesActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+      handleFreeCourses(course);
+    } else {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "/course" }
+      })
+    }
+  }
+
+  const handleCartActionBtn = (course: any): any => {
+    setDisabledCartBtns([...disabledCartBtns, course.id]);
+    setIsAddingToCartInProgress(true);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
+    }, 5000);
+    dispatch(setCheckoutType("cart"));
+    if (props?.data?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated) {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from: Router.asPath.substring(1) }
+      })
+    } else {
+
+      const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}`, false);
+      handleCartResponse.then(function (firstresponse: any) {
+        firstresponse.resp.then(function (response: any) {
+          setCourseDetails(response.data.data);
+          dispatch(setCourseDetailsData(response.data.data));
+          dispatch(setCartItems(firstresponse.cartResponse));
+          setIsAddingToCartInProgress(false);
+          setIsCartModalVisible(true);
+          setSpecialBundleCourseId(course.id);
+        })
+      })
+    }
+
+
+  }
+
   return (
     <>
       <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
-        <div>
-          {toDisplayValues.visible && toDisplayValues.values[1] !== NaN && toDisplayValues.values[1] !== 'NaN' &&
-            <div className={styles["monthly-subscription__subscription-timer"]}>
-              ستوفر ٤٠٪ العرض سينتهي خلال
-              <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-            </div>}
-          <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
-            {
-              Router.asPath.includes("subscription") ?
-                <span> ابدأ التعلم الآن</span>
-                :
-                <>
-                  <div>
-                    <span>اشترك لمشاهدة الدورة </span>
-                  </div>
-                </>
-            }
-          </Button>
+        {props?.paymentType == "subscription" &&
           <div>
-            <div className={styles["monthly-subscription__subscription-value"]} >
-              <span>
-              احصل على كل الدورات باشتراك واحد يبدأ من {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
-                {props?.data?.currency_symbol && props?.data?.currency_symbol} / ش
-              </span>
+            {/* {toDisplayValues.visible && toDisplayValues.values[1] !== 'NaN' &&
+              <div className={styles["monthly-subscription__subscription-timer"]}>
+                ستوفر ٤٠٪ العرض سينتهي خلال
+                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
+              </div>} */}
+            <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
+              {
+                Router.asPath.includes("subscription") ?
+                  <span> ابدأ التعلم الآن</span>
+                  :
+                  <>
+                    <div>
+                      <span>اشترك لمشاهدة الدورة </span>
+                    </div>
+                  </>
+              }
+            </Button>
+            <div>
+              <div className={styles["monthly-subscription__subscription-value"]} >
+                <span>
+                  احصل على كل الدورات باشتراك واحد يبدأ من {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
+                  {props?.data?.currency_symbol && props?.data?.currency_symbol} / ش
+                </span>
+              </div>
             </div>
-          </div>
-        </div>
+          </div>}
+
+        {props?.paymentType == "normalPayment" &&
+          <div>
+            {courseDetails?.course_details?.type !== "webinar" &&
+              <Button onClick={() => {
+                courseDetails?.course_details?.discounted_price == 0 ?
+                  handleFreeCoursesActionBtn(courseDetails?.course_details)
+                  :
+                  courseDetails?.course_details?.is_in_cart ?
+                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
+                    :
+                    handleCartActionBtn(courseDetails?.course_details);
+              }} disabled={isAddingToCartInProgress}
+                className={styles["mobile-checkout-bar__actions-btns__add-to-cart-btn"]}
+              >
+                {isAddingToCartInProgress == true ?
+                  <Spinner animation='border' />
+                  :
+                  courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                    <></>
+                    :
+                    courseDetails?.course_details?.discounted_price == 0 ?
+                      <TvIcon color="#f5f5f5" />
+                      :
+                      <CartIcon color="#f5f5f5" />
+                }
+                {
+                  courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                    <span>سجل لمشاهدة البث المباشر مجاناَ</span>
+                    :
+                    courseDetails?.course_details?.discounted_price == 0 ?
+                      <span> ابدأ الآن مجانًا </span>
+                      :
+                      courseDetails?.course_details?.is_in_cart ?
+                        <span> اذهب إلى السلة</span>
+                        :
+                        <span> امتلك هذه الدورة </span>
+                }
+              </Button>}
+            <div>
+              امتلك الدورة
+              (
+              سعر الدورة
+              {` ${props?.data?.course_details?.discounted_price} `}
+              {` ${props?.data?.course_details?.currency_symbol} `}
+              )
+
+              {props?.data?.course_details?.price != props?.data?.course_details?.discounted_price &&
+                <span>
+                  بدلا من
+                  {` ${props?.data?.course_details?.price} `}
+                  {` ${props?.data?.course_details?.currency_symbol} `}
+                </span>
+              }
+            </div>
+          </div>}
+
       </div>
+
+      <AddToCartPopup setSpecialBundleCourseId={setSpecialBundleCourseId} specialBundleCourseId={specialBundleCourseId}
+        isCartModalVisible={isCartModalVisible} setIsCartModalVisible={setIsCartModalVisible} />
     </>
   );
 }

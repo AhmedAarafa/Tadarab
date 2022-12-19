@@ -21,9 +21,7 @@ import { ChevronLeftIcon } from "common/Icons/Icons";
 
 export default function DiscoverFreeCourses() {
     const [freeCourses, setFreeCourses] = useState<any>([]);
-    const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const themeState = useSelector((state: any) => state.themeState.theme);
-    const userStatus = useSelector((state: any) => state.userAuthentication);
     const router = useRouter();
     SwiperCore.use([Navigation]);
 
@@ -40,7 +38,6 @@ export default function DiscoverFreeCourses() {
                 console.log(error);
             });
     }, []);
-
 
     return (
         <Row data-theme={themeState} className={styles["discover-free-courses"]}>
@@ -101,7 +98,6 @@ export default function DiscoverFreeCourses() {
                                         className={styles["discover-free-courses__cards-carousel__course-card"]}>
                                         {
                                             course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
-
                                             <div
                                                 className={
                                                     styles[
@@ -116,7 +112,6 @@ export default function DiscoverFreeCourses() {
 
                                         <Link href={`/course/${course.slug}`}>
                                             <a onClick={() => { GAProductClickEventHandler(course, i) }}>
-
                                                 <Card.Img
                                                     variant="top"
                                                     src={course.image}
@@ -170,16 +165,12 @@ export default function DiscoverFreeCourses() {
                                                     </Link>
                                                 </div>
                                             </div>
-
                                         </Card.Body>
-
                                     </Card>
-
                                 </SwiperSlide>
                             );
                         })
                     }
-
                 </Swiper>
             </Col>
         </Row>

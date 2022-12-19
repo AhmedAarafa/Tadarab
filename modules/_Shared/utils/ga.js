@@ -156,6 +156,7 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 				'eventCategory': 'subscription',
 				'eventAction': 'purchase',
 				'eventLabel': traking_data.subscription_elabel, /* number of payments */
+				'eventValue': Math.round(traking_data.revenue),
 				'ecommerce': {
 					'currencyCode': 'USD',
 					'purchase': {

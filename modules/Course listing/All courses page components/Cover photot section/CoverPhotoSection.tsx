@@ -51,7 +51,7 @@ export default function CoverPhotoSection() {
                     </Button>}
                     {userSubscInfo == false &&
                         <div className={styles["cover-photo-box__brief"]}>
-                          <SubscriptionValues />
+                            <SubscriptionValues />
                         </div>
                     }
                 </div>

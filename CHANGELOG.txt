@@ -1,3 +1,15 @@
+Version 2.5.1 (15th Dec 2022)
+1) Certificate issue.
+2) Login issue fixed.
+3) Small changes.
+
+Version 2.5.0 (12th Dec 2022)
+1) Change subscription plans.
+2) Add CTA option in single course page.
+3) Change single course page CTA with subscription text.
+4) Change yellow bar text.
+5) Change GA event variables.
+
 Version 2.4.5 (24th Nov 2022)
 1) All course list page changes.
 2) Course listing page modifications.

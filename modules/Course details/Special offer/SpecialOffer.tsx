@@ -42,11 +42,10 @@ export default function SpecialOffer(props: any) {
     }, [props.Cid()]);
 
     useEffect(() => {
-        // console.log("specialBundleData", specialBundleData);
         let coursesIds = '';
         let localStorageItems: any = localStorage.getItem("cart")?.toString();
 
-        specialBundleData?.courses.forEach((c: any, i: number) => {
+        specialBundleData?.courses?.forEach((c: any, i: number) => {
             coursesIds += `${c.id.toString()}|`;
         });
         const regex = new RegExp(`/${coursesIds.slice(0, -1)}/g`);
@@ -54,8 +53,7 @@ export default function SpecialOffer(props: any) {
         if (regex.test(localStorageItems)) {
             setDisabled(true);
         };
-
-    }, [specialBundleData,cartItems]);
+    }, [specialBundleData, cartItems]);
 
 
     const timerHandler = (dateAfter: any) => {
@@ -93,7 +91,6 @@ export default function SpecialOffer(props: any) {
             return { days, hours, minutes, seconds }
         }, 1000);
 
-
     }
 
     const handleCartActionBtn = (courses: any): any => {
@@ -119,7 +116,7 @@ export default function SpecialOffer(props: any) {
                 const [name, ...value] = current.split('=');
                 if (prev) {
                     prev[name] = value.join('=');
-                    if ((prev.timer <= (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+                    if ((prev.timer <= (Math.floor(Date.now() / 1000))) || prev.timer == "NaN") {
 
                         let now = new Date();
                         let time = now.getTime();

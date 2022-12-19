@@ -269,13 +269,13 @@
 .checkout__cards-outer-box__card__old-price {
     color: var(--grey);
     margin-top: -0.5rem;
-    
+
     span:nth-of-type(1) {
         font-size: 0.9375rem;
         font-weight: 800;
         text-decoration: line-through rgba(175, 21, 31, 0.5);
     }
-    
+
     span:nth-of-type(2) {
         font-size: 0.75rem;
         text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -428,7 +428,7 @@
     color: var(--grey);
 }
 
-.checkout__cart-sticky-card__total-price-box__total-price-text{
+.checkout__cart-sticky-card__total-price-box__total-price-text {
     font-size: 0.9rem;
 }
 
@@ -441,7 +441,7 @@
 .checkout__cart-sticky-card__coupon-value {
     color: var(--dark-black);
 
-    span{
+    span {
         font-size: 1.25rem;
     }
 
@@ -455,12 +455,12 @@
 }
 
 .checkout__cart-sticky-card__coupon-value {
-    span{
+    span {
         font-size: 0.8rem;
     }
 }
 
-.checkout__cart-sticky-card__total-price-box__total-price{
+.checkout__cart-sticky-card__total-price-box__total-price {
     span {
         font-size: 0.9rem;
         text-decoration: line-through;
@@ -1002,7 +1002,19 @@
 
     span.checkout__cart_subscribe_price-total_original {
         color: var(--dark-black);
-        text-decoration: line-through rgba(175, 21, 31, 1);
+        // text-decoration: line-through rgba(175, 21, 31, 1);
+        font-weight: 800;
+    }
+
+    font-size: 0.9rem;
+}
+
+.checkout__cart-sticky-card__subscribe-summary__subs-period {
+    margin: 0.5rem 0;
+    @include flex(center, space-between);
+
+    .checkout__cart-sticky-card__subscribe-summary__details__subs-period-value {
+        color: var(--dark-black);
         font-weight: 800;
     }
 
@@ -1030,7 +1042,17 @@
     }
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old {
+.checkout__cart-sticky-card__subscribe-summary__details__subs-period-label {
+    font-size: 0.8rem;
+    color: var(--dark-black);
+
+    span {
+        font-weight: 800;
+    }
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old,
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__subs-period-label {
     font-size: 0.8rem;
     font-weight: 400;
 }
@@ -1042,18 +1064,25 @@
     margin-top: 0.5rem;
 }
 
-.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price {
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__old-price,
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__subs-period {
     font-size: 0.8rem;
     font-weight: 800;
     color: var(--dark-black);
     text-decoration: line-through rgba(175, 21, 31, 1);
     font-weight: 800;
-    padding: 0 0.5rem;
+    // padding: 0 0.5rem;
+    margin-top: 0.5rem;
 
-    &:before,
-    &:after {
-        content: "\00a0\00a0";
-    }
+    // &:before,
+    // &:after {
+    //     content: "\00a0\00a0";
+    // }
+}
+
+.checkout__cart-sticky-card__subscribe-summary__details__todays-total__subs-period {
+    text-decoration: none;
+    margin-top: 0.5rem;
 }
 
 .checkout__cart-sticky-card__subscribe-summary__details__exp {
@@ -1106,9 +1135,7 @@
 .monthly-subscription__subscription-timer {
     font-size: 0.75rem;
     text-align: center;
-    // color: #222;
     color: var(--primary-red);
-
 }
 
 .checkout__course-content {
@@ -2075,7 +2102,7 @@
         font-size: 1.125rem*2.2;
     }
 
-    .checkout__cart-sticky-card__total-price-box__total-price-text{
+    .checkout__cart-sticky-card__total-price-box__total-price-text {
         font-size: 0.9rem*2.2;
     }
 
@@ -2092,13 +2119,13 @@
     }
 
     .checkout__cart-sticky-card__coupon-value {
-        span{
+        span {
             font-size: 0.8rem*2.2;
         }
     }
 
-    .checkout__cart-sticky-card__total-price-box__total-price{
-        span{
+    .checkout__cart-sticky-card__total-price-box__total-price {
+        span {
             font-size: 0.9rem*2.2;
         }
     }
@@ -2561,13 +2588,15 @@
     }
 
     .checkout__cart-sticky-card__subscribe-summary__details,
-    .checkout__cart-sticky-card__subscribe-summary__details_orignal {
-        margin: 0 0 1.5rem 0;
+    .checkout__cart-sticky-card__subscribe-summary__details_orignal,
+    .checkout__cart-sticky-card__subscribe-summary__subs-period {
+        margin: 0 0 0.7rem 0;
         @include flex(center, space-between);
         font-size: 0.9rem*2.5;
     }
 
-    .checkout__cart-sticky-card__subscribe-summary__details__todays-total {
+    .checkout__cart-sticky-card__subscribe-summary__details__todays-total,
+    .checkout__cart-sticky-card__subscribe-summary__details__subs-period-label {
         font-size: 1.1rem*2;
     }
 

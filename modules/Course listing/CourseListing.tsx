@@ -199,7 +199,7 @@ export default function CourseListing() {
             .get(`courses/?page=1&limit=20&type=${(router?.query && router?.query?.type) ? router?.query?.type : "all"}`)
             .then(function (response: any) {
                 setCourseListing(response?.data);
-                // toggleLoader("hide");
+                toggleLoader("hide");
             })
             .catch(function (error) {
                 toggleLoader("hide");
@@ -231,17 +231,19 @@ export default function CourseListing() {
                 }
                 {
                     // (JSON.stringify(router?.query) == "{}" || (router?.query && (router?.query?.type == "all" || router?.query?.aid)))
-                    (router?.query.type && router?.query?.type == "all")
-                    ||
-                    (router?.query.type && router?.query?.type !== "best-seller" &&
-                        router?.query?.type !== "best-seller" &&
-                        router?.query?.type !== "best-seller")
-                    ||
-                    JSON.stringify(router?.query) == "{}"
-                    ||
-                    !router?.query.type
+                    ((router?.query.type && router?.query?.type == "all")
+                        ||
+                        (router?.query.type && router?.query?.type !== "best-seller" &&
+                            router?.query?.type !== "live" &&
+                            router?.query?.type !== "latest")
+                        ||
+                        (JSON.stringify(router?.query) == "{}")
+                        ||
+                        !router?.query.type)
                     &&
                     <>
+                        {console.log("Asas")
+                        }
                         <CoverPhotoSection2 />
                         <div className={styles["course-listing__categories-section"]}>
                             <BestSellerCourses />

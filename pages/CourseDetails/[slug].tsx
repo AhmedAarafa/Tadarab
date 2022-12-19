@@ -48,6 +48,7 @@ function CourseDetails(props: any) {
   const [courseId, setCourseId] = useState("");
   const [courseData, setCourseData] = useState({});
   const [liveWebinar, setLiveWebinar] = useState({});
+  const [paymentType, setPaymentType] = useState("subscription");
   const dispatch = useDispatch();
   const [isFound, setIsFound] = useState(true);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
@@ -98,7 +99,7 @@ function CourseDetails(props: any) {
           // window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) ||
           // window.scrollY >= 
           courseSubscribersSection?.offsetTop
-        ) ){
+        )) {
           setColFullWidth(true);
         } else if (window.scrollY < projectsSection?.offsetTop ||
           window.scrollY < reviewsSection?.offsetTop ||
@@ -349,12 +350,12 @@ function CourseDetails(props: any) {
                 {((JSON.stringify(courseDetailsData?.data) !== "[]") && (!courseDetailsData?.data?.course_details?.is_purchased)) &&
                   <>
                     <MobileNavTabsBar />
-                    <MobileCheckoutBar data={courseData} />
+                    <MobileCheckoutBar data={courseData} paymentType={paymentType} />
                     <Row className={styles["course-details-row"]}>
                       <Col xs={12} sm={8}>
                         <CourseAdvertisement />
                         {originalCardPlacement == false &&
-                          <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />
+                          <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType}/>
                         }
                         {courseDetailsData?.data?.course_details?.key_points !== null &&
                           JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
@@ -379,7 +380,7 @@ function CourseDetails(props: any) {
                       {
                         originalCardPlacement == true &&
                         <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                          {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} />}
+                          {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType}/>}
                         </Col>
                       }
                       <PracticalProjects Cid={() => { return courseId }} />
@@ -398,7 +399,7 @@ function CourseDetails(props: any) {
                     </Row>
                   </>
                 }
-                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse Cid={() => { return courseId }}/>}
+                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse Cid={() => { return courseId }} />}
               </>
             }
           </Container>

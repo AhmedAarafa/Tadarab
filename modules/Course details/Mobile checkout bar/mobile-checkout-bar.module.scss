@@ -97,3 +97,39 @@
 .mobile-checkout-bar__course-card__old-price-box__currency {
     font-size: 1.719rem;
 }
+
+
+.mobile-checkout-bar__actions-btns__add-to-cart-btn {
+    @include flex(center, center);
+    @include contained-button;
+    padding: 0.9375rem 1.875rem;
+    border-radius: 1.5625rem;
+    width: 50rem;
+    height: 6.5rem;
+    margin-top: 0.4rem;
+
+    div {
+        margin-left: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-width: 0.4rem;
+    }
+
+    svg {
+        width: 3.281rem;
+        height: 2.8rem;
+        margin-left: 0.3rem;
+    }
+
+    span {
+        font-size: 2.188rem;
+        font-weight: 700;
+    }
+
+    &+div {
+        font-size: 1.8rem;
+        text-align: center;
+        margin-top: 0.2rem;
+        color: var(--dark-black);
+    }
+}

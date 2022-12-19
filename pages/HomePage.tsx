@@ -74,16 +74,12 @@ function HomePage(props: any) {
         });
     }
 
-
     if (localStorage.getItem("affiliate_id") &&
       Math.floor(new Date().getTime() / 1000) > Number(localStorage.getItem("cced"))) {
       localStorage.removeItem("affiliate_id");
       localStorage.removeItem("cced");
       localStorage.setItem("coupon_code", "");
-
-
     }
-
 
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("latest-courses-card");
@@ -100,7 +96,7 @@ function HomePage(props: any) {
   return (
     <>
 
-      <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
+      <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
 
         <HeroSection />
         {/* <TadarabSeason /> */}

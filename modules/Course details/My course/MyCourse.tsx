@@ -14,9 +14,10 @@ import html2canvas from 'html2canvas';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import CommentsSection from "../Comments section/CommentsSection"
 
-export default function MyCourse(props:any) {
+export default function MyCourse(props: any) {
     const [courseDetails, setCourseDetails] = useState<any>([]);
     const [todaysDate, setTodaysDate] = useState<any>("");
+    const [progressPercentage, setProgressPercentage] = useState(0);
     const [userInfo, setUserInfo] = useState<any>({});
     const [isMobileView, setIsMobileView] = useState(false);
     const [downloadLink, setDownloadLink] = useState<any>("");
@@ -58,23 +59,29 @@ export default function MyCourse(props:any) {
 
     useEffect(() => {
         setCourseDetails(courseDetailsData?.data);
+        setProgressPercentage((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0)
         // return () => {
         //     dispatch(setMyCourseNavigator("curriculum"));
         //   }
     }, [courseDetailsData]);
 
-    let progress_pr = ((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0);
+    // let progress_pr = ((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0);
 
     const handleCaptureClick = useCallback(async () => {
-        toggleLoader("show");
+        // toggleLoader("show");
+      let win:any =  window.open("", '_blank');
         const certificate: any = document.querySelector("#course-certificate");
         certificate.style.cssText = "display:block";
-        console.log("certificate", certificate);
-        const canvas = await html2canvas(certificate);
-        const dataURL = canvas.toDataURL('image/png');
-        downloadjs(dataURL, 'certificate.png', 'image/png');
-        certificate.style.cssText = "display:none";
-        toggleLoader("hide");
+
+        if (certificate.style.display == "block") {
+            const canvas = await html2canvas(certificate);
+            const dataURL = canvas.toDataURL('image/png');
+            downloadjs(dataURL, 'certificate.png', 'image/png');
+            certificate.style.cssText = "display:none";
+            // toggleLoader("hide");
+            win.close();
+        }
+
     }, []);
 
     return (
@@ -88,9 +95,9 @@ export default function MyCourse(props:any) {
 
                                 <div className={styles["purchased-course-playlist__progress-box"]}>
                                     <span>  منهج الدورة  </span>
-                                    <span>  ( {progress_pr}% مكتمل )  </span>
+                                    <span>  ( {progressPercentage}% مكتمل )  </span>
                                     <div className={styles["purchased-course-playlist__progress-box__progress-bar"]}>
-                                        <ProgressBar now={progress_pr} />
+                                        <ProgressBar now={progressPercentage} />
                                     </div>
                                 </div>
 
@@ -206,7 +213,7 @@ export default function MyCourse(props:any) {
                         </Col>
 
                         <Col className={styles["my-course__comments-section"]} xs={{ span: 12, order: 5 }} sm={{ span: 12, order: 5 }}>
-                            <CommentsSection Cid={props.Cid}/>
+                            <CommentsSection Cid={props.Cid} />
                         </Col>
                     </>
                 }
