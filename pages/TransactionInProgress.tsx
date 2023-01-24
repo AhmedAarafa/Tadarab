@@ -21,20 +21,20 @@ function TransactionInProgress() {
       axiosInstance
         .get(`payments/details?payment_method=visamaster&checkout_session_id=${router.query["cko-session-id"]}&checkout_type=${router.query["checkout_type"]}`)
         .then(function (response: any) {
-          dispatch(setInvoiceDetails(response?.data?.data));
+          dispatch(setInvoiceDetails(response?.data));
           if (JSON.stringify(response.status).startsWith("2")) {
 
             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
             let customData = {};
             if ((response.data?.transaction_details?.checkout_type) && response.data?.transaction_details?.checkout_type != 'subscription') {
-              customData = { value: response.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+              // customData = { value: response.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
             } else {
               if (!is_trial_free) {
                 customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                FBPixelEventsHandler(response.data.fb_tracking_events, customData);
               }
             }
 
-            FBPixelEventsHandler(response.data.fb_tracking_events, customData);
 
             response?.data?.data?.is_successful == true ?
               dispatch(setTransactionStatus(true))
@@ -55,19 +55,19 @@ function TransactionInProgress() {
       axiosInstance
         .get(`payments/details?payment_method=${router.query["payment_method"]}&payment_id=${router.query["payment_id"]}&checkout_type=${router.query["checkout_type"]}`)
         .then(function (response: any) {
-          dispatch(setInvoiceDetails(response?.data?.data));
+          dispatch(setInvoiceDetails(response?.data));
           if (JSON.stringify(response.status).startsWith("2")) {
 
             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
             let customData = {};
             if ((response.data?.data?.transaction_details?.checkout_type) && response.data?.data?.transaction_details?.checkout_type != 'subscription') {
-              customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+              // customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
             } else {
               if (!is_trial_free) {
                 customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_subscription_purchase', predicted_ltv: 270 };
+                FBPixelEventsHandler(response.data.fb_tracking_events, customData);
               }
             }
-            FBPixelEventsHandler(response.data.fb_tracking_events, customData);
 
             response?.data?.data?.is_successful == true ?
               dispatch(setTransactionStatus(true))

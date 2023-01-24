@@ -217,7 +217,7 @@ export default function TrainerCourses() {
                                                     ]
                                                 }
                                             >
-                                                {course.trainer.name_ar}
+                                                {course.trainer?.name_ar}
                                             </div>
                                         </div>
                                     </div>

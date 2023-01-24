@@ -46,7 +46,7 @@ export default function CategoryTrainers(props: any) {
               return (
 
                 <SwiperSlide key={i}>
-                  <Link href={`/trainer/${trainer?.slug}`}>
+                  <Link href={`/trainer/${trainer?.slug}`}> 
 
                     <Card className={styles["category-trainer__cards-carousel__card"]} style={{
                       background: `transparent url(${trainer?.image}) no-repeat padding-box`,
@@ -57,7 +57,8 @@ export default function CategoryTrainers(props: any) {
                         <div className="text-center">
                           <div className={styles["category-trainer__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
                           <div className={styles["category-trainer__cards-carousel__card__job-title"]}>{trainer?.title}</div>
-                          <div className={styles["category-trainer__cards-carousel__card__job-history"]}>{trainer?.bio}</div>
+                          <div className={styles["category-trainer__cards-carousel__card__job-history"]} 
+                          dangerouslySetInnerHTML={{ __html: trainer?.bio }}></div>
                         </div>
                       </div>
                     </Card>

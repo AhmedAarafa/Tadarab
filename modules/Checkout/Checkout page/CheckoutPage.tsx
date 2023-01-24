@@ -63,7 +63,7 @@ function CheckoutPage(props: any) {
     const [threePlansSelection, setThreePlansSelection] = useState("yearly"); // monthly, yearly, midYearly
     const [subscriptionPlansBanks, setSubscriptionPlansBanks] = useState({ card_bin: 0, bank: "", subplan_id: "" }); // NBK, BOUBYAN, WARBA
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
-    const [paypalPlanId, setPaypalPlanId] = useState<any>("P-89Y527607T271593HMOK3YMQ");
+    const [paypalPlanId, setPaypalPlanId] = useState<any>(`${process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID}`);
     const dispatch = useDispatch();
     const cartItems = useSelector((state: any) => state.cartItems);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -400,8 +400,9 @@ function CheckoutPage(props: any) {
     useEffect(() => {
         console.log("paymentSettings", paymentSettings);
         console.log("paypalPlanId", paypalPlanId);
+        console.log("threePlansSelection", threePlansSelection);
 
-    }, [paymentSettings, paypalPlanId])
+    }, [paymentSettings, paypalPlanId, threePlansSelection])
 
 
 
@@ -1380,7 +1381,11 @@ function CheckoutPage(props: any) {
                                                 </div>
                                             </div>}
                                         {/* KNET Payment end */}
-                                        <TadarabUnlimited />
+                                        {
+                                            checkoutType !== "subscription" &&
+                                            <TadarabUnlimited />
+
+                                        }
                                     </>
                                 }
                             </div>
@@ -1881,9 +1886,9 @@ function CheckoutPage(props: any) {
                                                                                 localStorage.removeItem("checkoutTransactionId");
                                                                                 localStorage.removeItem("paymentId");
                                                                                 dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                                dispatch(setInvoiceDetails(response.data.data));
-                                                                                let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                                dispatch(setInvoiceDetails(response.data));
+                                                                                // let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+                                                                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
                                                                                 localStorage.setItem("cart", "[]");
                                                                                 localStorage.removeItem("coupon_code");
                                                                                 localStorage.removeItem("affiliate_id");
@@ -1972,14 +1977,14 @@ function CheckoutPage(props: any) {
 
                                                 <div className={styles["checkout__cards-outer-box__card__trainer-info-box"]}>
                                                     <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-img"]}>
-                                                        <img loading="lazy" src={it.trainer !== undefined && it.trainer.image} alt="trainer image" />
+                                                        <img loading="lazy" src={it.trainer !== undefined && it.trainer?.image} alt="trainer image" />
                                                     </div>
                                                     <div className={styles["checkout__cards-outer-box__card__trainer-info-box__info"]}>
                                                         <div className={styles["checkout__cards-outer-box__card__trainer-info-box__course-name"]} title={it.title}>
                                                             {it.title}
                                                         </div>
                                                         <div className={styles["checkout__cards-outer-box__card__trainer-info-box__trainer-name"]}>
-                                                            {it.trainer !== undefined && it.trainer.name_ar}
+                                                            {it.trainer !== undefined && it.trainer?.name_ar}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2239,7 +2244,7 @@ function CheckoutPage(props: any) {
                                             paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
                                             <>
                                                 {  // Yearly plan
-                                                    paypalPlanId == "P-89Y527607T271593HMOK3YMQ" &&
+                                                    paypalPlanId == `${process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID}` &&
                                                     <PayPalButtons
                                                         style={{
                                                             color: "blue",
@@ -2256,6 +2261,12 @@ function CheckoutPage(props: any) {
                                                                     "action": "web",
                                                                     "payment_method": "paypal",
                                                                     "checkout_type": "subscription",
+                                                                    "subplan_id": threePlansSelection == "monthly" ?
+                                                                        paymentSettings?.subscription_plans[0].subplan_id :
+                                                                        threePlansSelection == "midYearly" ?
+                                                                            paymentSettings?.subscription_plans[1].subplan_id :
+                                                                            paymentSettings?.subscription_plans[2].subplan_id
+                                                                    ,
                                                                     'page_id': courseDetailsData?.data?.course_details?.id,
                                                                 })
                                                                     .then((response: any) => {
@@ -2271,7 +2282,7 @@ function CheckoutPage(props: any) {
                                                                                 console.log("paypalPlanId", paypalPlanId);
 
                                                                                 return actions.subscription.create({
-                                                                                    plan_id: "P-89Y527607T271593HMOK3YMQ" || paymentSettings?.paypal.planid,
+                                                                                    plan_id: `${process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID}` || paymentSettings?.paypal.planid,
                                                                                     purchase_units: [{ amount: { value: paymentSettings?.usd_amount } }],
                                                                                 });
 
@@ -2310,7 +2321,7 @@ function CheckoutPage(props: any) {
                                                                             localStorage.removeItem("checkoutTransactionId");
                                                                             localStorage.removeItem("paymentId");
                                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                                            dispatch(setInvoiceDetails(response.data));
 
                                                                             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
                                                                             let customData = {};
@@ -2355,6 +2366,12 @@ function CheckoutPage(props: any) {
                                                                     "action": "web",
                                                                     "payment_method": "paypal",
                                                                     "checkout_type": "subscription",
+                                                                    "subplan_id": threePlansSelection == "monthly" ?
+                                                                        paymentSettings?.subscription_plans[0].subplan_id :
+                                                                        threePlansSelection == "midYearly" ?
+                                                                            paymentSettings?.subscription_plans[1].subplan_id :
+                                                                            paymentSettings?.subscription_plans[2].subplan_id
+                                                                    ,
                                                                     'page_id': courseDetailsData?.data?.course_details?.id,
                                                                 })
                                                                     .then((response: any) => {
@@ -2409,7 +2426,7 @@ function CheckoutPage(props: any) {
                                                                             localStorage.removeItem("checkoutTransactionId");
                                                                             localStorage.removeItem("paymentId");
                                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                                            dispatch(setInvoiceDetails(response.data));
 
                                                                             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
                                                                             let customData = {};
@@ -2454,6 +2471,12 @@ function CheckoutPage(props: any) {
                                                                     "action": "web",
                                                                     "payment_method": "paypal",
                                                                     "checkout_type": "subscription",
+                                                                    "subplan_id": threePlansSelection == "monthly" ?
+                                                                        paymentSettings?.subscription_plans[0].subplan_id :
+                                                                        threePlansSelection == "midYearly" ?
+                                                                            paymentSettings?.subscription_plans[1].subplan_id :
+                                                                            paymentSettings?.subscription_plans[2].subplan_id
+                                                                    ,
                                                                     'page_id': courseDetailsData?.data?.course_details?.id,
                                                                 })
                                                                     .then((response: any) => {
@@ -2508,7 +2531,7 @@ function CheckoutPage(props: any) {
                                                                             localStorage.removeItem("checkoutTransactionId");
                                                                             localStorage.removeItem("paymentId");
                                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                                            dispatch(setInvoiceDetails(response.data));
 
                                                                             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
                                                                             let customData = {};
@@ -2790,10 +2813,10 @@ function CheckoutPage(props: any) {
                                                                                 localStorage.removeItem("checkoutTransactionId");
                                                                                 localStorage.removeItem("paymentId");
                                                                                 dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                                                dispatch(setInvoiceDetails(response.data.data));
+                                                                                dispatch(setInvoiceDetails(response.data));
 
-                                                                                let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
-                                                                                FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
+                                                                                // let customData = { value: response.data?.data?.transaction_details.amount_usd, currency: 'USD', content_type: 'online_course_purchase' };
+                                                                                // FBPixelEventsHandler(response?.data?.fb_tracking_events, customData);
 
 
                                                                                 localStorage.setItem("cart", "[]");
@@ -2933,7 +2956,7 @@ function CheckoutPage(props: any) {
                                                         <Link href={`/trainer/${course.trainer?.slug}`}>
 
                                                             <img loading="lazy"
-                                                                src={course.trainer.image}
+                                                                src={course.trainer?.image}
                                                                 alt="trainer image"
                                                             />
 
@@ -2960,14 +2983,14 @@ function CheckoutPage(props: any) {
                                                         </Link>
                                                         <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                                            <div title={course.trainer.name_ar}
+                                                            <div title={course.trainer?.name_ar}
                                                                 className={
                                                                     styles[
                                                                     "checkout__similar-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                                                     ]
                                                                 }
                                                             >
-                                                                {course.trainer.name_ar}
+                                                                {course.trainer?.name_ar}
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -3197,7 +3220,7 @@ function CheckoutPage(props: any) {
                             paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
                             <>
                                 {  // Yearly plan
-                                    paypalPlanId == "P-89Y527607T271593HMOK3YMQ" &&
+                                    paypalPlanId == `${process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID}` &&
                                     <PayPalButtons
                                         style={{
                                             color: "blue",
@@ -3214,6 +3237,12 @@ function CheckoutPage(props: any) {
                                                     "action": "web",
                                                     "payment_method": "paypal",
                                                     "checkout_type": "subscription",
+                                                    "subplan_id": threePlansSelection == "monthly" ?
+                                                        paymentSettings?.subscription_plans[0].subplan_id :
+                                                        threePlansSelection == "midYearly" ?
+                                                            paymentSettings?.subscription_plans[1].subplan_id :
+                                                            paymentSettings?.subscription_plans[2].subplan_id
+                                                    ,
                                                     'page_id': courseDetailsData?.data?.course_details?.id,
                                                 })
                                                     .then((response: any) => {
@@ -3229,7 +3258,7 @@ function CheckoutPage(props: any) {
                                                                 console.log("paypalPlanId", paypalPlanId);
 
                                                                 return actions.subscription.create({
-                                                                    plan_id: "P-89Y527607T271593HMOK3YMQ" || paymentSettings?.paypal.planid,
+                                                                    plan_id: `${process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID}` || paymentSettings?.paypal.planid,
                                                                     purchase_units: [{ amount: { value: paymentSettings?.usd_amount } }],
                                                                 });
 
@@ -3268,7 +3297,7 @@ function CheckoutPage(props: any) {
                                                             localStorage.removeItem("checkoutTransactionId");
                                                             localStorage.removeItem("paymentId");
                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                            dispatch(setInvoiceDetails(response.data));
 
                                                             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
                                                             let customData = {};
@@ -3313,6 +3342,12 @@ function CheckoutPage(props: any) {
                                                     "action": "web",
                                                     "payment_method": "paypal",
                                                     "checkout_type": "subscription",
+                                                    "subplan_id": threePlansSelection == "monthly" ?
+                                                        paymentSettings?.subscription_plans[0].subplan_id :
+                                                        threePlansSelection == "midYearly" ?
+                                                            paymentSettings?.subscription_plans[1].subplan_id :
+                                                            paymentSettings?.subscription_plans[2].subplan_id
+                                                    ,
                                                     'page_id': courseDetailsData?.data?.course_details?.id,
                                                 })
                                                     .then((response: any) => {
@@ -3367,7 +3402,7 @@ function CheckoutPage(props: any) {
                                                             localStorage.removeItem("checkoutTransactionId");
                                                             localStorage.removeItem("paymentId");
                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                            dispatch(setInvoiceDetails(response.data));
 
                                                             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
                                                             let customData = {};
@@ -3412,6 +3447,12 @@ function CheckoutPage(props: any) {
                                                     "action": "web",
                                                     "payment_method": "paypal",
                                                     "checkout_type": "subscription",
+                                                    "subplan_id": threePlansSelection == "monthly" ?
+                                                        paymentSettings?.subscription_plans[0].subplan_id :
+                                                        threePlansSelection == "midYearly" ?
+                                                            paymentSettings?.subscription_plans[1].subplan_id :
+                                                            paymentSettings?.subscription_plans[2].subplan_id
+                                                    ,
                                                     'page_id': courseDetailsData?.data?.course_details?.id,
                                                 })
                                                     .then((response: any) => {
@@ -3466,7 +3507,7 @@ function CheckoutPage(props: any) {
                                                             localStorage.removeItem("checkoutTransactionId");
                                                             localStorage.removeItem("paymentId");
                                                             dispatch(setTransactionStatus(response.data.data.is_successful));
-                                                            dispatch(setInvoiceDetails(response.data.data));
+                                                            dispatch(setInvoiceDetails(response.data));
 
                                                             let is_trial_free = ((response.data?.data?.transaction_details?.is_trial_free && response.data?.data?.transaction_details?.is_trial_free == true) ? true : false);
                                                             let customData = {};

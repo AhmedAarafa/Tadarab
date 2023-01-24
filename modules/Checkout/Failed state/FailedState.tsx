@@ -22,8 +22,8 @@ export default function FailedState() {
         if (invoiceDetails) {
             tadarabGA.tadarab_fire_traking_GA_code("payment_fail",
                 {
-                    type: invoiceDetails?.data?.transaction_details.payment_method,
-                    reason: invoiceDetails?.data?.transaction_details.status
+                    type: invoiceDetails?.data?.data?.transaction_details.payment_method,
+                    reason: invoiceDetails?.data?.data?.transaction_details.status
                 });
         }
     }, [invoiceDetails])
@@ -88,35 +88,35 @@ export default function FailedState() {
 
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> رقم العملية </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.response_code} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.response_code} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> طريقة الدفع </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.payment_method} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.payment_method} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> حالة العملية </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.status} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.status} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> رقم العملية </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.transaction_id} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.transaction_id} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> Track ID </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.payment_id} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.payment_id} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> البريد الإلكتروني </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.email ? invoiceDetails?.data?.transaction_details?.email : ""} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.email ? invoiceDetails?.data?.data?.transaction_details?.email : ""} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> اجمالي المبلغ المدفوع </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.amount} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.amount} </div>
                             </div>
                             <div className={styles["failed-state-row__invoice-box__details-box__details"]}>
                                 <div> التاريخ </div>
-                                <div> {invoiceDetails?.data?.transaction_details?.date} </div>
+                                <div> {invoiceDetails?.data?.data?.transaction_details?.date} </div>
                             </div>
 
                         </div>

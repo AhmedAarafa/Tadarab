@@ -69,7 +69,7 @@ export default function MyCourse(props: any) {
 
     const handleCaptureClick = useCallback(async () => {
         // toggleLoader("show");
-      let win:any =  window.open("", '_blank');
+        let win: any = window.open("", '_blank');
         const certificate: any = document.querySelector("#course-certificate");
         certificate.style.cssText = "display:block";
 
@@ -109,7 +109,10 @@ export default function MyCourse(props: any) {
                         <Col xs={{ span: 12, order: 1 }} sm={{ span: 8, order: 2 }}>
                             { /** Player section **/}
                             <div id="video-player-container" className={`${styles["course-ad__course-ad-video"]}`}>
+                                {/* <div className={`${styles["course-ad__course-ad-video__vid-container"]}`}> */}
+
                                 <TadarabVideoPlayer />
+                                {/* </div> */}
                                 {/** Attachments **/}
                                 {courseDetailsData.data?.attachments.length !== 0 && courseDetailsData.data?.attachments !== undefined && courseDetailsData.data?.attachments !== null &&
                                     !isMobileView &&
@@ -156,7 +159,8 @@ export default function MyCourse(props: any) {
                                                 }
                                             </Accordion.Body>
                                         </Accordion.Item>
-                                    </Accordion>}
+                                    </Accordion>
+                                }
                             </div>
 
                         </Col>

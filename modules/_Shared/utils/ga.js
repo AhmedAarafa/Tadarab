@@ -28,7 +28,7 @@ tadarab_get_traking_location(){try{return ga.getAll()[0].get('location');}catch(
 tadarab_fire_traking_GA_code(traking_type,traking_data){
 	var event_action;
 	//var dataLayer=[];
-
+ 
 	if(traking_type=='signup'){
 		/** Normal signup **/
 		dataLayer.push({

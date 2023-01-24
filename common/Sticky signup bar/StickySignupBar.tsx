@@ -27,9 +27,10 @@ export default function StickySignupBar() {
     const scrollingHandler = () => {
         const stickyBar: any = document.getElementById("sticky-signup-bar");
         if (window.scrollY > 400) {
-            stickyBar ? stickyBar.style.display = "flex" : null;
-            if(window.innerWidth <= 576){
+            if (window.innerWidth > 576) {
                 stickyBar ? stickyBar.style.display = "none" : null;
+            } else {
+                stickyBar ? stickyBar.style.display = "flex" : null;
             }
         }
         else {

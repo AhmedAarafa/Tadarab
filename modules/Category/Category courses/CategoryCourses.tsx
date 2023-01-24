@@ -132,8 +132,8 @@ export default function CategoryCourses(props: any) {
                                                         }
                                                     >
                                                         <img loading="lazy"
-                                                            src={course.trainer.image}
-                                                            alt={course.trainer.name_ar}
+                                                            src={course.trainer?.image}
+                                                            alt={course.trainer?.name_ar}
                                                         />
                                                     </div>
                                                     <div
@@ -161,7 +161,7 @@ export default function CategoryCourses(props: any) {
                                                                 ]
                                                             }
                                                         >
-                                                            {course.trainer.name_ar}
+                                                            {course.trainer?.name_ar}
                                                         </div>
                                                     </div>
                                                 </div>

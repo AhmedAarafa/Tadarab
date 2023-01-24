@@ -474,9 +474,24 @@
     margin-bottom: -12.5rem;
   }
   .course-ad__course-ad-video {
-    height: 40rem;
+    height: 34rem;
     width: 100%;
     margin: 8.6rem 0 0 0;
+    overflow: hidden;
+  }
+  .course-ad__course-ad-video__vid-container {
+    height: 32.4rem;
+    box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .course-ad__course-ad-video__vid-container > div {
+    background-color: transparent;
+    height: 32.4rem;
+  }
+  .course-ad__course-ad-video__vid-container > div > iframe {
+    width: 100% !important;
+    height: 100% !important;
   }
   .purchased-course-playlist {
     width: 100%;

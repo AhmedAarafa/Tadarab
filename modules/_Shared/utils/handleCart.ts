@@ -36,7 +36,6 @@ export function handleCart(courses:any,endPoint:string,isSpecial:boolean){
     }
   }
 
-  
 
 // if(isAuthenticated == true){
   courses.forEach((course:any,index:number) => {

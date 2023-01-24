@@ -1,3 +1,12 @@
+Version 2.5.3 (20th Dec 2022)
+1) GA subscription event fixed.
+2) Normal checkout signin issue fixe.
+
+Version 2.5.2 (19th Dec 2022)
+1) PayPal issue fixed.
+2) Added PayPal endpoint missing parameter.
+3) PayPal subscription plan id issue fixed.
+
 Version 2.5.1 (15th Dec 2022)
 1) Certificate issue.
 2) Login issue fixed.

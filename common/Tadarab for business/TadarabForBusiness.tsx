@@ -26,7 +26,7 @@ export default function TadarabForBusiness() {
                                     طور مهارات مُوظفيك لتتناسب مع اقتصاد اليوم، اختر الخطة التعليمية التي تناسب أهداف عملك وتواصل معنا الآن.
                                 </div>
                             </div>
-                            <Button onClick={() => { openSupportConvInNewTab('https://wa.me/+96597128912') }} className={styles["tadarab-for-business__container__details-box__btn"]}>
+                            <Button onClick={() => { openSupportConvInNewTab('https://wa.me/+96599002199') }} className={styles["tadarab-for-business__container__details-box__btn"]}>
                                 تواصل معنا
                             </Button>
                         </div>

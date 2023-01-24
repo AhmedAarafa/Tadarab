@@ -41,7 +41,7 @@ export default function Category(props: any) {
   useEffect(() => {
     toggleLoader("show");
     const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
-    MOBILECHECKOUTBAR.style.cssText = `display:flex`;
+    MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:flex` : null;
     axiosInstance
       .get(`categories`)
       .then(function (response: any) {
@@ -126,7 +126,7 @@ export default function Category(props: any) {
       {
         isFound ?
           <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
-            <MobileCheckoutBar data={category} />
+            {/* <MobileCheckoutBar data={category} /> */}
             <CategoryDescription data={category} categoriesList={categoriesList} />
             <CategorySkills data={category} />
             <MostPopularCourses data={category} pagination={pagination} />

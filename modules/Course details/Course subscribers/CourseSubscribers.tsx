@@ -208,14 +208,14 @@ export default function CourseSubscribers() {
                             </Link>
                             <Link href={`/trainer/${course?.trainer?.slug}`}>
 
-                              <div title={course?.trainer.name_ar}
+                              <div title={course?.trainer?.name_ar}
                                 className={
                                   styles[
                                   "course-subscribers__cards-carousel__course-card__card-body__card-header__course-details__author"
                                   ]
                                 }
                               >
-                                {course?.trainer.name_ar}
+                                {course?.trainer?.name_ar}
                               </div>
                             </Link>
                           </div>

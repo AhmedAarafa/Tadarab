@@ -6,7 +6,7 @@ import 'normalize.css';
 import { Provider, useDispatch } from 'react-redux';
 import { store } from "configurations/redux/store";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import React, { useState, useEffect,useRef  } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TransactionInProgress from "./TransactionInProgress";
 // import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Head from "next/head";
@@ -79,6 +79,41 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image" content="https://tadarab.s3.us-west-2.amazonaws.com/wp-content/uploads/20191116124120/Thumbnail-image-3.png" key="twitter-image" />
         <script src="//widget.manychat.com/414102_7667f.js" defer></script>
         <script src="https://mccdn.me/assets/js/widget.js" defer></script>
+
+        {/*<!-- Facebook Pixel Code -->*/}
+
+
+        <script async src='https://connect.facebook.net/en_US/fbevents.js' />
+        {/* <Script id="facebook-pixel-script" strategy="afterInteractive" dangerouslySetInnerHTML={{
+        __html: `!function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');fbq('init','387170448377801');`
+      }} /> */}
+        {/*<noscript dangerouslySetInnerHTML={{__html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=387170448377801&ev=PageView&noscript=1"/>`}} />*/}
+
+
+        <script dangerouslySetInnerHTML={{
+          __html: `!function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '387170448377801');` }}
+        />
+        <noscript dangerouslySetInnerHTML={{
+          __html: `<img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=387170448377801&noscript=1" />` }}
+        />
+
+        {/*<!-- End Facebook Pixel Code -->*/}
       </Head>
       {/* <body> */}
 
@@ -93,20 +128,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <noscript dangerouslySetInnerHTML={{ __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2TKMK7" height="0" width="0" style="display:none;visibility:hidden"></iframe>` }}></noscript>
       {/*<!-- End Google Tag Manager -->*/}
 
-      {/*<!-- Facebook Pixel Code -->*/}
-      <Script async src='https://connect.facebook.net/en_US/fbevents.js' />
-      <Script id="facebooke-pixel-script" dangerouslySetInnerHTML={{
-        __html: `!function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');fbq('init','387170448377801');`
-      }} />
-      {/*<noscript dangerouslySetInnerHTML={{__html: `<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=387170448377801&ev=PageView&noscript=1"/>`}} />*/}
-      {/*<!-- End Facebook Pixel Code -->*/}
+
 
       <Provider store={store}>
         <Loader />

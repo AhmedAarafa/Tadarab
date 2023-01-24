@@ -242,8 +242,6 @@ export default function CourseListing() {
                         !router?.query.type)
                     &&
                     <>
-                        {console.log("Asas")
-                        }
                         <CoverPhotoSection2 />
                         <div className={styles["course-listing__categories-section"]}>
                             <BestSellerCourses />

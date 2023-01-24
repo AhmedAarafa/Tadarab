@@ -101,8 +101,10 @@ function CourseDetails(props: any) {
           courseSubscribersSection?.offsetTop
         )) {
           setColFullWidth(true);
-        } else if (window.scrollY < projectsSection?.offsetTop ||
-          window.scrollY < reviewsSection?.offsetTop ||
+        } else if 
+        (
+          // window.scrollY < projectsSection?.offsetTop ||
+          // window.scrollY < reviewsSection?.offsetTop ||
           window.scrollY < courseSubscribersSection?.offsetTop) {
           setColFullWidth(false);
         }
@@ -159,8 +161,9 @@ function CourseDetails(props: any) {
             courseSubscribersSection?.offsetTop
           )) {
             setColFullWidth(true);
-          } else if (window.scrollY < projectsSection?.offsetTop ||
-            window.scrollY < reviewsSection?.offsetTop ||
+          } else if (
+            // window.scrollY < projectsSection?.offsetTop ||
+            // window.scrollY < reviewsSection?.offsetTop ||
             window.scrollY < courseSubscribersSection?.offsetTop) {
             setColFullWidth(false);
           }

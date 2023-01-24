@@ -18,6 +18,7 @@ import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandl
 
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
+const StickySignupBar = dynamic(() => import("common/Sticky signup bar/StickySignupBar"));
 
 export default function TrainerProfile(props: any) {
   const dispatch = useDispatch();
@@ -130,7 +131,7 @@ export default function TrainerProfile(props: any) {
       {
         isFound ?
           <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
-            { isCheckoutBarVisible && <MobileCheckoutBar data={trainerData} />}
+            { isCheckoutBarVisible && <StickySignupBar />}
             <TrainerProfilePage />
           </Container>
           :

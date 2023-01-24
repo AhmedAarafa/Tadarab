@@ -483,7 +483,7 @@
     }
 }
 
-.my-course__comments-section{
+.my-course__comments-section {
     padding: 0 3rem;
     margin-top: -5rem;
 }
@@ -495,11 +495,26 @@
     }
 
     .course-ad__course-ad-video {
-
-        height: 40rem;
+        height: 34rem;
         width: 100%;
         margin: 8.6rem 0 0 0;
+        overflow: hidden;
+    }
 
+    .course-ad__course-ad-video__vid-container{
+        height: 32.4rem;
+        box-shadow: 0 0 1.25rem #0000001A;
+        border-radius: 0;
+        overflow: hidden;
+        &>div {
+            background-color: transparent;
+            height: 32.4rem;
+
+            &>iframe {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
     }
 
     .purchased-course-playlist {
@@ -810,7 +825,7 @@
         }
     }
 
-    .my-course__comments-section{
+    .my-course__comments-section {
         padding: 0 3rem;
         margin-top: -3rem*4;
     }

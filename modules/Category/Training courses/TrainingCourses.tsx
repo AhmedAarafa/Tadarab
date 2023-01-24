@@ -473,8 +473,8 @@ export default function TrainingCourses(props: any) {
                                                 <Link href={`/trainer/${course.trainer?.slug}`}>
 
                                                     <img loading="lazy"
-                                                        src={course.trainer.image}
-                                                        alt={course.trainer.name_ar}
+                                                        src={course.trainer?.image}
+                                                        alt={course.trainer?.name_ar}
                                                     />
                                                 </Link>
                                             </div>
@@ -506,7 +506,7 @@ export default function TrainingCourses(props: any) {
                                                             ]
                                                         }
                                                     >
-                                                        {course.trainer.name_ar}
+                                                        {course.trainer?.name_ar}
                                                     </div>
                                                 </Link>
                                             </div>

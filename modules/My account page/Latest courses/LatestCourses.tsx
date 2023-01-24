@@ -202,7 +202,7 @@ export default function LatestCourses(props: any) {
                               <Link href={`/trainer/${course.trainer?.slug}`}>
   
                                 <img loading="lazy"
-                                  src={course.trainer.image}
+                                  src={course.trainer?.image}
                                   alt="trainer image"
                                 />
                               </Link>
@@ -228,14 +228,14 @@ export default function LatestCourses(props: any) {
                               </Link>
                               <Link href={`/trainer/${course.trainer?.slug}`}>
   
-                                <div title={course.trainer.name_ar}
+                                <div title={course.trainer?.name_ar}
                                   className={
                                     styles[
                                     "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                     ]
                                   }
                                 >
-                                  {course.trainer.name_ar}
+                                  {course.trainer?.name_ar}
                                 </div>
                               </Link>
                             </div>
