@@ -112,7 +112,7 @@
   font-size: 0.75rem;
 }
 .success-state-row__invoice-box__details-box__details div {
-  background-color: white;
+  background-color: var(--tadarab-bg);
   z-index: 1;
 }
 .success-state-row__invoice-box__details-box__details div:nth-of-type(1) {

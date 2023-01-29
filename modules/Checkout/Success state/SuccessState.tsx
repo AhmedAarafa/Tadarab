@@ -24,8 +24,8 @@ export default function SuccessState() {
 
     let tadarabGA = new TadarabGA();
     useEffect(() => {
-        console.log("invoiceDetails",invoiceDetails);
-        
+        console.log("invoiceDetails", invoiceDetails);
+
         if (invoiceDetails) {
             checkoutType = (invoiceDetails?.data?.data?.transaction_details?.checkout_type);
             if (checkoutType == "cart") {

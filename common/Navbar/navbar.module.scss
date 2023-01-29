@@ -745,6 +745,7 @@ input:checked+.slider:before {
     .navbar__cart-icon-container {
         margin: 0 1.8rem 0 0.7rem;
         order: 4;
+        display: none;
 
         svg {
             width: 3rem;
@@ -775,7 +776,7 @@ input:checked+.slider:before {
 
         a:first-child {
             order: 2;
-            margin-right: 3rem;
+            margin-left: 4rem;
         }
 
         button {

@@ -124,139 +124,28 @@ export default function MobileCheckoutBar(props: any) {
     }
   }
 
-  const handleFreeCoursesActionBtn = (course: any): any => {
-    if (userStatus.isUserAuthenticated == true) {
-      handleFreeCourses(course);
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "/course" }
-      })
-    }
-  }
-
-  const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns, course.id]);
-    setIsAddingToCartInProgress(true);
-    setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
-    }, 5000);
-    dispatch(setCheckoutType("cart"));
-    if (props?.data?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated) {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from: Router.asPath.substring(1) }
-      })
-    } else {
-
-      const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}`, false);
-      handleCartResponse.then(function (firstresponse: any) {
-        firstresponse.resp.then(function (response: any) {
-          setCourseDetails(response.data.data);
-          dispatch(setCourseDetailsData(response.data.data));
-          dispatch(setCartItems(firstresponse.cartResponse));
-          setIsAddingToCartInProgress(false);
-          setIsCartModalVisible(true);
-          setSpecialBundleCourseId(course.id);
-        })
-      })
-    }
-
-
-  }
-
   return (
     <>
       <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
         {props?.paymentType == "subscription" &&
           <div>
-            {/* {toDisplayValues.visible && toDisplayValues.values[1] !== 'NaN' &&
-              <div className={styles["monthly-subscription__subscription-timer"]}>
-                ستوفر ٤٠٪ العرض سينتهي خلال
-                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-              </div>} */}
-            <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
-              {
-                Router.asPath.includes("subscription") ?
-                  <span> ابدأ التعلم الآن</span>
-                  :
-                  <>
-                    <div>
-                      <span>اشترك لمشاهدة الدورة </span>
-                    </div>
-                  </>
-              }
-            </Button>
-            <div>
-              <div className={styles["monthly-subscription__subscription-value"]} >
-                <span>
-                  احصل على كل الدورات باشتراك واحد يبدأ من {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
-                  {props?.data?.currency_symbol && props?.data?.currency_symbol} / ش
-                </span>
+
+            <div className={styles["mobile-checkout-bar__subscription-details"]}>
+              <div> شاهد اكثر من 1000 دورة باشتراك شهري </div>
+              <div>
+                <span> 744 </span>
+                <span> ج.م (تدفع سنوياً) </span>
               </div>
-            </div>
-          </div>}
 
-        {props?.paymentType == "normalPayment" &&
-          <div>
-            {courseDetails?.course_details?.type !== "webinar" &&
-              <Button onClick={() => {
-                courseDetails?.course_details?.discounted_price == 0 ?
-                  handleFreeCoursesActionBtn(courseDetails?.course_details)
-                  :
-                  courseDetails?.course_details?.is_in_cart ?
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                    :
-                    handleCartActionBtn(courseDetails?.course_details);
-              }} disabled={isAddingToCartInProgress}
-                className={styles["mobile-checkout-bar__actions-btns__add-to-cart-btn"]}
-              >
-                {isAddingToCartInProgress == true ?
-                  <Spinner animation='border' />
-                  :
-                  courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                    <></>
-                    :
-                    courseDetails?.course_details?.discounted_price == 0 ?
-                      <TvIcon color="#f5f5f5" />
-                      :
-                      <CartIcon color="#f5f5f5" />
-                }
-                {
-                  courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                    <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-                    :
-                    courseDetails?.course_details?.discounted_price == 0 ?
-                      <span> ابدأ الآن مجانًا </span>
-                      :
-                      courseDetails?.course_details?.is_in_cart ?
-                        <span> اذهب إلى السلة</span>
-                        :
-                        <span> امتلك هذه الدورة </span>
-                }
-              </Button>}
-            <div>
-              امتلك الدورة
-              (
-              سعر الدورة
-              {` ${props?.data?.course_details?.discounted_price} `}
-              {` ${props?.data?.course_details?.currency_symbol} `}
-              )
-
-              {props?.data?.course_details?.price != props?.data?.course_details?.discounted_price &&
-                <span>
-                  بدلا من
-                  {` ${props?.data?.course_details?.price} `}
-                  {` ${props?.data?.course_details?.currency_symbol} `}
-                </span>
-              }
             </div>
-          </div>}
+
+            <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
+              اشترك الآن وأبدا التعلم
+            </Button>
+          </div>
+        }
 
       </div>
-
-      <AddToCartPopup setSpecialBundleCourseId={setSpecialBundleCourseId} specialBundleCourseId={specialBundleCourseId}
-        isCartModalVisible={isCartModalVisible} setIsCartModalVisible={setIsCartModalVisible} />
     </>
   );
 }

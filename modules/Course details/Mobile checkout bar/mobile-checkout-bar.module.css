@@ -1,16 +1,13 @@
 .mobile-checkout-bar {
   background-color: var(--tadarab-bg);
-  padding: 10px 0px;
+  padding: 0.625rem 0rem;
   box-shadow: 0 -0.781rem 3.281rem rgba(0, 0, 0, 0.0784313725);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 8;
-  display: none;
   background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
+  display: none;
 }
 
 .monthly-subscription__subscription-value span.amount-strike {
@@ -46,8 +43,9 @@
   border-radius: 1.5625rem;
   width: 50rem;
   height: 6.5rem;
-  margin-top: 0.4rem;
+  margin: 0.6rem 0;
   flex-direction: column;
+  font-size: 2.231rem;
 }
 .mobile-checkout-bar__subscribe-btn:hover {
   box-shadow: none;
@@ -59,23 +57,26 @@
   background-color: #9d151e !important;
   border: 0.125rem solid #9d151e !important;
 }
-.mobile-checkout-bar__subscribe-btn div:nth-of-type(2) {
-  font-size: 1.59375rem;
+
+.mobile-checkout-bar__subscription-details {
+  color: var(--dark-black);
 }
-.mobile-checkout-bar__subscribe-btn svg {
-  width: 3.281rem;
-  height: 2.8rem;
-  margin-left: 0.3rem;
-}
-.mobile-checkout-bar__subscribe-btn span {
-  font-size: 2.188rem;
+.mobile-checkout-bar__subscription-details div:nth-of-type(1) {
+  margin-top: 0.5rem;
+  font-size: 2.2rem;
   font-weight: 700;
 }
-.mobile-checkout-bar__subscribe-btn + div {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-top: 0.2rem;
-  color: var(--dark-black);
+.mobile-checkout-bar__subscription-details div:nth-of-type(2) {
+  margin-top: -0.8rem;
+}
+.mobile-checkout-bar__subscription-details div:nth-of-type(2) span:nth-of-type(1) {
+  font-size: 3.52rem;
+  font-weight: 800;
+  margin-left: 0.66rem;
+}
+.mobile-checkout-bar__subscription-details div:nth-of-type(2) span:nth-of-type(2) {
+  font-size: 2.53rem;
+  font-weight: 700;
 }
 
 .mobile-checkout-bar__course-card__price-box {

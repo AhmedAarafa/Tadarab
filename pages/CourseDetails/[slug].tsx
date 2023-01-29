@@ -63,7 +63,34 @@ function CourseDetails(props: any) {
     subscriptionCounter();
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("course-subscribers__course-card");
-    })
+    });
+
+    if (document.readyState === "complete") {
+      const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+
+      if (document.documentElement.clientWidth < 576) {
+        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+          display:flex;
+          align-items:center;
+          justify-content:space-evenly;
+          bottom:0;
+          `: null;
+      }
+    } else {
+      window.addEventListener('load', (event) => {
+        const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+
+        if (document.documentElement.clientWidth < 576) {
+          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+            display:flex;
+            align-items:center;
+            justify-content:space-evenly;
+            bottom:0;
+            `: null;
+        }
+      });
+    }
+
 
     return () => {
       window.removeEventListener("scroll", () => {
@@ -74,16 +101,12 @@ function CourseDetails(props: any) {
 
   useEffect(() => {
 
-    const rootFontSize = parseFloat(
-      window
-        .getComputedStyle(document.getElementsByTagName("html")[0])
-        .getPropertyValue("font-size")
-    );
     const tabsResponsiveBar: any = document.getElementById("tabs-responsive-bar");
-    const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
     const navbar: any = document.getElementById("nav");
+    const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
     let addToCartBtn: any = null;
     if (document.documentElement.clientWidth >= 576) {
+      const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
       let addToCartBtn: any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
@@ -101,8 +124,8 @@ function CourseDetails(props: any) {
           courseSubscribersSection?.offsetTop
         )) {
           setColFullWidth(true);
-        } else if 
-        (
+        } else if
+          (
           // window.scrollY < projectsSection?.offsetTop ||
           // window.scrollY < reviewsSection?.offsetTop ||
           window.scrollY < courseSubscribersSection?.offsetTop) {
@@ -110,14 +133,28 @@ function CourseDetails(props: any) {
         }
       });
     } else {
-
       setOriginalCardPlacement(false);
+      const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+      MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+          display:flex;
+          align-items:center;
+          justify-content:space-evenly;
+          bottom:0;
+          `: null;
+
       window.addEventListener("scroll", function () {
         let addToCartBtn: any = null;
         addToCartBtn = document.getElementById("monthly-subscribe-btn");
+        const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+
+        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+        display:flex;
+        align-items:center;
+        justify-content:space-evenly;
+        bottom:0;
+        `: null;
 
         if (addToCartBtn) {
-          const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
           if (window.scrollY >= addToCartBtn.offsetTop) {
             tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `
          display:flex;
@@ -125,16 +162,10 @@ function CourseDetails(props: any) {
          justify-content:space-around;
          top:${navbar?.offsetHeight}px;
          ` : null;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
-         display:flex;
-         align-items:center;
-         justify-content:space-evenly;
-         bottom:0;
-         `: null;
 
           } else if (window.scrollY < addToCartBtn.offsetTop) {
             tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-            MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+            // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
           }
         }
 
@@ -143,6 +174,7 @@ function CourseDetails(props: any) {
 
     window.addEventListener("resize", () => {
       if (document.documentElement.clientWidth >= 576) {
+        const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
         let addToCartBtn: any = null;
         setOriginalCardPlacement(true);
         tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
@@ -168,13 +200,20 @@ function CourseDetails(props: any) {
             setColFullWidth(false);
           }
         });
-      }
-      else {
-
+      } else {
         setOriginalCardPlacement(false);
+        const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+            display:flex;
+            align-items:center;
+            justify-content:space-evenly;
+            bottom:0;
+            `: null;
+
         window.addEventListener("scroll", function () {
           let addToCartBtn: any = null;
           addToCartBtn = document.getElementById("monthly-subscribe-btn");
+
 
           if (addToCartBtn) {
 
@@ -185,23 +224,16 @@ function CourseDetails(props: any) {
             justify-content:space-around;
             top:${navbar?.offsetHeight}px;
             ` : null;
-              MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
-            display:flex;
-            align-items:center;
-            justify-content:space-evenly;
-            bottom:0;
-            ` : null;
+
             } else if (window.scrollY < addToCartBtn?.offsetTop) {
               tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
-              MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
+              // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
             }
           }
 
         });
       }
     });
-
-
 
     if (Router.query.slug) {
 
@@ -322,7 +354,6 @@ function CourseDetails(props: any) {
     }
 
 
-
     return () => {
       window.removeEventListener("resize", () => {
         return;
@@ -334,8 +365,6 @@ function CourseDetails(props: any) {
 
 
   }, [Router.query]);
-
-
 
   return (
     <>
@@ -358,7 +387,7 @@ function CourseDetails(props: any) {
                       <Col xs={12} sm={8}>
                         <CourseAdvertisement />
                         {originalCardPlacement == false &&
-                          <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType}/>
+                          <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType} />
                         }
                         {courseDetailsData?.data?.course_details?.key_points !== null &&
                           JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
@@ -383,7 +412,7 @@ function CourseDetails(props: any) {
                       {
                         originalCardPlacement == true &&
                         <Col xs={colFullWidth ? 12 : 4} id="card-column">
-                          {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType}/>}
+                          {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType} />}
                         </Col>
                       }
                       <PracticalProjects Cid={() => { return courseId }} />

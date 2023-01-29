@@ -46,7 +46,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
   const { slug } = Router.query;
 
   useEffect(() => {
-    // subscriptionCounter();
     let cancel: boolean = false;
 
     // setSubscriptionTimer
@@ -290,170 +289,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
           {!courseDetails?.subscription_exclude ?
             <>
-
-              <div className={styles["monthly-subscription__course-card__title"]}>
-                <div>
-                  {theOption?.liveWebinarDetails?.type !== "webinar" &&
-                    <input type="radio" name="payment-type" value="subscription" onClick={() => { setPaymentType("subscription"); theOption.setPaymentType("subscription") }}
-                      checked={paymentType == "subscription"} className="form-check-input" />}
-                  <span> اشترك في تدرب </span>
-                  <span>
-                    بلا حدود
-                  </span>
-                </div>
-                <div className={styles["monthly-subscription__subscription-value"]} >
-                  <span>
-                    احصل على كل الدورات باشتراك واحد   {courseDetails.subscription_sale_price || subscriptionInfo?.after}
-                    {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `} / ش
-                    <br />
-                    ( تدفع سنوياَ )
-                  </span>
-                </div>
-                <div>
-                  <div className={styles["monthly-subscription__subscription-benefits"]}>
-                    <div>
-                      <TickIcon />
-                    </div>
-                    مشاهدة  لجميع الدورات بالمنصة (أكثر من 850 دورة تدريبية).
-                  </div>
-                  <div className={styles["monthly-subscription__subscription-benefits"]}>
-                    <div>
-                      <TickIcon />
-                    </div>
-                    دورات جديدة تضاف شهريًا.
-                  </div>
-                  <div className={styles["monthly-subscription__subscription-benefits"]}>
-                    <div>
-                      <TickIcon />
-                    </div>
-                    عدد لا نهائي من شهادات إتمام الدورات.
-                  </div>
-                  <div className={styles["monthly-subscription__subscription-benefits"]}>
-                    <div>
-                      <TickIcon />
-                    </div>
-                    لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.
-                  </div>
-                  <span>
-                    <Link href="/subscription">
-                      اعرف المزيد.
-                    </Link>
-                  </span>
-                </div>
-              </div>
-
-              {theOption?.liveWebinarDetails?.type !== "webinar" &&
-                <>
-                  <div className={styles["monthly-subscription__course-card__normal-payment"]}>
-                    <div>
-                      <input type="radio" name="payment-type" value="normalPayment" onClick={() => { setPaymentType("normalPayment"); theOption.setPaymentType("normalPayment") }}
-                        checked={paymentType == "normalPayment"} className="form-check-input" />
-                      امتلك الدورة
-                    </div>
-                    {
-                      <div className={styles["monthly-subscription__course-card__normal-payment__discounted-price"]}>
-                        <span>
-                          سعر الدورة
-                          {` ${courseDetails?.course_details?.discounted_price} `}
-                          {` ${courseDetails?.course_details?.currency_symbol} `}
-                        </span>
-                        {courseDetails?.course_details?.price != courseDetails?.course_details?.discounted_price &&
-                          <span>
-                            بدلا من
-                            {` ${courseDetails?.course_details?.price} `}
-                            {` ${courseDetails?.course_details?.currency_symbol} `}
-                          </span>}
-                      </div>}
-
-                  </div>
-
-                  {paymentType == "normalPayment" &&
-                    <div className={styles["monthly-subscription__course-card__actions-btns"]}>
-                      {courseDetails.course_details?.type !== "webinar" &&
-                        <Button onClick={() => {
-                          courseDetails.course_details?.discounted_price == 0 ?
-                            handleFreeCoursesActionBtn(courseDetails.course_details)
-                            :
-                            courseDetails.course_details?.is_in_cart ?
-                              Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                              :
-                              handleCartActionBtn(courseDetails.course_details);
-                        }} disabled={isAddingToCartInProgress}
-                          className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
-                        >
-                          {isAddingToCartInProgress == true ?
-                            <Spinner animation='border' />
-                            :
-                            courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                              <></>
-                              :
-                              courseDetails.course_details?.discounted_price == 0 ?
-                                <TvIcon color="#222" />
-                                :
-                                <CartIcon color="#222" />
-                          }
-                          {
-                            courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                              <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-                              :
-                              courseDetails.course_details?.discounted_price == 0 ?
-                                <span> ابدأ الآن مجانًا </span>
-                                :
-                                courseDetails.course_details?.is_in_cart ?
-                                  <span> اذهب إلى السلة</span>
-                                  :
-                                  <span> امتلك هذه الدورة </span>
-                          }
-                        </Button>}
-
-
-                      <Button onClick={() => {
-                        handleFavActionBtn(courseDetails.course_details);
-                      }}
-                        className={
-                          styles["monthly-subscription__course-card__actions-btns__fav-btn"]
-                        }
-                      >
-                        {
-                          theOption.liveWebinarDetails?.is_in_favorites ?
-                            <AddedToFavouriteIcon color="#222" />
-                            :
-                            <FavouriteIcon color="#222" />
-
-
-                        }
-                      </Button>
-                      <Button
-                        className={
-                          styles["monthly-subscription__course-card__actions-btns__share-btn"]
-                        }
-                      >
-                        <ShareIcon />
-                      </Button>
-                    </div>}
-
-                  {
-                    paymentType == "subscription" &&
-                    <>
-                      <div className={styles["monthly-subscription__subscribe-btn-box"]}>
-                        <Button id="monthly-subscribe-btn" className={`${styles["monthly-subscription__subscribe-btn-box__btn"]} ${theOption?.liveWebinarDetails?.type == "webinar" ? styles["monthly-subscription__secondary"] : ""}`}
-                          onClick={() => handleSubscriptionBtn()}>
-                          <div>
-                            <span>اشترك لمشاهدة الدورة </span>
-                          </div>
-                        </Button>
-                      </div>
-                      {/* <div className={styles["monthly-subscription__subscription-value"]} >
-                        <span>
-                          احصل على كل الدورات باشتراك واحد يبدأ من {courseDetails.subscription_sale_price || subscriptionInfo?.after}
-                          {` ${courseDetails.currency_symbol || subscriptionInfo?.currencySymbol} `} / ش
-                        </span>
-                      </div> */}
-                    </>
-                  }
-
-                </>
-              }
               {
                 theOption?.liveWebinarDetails?.type == "webinar" && (theOption?.liveWebinarDetails?.webinar_type == 'soon') &&
                 <>
@@ -530,141 +365,62 @@ export default function MonthlySubscriptionCard(theOption: any) {
               <div className={styles["monthly-subscription__course-card__course-title"]}>
                 {courseDetailsData?.data?.course_details?.title}
               </div>
-          
-              {  isMobileView &&
-              <>
-                <div
-                className={styles["monthly-subscription__course-card__actions-btns"]}>
-                {courseDetails.course_details?.type !== "webinar" &&
-                  <Button onClick={() => {
-                    courseDetails.course_details?.discounted_price == 0 ?
-                      handleFreeCoursesActionBtn(courseDetails.course_details)
-                      :
-                      courseDetails.course_details?.is_in_cart ?
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                        :
-                        handleCartActionBtn(courseDetails.course_details);
-                  }} disabled={isAddingToCartInProgress}
-                    className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
-                  >
-                    {isAddingToCartInProgress == true ?
-                      <Spinner animation='border' />
-                      :
-                      courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                        <></>
-                        :
+
+              {isMobileView &&
+                <>
+                  <div
+                    className={styles["monthly-subscription__course-card__actions-btns"]}>
+                    {courseDetails.course_details?.type !== "webinar" &&
+                      <Button onClick={() => {
                         courseDetails.course_details?.discounted_price == 0 ?
-                          <TvIcon color="#222" />
-                          :
-                          <CartIcon color="#222" />
-                    }
-                    {
-                      courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                        <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-                        :
-                        courseDetails.course_details?.discounted_price == 0 ?
-                          <span> ابدأ الآن مجانًا </span>
+                          handleFreeCoursesActionBtn(courseDetails.course_details)
                           :
                           courseDetails.course_details?.is_in_cart ?
-                            <span> اذهب إلى السلة</span>
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
                             :
-                            <span> امتلك هذه الدورة </span>
-                    }
-                  </Button>}
+                            handleCartActionBtn(courseDetails.course_details);
+                      }} disabled={isAddingToCartInProgress}
+                        className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
+                      >
+                        {isAddingToCartInProgress == true ?
+                          <Spinner animation='border' />
+                          :
+                          courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                            <></>
+                            :
+                            courseDetails.course_details?.discounted_price == 0 ?
+                              <TvIcon color="#222" />
+                              :
+                              <CartIcon color="#222" />
+                        }
+                        {
+                          courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                            <span>سجل لمشاهدة البث المباشر مجاناَ</span>
+                            :
+                            courseDetails.course_details?.discounted_price == 0 ?
+                              <span> ابدأ الآن مجانًا </span>
+                              :
+                              courseDetails.course_details?.is_in_cart ?
+                                <span> اذهب إلى السلة</span>
+                                :
+                                <span> امتلك هذه الدورة </span>
+                        }
+                      </Button>}
 
 
-                <Button onClick={() => {
-                  handleFavActionBtn(courseDetails.course_details);
-                }}
-                  className={
-                    styles["monthly-subscription__course-card__actions-btns__fav-btn"]
-                  }
-                >
-                  {
-                    theOption.liveWebinarDetails?.is_in_favorites ?
-                      <AddedToFavouriteIcon color="#222" />
-                      :
-                      <FavouriteIcon color="#222" />
-
-
-                  }
-                </Button>
-                <Button
-                  className={
-                    styles["monthly-subscription__course-card__actions-btns__share-btn"]
-                  }
-                >
-                  <ShareIcon />
-                </Button>
-              </div>
-              <div className={styles["course-price"]}>
-    
-                {theOption.liveWebinarDetails?.discounted_price !== 0 && theOption.liveWebinarDetails?.type !== "webinar" &&
-                  <div className={styles["sale-price"]}>
-                    سعر الدورة
-                    <span>
-                      {` ${courseDetails?.course_details?.discounted_price} `}
-                    </span>
-                    <span>
-                      {` ${courseDetails?.course_details?.currency_symbol} `}
-                    </span>
-                    
                   </div>
-                }
-    
-                {theOption.liveWebinarDetails?.price != theOption.liveWebinarDetails?.discounted_price &&
-                  <div className={styles["orignal-price"]}>
-                    بدلاً من
-                    <span>
-                      {courseDetails?.course_details?.price}
-                    </span>
-                    <span>
-                      {` ${courseDetails?.course_details?.currency_symbol} `}
-                    </span>
-                  </div>
-                }
-    
-              </div>
-              </>
+                </>
               }
             </>
-          
+
           }
 
 
           {/* Price end */}
 
-
-          {/* {theOption.liveWebinarDetails?.type !== "webinar" &&
-            <div
-              id="course-card__guarantee-card"
-              className={styles["course-details__course-card__guarantee-box"]}
-            >
-              <div
-                className={
-                  styles["course-details__course-card__guarantee-box__icon"]
-                }
-              >
-                <GuaranteeIcon />
-              </div>
-              <div
-                className={
-                  styles["course-details__course-card__guarantee-box__text-box"]
-                }
-              >
-                <div
-                  className={
-                    styles[
-                    "course-details__course-card__guarantee-box__text-box__major"
-                    ]
-                  }
-                >
-                  ٣٠ يوم ضمان ذهبي استرداد كامل المبلغ
-                </div>
-
-              </div>
-            </div>
-          } */}
+          <div className={styles["monthly-subscription__course-card__course-title"]}>
+            {courseDetailsData?.data?.course_details?.title}
+          </div>
 
           {!isMobileView && <div className={styles["monthly-subscription__course-card__details-list"]}>
             {theOption.liveWebinarDetails?.type !== "webinar" &&
@@ -706,100 +462,72 @@ export default function MonthlySubscriptionCard(theOption: any) {
                   <span>تابع الدورة من اي لابتوب او موبايل</span>
                 </div>
 
-                { courseDetails?.subscription_exclude &&
+                {courseDetails?.subscription_exclude &&
                   <>
                     <div
-                    className={styles["monthly-subscription__course-card__actions-btns"]}>
-                    {courseDetails.course_details?.type !== "webinar" &&
-                      <Button onClick={() => {
-                        courseDetails.course_details?.discounted_price == 0 ?
-                          handleFreeCoursesActionBtn(courseDetails.course_details)
-                          :
-                          courseDetails.course_details?.is_in_cart ?
-                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
+                      className={styles["monthly-subscription__course-card__actions-btns"]}>
+                      {courseDetails.course_details?.type !== "webinar" &&
+                        <Button onClick={() => {
+                          courseDetails.course_details?.discounted_price == 0 ?
+                            handleFreeCoursesActionBtn(courseDetails.course_details)
                             :
-                            handleCartActionBtn(courseDetails.course_details);
-                      }} disabled={isAddingToCartInProgress}
-                        className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
-                      >
-                        {isAddingToCartInProgress == true ?
-                          <Spinner animation='border' />
-                          :
-                          courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                            <></>
-                            :
-                            courseDetails.course_details?.discounted_price == 0 ?
-                              <TvIcon color="#222" />
+                            courseDetails.course_details?.is_in_cart ?
+                              Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
                               :
-                              <CartIcon color="#222" />
-                        }
-                        {
-                          courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                            <span>سجل لمشاهدة البث المباشر مجاناَ</span>
+                              handleCartActionBtn(courseDetails.course_details);
+                        }} disabled={isAddingToCartInProgress}
+                          className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
+                        >
+                          {isAddingToCartInProgress == true ?
+                            <Spinner animation='border' />
                             :
-                            courseDetails.course_details?.discounted_price == 0 ?
-                              <span> ابدأ الآن مجانًا </span>
+                            courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                              <></>
                               :
-                              courseDetails.course_details?.is_in_cart ?
-                                <span> اذهب إلى السلة</span>
+                              courseDetails.course_details?.discounted_price == 0 ?
+                                <TvIcon color="#222" />
                                 :
-                                <span> امتلك هذه الدورة </span>
+                                <CartIcon color="#222" />
+                          }
+                          {
+                            courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                              <span>سجل لمشاهدة البث المباشر مجاناَ</span>
+                              :
+                              courseDetails.course_details?.discounted_price == 0 ?
+                                <span> ابدأ الآن مجانًا </span>
+                                :
+                                courseDetails.course_details?.is_in_cart ?
+                                  <span> اذهب إلى السلة</span>
+                                  :
+                                  <span> امتلك هذه الدورة </span>
+                          }
+                        </Button>}
+
+
+                      <Button onClick={() => {
+                        handleFavActionBtn(courseDetails.course_details);
+                      }}
+                        className={
+                          styles["monthly-subscription__course-card__actions-btns__fav-btn"]
                         }
-                      </Button>}
-    
-    
-                    <Button onClick={() => {
-                      handleFavActionBtn(courseDetails.course_details);
-                    }}
-                      className={
-                        styles["monthly-subscription__course-card__actions-btns__fav-btn"]
-                      }
-                    >
-                      {
-                        theOption.liveWebinarDetails?.is_in_favorites ?
-                          <AddedToFavouriteIcon color="#222" />
-                          :
-                          <FavouriteIcon color="#222" />
-    
-    
-                      }
-                    </Button>
-                    <Button
-                      className={
-                        styles["monthly-subscription__course-card__actions-btns__share-btn"]
-                      }
-                    >
-                      <ShareIcon />
-                    </Button>
-                  </div>
-                  <div className={styles["course-price"]}>
-        
-                    {theOption.liveWebinarDetails?.discounted_price !== 0 && theOption.liveWebinarDetails?.type !== "webinar" &&
-                      <div className={styles["sale-price"]}>
-                        سعر الدورة
-                        <span>
-                          {` ${courseDetails?.course_details?.discounted_price} `}
-                        </span>
-                        <span>
-                          {` ${courseDetails?.course_details?.currency_symbol} `}
-                        </span>
-                        
-                      </div>
-                    }
-        
-                    {theOption.liveWebinarDetails?.price != theOption.liveWebinarDetails?.discounted_price &&
-                      <div className={styles["orignal-price"]}>
-                        بدلاً من
-                        <span>
-                          {courseDetails?.course_details?.price}
-                        </span>
-                        <span>
-                          {` ${courseDetails?.course_details?.currency_symbol} `}
-                        </span>
-                      </div>
-                    }
-        
-                  </div>
+                      >
+                        {
+                          theOption.liveWebinarDetails?.is_in_favorites ?
+                            <AddedToFavouriteIcon color="#222" />
+                            :
+                            <FavouriteIcon color="#222" />
+
+
+                        }
+                      </Button>
+                      <Button
+                        className={
+                          styles["monthly-subscription__course-card__actions-btns__share-btn"]
+                        }
+                      >
+                        <ShareIcon />
+                      </Button>
+                    </div>
                   </>
                 }
               </>
@@ -807,10 +535,35 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
           </div>}
 
-          <div className={styles["monthly-subscription__course-card__promo-code"]}>
-            <span>هل لديك كوبون خصم؟</span>
-            <span> ادخل الكوبون </span>
+          <div className={styles["monthly-subscription__course-card__subscription-details"]}>
+            <div> شاهد اكثر من 1000 دورة باشتراك شهري </div>
+            <div>
+              <span>744</span>
+              <span>ج.م (تدفع سنوياً)</span>
+            </div>
+
           </div>
+
+
+          {theOption?.liveWebinarDetails?.type !== "webinar" &&
+            <>
+
+              {
+                paymentType == "subscription" &&
+                <>
+                  <div className={styles["monthly-subscription__subscribe-btn-box"]}>
+                    <Button id="monthly-subscribe-btn" className={`${styles["monthly-subscription__subscribe-btn-box__btn"]} ${theOption?.liveWebinarDetails?.type == "webinar" ? styles["monthly-subscription__secondary"] : ""}`}
+                      onClick={() => handleSubscriptionBtn()}>
+                      <div>
+                        <span>اشترك الآن و ابدأ التعلم</span>
+                      </div>
+                    </Button>
+                  </div>
+                </>
+              }
+            </>
+          }
+
         </div>
       </div>
 
@@ -830,52 +583,14 @@ export default function MonthlySubscriptionCard(theOption: any) {
           <div className={styles["monthly-subscription__sticky-top-course-card__checkout-box"]}>
             <div className={styles["monthly-subscription__course-card__actions-btns"]}>
               {courseDetails.course_details?.type !== "webinar" &&
-                <Button onClick={() => {
-                  courseDetails.course_details?.discounted_price == 0 ?
-                    handleFreeCoursesActionBtn(courseDetails.course_details)
-                    :
-                    handleCartActionBtn(courseDetails.course_details)
-                }}
-                  disabled={courseDetails.course_details?.is_in_cart || disabledCartBtns.includes(courseDetails.course_details?.id)}
+                <Button
+                  onClick={() => handleSubscriptionBtn()}
                   className={
                     styles[
                     "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
                     ]}>
-                  {isAddingToCartInProgress == true ?
-                    <Spinner animation='border' />
-                    :
-                    courseDetails.course_details?.discounted_price == 0 ?
-                      <TvIcon color="#222" />
-                      :
-                      <CartIcon color="#222" />
-                  }
-                  {
-                    courseDetails.course_details?.discounted_price == 0 ?
-                      <span> ابدأ الآن مجانًا </span>
-                      :
-                      courseDetails.course_details?.is_in_cart ?
-                        <span> اذهب إلى السلة</span>
-                        :
-                        <span> امتلك هذه الدورة </span>
-                  }
+                  اشترك الآن وأبدا التعلم
                 </Button>}
-
-
-              <Button
-                className={
-                  styles["monthly-subscription__course-card__actions-btns__fav-btn"]
-                }
-              >
-                <FavouriteIcon color="#222" />
-              </Button>
-              <Button
-                className={
-                  styles["monthly-subscription__course-card__actions-btns__share-btn"]
-                }
-              >
-                <ShareIcon />
-
-              </Button>
             </div>
 
           </div>

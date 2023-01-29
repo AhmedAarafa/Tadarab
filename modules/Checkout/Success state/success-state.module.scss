@@ -91,7 +91,7 @@
     @include flex(center,space-between);
     font-size: 0.75rem;
     div{
-        background-color: white;
+        background-color: var(--tadarab-bg);
         z-index: 1;
     }
     div:nth-of-type(1){

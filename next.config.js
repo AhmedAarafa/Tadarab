@@ -134,6 +134,10 @@ module.exports = {
       {
         source: "/tadarab-season",
         destination: "/TadarabSeason",
+      },
+      {
+        source: "/subscription-plans",
+        destination: "/SubscriptionPlans",
       }
     ];
   },
@@ -167,6 +171,11 @@ module.exports = {
       {
         source: "/courses/:slug",
         destination: "/course/:slug",
+        permanent: true,
+      },
+      {
+        source: "/AllCourses",
+        destination: "/courses",
         permanent: true,
       }
     ];

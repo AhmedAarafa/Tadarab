@@ -8,7 +8,6 @@ import { store } from "configurations/redux/store";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import React, { useState, useEffect, useRef } from 'react';
 import TransactionInProgress from "./TransactionInProgress";
-// import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Head from "next/head";
 import TagManager from 'react-gtm-module';
 import Script from "next/script";
@@ -17,6 +16,7 @@ import dynamic from 'next/dynamic';
 import Router, { useRouter } from "next/router";
 import Loader from 'common/Loader/Loader';
 import { usePreserveScroll } from 'custom hooks/usePreserveScroll';
+
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
@@ -106,14 +106,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '387170448377801');` }}
-        />
+      fbq('init', '387170448377801');` }} />
+
+
         <noscript dangerouslySetInnerHTML={{
           __html: `<img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=387170448377801&noscript=1" />` }}
-        />
+      src="https://www.facebook.com/tr?id=387170448377801&noscript=1" />` }} />
 
         {/*<!-- End Facebook Pixel Code -->*/}
+
       </Head>
       {/* <body> */}
 
