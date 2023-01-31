@@ -53,21 +53,6 @@ export default function CourseListing() {
     const router = useRouter();
     const themeState = useSelector((state: any) => state.themeState.theme);
 
-    const handleFavActionBtn = (course: any): any => {
-        if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(
-                course, `courses/?page=${currentPage}&limit=20&type=${Router.query.type}`);
-            handleFavResponse.then(function (response: any) {
-                setCourseListing(response?.data);
-            })
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-                query: { from: "courses" }
-            })
-        }
-    }
-
     const handleCartActionBtn = (course: any): any => {
 
         setDisabledCartBtns([...disabledCartBtns, course.id]);
@@ -213,7 +198,7 @@ export default function CourseListing() {
                 description={courseListing?.data?.seo_metadesc}
                 img={courseListing?.data?.seo_image} />
             <Row className={styles["course-listing-row"]}>
-                {router?.query && router?.query?.type == "free" &&
+                { router?.query?.type == "free" &&
                     <>
                         <CoverPhotoSection />
                         <DiscoverFreeCourses />
@@ -231,10 +216,11 @@ export default function CourseListing() {
                 }
                 {
                     // (JSON.stringify(router?.query) == "{}" || (router?.query && (router?.query?.type == "all" || router?.query?.aid)))
-                    ((router?.query.type && router?.query?.type == "all")
+                    (( router?.query?.type == "all")
                         ||
                         (router?.query.type && router?.query?.type !== "best-seller" &&
                             router?.query?.type !== "live" &&
+                            router?.query?.type !== "free" &&
                             router?.query?.type !== "latest")
                         ||
                         (JSON.stringify(router?.query) == "{}")
@@ -496,138 +482,6 @@ export default function CourseListing() {
                                                             </div>
                                                         </Link>
 
-                                                    </div>
-                                                </div>
-
-                                                <div
-                                                    className={
-                                                        styles[
-                                                        "course-listing__course-card__card-body__checkout-details"
-                                                        ]
-                                                    }
-                                                >
-                                                    <div >
-                                                        <div
-                                                            className={
-                                                                styles[
-                                                                "course-listing__course-card__card-body__checkout-details__price-container"
-                                                                ]
-                                                            }
-                                                        >
-                                                            {course.discounted_price !== 0 && !course.is_purchased && <span
-                                                                className={
-                                                                    styles[
-                                                                    "course-listing__course-card__card-body__checkout-details__price-container__currency"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                {!course.is_in_user_subscription && course.currency_symbol}
-                                                            </span>}
-
-                                                            <span
-                                                                className={
-                                                                    styles[
-                                                                    "course-listing__course-card__card-body__checkout-details__price-container__price"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
-                                                                {
-                                                                    !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
-                                                                }
-                                                                {
-                                                                    course.is_in_user_subscription &&
-                                                                    <Link href={`/course/${course.slug}`}>
-                                                                        <span className={styles["watch-subscribed-course"]}>
-                                                                            شاهد الدورة
-                                                                        </span>
-                                                                    </Link>
-                                                                }
-                                                            </span>
-
-                                                        </div>
-                                                        {
-                                                            (course.price > course.discounted_price) && !course.is_purchased &&
-                                                            <div
-                                                                className={
-                                                                    styles[
-                                                                    "course-listing__course-card__card-body__checkout-details__old-price-container"
-                                                                    ]
-                                                                }
-                                                            >
-                                                                <span
-                                                                    className={
-                                                                        styles[
-                                                                        "course-listing__course-card__card-body__checkout-details__old-price-container__currency"
-                                                                        ]
-                                                                    }
-                                                                >
-                                                                    {course.currency_symbol}
-                                                                </span>
-                                                                <span
-                                                                    className={
-                                                                        styles[
-                                                                        "course-listing__course-card__card-body__checkout-details__old-price-container__price"
-                                                                        ]
-                                                                    }
-                                                                >
-                                                                    {course.price}
-                                                                </span>
-
-                                                            </div>
-                                                        }
-
-
-                                                    </div>
-
-                                                    <div >
-                                                        {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
-                                                            className={
-                                                                styles[
-                                                                "course-listing__course-card__card-body__checkout-details__icon-btn"
-                                                                ]
-                                                            }
-                                                        >
-                                                            <div onClick={() =>
-                                                                course?.discounted_price == 0 ?
-                                                                    handleFreeCoursesActionBtn(course)
-                                                                    :
-                                                                    handleCartActionBtn(course)}
-                                                                className={styles["course-listing__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
-                                                                {
-                                                                    course.discounted_price == 0 ?
-                                                                        <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                        :
-                                                                        course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                                                            <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                            :
-                                                                            <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                }
-                                                            </div>
-
-                                                        </Button>}
-
-                                                        <Button
-                                                            className={
-                                                                styles[
-                                                                "course-listing__course-card__card-body__checkout-details__icon-btn"
-                                                                ]
-                                                            }
-                                                        >
-
-                                                            <div onClick={() => handleFavActionBtn(course)}
-                                                                className={styles["course-listing__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
-                                                                {
-                                                                    course.is_in_favorites ?
-                                                                        <AddedToFavouriteIcon color="#af151f" />
-                                                                        :
-                                                                        <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                }
-
-                                                            </div>
-
-
-                                                        </Button>
                                                     </div>
                                                 </div>
                                             </Card.Body>

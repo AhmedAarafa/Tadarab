@@ -77,7 +77,7 @@ export default function SignupPage() {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
       } else {
         if (router.query && router.query.from_subscription) {
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
         }
       }
     }
@@ -214,7 +214,7 @@ export default function SignupPage() {
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
               } else if (router.query && router.query.type) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
               } else {
@@ -280,7 +280,7 @@ export default function SignupPage() {
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
               } else if (router.query && router.query.type) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.type}`);
               } else {
@@ -411,7 +411,7 @@ export default function SignupPage() {
                             Router.back();
                           }
                         } else if (router.query && router.query.from_subscription) {
-                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
                         } else if (router.query && router.query.type) {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
                         } else {

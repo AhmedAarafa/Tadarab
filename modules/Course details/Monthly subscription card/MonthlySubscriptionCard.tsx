@@ -29,6 +29,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
   const [isMobileView, setIsMobileView] = useState(false);
   const [paymentType, setPaymentType] = useState("subscription");
+  const [subscriptionValues, setSubscriptionValues] = useState<any>({});
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
   const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -88,6 +89,24 @@ export default function MonthlySubscriptionCard(theOption: any) {
     }
 
   }, []);
+
+  useEffect(() => {
+    axiosInstance
+      .get(`subscription/plans`)
+      .then(function (response: any) {
+        if (JSON.stringify(response.status).startsWith("2")) {
+
+          setSubscriptionValues({
+            sale_label: response?.data?.data?.subscription_plans[0]?.sale_label.replace("د.ك/ ش", ""),
+            currency_symbol: response?.data?.data?.subscription_plans[0]?.currency_symbol
+          });
+        }
+      })
+      .catch(function (error: any) {
+        console.log(error);
+      });
+  }, [])
+
 
   useEffect(() => {
     setCourseDetails(courseDetailsData.data || []);
@@ -538,8 +557,11 @@ export default function MonthlySubscriptionCard(theOption: any) {
           <div className={styles["monthly-subscription__course-card__subscription-details"]}>
             <div> شاهد اكثر من 1000 دورة باشتراك شهري </div>
             <div>
-              <span>744</span>
-              <span>ج.م (تدفع سنوياً)</span>
+              <span>{subscriptionValues?.sale_label}</span>
+              <span>
+                {" "}{subscriptionValues?.currency_symbol}{" "}
+                (تدفع سنوياً)
+              </span>
             </div>
 
           </div>

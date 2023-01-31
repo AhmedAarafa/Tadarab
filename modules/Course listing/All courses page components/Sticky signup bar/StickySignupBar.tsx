@@ -16,7 +16,7 @@ export default function StickySignupBar() {
         e.preventDefault();
         dispatch(setCheckoutType("subscription"));
         if (userStatus) {
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
         } else {
             Router.push({
                 pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,

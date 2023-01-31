@@ -5,6 +5,7 @@ import { FbIcon, TwitterIcon, InstagramIcon, LinkedinIcon, SnapChatIcon, Youtube
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import SubscriptionValues from "modules/_Shared/utils/SubscriptionValues";
 
 export default function TrainerAccountsCard() {
     const dispatch = useDispatch();
@@ -99,7 +100,7 @@ export default function TrainerAccountsCard() {
                         اشترك في تدرب بلا حدود
                     </Button>
                     <div>
-                        احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
+                        <SubscriptionValues />
                     </div>
                 </div>
 

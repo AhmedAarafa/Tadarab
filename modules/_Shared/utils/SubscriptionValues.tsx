@@ -8,16 +8,17 @@ export default function SubscriptionValues() {
         let cancel: boolean = false;
 
         axiosInstance
-            .get(`categories/home/?limit=20&page=1`)
+            .get(`subscription/plans`)
             .then(function (response: any) {
-                if (cancel) return;
-                setValues({
-                    subscription_original_price: response?.data?.data.subscription_original_price,
-                    subscription_sale_price: response?.data?.data.subscription_sale_price,
-                    currency_symbol: response?.data?.data.currency_symbol
-                });
+                if (JSON.stringify(response.status).startsWith("2")) {
+                    if (cancel) return;
+
+                    setValues({
+                        sale_label: response?.data?.data?.subscription_plans[0]?.sale_label
+                    });
+                }
             })
-            .catch(function (error: any) {
+            .catch(function (error) {
                 console.log(error);
             });
 
@@ -27,16 +28,19 @@ export default function SubscriptionValues() {
 
     }, []);
 
+    useEffect(() => {
+        console.log("values", values);
+
+    }, [values])
+
+
     return (
-            JSON.stringify(values) !== "{}" ?
-                <div>
-                    اشترك الآن لتتابع جميع الدورات باشتراك يبدأ من
-                    {` ${values.subscription_sale_price} `}
-                    {` ${values.currency_symbol}`}
-                    /
-                    ش
-                </div>
-                :
-                <></>
+        JSON.stringify(values) !== "{}" ?
+            <div>
+                اشترك الآن لتتابع جميع الدورات باشتراك يبدأ من
+                {" "} {values.sale_label} {" "}
+            </div>
+            :
+            <></>
     )
 }

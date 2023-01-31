@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./statistics.module.css";
 import { Row, Col } from "react-bootstrap";
-import { LearnersOutlinedIcon, CoursesIcon, TrainersIcon, ExperienceIcon } from "common/Icons/Icons";
+import { LearnersOutlinedIcon, CoursesIcon, TrainersIcon, ExperienceIcon, TrainingHoursIcon } from "common/Icons/Icons";
 import { useSelector } from "react-redux";
 
 export default function Statistics() {
@@ -36,8 +36,14 @@ export default function Statistics() {
               من 10 سنوات في مجال التعلم من بعد
             </div>
 
+            <div className={styles["statistics__users"]}>
+              <div>2,150,450</div>
+              <LearnersOutlinedIcon color="#af151f" />
+              <div>مستخدم ومتعلم على المنصة في الوطن العربي</div>
+            </div>
+
             <div className={styles["statistics__details"]}>
-              <div className={styles["statistics__details__card"]}>
+              {/* <div className={styles["statistics__details__card"]}>
                 <div>
                   <div className={styles["statistics__details__img"]}>
 
@@ -50,7 +56,7 @@ export default function Statistics() {
                   <span>مليون</span>
                 </div>
                 <div className={styles["statistics__details__unit"]}>مستخدم</div>
-              </div>
+              </div> */}
               <div className={styles["statistics__details__card"]}>
                 <div>
                   <div className={styles["statistics__details__img"]}>
@@ -64,6 +70,20 @@ export default function Statistics() {
                   <span id="edu-courses-count">+900</span>
                 </div>
                 <div className={styles["statistics__details__unit"]}>دورة تدريبية</div>
+              </div>
+              <div className={styles["statistics__details__card"]}>
+                <div>
+                  <div id={styles["training-hours"]} className={styles["statistics__details__img"]}>
+
+                    <TrainingHoursIcon color="#af151f" />
+                  </div>
+
+
+                </div>
+                <div className={styles["statistics__details__counter"]}>
+                  <span>+10.000</span>
+                </div>
+                <div className={styles["statistics__details__unit"]}>ساعات تدريبية</div>
               </div>
               <div className={styles["statistics__details__card"]}>
                 <div>

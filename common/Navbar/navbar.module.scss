@@ -95,6 +95,15 @@
         }
     }
 
+    button {
+        @include contained-button;
+        font-weight: 700;
+        font-size: 0.9375rem;
+        padding: 0.4rem 0.8rem;
+        margin-left: 0.8rem;
+
+    }
+
 
 }
 
@@ -681,6 +690,7 @@
     height: 1.4rem;
     position: relative;
     width: 3.8rem;
+    margin-right: 0.5rem;
 }
 
 .theme-switch {
@@ -919,6 +929,7 @@ input:checked+.slider:before {
     .theme-switch {
         height: 1.4rem*2.3;
         width: 3.8rem*2.3;
+        margin-right: 0;
     }
 
     .slider:before {

@@ -81,21 +81,7 @@ export default function SeasonCourses() {
         }
         setLiveCourses([...liveCourses]);
     }
-    const handleCartActionBtn = (course: any): any => {
-        setDisabledCartBtns([...disabledCartBtns, course.id]);
-        setTimeout(() => {
-            setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
-        }, 5000);
-        dispatch(setCheckoutType("cart"));
-
-        const handleCartResponse: any = handleCart([course], `home`, false);
-        handleCartResponse.then(function (firstresponse: any) {
-            firstresponse.resp.then(function (response: any) {
-                setLiveCourses(response.data.data.live_courses);
-                dispatch(setCartItems(firstresponse.cartResponse));
-            })
-        })
-    }
+ 
     const liveCourseWatchingHandler = (slug: string, webinarType: any) => {
         if (webinarType == "soon") {
             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);

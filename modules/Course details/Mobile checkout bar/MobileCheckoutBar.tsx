@@ -2,25 +2,17 @@ import React, { useState, useEffect } from "react";
 import styles from "./mobile-checkout-bar.module.css";
 import { Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { CartIcon, TvIcon } from "common/Icons/Icons";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
-import AddToCartPopup from "common/Add to cart popup/AddToCartPopup";
-import { handleCart } from 'modules/_Shared/utils/handleCart';
-import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
-import { setCartItems } from 'configurations/redux/actions/cartItems';
-import { setCourseDetailsData } from "configurations/redux/actions/courseDetailsData";
+import { axiosInstance } from "configurations/axios/axiosConfig";
 
 export default function MobileCheckoutBar(props: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
 
+  const [subscriptionValues, setSubscriptionValues] = useState<any>({});
   const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
-  const [isCartModalVisible, setIsCartModalVisible] = useState(false);
   const [subscriptionTimer, setSubscriptionTimer] = useState(0);
-  const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
-  const [isAddingToCartInProgress, setIsAddingToCartInProgress] = useState(false);
-  const [specialBundleCourseId, setSpecialBundleCourseId] = useState(0);
   const [courseDetails, setCourseDetails] = useState<any>([]);
   const dispatch = useDispatch();
   const Router = useRouter();
@@ -42,8 +34,25 @@ export default function MobileCheckoutBar(props: any) {
 
     }, {});
 
-
   }, []);
+
+  useEffect(() => {
+    axiosInstance
+      .get(`subscription/plans`)
+      .then(function (response: any) {
+        if (JSON.stringify(response.status).startsWith("2")) {
+
+          setSubscriptionValues({
+            sale_label: response?.data?.data?.subscription_plans[0]?.sale_label.replace("د.ك/ ش", ""),
+            currency_symbol: response?.data?.data?.subscription_plans[0]?.currency_symbol
+          });
+        }
+      })
+      .catch(function (error: any) {
+        console.log(error);
+      });
+  }, [])
+
 
 
   useEffect(() => {
@@ -133,8 +142,11 @@ export default function MobileCheckoutBar(props: any) {
             <div className={styles["mobile-checkout-bar__subscription-details"]}>
               <div> شاهد اكثر من 1000 دورة باشتراك شهري </div>
               <div>
-                <span> 744 </span>
-                <span> ج.م (تدفع سنوياً) </span>
+                <span>{subscriptionValues?.sale_label} </span>
+                <span>
+                  {" "}{subscriptionValues?.currency_symbol}{" "}
+                  (تدفع سنوياً)
+                </span>
               </div>
 
             </div>

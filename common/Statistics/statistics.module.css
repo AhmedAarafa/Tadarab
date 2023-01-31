@@ -1,10 +1,10 @@
 .statistics-row[data-theme=light] {
   --statstics-numbers: #af151f;
-  --map-filter:invert(0);
+  --map-filter: invert(0);
 }
 .statistics-row[data-theme=dark] {
   --statstics-numbers: #f5f5f5;
-  --map-filter:invert(100%);
+  --map-filter: invert(100%);
 }
 
 .statistics {
@@ -45,20 +45,53 @@
   text-align: center;
 }
 
+.statistics__users {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-red);
+  margin-top: 2rem;
+}
+.statistics__users div:nth-of-type(1) {
+  font-size: 3.35rem;
+  font-weight: 800;
+  width: 33%;
+  text-align: left;
+}
+.statistics__users svg {
+  display: inline-block;
+  width: 5.2rem;
+  height: 4rem;
+  width: 33%;
+  text-align: center;
+}
+.statistics__users div:nth-of-type(2) {
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 33%;
+  text-align: right;
+}
+
 .statistics__details {
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .statistics__details > div {
-  width: 8rem;
+  width: 11rem;
 }
 
 .statistics__details__img svg {
+  display: inline-block;
   width: 4.938rem;
   height: 3.125rem;
+}
+
+#training-hours svg {
+  width: 4.3rem;
+  height: 4.3rem;
 }
 
 .statistics__details__counter {
@@ -112,6 +145,30 @@
   }
   .statistics__details__card {
     margin-bottom: 9.688rem;
+  }
+  .statistics__users {
+    margin-top: 5rem;
+    flex-direction: column;
+  }
+  .statistics__users div:nth-of-type(1) {
+    font-size: 6.7rem;
+    width: 100%;
+    text-align: center;
+  }
+  .statistics__users svg {
+    width: 10.4rem;
+    height: 8rem;
+    width: 100%;
+    text-align: center;
+  }
+  .statistics__users div:nth-of-type(2) {
+    font-size: 3.75rem;
+    width: 100%;
+    text-align: center;
+  }
+  #training-hours svg {
+    width: 10.32rem;
+    height: 10.32rem;
   }
   .statistics__details {
     text-align: center;

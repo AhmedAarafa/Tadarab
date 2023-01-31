@@ -26,20 +26,6 @@ export default function SearchResultsPage() {
     const router = useRouter();
     const themeState = useSelector((state: any) => state.themeState.theme);
 
-    const handleFavActionBtn = (course: any): any => {
-        if (userStatus.isUserAuthenticated == true) {
-            const handleFavResponse: any = handleFav(course, `courses/?keyword=${router.query.q}&page=${currentPage}&limit=16`);
-            handleFavResponse.then(function (response: any) {
-                setSearchResults(response?.data);
-            })
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-                query: { from: "search" }
-            })
-        }
-    }
-
     const handleCartActionBtn = (course: any): any => {
         setDisabledCartBtns([...disabledCartBtns, course.id]);
         setTimeout(() => {
@@ -55,17 +41,6 @@ export default function SearchResultsPage() {
             })
         })
     
-    }
-
-    const handleFreeCoursesActionBtn = (course: any): any => {
-        if (userStatus.isUserAuthenticated == true) {
-            handleFreeCourses(course);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-                query: { from: "/search" }
-            })
-        }
     }
 
     useEffect(() => {
@@ -223,139 +198,6 @@ export default function SearchResultsPage() {
                                                     {course.trainer?.name_ar}
                                                 </div>
                                             </Link>
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        className={
-                                            styles[
-                                            "search-results__course-card__card-body__checkout-details"
-                                            ]
-                                        }
-                                    >
-                                        <div >
-                                            <div
-                                                className={
-                                                    styles[
-                                                    "search-results__course-card__card-body__checkout-details__price-container"
-                                                    ]
-                                                }
-                                            >
-                                                {course.discounted_price !== 0 && !course.is_purchased && <span
-                                                    className={
-                                                        styles[
-                                                        "search-results__course-card__card-body__checkout-details__price-container__currency"
-                                                        ]
-                                                    }
-                                                >
-                                                    {!course.is_in_user_subscription && course.currency_symbol}
-                                                </span>}
-
-                                                <span
-                                                    className={
-                                                        styles[
-                                                        "search-results__course-card__card-body__checkout-details__price-container__price"
-                                                        ]
-                                                    }
-                                                >
-                                                    {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
-                                                    {
-                                                        !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
-                                                    }
-                                                    {
-                                                        course.is_in_user_subscription &&
-                                                        <Link href={`/course/${course.slug}`}>
-                                                            <span className={styles["watch-subscribed-course"]}>
-                                                                شاهد الدورة
-                                                            </span>
-                                                        </Link>
-
-                                                    }
-                                                </span>
-
-                                            </div>
-                                            {
-                                                (course.price > course.discounted_price) && !course.is_purchased &&
-                                                <div
-                                                    className={
-                                                        styles[
-                                                        "search-results__course-card__card-body__checkout-details__old-price-container"
-                                                        ]
-                                                    }
-                                                >
-                                                    <span
-                                                        className={
-                                                            styles[
-                                                            "search-results__course-card__card-body__checkout-details__old-price-container__currency"
-                                                            ]
-                                                        }
-                                                    >
-                                                        {course.currency_symbol}
-                                                    </span>
-                                                    <span
-                                                        className={
-                                                            styles[
-                                                            "search-results__course-card__card-body__checkout-details__old-price-container__price"
-                                                            ]
-                                                        }
-                                                    >
-                                                        {course.price}
-                                                    </span>
-
-                                                </div>
-                                            }
-
-
-                                        </div>
-
-                                        <div >
-                                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
-                                                className={
-                                                    styles[
-                                                    "search-results__course-card__card-body__checkout-details__icon-btn"
-                                                    ]
-                                                }
-                                            >
-                                                <div onClick={() =>
-                                                    course?.discounted_price == 0 ?
-                                                        handleFreeCoursesActionBtn(course)
-                                                        :
-                                                        handleCartActionBtn(course)}
-                                                    className={styles["search-results__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
-                                                    {
-                                                        course.discounted_price == 0 ?
-                                                            <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                            :
-                                                            course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                                                <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                                :
-                                                                <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                    }
-                                                </div>
-
-                                            </Button>}
-
-                                            <Button
-                                                className={
-                                                    styles[
-                                                    "search-results__course-card__card-body__checkout-details__icon-btn"
-                                                    ]
-                                                }
-                                            >
-
-                                                <div onClick={() => handleFavActionBtn(course)}
-                                                    className={styles["search-results__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
-                                                    {
-                                                        course.is_in_favorites ?
-                                                            <AddedToFavouriteIcon color="#af151f" />
-                                                            :
-                                                            <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-                                                    }
-
-                                                </div>
-
-
-                                            </Button>
                                         </div>
                                     </div>
                                 </Card.Body>

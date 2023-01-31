@@ -60,7 +60,7 @@
   pointer-events: none;
 }
 .best-seller-courses__cards-carousel > div > div:nth-child(1), .best-seller-courses__cards-carousel > div > div:nth-child(2) {
-  top: 48% !important;
+  top: 45.5% !important;
 }
 .best-seller-courses__cards-carousel > div > div:nth-child(3) {
   display: none;
@@ -264,7 +264,7 @@
     box-shadow: none;
   }
   .best-seller-courses__cards-carousel > div > div:nth-child(1), .best-seller-courses__cards-carousel > div > div:nth-child(2) {
-    top: 47% !important;
+    top: 46% !important;
   }
   .best-seller-courses__cards-carousel > div > div:nth-child(1):after, .best-seller-courses__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.27rem !important;
@@ -392,7 +392,7 @@
     box-shadow: none;
   }
   .best-seller-courses__cards-carousel > div > div:nth-child(1), .best-seller-courses__cards-carousel > div > div:nth-child(2) {
-    top: 43% !important;
+    top: 39% !important;
   }
   .best-seller-courses__cards-carousel > div > div:nth-child(1):after, .best-seller-courses__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.67rem !important;

@@ -432,15 +432,15 @@ function Navbar(props: any) {
         className={styles["navbar"]} expanded={expanded} expand="sm">
         <Link href="/">
           {/*  ${!paymentStep == false && "ms-auto ps-1"} */}
-          <a className={`d-flex`} style={{margin: (!paymentStep == false && isMobileView) ? "0 0 0 40%" : "" }}>
+          <a className={`d-flex`} style={{ margin: (!paymentStep == false && isMobileView) ? "0 0 0 40%" : "" }}>
             <NavBar.Brand className={styles["navbar__img"]} >
               <TadarabLogo />
             </NavBar.Brand>
           </a>
         </Link>
 
-        {  !paymentStep &&  <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />}
-        { !paymentStep && <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
+        {!paymentStep && <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />}
+        {!paymentStep && <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
           id="offcanvasNavbar1"
           aria-labelledby="offcanvasNavbarLabel1"
           placement="end"
@@ -454,8 +454,8 @@ function Navbar(props: any) {
               <NextIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
             </li>
 
-            <Offcanvas data-theme={themeState} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2" 
-            backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
+            <Offcanvas data-theme={themeState} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2"
+              backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
               <Offcanvas.Header className={styles["sidebar-list__discover-sidebar"]}>
                 <Offcanvas.Title className={styles["sidebar-list__discover-sidebar__title"]}>
                   استكشف
@@ -468,7 +468,7 @@ function Navbar(props: any) {
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
                 {
-                  categoriesList.map((category: any, i: number) => {
+                  categoriesList?.map((category: any, i: number) => {
                     return (
                       <Link key={i} href={`/topic/${category.slug}`} passHref>
                         <a>
@@ -496,24 +496,22 @@ function Navbar(props: any) {
                     <li onClick={() => { setExpanded(false) }}>دورات مجانية</li>
                   </a>
                 </Link>
-                {/* <Link href="/tadarab-season">
-                  <li onClick={() => { setExpanded(false) }}>موسم تدرب </li>
-                </Link> */}
-                {/* <li>الاستشارات</li>
-                  <li>كتيبات وملخصات</li>
-                  <li>مقالات</li> */}
+
               </ul>
-              {/* <ul className={styles["sidebar-list__discover-sidebar__list"]}>
-                <div><div>أخري</div></div>
-                  <li>عروض</li>
-                  <li>المدربين</li>
-                  <li>عن تدرب</li>
-                  <li>تواصل معنا</li>
-              </ul> */}
+
             </Offcanvas>
-            {userStatus.isSubscribed == false &&
+            {userStatus.isSubscribed == false && userStatus.isUserAuthenticated &&
+              <Link href="/subscription-plans">
+                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
+                  اشترك الآن
+                </li>
+              </Link>
+            }
+            {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
               <Link href="/subscription">
-                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
+                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
+                  تدرب بلا حدود
+                </li>
               </Link>
             }
             <Link href="/join-as-trainer">
@@ -612,7 +610,7 @@ function Navbar(props: any) {
                     </div>
                     <ul className={styles["navbar__discover-popover__list"]}>
                       {
-                        categoriesList.map((category: any, i: number) => {
+                        categoriesList?.map((category: any, i: number) => {
                           return (
                             <Link key={i} href={`/topic/${category.slug}`} passHref>
                               <a>
@@ -685,13 +683,22 @@ function Navbar(props: any) {
                   className={styles["navbar__search-bar-container__search-bar"]}
                 />
               </div>
-              {userStatus.isSubscribed == false &&
-               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
+
+              {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
+                <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>
+                  تدرب بلا حدود
+                </Nav.Link>}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
                 <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`) }} className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>
               }
+              {userStatus.isSubscribed == false && userStatus.isUserAuthenticated &&
+                <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }} className={styles["navbar__links"]}>
+                  <Button>
+                    اشترك الآن
+                  </Button>
+                </Nav.Link>}
             </>
           }
 
@@ -750,7 +757,7 @@ function Navbar(props: any) {
             <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
           </Link>}
 
-          { !paymentStep &&  <div className={styles["navbar_responsive-search-icon"]}>
+          {!paymentStep && <div className={styles["navbar_responsive-search-icon"]}>
             <div onClick={() => {
               searchBoxToggler("open");
               const searchBox: any = document.getElementById("responsive-search-field");
@@ -790,215 +797,6 @@ function Navbar(props: any) {
 
             </div>
           </div>}
-
-          {(!isCoursePurchased || isMobileView) && !paymentStep && <OverlayTrigger show={dropdownOpened.cart}
-            trigger='click'
-            rootClose
-            placement="bottom-start"
-            overlay={
-              <div className={styles["navbar__cart-popover"]}
-                style={{ display: !cartItems?.data?.length ? "none" : "" }}
-                id="cart-popover" >
-                <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
-                  {
-
-                    localStateCartItems?.map((item: any, i: number) => {
-                      return (
-
-                        <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
-                          {/* {console.log(cartItems)} */}
-                          <img loading="lazy"
-                            src={item.image}
-                            alt="course image"
-                            className={styles["navbar__cart-popover__img"]}
-                          />
-                          <div
-                            className={styles["navbar__cart-popover__course-details"]}
-                          >
-                            <div
-                              className={
-                                styles["navbar__cart-popover__course-details__title"]
-                              }
-                            >
-                              {item.title}
-                            </div>
-                            <div
-                              className={
-                                styles["navbar__cart-popover__course-details__author"]
-                              }
-                            >
-                              {" "}
-                              {item.trainer?.name_ar}{" "}
-                            </div>
-                            <div
-                              className={
-                                styles[
-                                "navbar__cart-popover__course-details__price-container"
-                                ]
-                              }
-                            >
-                              {item.discounted_price == 0 ?
-                                "مجانًا"
-                                :
-                                <>
-                                  <span
-                                    className={
-                                      styles["navbar__cart-popover__course-details__price"]
-                                    }
-                                  >
-                                    {item.discounted_price}
-                                  </span>
-                                  <span
-
-                                    className={
-                                      styles[
-                                      "navbar__cart-popover__course-details__currency"
-                                      ]
-                                    }
-                                  >
-                                    {item?.currency_symbol}
-                                  </span>
-                                </>
-                              }
-                            </div>
-                            {item.price > item.discounted_price &&
-                              <div
-                                className={
-                                  styles[
-                                  "navbar__cart-popover__course-details__old-price-container"
-                                  ]
-                                }
-                              >
-                                <span
-                                  className={
-                                    styles[
-                                    "navbar__cart-popover__course-details__old-price"
-                                    ]
-                                  }
-                                >
-                                  {item.price}
-                                </span>
-                                <span
-                                  className={
-                                    styles[
-                                    "navbar__cart-popover__course-details__old-price-currency"
-                                    ]
-                                  }
-                                >
-                                  {item?.currency_symbol}
-                                </span>
-                              </div>
-                            }
-                          </div>
-                        </div>
-
-                      )
-                    })
-                  }
-                </div>
-
-                {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
-                    {localStateCartItems?.length > 2 && "اعرض المزيد"}
-                    
-                    </div> */}
-                <div className={styles["navbar__cart-popover__checkout-box"]}>
-                  <div
-                    className={
-                      styles[
-                      "navbar__cart-popover__checkout-box__total-price-box"
-                      ]
-                    }
-                  >
-                    <div
-                      className={
-                        styles["navbar__cart-popover__checkout-box__items"]
-                      }
-                    >
-                      الإجمالي ({localStateCartItems?.length} دورة)
-                    </div>
-                    <div>
-                      <span
-                        className={
-                          styles[
-                          "navbar__cart-popover__checkout-box__total-price"
-                          ]
-                        }
-                      >
-                        {
-                          localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
-                        }
-                      </span>
-                      <span
-                        className={
-                          styles[
-                          "navbar__cart-popover__checkout-box__total-price-currency"
-                          ]
-                        }
-                      >
-
-                        {cartItems?.data && cartItems?.data[0]?.currency_symbol}
-                      </span>
-                    </div>
-                    {
-                      cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
-                      >
-                      cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
-                      &&
-                      <div
-                        className={
-                          styles[
-                          "navbar__cart-popover__checkout-box__old-total-price-box"
-                          ]
-                        }
-                      >
-                        <span
-                          className={
-                            styles[
-                            "navbar__cart-popover__checkout-box__old-total-price"
-                            ]
-                          }
-                        >
-                          {
-                            cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
-                          }
-                        </span>
-                        <span
-                          className={
-                            styles[
-                            "navbar__cart-popover__checkout-box__old-total-price-currency"
-                            ]
-                          }
-                        >
-                          {cartItems?.data[0]?.currency_symbol}
-                        </span>
-                      </div>
-
-                    }
-                  </div>
-                  <div
-                    className={
-                      styles["navbar__cart-popover__checkout-box__cart-btn"]
-                    }
-                  >
-
-                    <Link href="/checkout">
-
-                      <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            }
-          >
-            <div className={styles["navbar__cart-icon-container"]} id="carticon"
-              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
-              <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
-              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
-              {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
-
-            </div>
-          </OverlayTrigger>
-          }
 
           {
             userStatus.isUserAuthenticated && !paymentStep &&

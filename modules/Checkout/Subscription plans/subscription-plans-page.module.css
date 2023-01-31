@@ -123,10 +123,6 @@
   font-size: 1.875rem;
   font-weight: 800;
 }
-.subscription-plans-page__plan-card__price-box span:nth-of-type(2) {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
 
 .subscription-plans-page__plan-card__pay-per-unit {
   font-size: 1.125rem;

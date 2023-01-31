@@ -22,7 +22,6 @@ import "swiper/css";
 import Image from 'next/image';
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import BrowseThroughCategories from "modules/My account page/Browse through categories/BrowseThroughCategories";
-import LatestCourses from "modules/My account page/Latest courses/LatestCourses";
 import WatchedCourses from "modules/My account page/Watched courses/WatchedCourses";
 //import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 //import 'react-loading-skeleton/dist/skeleton.css';
@@ -49,62 +48,6 @@ export default function MyAccountPage() {
   });
   const themeState = useSelector((state: any) => state.themeState.theme);
 
-  const handleFavActionBtn = (course: any): any => {
-    if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `course/filter/?country_code=eg&
-      page=${pageNumber}&
-      limit=${purchasedCoursesSlicer}&
-      category_ids=${filters?.categories.toString()}&
-      types=${filters.price.toString()}&
-      levels=${filters.levels.toString()}
-      `);
-      handleFavResponse.then(function (response: any) {
-        setMyAccountData(response?.data);
-      })
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "my-account" }
-      })
-    }
-  }
-
-  const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns,course.id]);
-    setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b:any) => b !== course.id));
-    }, 5000);
-    dispatch(setCheckoutType("cart"));
-
-    const handleCartResponse: any = handleCart([course], `course/filter/?country_code=eg&
-    page=${pageNumber}&
-    limit=${purchasedCoursesSlicer}&
-    category_ids=${filters?.categories.toString()}&
-    types=${filters.price.toString()}&
-    levels=${filters.levels.toString()}
-    `, false);
-    handleCartResponse.then(function (firstresponse: any) {
-      firstresponse.resp.then(function (response: any) {
-        console.log("response,", response);
-        console.log("firstresponse", firstresponse);
-
-        setMyAccountData(response?.data);
-        dispatch(setCartItems(firstresponse.cartResponse));
-      })
-    })
-
-  }
-
-  const handleFreeCoursesActionBtn = (course: any): any => {
-    if (userStatus.isUserAuthenticated == true) {
-      handleFreeCourses(course);
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "/my-account" }
-      })
-    }
-  }
 
   const handlePageClick = (pgNo: any) => {
     toggleLoader("show");
@@ -678,138 +621,6 @@ export default function MyAccountPage() {
 
                   </div>
 
-                  <div
-                    className={
-                      styles[
-                      "my-account__course-card__card-body__checkout-details"
-                      ]
-                    }
-                  >
-                    <div >
-                      <div
-                        className={
-                          styles[
-                          "my-account__course-card__card-body__checkout-details__price-container"
-                          ]
-                        }
-                      >
-                        {course.discounted_price !== 0 && !course.is_purchased && <span
-                          className={
-                            styles[
-                            "my-account__course-card__card-body__checkout-details__price-container__currency"
-                            ]
-                          }
-                        >
-                          {!course.is_in_user_subscription && course.currency_symbol}
-                        </span>}
-
-                        <span
-                          className={
-                            styles[
-                            "my-account__course-card__card-body__checkout-details__price-container__price"
-                            ]
-                          }
-                        >
-                          {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
-                          {
-                            !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
-                          }
-                          {
-                            course.is_in_user_subscription &&
-                            <Link href={`/course/${course.slug}`}>
-                              <span className={styles["watch-subscribed-course"]}>
-                                شاهد الدورة
-                              </span>
-                            </Link>
-                          }
-                        </span>
-
-                      </div>
-                      {
-                        (course.price > course.discounted_price) && !course.is_purchased &&
-                        <div
-                          className={
-                            styles[
-                            "my-account__course-card__card-body__checkout-details__old-price-container"
-                            ]
-                          }
-                        >
-                          <span
-                            className={
-                              styles[
-                              "my-account__course-card__card-body__checkout-details__old-price-container__currency"
-                              ]
-                            }
-                          >
-                            {course.currency_symbol}
-                          </span>
-                          <span
-                            className={
-                              styles[
-                              "my-account__course-card__card-body__checkout-details__old-price-container__price"
-                              ]
-                            }
-                          >
-                            {course.price}
-                          </span>
-
-                        </div>
-                      }
-
-
-                    </div>
-
-                    <div >
-                      {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
-                        className={
-                          styles[
-                          "my-account__course-card__card-body__checkout-details__icon-btn"
-                          ]
-                        }
-                      >
-                        <div onClick={() =>
-                          course?.discounted_price == 0 ?
-                            handleFreeCoursesActionBtn(course)
-                            :
-                            handleCartActionBtn(course)}
-                          className={styles["my-account__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
-                          {
-                            course.discounted_price == 0 ?
-                              <TvIcon color="#222" />
-                              :
-                              course.is_in_cart || disabledCartBtns.includes(course.id) ?
-                                <AddedToCartIcon color="#222" />
-                                :
-                                <CartIcon color="#222" />
-                          }
-                        </div>
-
-                      </Button>}
-
-                      <Button
-                        className={
-                          styles[
-                          "my-account__course-card__card-body__checkout-details__icon-btn"
-                          ]
-                        }
-                      >
-
-                        <div onClick={() => handleFavActionBtn(course)}
-                          className={styles["my-account__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
-                          {
-                            course.is_in_favorites ?
-                              <AddedToFavouriteIcon color="#af151f" />
-                              :
-                              <FavouriteIcon color="#222" />
-                          }
-
-                        </div>
-
-
-                      </Button>
-                    </div>
-                  </div>
-
                 </Card.Body>
               </Card>
             )
@@ -818,50 +629,7 @@ export default function MyAccountPage() {
             JSON.stringify(myAccountData?.data?.courses) !== '[]' && myAccountData?.data?.courses !== null &&
             <>
               <Col sm={myAccountData?.data?.courses?.length == 0 ? 12 : 9} xs={12} className={styles["my-account__pagination"]}>
-                {/*   {
-                  myAccountData?.pagination?.count > 9 && <Pagination>
-                    <Pagination.Prev
-                      onClick={() => {
-                        setPageNumber(myAccountData?.pagination?.current - 1);
-                        handlePageClick(myAccountData?.pagination?.current - 1)
-                      }}
-                      className={`${currentPage == "1" && styles["disabled"]}`} />
-
-                    <Pagination.Item
-                      style={{ display: myAccountData?.pagination?.previous ? "" : "none" }}
-                      active={currentPage == myAccountData?.pagination?.previous}
-                      onClick={() => {
-                        setPageNumber(myAccountData?.pagination?.previous);
-                        handlePageClick(myAccountData?.pagination?.previous)
-                      }}>
-                      {myAccountData?.pagination?.previous}
-                    </Pagination.Item>
-                    <Pagination.Item
-                      active={currentPage == myAccountData?.pagination?.current}
-                      onClick={() => {
-                        setPageNumber(myAccountData?.pagination?.current);
-                        handlePageClick(myAccountData?.pagination?.current);
-                      }}>
-                      {myAccountData?.pagination?.current}
-                    </Pagination.Item>
-                    <Pagination.Item
-                      style={{ display: myAccountData?.pagination?.next ? "" : "none" }}
-                      active={currentPage == myAccountData?.pagination?.next}
-                      onClick={() => {
-                        setPageNumber(myAccountData?.pagination?.next);
-                        handlePageClick(myAccountData?.pagination?.next)
-                      }}>
-                      {myAccountData?.pagination?.next}
-                    </Pagination.Item>
-
-                    <Pagination.Next
-                      onClick={() => {
-                        setPageNumber(myAccountData?.pagination?.current + 1);
-                        handlePageClick(myAccountData?.pagination?.current + 1)
-                      }}
-                      className={`${currentPage == myAccountData?.pagination?.pages && styles["disabled"]}`} />
-                  </Pagination>
-                } */}
+             
                 {
                   (purchasedCoursesSlicer < myAccountData?.pagination?.count) && myAccountData?.pagination?.count > 9 &&
 
@@ -890,10 +658,6 @@ export default function MyAccountPage() {
             <WatchedCourses data={myAccountData?.data?.watched_courses} />
           }
         </Col>
-
-        {/* <Col xs={{ span: 12, order: 4 }} sm={{ span: 12, order: 4 }}>
-          <LatestCourses data={myAccountData?.data?.best_seller_courses} />
-        </Col> */}
 
       </Row>
 

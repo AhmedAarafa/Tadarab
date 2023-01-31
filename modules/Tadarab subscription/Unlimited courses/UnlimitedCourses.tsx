@@ -24,7 +24,7 @@ export default function UnlimitedCourses() {
       const [name, ...value] = current.split('=');
      if(prev){
                 prev[name] = value.join('=');
-                if((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN"){
+                if((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == "NaN"){
           
                 }else{
           
@@ -108,7 +108,7 @@ export default function UnlimitedCourses() {
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
     if(userStatus){
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
     }else{
       Router.push({
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
@@ -137,41 +137,7 @@ export default function UnlimitedCourses() {
           
 
               </Button>
-              {/* <div className={styles["unlimited-courses__exp-days"]}>
-              ٧ أيام تجربة مجانية ثم ٩ دك (٢٩ $) شهريًا
-              </div> */}
-              
-              {/* <div className={styles["unlimited-courses__brief"]}>
-              تدرب الآن من اي مكان وفي اي وقت
-              </div>
-
-              <div className={styles["unlimited-courses__search-bar-container"]}>
-              
-              <Form.Control
-                type="text"
-                placeholder="ادخل ايميلك هنا..."
-                className={
-                  styles["unlimited-courses__search-bar-container__search-bar"]
-                }
-              />
-              <Button className={styles["unlimited-courses__search-bar__btn"]}>
-              ابدأ الآن
-              <ChevronLeftIcon color="#fff"/>
-              </Button>
-            </div>
-
-              <div className={styles["unlimited-courses__subscription-value"]}>
-              قيمة الاشتراك
-              <span>100</span>
-              دك/شهرياً
-              </div> */}
-
           </Col>
-          {/* <Col xs={12} sm={6}>
-              <div className={styles["unlimited-courses__video-container"]}>
-                  <img loading="lazy"   src="/images/VideoPlaceholder.png" alt="promo video" />
-              </div>
-          </Col> */}
       </Row>
   )
 }

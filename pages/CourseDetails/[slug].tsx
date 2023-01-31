@@ -57,7 +57,6 @@ function CourseDetails(props: any) {
   const { slug } = Router.query;
   const { seoData } = props;
 
-
   useEffect(() => {
     toggleLoader("show");
     subscriptionCounter();
@@ -76,20 +75,19 @@ function CourseDetails(props: any) {
           bottom:0;
           `: null;
       }
-    } else {
-      window.addEventListener('load', (event) => {
-        const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
+    }
+    window.addEventListener('load', (event) => {
+      const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
 
-        if (document.documentElement.clientWidth < 576) {
-          MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+      if (document.documentElement.clientWidth < 576) {
+        MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
             display:flex;
             align-items:center;
             justify-content:space-evenly;
             bottom:0;
             `: null;
-        }
-      });
-    }
+      }
+    });
 
 
     return () => {
@@ -407,7 +405,7 @@ function CourseDetails(props: any) {
                         <GuaranteeCard />
                         <CourseCertificate />
                         <FAQ Cid={() => { return courseId }} />
-                        <SpecialOffer Cid={() => { return courseId }} />
+                        {/* <SpecialOffer Cid={() => { return courseId }} /> */}
                       </Col>
                       {
                         originalCardPlacement == true &&

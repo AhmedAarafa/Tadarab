@@ -49,7 +49,7 @@ export default function SignInPage() {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
       } else {
         if (router.query && router.query.from_subscription) {
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
         }else if (router.query && router.query.from == "checkout"){
           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment`);
         }
@@ -159,7 +159,7 @@ export default function SignInPage() {
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
               } else if (router.query && router.query.type) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
               } else {
@@ -227,7 +227,7 @@ export default function SignInPage() {
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
               } else {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
               }
@@ -337,7 +337,7 @@ export default function SignInPage() {
                       }
 
                     } else if (router.query && router.query.from_subscription) {
-                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from_subscription}`);
+                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
                     } else if (router.query && router.query.type) {
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
                     } else {
