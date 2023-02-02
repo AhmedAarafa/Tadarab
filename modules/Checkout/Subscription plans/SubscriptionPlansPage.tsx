@@ -116,7 +116,7 @@ export default function SubscriptionPlansPage() {
                         </div>
                         <div>
                             <TickIcon />
-                            <span>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت</span>
+                            <span> يمكنك إلغاء الاشتراك في أي وقت</span>
                         </div>
 
                     </div>

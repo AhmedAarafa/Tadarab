@@ -38,12 +38,12 @@
   margin-top: -0.3rem;
 }
 .subscription-plans-page__title div:nth-of-type(4) {
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 800;
   color: white;
   text-align: center;
   width: 100%;
-  margin-top: -0.4rem;
+  margin: -0.4rem 0 0.7rem 0;
 }
 
 .subscription-plans-page__plan {
@@ -230,8 +230,8 @@
     margin-top: -0.6rem;
   }
   .subscription-plans-page__title div:nth-of-type(4) {
-    font-size: 3.4rem;
-    margin-top: 2rem;
+    font-size: 4rem;
+    margin: 2rem 0 1rem 0;
     line-height: 1.2;
   }
   .subscription-plans-page__plan {

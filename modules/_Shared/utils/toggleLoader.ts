@@ -14,7 +14,7 @@ export const toggleLoader = (status: string) => {
         document.body.style.cssText = `visibility:hidden`;
         nav ? nav.style.cssText = `display:none` : null;
         if (notificationBar) {
-          notificationBar.style.cssText = `display:none`;
+          // notificationBar.style.cssText = `visibility:hidden`;
         }
         footer ? (footer.style.cssText = `display:none`) : null;
         loader.style.cssText = `display : flex; visibility:visible`;
@@ -25,7 +25,7 @@ export const toggleLoader = (status: string) => {
           document.body.style.cssText = `visibility:visible`;
           nav ? nav.style.cssText = `display:flex`: null;
           if (notificationBar) {
-            notificationBar.style.cssText = `display:flex`;
+            // notificationBar.style.cssText = `visibility:visible`;
             nav ? nav.style.cssText = `top:${notificationBar?.offsetHeight}px ;`: null;
           }
           footer ? (footer.style.cssText = `display:block`) : null;

@@ -40,12 +40,12 @@
     }
 
     div:nth-of-type(4) {
-        font-size: 1.7rem;
+        font-size: 2rem;
         font-weight: 800;
         color: white;
         text-align: center;
         width: 100%;
-        margin-top: -0.4rem;
+        margin: -0.4rem 0 0.7rem 0;
     }
 }
 
@@ -211,8 +211,8 @@
         }
 
         div:nth-of-type(4) {
-            font-size: 1.7rem*2;
-            margin-top: 2rem;
+            font-size: 2rem*2;
+            margin: 2rem 0 1rem 0;
             line-height: 1.2;
         }
     }
