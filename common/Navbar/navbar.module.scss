@@ -849,20 +849,9 @@ input:checked+.slider:before {
         @include flex(center, space-between);
     }
 
-    // .responsive-navbar__search-bar-container__icon-wrapper {
-    //     padding: 0 1rem*2.5;
-    //     height: 100%;
-    //     position: absolute;
-    //     pointer-events: none;
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-
-    //     &>svg {
-    //         width: 1.1rem*2.5;
-    //         height: 1.1rem*2.5;
-    //     }
-    // }
+    .navbar__subscribe-now {
+        display: none !important;
+    }
 
     .responsive-navbar__search-bar-container__search-bar {
         border: 0 !important;

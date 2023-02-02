@@ -971,6 +971,9 @@ input:checked + .slider:before {
     align-items: center;
     justify-content: space-between;
   }
+  .navbar__subscribe-now {
+    display: none !important;
+  }
   .responsive-navbar__search-bar-container__search-bar {
     border: 0 !important;
     padding: 0 3rem 0 0;

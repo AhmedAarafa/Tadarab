@@ -507,13 +507,13 @@ function Navbar(props: any) {
                 </li>
               </Link>
             }
-            {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
+            {/* {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
               <Link href="/subscription">
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
                   تدرب بلا حدود
                 </li>
               </Link>
-            }
+            } */}
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
             </Link>
