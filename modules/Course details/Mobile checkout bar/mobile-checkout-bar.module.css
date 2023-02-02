@@ -60,23 +60,12 @@
 
 .mobile-checkout-bar__subscription-details {
   color: var(--dark-black);
-}
-.mobile-checkout-bar__subscription-details div:nth-of-type(1) {
-  margin-top: 0.5rem;
-  font-size: 2.2rem;
+  font-size: 2rem;
+  margin: 1rem 0;
   font-weight: 700;
 }
-.mobile-checkout-bar__subscription-details div:nth-of-type(2) {
-  margin-top: -0.8rem;
-}
-.mobile-checkout-bar__subscription-details div:nth-of-type(2) span:nth-of-type(1) {
-  font-size: 3.52rem;
-  font-weight: 800;
-  margin-left: 0.66rem;
-}
-.mobile-checkout-bar__subscription-details div:nth-of-type(2) span:nth-of-type(2) {
-  font-size: 2.53rem;
-  font-weight: 700;
+.mobile-checkout-bar__subscription-details span:nth-of-type(1) {
+  font-size: 2.5rem;
 }
 
 .mobile-checkout-bar__course-card__price-box {

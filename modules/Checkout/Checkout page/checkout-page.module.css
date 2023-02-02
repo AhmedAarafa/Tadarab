@@ -14,7 +14,7 @@
 }
 
 .checkout {
-  margin: 2rem 0 -5rem 0;
+  margin: 4rem 0 -5rem 0;
   padding: 5rem 8.2rem 5rem 8.2rem;
 }
 
@@ -28,6 +28,7 @@
   align-items: center;
   justify-content: center;
   position: fixed;
+  top: 3.7rem;
   z-index: 2;
 }
 
@@ -1744,6 +1745,7 @@
     align-items: center;
     justify-content: space-evenly;
     z-index: 2;
+    top: 8.1125rem;
   }
   .checkout__stepper-box__stepper {
     display: flex;
@@ -1995,7 +1997,7 @@
     border-radius: 0;
     padding: 2rem 3.575rem 1.625rem 3.575rem;
     position: static;
-    margin: 8rem 0 4.4rem 0;
+    margin: 20rem 0 4.4rem 0;
   }
   .checkout__cart-sticky-card-div {
     order: 2;

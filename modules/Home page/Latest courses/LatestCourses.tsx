@@ -130,7 +130,7 @@ function LatestCourses() {
           <ul id="departments-list" className={styles["latest-courses__departments-list"]}>
             <li onClick={() => { handleFilterType("best-seller") }}
               className={`${styles["latest-courses__departments-list__item"]} ${filterType == "best-seller" && styles["latest-courses__departments-list__item--active"]}`}>
-              الأكثر مبيعاً
+              الاكثر مشاهدة
             </li>
             <li onClick={() => { handleFilterType("latest") }}
               className={`${styles["latest-courses__departments-list__item"]} ${filterType == "latest" && styles["latest-courses__departments-list__item--active"]}`}>

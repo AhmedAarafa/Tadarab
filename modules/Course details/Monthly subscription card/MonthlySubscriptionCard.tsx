@@ -555,15 +555,13 @@ export default function MonthlySubscriptionCard(theOption: any) {
           </div>}
 
           <div className={styles["monthly-subscription__course-card__subscription-details"]}>
-            <div> شاهد اكثر من 1000 دورة باشتراك شهري </div>
+            شاهد اكثر من 1000 دورة باشتراك واحد  يبدأ
             <div>
-              <span>{subscriptionValues?.sale_label}</span>
-              <span>
-                {" "}{subscriptionValues?.currency_symbol}{" "}
-                (تدفع سنوياً)
-              </span>
+              من
+              <span> {" "} {subscriptionValues?.sale_label} {" "}</span>
+              {subscriptionValues?.currency_symbol} / ش
+              {/* (تدفع سنوياً) */}
             </div>
-
           </div>
 
 

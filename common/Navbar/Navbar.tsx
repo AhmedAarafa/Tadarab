@@ -147,7 +147,7 @@ function Navbar(props: any) {
             searchBar.style.cssText = `width: calc(100vw - 50.75rem)` :
             searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
-          // searchBar.style.cssText=`width:28rem`;
+          // searchBar.style.cssText=`width:33rem`;
           // searchBar.style.cssText=`width:31.75rem`;
           userStatus.isSubscribed == true ?
             searchBar.style.cssText = `width:39rem` :
@@ -163,7 +163,7 @@ function Navbar(props: any) {
               searchBar.style.cssText = `width: calc(100vw - 50.75rem)` :
               searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
-            // searchBar.style.cssText=`width:28rem`;
+            // searchBar.style.cssText=`width:33rem`;
             // searchBar.style.cssText=`width:31.75rem`;
             userStatus.isSubscribed == true ?
               searchBar.style.cssText = `width:39rem` :
@@ -180,13 +180,13 @@ function Navbar(props: any) {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 44rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 48rem)` :
             searchBar.style.cssText = `width: calc(100vw - 60rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
           userStatus.isSubscribed == true ?
             searchBar.style.cssText = `width:38.5rem` :
-            searchBar.style.cssText = `width:28rem`;
+            searchBar.style.cssText = `width:33rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
       }
@@ -197,13 +197,13 @@ function Navbar(props: any) {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width: calc(100vw - 44rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 48rem)` :
               searchBar.style.cssText = `width: calc(100vw - 60rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
             userStatus.isSubscribed == true ?
               searchBar.style.cssText = `width:38.5rem` :
-              searchBar.style.cssText = `width:28rem`;
+              searchBar.style.cssText = `width:33rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
         }
@@ -500,7 +500,7 @@ function Navbar(props: any) {
               </ul>
 
             </Offcanvas>
-            {userStatus.isSubscribed == false && userStatus.isUserAuthenticated &&
+            {userStatus.isSubscribed == false &&
               <Link href="/subscription-plans">
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
                   اشترك الآن
@@ -684,21 +684,17 @@ function Navbar(props: any) {
                 />
               </div>
 
-              {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
+              {/* {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
                 <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>
                   تدرب بلا حدود
-                </Nav.Link>}
+                </Nav.Link>} */}
+
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
                 <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`) }} className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>
               }
-              {userStatus.isSubscribed == false && userStatus.isUserAuthenticated &&
-                <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }} className={styles["navbar__links"]}>
-                  <Button>
-                    اشترك الآن
-                  </Button>
-                </Nav.Link>}
+
             </>
           }
 
@@ -749,10 +745,18 @@ function Navbar(props: any) {
 
 
 
-          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-up">
+          {/* {userStatus.isUserAuthenticated == false && !paymentStep &&
+           <Link href="/sign-up">
             <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
           </Link>
-          }
+          } */}
+          {userStatus.isSubscribed == false &&
+            <div onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}
+             className={styles["navbar__subscribe-now"]}>
+              <Button>
+                اشترك الآن
+              </Button>
+            </div>}
           {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-in">
             <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
           </Link>}

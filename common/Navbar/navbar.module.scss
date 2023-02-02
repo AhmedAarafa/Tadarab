@@ -101,10 +101,18 @@
         font-size: 0.9375rem;
         padding: 0.4rem 0.8rem;
         margin-left: 0.8rem;
-
     }
 
 
+}
+
+.navbar__subscribe-now {
+    button {
+        @include contained-button;
+        width: 7.8rem;
+        height: 2.6rem;
+        margin-right: 1rem;
+    }
 }
 
 .navbar__purchased-course-name {

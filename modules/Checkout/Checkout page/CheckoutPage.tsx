@@ -82,7 +82,6 @@ function CheckoutPage(props: any) {
 
 
     useEffect(() => {
-        toggleLoader("show");
 
         if (userAuthState.isUserAuthenticated && userAuthState.isSubscribed) {
             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
@@ -615,9 +614,11 @@ function CheckoutPage(props: any) {
     }, [cartItems])
 
     useEffect(() => {
+        toggleLoader("show");
         const firstStepBox: any = document.getElementById("added-courses");
         const secondStepBox: any = document.getElementById("payment-types");
         const thirdStepBox: any = document.getElementById("begin-learning");
+
 
         switch (step) {
             case "added-courses":
@@ -1357,7 +1358,8 @@ function CheckoutPage(props: any) {
                         {/** terms & policy end **/}
 
                         <div className={styles["checkout__guarantee-boxes"]}>
-                            <div className={styles["checkout__guarantee-boxes__box"]}>
+                            {(subPlan && subPlan == "yearly") &&
+                              <div className={styles["checkout__guarantee-boxes__box"]}>
                                 <div>
                                     <GreyGuaranteeIcon />
                                     <div>
@@ -1366,10 +1368,11 @@ function CheckoutPage(props: any) {
                                     </div>
                                 </div>
                                 <div>
-                                    ٣٠ يوم ضمان لاسترداد كامل المبلغ اذ لم تكن راضي عن الخدمة
+                                    ٧ ايام ضمان لاسترداد كامل المبلغ اذ لم تكن  راضي عن الخدمة
                                 </div>
 
                             </div>
+                            }
                             <div className={styles["checkout__guarantee-boxes__box"]}>
                                 <div>
                                     <GreyVerifiedIcon />
@@ -1414,45 +1417,61 @@ function CheckoutPage(props: any) {
                                         </div>
                                     </div>
 
-                                    <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary"]}>
+                                    {
+                                        (paymentSettings !== null && paymentSettings !== undefined) ?
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary"]}>
+                                                {(subPlan && subPlan == "yearly") &&
+                                                    <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount"]}>
+                                                        <div>
+                                                            <span> السعر قبل الخصم  </span>
+                                                        </div>
+                                                        <div>
+                                                            <span>{" "} {paymentSettings?.subscription_plans[0].original_price} {" "}</span>
+                                                            <span>
+                                                                {" "} {paymentSettings?.subscription_plans[0].currency_symbol}{" "}
+                                                            </span>
+                                                        </div>
+                                                    </div>}
+                                                <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount"]}>
+                                                    <div>
+                                                        السعر النهائي
+                                                        {
+                                                            (subPlan && subPlan == "yearly" && paymentSettings?.subscription_plans[0].discount_label !== "") ? "  (خصم" : ""
+                                                        }
+                                                        {
+                                                            (subPlan && subPlan == "monthly" && paymentSettings?.subscription_plans[1].discount_label !== "") ? "  (خصم" : ""
+                                                        }
 
-                                        {(subPlan && subPlan == "yearly") &&
-                                            <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount"]}>
-                                                <div>
-                                                    <span> السعر قبل الخصم  </span>
-                                                    <span>
-                                                        (
-                                                        خصم
-                                                        {" "}  {paymentSettings?.subscription_plans[0].discount_label.replace("ستوفر", "")} {" "}
-                                                        )
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <span>{" "} {paymentSettings?.subscription_plans[0].original_price} {" "}</span>
-                                                    <span>
-                                                        {" "} {paymentSettings?.subscription_plans[0].currency_symbol}{" "}
-                                                    </span>
-                                                </div>
-                                            </div>}
-                                        <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount"]}>
-                                            <div>
-                                                السعر النهائي
-                                                <div>
-                                                    بدون أي رسوم إضافية
+                                                        {" "}  {(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].discount_label.replace("ستوفر", "")} {" "}
+                                                        {" "}  {(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].discount_label.replace("ستوفر", "")} {" "}
+
+                                                        {
+                                                            (subPlan && subPlan == "yearly" && paymentSettings?.subscription_plans[0].discount_label !== "") ? ")" : ""
+                                                        }
+                                                        {
+                                                            (subPlan && subPlan == "monthly" && paymentSettings?.subscription_plans[1].discount_label !== "") ? ")" : ""
+                                                        }
+
+                                                        <div>
+                                                            بدون أي رسوم إضافية
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span>
+                                                            {(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].fixed_price}
+                                                            {(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].fixed_price}
+                                                        </span>
+                                                        <span>
+                                                            {" "} {paymentSettings?.currency_symbol}{" "}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <span>
-                                                    {(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].fixed_price}
-                                                    {(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].fixed_price}
-
-                                                </span>
-                                                <span>
-                                                    {" "} {paymentSettings?.currency_symbol}{" "}
-                                                </span>
+                                            :
+                                            <div id="payment-spinner" className={styles["payment-options-spinner"]}>
+                                                <Spinner animation="border" />
                                             </div>
-                                        </div>
-                                    </div>
+                                    }
 
 
                                     {
@@ -1678,10 +1697,10 @@ function CheckoutPage(props: any) {
                                                 <VisamasterSubscriptionButtonComponent />
                                             }
 
-                                            <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__change-sub-plan"]}>
+                                            {/* <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__change-sub-plan"]}>
                                                 <div>هل تريد تغير نوع باقة الإشتراك؟</div>
                                                 <div onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}>العودة إلى الباقات</div>
-                                            </div>
+                                            </div> */}
                                         </>
                                     }
 

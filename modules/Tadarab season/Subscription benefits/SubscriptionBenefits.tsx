@@ -102,7 +102,7 @@ export default function SubscriptionBenefits() {
                         </div>
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
-                                <UnlimitedCertificatesIcon />
+                                <UnlimitedCertificatesIcon color="#fff"/>
                             </div>
                             <span>
                                 عدد لا نهائي من شهادات إتمام الدورات

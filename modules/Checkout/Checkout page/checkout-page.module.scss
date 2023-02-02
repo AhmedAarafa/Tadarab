@@ -20,7 +20,7 @@
 }
 
 .checkout {
-    margin: 2rem 0 -5rem 0;
+    margin: 4rem 0 -5rem 0;
     padding: 5rem 8.2rem 5rem 8.2rem;
 }
 
@@ -33,6 +33,7 @@
     box-shadow: 0rem 0rem 1.3125rem #0000001A;
     @include flex(center, center);
     position: fixed;
+    top: 3.7rem;
     z-index: 2;
 }
 
@@ -1827,6 +1828,8 @@
         box-shadow: 0 0 1.3125rem*1.8 #0000001A;
         @include flex(center, space-evenly);
         z-index: 2;
+        top: 3.6875rem*2.2;
+
     }
 
     .checkout__stepper-box__stepper {
@@ -2105,7 +2108,7 @@
         border-radius: 0;
         padding: 2rem 1.625rem*2.2 1.625rem 1.625rem*2.2;
         position: static;
-        margin: 8rem 0 2rem*2.2 0;
+        margin: 20rem 0 2rem*2.2 0;
     }
 
     .checkout__cart-sticky-card-div {

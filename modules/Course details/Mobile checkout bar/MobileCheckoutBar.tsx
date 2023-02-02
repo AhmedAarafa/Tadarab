@@ -138,16 +138,13 @@ export default function MobileCheckoutBar(props: any) {
       <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
         {props?.paymentType == "subscription" &&
           <div>
-
             <div className={styles["mobile-checkout-bar__subscription-details"]}>
-              <div> شاهد اكثر من 1000 دورة باشتراك شهري </div>
-              <div>
-                <span>{subscriptionValues?.sale_label} </span>
-                <span>
-                  {" "}{subscriptionValues?.currency_symbol}{" "}
-                  (تدفع سنوياً)
-                </span>
-              </div>
+              شاهد اكثر من 1000 دورة باشتراك واحد يبدأ من
+              <span>
+              {" "}  {subscriptionValues?.sale_label}{" "}
+              </span>
+              {" "}{subscriptionValues?.currency_symbol}{" "} / ش
+              {/* (تدفع سنوياً) */}
 
             </div>
 

@@ -70,15 +70,14 @@ export default function SubscriptionPlansPage() {
 
                     </div>
 
-                    <Button className={styles["subscription-plans-page__plan-card__cta"]} 
-                    onClick={()=>{
-                        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription&splan=${selectedPlan}`)
+                    <Button className={styles["subscription-plans-page__plan-card__cta"]}
+                        onClick={() => {
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription&splan=${selectedPlan}`)
                         }}>
                         اشترك
                         {" "} {selectedPlan == "yearly" ? "سنوياً" : "شهرياً"} {" "}
-                        {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.original_price : paymentSettings[1]?.original_price} {" "}
+                        {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.fixed_price : paymentSettings[1]?.fixed_price} {" "}
                         {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.currency_symbol : paymentSettings[1]?.currency_symbol} {" "}
-
                         <ChevronLeftIcon color='#f5f5f5' />
                     </Button>
 
@@ -86,7 +85,9 @@ export default function SubscriptionPlansPage() {
                     <div className={styles["subscription-plans-page__plan-card__subscription-points"]}>
                         <div>
                             <TickIcon />
-                            <span>مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من 850 دورة)</span>
+                            <span>
+                                مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من 1000 دورة)
+                            </span>
                         </div>
                         <div>
                             <TickIcon />

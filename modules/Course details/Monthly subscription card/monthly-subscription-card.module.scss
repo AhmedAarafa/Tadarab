@@ -501,24 +501,14 @@
 
 .monthly-subscription__course-card__subscription-details {
     color: var(--dark-black);
+    font-size: 1rem;
 
-    div:nth-of-type(1) {
-        font-size: 1rem;
-        font-weight: 700;
-    }
-
-    div:nth-of-type(2) {
         span:nth-of-type(1) {
             font-size: 1.6rem;
             font-weight: 800;
             margin-left: 0.3rem;
         }
 
-        span:nth-of-type(2) {
-            font-size: 1.15rem;
-            font-weight: 700;
-        }
-    }
 }
 
 .monthly-subscription__course-card__details-list__item {

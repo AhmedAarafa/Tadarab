@@ -21,6 +21,9 @@ export default function NotificationBar() {
         navbar.style.cssText = `top:0;`;
     }
 
+    console.log("Router",Router.asPath);
+    
+
     const handleSubscriptionBtn = () => {
         dispatch(setCheckoutType("subscription"));
         if (userStatus) {
@@ -44,7 +47,7 @@ export default function NotificationBar() {
 
     return (
         <>
-            {
+            { (Router.asPath.includes("checkout") || Router.asPath.includes("subscription") || Router.asPath.includes("plan")) &&
                 <div style={{ display: userStatus ? 'none' : 'flex' }} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>

@@ -15,12 +15,12 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  margin: 0.8rem 0;
+  margin: 0.4rem 0;
 }
 .subscription-plans-page__title div:nth-of-type(1),
 .subscription-plans-page__title div:nth-of-type(2),
 .subscription-plans-page__title div:nth-of-type(3) {
-  font-size: 1.75rem;
+  font-size: 1.7rem;
   font-weight: 800;
   margin-bottom: -0.7rem;
 }
@@ -37,11 +37,11 @@
 }
 
 .subscription-plans-page__plan {
-  margin-top: 0.7rem;
+  margin-top: 0.3rem;
 }
 
 .subscription-plans-page__plans-options {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--grey);
   display: flex;
@@ -103,12 +103,12 @@
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
-  width: 28.75rem;
-  height: 27rem;
+  width: 26rem;
+  height: 24rem;
   box-shadow: 0rem 0rem 1.25rem rgba(0, 0, 0, 0.0784313725);
   border-radius: 1.5rem;
   background-color: var(--tadarab-bg);
-  margin: 1.5rem auto 0;
+  margin: 1rem auto 0;
   padding: 1.625rem 2.5rem;
 }
 
@@ -120,12 +120,12 @@
   gap: 0.3rem;
 }
 .subscription-plans-page__plan-card__price-box span:nth-of-type(1) {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: 800;
 }
 
 .subscription-plans-page__plan-card__pay-per-unit {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--grey);
   margin-top: -0.2rem;
@@ -148,7 +148,7 @@
   box-shadow: 0rem 0.25rem 1.25rem rgba(175, 21, 31, 0.3019607843);
   gap: 1.125rem;
   width: 100%;
-  height: 3.125rem;
+  height: 2.8rem;
   font-size: 1rem;
 }
 .subscription-plans-page__plan-card__cta:hover {
@@ -178,7 +178,7 @@
   align-items: center;
   justify-content: flex-start;
   gap: 0.4rem;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--grey);
 }
 .subscription-plans-page__plan-card__subscription-points div svg {
@@ -187,7 +187,7 @@
 }
 
 .subscription-plans-page__plan-card__terms-and-conditions {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--grey);
 }
 
