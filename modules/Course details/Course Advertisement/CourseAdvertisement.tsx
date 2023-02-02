@@ -9,7 +9,7 @@ import useResize from 'custom hooks/useResize';
 import "video.js/dist/video-js.css";
 import Link from "next/link";
 import {
-  DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon,
+  DocumentIcon, DurationIcon,SupportIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon,
   DarkModeCalendarIcon, DarkModeWatchLiveOrRecordedIcon
 } from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
@@ -144,9 +144,16 @@ export default function CourseAdvertisement(theOption: any) {
               <div
                 className={
                   styles["course-ad__details-list__item"]}>
+                <SupportIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
+
+                <span> دعم تقني على مدار الساعة طوال الأسبوع</span>
+              </div>
+              <div
+                className={
+                  styles["course-ad__details-list__item"]}>
                 <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
 
-                <span>مرفقات حصرية جاهزة للتحميل</span>
+                <span> ملخصات حصرية لأكثر الكتب مبيعًا مجانية </span>
               </div>
               <div
                 className={

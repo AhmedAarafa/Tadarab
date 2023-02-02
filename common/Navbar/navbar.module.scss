@@ -109,7 +109,7 @@
 .navbar__subscribe-now {
     button {
         @include contained-button;
-        width: 7.8rem;
+        width: 9rem;
         height: 2.6rem;
         margin-right: 1rem;
     }
@@ -749,6 +749,15 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
+.navbar__return-to-plans-icon {
+    margin: 0 auto 0 1rem;
+    cursor: pointer;
+    svg {
+        width: 1.3rem;
+        height: 1.3rem;
+    }
+}
+
 
 @media (max-width:575px) {
     .navbar {
@@ -762,7 +771,7 @@ input:checked+.slider:before {
 
     .navbar__cart-icon-container {
         margin: 0 1.8rem 0 0.7rem;
-        order: 4;
+        // order: 4;
         display: none;
 
         svg {
@@ -945,6 +954,15 @@ input:checked+.slider:before {
 
     .slider.round {
         border-radius: 2.125rem;
+    }
+
+    .navbar__return-to-plans-icon {
+        order: 3;
+        margin: 0 auto 0 1rem*2.5;
+        svg {
+            width: 1.3rem*2.5;
+            height: 1.3rem*2.5;
+        }
     }
 }
 

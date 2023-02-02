@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import styles from "./monthly-subscription-card.module.css"
 import { Button, Spinner } from "react-bootstrap";
 import {
-  CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon, GuaranteeIcon, TickIcon,
+  CartIcon, FavouriteIcon, ShareIcon, AddedToFavouriteIcon, GuaranteeIcon, TickIcon, SupportIcon,
   TvIcon, DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon, DarkModeCalendarIcon, DarkModeWatchLiveOrRecordedIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -458,9 +458,9 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     styles["monthly-subscription__course-card__details-list__item"]
                   }
                 >
-                  <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"} />
+                  <SupportIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
 
-                  <span>شهادة إتمام اون لاين معتمدة</span>
+                  <span> دعم تقني على مدار الساعة طوال الأسبوع</span>
                 </div>
                 <div
                   className={
@@ -469,7 +469,16 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 >
                   <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
 
-                  <span>مرفقات حصرية جاهزة للتحميل</span>
+                  <span> ملخصات حصرية لأكثر الكتب مبيعًا مجانية </span>
+                </div>
+                <div
+                  className={
+                    styles["monthly-subscription__course-card__details-list__item"]
+                  }
+                >
+                  <CertifIcon color={themeState == "light" ? "#c2121e" : "#f5f5f5"} />
+
+                  <span>شهادة إتمام اون لاين معتمدة</span>
                 </div>
                 <div
                   className={
@@ -575,7 +584,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     <Button id="monthly-subscribe-btn" className={`${styles["monthly-subscription__subscribe-btn-box__btn"]} ${theOption?.liveWebinarDetails?.type == "webinar" ? styles["monthly-subscription__secondary"] : ""}`}
                       onClick={() => handleSubscriptionBtn()}>
                       <div>
-                        <span>اشترك الآن و ابدأ التعلم</span>
+                        <span>اشترك الآن</span>
                       </div>
                     </Button>
                   </div>

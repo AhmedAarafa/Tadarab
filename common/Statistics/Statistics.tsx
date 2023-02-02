@@ -37,7 +37,7 @@ export default function Statistics() {
             </div>
 
             <div className={styles["statistics__users"]}>
-              <div>2,150,450</div>
+              <div>+2,000,000</div>
               <LearnersOutlinedIcon color="#af151f" />
               <div> متعلم على المنصة في الوطن العربي </div>
             </div>
@@ -99,7 +99,7 @@ export default function Statistics() {
                 </div>
                 <div className={styles["statistics__details__unit"]}>خبير ومدرب</div>
               </div>
-              <div className={styles["statistics__details__card"]}>
+              {/* <div className={styles["statistics__details__card"]}>
                 <div>
                   <div className={styles["statistics__details__img"]}>
 
@@ -111,7 +111,7 @@ export default function Statistics() {
                   <span id="exp-years-count">+10</span>
                 </div>
                 <div className={styles["statistics__details__unit"]}>سنوات خبرة</div>
-              </div>
+              </div> */}
 
             </div>
 

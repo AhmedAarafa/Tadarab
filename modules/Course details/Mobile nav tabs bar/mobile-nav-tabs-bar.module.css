@@ -8,7 +8,7 @@
   position: sticky;
   width: 100%;
   z-index: 5;
-  display: none;
+  display: none !important;
 }
 .tabs-responsive-bar a:hover {
   color: var(--grey);

@@ -149,7 +149,7 @@ export default function MobileCheckoutBar(props: any) {
             </div>
 
             <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
-              اشترك الآن وأبدا التعلم
+              اشترك الآن  
             </Button>
           </div>
         }

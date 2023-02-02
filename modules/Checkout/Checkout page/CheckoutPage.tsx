@@ -87,11 +87,11 @@ function CheckoutPage(props: any) {
             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
         }
         const navbar: any = document.getElementById("nav");
-        const stepperBox: any = document.getElementById("stepper-box");
+        // const stepperBox: any = document.getElementById("stepper-box");
         const list: any = document.getElementsByTagName("ol")[0];
         const checkedRadioBtn: any = document.querySelector('input[name="payment-type"]:checked');
         // const unCheckedRadioBtns:any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-        stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
+        // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
         const localStorageItems: any = localStorage.getItem("cart");
         /* JSON.stringify(Router.query) == "{}" &&  */
         if (localStorageItems && (localStorageItems) !== "[]") {
@@ -187,7 +187,7 @@ function CheckoutPage(props: any) {
 
             if (window.innerWidth <= 576) {
 
-                stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
+                // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
                 const checkedRadioBtn: any = document.querySelector('input[name="payment-type"]:checked');
                 const unCheckedRadioBtns: any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
                 setMobileView(true);
@@ -233,7 +233,7 @@ function CheckoutPage(props: any) {
 
             } else {
 
-                stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
+                // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
                 const checkedRadioBtn: any = document.querySelector('input[name="payment-type"]:checked');
                 const unCheckedRadioBtns: any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
                 setMobileView(false);
@@ -287,10 +287,10 @@ function CheckoutPage(props: any) {
         window.addEventListener("resize", () => {
             const checkedRadioBtn: any = document.querySelector('input[name="payment-type"]:checked');
             const unCheckedRadioBtns: any = document.querySelectorAll('input[name="payment-type"]:not(:checked)');
-            stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
+            // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
             if (window.innerWidth <= 576) {
                 setMobileView(true);
-                stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
+                // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
 
                 unCheckedRadioBtns.forEach((radBtn: any) => {
                     radBtn && radBtn.parentElement ? radBtn.parentElement.parentElement.style.cssText = `
@@ -333,7 +333,7 @@ function CheckoutPage(props: any) {
                 }
 
             } else {
-                stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
+                // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
                 setMobileView(false);
                 unCheckedRadioBtns.forEach((radBtn: any) => {
                     radBtn && radBtn.parentElement ? radBtn.parentElement.parentElement.style.cssText = `

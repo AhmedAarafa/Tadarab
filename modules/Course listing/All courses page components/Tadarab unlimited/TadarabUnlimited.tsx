@@ -42,7 +42,7 @@ export default function TadarabUnlimited() {
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
                             </div>
-                            <Link href="/subscription">
+                            <Link href="/subscription-plans">
                                 <Button>
                                     اشترك الآن
                                 </Button>
@@ -73,7 +73,7 @@ export default function TadarabUnlimited() {
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
                             </div>
-                            <Link href="/subscription">
+                            <Link href="/subscription-plans">
                                 <Button>
                                     اشترك الآن
                                 </Button>

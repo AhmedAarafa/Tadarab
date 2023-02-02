@@ -47,8 +47,8 @@ export default function NotificationBar() {
 
     return (
         <>
-            { (Router.asPath.includes("checkout") || Router.asPath.includes("subscription") || Router.asPath.includes("plan")) &&
-                <div style={{ display: userStatus ? 'none' : 'flex' }} className={styles['notification-bar']} id="notification-bar">
+            {
+                <div style={{ display: userStatus || (Router.asPath.includes("checkout") || Router.asPath.includes("subscription") || Router.asPath.includes("plan")) ? 'none' : 'flex' }} className={styles['notification-bar']} id="notification-bar">
                     <div>
                         <div>
                             {/* آخر فرصة للأستفادة من العرض | بمناسبة مرور ٦ سنوات على تأسيس منصة تدرب أكثر من ٨٠٠ دورة تدريبية بخصم ٧٥٪ كود الخصم T6 */}

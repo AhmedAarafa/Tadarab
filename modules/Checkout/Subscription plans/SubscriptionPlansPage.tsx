@@ -38,6 +38,7 @@ export default function SubscriptionPlansPage() {
                 <div>باقــــــــات</div>
                 <div>tadarab</div>
                 <div>بلا حـــدود</div>
+                <div>مميزات الاشتراك في افضل برنامج تعليمي عن بعد بالوطن العربي</div>
             </Col>
             <Col xs={12} className={styles["subscription-plans-page__plan"]}>
                 <div className={styles["subscription-plans-page__plans-options"]}>
@@ -59,13 +60,21 @@ export default function SubscriptionPlansPage() {
                             <span>
                                 {selectedPlan == "yearly" && paymentSettings[0]?.sale_label}
                                 {selectedPlan == "monthly" && paymentSettings[1]?.sale_label}
+                                {" "}
+                                {selectedPlan == "yearly" &&
+                                    <span>
+                                        {paymentSettings[0]?.discount_label.replace("ستوفر","خصم")}
+                                    </span>
+                                }
                             </span>
                         </div>
 
                         <div className={styles["subscription-plans-page__plan-card__pay-per-unit"]}>
                             تدفع
                             {" "} {selectedPlan == "yearly" ? "سنوياً" : "شهرياً"} {" "}
-                            {selectedPlan == "yearly" ? paymentSettings[0]?.discount_label : paymentSettings[1]?.discount_label}
+                            {" "} {selectedPlan == "yearly" && "(ستوفر"} {" "}
+                            {" "} {selectedPlan == "yearly" && `${((paymentSettings[0]?.original_price / 12)*0.5)}`} {" "}
+                            {" "} {selectedPlan == "yearly" && `${paymentSettings[0]?.currency_symbol}/ش)`} {" "}
                         </div>
 
                     </div>

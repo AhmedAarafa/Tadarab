@@ -1,124 +1,132 @@
 @import "../../../styles/mixins";
 
+
 .mobile-checkout-bar {
-    background-color: var(--tadarab-bg);
-    padding: 0.625rem 0rem;
-    box-shadow: 0 -0.781rem 3.281rem #00000014;
-    // @include flex(center, center);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    z-index: 8;
-    background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
     display: none;
 }
 
-.monthly-subscription__subscription-value {
-    span.amount-strike {
-        text-decoration: line-through rgba(175, 21, 31, 0.5);
-    }
-}
-
-.monthly-subscription__subscription-timer {
-    font-size: 0.75*2.5rem;
-    text-align: center;
-    margin-bottom: 0.3rem;
-    color: var(--dark-black);
-
-    span {
-        color: red;
-    }
-}
-
-.mobile-checkout-bar__subscribe-btn {
-    @include flex(center, center);
-    @include contained-button;
-    padding: 0.9375rem 1.875rem;
-    border-radius: 1.5625rem;
-    width: 50rem;
-    height: 6.5rem;
-    margin: 0.6rem 0;
-    flex-direction: column;
-    font-size: 0.97rem*2.3;
-}
-
-.mobile-checkout-bar__subscription-details {
-    color: var(--dark-black);
-    font-size: 1rem*2;
-    margin: 1rem 0;
-    font-weight: 700;
-    
-    span:nth-of-type(1) {
-        font-size: 1rem*2.5;
-    }
-}
-
-.mobile-checkout-bar__course-card__price-box {
-    color: var(--dark-black);
-}
-
-.mobile-checkout-bar__course-card__price-box__price {
-    font-size: 3.438rem;
-    font-weight: 800;
-}
-
-.mobile-checkout-bar__course-card__price-box__currency {
-    font-size: 2.188rem;
-    font-weight: 700;
-}
-
-.mobile-checkout-bar__course-card__old-price-box--line-through {
-    @include flex(center);
-    display: inline-flex;
-    text-decoration: line-through var(--primary-red);
-}
-
-.mobile-checkout-bar__course-card__old-price-box {
-    color: var(--grey);
-    margin-top: -0.4rem;
-}
-
-.mobile-checkout-bar__course-card__old-price-box__price {
-    font-size: 2.031rem;
-    font-weight: 800;
-}
-
-.mobile-checkout-bar__course-card__old-price-box__currency {
-    font-size: 1.719rem;
-}
+@media (max-width: 575px) {
 
 
-.mobile-checkout-bar__actions-btns__add-to-cart-btn {
-    @include flex(center, center);
-    @include contained-button;
-    padding: 0.9375rem 1.875rem;
-    border-radius: 1.5625rem;
-    width: 50rem;
-    height: 6.5rem;
-    margin-top: 0.4rem;
-
-    div {
-        margin-left: 1rem;
-        width: 2.5rem;
-        height: 2.5rem;
-        border-width: 0.4rem;
+    .mobile-checkout-bar {
+        background-color: var(--tadarab-bg);
+        padding: 0.625rem 0rem;
+        box-shadow: 0 -0.781rem 3.281rem #00000014;
+        @include flex(center, space-evenly);
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 8;
+        background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
     }
 
-    svg {
-        width: 3.281rem;
-        height: 2.8rem;
-        margin-left: 0.3rem;
+    .monthly-subscription__subscription-value {
+        span.amount-strike {
+            text-decoration: line-through rgba(175, 21, 31, 0.5);
+        }
     }
 
-    span {
+    .monthly-subscription__subscription-timer {
+        font-size: 0.75*2.5rem;
+        text-align: center;
+        margin-bottom: 0.3rem;
+        color: var(--dark-black);
+
+        span {
+            color: red;
+        }
+    }
+
+    .mobile-checkout-bar__subscribe-btn {
+        @include flex(center, center);
+        @include contained-button;
+        padding: 0.9375rem 1.875rem;
+        border-radius: 1.5625rem;
+        width: 50rem;
+        height: 6.5rem;
+        margin: 0.6rem 0;
+        flex-direction: column;
+        font-size: 0.97rem*2.3;
+    }
+
+    .mobile-checkout-bar__subscription-details {
+        color: var(--dark-black);
+        font-size: 1rem*2;
+        margin: 1rem 0;
+        font-weight: 700;
+
+        span:nth-of-type(1) {
+            font-size: 1rem*2.5;
+        }
+    }
+
+    .mobile-checkout-bar__course-card__price-box {
+        color: var(--dark-black);
+    }
+
+    .mobile-checkout-bar__course-card__price-box__price {
+        font-size: 3.438rem;
+        font-weight: 800;
+    }
+
+    .mobile-checkout-bar__course-card__price-box__currency {
         font-size: 2.188rem;
         font-weight: 700;
     }
 
-    &+div {
-        font-size: 1.8rem;
-        text-align: center;
-        margin-top: 0.2rem;
-        color: var(--dark-black);
+    .mobile-checkout-bar__course-card__old-price-box--line-through {
+        @include flex(center);
+        display: inline-flex;
+        text-decoration: line-through var(--primary-red);
+    }
+
+    .mobile-checkout-bar__course-card__old-price-box {
+        color: var(--grey);
+        margin-top: -0.4rem;
+    }
+
+    .mobile-checkout-bar__course-card__old-price-box__price {
+        font-size: 2.031rem;
+        font-weight: 800;
+    }
+
+    .mobile-checkout-bar__course-card__old-price-box__currency {
+        font-size: 1.719rem;
+    }
+
+
+    .mobile-checkout-bar__actions-btns__add-to-cart-btn {
+        @include flex(center, center);
+        @include contained-button;
+        padding: 0.9375rem 1.875rem;
+        border-radius: 1.5625rem;
+        width: 50rem;
+        height: 6.5rem;
+        margin-top: 0.4rem;
+
+        div {
+            margin-left: 1rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-width: 0.4rem;
+        }
+
+        svg {
+            width: 3.281rem;
+            height: 2.8rem;
+            margin-left: 0.3rem;
+        }
+
+        span {
+            font-size: 2.188rem;
+            font-weight: 700;
+        }
+
+        &+div {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-top: 0.2rem;
+            color: var(--dark-black);
+        }
     }
 }

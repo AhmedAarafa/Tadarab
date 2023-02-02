@@ -16,7 +16,7 @@ import Image from 'next/image';
 import { popoverHandler, notificationBarHandler } from "./utils";
 import {
   TadarabLogo, NextIcon, BackIcon, DarkModeIcon, DropDownIcon, SearchIcon,
-  FavouriteIcon, CartIcon, AccountIcon, LessonPlayIcon, LightModeIcon
+  FavouriteIcon, CloseIcon, AccountIcon, LessonPlayIcon, LightModeIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
@@ -503,7 +503,7 @@ function Navbar(props: any) {
             {userStatus.isSubscribed == false &&
               <Link href="/subscription-plans">
                 <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
-                  اشترك الآن
+                  أنظمة الاشتراك
                 </li>
               </Link>
             }
@@ -642,26 +642,9 @@ function Navbar(props: any) {
                           <li>دورات مجانية</li>
                         </a>
                       </Link>
-                      {/* <Link href="/tadarab-season">
-
-                        <li>موسم تدرب </li>
-                      </Link> */}
-                      {/* <li>الاستشارات</li>
-                          <li>كتيبات وملخصات</li>
-                          <li>مقالات</li> */}
                     </ul>
                   </div>
-                  {/* <div className={styles["navbar__discover-popover__box"]}>
-                      <div className={styles["navbar__discover-popover__caption"]}>
-                      أخري
-                      </div>
-                      <ul className={styles["navbar__discover-popover__list"]}>
-                          <li>عروض</li>
-                          <li>المدربين</li>
-                          <li>عن تدرب</li>
-                          <li>تواصل معنا</li>
-                      </ul>
-                    </div> */}
+
                 </div>
               </div>
 
@@ -750,11 +733,11 @@ function Navbar(props: any) {
             <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
           </Link>
           } */}
-          {userStatus.isSubscribed == false &&
+          {userStatus.isSubscribed == false && !paymentStep &&
             <div onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}
-             className={styles["navbar__subscribe-now"]}>
+              className={styles["navbar__subscribe-now"]}>
               <Button>
-                اشترك الآن
+                أنظمة الاشتراك
               </Button>
             </div>}
           {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-in">
@@ -824,6 +807,12 @@ function Navbar(props: any) {
             </>
           }
         </Nav>
+
+        {paymentStep &&
+          <div className={styles["navbar__return-to-plans-icon"]} onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`)}}>
+              <CloseIcon color='#777' />
+          </div>
+        }
 
       </NavBar >
     </>
