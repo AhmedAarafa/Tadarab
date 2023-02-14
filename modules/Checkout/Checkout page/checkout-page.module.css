@@ -949,7 +949,7 @@
 .checkout__cart-sticky-card__subscribe-box__title__pay-per-unit {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--primary-red);
+  color: var(--grey);
 }
 
 .checkout__cart-sticky-card__subscribe-box__subscription-summary {
@@ -965,18 +965,15 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 0.05rem solid var(--borders-grey);
-  padding: 1.15rem 0;
+  padding: 0.7rem 0;
 }
 
 .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount {
   color: var(--grey);
+  border-bottom: 0.05rem solid var(--borders-grey);
 }
-.checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(1) span:nth-of-type(1) {
-  font-size: 0.875rem;
-}
-.checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(1) span:nth-of-type(2) {
-  font-size: 0.8rem;
+.checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(1) {
+  font-size: 0.75rem;
 }
 .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(2) span:nth-of-type(1) {
   -webkit-text-decoration: line-through rgba(175, 21, 31, 0.5);
@@ -993,13 +990,16 @@
   font-weight: 700;
 }
 
+.checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount {
+  margin-bottom: -0.9rem;
+}
 .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount > div:nth-of-type(1) {
   color: var(--grey);
   font-size: 0.875rem;
   font-weight: 700;
 }
 .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount > div:nth-of-type(1) > div {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #BBBABF;
   font-weight: 400;
 }
@@ -1064,7 +1064,7 @@
 }
 
 .checkout__cart-sticky-card__subscribe-box__meet-terms-and-conditions {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #BBBABF;
   margin: 1.15rem 0;
 }
@@ -1395,6 +1395,12 @@
 .checkout__cart-sticky-card__title {
   font-size: 1rem;
   color: var(--dark-black);
+}
+
+.checkout__cart-sticky-card__subscribe-box__subscription-summary__without-fees {
+  font-size: 0.7rem;
+  color: var(--grey);
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 1200px) {
@@ -1997,7 +2003,7 @@
     border-radius: 0;
     padding: 2rem 3.575rem 1.625rem 3.575rem;
     position: static;
-    margin: 20rem 0 4.4rem 0;
+    margin: 16rem 0 2rem 0;
   }
   .checkout__cart-sticky-card-div {
     order: 2;
@@ -2074,11 +2080,13 @@
   }
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount,
 .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount {
+    padding: 0 0;
+  }
+  .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount {
     border-bottom: 0.11rem solid var(--borders-grey);
-    padding: 1.495rem 0;
   }
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(1) span:nth-of-type(1) {
-    font-size: 2.0125rem !important;
+    font-size: 1.725rem !important;
   }
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(1) span:nth-of-type(2) {
     font-size: 1.84rem !important;
@@ -2089,11 +2097,14 @@
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__before-discount div:nth-of-type(2) span:nth-of-type(2) {
     font-size: 2.0125rem !important;
   }
+  .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount {
+    margin-bottom: -0.9rem;
+  }
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount > div:nth-of-type(1) {
     font-size: 2.0125rem !important;
   }
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount > div:nth-of-type(1) > div {
-    font-size: 1.725rem !important;
+    font-size: 1.495rem !important;
   }
   .checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount > div:nth-of-type(2) span:nth-of-type(1) {
     font-size: 2.875rem !important;
@@ -2793,5 +2804,9 @@
     border: 0.1375rem solid red;
     border-radius: 1.1rem;
     padding: 0.22rem 1.1rem;
+  }
+  .checkout__cart-sticky-card__subscribe-box__subscription-summary__without-fees {
+    font-size: 1.54rem;
+    margin-bottom: 0;
   }
 }/*# sourceMappingURL=checkout-page.module.css.map */

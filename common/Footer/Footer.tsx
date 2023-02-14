@@ -18,8 +18,20 @@ export default function FooterSection() {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  // useEffect(() => {
+  //   if (Router.asPath.includes("subscription-plans")) {
+  //     let FOOTER = document.getElementsByTagName("footer")[0];
+  //     console.log("FOOTER",FOOTER);
+  //     FOOTER ? FOOTER.style.cssText = `display:none` : null;
+  //   }
+
+  // }, [Router]);
+
+
+
+
   // console.log("paymentStep",paymentStep);
-  
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (e.target[0].value == "" || e.target[1].value == "" || e.target[2].value == "") {
@@ -65,7 +77,7 @@ export default function FooterSection() {
 
   return (
     <>
-      { !paymentStep && <footer>
+      {!paymentStep && <footer>
 
         <Row className={styles["footer"]}>
 

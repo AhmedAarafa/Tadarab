@@ -27,6 +27,7 @@ const AboutTadarab = dynamic(() => import("common/Testimonials/Testimonials"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season section/TadarabSeason"));
+const MobileCheckoutBar = dynamic(() => import("modules/Home page/Mobile checkout bar/MobileCheckoutBar"));
 
 function HomePage(props: any) {
   const router = useRouter();
@@ -103,6 +104,7 @@ function HomePage(props: any) {
         <LatestCourses />
         {/* <TadarabUnlimited /> */}
         <CoursesDepartments />
+        <Statistics />
         <LiveCourses />
         <HowToLearnOnTadarab />
         {/* <Consultation/> */}
@@ -111,13 +113,13 @@ function HomePage(props: any) {
             </div>
              } */}
         <Books />
-        <Statistics />
         <WhyTadarab />
         <LearnFromTheBest />
         <JoinAsATrainer />
         <TadarabForBusiness />
         <AboutTadarab />
         <JoinUs />
+        <MobileCheckoutBar />
       </Container>
 
     </>

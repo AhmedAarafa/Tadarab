@@ -5,13 +5,13 @@ import styles from "./subscription-plans-page.module.css";
 import { toggleLoader } from 'modules/_Shared/utils/toggleLoader';
 import { ChevronLeftIcon, TickIcon } from 'common/Icons/Icons';
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 export default function SubscriptionPlansPage() {
 
     const [selectedPlan, setSelectedPlan] = useState("yearly");
     const [paymentSettings, setPaymentSettings] = useState<any>([]);
-    const Router = useRouter();
+    const router = useRouter();
 
     useEffect(() => {
         toggleLoader("show");
@@ -21,9 +21,12 @@ export default function SubscriptionPlansPage() {
             .then(function (response: any) {
                 if (JSON.stringify(response.status).startsWith("2")) {
                     setPaymentSettings(response?.data?.data?.subscription_plans);
-                    console.log("subscription_plans", response?.data?.data?.subscription_plans);
                 }
                 toggleLoader("hide");
+                if (Router.asPath.includes("subscription-plans")) {
+                    let FOOTER = document.getElementsByTagName("footer")[0];
+                    FOOTER ? FOOTER.style.cssText = `display:none` : null;
+                }
             })
             .catch(function (error) {
                 toggleLoader("hide");
@@ -38,7 +41,7 @@ export default function SubscriptionPlansPage() {
                 <div>باقــــــــات</div>
                 <div>tadarab</div>
                 <div>بلا حـــدود</div>
-                <div>مميزات الاشتراك في افضل برنامج تعليمي عن بعد بالوطن العربي</div>
+                <div>مميزات الاشتراك في افضل برنامج تدريبي عن بعد بالوطن العربي</div>
             </Col>
             <Col xs={12} className={styles["subscription-plans-page__plan"]}>
                 <div className={styles["subscription-plans-page__plans-options"]}>
@@ -63,7 +66,7 @@ export default function SubscriptionPlansPage() {
                                 {" "}
                                 {selectedPlan == "yearly" &&
                                     <span>
-                                        {paymentSettings[0]?.discount_label.replace("ستوفر","خصم")}
+                                        {paymentSettings[0]?.discount_label.replace("ستوفر", "خصم")}
                                     </span>
                                 }
                             </span>
@@ -73,49 +76,91 @@ export default function SubscriptionPlansPage() {
                             تدفع
                             {" "} {selectedPlan == "yearly" ? "سنوياً" : "شهرياً"} {" "}
                             {" "} {selectedPlan == "yearly" && "(ستوفر"} {" "}
-                            {" "} {selectedPlan == "yearly" && `${((paymentSettings[0]?.original_price / 12)*0.5)}`} {" "}
-                            {" "} {selectedPlan == "yearly" && `${paymentSettings[0]?.currency_symbol}/ش)`} {" "}
+                            {/* {" "} {selectedPlan == "yearly" && `${((paymentSettings[0]?.original_price / 12)*0.5)}`} {" "} */}
+                            {/* {" "} {selectedPlan == "yearly" && `${paymentSettings[0]?.currency_symbol}/ش)`} {" "} */}
+                            {" "} {selectedPlan == "yearly" && paymentSettings[0]?.fixed_price} {" "}
+                            {" "} {selectedPlan == "yearly" && `${paymentSettings[0]?.currency_symbol})`} {" "}
                         </div>
 
                     </div>
 
                     <Button className={styles["subscription-plans-page__plan-card__cta"]}
                         onClick={() => {
-                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription&splan=${selectedPlan}`)
+                            router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription&splan=${selectedPlan}`)
                         }}>
-                        اشترك
-                        {" "} {selectedPlan == "yearly" ? "سنوياً" : "شهرياً"} {" "}
-                        {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.fixed_price : paymentSettings[1]?.fixed_price} {" "}
-                        {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.currency_symbol : paymentSettings[1]?.currency_symbol} {" "}
+                        ابدأ التعلم
+                        {/* {" "} {selectedPlan == "yearly" ? "سنوياً" : "شهرياً"} {" "} */}
+                        {/* {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.fixed_price : paymentSettings[1]?.fixed_price} {" "} */}
+                        {/* {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.currency_symbol : paymentSettings[1]?.currency_symbol} {" "} */}
                         <ChevronLeftIcon color='#f5f5f5' />
                     </Button>
 
 
                     <div className={styles["subscription-plans-page__plan-card__subscription-points"]}>
                         <div>
-                            <TickIcon />
+                            <div>
+
+                                <TickIcon />
+                            </div>
                             <span>
                                 مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من 1000 دورة)
                             </span>
                         </div>
                         <div>
-                            <TickIcon />
+                            <div>
+
+                                <TickIcon />
+                            </div>
+                            <span>
+                                ملخصات حصرية مجانية لأكثر الكتب مبيعًا في العديد من التخصصات المطلوبة
+                            </span>
+                        </div>
+                        <div>
+                            <div>
+
+                                <TickIcon />
+                            </div>
+                            <span>
+                                دعم تقني على مدار الساعة طوال الأسبوع
+                            </span>
+                        </div>
+                        <div>
+                            <div>
+
+                                <TickIcon />
+                            </div>
+                            <span>
+                                مشاهدة حصرية للدورات أثناء البث المباشر لأفضل المدربين بالوطن العربي
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <div>
+
+                                <TickIcon />
+                            </div>
                             <span>دورات جديدة تضاف شهريًا</span>
                         </div>
                         <div>
-                            <TickIcon />
+                            <div>
+
+                                <TickIcon />
+                            </div>
                             <span>عدد لا نهائي من شهادات إتمام الدورات</span>
                         </div>
                         <div>
-                            <TickIcon />
-                            <span>ملخصات كتب إلكترونية حصرية</span>
-                        </div>
-                        <div>
-                            <TickIcon />
+                            <div>
+
+                                <TickIcon />
+                            </div>
                             <span>إمكانية تحميل وطباعة المرفقات والتمارين لسهولة التطبيق</span>
                         </div>
                         <div>
-                            <TickIcon />
+                            <div>
+
+                                <TickIcon />
+                            </div>
                             <span> يمكنك إلغاء الاشتراك في أي وقت</span>
                         </div>
 

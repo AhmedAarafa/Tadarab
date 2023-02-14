@@ -221,7 +221,7 @@ function CheckoutPage(props: any) {
                     } else {
 
                         checkedRadioBtn && checkedRadioBtn.parentElement ? checkedRadioBtn.parentElement.parentElement.style.cssText = `
-                    height: 51.56rem;
+                    height: 45rem;
                     overflow: visible;
                     box-shadow: 0 0 1.25rem #AF2B3633;
                     border: 0.3125rem solid #AF151F;
@@ -322,7 +322,7 @@ function CheckoutPage(props: any) {
                             null;
                     } else {
                         checkedRadioBtn && checkedRadioBtn.parentElement ? checkedRadioBtn.parentElement.parentElement.style.cssText = `
-                height: 51.56rem;
+                height: 45rem;
                 overflow: visible;
                 box-shadow: 0 0 1.25rem #AF2B3633;
                 border: 0.3125rem solid #AF151F;
@@ -649,7 +649,7 @@ function CheckoutPage(props: any) {
                 !(userStatus.isUserAuthenticated) &&
                     Router.push({
                         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                        query: { from: "checkout" }
+                        query: { from_subscription: "checkout" }
                     });
 
 
@@ -838,7 +838,7 @@ function CheckoutPage(props: any) {
             } else {
 
                 checkedRadioBtn && checkedRadioBtn.parentElement ? checkedRadioBtn.parentElement.parentElement.style.cssText = `
-                    height: 51.56rem;
+                    height: 45rem;
                     overflow: visible;
                     box-shadow: 0 0 1.25rem #AF2B3633;
                     border: 0.3125rem solid #AF151F;
@@ -1091,10 +1091,9 @@ function CheckoutPage(props: any) {
                         null;
                 }}
                 className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                ادفع الآن
-                {" "}{(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].fixed_price}{" "}
-                {" "}{(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].fixed_price}{" "}
-                {" "}{paymentSettings?.currency_symbol}{" "}
+                اتمام الدفع                {/* {" "}{(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].fixed_price}{" "} */}
+                {/* {" "}{(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].fixed_price}{" "} */}
+                {/* {" "}{paymentSettings?.currency_symbol}{" "} */}
             </Button>
         )
     }
@@ -1359,19 +1358,19 @@ function CheckoutPage(props: any) {
 
                         <div className={styles["checkout__guarantee-boxes"]}>
                             {(subPlan && subPlan == "yearly") &&
-                              <div className={styles["checkout__guarantee-boxes__box"]}>
-                                <div>
-                                    <GreyGuaranteeIcon />
+                                <div className={styles["checkout__guarantee-boxes__box"]}>
                                     <div>
-                                        <div> 100% </div>
-                                        <div> ضمان ذهبي </div>
+                                        <GreyGuaranteeIcon />
+                                        <div>
+                                            <div> 100% </div>
+                                            <div> ضمان ذهبي </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    ٧ ايام ضمان لاسترداد كامل المبلغ اذ لم تكن  راضي عن الخدمة
-                                </div>
+                                    <div>
+                                        ٧ ايام ضمان لاسترداد كامل المبلغ اذ لم تكن  راضي عن الخدمة
+                                    </div>
 
-                            </div>
+                                </div>
                             }
                             <div className={styles["checkout__guarantee-boxes__box"]}>
                                 <div>
@@ -1406,13 +1405,13 @@ function CheckoutPage(props: any) {
                             <div className={styles["checkout__cart-sticky-card"]}>
                                 <div className={styles["checkout__cart-sticky-card__subscribe-box"]}>
                                     <div className={styles["checkout__cart-sticky-card__subscribe-box__title"]}>
-                                        ملخص الإشتراك
+                                        تفاصيل الإشتراك
                                         {" "}{(subPlan && subPlan == "yearly") && "السنوي"}{" "}
                                         {" "}{(subPlan && subPlan == "monthly") && "الشهري"}{" "}
 
                                         <div className={styles["checkout__cart-sticky-card__subscribe-box__title__pay-per-unit"]}>
-                                            {" "}{(subPlan && subPlan == "yearly") && "اشتراك 12 شهر يدفع سنوياً"}{" "}
-                                            {" "}{(subPlan && subPlan == "monthly") && "اشتراك يدفع شهرياً"}{" "}
+                                            {" "}{(subPlan && subPlan == "yearly") && "مدة الاشتراك: 12 شهر "}{" "}
+                                            {/* {" "}{(subPlan && subPlan == "monthly") && "اشتراك يدفع شهرياً"}{" "} */}
 
                                         </div>
                                     </div>
@@ -1433,6 +1432,7 @@ function CheckoutPage(props: any) {
                                                         </div>
                                                     </div>}
                                                 <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount"]}>
+                                                 
                                                     <div>
                                                         السعر النهائي
                                                         {
@@ -1452,9 +1452,7 @@ function CheckoutPage(props: any) {
                                                             (subPlan && subPlan == "monthly" && paymentSettings?.subscription_plans[1].discount_label !== "") ? ")" : ""
                                                         }
 
-                                                        <div>
-                                                            بدون أي رسوم إضافية
-                                                        </div>
+
                                                     </div>
                                                     <div>
                                                         <span>
@@ -1465,6 +1463,9 @@ function CheckoutPage(props: any) {
                                                             {" "} {paymentSettings?.currency_symbol}{" "}
                                                         </span>
                                                     </div>
+                                                </div>
+                                                <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__without-fees"]}>
+                                                    بدون أي رسوم إضافية
                                                 </div>
                                             </div>
                                             :
@@ -1477,9 +1478,7 @@ function CheckoutPage(props: any) {
                                     {
                                         !mobileView &&
                                         <>
-                                            <div className={styles["checkout__cart-sticky-card__subscribe-box__meet-terms-and-conditions"]}>
-                                                نظام الإشتراكات يطبق الشروط والاحكام لمنصة تدرب العمليات تتم بالدينار الكويتي وما يعادلها
-                                            </div>
+
                                             {
                                                 paymentMethod == "PAYPAL" && window?.paypal?.Buttons !== undefined &&
                                                 <>
@@ -1696,6 +1695,17 @@ function CheckoutPage(props: any) {
                                                 paymentMethod == "VISA" &&
                                                 <VisamasterSubscriptionButtonComponent />
                                             }
+
+                                            <div className={styles["checkout__cart-sticky-card__subscribe-box__meet-terms-and-conditions"]}>
+                                                <div>
+
+                                                    نظام الإشتراكات يطبق الشروط والاحكام لمنصة تدرب
+                                                </div>
+                                                <div>
+                                                    العمليات تتم بالدينار الكويتي وما يعادلها
+
+                                                </div>
+                                            </div>
 
                                             {/* <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__change-sub-plan"]}>
                                                 <div>هل تريد تغير نوع باقة الإشتراك؟</div>

@@ -80,7 +80,7 @@
   margin-top: 2rem;
 }
 .statistics__details > div {
-  width: 11rem;
+  width: 14rem;
 }
 
 .statistics__details__img svg {
@@ -95,7 +95,7 @@
 }
 
 .statistics__details__counter {
-  font-size: 3.125rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: var(--statstics-numbers) !important;
 }
@@ -167,14 +167,14 @@
     text-align: center;
   }
   #training-hours svg {
-    width: 10.32rem;
-    height: 10.32rem;
+    width: 11.44rem;
+    height: 8.8rem;
   }
   .statistics__details {
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 7.813rem 0 0 0;
     padding-bottom: 2rem;
@@ -187,7 +187,7 @@
     height: 7.8125rem;
   }
   .statistics__details__counter {
-    font-size: 7.8125rem;
+    font-size: 6.25rem;
     font-weight: 800;
   }
   .statistics__details__counter span:nth-of-type(2) {

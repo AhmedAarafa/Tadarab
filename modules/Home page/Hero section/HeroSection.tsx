@@ -37,31 +37,12 @@ export default function HeroSection() {
         <Col xs={0} sm={{ span: 2, order: 'first' }}></Col>
         <Col xs={12} sm={{ span: 5, order: 'first' }}>
           <div className={styles["hero-section__container"]}>
-            <p className={styles["hero-section__para"]}>
-              أفضل برنامج تعليمي في الوطن العربي
-            </p>
             <h1 className={styles["hero-section__title"]}>
-              تدرب أون لاين من الأفضل
+              تعلّم مهارات جديدة كل يوم بلا حدود
             </h1>
-
-            <div className={styles["hero-section__sub-points"]}>
-              <div className={styles["hero-section__sub-points__point"]}>
-                <TickIcon />
-                <span>  ملخصات حصرية مجانية لأكثر الكتب مبيعًا في العديد من التخصصات المطلوبة. </span>
-              </div>
-              <div className={styles["hero-section__sub-points__point"]}>
-                <TickIcon />
-                <span> دعم تقني على مدار الساعة طوال الأسبوع. </span>
-              </div>
-              <div className={styles["hero-section__sub-points__point"]}>
-                <TickIcon />
-                <span> عدد لا نهائي من شهادات إتمام الدورات. </span>
-              </div>
-              <div className={styles["hero-section__sub-points__point"]}>
-                <TickIcon />
-                <span>مشاهدة حصرية للدورات أثناء البث المباشر لأفضل المدربين بالوطن العربي.</span>
-              </div>
-            </div>
+            <p className={styles["hero-section__para"]}>
+              على يد أفضل الخبراء في الخليج والوطن العربي
+            </p>
 
             {userStatus.isSubscribed == false &&
               <div className={styles["hero-section__sub-action"]}>
@@ -69,10 +50,10 @@ export default function HeroSection() {
                 <div>
                   شاهد اكثر من 1000 دورة باشتراك واحد  يبدأ من
                   <span>
-                  {" "} {subValues?.sale_label}{" "}
+                    {" "} {subValues?.sale_label}{" "}
                   </span>
                 </div>
-                <Button onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}>
+                <Button onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }} id="homepage-sticky-checkout-bar">
                   أبدا التعلم
                   الآن
                   <ChevronLeftIcon color="#f5f5f5" />
@@ -81,13 +62,13 @@ export default function HeroSection() {
               </div>}
           </div>
         </Col>
-        <Col xs={{ span: 12, order: 'first' }} sm={5} className={styles["hero-section__col"]}>
+        {/* <Col xs={{ span: 12, order: 'first' }} sm={5} className={styles["hero-section__col"]}>
           <img loading="lazy"
             src="/images/HeroSectionHero.png"
             alt="hero trainer"
             className={styles["hero-section__hero-img"]}
           />
-        </Col>
+        </Col> */}
       </Row>
     </>
   );

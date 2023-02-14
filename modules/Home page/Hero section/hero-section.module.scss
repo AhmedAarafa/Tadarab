@@ -12,26 +12,30 @@
     }
 
     background-color: var(--hero-section-bg);
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
+    background-image: url("/images/HSlandscape.jpg");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
 }
 
 
 .hero-section__container {
-    margin: 9rem -2.2rem 0 0;
+    margin: 10rem -2.2rem 0 0;
     display: inline-block;
 }
 
 .hero-section__title {
     font-size: 1.875rem;
     font-weight: 800;
-    color: var(--dark-black);
+    color: #f5f5f5;
     margin-top: -0.3rem;
 }
 
 .hero-section__para {
-    color: var(--dark-black);
-    font-size: 1.063rem;
+    color: #f5f5f5;
+    font-size: 0.9rem;
     margin-top: -0.5rem;
+    font-weight: 400;
 }
 
 .hero-section__search-bar-container {
@@ -65,20 +69,21 @@
     margin-top: 2rem;
 
     div {
-        color: var(--dark-black);
-        font-size: 1.3rem;
+        color: #f5f5f5;
+        font-size: 0.8rem;
         font-weight: 700;
+        margin-bottom: -0.5rem;
     }
 
     span {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 800;
     }
 
     button {
         @include contained-button;
-        height: 3rem;
-        width: 65%;
+        height: 2.8rem;
+        width: 60%;
         margin-top: 1rem;
 
         svg {
@@ -178,7 +183,9 @@
 
 @media (max-width:575px) {
     .hero-section {
-        padding: 0 4rem 5rem 4rem;
+        padding: 18rem 4rem 5rem 4rem;
+        background-image: url("/images/HSportrait.jpg");
+
     }
 
     .hero-section__hero-img {
@@ -204,15 +211,15 @@
 
     .hero-section__title {
         order: 1;
-        margin: -6rem 0 0 0;
-        font-size: 4.2rem;
+        margin: -6rem 0 0rem 0;
+        font-size: 3.2rem;
     }
 
     .hero-section__para {
         order: 2;
-        margin: 2.5rem 0 8rem 0;
-        font-size: 2.5rem;
-        font-weight: 700;
+        margin: 0.7rem 0 2rem 0;
+        font-size: 2.2rem;
+        font-weight: 400;
     }
 
     .hero-section__sub-points {
@@ -237,15 +244,17 @@
     }
 
     .hero-section__sub-action {
-        margin-top: 3rem;
+        margin-top: 14rem;
         order: 4;
 
         div {
-            font-size: 1.3rem*2.3;
+            font-size: 0.8rem*2.3;
+            margin-bottom: -0.5rem*2;
+
         }
 
         span {
-            font-size: 1.4rem*2.3;
+            font-size: 1rem*2.3;
         }
 
         button {

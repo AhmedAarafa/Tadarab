@@ -1,4 +1,30 @@
-Version 2.5.5 (15th Dec 2023)
+Version 2.6.5 (08th Feb 2023)
+1) Changes in 'Join as a trainer' page
+2) Fix free courses behavior (return the watch free CTA)
+3) Minor fixes.
+
+Version 2.6.4 (07th Feb 2023)
+1) Change copyright year.
+2) Redirection issue fixed.
+
+Version 2.6.3 (05th Feb 2023)
+1) Fixed the redirection issue on signup/signin.
+2) Bug fixed.
+
+Version 2.6.2 (03rd Feb 2023)
+1) Price issue fixed (amount label replace with payment amount).
+
+Version 2.6.1 (02nd Feb 2023)
+1) Redirect issue fixed.
+
+Version 2.6.0 (02nd Feb 2023)
+1) Change subscription plans.
+    - 2 plans are active (9KD monthly & 90KD yearly)
+2) Change home page view as subscription page.
+3) Change subscription model with new design.
+4) Change hero section text color.
+
+Version 2.5.5 (15th Jan 2023)
 1) Add redirection /AllCourses to /courses.
 
 Version 2.5.4 (22th Dec 2022)

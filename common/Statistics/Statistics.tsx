@@ -37,7 +37,7 @@ export default function Statistics() {
             </div>
 
             <div className={styles["statistics__users"]}>
-              <div>+2,000,000</div>
+              <div>+2 مليون</div>
               <LearnersOutlinedIcon color="#af151f" />
               <div> متعلم على المنصة في الوطن العربي </div>
             </div>
@@ -81,7 +81,7 @@ export default function Statistics() {
 
                 </div>
                 <div className={styles["statistics__details__counter"]}>
-                  <span>+10.000</span>
+                  <span>+10 الاف</span>
                 </div>
                 <div className={styles["statistics__details__unit"]}>ساعات تدريبية</div>
               </div>

@@ -24,20 +24,14 @@ export default function NotificationBar() {
 
 
     useEffect(() => {
-        console.log("Router", Router.asPath);
-        console.log('Router.asPath.includes("plans")', Router.asPath.includes("plans"));
-        console.log('Router.asPath.includes("subscription")', Router.asPath.includes("subscription"));
-        console.log('Router.asPath.includes("checkout")', Router.asPath.includes("checkout"));
         let notif_bar = document.getElementById("notification-bar");
 
         if ((Router.asPath.includes("checkout") || Router.asPath.includes("subscription") || Router.asPath.includes("plans"))) {
-            console.log("yes");
             
             setIsInPaymentProcess(true);
             notif_bar ? notif_bar.style.cssText = `display:none !important` : null;
 
         } else {
-            console.log("no");
 
             notif_bar ? notif_bar.style.cssText = `display:flex` : null;
 

@@ -13,10 +13,10 @@ export const toggleLoader = (status: string) => {
         document.body.style.cssText = `overflow:hidden`;
         document.body.style.cssText = `visibility:hidden`;
         nav ? nav.style.cssText = `display:none` : null;
-        if (notificationBar) {
-          // notificationBar.style.cssText = `visibility:hidden`;
-        }
-        footer ? (footer.style.cssText = `display:none`) : null;
+        // if (notificationBar) {
+        //   notificationBar.style.cssText = `opacity:0`;
+        // }
+        // footer ? (footer.style.cssText = `opacity:0`) : null;
         loader.style.cssText = `display : flex; visibility:visible`;
         break;
       case "hide":
@@ -25,10 +25,10 @@ export const toggleLoader = (status: string) => {
           document.body.style.cssText = `visibility:visible`;
           nav ? nav.style.cssText = `display:flex`: null;
           if (notificationBar) {
-            // notificationBar.style.cssText = `visibility:visible`;
+            // notificationBar.style.cssText = `opacity:1`;
             nav ? nav.style.cssText = `top:${notificationBar?.offsetHeight}px ;`: null;
           }
-          footer ? (footer.style.cssText = `display:block`) : null;
+          // footer ? (footer.style.cssText = `opacity:1`) : null;
           loader.style.cssText = `display : none; visibility:hidden`;
         }, 500);
         // setTimeout(() => {
