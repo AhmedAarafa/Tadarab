@@ -44,21 +44,21 @@ function MyApp({ Component, pageProps }: AppProps) {
           
           console.log("chatBubble", chatBubble);
           chatBubble ? chatBubble.style.cssText = `
-          background: none !important;
-          border-radius: 60px !important;
-          bottom: 50px !important;
-          box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px !important;
-          display: block !important;
-          height: 60px !important;
-          margin: 0px 12px !important;
-          overflow: visible !important;
-          padding: 0px !important;
-          position: fixed !important;
-          right: 0 !important;
-          left: 12px !important;
-          top: auto !important;
-          width: 60px !important;
-          z-index: 2147483644 !important;
+          background: none ;
+          border-radius: 60px ;
+          bottom: 50px ;
+          box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px ;
+          display: block ;
+          height: 60px ;
+          margin: 0px 12px ;
+          overflow: visible ;
+          padding: 0px ;
+          position: fixed ;
+          right: 0 ;
+          left: 12px ;
+          top: auto ;
+          width: 60px ;
+          z-index: 2147483644 ;
           ` : null;
           clearInterval(myInterval);
           setisChatBubbleAppeared(true);
