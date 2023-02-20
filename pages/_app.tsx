@@ -36,7 +36,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
 
-    if (isChatBubbleAppeared == false) {
 
      let myInterval = setInterval(() => {
         let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
@@ -58,12 +57,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           z-index: 2147483644 ;
           ` : null;
           clearInterval(myInterval);
-          setisChatBubbleAppeared(true);
         }
 
       }, 100);
-    }
-  },)
+  },[])
 
 
 
