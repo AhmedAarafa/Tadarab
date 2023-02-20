@@ -34,28 +34,38 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if (isChatBubbleAppeared == false) {
+    if (isChatBubbleAppeared == false) {
 
-  //     setInterval(() => {
-  //       let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
-  //       if(chatBubble){
+     let myInterval = setInterval(() => {
+        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+        if(chatBubble){
           
-  //         console.log("chatBubble", chatBubble);
-  //         chatBubble ? chatBubble.style.cssText = `
-  //         position: relative !important;
-  //          bottom: 50px !important;
-  //          right: 0 !important;
-  //          left: 12px !important;
-  //         ` : null;
+          console.log("chatBubble", chatBubble);
+          chatBubble ? chatBubble.style.cssText = `
+          background: none !important;
+          border-radius: 60px !important;
+          bottom: 24px !important;
+          box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px !important;
+          display: block !important;
+          height: 60px !important;
+          margin: 0px 12px !important;
+          overflow: visible !important;
+          padding: 0px !important;
+          position: fixed !important;
+          right: 12px !important;
+          top: auto !important;
+          width: 60px !important;
+          z-index: 2147483644 !important;
+          ` : null;
+          clearInterval(myInterval);
+          setisChatBubbleAppeared(true);
+        }
 
-  //         setisChatBubbleAppeared(true);
-  //       }
-
-  //     }, 500);
-  //   }
-  // },)
+      }, 500);
+    }
+  },)
 
 
 
