@@ -35,11 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-    
-
 
      let myInterval = setInterval(() => {
-        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+        // let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+        let chatBubble: any = document.getElementsByTagName('fb_dialog_advanced')[0];
         if(chatBubble){
           console.log("chatBubble", chatBubble);
           chatBubble ? chatBubble.style.cssText = `
@@ -58,7 +57,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           ` : null;
           clearInterval(myInterval);
         }
-
       }, 50);
   },)
 
