@@ -46,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           chatBubble ? chatBubble.style.cssText = `
           background: none !important;
           border-radius: 60px !important;
-          bottom: 24px !important;
+          bottom: 50px !important;
           box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px !important;
           display: block !important;
           height: 60px !important;
@@ -54,7 +54,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           overflow: visible !important;
           padding: 0px !important;
           position: fixed !important;
-          right: 12px !important;
+          right: 0 !important;
+          left: 12px !important;
           top: auto !important;
           width: 60px !important;
           z-index: 2147483644 !important;
