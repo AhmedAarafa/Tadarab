@@ -33,6 +33,17 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
+  useEffect(() => {
+   let chatBubble:any =  document.querySelector('[data-testid="bubble_iframe"]');
+   console.log("chatBubble",chatBubble);
+   chatBubble ? chatBubble.style.cssText = `
+    bottom: 50px !important;
+    right: 0 !important;
+    left: 12px !important;
+   ` : null;
+  },)
+  
+
 
   let canonical = "https://www.tadarab.com";
   const router = useRouter();
