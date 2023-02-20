@@ -35,39 +35,32 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
+    
 
-    let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
-    var in_dom = document.body.contains(chatBubble);
-    var observer = new MutationObserver(function (mutations) {
-      if (document.body.contains(chatBubble)) {
-        if (!in_dom) {
-          console.log("element inserted");
+
+     let myInterval = setInterval(() => {
+        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+        if(chatBubble){
           console.log("chatBubble", chatBubble);
           chatBubble ? chatBubble.style.cssText = `
-            background: none ;
-            border-radius: 60px ;
-            box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px ;
-            display: block ;
-            height: 60px ;
-            margin: 0px 12px ;
-            overflow: visible ;
-            padding: 0px ;
-            position: fixed ;
-            inset: auto auto 100px 12px !important;
-            width: 60px ;
-            z-index: 2147483644 ;
-            ` : null;
+          background: none ;
+          border-radius: 60px ;
+          box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px ;
+          display: block ;
+          height: 60px ;
+          margin: 0px 12px ;
+          overflow: visible ;
+          padding: 0px ;
+          position: fixed ;
+          inset: auto auto 100px 12px !important;
+          width: 60px ;
+          z-index: 2147483644 ;
+          ` : null;
+          clearInterval(myInterval);
         }
-        in_dom = true;
-      } else if (in_dom) {
-        in_dom = false;
-        console.log("element removed");
-      }
 
-    });
-    observer.observe(document.body, { childList: true });
-
-  }, [])
+      }, 50);
+  },)
 
 
 
