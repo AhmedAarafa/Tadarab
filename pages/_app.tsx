@@ -44,6 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           
           console.log("chatBubble", chatBubble);
           chatBubble ? chatBubble.style.cssText = `
+          position: relative !important;
            bottom: 50px !important;
            right: 0 !important;
            left: 12px !important;
