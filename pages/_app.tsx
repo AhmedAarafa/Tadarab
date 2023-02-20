@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           setisChatBubbleAppeared(true);
         }
 
-      }, 500);
+      }, 100);
     }
   },)
 
