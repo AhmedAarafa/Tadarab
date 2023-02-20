@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&display=swap');
-// @import './colors-pallete.scss';
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "./mixins";
 @import '../node_modules/normalize.css/normalize.css';
-// @import '../node_modules/swiper/css';
-// @import '../node_modules/swiper/css/navigation';
-// @import '../node_modules/swiper/css/pagination';
 
 [data-theme='light']{
 
@@ -28,7 +24,7 @@
   --swiper-bullets: #000;
   --close-btn: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
   --accordion-btn: #f5f5f5;
-  --pale-red-bg: #af151f37;
+  --pale-red-bg: #af151f28;
   --desktop-loader-bg-image: url("/images/Loader-Desktop-View1.png");
   --mobile-loader-bg-image: url("/images/Loader-Mobile-view1.png");
   --accordion-body: #faf9f9;
@@ -86,6 +82,13 @@ a {
   direction: rtl !important;
   font-family: 'Almarai', sans-serif !important;
   letter-spacing: 0 !important;
+}
+
+
+iframe [data-testid=bubble_iframe]{
+  bottom: 50px !important;
+  right: 0 !important;
+  left: 12px !important;
 }
 
 

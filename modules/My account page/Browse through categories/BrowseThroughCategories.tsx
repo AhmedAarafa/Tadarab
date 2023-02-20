@@ -35,22 +35,22 @@ export default function BrowseThroughCategories(props:any) {
                         return (
                             <SwiperSlide key={i} style={{ cursor: "pointer" }}>
 
-                                <Link href={`/topic/${cat.slug}`}>
+                                <Link href={`/topic/${cat?.slug}`}>
                                     <div className={styles["browse-through-categories__cards-carousel__departments-card"]}>
                                         <div>
 
                                             <div className="d-flex justify-content-center">
 
                                                 <div className={styles["browse-through-categories__cards-carousel__departments-card__img-box"]}
-                                                    style={{ backgroundColor: cat.color }}>
-                                                    <img loading="lazy" src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
+                                                    style={{ backgroundColor: cat?.color }}>
+                                                    <img loading="lazy" src={`/images/${cat?.icon}.svg`} alt={cat?.icon} id={styles[cat?.icon]} />
 
 
                                                 </div>
                                             </div>
                                             <div className={styles["browse-through-categories__cards-carousel__departments-card__department"]}>{cat.title}</div>
                                             <div className={styles["browse-through-categories__cards-carousel__departments-card__learners-number"]}>
-                                                {cat.courses_count} دورة
+                                                {cat?.courses_count} دورة
                                             </div>
                                         </div>
                                     </div>

@@ -52,9 +52,9 @@ export default function Books() {
                 isFound ?
                     <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
                         <BookDetails data={bookDetails} />
-                        <div className="d-none d-sm-flex">
+                        {/* <div className="d-none d-sm-flex">
                             <TadarabUnlimited />
-                        </div>
+                        </div> */}
                         <SimilarBooks data={bookDetails} />
                     </Container>
                     :

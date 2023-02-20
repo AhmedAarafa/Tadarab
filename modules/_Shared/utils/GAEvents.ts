@@ -14,9 +14,9 @@ export const GAProductClickEventHandler = (course:any,order:number)=> {
      let tadarabGA = new TadarabGA();
      tadarabGA.tadarab_fire_traking_GA_code("product_click",{
        products: [{
-         name: course.title,
-         id: course.id,
-         price: course.discounted_price_usd,
+         name: course?.title,
+         id: course?.id,
+         price: course?.discounted_price_usd,
          brand: "Tadarab",
          category: "Recorded Course",
          variant: "Single Course",

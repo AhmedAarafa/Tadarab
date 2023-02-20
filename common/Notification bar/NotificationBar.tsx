@@ -27,7 +27,7 @@ export default function NotificationBar() {
         let notif_bar = document.getElementById("notification-bar");
 
         if ((Router.asPath.includes("checkout") || Router.asPath.includes("subscription") || Router.asPath.includes("plans"))) {
-            
+
             setIsInPaymentProcess(true);
             notif_bar ? notif_bar.style.cssText = `display:none !important` : null;
 
@@ -42,14 +42,7 @@ export default function NotificationBar() {
 
     const handleSubscriptionBtn = () => {
         dispatch(setCheckoutType("subscription"));
-        if (userStatus) {
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
-            })
-        }
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
     }
 
     const viewportWidthDetector = () => {
@@ -68,7 +61,7 @@ export default function NotificationBar() {
                     <div>
                         <div>
                             {/* آخر فرصة للأستفادة من العرض | بمناسبة مرور ٦ سنوات على تأسيس منصة تدرب أكثر من ٨٠٠ دورة تدريبية بخصم ٧٥٪ كود الخصم T6 */}
-                            احصل على أكثر من 900 دورة تدريبية باشتراك واحد | خصم 50٪ على الاشتراك السنوي لفترة محدودة
+                            احصل على أكثر من 1000 دورة تدريبية باشتراك واحد | خصم 50٪ على الاشتراك السنوي لفترة محدودة
                             <span onClick={() => { handleSubscriptionBtn() }}>
                                 ابدأ التعلم الأن
                             </span>

@@ -6,12 +6,17 @@ import { toggleLoader } from 'modules/_Shared/utils/toggleLoader';
 import { ChevronLeftIcon, TickIcon } from 'common/Icons/Icons';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter } from "next/router";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
 export default function SubscriptionPlansPage() {
 
     const [selectedPlan, setSelectedPlan] = useState("yearly");
     const [paymentSettings, setPaymentSettings] = useState<any>([]);
     const router = useRouter();
+    const dispatch = useDispatch();
+    const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
+
 
     useEffect(() => {
         toggleLoader("show");
@@ -33,7 +38,26 @@ export default function SubscriptionPlansPage() {
                 console.log(error);
             });
 
+            return ()=>{
+                let FOOTER = document.getElementsByTagName("footer")[0];
+                FOOTER ? FOOTER.style.cssText = `display:block` : null;
+            }
+
     }, []);
+
+    const handleSubscriptionBtn = (e: any) => { 
+        e.preventDefault();
+        dispatch(setCheckoutType("subscription"));
+        if (userStatus) {
+            // Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription&splan=${selectedPlan}`);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+                query: { from_subscription_plans: `${selectedPlan}`}
+            })
+        }
+    }
 
     return (
         <Row className={styles["subscription-plans-page"]}>
@@ -78,7 +102,7 @@ export default function SubscriptionPlansPage() {
                             {" "} {selectedPlan == "yearly" && "(ستوفر"} {" "}
                             {/* {" "} {selectedPlan == "yearly" && `${((paymentSettings[0]?.original_price / 12)*0.5)}`} {" "} */}
                             {/* {" "} {selectedPlan == "yearly" && `${paymentSettings[0]?.currency_symbol}/ش)`} {" "} */}
-                            {" "} {selectedPlan == "yearly" && paymentSettings[0]?.fixed_price} {" "}
+                            {" "} {selectedPlan == "yearly" && (paymentSettings[0]?.original_price - paymentSettings[0]?.total_pay)} {" "}
                             {" "} {selectedPlan == "yearly" && `${paymentSettings[0]?.currency_symbol})`} {" "}
                         </div>
 
@@ -86,11 +110,11 @@ export default function SubscriptionPlansPage() {
 
                     <Button className={styles["subscription-plans-page__plan-card__cta"]}
                         onClick={() => {
-                            router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription&splan=${selectedPlan}`)
+                            handleSubscriptionBtn(event);
                         }}>
                         ابدأ التعلم
                         {/* {" "} {selectedPlan == "yearly" ? "سنوياً" : "شهرياً"} {" "} */}
-                        {/* {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.fixed_price : paymentSettings[1]?.fixed_price} {" "} */}
+                        {/* {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.total_pay : paymentSettings[1]?.total_pay} {" "} */}
                         {/* {" "} {selectedPlan == "yearly" ? paymentSettings[0]?.currency_symbol : paymentSettings[1]?.currency_symbol} {" "} */}
                         <ChevronLeftIcon color='#f5f5f5' />
                     </Button>

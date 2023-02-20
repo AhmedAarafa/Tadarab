@@ -94,48 +94,6 @@ function CheckoutPage(props: any) {
         // stepperBox ? stepperBox.style.cssText = `top:${navbar?.offsetHeight}px` : null;
         const localStorageItems: any = localStorage.getItem("cart");
         /* JSON.stringify(Router.query) == "{}" &&  */
-        if (localStorageItems && (localStorageItems) !== "[]") {
-
-            axiosInstance
-                .get(`users/cart/related-courses/?country_code=null&course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
-                .then(function (response: any) {
-
-                    // setRelatedCourses(response.data.data);
-
-                    if (response.data.data !== undefined) {
-                        if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
-                            axiosInstance
-                                .get(`users/cart/?country_code=null`)
-                                .then(function (resp: any) {
-                                    // setLocalStateCartItems(resp.data.data);
-                                    let newArray: any = response.data.data;
-                                    if (resp.data.data !== undefined) {
-
-                                        resp?.data?.data?.courses.forEach((element: any) => {
-                                            newArray?.forEach((ele: any) => {
-                                                if (element.id === ele.id) {
-                                                    ele.is_in_cart = true;
-                                                }
-                                            });
-                                        });
-                                        setRelatedCourses([...newArray]);
-
-                                    }
-
-                                })
-                                .catch(function (error) {
-                                    console.log(error);
-                                });
-                        }
-
-
-                    }
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-
 
         if (transactionStatus.data == true) {
             setStep("begin-learning");
@@ -512,11 +470,11 @@ function CheckoutPage(props: any) {
         setSubPlan(router.query.splan);
 
         if (router.query.splan && router.query.splan == "yearly") {
-            setPaypalPlanId("P-89Y527607T271593HMOK3YMQ")
+            setPaypalPlanId(paymentSettings?.subscription_plans[0].paypal_id || "P-89Y527607T271593HMOK3YMQ");
         } else if (router.query.splan && router.query.splan == "monthly") {
-            setPaypalPlanId("P-818762487H8311351MPL3ZUA")
+            setPaypalPlanId(paymentSettings?.subscription_plans[1].paypal_id || "P-818762487H8311351MPL3ZUA");
         }
-    }, [router.query])
+    }, [router.query]);
 
 
     useEffect(() => {
@@ -558,62 +516,6 @@ function CheckoutPage(props: any) {
     }, [router.query])
 
     useEffect(() => {
-
-        (async function () {
-
-            const localStorageItems: any = localStorage.getItem("cart");
-
-            if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined") {
-                await axiosInstance
-                    .get(`users/cart/?country_code=null`)
-                    .then(function (response: any) {
-                        setLocalStateCartItems(response?.data?.data.courses);
-                        FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
-
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            } else {
-                setLocalStateCartItems([]);
-            }
-
-        })();
-
-
-        // const localStorageItems: any = localStorage.getItem("cart");
-        const couponCode: any = localStorage.getItem("coupon_code");
-        const couponInputField: any = document.querySelector('[name="couponField"]');
-        let cartItemsIds = cartItems?.data?.map((it: any) => it.id);
-
-        if (couponCode && couponCode !== "" && couponCode !== "null" && couponCode !== "undefined" && cartItemsIds && cartItemsIds?.length !== 0) {
-
-            axiosInstance
-                .post(`coupons/${couponCode}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
-                .then((response: any) => {
-                    if (response.status.toString().startsWith("2")) {
-
-                        setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: couponCode, total_payment_amount: response.data.data.total_payment_amount })
-                        localStorage.setItem("coupon_code", couponCode);
-                        let tadarabGA = new TadarabGA();
-                        tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
-                            { coupon_name: couponInputField.value });
-                        setErrorMessage("");
-
-                    } else {
-                        if (response.data.message != "الرجاء ملء جميع الحقول المطلوبة") {
-                            setErrorMessage(response.data.message);
-                        }
-                    }
-                })
-                .catch((error: any) => {
-                    console.log("error", error);
-                })
-        }
-
-    }, [cartItems])
-
-    useEffect(() => {
         toggleLoader("show");
         const firstStepBox: any = document.getElementById("added-courses");
         const secondStepBox: any = document.getElementById("payment-types");
@@ -648,8 +550,8 @@ function CheckoutPage(props: any) {
 
                 !(userStatus.isUserAuthenticated) &&
                     Router.push({
-                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                        query: { from_subscription: "checkout" }
+                        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up%3Ffrom_subscription_plans=${router.query.from_subscription_plans}%26checkout_type=subscription%26splan=${router.query.from_subscription_plans}`,
+                        // query: { from_subscription_plans: router.query.from_subscription_plans }
                     });
 
 
@@ -893,59 +795,6 @@ function CheckoutPage(props: any) {
         `: null;
     };
 
-    const promoCodeHandler = (e: any) => {
-        let cartItemsIds = cartItems?.data?.map((it: any) => it.id);
-
-        e.preventDefault();
-        const localStorageItems: any = localStorage.getItem("cart");
-        if (e.target[0].value == "" || e.target[0].value == null) {
-            setErrorMessage("الرجاء إدخال الكوبون");
-        } else {
-            if (cartItemsIds && cartItemsIds?.length !== 0) {
-                axiosInstance
-                    .post(`coupons/${e.target[0].value}/?country_code=null`, { "course_ids": (JSON.stringify(cartItemsIds))?.replace(/[\[\]']+/g, '') })
-                    .then((response: any) => {
-                        if (response.status.toString().startsWith("2")) {
-
-                            setIsCouponApplied({ status: true, discounted_amount: response.data.data.total_discount_amount, value: e.target[0].value, total_payment_amount: response.data.data.total_payment_amount })
-                            localStorage.setItem("coupon_code", e.target[0].value)
-                            let tadarabGA = new TadarabGA();
-                            tadarabGA.tadarab_fire_traking_GA_code("coupon_activation",
-                                { coupon_name: e.target[0].value });
-
-                            setErrorMessage("");
-
-                        } else {
-                            setErrorMessage(response.data.message);
-                        }
-                    })
-                    .catch((error: any) => {
-                        console.log("error", error);
-                    })
-            }
-        }
-    }
-
-    const handleCouponInput = () => {
-
-        const couponInputField: any = document.querySelector('[name="couponField"]');
-        localStorage.setItem("coupon_code", "");
-        couponInputField.value = "";
-        setIsCouponApplied({ status: false, discounted_amount: 0, value: "", total_payment_amount: 0 });
-    }
-
-    const checkAuthenticityToPay = () => {
-        if (userStatus.isUserAuthenticated) {
-            setStep("payment-types");
-        } else {
-            setStep("payment-types");
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from: "checkout" }
-            });
-        }
-
-    }
 
     // handles payment errors
     const onError = (data: any, actions: any) => {
@@ -1091,8 +940,9 @@ function CheckoutPage(props: any) {
                         null;
                 }}
                 className={styles["checkout__cart-sticky-card__purchasing-btn"]}>
-                اتمام الدفع                {/* {" "}{(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].fixed_price}{" "} */}
-                {/* {" "}{(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].fixed_price}{" "} */}
+                اتمام الدفع
+                {/* {" "}{(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].total_pay}{" "} */}
+                {/* {" "}{(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].total_pay}{" "} */}
                 {/* {" "}{paymentSettings?.currency_symbol}{" "} */}
             </Button>
         )
@@ -1261,24 +1111,19 @@ function CheckoutPage(props: any) {
                                                             }}
                                                             paymentMethodChanged={(e: any) => { }}
                                                             cardValidationChanged={(e: any) => {
-
                                                                 const submitBtn: any = document.getElementById("paynow_button");
                                                                 if (Frames.isCardValid()) {
                                                                     if (submitBtn) {
                                                                         setIsFinalizePaymentBtnEnabled(true);
                                                                     }
                                                                 }
-                                                                // else {
-                                                                //     submitBtn ? submitBtn.style.cssText = `pointer-events:none;opacity:0.7` : null;
-                                                                // }
                                                             }}
                                                             cardSubmitted={(e: any) => {
                                                                 console.log("cardSubmitted", e);
                                                             }}
                                                             cardTokenized={(e: any) => {
                                                                 console.log("cardTokenized", e);
-                                                            }
-                                                            }
+                                                            }}
                                                             cardTokenizationFailed={(e: any) => {
                                                             }}
                                                             cardBinChanged={(e: any) => {
@@ -1340,11 +1185,11 @@ function CheckoutPage(props: any) {
                                                 </div>
                                             </div>}
                                         {/* KNET Payment end */}
-                                        {
+                                        {/* {
                                             checkoutType !== "subscription" &&
                                             <TadarabUnlimited />
 
-                                        }
+                                        } */}
                                     </>
                                     :
                                     <div className={styles["payment-options-spinner"]}>
@@ -1432,7 +1277,7 @@ function CheckoutPage(props: any) {
                                                         </div>
                                                     </div>}
                                                 <div className={styles["checkout__cart-sticky-card__subscribe-box__subscription-summary__after-discount"]}>
-                                                 
+
                                                     <div>
                                                         السعر النهائي
                                                         {
@@ -1456,8 +1301,8 @@ function CheckoutPage(props: any) {
                                                     </div>
                                                     <div>
                                                         <span>
-                                                            {(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].fixed_price}
-                                                            {(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].fixed_price}
+                                                            {(subPlan && subPlan == "yearly") && paymentSettings?.subscription_plans[0].total_pay}
+                                                            {(subPlan && subPlan == "monthly") && paymentSettings?.subscription_plans[1].total_pay}
                                                         </span>
                                                         <span>
                                                             {" "} {paymentSettings?.currency_symbol}{" "}

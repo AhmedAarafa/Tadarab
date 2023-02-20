@@ -204,7 +204,6 @@
   }
   .testimonials__cards-carousel-container > div:nth-child(1) {
     padding: 5rem 0 0 0;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     margin-bottom: 0;
@@ -227,7 +226,6 @@
   }
   .testimonials__cards-carousel-container > div:nth-child(1) > div:nth-child(4) {
     padding-bottom: 6rem;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -257,7 +255,6 @@
   }
   .testimonials__cards-carousel__item__container {
     width: 70.375rem;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     margin-right: 7rem;
@@ -304,7 +301,6 @@
   }
   .testimonials__cards-carousel__item__container__review-box {
     width: 46.875rem;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.1019607843);

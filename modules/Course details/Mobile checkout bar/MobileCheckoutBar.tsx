@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 export default function MobileCheckoutBar(props: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
@@ -53,10 +54,9 @@ export default function MobileCheckoutBar(props: any) {
       });
   }, [])
 
-
-
   useEffect(() => {
     setCourseDetails(courseDetailsData?.data);
+    console.log("props", props);
   }, [courseDetailsData]);
 
 
@@ -123,12 +123,16 @@ export default function MobileCheckoutBar(props: any) {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    if (userStatus) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+  }
+
+  const handleFreeCoursesBtn = (course: any) => {
+    if (userStatus.isUserAuthenticated) {
+      handleFreeCourses(course);
     } else {
       Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "course" }
       })
     }
   }
@@ -137,21 +141,31 @@ export default function MobileCheckoutBar(props: any) {
     <>
       <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
         {props?.paymentType == "subscription" &&
-          <div>
-            <div className={styles["mobile-checkout-bar__subscription-details"]}>
-              شاهد اكثر من 1000 دورة باشتراك واحد يبدأ من
-              <span>
-              {" "}  {subscriptionValues?.sale_label}{" "}
-              </span>
-              {" "}{subscriptionValues?.currency_symbol}{" "} / ش
-              {/* (تدفع سنوياً) */}
+          <>
+            {courseDetails?.course_details?.discounted_price !== 0 &&
+              <div className={styles["mobile-checkout-bar__subscription-details"]}>
+                احصل على اكثر من 1000 دورة باشتراك واحد يبدأ من
+                <span>
+                  {" "}  {subscriptionValues?.sale_label}{" "}
+                </span>
+                {/* {" "}{subscriptionValues?.currency_symbol}{" "} / ش */}
+                {/* (تدفع سنوياً) */}
 
-            </div>
+              </div>}
 
-            <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
-              اشترك الآن  
-            </Button>
-          </div>
+
+            {
+              courseDetails?.course_details?.discounted_price == 0 ?
+
+                <Button onClick={() => handleFreeCoursesBtn(courseDetails?.course_details)} style={{width:"80%"}} className={styles["mobile-checkout-bar__subscribe-btn"]}>
+                  ابدأ الآن مجاناً
+                </Button>
+                :
+                <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
+                  اشترك الآن
+                </Button>
+            }
+          </>
         }
 
       </div>

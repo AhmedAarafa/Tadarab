@@ -64,6 +64,8 @@
 
     &::placeholder {
         color: rgba(51, 51, 51, 0.5);
+        height: 100%;
+
     }
 
 }
@@ -752,6 +754,7 @@ input:checked+.slider:before {
 .navbar__return-to-plans-icon {
     margin: 0 auto 0 1rem;
     cursor: pointer;
+
     svg {
         width: 1.3rem;
         height: 1.3rem;
@@ -959,6 +962,7 @@ input:checked+.slider:before {
     .navbar__return-to-plans-icon {
         order: 3;
         margin: 0 auto 0 1rem*2.5;
+
         svg {
             width: 1.3rem*2.5;
             height: 1.3rem*2.5;

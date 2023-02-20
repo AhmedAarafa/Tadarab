@@ -98,7 +98,6 @@
   display: none;
 }
 .discover-free-courses__cards-carousel > div > div:nth-child(4) {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -262,7 +261,6 @@
     display: none;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(4) {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -390,7 +388,6 @@
     display: none;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(4) {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -552,7 +549,6 @@
     display: none;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(4) {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }

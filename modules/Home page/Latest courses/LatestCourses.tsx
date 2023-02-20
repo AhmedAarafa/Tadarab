@@ -179,9 +179,9 @@ function LatestCourses() {
                   <SwiperSlide key={i}>
 
                     <Card data-isvisible={false} data-coursedetails={JSON.stringify({
-                      name: course.title,
-                      id: course.id,
-                      price: course.discounted_price_usd,
+                      name: course?.title,
+                      id: course?.id,
+                      price: course?.discounted_price_usd,
                       brand: "Tadarab",
                       category: "Recorded Course",
                       variant: "Single Course",
@@ -209,21 +209,21 @@ function LatestCourses() {
                         >
 
                           <div>
-                            <Link href={`/course/${course.slug}`}>
+                            <Link href={`/course/${course?.slug}`}>
                               <div
                                 className={
                                   styles["latest-courses__popover-container__title"]
                                 }
-                                title={course.title}
+                                title={course?.title}
                               >
-                                {course.title}
+                                {course?.title}
                               </div>
                             </Link>
 
-                            {course.subscribers_count !== null ?
+                            {course?.subscribers_count !== null ?
                               <div className={styles["latest-courses__popover-container__learners"]}>
                                 <LearnersIcon color="#777" />
-                                <span>{course.subscribers_count}</span>
+                                <span>{course?.subscribers_count}</span>
                                 <span>متعلم</span>
                               </div>
                               :
@@ -233,8 +233,8 @@ function LatestCourses() {
                               className={
                                 styles["latest-courses__popover-container__brief"]
                               }
-                              title={course.details}>
-                              {course.details}
+                              title={course?.details}>
+                              {course?.details}
                             </div>
 
                           </div>
@@ -276,8 +276,8 @@ function LatestCourses() {
                           </div>
 
                           {
-                            course.key_points?.length > 4 ?
-                              <Link href={`/course/${course.slug}`}>
+                            course?.key_points?.length > 4 ?
+                              <Link href={`/course/${course?.slug}`}>
 
                                 <div className={styles["latest-courses__show-more-link"]}>
                                   اعرض المزيد
@@ -289,7 +289,7 @@ function LatestCourses() {
 
                           <div className={styles["latest-courses__popover-container__btns"]}>
 
-                            <Link href={`/course/${course.slug}`}>
+                            <Link href={`/course/${course?.slug}`}>
                               <Button 
                                 className={styles["latest-courses__popover-container__btns__details-btn"]}>تفاصيل الدورة</Button>
                             </Link>
@@ -300,7 +300,7 @@ function LatestCourses() {
                         </div>
                       </div>
                       {
-                        course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                        course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
 
                         <div
                           className={
@@ -308,18 +308,18 @@ function LatestCourses() {
                             "latest-courses__cards-carousel__course-card__category-chip"
                             ]
                           }
-                          style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
+                          style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
                         >
-                          {course.categories[0] !== undefined && course.categories[0].title}
+                          {course?.categories[0] !== undefined && course?.categories[0].title}
                         </div>
                       }
 
-                      <Link href={`/course/${course.slug}`}>
+                      <Link href={`/course/${course?.slug}`}>
                         <a onClick={() => { GAProductClickEventHandler(course, i) }}>
 
                           <Card.Img
                             variant="top"
-                            src={course.image}
+                            src={course?.image}
                             alt="course image"
                             className={
                               styles[
@@ -337,7 +337,7 @@ function LatestCourses() {
                           ]
                         }
                       >
-                        <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
+                        <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
                           className={
                             styles[
                             "latest-courses__cards-carousel__course-card__card-body__card-header"
@@ -350,9 +350,9 @@ function LatestCourses() {
                               ]
                             }
                           >
-                            <Link href={`/trainer/${course.trainer?.slug}`}>
+                            <Link href={`/trainer/${course?.trainer?.slug}`}>
                               <img loading="lazy"
-                                src={course.trainer?.image}
+                                src={course?.trainer?.image}
                                 alt="trainer image"
                               />
                             </Link>
@@ -364,27 +364,27 @@ function LatestCourses() {
                               ]
                             }
                           >
-                            <Link href={`/course/${course.slug}`}>
+                            <Link href={`/course/${course?.slug}`}>
                               <h3 onClick={() => { GAProductClickEventHandler(course, i) }}
-                                title={course.title}
+                                title={course?.title}
                                 className={
                                   styles[
                                   "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
                                   ]
                                 }
                               >
-                                {course.title}
+                                {course?.title}
                               </h3>
                             </Link>
-                            <Link href={`/trainer/${course.trainer?.slug}`}>
-                              <div title={course.trainer?.name_ar}
+                            <Link href={`/trainer/${course?.trainer?.slug}`}>
+                              <div title={course?.trainer?.name_ar}
                                 className={
                                   styles[
                                   "latest-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                   ]
                                 }
                               >
-                                {course.trainer?.name_ar}
+                                {course?.trainer?.name_ar}
                               </div>
                             </Link>
                           </div>

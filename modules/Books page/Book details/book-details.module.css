@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .book-details {
   padding: 6.5rem 10rem 0 10rem;
   background-color: var(--tadarab-light-bg);
@@ -180,7 +181,6 @@
 
 .book-details__book-info__book-brief {
   width: 42.1875rem;
-  height: 16rem;
   padding-bottom: 2.5rem;
   margin-top: 2.5rem;
   position: relative;
@@ -191,37 +191,62 @@
 
 .book-details__book-info__book-brief__title__para {
   font-size: 1rem;
-  color: var(--grey);
+  color: var(--grey) !important;
+  --max-lines: 5;
+  margin-bottom: 0;
+  max-height: calc(var(--max-lines) * 1rem * 1.4);
+  line-height: 1.4;
+  overflow: hidden;
+  position: relative;
+}
+.book-details__book-info__book-brief__title__para:has(+ .book-details__book-info__expand-collapse-btn:checked) {
+  max-height: none;
+}
+.book-details__book-info__book-brief__title__para:has(+ .book-details__book-info__expand-collapse-btn:not(:checked)):before {
+  content: "";
+  position: absolute;
+  height: 2.8rem;
+  width: 100%;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--tadarab-light-bg));
 }
 
-.book-details__book-info__book-brief__brief__read-more {
+.book-details__book-info__expand-collapse-btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   font-size: 1.125rem;
   font-weight: 800;
-  width: 100%;
-  background-color: var(--tadarab-light-bg);
+  background-color: white;
   color: #AF151F;
   position: absolute;
-  bottom: 0rem;
+  bottom: 0;
   right: 0;
   padding: 0.8rem 0rem 1rem 0;
   cursor: pointer;
-  z-index: 3;
+  z-index: 4;
+  display: flex;
+  align-items: unset;
+  justify-content: unset;
+  background-color: var(--tadarab-light-bg);
 }
-.book-details__book-info__book-brief__brief__read-more span {
+.book-details__book-info__expand-collapse-btn:before {
+  content: "أقرأ المزيد";
   margin-left: 0.5rem;
 }
-.book-details__book-info__book-brief__brief__read-more svg {
-  width: 0.625rem;
-  height: 0.375rem;
+.book-details__book-info__expand-collapse-btn:after {
+  content: url("/images/dropdown3.svg");
+  transition: all 0.4s ease;
 }
-
-.book-details__book-info__book-brief__brief--fadeout-effect {
-  position: absolute;
-  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, var(--tadarab-light-bg) 100%);
-  width: 100%;
-  bottom: 3rem;
-  height: 4rem;
-  pointer-events: none;
+.book-details__book-info__expand-collapse-btn:checked:after {
+  content: url("/images/dropdown3.svg");
+  transform: rotate(180deg);
+  transition: all 0.4s ease;
+}
+.book-details__book-info__expand-collapse-btn:checked:before {
+  content: "أقرأ أقل";
+  margin-left: 0.5rem;
 }
 
 .mobile-download-bar {
@@ -327,38 +352,19 @@
   }
   .book-details__book-info__book-brief {
     width: 100%;
-    height: 36rem;
     padding: 6.25rem 0;
     position: relative;
     overflow: hidden;
     transition: all 0.4s ease;
   }
   .book-details__book-info__book-brief__title__para {
+    --max-lines: 7;
     font-size: 2.1875rem;
+    color: var(--grey) !important;
+    max-height: calc(var(--max-lines) * 0.875rem * 2.5 * 1.4);
   }
-  .book-details__book-info__book-brief__brief__read-more {
-    font-size: 2.8125rem;
-    font-weight: 800;
-    width: 100%;
-    position: absolute;
-    right: 0;
-    bottom: -0.5rem;
-    padding: 1.75rem 0 1rem 0;
-    margin-top: 0;
-    z-index: 3;
-  }
-  .book-details__book-info__book-brief__brief__read-more span {
-    margin-left: 0.8rem;
-  }
-  .book-details__book-info__book-brief__brief__read-more svg {
-    width: 1.5625rem;
-    height: 0.9375rem;
-  }
-  .book-details__book-info__book-brief__brief--fadeout-effect {
-    position: absolute;
-    width: 100%;
-    bottom: 5rem;
-    height: 6.4rem;
+  .book-details__book-info__book-brief__title__para:has(+ .book-details__book-info__expand-collapse-btn:not(:checked)):before {
+    height: 7rem;
   }
   .mobile-download-bar {
     display: block;
@@ -449,5 +455,28 @@
     font-size: 2.0125rem;
     text-align: center;
     margin: 0 0 1rem 0;
+  }
+  .book-details__book-info__expand-collapse-btn {
+    font-size: 2.8125rem;
+  }
+  .book-details__book-info__expand-collapse-btn:before {
+    margin-left: 1.25rem;
+  }
+  .book-details__book-info__expand-collapse-btn:checked:before {
+    margin-left: 1.25rem;
+  }
+  .book-details__book-info__expand-collapse-btn:after {
+    content: url("/images/dropdown4.svg");
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .book-details__book-info__expand-collapse-btn:checked:after {
+    content: url("/images/dropdown4.svg");
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
   }
 }/*# sourceMappingURL=book-details.module.css.map */

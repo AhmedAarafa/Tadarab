@@ -4,7 +4,6 @@
   width: 22rem;
   box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
-  position: -webkit-sticky;
   position: sticky;
   top: 5.5rem;
 }
@@ -315,7 +314,7 @@
     height: 3rem;
   }
   .course-details__course-card__actions-btns__fav-btn,
-.course-details__course-card__actions-btns__share-btn {
+  .course-details__course-card__actions-btns__share-btn {
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 0.75rem;
@@ -331,17 +330,17 @@
     border-radius: 1.875rem;
   }
   .course-details__course-card__actions-btns__fav-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
-.course-details__course-card__actions-btns__share-btn:hover,
-.course-details__course-card__actions-btns__share-btn:active,
-.course-details__course-card__actions-btns__share-btn:focus),
-.course-details__course-card__actions-btns__share-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
-.course-details__course-card__actions-btns__share-btn:hover,
-.course-details__course-card__actions-btns__share-btn:active,
-.course-details__course-card__actions-btns__share-btn:focus) {
+  .course-details__course-card__actions-btns__share-btn:hover,
+  .course-details__course-card__actions-btns__share-btn:active,
+  .course-details__course-card__actions-btns__share-btn:focus),
+  .course-details__course-card__actions-btns__share-btn:is(.course-details__course-card__actions-btns__fav-btn:hover, .course-details__course-card__actions-btns__fav-btn:active, .course-details__course-card__actions-btns__fav-btn:focus,
+  .course-details__course-card__actions-btns__share-btn:hover,
+  .course-details__course-card__actions-btns__share-btn:active,
+  .course-details__course-card__actions-btns__share-btn:focus) {
     background-color: var(--hovered-lightgrey);
   }
   .course-details__course-card__actions-btns__fav-btn svg,
-.course-details__course-card__actions-btns__share-btn svg {
+  .course-details__course-card__actions-btns__share-btn svg {
     width: 4.22rem;
     height: 3.75rem;
   }
@@ -361,7 +360,7 @@
     margin-right: 2rem;
   }
   .course-details__course-card__guarantee-box__text-box__major,
-.course-details__course-card__guarantee-box__text-box__minor {
+  .course-details__course-card__guarantee-box__text-box__minor {
     font-size: 2.0325rem;
   }
   .course-details__course-card__details-list {

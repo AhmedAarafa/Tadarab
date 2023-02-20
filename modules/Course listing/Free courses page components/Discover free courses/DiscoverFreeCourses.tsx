@@ -86,9 +86,9 @@ export default function DiscoverFreeCourses() {
                                 <SwiperSlide key={i}>
 
                                     <Card data-isvisible={false} data-coursedetails={JSON.stringify({
-                                        name: course.title,
-                                        id: course.id,
-                                        price: course.discounted_price_usd,
+                                        name: course?.title,
+                                        id: course?.id,
+                                        price: course?.discounted_price_usd,
                                         brand: "Tadarab",
                                         category: "Recorded Course",
                                         variant: "Single Course",
@@ -97,25 +97,25 @@ export default function DiscoverFreeCourses() {
                                     })}
                                         className={styles["discover-free-courses__cards-carousel__course-card"]}>
                                         {
-                                            course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                                            course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
                                             <div
                                                 className={
                                                     styles[
                                                     "discover-free-courses__cards-carousel__course-card__category-chip"
                                                     ]
                                                 }
-                                                style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
+                                                style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
                                             >
-                                                {course.categories[0] !== undefined && course.categories[0].title}
+                                                {course?.categories[0] !== undefined && course?.categories[0].title}
                                             </div>
                                         }
 
-                                        <Link href={`/course/${course.slug}`}>
+                                        <Link href={`/course/${course?.slug}`}>
                                             <a onClick={() => { GAProductClickEventHandler(course, i) }}>
                                                 <Card.Img
                                                     variant="top"
-                                                    src={course.image}
-                                                    alt={course.title}
+                                                    src={course?.image}
+                                                    alt={course?.title}
                                                     className={styles["discover-free-courses__cards-carousel__course-card__course-img"]}
                                                 />
                                             </a>
@@ -123,7 +123,7 @@ export default function DiscoverFreeCourses() {
 
                                         <Card.Body
                                             className={styles["discover-free-courses__cards-carousel__course-card__card-body"]}>
-                                            <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
+                                            <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
                                                 className={
                                                     styles[
                                                     "discover-free-courses__cards-carousel__course-card__card-body__card-header"
@@ -132,10 +132,10 @@ export default function DiscoverFreeCourses() {
                                                     className={
                                                         styles["discover-free-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box"
                                                         ]}>
-                                                    <Link href={`/trainer/${course.trainer?.slug}`}>
+                                                    <Link href={`/trainer/${course?.trainer?.slug}`}>
                                                         <img loading="lazy"
-                                                            src={course.trainer?.image}
-                                                            alt={course.trainer?.name_ar}
+                                                            src={course?.trainer?.image}
+                                                            alt={course?.trainer?.name_ar}
                                                         />
                                                     </Link>
                                                 </div>
@@ -144,23 +144,23 @@ export default function DiscoverFreeCourses() {
                                                         styles[
                                                         "discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details"
                                                         ]}>
-                                                    <Link href={`/course/${course.slug}`}>
+                                                    <Link href={`/course/${course?.slug}`}>
                                                         <h3 onClick={() => { GAProductClickEventHandler(course, i) }}
-                                                            title={course.title}
+                                                            title={course?.title}
                                                             className={
                                                                 styles[
                                                                 "discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
                                                                 ]}>
-                                                            {course.title}
+                                                            {course?.title}
                                                         </h3>
                                                     </Link>
-                                                    <Link href={`/trainer/${course.trainer?.slug}`}>
-                                                        <div title={course.trainer?.name_ar}
+                                                    <Link href={`/trainer/${course?.trainer?.slug}`}>
+                                                        <div title={course?.trainer?.name_ar}
                                                             className={
                                                                 styles[
                                                                 "discover-free-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                                                 ]}>
-                                                            {course.trainer?.name_ar}
+                                                            {course?.trainer?.name_ar}
                                                         </div>
                                                     </Link>
                                                 </div>

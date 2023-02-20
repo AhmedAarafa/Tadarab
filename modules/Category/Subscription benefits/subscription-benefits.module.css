@@ -63,7 +63,6 @@
   justify-content: flex-start;
 }
 .subscription-benefits__benefits__list-item div {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin-left: 0.5rem;
@@ -143,7 +142,6 @@
     justify-content: flex-start;
   }
   .subscription-benefits__benefits__list-item div {
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     margin-left: 1.1rem;

@@ -240,10 +240,9 @@ export default function FooterSection() {
 
               </a>
 
-
             </div>
             <div className={styles["footer__contacts-box__all-rights-reserved"]}>
-              جميع الحقوق محفوظة. منصة تدرب. © 2022
+              جميع الحقوق محفوظة. منصة تدرب. © 2023
             </div>
           </Col>
         </Row>

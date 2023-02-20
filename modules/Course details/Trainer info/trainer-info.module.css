@@ -64,7 +64,6 @@
 }
 
 .trainer-info-section__view-trainer-account {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   cursor: pointer;

@@ -27,6 +27,7 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import GoogleLogin from 'react-google-login';
 import TwitterLogin from "react-twitter-login";
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 interface SignInFormValues {
   email: string;
@@ -56,6 +57,7 @@ export default function SignInPage() {
       }
     }
 
+    toggleLoader("hide");
   }, [userAuthState]);
 
 
@@ -106,7 +108,9 @@ export default function SignInPage() {
       }
 
     } else if (router.query && router.query.from_subscription) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription&ps=2`);
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from_subscription=checkout/payment/?checkout_type=subscription&ps=2`);
+    } else if (router.query && router.query.from_subscription_plans) {
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up/?from_subscription_plans=${router.query.from_subscription_plans}&checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
     } else {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`);
     }
@@ -160,6 +164,8 @@ export default function SignInPage() {
                 }
               } else if (router.query && router.query.from_subscription) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+              } else if (router.query && router.query.from_subscription_plans) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment?checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
               } else if (router.query && router.query.type) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
               } else {
@@ -338,6 +344,8 @@ export default function SignInPage() {
 
                     } else if (router.query && router.query.from_subscription) {
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+                    } else if (router.query && router.query.from_subscription_plans) {
+                      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment?checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
                     } else if (router.query && router.query.type) {
                       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
                     } else {

@@ -47,9 +47,6 @@
 .tadarab-introduction__description-box__form input::-moz-placeholder {
   font-size: 0.9rem;
 }
-.tadarab-introduction__description-box__form input:-ms-input-placeholder {
-  font-size: 0.9rem;
-}
 .tadarab-introduction__description-box__form input::placeholder {
   font-size: 0.9rem;
 }
@@ -129,9 +126,6 @@
     font-size: 2.2rem;
   }
   .tadarab-introduction__description-box__form input::-moz-placeholder {
-    font-size: 1.98rem;
-  }
-  .tadarab-introduction__description-box__form input:-ms-input-placeholder {
     font-size: 1.98rem;
   }
   .tadarab-introduction__description-box__form input::placeholder {

@@ -17,7 +17,6 @@
 }
 .category-skills__tag div {
   border: 0.0625rem solid rgba(0, 0, 0, 0.2);
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.5rem 1rem;

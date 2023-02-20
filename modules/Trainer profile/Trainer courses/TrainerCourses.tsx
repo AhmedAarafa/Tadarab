@@ -78,9 +78,9 @@ export default function TrainerCourses() {
                     {trainerProfile?.data !== undefined && trainerProfile?.data?.courses?.map((course: any, i: number) => {
                         return (
                             <Card data-isvisible={false} data-coursedetails={JSON.stringify({
-                                name: course.title,
-                                id: course.id,
-                                price: course.discounted_price_usd,
+                                name: course?.title,
+                                id: course?.id,
+                                price: course?.discounted_price_usd,
                                 brand: "Tadarab",
                                 category: "Recorded Course",
                                 variant: "Single Course",

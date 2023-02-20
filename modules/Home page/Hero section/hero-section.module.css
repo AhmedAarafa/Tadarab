@@ -262,11 +262,13 @@
     border: 0 !important;
     background-color: var(--primary-red) !important;
     border: 0.125rem solid var(--primary-red) !important;
-    height: 7.5rem;
-    width: 100%;
+    height: 6rem;
+    width: -moz-fit-content;
+    width: fit-content;
     margin-top: 2.5rem;
-    font-size: 2.425rem;
+    font-size: 2.037rem;
     border-radius: 1.5625rem;
+    padding: 0.5rem 3rem;
   }
   .hero-section__sub-action button:hover {
     box-shadow: none;
@@ -279,8 +281,8 @@
     border: 0.125rem solid #9d151e !important;
   }
   .hero-section__sub-action button svg {
-    margin-right: 3.75rem;
-    width: 1.25rem;
-    height: 2.03125rem;
+    margin-right: 1.5rem;
+    width: 1.05rem;
+    height: 1.70625rem;
   }
 }/*# sourceMappingURL=hero-section.module.css.map */

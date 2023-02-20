@@ -132,7 +132,6 @@
 }
 
 .add-to-cart-popup__special-bundle-container__course-box__course-img {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   position: relative;
@@ -452,7 +451,7 @@
     margin-top: -0.9rem;
   }
   .add-to-cart-popup__checkout-box__prices-box__old-price span:nth-of-type(1),
-.add-to-cart-popup__checkout-box__prices-box__old-price span:nth-of-type(3) {
+  .add-to-cart-popup__checkout-box__prices-box__old-price span:nth-of-type(3) {
     font-size: 2.025rem;
   }
   .add-to-cart-popup__checkout-box__prices-box__old-price span:nth-of-type(2) {

@@ -64,9 +64,6 @@
 .footer__inquiry-field::-moz-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-.footer__inquiry-field:-ms-input-placeholder {
-  color: rgba(34, 34, 34, 0.5);
-}
 .footer__inquiry-field::placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
@@ -100,9 +97,6 @@
 .footer__name-field::-moz-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
-.footer__name-field:-ms-input-placeholder {
-  color: rgba(34, 34, 34, 0.5);
-}
 .footer__name-field::placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
@@ -127,9 +121,6 @@
   box-shadow: none !important;
 }
 .footer__email-field::-moz-placeholder {
-  color: rgba(34, 34, 34, 0.5);
-}
-.footer__email-field:-ms-input-placeholder {
   color: rgba(34, 34, 34, 0.5);
 }
 .footer__email-field::placeholder {
@@ -176,7 +167,6 @@
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 0.9rem;
   cursor: pointer;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -415,24 +405,23 @@
     border: 0.125rem solid #9d151e !important;
   }
   .footer__training-courses-list,
-.footer__about-tadarab-list {
+  .footer__about-tadarab-list {
     list-style-type: none;
     padding: 0 0 4.063rem 0;
     border-bottom: 0.03rem solid rgba(119, 119, 119, 0.6);
     margin: 6.5rem 0 0 0;
   }
   .footer__training-courses-list li,
-.footer__about-tadarab-list li {
+  .footer__about-tadarab-list li {
     font-size: 2.5rem;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 3.125rem;
     cursor: pointer;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
   }
   .footer__training-courses-list li:nth-of-type(1),
-.footer__about-tadarab-list li:nth-of-type(1) {
+  .footer__about-tadarab-list li:nth-of-type(1) {
     font-size: 3.75rem;
     font-weight: 800;
     color: white;
@@ -457,22 +446,22 @@
     margin-left: 1.2rem;
   }
   .footer__cross-platforms,
-.footer__pay-box {
+  .footer__pay-box {
     font-size: 2rem;
     color: white;
     margin-top: 1.875rem;
   }
   .footer__cross-platforms div,
-.footer__pay-box div {
+  .footer__pay-box div {
     margin-bottom: 2.031rem;
   }
   .footer__location div:nth-of-type(1),
-.footer__email div:nth-of-type(1) {
+  .footer__email div:nth-of-type(1) {
     font-size: 2rem;
     margin-top: 1.875rem;
   }
   .footer__location div:nth-of-type(2),
-.footer__email div:nth-of-type(2) {
+  .footer__email div:nth-of-type(2) {
     font-size: 1.9rem;
     color: rgba(255, 255, 255, 0.7);
   }
@@ -519,7 +508,7 @@
     margin-top: 1.125rem;
   }
   .footer__info-msg--success,
-.footer__info-msg--error {
+  .footer__info-msg--error {
     font-size: 2.3rem;
     padding: 1.25rem 5rem;
     bottom: -7.5rem;

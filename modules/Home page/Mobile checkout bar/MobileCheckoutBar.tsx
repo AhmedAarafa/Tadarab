@@ -21,7 +21,7 @@ export default function MobileCheckoutBar(props: any) {
   const isElementInViewport = () => {
 
     let stickybar: any = document.getElementById("homepage-sticky-checkout-bar");
-    let rect:any = stickybar?.getBoundingClientRect();
+    let rect: any = stickybar?.getBoundingClientRect();
 
     return (
       rect?.top >= 0 &&
@@ -35,7 +35,6 @@ export default function MobileCheckoutBar(props: any) {
 
     window.addEventListener("scroll", () => {
       setShowStickyBar(!isElementInViewport());
-      console.log("not visible in viewport", !isElementInViewport());
     })
 
   }, []);
@@ -65,34 +64,23 @@ export default function MobileCheckoutBar(props: any) {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    if (userStatus) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
-      })
-    }
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
   }
-
 
 
   return (
     <>
       {showStickyBar && !userStatus.isSubscribed &&
         <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
-          <div>
-            <div className={styles["mobile-checkout-bar__subscription-details"]}>
-              شاهد اكثر من 1000 دورة باشتراك واحد يبدأ من
-              <span>
-                {" "}  {subscriptionValues?.sale_label}{" "}
-              </span>
-              {" "}{subscriptionValues?.currency_symbol}{" "} / ش
-            </div>
-            <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
-              أبدا التعلم الآن
-            </Button>
+          <div className={styles["mobile-checkout-bar__subscription-details"]}>
+            احصل  على اكثر من 1000 دورة باشتراك واحد يبدأ من
+            <span>
+              {" "}  {subscriptionValues?.sale_label}  {" "}
+            </span>
           </div>
+          <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
+            أبدا التعلم الآن
+          </Button>
         </div>
       }
     </>

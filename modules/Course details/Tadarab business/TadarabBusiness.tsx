@@ -17,9 +17,9 @@ export default function TadarabBusiness() {
                 <div className={styles["tadarab-business__details__major"]}>
                 دورات عالية الجودة في جميع المجالات لأفراد شركتك
                 </div>
-                <div className={styles["tadarab-business__details__minor"]}>
+                {/* <div className={styles["tadarab-business__details__minor"]}>
                 هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز
-                </div>
+                </div> */}
                 <div className={styles["tadarab-business__details__btn"]}>
                     <Button>
                        <span> تواصل معنا </span>

@@ -25,7 +25,6 @@
   width: 22rem;
   box-shadow: 0 0 1.25rem rgba(0, 0, 0, 0.1019607843);
   border-radius: 1.25rem;
-  position: -webkit-sticky;
   position: sticky;
   top: 5.5rem;
   background-color: var(--tadarab-bg);
@@ -90,7 +89,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   margin: 0.5rem 0 0 0;
@@ -896,7 +894,7 @@
     margin-right: 2rem;
   }
   .monthly-subscription__course-card__guarantee-box__text-box__major,
-.monthly-subscription__course-card__guarantee-box__text-box__minor {
+  .monthly-subscription__course-card__guarantee-box__text-box__minor {
     font-size: 2.0325rem;
   }
   .monthly-subscription__subscribe-btn-box {
@@ -937,7 +935,7 @@
     margin: 0 0 0 1rem !important;
   }
   .monthly-subscription__watch-this-course,
-.monthly-subscription__or-box {
+  .monthly-subscription__or-box {
     font-size: 2.345rem;
   }
   .monthly-subscription__watch-this-course {

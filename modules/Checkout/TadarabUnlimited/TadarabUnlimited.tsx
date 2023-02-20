@@ -28,14 +28,7 @@ export default function TadarabUnlimited() {
 
     const handleSubscriptionBtn = () => {
         dispatch(setCheckoutType("subscription"));
-        if (userStatus) {
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
-            })
-        }
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
     }
 
     return (
@@ -57,7 +50,7 @@ export default function TadarabUnlimited() {
                                 </span>
                             </h3>
                             <div className={styles["tadarab-unlimited__subscription-points"]}>
-                                <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 850 دورة تدريبية).</div>
+                                <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 1000 دورة تدريبية).</div>
                                 <div>دورات جديدة تضاف شهريًا.</div>
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
@@ -86,7 +79,7 @@ export default function TadarabUnlimited() {
                                 </span>
                             </div>
                             <div className={styles["tadarab-unlimited__subscription-points"]}>
-                                <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 850 دورة تدريبية).</div>
+                                <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 1000 دورة تدريبية).</div>
                                 <div>دورات جديدة تضاف شهريًا.</div>
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>

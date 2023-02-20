@@ -3,18 +3,14 @@
 .trainer-accounts-card-row{
     position: sticky;
     top: 9.5rem;
-    // margin-bottom: 2rem;
 }
 .trainer-accounts-card {
     padding: 2rem 1.625rem;
     width: 22rem;
     height: fit-content;
-    // height: 28.125rem;
     box-shadow: 0rem 0rem 1.25rem #0000001A;
     border-radius: 1.25rem;
     margin: 0 2.9375rem 0 0;
-    // position: sticky;
-    // top: 6.0625rem;
     background-color: var(--tadarab-bg);
 }
 
@@ -37,6 +33,7 @@
     text-align: right;
     font-size: 1.25rem;
     font-weight: 700;
+    color: var(--dark-black);
 }
 
 .trainer-accounts-card__accounts-btns {
@@ -59,7 +56,6 @@
         &:is(&:hover, &:active) {
             border: 0.063rem solid var(--grey) !important;
             background-color: var(--outlined-btn-bg) !important;
-            // background-color: white !important;
             color: var(--dark-black) !important;
         }
 

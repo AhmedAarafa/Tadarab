@@ -62,7 +62,6 @@
   font-size: 1.063rem;
   font-weight: 700;
   color: var(--dark-black);
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 3.125rem;
@@ -457,7 +456,6 @@
   }
   .signup-popup__register-with div {
     font-size: 2.126rem !important;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     height: 6.25rem;
@@ -488,9 +486,9 @@
     width: 15%;
   }
   .signup-popup__registeration-form-box__name-field-container,
-.signup-popup__registeration-form-box__email-field-container,
-.signup-popup__registeration-form-box__password-field-container,
-.signup-popup__registeration-form-box__phone-field-container {
+  .signup-popup__registeration-form-box__email-field-container,
+  .signup-popup__registeration-form-box__password-field-container,
+  .signup-popup__registeration-form-box__phone-field-container {
     box-shadow: 0rem 0.1875rem 1.25rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.725rem;
     padding: 1.86875rem 2.73125rem 1.86875rem 1.15rem;
@@ -592,21 +590,21 @@
     margin: 0 2.73125rem 0 0;
   }
   .signup-popup__registeration-form-box__name-field,
-.signup-popup__registeration-form-box__email-field,
-.signup-popup__registeration-form-box__password-field,
-.signup-popup__registeration-form-box__phone-field {
+  .signup-popup__registeration-form-box__email-field,
+  .signup-popup__registeration-form-box__password-field,
+  .signup-popup__registeration-form-box__phone-field {
     font-size: 2.4449rem;
     margin: 0 3.45rem 0 0;
     width: 100%;
     height: 100%;
   }
   .signup-popup__registeration-form-box__name-field:active, .signup-popup__registeration-form-box__name-field:focus,
-.signup-popup__registeration-form-box__email-field:active,
-.signup-popup__registeration-form-box__email-field:focus,
-.signup-popup__registeration-form-box__password-field:active,
-.signup-popup__registeration-form-box__password-field:focus,
-.signup-popup__registeration-form-box__phone-field:active,
-.signup-popup__registeration-form-box__phone-field:focus {
+  .signup-popup__registeration-form-box__email-field:active,
+  .signup-popup__registeration-form-box__email-field:focus,
+  .signup-popup__registeration-form-box__password-field:active,
+  .signup-popup__registeration-form-box__password-field:focus,
+  .signup-popup__registeration-form-box__phone-field:active,
+  .signup-popup__registeration-form-box__phone-field:focus {
     outline: 0 !important;
     border: none !important;
     -webkit-appearance: none;

@@ -132,7 +132,6 @@
   display: flex;
   align-items: unset;
   justify-content: unset;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   border-bottom: none;
@@ -480,7 +479,6 @@
     align-items: unset;
     justify-content: unset;
     width: 100%;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     border-bottom: none;

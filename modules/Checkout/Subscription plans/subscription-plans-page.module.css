@@ -4,7 +4,6 @@
   background-image: url("/images/subscriptionPlans.png");
   background-repeat: no-repeat;
   background-size: 100% 25rem;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   background-color: var(--tadarab-light-bg);
@@ -71,7 +70,6 @@
   font-weight: 800;
   color: var(--dark-black);
   border-radius: 1rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   height: 1.3125rem;
@@ -220,8 +218,8 @@
     margin: 1.6rem 0;
   }
   .subscription-plans-page__title div:nth-of-type(1),
-.subscription-plans-page__title div:nth-of-type(2),
-.subscription-plans-page__title div:nth-of-type(3) {
+  .subscription-plans-page__title div:nth-of-type(2),
+  .subscription-plans-page__title div:nth-of-type(3) {
     font-size: 3.5rem;
     margin-bottom: -1.4rem;
   }

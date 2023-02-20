@@ -18,14 +18,7 @@ export default function SubscriptionBenefits() {
     const handleSubscriptionBtn = (e: any) => {
         e.preventDefault();
         dispatch(setCheckoutType("subscription"));
-        if (userStatus) {
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
-            })
-        }
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
     }
 
     return (
@@ -51,7 +44,7 @@ export default function SubscriptionBenefits() {
                             </div>
                             <span>
                                 مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
-                                850
+                                1000
                                 دورة تدريبية).
                             </span>
                         </div>
@@ -94,7 +87,7 @@ export default function SubscriptionBenefits() {
 
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
-                                <UnlimitedCertificatesIcon color="#fff"/>
+                                <UnlimitedCertificatesIcon color="#fff" />
                             </div>
                             <span>
                                 شهادات إتمام الدورات بلا حدود.

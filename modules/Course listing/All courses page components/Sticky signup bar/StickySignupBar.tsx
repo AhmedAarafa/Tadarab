@@ -15,14 +15,7 @@ export default function StickySignupBar() {
     const handleSubscriptionBtn = (e: any) => {
         e.preventDefault();
         dispatch(setCheckoutType("subscription"));
-        if (userStatus) {
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
-            })
-        }
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
     }
 
     const scrollingHandler = () => {

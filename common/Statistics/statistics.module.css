@@ -116,7 +116,6 @@
 @media (max-width: 575px) {
   .statistics {
     margin: 10rem 5rem 0 5rem;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }

@@ -18,7 +18,6 @@
   font-size: 0.75rem;
   color: var(--grey);
   border-radius: 0.938rem;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 0.5rem 0.75rem;
@@ -44,7 +43,6 @@
   .course-keywords__tags div {
     font-size: 1.65rem;
     border-radius: 2.345rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     padding: 1.25rem 1.875rem;

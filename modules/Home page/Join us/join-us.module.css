@@ -161,7 +161,7 @@
     border: 0.125rem solid #9d151e !important;
   }
   .join-us__info-msg--success,
-.join-us__info-msg--error {
+  .join-us__info-msg--error {
     font-size: 2.3rem;
     padding: 1.25rem 5rem;
     bottom: -7.5rem;

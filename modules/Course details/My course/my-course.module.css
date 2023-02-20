@@ -10,7 +10,6 @@
 .purchased-course-playlist {
   box-shadow: 0rem 0.1875rem 1.625rem rgba(0, 0, 0, 0.1019607843);
   width: 95%;
-  position: -webkit-sticky;
   position: sticky;
   top: 4rem;
   margin: 3.813rem 0 5rem 0;
@@ -326,10 +325,8 @@
 }
 
 .my-course__certificate {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
   position: relative;
@@ -525,11 +522,11 @@
     border-radius: 2.34375rem;
   }
   .course-content__accordion__header,
-.purchased-course-content__accordion__header {
+  .purchased-course-content__accordion__header {
     border-radius: 1.875rem 1.875rem 0 0 !important;
   }
   .course-content__accordion__header button,
-.purchased-course-content__accordion__header button {
+  .purchased-course-content__accordion__header button {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -537,16 +534,16 @@
     padding-bottom: 3.25rem !important;
   }
   .course-content__accordion__header button::after,
-.purchased-course-content__accordion__header button::after {
+  .purchased-course-content__accordion__header button::after {
     margin: 0 auto 0 0 !important;
     transform: none !important;
   }
   .course-content__accordion__header button:not(.course-content_collapsed__cqtNE)::after,
-.purchased-course-content__accordion__header button:not(.course-content_collapsed__cqtNE)::after {
+  .purchased-course-content__accordion__header button:not(.course-content_collapsed__cqtNE)::after {
     transform: none !important;
   }
   .course-content__accordion__header__group-number,
-.purchased-course-content__accordion__header__group-number {
+  .purchased-course-content__accordion__header__group-number {
     font-size: 2.8125rem;
   }
   .purchased-course-content__accordion__header__group-number {
@@ -574,15 +571,15 @@
     font-size: 2.5rem;
   }
   .course-content__accordion__body__list-item__lesson-name-duration,
-.purchased-course-content__accordion__body__list-item__lesson-name {
+  .purchased-course-content__accordion__body__list-item__lesson-name {
     margin-right: 2.5rem;
   }
   .course-content__accordion__body__list-item__lesson-name-duration div:nth-of-type(1),
-.purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(1) {
+  .purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(1) {
     font-size: 2.0636rem;
   }
   .course-content__accordion__body__list-item__lesson-name-duration div:nth-of-type(2),
-.purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(2) {
+  .purchased-course-content__accordion__body__list-item__lesson-name div:nth-of-type(2) {
     font-size: 1.7886rem;
   }
   .purchased-course-content__accordion__body__list-item__lesson-name {
@@ -601,7 +598,7 @@
     border: 0 !important;
   }
   .course-content__accordion__header__group-number,
-.purchased-course-content__accordion__header__group-number {
+  .purchased-course-content__accordion__header__group-number {
     font-size: 2.8125rem;
   }
   .purchased-course-content__accordion__header__group-number {
@@ -637,25 +634,23 @@
     height: 2.25rem;
   }
   .course-content__accordion__body__list-item__watch-free,
-.course-content__accordion__body__list-item__download {
+  .course-content__accordion__body__list-item__download {
     display: flex;
     align-items: center;
     justify-content: unset;
   }
   .course-content__accordion__body__list-item__watch-free span,
-.course-content__accordion__body__list-item__download span {
+  .course-content__accordion__body__list-item__download span {
     display: none;
   }
   .course-content__accordion__body__list-item__watch-free svg,
-.course-content__accordion__body__list-item__download svg {
+  .course-content__accordion__body__list-item__download svg {
     width: 2.8125rem;
     height: 3.125rem;
   }
   .my-course__certificate {
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     position: relative;
@@ -664,9 +659,9 @@
     width: 42.375rem;
   }
   .my-course__certificate__date,
-.my-course__certificate__course-name,
-.my-course__certificate__trainer-name,
-.my-course__certificate__learner-name {
+  .my-course__certificate__course-name,
+  .my-course__certificate__trainer-name,
+  .my-course__certificate__learner-name {
     position: absolute;
     font-weight: 800;
     font-size: 1rem;

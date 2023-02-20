@@ -44,12 +44,12 @@ export default function PracticalProjects(props: any) {
               <div>المشاريع العملية</div>
               <div>للمتعلمين في الدورة</div>
             </div>
-            <div className={styles["practical-projects__brief"]}>
+            {/* <div className={styles["practical-projects__brief"]}>
               هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي
               القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة
               التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ
               طبيعياَ
-            </div>
+            </div> */}
           </Col>
 
           {courseProjects?.map((project: any, i: number) => {

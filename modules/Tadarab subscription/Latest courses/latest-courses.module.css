@@ -127,7 +127,6 @@
   border-radius: 0.75rem !important;
   height: 100% !important;
   position: relative;
-  height: -webkit-fit-content !important;
   height: -moz-fit-content !important;
   height: fit-content !important;
   opacity: 0;
@@ -190,7 +189,6 @@
   display: none;
 }
 .latest-courses__cards-carousel > div > div:nth-child(4) {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -572,7 +570,6 @@
     display: none;
   }
   .latest-courses__cards-carousel > div > div:nth-child(4) {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -700,10 +697,8 @@
     margin-right: 0.381rem;
     padding: 0 !important;
     border-radius: 0.9525rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -764,7 +759,6 @@
     display: none;
   }
   .latest-courses__cards-carousel > div > div:nth-child(4) {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -892,10 +886,8 @@
     margin-right: 0.501rem;
     padding: 0 !important;
     border-radius: 1.2525rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -982,7 +974,6 @@
     display: none;
   }
   .latest-courses__cards-carousel > div > div:nth-child(4) {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -1099,10 +1090,8 @@
     margin-right: 0.876rem;
     padding: 0 !important;
     border-radius: 1.875rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }

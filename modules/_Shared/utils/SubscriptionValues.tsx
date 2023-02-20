@@ -28,17 +28,13 @@ export default function SubscriptionValues() {
 
     }, []);
 
-    useEffect(() => {
-        console.log("values", values);
-
-    }, [values])
-
-
     return (
         JSON.stringify(values) !== "{}" ?
             <div>
-                اشترك الآن لتتابع جميع الدورات باشتراك يبدأ من
+               شاهد اكثر من 1000 دورة باشتراك واحد يبدأ من
+               <span style={{fontWeight:"800",zoom:"1.5"}}>
                 {" "} {values.sale_label} {" "}
+               </span>
             </div>
             :
             <></>

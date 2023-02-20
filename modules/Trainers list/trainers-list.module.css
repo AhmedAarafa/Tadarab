@@ -34,7 +34,6 @@
   padding: 0 1rem 1.2rem 1rem;
 }
 .trainers-list__cards-carousel__card__card-body div {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -53,7 +52,6 @@
 }
 
 .trainers-list__cards-carousel__card__job-history {
-  max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: 95%;
@@ -100,7 +98,6 @@
     padding: 0 1rem 1.575rem 1rem;
   }
   .trainers-list__cards-carousel__card__card-body div {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -109,12 +106,11 @@
     margin: 2.625rem 0 0.32865rem 0;
   }
   .trainers-list__cards-carousel__card__job-title,
-.trainers-list__cards-carousel__card__job-history {
+  .trainers-list__cards-carousel__card__job-history {
     font-size: 0.85365rem;
     padding: 0;
   }
   .trainers-list__cards-carousel__card__job-history {
-    max-height: -webkit-fit-content;
     max-height: -moz-fit-content;
     max-height: fit-content;
     width: 95%;
@@ -144,7 +140,6 @@
     padding: 0 1rem 2.25rem 1rem;
   }
   .trainers-list__cards-carousel__card__card-body div {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -153,12 +148,11 @@
     margin: 3.75rem 0 0.4695rem 0;
   }
   .trainers-list__cards-carousel__card__job-title,
-.trainers-list__cards-carousel__card__job-history {
+  .trainers-list__cards-carousel__card__job-history {
     font-size: 1.2195rem;
     padding: 0;
   }
   .trainers-list__cards-carousel__card__job-history {
-    max-height: -webkit-fit-content;
     max-height: -moz-fit-content;
     max-height: fit-content;
     width: 95%;
@@ -191,7 +185,6 @@
     padding: 0 1rem 3.6rem 1rem;
   }
   .trainers-list__cards-carousel__card__card-body div {
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
   }
@@ -200,12 +193,11 @@
     margin: 6rem 0 0.7512rem 0;
   }
   .trainers-list__cards-carousel__card__job-title,
-.trainers-list__cards-carousel__card__job-history {
+  .trainers-list__cards-carousel__card__job-history {
     font-size: 1.9512rem;
     padding: 0;
   }
   .trainers-list__cards-carousel__card__job-history {
-    max-height: -webkit-fit-content;
     max-height: -moz-fit-content;
     max-height: fit-content;
     width: 95%;

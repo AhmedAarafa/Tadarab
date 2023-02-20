@@ -117,7 +117,6 @@
   padding: 0 1rem 1.2rem 1rem;
 }
 .season-trainers__cards-carousel__card__card-body div {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -131,7 +130,6 @@
 .season-trainers__cards-carousel__card__trainer-title {
   font-size: 0.6504rem;
   padding: 0;
-  max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: 95%;
@@ -149,7 +147,6 @@
 }
 
 .season-trainers__cards-carousel__card__job-history {
-  max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: 95%;
@@ -222,7 +219,7 @@
     margin: 2.625rem 0 0.32865rem 0;
   }
   .season-trainers__cards-carousel__card__job-title,
-.season-trainers__cards-carousel__card__job-history {
+  .season-trainers__cards-carousel__card__job-history {
     font-size: 0.85365rem;
     padding: 0;
   }
@@ -289,7 +286,7 @@
     margin: 3.3375rem 0 0.417855rem 0;
   }
   .season-trainers__cards-carousel__card__job-title,
-.season-trainers__cards-carousel__card__job-history {
+  .season-trainers__cards-carousel__card__job-history {
     font-size: 1.085355rem;
     padding: 0;
   }
@@ -394,8 +391,8 @@
     margin: 6rem 0 0.7512rem 0;
   }
   .season-trainers__cards-carousel__card__job-title,
-.season-trainers__cards-carousel__card__job-history,
-.season-trainers__cards-carousel__card__trainer-title {
+  .season-trainers__cards-carousel__card__job-history,
+  .season-trainers__cards-carousel__card__trainer-title {
     font-size: 1.9512rem;
     padding: 0;
   }

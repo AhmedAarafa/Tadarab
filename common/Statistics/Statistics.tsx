@@ -83,7 +83,7 @@ export default function Statistics() {
                 <div className={styles["statistics__details__counter"]}>
                   <span>+10 الاف</span>
                 </div>
-                <div className={styles["statistics__details__unit"]}>ساعات تدريبية</div>
+                <div className={styles["statistics__details__unit"]}>ساعة تدريبية</div>
               </div>
               <div className={styles["statistics__details__card"]}>
                 <div>
@@ -112,7 +112,6 @@ export default function Statistics() {
                 </div>
                 <div className={styles["statistics__details__unit"]}>سنوات خبرة</div>
               </div> */}
-
             </div>
 
           </div>

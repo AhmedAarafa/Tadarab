@@ -149,23 +149,12 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    if (userStatus.isUserAuthenticated) {
-
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from_subscription: `checkout/payment/?checkout_type=subscription` }
-      })
-    }
+    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
   }
-  const handleFavActionBtn = (course: any): any => {
 
-    if (userStatus.isUserAuthenticated == true) {
-      const handleFavResponse: any = handleFav(course, `${course.archive_id ? "webinar" : "courses"}/${slug}`);
-      handleFavResponse.then(function (response: any) {
-        setCourseDetails(response.data.data);
-      })
+  const handleFreeCoursesBtn = (course: any) => {
+    if (userStatus.isUserAuthenticated) {
+      handleFreeCourses(course);
     } else {
       Router.push({
         pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
@@ -174,46 +163,6 @@ export default function MonthlySubscriptionCard(theOption: any) {
     }
   }
 
-  const handleFreeCoursesActionBtn = (course: any): any => {
-    if (userStatus.isUserAuthenticated == true) {
-      handleFreeCourses(course);
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-        query: { from: "/course" }
-      })
-    }
-  }
-
-  const handleCartActionBtn = (course: any): any => {
-    setDisabledCartBtns([...disabledCartBtns, course.id]);
-    setIsAddingToCartInProgress(true);
-    setTimeout(() => {
-      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
-    }, 5000);
-    dispatch(setCheckoutType("cart"));
-    if (theOption.liveWebinarDetails?.type == "webinar" && !userStatus.isUserAuthenticated) {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from: Router.asPath.substring(1) }
-      })
-    } else {
-
-      const handleCartResponse: any = handleCart([course], `${course.archive_id ? "webinar" : "courses"}/${slug}`, false);
-      handleCartResponse.then(function (firstresponse: any) {
-        firstresponse.resp.then(function (response: any) {
-          setCourseDetails(response.data.data);
-          dispatch(setCourseDetailsData(response.data.data));
-          dispatch(setCartItems(firstresponse.cartResponse));
-          setIsAddingToCartInProgress(false);
-          setIsCartModalVisible(true);
-          setSpecialBundleCourseId(course.id);
-        })
-      })
-    }
-
-
-  }
   const viewportWidthDetector = () => {
     if (window.innerWidth >= 576) {
       setIsMobileView(false);
@@ -306,7 +255,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
             </>
           }
 
-          {!courseDetails?.subscription_exclude ?
+          {!courseDetails?.subscription_exclude &&
             <>
               {
                 theOption?.liveWebinarDetails?.type == "webinar" && (theOption?.liveWebinarDetails?.webinar_type == 'soon') &&
@@ -379,61 +328,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 أو
               </div>} */}
             </>
-            :
-            <>
-              <div className={styles["monthly-subscription__course-card__course-title"]}>
-                {courseDetailsData?.data?.course_details?.title}
-              </div>
-
-              {isMobileView &&
-                <>
-                  <div
-                    className={styles["monthly-subscription__course-card__actions-btns"]}>
-                    {courseDetails.course_details?.type !== "webinar" &&
-                      <Button onClick={() => {
-                        courseDetails.course_details?.discounted_price == 0 ?
-                          handleFreeCoursesActionBtn(courseDetails.course_details)
-                          :
-                          courseDetails.course_details?.is_in_cart ?
-                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                            :
-                            handleCartActionBtn(courseDetails.course_details);
-                      }} disabled={isAddingToCartInProgress}
-                        className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
-                      >
-                        {isAddingToCartInProgress == true ?
-                          <Spinner animation='border' />
-                          :
-                          courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                            <></>
-                            :
-                            courseDetails.course_details?.discounted_price == 0 ?
-                              <TvIcon color="#222" />
-                              :
-                              <CartIcon color="#222" />
-                        }
-                        {
-                          courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                            <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-                            :
-                            courseDetails.course_details?.discounted_price == 0 ?
-                              <span> ابدأ الآن مجانًا </span>
-                              :
-                              courseDetails.course_details?.is_in_cart ?
-                                <span> اذهب إلى السلة</span>
-                                :
-                                <span> امتلك هذه الدورة </span>
-                        }
-                      </Button>}
-
-
-                  </div>
-                </>
-              }
-            </>
-
           }
-
 
           {/* Price end */}
 
@@ -490,88 +385,19 @@ export default function MonthlySubscriptionCard(theOption: any) {
                   <span>تابع الدورة من اي لابتوب او موبايل</span>
                 </div>
 
-                {courseDetails?.subscription_exclude &&
-                  <>
-                    <div
-                      className={styles["monthly-subscription__course-card__actions-btns"]}>
-                      {courseDetails.course_details?.type !== "webinar" &&
-                        <Button onClick={() => {
-                          courseDetails.course_details?.discounted_price == 0 ?
-                            handleFreeCoursesActionBtn(courseDetails.course_details)
-                            :
-                            courseDetails.course_details?.is_in_cart ?
-                              Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                              :
-                              handleCartActionBtn(courseDetails.course_details);
-                        }} disabled={isAddingToCartInProgress}
-                          className={styles["monthly-subscription__course-card__actions-btns__add-to-cart-btn"]}
-                        >
-                          {isAddingToCartInProgress == true ?
-                            <Spinner animation='border' />
-                            :
-                            courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                              <></>
-                              :
-                              courseDetails.course_details?.discounted_price == 0 ?
-                                <TvIcon color="#222" />
-                                :
-                                <CartIcon color="#222" />
-                          }
-                          {
-                            courseDetails.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                              <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-                              :
-                              courseDetails.course_details?.discounted_price == 0 ?
-                                <span> ابدأ الآن مجانًا </span>
-                                :
-                                courseDetails.course_details?.is_in_cart ?
-                                  <span> اذهب إلى السلة</span>
-                                  :
-                                  <span> امتلك هذه الدورة </span>
-                          }
-                        </Button>}
-
-
-                      <Button onClick={() => {
-                        handleFavActionBtn(courseDetails.course_details);
-                      }}
-                        className={
-                          styles["monthly-subscription__course-card__actions-btns__fav-btn"]
-                        }
-                      >
-                        {
-                          theOption.liveWebinarDetails?.is_in_favorites ?
-                            <AddedToFavouriteIcon color="#222" />
-                            :
-                            <FavouriteIcon color="#222" />
-
-
-                        }
-                      </Button>
-                      <Button
-                        className={
-                          styles["monthly-subscription__course-card__actions-btns__share-btn"]
-                        }
-                      >
-                        <ShareIcon />
-                      </Button>
-                    </div>
-                  </>
-                }
               </>
             }
 
           </div>}
 
-          <div className={styles["monthly-subscription__course-card__subscription-details"]}>
-            شاهد اكثر من 1000 دورة باشتراك واحد  يبدأ
-            <div>
-              من
-              <span> {" "} {subscriptionValues?.sale_label} {" "}</span>
-              {subscriptionValues?.currency_symbol} / ش
-              {/* (تدفع سنوياً) */}
-            </div>
-          </div>
+          {courseDetails?.course_details?.discounted_price !== 0 &&
+            <div className={styles["monthly-subscription__course-card__subscription-details"]}>
+              شاهد اكثر من 1000 دورة باشتراك واحد  يبدأ
+              <div>
+                من
+                <span> {" "} {subscriptionValues?.sale_label} {" "}</span>
+              </div>
+            </div>}
 
 
           {theOption?.liveWebinarDetails?.type !== "webinar" &&
@@ -581,12 +407,24 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 paymentType == "subscription" &&
                 <>
                   <div className={styles["monthly-subscription__subscribe-btn-box"]}>
-                    <Button id="monthly-subscribe-btn" className={`${styles["monthly-subscription__subscribe-btn-box__btn"]} ${theOption?.liveWebinarDetails?.type == "webinar" ? styles["monthly-subscription__secondary"] : ""}`}
-                      onClick={() => handleSubscriptionBtn()}>
-                      <div>
-                        <span>اشترك الآن</span>
-                      </div>
-                    </Button>
+                    {
+                      courseDetails?.course_details?.discounted_price == 0 ?
+                        <Button
+                          className={`${styles["monthly-subscription__subscribe-btn-box__btn"]}`}
+                          onClick={() => handleFreeCoursesBtn(courseDetails?.course_details)}>
+                          <div>
+                            <span>ابدأ الآن مجاناً</span>
+                          </div>
+                        </Button>
+
+                        :
+                        <Button id="monthly-subscribe-btn" className={`${styles["monthly-subscription__subscribe-btn-box__btn"]} ${theOption?.liveWebinarDetails?.type == "webinar" ? styles["monthly-subscription__secondary"] : ""}`}
+                          onClick={() => handleSubscriptionBtn()}>
+                          <div>
+                            <span>اشترك الآن</span>
+                          </div>
+                        </Button>
+                    }
                   </div>
                 </>
               }
@@ -612,14 +450,27 @@ export default function MonthlySubscriptionCard(theOption: any) {
           <div className={styles["monthly-subscription__sticky-top-course-card__checkout-box"]}>
             <div className={styles["monthly-subscription__course-card__actions-btns"]}>
               {courseDetails.course_details?.type !== "webinar" &&
-                <Button
-                  onClick={() => handleSubscriptionBtn()}
-                  className={
-                    styles[
-                    "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
-                    ]}>
-                  اشترك الآن وأبدا التعلم
-                </Button>}
+                (
+                  courseDetails?.course_details?.discounted_price == 0 ?
+                    <Button
+                      className={`${styles["monthly-subscription__subscribe-btn-box__btn"]}`}
+                      onClick={() => handleFreeCoursesBtn(courseDetails?.course_details)}>
+                      <div>
+                        <span>ابدأ الآن مجاناً</span>
+                      </div>
+                    </Button>
+                    :
+                    <Button
+                      onClick={() => handleSubscriptionBtn()}
+                      className={
+                        styles[
+                        "monthly-subscription__course-card__actions-btns__add-to-cart-btn"
+                        ]}>
+                      اشترك الآن وأبدا التعلم
+                    </Button>
+                )
+
+              }
             </div>
 
           </div>

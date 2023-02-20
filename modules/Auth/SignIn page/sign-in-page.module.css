@@ -9,7 +9,6 @@
   margin: 7rem 2.75rem 0 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -355,7 +354,7 @@
     transform: translateY(-50%);
   }
   .sign-in__sign-in-box__sign-in-form-box__email-field-container,
-.sign-in__sign-in-box__sign-in-form-box__password-field-container {
+  .sign-in__sign-in-box__sign-in-form-box__password-field-container {
     box-shadow: 0rem 0.1875rem 1.25rem rgba(0, 0, 0, 0.1019607843);
     border-radius: 1.725rem;
     padding: 1.86875rem 2.73125rem 1.86875rem 1.15rem;
@@ -379,15 +378,15 @@
     height: 3.30625rem;
   }
   .sign-in__sign-in-box__sign-in-form-box__email-field,
-.sign-in__sign-in-box__sign-in-form-box__password-field {
+  .sign-in__sign-in-box__sign-in-form-box__password-field {
     font-size: 2.4449rem;
     margin: 0 3.45rem 0 0;
     width: 100%;
     height: 100%;
   }
   .sign-in__sign-in-box__sign-in-form-box__email-field:active, .sign-in__sign-in-box__sign-in-form-box__email-field:focus,
-.sign-in__sign-in-box__sign-in-form-box__password-field:active,
-.sign-in__sign-in-box__sign-in-form-box__password-field:focus {
+  .sign-in__sign-in-box__sign-in-form-box__password-field:active,
+  .sign-in__sign-in-box__sign-in-form-box__password-field:focus {
     outline: 0 !important;
     border: none !important;
     -webkit-appearance: none;

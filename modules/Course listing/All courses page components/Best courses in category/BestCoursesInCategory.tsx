@@ -105,7 +105,7 @@ export default function BestCoursesInCategory(props: any) {
                       }>
 
                       {
-                        course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
+                        course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
 
                         <div
                           className={
@@ -113,18 +113,18 @@ export default function BestCoursesInCategory(props: any) {
                             "best-courses-in-category__cards-carousel__course-card__category-chip"
                             ]
                           }
-                          style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
+                          style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
                         >
-                          {course.categories[0] !== undefined && course.categories[0].title}
+                          {course?.categories[0] !== undefined && course?.categories[0].title}
                         </div>
                       }
 
-                      <Link href={`/course/${course.slug}`}>
+                      <Link href={`/course/${course?.slug}`}>
                         <a onClick={() => { GAProductClickEventHandler(course, i) }}>
 
                           <Card.Img
                             variant="top"
-                            src={course.image}
+                            src={course?.image}
                             alt="course image"
                             className={styles["best-courses-in-category__cards-carousel__course-card__course-img"]} />
                         </a>
@@ -132,30 +132,30 @@ export default function BestCoursesInCategory(props: any) {
 
                       <Card.Body
                         className={styles["best-courses-in-category__cards-carousel__course-card__card-body"]}>
-                        <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
+                        <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
                           className={styles["best-courses-in-category__cards-carousel__course-card__card-body__card-header"]}>
                           <div
                             className={styles["best-courses-in-category__cards-carousel__course-card__card-body__card-header__trainer-img-box"]}>
-                            <Link href={`/trainer/${course.trainer?.slug}`}>
+                            <Link href={`/trainer/${course?.trainer?.slug}`}>
                               <img loading="lazy"
-                                src={course.trainer?.image}
+                                src={course?.trainer?.image}
                                 alt="trainer image"
                               />
                             </Link>
                           </div>
                           <div
                             className={styles["best-courses-in-category__cards-carousel__course-card__card-body__card-header__course-details"]}>
-                            <Link href={`/course/${course.slug}`}>
+                            <Link href={`/course/${course?.slug}`}>
                               <h3 onClick={() => { GAProductClickEventHandler(course, i) }}
-                                title={course.title}
+                                title={course?.title}
                                 className={styles["best-courses-in-category__cards-carousel__course-card__card-body__card-header__course-details__title"]}>
-                                {course.title}
+                                {course?.title}
                               </h3>
                             </Link>
-                            <Link href={`/trainer/${course.trainer?.slug}`}>
-                              <div title={course.trainer?.name_ar}
+                            <Link href={`/trainer/${course?.trainer?.slug}`}>
+                              <div title={course?.trainer?.name_ar}
                                 className={styles["best-courses-in-category__cards-carousel__course-card__card-body__card-header__course-details__author"]}>
-                                {course.trainer?.name_ar}
+                                {course?.trainer?.name_ar}
                               </div>
                             </Link>
                           </div>

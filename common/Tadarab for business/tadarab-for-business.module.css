@@ -16,7 +16,6 @@
 }
 
 .tadarab-for-business__container__img {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin-right: 5rem;
@@ -90,7 +89,6 @@
   }
   .tadarab-for-business__container {
     width: 73rem;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     border-radius: 6rem;
@@ -101,7 +99,6 @@
     flex-direction: column;
   }
   .tadarab-for-business__container__img {
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 2.5rem;

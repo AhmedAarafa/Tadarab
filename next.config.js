@@ -138,6 +138,10 @@ module.exports = {
       {
         source: "/subscription-plans",
         destination: "/SubscriptionPlans",
+      },
+      {
+        source: "/subscription-invitations",
+        destination: "/SendInvitations",
       }
     ];
   },

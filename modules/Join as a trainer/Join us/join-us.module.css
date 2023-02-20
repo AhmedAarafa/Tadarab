@@ -68,7 +68,6 @@
   padding: 0 1rem 1.2rem 1rem;
 }
 .join-us__cards-carousel__card__card-body div {
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -86,7 +85,6 @@
 }
 
 .join-us__cards-carousel__card__job-history {
-  max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: 95%;
@@ -177,7 +175,7 @@
     margin: 2.625rem 0 0.32865rem 0;
   }
   .join-us__cards-carousel__card__job-title,
-.join-us__cards-carousel__card__job-history {
+  .join-us__cards-carousel__card__job-history {
     font-size: 0.85365rem;
     padding: 0;
   }
@@ -231,7 +229,7 @@
     margin: 3.3375rem 0 0.417855rem 0;
   }
   .join-us__cards-carousel__card__job-title,
-.join-us__cards-carousel__card__job-history {
+  .join-us__cards-carousel__card__job-history {
     font-size: 1.085355rem;
     padding: 0;
   }
@@ -282,7 +280,7 @@
     margin: 6rem 0 0.7512rem 0;
   }
   .join-us__cards-carousel__card__job-title,
-.join-us__cards-carousel__card__job-history {
+  .join-us__cards-carousel__card__job-history {
     font-size: 1.9512rem;
     padding: 0;
   }

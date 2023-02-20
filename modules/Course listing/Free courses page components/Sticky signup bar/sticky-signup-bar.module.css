@@ -47,20 +47,20 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    flex-direction: column;
-    height: -webkit-fit-content;
+    flex-direction: row;
+    gap: 2rem;
     height: -moz-fit-content;
     height: fit-content;
-    padding: 1.5rem 0;
+    padding: 1.5rem;
   }
   .sticky-signup-bar div {
-    font-size: 2.16rem;
+    font-size: 1.92rem;
     margin-top: 1rem;
   }
   .sticky-signup-bar button {
-    width: 60%;
-    margin: 0 0 0 2.4rem;
-    font-size: 2.425rem;
+    width: 40%;
+    font-size: 1.94rem;
+    height: 6rem;
     padding: 1.125rem 2.25rem;
     border-radius: 1.25rem;
   }

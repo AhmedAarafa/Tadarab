@@ -82,64 +82,12 @@ export default function BookDetails(props: any) {
     }, []);
 
 
-    function showMoreHandler() {
-        const showMoreIcon: any = document.querySelector("#book-brief-read-more-icon > svg");
-        const fadeOut: any = document.getElementById("book-brief-fadeout");
-        const briefAboutBook: any = document.getElementById("brief-about-book");
-
-        if (showMore == true) {
-            showMoreIcon ? showMoreIcon.style.cssText = `transform:rotate(180deg) ; transition:all 0.4s ease` : null;
-            fadeOut ? fadeOut.style.cssText = "display:none" : null;
-            briefAboutBook ? briefAboutBook.style.cssText = `height:fit-content ; overflow:visible ` : null;
-            setShowMore(!showMore);
-        } else {
-            showMoreIcon ? showMoreIcon.style.cssText = `transform:none ; transition:all 0.4s ease` : null;
-            fadeOut ? fadeOut.style.cssText = "display:block" : null;
-            if (screen.width <= 576) {
-                briefAboutBook ? briefAboutBook.style.cssText = `height:36rem ; overflow:hidden ` : null;
-            } else {
-                briefAboutBook ? briefAboutBook.style.cssText = `height:16rem ; overflow:hidden ` : null;
-            }
-            setShowMore(!showMore);
-        }
-
-    }
-
     const ebookDownloadHandler = () => {
         Router.push({
             pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
             query: { from: "ebook" }
         })
     }
-
-    useEffect(() => {
-        const showMoreIcon: any = document.querySelector("#book-brief-read-more-icon > svg");
-        const fadeOut: any = document.getElementById("book-brief-fadeout");
-        const briefAboutBook: any = document.getElementById("brief-about-book");
-        let el: any = document.getElementById('book-brief');
-        let divHeight = el?.offsetHeight;
-        let lines = Math.ceil(divHeight / 24);
-
-        if (lines > 9) {
-            setIsTooMuchContent(true);
-            if (showMore == false) {
-                showMoreIcon ? showMoreIcon.style.cssText = `transform:rotate(180deg) ; transition:all 0.4s ease` : null;
-                fadeOut ? fadeOut.style.cssText = "display:none" : null;
-                briefAboutBook ? briefAboutBook.style.cssText = `height:fit-content ; overflow:visible ` : null;
-            } else {
-                showMoreIcon ? showMoreIcon.style.cssText = `transform:none ; transition:all 0.4s ease` : null;
-                fadeOut ? fadeOut.style.cssText = "display:block" : null;
-                if (screen.width < 576) {
-                    briefAboutBook ? briefAboutBook.style.cssText = `height:36rem ; overflow:hidden ` : null;
-                } else {
-                    briefAboutBook ? briefAboutBook.style.cssText = `height:16rem ; overflow:hidden ` : null;
-                }
-            }
-        } else {
-            setIsTooMuchContent(false);
-            briefAboutBook ? briefAboutBook.style.cssText = `height:fit-content ; overflow:visible ` : null;
-        }
-    }, [props.data])
 
     return (
         <>
@@ -200,31 +148,15 @@ export default function BookDetails(props: any) {
 
                         </div>
 
-                        <div className="d-flex d-sm-none">
-                            <TadarabUnlimited />
-                        </div>
-
-                        <WhatYouWillLearn data={props?.data} />
+                        <WhatYouWillLearn data={props?.data} />my head is about to explo
 
                         <div id="brief-about-book" className={styles["book-details__book-info__book-brief"]}>
                             <div className={styles["book-details__book-info__book-brief__title"]}>نبذة عن الكتيب</div>
                             <p id="book-brief" className={styles["book-details__book-info__book-brief__title__para"]}
-                                dangerouslySetInnerHTML={{ __html: props?.data?.description }}></p>
-                            {isTooMuchContent &&
-                                <>
-                                    <div className={styles["book-details__book-info__book-brief__brief__read-more"]} onClick={showMoreHandler}>
+                                dangerouslySetInnerHTML={{ __html: props?.data?.description }}>
+                            </p>
+                            {isTooMuchContent && <input type="checkbox" className={styles["book-details__book-info__expand-collapse-btn"]} />}
 
-                                        <span>{showMore ? "اقرأ المزيد" : "اقرأ أقل"}</span>
-
-                                        <span id="book-brief-read-more-icon">
-
-                                            <DropDownIcon color="#af151f" />
-                                        </span>
-                                    </div>
-                                </>
-                            }
-
-                            {isTooMuchContent && <div id="book-brief-fadeout" className={styles["book-details__book-info__book-brief__brief--fadeout-effect"]}></div>}
                         </div>
 
                         <div className={styles["mobile-download-bar"]}>

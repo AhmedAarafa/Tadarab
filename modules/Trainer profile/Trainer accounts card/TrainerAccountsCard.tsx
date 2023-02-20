@@ -22,15 +22,7 @@ export default function TrainerAccountsCard() {
 
     const handleSubscriptionBtn = () => {
         dispatch(setCheckoutType("subscription"));
-        if (userStatus.isUserAuthenticated) {
-
-            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-        } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-                query: { from_subscription: `checkout/payment/?checkout_type=subscription` }
-            })
-        }
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
     }
 
     return (
@@ -50,7 +42,8 @@ export default function TrainerAccountsCard() {
                     trainerProfile.social_link_youtube == "" &&
                     <div className={styles["trainer-accounts-card__no-accounts"]}>
                         لا يوجد حسابات  لهذا المدرب
-                    </div>}
+                    </div>
+                }
                 <div className={styles["trainer-accounts-card__accounts-btns"]}>
                     {trainerProfile.social_link_facebook !== ""
                         &&
@@ -97,7 +90,7 @@ export default function TrainerAccountsCard() {
 
                 <div className={styles["trainer-accounts-card__subscription-btn"]}>
                     <Button onClick={() => handleSubscriptionBtn()}>
-                        اشترك في تدرب بلا حدود
+                        اشترك الاّن
                     </Button>
                     <div>
                         <SubscriptionValues />

@@ -2,26 +2,21 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Button, Card, Pagination } from "react-bootstrap";
+import { Row, Col, Spinner, Card, Pagination } from "react-bootstrap";
 import styles from "./training-courses.module.css";
-import { CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";
 import Link from 'next/link';
-import Router from "next/router";
-import { setCheckoutType } from "configurations/redux/actions/checkoutType";
-import { setCartItems } from "configurations/redux/actions/cartItems";
-import { handleFav } from "modules/_Shared/utils/handleFav";
-import { handleCart } from "modules/_Shared/utils/handleCart";
 import { useRouter } from 'next/router';
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import Image from 'next/image';
-import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function TrainingCourses(props: any) {
     const [currentPage, setCurrentPage] = useState("1");
     const [pageNumber, setPageNumber] = useState(1);
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
+    const [sectionLoader, setSectionLoader] = useState(false);
     const [pagesArray, setPagesArray] = useState<any>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const dispatch = useDispatch();
@@ -67,7 +62,7 @@ export default function TrainingCourses(props: any) {
         setFilterSidebarShow(status);
     }
     const handleFilters = (filterType: any, text: any, value: any, elementId: any): any => {
- 
+
         let checkedElement: any = document.getElementById(elementId);
 
         switch (filterType) {
@@ -75,14 +70,14 @@ export default function TrainingCourses(props: any) {
                 //Update UI
                 setFilters({ ...filters, orderby: text });
                 //Arrange or re-render the courses
-            
+
                 break;
             case "level":
                 //Update UI
                 setFilters({ ...filters, level: text });
                 //Filter the courses
                 setFilteredCourses(props.data.courses.filter(function (course: any) {
-                    return course.level == value;
+                    return course?.level == value;
                 })
                 );
                 break;
@@ -92,7 +87,7 @@ export default function TrainingCourses(props: any) {
                 //Filter the courses
                 if (checkedElement == null || (checkedElement != null && checkedElement.checked)) {//if checking a filter for the first time
                     setFilteredCourses(props.data.courses.filter(function (course: any) {
-                        let result = course.categories.filter((o: any) => o.id == value);
+                        let result = course?.categories.filter((o: any) => o.id == value);
 
                         return result.length > 0;
                     })
@@ -109,10 +104,10 @@ export default function TrainingCourses(props: any) {
                 //Filter the courses
                 setFilteredCourses(props.data.courses.filter(function (course: any) {
                     if (value == "free") {
-                        return course.discounted_price == 0;
+                        return course?.discounted_price == 0;
                     }
                     else if (value == "paid") {
-                        return course.discounted_price > 0;
+                        return course?.discounted_price > 0;
                     }
                 })
                 );
@@ -132,8 +127,10 @@ export default function TrainingCourses(props: any) {
     });
 
     const handlePageClick = (pgNo: any) => {
-        toggleLoader("show");
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // toggleLoader("show");
+        setSectionLoader(true);
+        let TrainingCoursesSection: any = document.getElementById("category-training-courses");
+        window.scrollTo({ top: (TrainingCoursesSection?.offsetTop - 110), behavior: "smooth" });
         setCurrentPage(pgNo);
         setPagesArray([]);
         let startIndex: any = 0, endIndex: any = 0;
@@ -142,6 +139,7 @@ export default function TrainingCourses(props: any) {
             .get(`categories/${slug}/?page=${pgNo}&limit=12`)
             .then(function (response: any) {
                 console.log(response.data);
+                setSectionLoader(false);
                 setFilteredCourses(response?.data);
                 let totalPages = response?.data.pagination.pages;
 
@@ -177,7 +175,8 @@ export default function TrainingCourses(props: any) {
 
     return (
         <>
-            <Row className={styles["training-courses"]}>
+
+            <Row className={styles["training-courses"]} id="category-training-courses">
 
                 <Col xs={12} className={styles["training-courses__title-col"]}>
                     <div className="d-flex align-items-center justify-content-between">
@@ -188,147 +187,165 @@ export default function TrainingCourses(props: any) {
                     </div>
                 </Col>
 
-                <Col xs={12} className={styles["training-courses__filtered-courses"]}>
-                    {
-                        filteredCourses?.data?.courses?.map((course: any, i: number) => {
-                            return (
+                {
 
-                                <Card className={styles["training-courses__course-card"]} key={i}
-                                >
-                                    {course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
-                                        <div
-                                            className={
-                                                styles[
-                                                "training-courses__course-card__category-chip"
-                                                ]
-                                            }
-                                            style={{ backgroundColor: `${(props?.data?.color)}` }}
-                                        >
-                                            {props?.data?.title}
-                                        </div>}
-                                    <Link href={`/course/${course.slug}`}>
-                                        <a onClick={() => { GAProductClickEventHandler(course, i) }}>
-
-                                            <Card.Img
-                                                variant="top"
-                                                src={course?.image}
-                                                alt="course image"
-                                                className={
-                                                    styles[
-                                                    "training-courses__course-card__course-img"
-                                                    ]
-                                                }
-                                            />
-                                        </a>
-                                    </Link>
-                                    <Card.Body
-                                        className={
-                                            styles[
-                                            "training-courses__course-card__card-body"
-                                            ]
-                                        }
-                                    >
-                                        <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
-                                            className={
-                                                styles[
-                                                "training-courses__course-card__card-body__card-header"
-                                                ]
-                                            }
-                                        >
-                                            <div
-                                                className={
-                                                    styles[
-                                                    "training-courses__course-card__card-body__card-header__trainer-img-box"
-                                                    ]
-                                                }
-                                            >
-                                                <Link href={`/trainer/${course.trainer?.slug}`}>
-
-                                                    <img loading="lazy"
-                                                        src={course.trainer?.image}
-                                                        alt={course.trainer?.name_ar}
-                                                    />
-                                                </Link>
-                                            </div>
-                                            <div
-                                                className={
-                                                    styles[
-                                                    "training-courses__course-card__card-body__card-header__course-details"
-                                                    ]
-                                                }
-                                            >
-                                                <Link href={`/course/${course.slug}`}>
-                                                    <div onClick={() => { GAProductClickEventHandler(course, i) }}
-                                                        className={
-                                                            styles[
-                                                            "training-courses__course-card__card-body__card-header__course-details__title"
-                                                            ]
-                                                        }
-                                                        title={course.title}
-                                                    >
-                                                        {course.title}
-                                                    </div>
-                                                </Link>
-                                                <Link href={`/trainer/${course.trainer?.slug}`}>
-
+                    <>
+                        <Col xs={12} className={styles["training-courses__filtered-courses"]}>
+                            {
+                                filteredCourses?.data?.courses?.map((course: any, i: number) => {
+                                    return (
+                                        !sectionLoader ?
+                                            <Card className={styles["training-courses__course-card"]} key={i}>
+                                                {course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
                                                     <div
                                                         className={
                                                             styles[
-                                                            "training-courses__course-card__card-body__card-header__course-details__author"
+                                                            "training-courses__course-card__category-chip"
+                                                            ]
+                                                        }
+                                                        style={{ backgroundColor: `${(props?.data?.color)}` }}
+                                                    >
+                                                        {props?.data?.title}
+                                                    </div>}
+                                                <Link href={`/course/${course?.slug}`}>
+                                                    <a onClick={() => { GAProductClickEventHandler(course, i) }}>
+
+                                                        <Card.Img
+                                                            variant="top"
+                                                            src={course?.image}
+                                                            alt="course image"
+                                                            className={
+                                                                styles[
+                                                                "training-courses__course-card__course-img"
+                                                                ]
+                                                            }
+                                                        />
+                                                    </a>
+                                                </Link>
+                                                <Card.Body
+                                                    className={
+                                                        styles[
+                                                        "training-courses__course-card__card-body"
+                                                        ]
+                                                    }
+                                                >
+                                                    <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
+                                                        className={
+                                                            styles[
+                                                            "training-courses__course-card__card-body__card-header"
                                                             ]
                                                         }
                                                     >
-                                                        {course.trainer?.name_ar}
+                                                        <div
+                                                            className={
+                                                                styles[
+                                                                "training-courses__course-card__card-body__card-header__trainer-img-box"
+                                                                ]
+                                                            }
+                                                        >
+                                                            <Link href={`/trainer/${course?.trainer?.slug}`}>
+
+                                                                <img loading="lazy"
+                                                                    src={course?.trainer?.image}
+                                                                    alt={course?.trainer?.name_ar}
+                                                                />
+                                                            </Link>
+                                                        </div>
+                                                        <div
+                                                            className={
+                                                                styles[
+                                                                "training-courses__course-card__card-body__card-header__course-details"
+                                                                ]
+                                                            }
+                                                        >
+                                                            <Link href={`/course/${course?.slug}`}>
+                                                                <div onClick={() => { GAProductClickEventHandler(course, i) }}
+                                                                    className={
+                                                                        styles[
+                                                                        "training-courses__course-card__card-body__card-header__course-details__title"
+                                                                        ]
+                                                                    }
+                                                                    title={course?.title}
+                                                                >
+                                                                    {course?.title}
+                                                                </div>
+                                                            </Link>
+                                                            <Link href={`/trainer/${course?.trainer?.slug}`}>
+
+                                                                <div
+                                                                    className={
+                                                                        styles[
+                                                                        "training-courses__course-card__card-body__card-header__course-details__author"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    {course?.trainer?.name_ar}
+                                                                </div>
+                                                            </Link>
+                                                        </div>
                                                     </div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            )
-                        })
-                    }
-                </Col>
-
-                <Col xs={12} className={styles["training-courses__pagination"]}>
-
-                    {
-                        filteredCourses?.pagination?.count > 12 && <Pagination>
-                            <Pagination.Prev
-                                onClick={() => {
-                                    setPageNumber(filteredCourses?.pagination?.current - 1);
-                                    handlePageClick(filteredCourses?.pagination?.current - 1)
-                                }}
-                                className={`${currentPage == "1" && styles["disabled"]}`} />
-
-                            {
-                                pagesArray.map((page: any, index: any) => {
-                                    return (
-                                        page <= filteredCourses?.pagination?.pages &&
-                                        page >= 1 &&
-                                        <Pagination.Item key={index}
-                                            active={currentPage == page}
-                                            onClick={() => {
-                                                handlePageClick(page);
-                                            }}>
-                                            {page}
-                                        </Pagination.Item>
+                                                </Card.Body>
+                                            </Card>
+                                            :
+                                            <SkeletonTheme width="100%" height="100%" baseColor={themeState == 'light' ? "#e3e3e3" : "#232032"} highlightColor={themeState == 'light' ? "#eee" : "#332f49"} >
+                                                    <div className={styles["training-courses__course-card--skeleton"]}>
+                                                        <Skeleton />
+                                                        <div className={styles['training-courses__course-card__card-body--skeleton']}>
+                                                            <Skeleton />
+                                                        </div>
+                                                    </div>
+                                            </SkeletonTheme>
                                     )
                                 })
                             }
+                        </Col>
 
-                            <Pagination.Next
-                                onClick={() => {
-                                    setPageNumber(filteredCourses?.pagination?.current + 1);
-                                    handlePageClick(filteredCourses?.pagination?.current + 1)
-                                }}
-                                className={`${currentPage == filteredCourses?.pagination?.pages && styles["disabled"]}`} />
-                        </Pagination>
-                    }
+                        <Col xs={12} className={styles["training-courses__pagination"]}>
 
-                </Col>
+                            {
+                                filteredCourses?.pagination?.count > 12 && <Pagination>
+                                    <Pagination.Prev
+                                        onClick={() => {
+                                            setPageNumber(filteredCourses?.pagination?.current - 1);
+                                            handlePageClick(filteredCourses?.pagination?.current - 1)
+                                        }}
+                                        className={`${currentPage == "1" && styles["disabled"]}`} />
+
+                                    {
+                                        pagesArray.map((page: any, index: any) => {
+                                            return (
+                                                page <= filteredCourses?.pagination?.pages &&
+                                                page >= 1 &&
+                                                <Pagination.Item key={index}
+                                                    active={currentPage == page}
+                                                    onClick={() => {
+                                                        handlePageClick(page);
+                                                    }}>
+                                                    {page}
+                                                </Pagination.Item>
+                                            )
+                                        })
+                                    }
+
+                                    <Pagination.Next
+                                        onClick={() => {
+                                            setPageNumber(filteredCourses?.pagination?.current + 1);
+                                            handlePageClick(filteredCourses?.pagination?.current + 1)
+                                        }}
+                                        className={`${currentPage == filteredCourses?.pagination?.pages && styles["disabled"]}`} />
+                                </Pagination>
+                            }
+
+                        </Col>
+                    </>
+
+                }
+
 
             </Row>
+
+
+
 
         </>
     )

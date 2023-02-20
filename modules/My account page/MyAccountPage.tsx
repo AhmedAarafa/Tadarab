@@ -534,11 +534,11 @@ export default function MyAccountPage() {
                   </div>
                 }
 
-                <Link href={`/course/${course.slug}`}>
+                <Link href={`/course/${course?.slug}`}>
                   <a onClick={() => { GAProductClickEventHandler(course, i) }}>
                     <Card.Img
                       variant="top"
-                      src={course.image}
+                      src={course?.image}
                       alt="course image"
                       className={
                         styles[
@@ -571,9 +571,9 @@ export default function MyAccountPage() {
                         ]
                       }
                     >
-                      <Link href={`/trainer/${course.trainer?.slug}`}>
+                      <Link href={`/trainer/${course?.trainer?.slug}`}>
                         <img loading="lazy"
-                          src={course.trainer?.image}
+                          src={course?.trainer?.image}
                           alt="trainer image"
                         />
                       </Link>
@@ -585,29 +585,29 @@ export default function MyAccountPage() {
                         ]
                       }
                     >
-                      <Link href={`/course/${course.slug}`}>
+                      <Link href={`/course/${course?.slug}`}>
                         <div onClick={() => { GAProductClickEventHandler(course, i) }}
-                          title={course.title}
+                          title={course?.title}
                           className={
                             styles[
                             "my-account__course-card__card-body__card-header__course-details__title"
                             ]
                           }
                         >
-                          {course.title}
+                          {course?.title}
                         </div>
                       </Link>
 
-                      <Link href={`/trainer/${course.trainer?.slug}`}>
+                      <Link href={`/trainer/${course?.trainer?.slug}`}>
 
-                        <div title={course.trainer?.name_ar}
+                        <div title={course?.trainer?.name_ar}
                           className={
                             styles[
                             "my-account__course-card__card-body__card-header__course-details__author"
                             ]
                           }
                         >
-                          {course.trainer?.name_ar}
+                          {course?.trainer?.name_ar}
                         </div>
                       </Link>
 

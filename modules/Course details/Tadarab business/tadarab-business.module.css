@@ -94,7 +94,6 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
     background-image: url("/images/bgmobile.png");

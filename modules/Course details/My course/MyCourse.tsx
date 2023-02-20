@@ -59,7 +59,9 @@ export default function MyCourse(props: any) {
 
     useEffect(() => {
         setCourseDetails(courseDetailsData?.data);
-        setProgressPercentage((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0)
+        setProgressPercentage((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0);
+
+        courseDetailsData?.data && toggleLoader("hide");
         // return () => {
         //     dispatch(setMyCourseNavigator("curriculum"));
         //   }

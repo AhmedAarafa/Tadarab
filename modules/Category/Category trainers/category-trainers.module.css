@@ -6,7 +6,6 @@
   font-size: 1.75rem;
   font-weight: 800;
   color: var(--dark-black);
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin-right: 1rem;
@@ -59,7 +58,6 @@
 }
 
 .category-trainer__cards-carousel__card__job-history {
-  max-height: -webkit-fit-content;
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: 95%;
@@ -118,7 +116,7 @@
     margin: 2.375rem 0 0.29735rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
-.category-trainer__cards-carousel__card__job-history {
+  .category-trainer__cards-carousel__card__job-history {
     font-size: 0.77235rem;
     padding: 0;
   }
@@ -171,7 +169,7 @@
     margin: 3.3375rem 0 0.417855rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
-.category-trainer__cards-carousel__card__job-history {
+  .category-trainer__cards-carousel__card__job-history {
     font-size: 1.085355rem;
     padding: 0;
   }
@@ -222,7 +220,7 @@
     margin: 6.125rem 0 0.76685rem 0;
   }
   .category-trainer__cards-carousel__card__job-title,
-.category-trainer__cards-carousel__card__job-history {
+  .category-trainer__cards-carousel__card__job-history {
     font-size: 1.99185rem;
     padding: 0;
   }

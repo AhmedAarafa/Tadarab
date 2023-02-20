@@ -1,7 +1,8 @@
 Version 2.6.5 (08th Feb 2023)
 1) Changes in 'Join as a trainer' page
 2) Fix free courses behavior (return the watch free CTA)
-3) Minor fixes.
+3) Courses tpe filter page trainers slugs issue fixed.
+4) Minor fixes.
 
 Version 2.6.4 (07th Feb 2023)
 1) Change copyright year.

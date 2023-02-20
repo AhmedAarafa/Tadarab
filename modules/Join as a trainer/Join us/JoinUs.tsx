@@ -41,7 +41,7 @@ return (
           مدربينا
         </div>
       </div>
-      <div className={styles["join-us__brief"]}>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما لتدريب افراد شركتك</div>
+      {/* <div className={styles["join-us__brief"]}>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما لتدريب افراد شركتك</div> */}
     </Col>
 
     <Col xs={12} className={styles["join-us__cards-carousel"]}>

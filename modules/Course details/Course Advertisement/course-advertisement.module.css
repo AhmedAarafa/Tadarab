@@ -34,7 +34,6 @@
 }
 
 .course-ad__course-img {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   position: relative;
@@ -81,7 +80,6 @@
   position: absolute;
   bottom: 7%;
   right: 25%;
-  height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }

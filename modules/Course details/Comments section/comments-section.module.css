@@ -297,7 +297,7 @@
     background-color: transparent;
   }
   .comments-section__input-field-container__btn,
-.comments-section__input-field-container__btn--dimmed {
+  .comments-section__input-field-container__btn--dimmed {
     box-shadow: none !important;
     text-transform: none;
     font-size: 0.97rem;
@@ -320,29 +320,29 @@
     right: 2.75rem;
   }
   .comments-section__input-field-container__btn:hover,
-.comments-section__input-field-container__btn--dimmed:hover {
+  .comments-section__input-field-container__btn--dimmed:hover {
     box-shadow: none;
   }
   .comments-section__input-field-container__btn:active,
-.comments-section__input-field-container__btn--dimmed:active {
+  .comments-section__input-field-container__btn--dimmed:active {
     box-shadow: none;
   }
   .comments-section__input-field-container__btn:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
-.comments-section__input-field-container__btn--dimmed:hover,
-.comments-section__input-field-container__btn--dimmed:active),
-.comments-section__input-field-container__btn--dimmed:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
-.comments-section__input-field-container__btn--dimmed:hover,
-.comments-section__input-field-container__btn--dimmed:active) {
+  .comments-section__input-field-container__btn--dimmed:hover,
+  .comments-section__input-field-container__btn--dimmed:active),
+  .comments-section__input-field-container__btn--dimmed:is(.comments-section__input-field-container__btn:hover, .comments-section__input-field-container__btn:active,
+  .comments-section__input-field-container__btn--dimmed:hover,
+  .comments-section__input-field-container__btn--dimmed:active) {
     background-color: #9d151e !important;
     border: 0.125rem solid #9d151e !important;
   }
   .comments-section__input-field-container__btn span,
-.comments-section__input-field-container__btn--dimmed span {
+  .comments-section__input-field-container__btn--dimmed span {
     font-size: 2.0636rem;
     margin-left: 1.375rem;
   }
   .comments-section__input-field-container__btn svg,
-.comments-section__input-field-container__btn--dimmed svg {
+  .comments-section__input-field-container__btn--dimmed svg {
     width: 2.3rem;
     height: 2.3rem;
     margin-top: 0.3rem;
@@ -444,7 +444,7 @@
     margin-top: 0.6rem;
   }
   .comments-section__comments-tree__comment-box__comment-details__reactions-box__likes,
-.comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
+  .comments-section__comments-tree__comment-box__comment-details__reactions-box__replies {
     display: flex;
     align-items: center;
     justify-content: unset;

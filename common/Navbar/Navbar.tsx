@@ -115,11 +115,15 @@ function Navbar(props: any) {
         e.target.id == "Path_12841"
       ) {
         const discoverSidebar: any = document.getElementById("offcanvasNavbar2");
-        discoverSidebar.style.cssText = `
+        discoverSidebar ?
+
+          discoverSidebar.style.cssText = `
         transform: translateX(100%);
         visibility:hidden;
         transition: all 0.3s ease-in-out;
         `
+          :
+          null;
         // return setExpanded(false);
       }
 
@@ -226,29 +230,11 @@ function Navbar(props: any) {
 
 
   useEffect(() => {
-    let localStorageItems: any = localStorage.getItem("cart");
-
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined) {
-
-      axiosInstance
-        .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
-        .then(function (response: any) {
-          dispatch(setCartItems(response?.data?.data));
-          setLocalStateCartItems(cartItems?.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-    } else {
-
-      setLocalStateCartItems(null);
-      // dispatch(setCartItems(null));
-    }
 
     axiosInstance
       .get(`categories`)
       .then(function (response: any) {
+        console.log('response :', response);
         setCategoriesList(response?.data?.data?.categories);
       })
       .catch(function (error) {
@@ -268,30 +254,6 @@ function Navbar(props: any) {
       }
     }
   }, [courseDetailsData, myCourseNavigator, router.asPath])
-
-
-  useEffect(() => {
-    setLocalStateCartItems(cartItems?.data);
-
-    let localStorageItems: any = localStorage.getItem("cart");
-
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
-      cartItems?.data !== undefined && cartItems?.data !== "undefined") {
-
-      axiosInstance
-        .get(`courses/?course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)
-        .then(function (response: any) {
-          setLocalStateCartItems(response?.data?.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-
-    } else {
-      setLocalStateCartItems([]);
-    }
-
-  }, [cartItems]);
 
   useResize((
     () => {
@@ -326,7 +288,6 @@ function Navbar(props: any) {
         });
         const searchBoxOverlay: any = document.getElementById("search-box-overlay");
         searchBoxOverlay.style.cssText = `display:none;`;
-
       }
     }
   }
@@ -740,8 +701,8 @@ function Navbar(props: any) {
                 أنظمة الاشتراك
               </Button>
             </div>}
-          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-in">
-            <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
+          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-up">
+            <Button className={styles["navbar__sign-in-btn"]}>انشاء حساب</Button>
           </Link>}
 
           {!paymentStep && <div className={styles["navbar_responsive-search-icon"]}>
@@ -809,8 +770,8 @@ function Navbar(props: any) {
         </Nav>
 
         {paymentStep &&
-          <div className={styles["navbar__return-to-plans-icon"]} onClick={()=>{Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`)}}>
-              <CloseIcon color='#777' />
+          <div className={styles["navbar__return-to-plans-icon"]} onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}>
+            <CloseIcon color='#777' />
           </div>
         }
 
