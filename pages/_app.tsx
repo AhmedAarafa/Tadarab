@@ -24,6 +24,7 @@ const NotificationBar = dynamic(() => import("common/Notification bar/Notificati
 function MyApp({ Component, pageProps }: AppProps) {
   // const dispatch = useDispatch();
 
+  const [isChatBubbleAppeared, setisChatBubbleAppeared] = useState(false);
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
     history.scrollRestoration = 'auto';
@@ -34,15 +35,27 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-   let chatBubble:any =  document.querySelector('[data-testid="bubble_iframe"]');
-   console.log("chatBubble",chatBubble);
-   chatBubble ? chatBubble.style.cssText = `
-    bottom: 50px !important;
-    right: 0 !important;
-    left: 12px !important;
-   ` : null;
+
+    if (isChatBubbleAppeared == false) {
+
+      setInterval(() => {
+        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+        if(chatBubble){
+          
+          console.log("chatBubble", chatBubble);
+          chatBubble ? chatBubble.style.cssText = `
+           bottom: 50px !important;
+           right: 0 !important;
+           left: 12px !important;
+          ` : null;
+
+          setisChatBubbleAppeared(true);
+        }
+
+      }, 500);
+    }
   },)
-  
+
 
 
   let canonical = "https://www.tadarab.com";
