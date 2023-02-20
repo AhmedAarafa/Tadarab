@@ -37,9 +37,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
 
      let myInterval = setInterval(() => {
-        // let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
-        let chatBubble: any = document.getElementsByTagName('fb_dialog_advanced')[0];
-        if(chatBubble){
+        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+        let chatBubbleBox: any = document.getElementsByTagName('fb_dialog_advanced')[0];
+        if(chatBubbleBox){
           console.log("chatBubble", chatBubble);
           chatBubble ? chatBubble.style.cssText = `
           background: none ;
