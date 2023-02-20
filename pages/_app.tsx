@@ -34,28 +34,28 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, []);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (isChatBubbleAppeared == false) {
+  //   if (isChatBubbleAppeared == false) {
 
-      setInterval(() => {
-        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
-        if(chatBubble){
+  //     setInterval(() => {
+  //       let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
+  //       if(chatBubble){
           
-          console.log("chatBubble", chatBubble);
-          chatBubble ? chatBubble.style.cssText = `
-          position: relative !important;
-           bottom: 50px !important;
-           right: 0 !important;
-           left: 12px !important;
-          ` : null;
+  //         console.log("chatBubble", chatBubble);
+  //         chatBubble ? chatBubble.style.cssText = `
+  //         position: relative !important;
+  //          bottom: 50px !important;
+  //          right: 0 !important;
+  //          left: 12px !important;
+  //         ` : null;
 
-          setisChatBubbleAppeared(true);
-        }
+  //         setisChatBubbleAppeared(true);
+  //       }
 
-      }, 500);
-    }
-  },)
+  //     }, 500);
+  //   }
+  // },)
 
 
 
