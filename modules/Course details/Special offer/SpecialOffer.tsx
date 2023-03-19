@@ -48,7 +48,7 @@ export default function SpecialOffer(props: any) {
         specialBundleData?.courses?.forEach((c: any, i: number) => {
             coursesIds += `${c.id.toString()}|`;
         });
-        const regex = new RegExp(`/${coursesIds.slice(0, -1)}/g`);
+        const regex = new RegExp(`/${coursesIds?.slice(0, -1)}/g`);
 
         if (regex.test(localStorageItems)) {
             setDisabled(true);

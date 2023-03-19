@@ -38,7 +38,7 @@ export default function TrainerInfo() {
             <Link href={`/trainer/${courseDetailsData.data?.course_details?.trainer?.slug}`}>
 
               <div className={styles["trainer-info-section__trainer-info__name"]}>
-                {courseDetailsData.data?.course_details?.trainer.name_ar}
+                {courseDetailsData.data?.course_details?.trainer?.name_ar}
               </div>
             </Link>
             <div
@@ -53,7 +53,7 @@ export default function TrainerInfo() {
             >
               <CoursesNumberIcon color="#b4b4b4" />
 
-              <span> {courseDetailsData.data?.course_details?.trainer.courses_count} </span>
+              <span> {courseDetailsData.data?.course_details?.trainer?.courses_count} </span>
               دورات
               <span
                 className={
@@ -67,13 +67,13 @@ export default function TrainerInfo() {
               </span>
               <LearnersIcon color="#b4b4b4" />
 
-              <span> {courseDetailsData.data?.course_details?.trainer.buyers_count} </span>
+              <span> {courseDetailsData.data?.course_details?.trainer?.buyers_count} </span>
               متعلم
             </div>
           </div>
         </div>
         <p className={styles["trainer-info-section__para"]} 
-        dangerouslySetInnerHTML={{__html: courseDetailsData.data?.course_details?.trainer.bio}}
+        dangerouslySetInnerHTML={{__html: courseDetailsData.data?.course_details?.trainer?.bio}}
         >
         </p>
 

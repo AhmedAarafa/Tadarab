@@ -92,7 +92,7 @@ export default function CourseAdvertisement(theOption: any) {
         }
         <ul className={styles["course-ad__list"]}>
           {
-            courseDetailsData?.data?.course_details?.categories.slice(0, 3).map((cat: any, i: number) => {
+            courseDetailsData?.data?.course_details?.categories?.slice(0, 3).map((cat: any, i: number) => {
               return (
                 <Link key={i} href={`/topic/${cat.slug}`}>
                   <li >{cat?.title}</li>

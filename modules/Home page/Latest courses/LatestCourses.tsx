@@ -11,13 +11,8 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ChevronLeftIcon, LearnersIcon, TickIcon, CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
-import { setCartItems } from "configurations/redux/actions/cartItems";
 import withAuth from "configurations/auth guard/AuthGuard";
-import { handleFav } from "modules/_Shared/utils/handleFav";
-import { handleCart } from "modules/_Shared/utils/handleCart";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
-import { setCheckoutType } from "configurations/redux/actions/checkoutType";
-import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import AddToCartPopup from "common/Add to cart popup/AddToCartPopup";
 
 function LatestCourses() {

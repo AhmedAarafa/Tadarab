@@ -85,6 +85,7 @@ export default function MyCourse(props: any) {
         }
 
     }, []);
+    
 
     return (
         <>
@@ -104,6 +105,7 @@ export default function MyCourse(props: any) {
                                 </div>
 
                                 { /** Course Lesions **/}
+                                {/* {console.log("my course comp.")} */}
                                 <TPlayerPaidPlayList />
                             </div>
                         </Col>

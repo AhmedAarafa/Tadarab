@@ -85,11 +85,11 @@ a {
 }
 
 
-iframe [data-testid=bubble_iframe]{
-  bottom: 50px !important;
-  right: 0 !important;
-  left: 12px !important;
-}
+// iframe [data-testid=bubble_iframe]{
+//   bottom: 50px !important;
+//   right: 0 !important;
+//   left: 12px !important;
+// }
 
 
 /**************************/
@@ -445,12 +445,12 @@ iframe [data-testid=bubble_iframe]{
 /*.tadarab-player .video-js.vjs-fluid{height:450px !important;}*/
 @keyframes fade-in-up {
   0% {
-    opacity: 0 !important;
+    opacity: 0;
   }
 
   100% {
-    transform: translateX(0) !important;
-    opacity: 1 !important;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
@@ -695,52 +695,52 @@ a.lesson.free-lesson:hover {
 
 .tadarab-player .tplayer,
 .tadarab-player .tlist {
-  display: inline-block !important;
-  background: #FFF !important;
+  display: inline-block;
+  background: #FFF;
 }
 
 .tadarab-player .tlist {
-  width: 40% !important;
+  width: 40%;
 }
 
 .tplayer-dialog p {
-  padding: 0px !important;
-  margin: 0px !important;
+  padding: 0px;
+  margin: 0px;
 }
 
 .video-btn-text {
-  font-size: 14px !important;
-  margin: 0px !important;
-  padding: 0px !important;
-  color: #ffffff !important;
-  text-align: center !important;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+  color: #ffffff;
+  text-align: center;
 }
 
 .video-js .vjs-dock-title {
-  color: red !important;
-  font-size: 1.5em !important;
+  color: red;
+  font-size: 1.5em;
 }
 
 .video-js .vjs-dock-description {
-  color: yellow !important;
-  font-size: 1.0em !important;
+  color: yellow;
+  font-size: 1.0em;
 }
 
 .tplay-timeload {
-  position: absolute !important;
-  width: 100% !important;
-  height: 100% !important;
-  top: 0 !important;
-  left: 0 !important
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
 }
 
 #halfclip {
-  width: 50% !important;
-  height: 100% !important;
-  right: 0px !important;
-  position: absolute !important;
-  overflow: hidden !important;
-  transform-origin: left center !important;
+  width: 50%;
+  height: 100%;
+  right: 0px;
+  position: absolute;
+  overflow: hidden;
+  transform-origin: left center;
 }
 
 .tplay-timeload.activering #halfclip {
@@ -749,88 +749,88 @@ a.lesson.free-lesson:hover {
 }
 
 .halfcircle {
-  box-sizing: border-box !important;
-  height: 100% !important;
-  right: 0px !important;
-  position: absolute !important;
-  border: solid 4px transparent !important;
-  border-top-color: #af151f !important;
-  border-left-color: #af151f !important;
-  border-radius: 50% !important;
+  box-sizing: border-box;
+  height: 100%;
+  right: 0px;
+  position: absolute;
+  border: solid 4px transparent;
+  border-top-color: #af151f;
+  border-left-color: #af151f;
+  border-radius: 50%;
 }
 
 #clipped {
-  width: 200% !important;
-  transform: rotate(-45deg) !important;
+  width: 200%;
+  transform: rotate(-45deg);
 }
 
 .tplay-timeload.activering #clipped {
-  transform: rotate(135deg) !important;
-  animation: rotate 2.5s linear 2 !important;
+  transform: rotate(135deg);
+  animation: rotate 2.5s linear 2;
 }
 
 #fixed {
-  width: 100% !important;
-  transform: rotate(135deg) !important;
-  opacity: 0 !important;
+  width: 100%;
+  transform: rotate(135deg);
+  opacity: 0;
 }
 
 .tplay-timeload.activering #fixed {
-  opacity: 1 !important;
-  animation: showfixed 5s 1 !important;
+  opacity: 1;
+  animation: showfixed 5s 1;
 }
 
 @keyframes cliprotate {
   0% {
-    transform: rotate(0deg) !important;
+    transform: rotate(0deg);
   }
 
   50% {
-    transform: rotate(0deg) !important;
+    transform: rotate(0deg);
   }
 
   50.01% {
-    transform: rotate(180deg) !important;
+    transform: rotate(180deg);
   }
 
   100% {
-    transform: rotate(180deg) !important;
+    transform: rotate(180deg);
   }
 }
 
 @keyframes rotate {
   0% {
-    transform: rotate(-45deg) !important;
+    transform: rotate(-45deg);
   }
 
   100% {
-    transform: rotate(135deg) !important;
+    transform: rotate(135deg);
   }
 }
 
 @keyframes showfixed {
   0% {
-    opacity: 0 !important;
+    opacity: 0;
   }
 
   49.99% {
-    opacity: 0 !important;
+    opacity: 0;
   }
 
   50% {
-    opacity: 1 !important;
+    opacity: 1;
   }
 
   100% {
-    opacity: 1 !important;
+    opacity: 1;
   }
 }
 
 video::-webkit-media-controls-panel,
 video::-webkit-media-controls-panel-container,
 video::-webkit-media-controls-start-playback-button {
-  display: none !important;
-  -webkit-appearance: none !important;
+  display: none;
+  -webkit-appearance: none;
 }
 
 @media(max-width:768px) {

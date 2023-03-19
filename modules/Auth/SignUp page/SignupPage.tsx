@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect } from "react";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button, Modal } from "react-bootstrap";
 import styles from "./sign-up-page.module.css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Router, { useRouter } from "next/router";
@@ -15,7 +15,7 @@ import {
 import * as Yup from "yup";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
-import { EnvelopeIcon, GoogleIcon, TickIcon, LockIcon, EyeIcon, MobileIcon, NameFieldIcon } from "common/Icons/Icons";
+import { EnvelopeIcon, GoogleIcon, TickIcon, LockIcon, EyeIcon, MobileIcon, NameFieldIcon, TransactionSuccessIcon } from "common/Icons/Icons";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
@@ -24,7 +24,6 @@ import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from 'react-google-login';
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
-
 
 interface SignUpFormValues {
   name: string;
@@ -37,6 +36,7 @@ export default function SignupPage() {
   const [countryCallingCode, setCountryCallingCode] = useState("20");
   const [countryCode, setCountryCode] = useState("EG");
   const [errorMessage, setErrorMessage] = useState("");
+  const [show, setShow] = useState(false);
   const themeState = useSelector((state: any) => state.themeState.theme);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -62,17 +62,6 @@ export default function SignupPage() {
     setPhoneFieldEvent(e);
   };
 
-  // useEffect(() => {
-
-  //   axiosInstance
-  //     .get(`https://ipapi.co/json/`).then((response: any) => {
-  //       // console.log("response", response);
-  //     }).catch((error: any) => {
-  //       console.log("error", error);
-  //     })
-
-  // }, [])
-
   useEffect(() => {
     toggleLoader("hide");
 
@@ -87,7 +76,6 @@ export default function SignupPage() {
     }
   }, [userAuthState])
 
-
   useEffect(() => {
     toggleLoader("hide");
 
@@ -99,6 +87,10 @@ export default function SignupPage() {
     setTimeout(() => {
       intlTelInput?.classList.remove("selected-dial-code");
     }, 50);
+
+    return () => {
+      setShow(false);
+    }
 
   }, []);
 
@@ -223,6 +215,11 @@ export default function SignupPage() {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment?checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
               } else if (router.query && router.query.type) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
+              } else if (router.query && router.query.f) {
+                setShow(true);
+                setTimeout(() => {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                }, 3000);
               } else {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
               }
@@ -349,6 +346,11 @@ export default function SignupPage() {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment?checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
                         } else if (router.query && router.query.type) {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
+                        } else if (router.query && router.query.f) {
+                          setShow(true);
+                          setTimeout(() => {
+                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+                          }, 3000);
                         } else {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                         }
@@ -527,6 +529,20 @@ export default function SignupPage() {
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 6, order: 2 }} className={styles["register__img"]}>
           <img loading="lazy" src="/images/signUpDiscImg.png" alt="register now" />
         </Col>
+
+        <Modal data-theme={themeState} show={show} animation={false} className={styles["register__custom-signup-success-popup"]}>
+
+          <Modal.Body>
+            <TransactionSuccessIcon />
+            <div>
+              لقد تم تسجيل بريدك الالكتروني يمكنك الان الاستمتاع بالدورات المباشرة طوال شهر رمضان
+            </div>
+            <div>
+              سيتم الان توجيهك للصفحة الرئيسية
+            </div>
+
+          </Modal.Body>
+        </Modal>
       </Row>
     </>
   );

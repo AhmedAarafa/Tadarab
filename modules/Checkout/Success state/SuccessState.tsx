@@ -5,14 +5,13 @@ import styles from "./success-state.module.css";
 import { TransactionSuccessIcon, ArrowLeftIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { setCartItems } from 'configurations/redux/actions/cartItems';
-import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Router, { useRouter } from "next/router";
-import Link from "next/link";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
+import { toggleLoader } from 'modules/_Shared/utils/toggleLoader';
 
 export default function SuccessState() {
 
@@ -26,7 +25,7 @@ export default function SuccessState() {
     useEffect(() => {
         console.log("invoiceDetails", invoiceDetails);
 
-        if (invoiceDetails) {
+        if ( Object.keys(invoiceDetails).length !== 0 ) {
             checkoutType = (invoiceDetails?.data?.data?.transaction_details?.checkout_type);
             if (checkoutType == "cart") {
                 tadarabGA.tadarab_fire_traking_GA_code("purchase", {
@@ -46,7 +45,7 @@ export default function SuccessState() {
                     ...userAuthState,
                     isSubscribed: true
                 }));
-                //   console.log("invoiceDetails",invoiceDetails);
+                  console.log("invoiceDetails subscription",invoiceDetails);
 
                 tadarabGA.tadarab_fire_traking_GA_code("subscription", {
                     trn_id: invoiceDetails?.data?.data?.transaction_details?.payment_id,
@@ -60,6 +59,7 @@ export default function SuccessState() {
                     subscription_label: invoiceDetails?.data?.data?.transaction_details?.subscription_label
                 });
             }
+            toggleLoader('hide');
         }
     }, [invoiceDetails]);
 

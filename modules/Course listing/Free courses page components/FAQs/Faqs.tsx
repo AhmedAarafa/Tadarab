@@ -23,7 +23,7 @@ export default function Faqs() {
                                 <Accordion.Header className={styles["faq__accordion__header"]}>
                                     {faq.q}
                                 </Accordion.Header>
-                                <Accordion.Body className={styles["faq__accordion__body"]}>
+                                <Accordion.Body className={styles["faq__accordion__body"]} >
                                     {faq.a}
                                 </Accordion.Body>
                             </Accordion.Item>

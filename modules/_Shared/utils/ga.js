@@ -140,7 +140,7 @@ tadarab_fire_traking_GA_code(traking_type,traking_data){
 	}else if(traking_type=='subscription'){
 		console.log(traking_data.is_trial_free);
 		dataLayer = dataLayer || [];
-		if((traking_data.is_trial_free)&&(traking_data.is_trial_free==true)){
+		if((traking_data.is_trial_free )&&(traking_data.is_trial_free == true)){
 			dataLayer.push({
 				'event': 'GTMevent',
 				'eventCategory': 'subscription',

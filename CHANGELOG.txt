@@ -1,3 +1,19 @@
+Version 2.6.9 (05th Mar 2023)
+1) Player issue with autoadvance (every time load default video)
+2) Player 5 second loader issue fixed.
+3) Add loader in success & faild transaction.
+
+Version 2.6.7 (22th Feb 2023)
+1) Player error fixed.
+2) FAQs in more than one page.
+3) Changed robot.txt file.
+4) Some minor changes.
+
+Version 2.6.6 (15th Feb 2023)
+1) Category page banner section changes.
+2) Change the texts in all CTAs redirecting to subscription plan page.
+3) Add skeleton loader to category page in course section.
+
 Version 2.6.5 (08th Feb 2023)
 1) Changes in 'Join as a trainer' page
 2) Fix free courses behavior (return the watch free CTA)

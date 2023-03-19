@@ -17,6 +17,8 @@ export default function CourseContent() {
     useEffect(() => {
         setCourseDetails(courseDetailsData.data || []);
         // return () => { setCourseDetails([]) }
+        // console.log("CourseContent Comp. request",courseDetailsData.data);
+        
     }, [courseDetailsData]);
 
     useEffect(() => {
@@ -81,6 +83,7 @@ export default function CourseContent() {
                 </div>
 
                 {/* Courses lectures playlist */}
+                {/* {console.log("Course Content comp.")} */}
                 <TPlayerPlayList />
 
                 {/* Courses Attachments */}

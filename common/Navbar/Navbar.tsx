@@ -32,11 +32,13 @@ import useResize from "custom hooks/useResize";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 //import { useGoogleLogout } from 'react-google-login';
 import { setTheme } from "configurations/redux/actions/themeToggler";
+import CustomSignupPopup from "common/Custom signup popup/CustomSignupPopup";
 
 function Navbar(props: any) {
 
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
+  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [expanded, setExpanded] = useState<any>(false);
   const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
@@ -75,6 +77,8 @@ function Navbar(props: any) {
       .then(function (response: any) {
         dispatch(setHomePageData(response.data.data));
         toggleLoader("hide");
+        setIsCustomSignupModalVisible(false);
+
       })
       .catch(function (error) {
         toggleLoader("hide");
@@ -775,7 +779,9 @@ function Navbar(props: any) {
           </div>
         }
 
-      </NavBar >
+      </NavBar>
+      <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
+
     </>
   );
 }

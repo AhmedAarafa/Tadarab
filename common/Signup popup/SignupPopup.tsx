@@ -353,7 +353,7 @@ export default function SignupPopup(props: any) {
                                                         separateDialCode={true}
                                                         onPhoneNumberBlur={(e: any) => {
                                                             const phoneNumberField: any = document.getElementById("phone-number-field");
-
+                                                            
                                                             if (phoneNumberField.value !== ""
                                                                 &&
                                                                 phoneNumberField.value.length < 5

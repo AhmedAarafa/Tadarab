@@ -70,13 +70,13 @@ return (
               <SwiperSlide key={i}>
                 <Link href={`/trainer/${trainer?.slug}`}>
                   <Card className={styles["join-us__cards-carousel__card"]}
-                    style={{ backgroundImage: `url("${trainer.image}")` }}
+                    style={{ backgroundImage: `url("${trainer?.image}")` }}
                   >
                     <div className={styles["join-us__cards-carousel__card__card-body"]}>
                       <div className="text-center">
-                        <div className={styles["join-us__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
-                        <div className={styles["join-us__cards-carousel__card__job-title"]}>{trainer.title}</div>
-                        <div className={styles["join-us__cards-carousel__card__job-history"]}>{trainer.bio}</div>
+                        <div className={styles["join-us__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
+                        <div className={styles["join-us__cards-carousel__card__job-title"]}>{trainer?.title}</div>
+                        <div className={styles["join-us__cards-carousel__card__job-history"]}>{trainer?.bio}</div>
                       </div>
                     </div>
 

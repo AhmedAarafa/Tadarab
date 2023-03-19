@@ -66,17 +66,17 @@ export default function LearnFromTheBest() {
                   <SwiperSlide key={i}> 
                  <Link href={`/trainer/${trainer?.slug}`}>
                     <Card className={styles["learn-from-the-best__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("${trainer.image}")`}}
+                    style={{backgroundImage: `url("${trainer?.image}")`}}
                       >
                           <div className={styles["learn-from-the-best__cards-carousel__card__card-body"]}>
                               <div className="text-center">
                               <Link href={`/trainer/${trainer?.slug}`}>
 
-                                  <div className={styles["learn-from-the-best__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
+                                  <div className={styles["learn-from-the-best__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
                               </Link>
-                                  <div className={styles["learn-from-the-best__cards-carousel__card__job-title"]}>{trainer.title}</div>
+                                  <div className={styles["learn-from-the-best__cards-carousel__card__job-title"]}>{trainer?.title}</div>
                                   <div className={styles["learn-from-the-best__cards-carousel__card__job-history"]} 
-                                   dangerouslySetInnerHTML={{ __html: trainer.bio}}></div>
+                                   dangerouslySetInnerHTML={{ __html: trainer?.bio}}></div>
                               </div>
                           </div>
                       

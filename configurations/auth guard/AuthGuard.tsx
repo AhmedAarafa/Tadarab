@@ -2,8 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
 import { useEffect } from "react";
-import SignIn from "pages/SignIn";
-import { setCartItems } from "configurations/redux/actions/cartItems";
 import { setTheme } from "configurations/redux/actions/themeToggler";
 
 const withAuth = (Component: any) => {

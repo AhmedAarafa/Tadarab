@@ -71,7 +71,7 @@ export default function WatchedCourses(props: any) {
                                                 styles["watched-courses__cards-carousel__course-card"]
                                             }>
                                             {
-                                                course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
+                                               course?.categories && course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
 
                                                 <div
                                                     className={
@@ -79,9 +79,9 @@ export default function WatchedCourses(props: any) {
                                                         "watched-courses__cards-carousel__course-card__category-chip"
                                                         ]
                                                     }
-                                                    style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
+                                                    style={{ backgroundColor: `${course?.categories && course?.categories[0] !== undefined && course?.categories[0].color}` }}
                                                 >
-                                                    {course?.categories[0] !== undefined && course?.categories[0].title}
+                                                    {course?.categories && course?.categories[0] !== undefined && course?.categories[0].title}
                                                 </div>
 
                                             }

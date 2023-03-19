@@ -214,7 +214,7 @@ export default function CourseCard() {
       </div>
       <div className={styles["course-details__sticky-top-course-card__course-details"]}>
           <div >{courseDetails.course_details?.title}</div>
-          <div >{courseDetails.course_details?.trainer.name_ar}</div>
+          <div >{courseDetails.course_details?.trainer?.name_ar}</div>
       </div>
       </div>
         <div className={styles["course-details__sticky-top-course-card__checkout-box"]}>

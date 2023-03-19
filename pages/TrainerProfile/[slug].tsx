@@ -19,6 +19,7 @@ import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandl
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const StickySignupBar = dynamic(() => import("common/Sticky signup bar/StickySignupBar"));
+const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 
 export default function TrainerProfile(props: any) {
   const dispatch = useDispatch();
@@ -29,13 +30,14 @@ export default function TrainerProfile(props: any) {
   const [isFound, setIsFound] = useState(true);
   const [isCheckoutBarVisible, setIsCheckoutBarVisible] = useState(false);
   const themeState = useSelector((state: any) => state.themeState.theme);
-
+  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
+  const userStatus = useSelector((state: any) => state.userAuthentication);
 
   useEffect(() => {
     toggleLoader("show");
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("trainer-courses__course-card");
-        setIsCheckoutBarVisible(window.scrollY > 500 ? true : false);
+      setIsCheckoutBarVisible(window.scrollY > 500 ? true : false);
     })
 
     return () => {
@@ -68,6 +70,11 @@ export default function TrainerProfile(props: any) {
                 setTrainerData(response?.data?.data);
                 FBPixelEventsHandler(response.data.fb_tracking_events, null);
                 toggleLoader("hide");
+                setTimeout(() => {
+                  if (userStatus.isUserAuthenticated == false) {
+                    setIsCustomSignupModalVisible(true);
+                  }
+                }, 3000);
 
               })
               .catch(function (error) {
@@ -88,6 +95,11 @@ export default function TrainerProfile(props: any) {
             setTrainerData(response?.data?.data);
             FBPixelEventsHandler(response.data.fb_tracking_events, null);
             toggleLoader("hide");
+            setTimeout(() => {
+              if (userStatus.isUserAuthenticated == false) {
+                setIsCustomSignupModalVisible(true);
+              }
+            }, 3000);
 
           })
           .catch(function (error) {
@@ -130,9 +142,11 @@ export default function TrainerProfile(props: any) {
         img={seoData?.seo_image} />}
       {
         isFound ?
-          <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
-            { isCheckoutBarVisible && <StickySignupBar />}
+          <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
+            {isCheckoutBarVisible && <StickySignupBar />}
             <TrainerProfilePage />
+            <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
+
           </Container>
           :
           <NotFound />

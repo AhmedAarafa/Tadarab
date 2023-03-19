@@ -523,7 +523,7 @@ export default function MyAccountPage() {
             return (
               <Card key={i} className={styles["my-account__course-card"]}>
                 {
-                  course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
+                 course?.categories && course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
                   <div
                     className={
                       styles["my-account__course-card__category-chip"]

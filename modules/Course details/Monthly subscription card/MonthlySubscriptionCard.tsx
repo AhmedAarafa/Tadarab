@@ -81,7 +81,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
         });
       })
       .catch(function (error: any) {
-        console.log(error);
+        //console.log(error);
       });
 
     return () => {
@@ -103,7 +103,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
         }
       })
       .catch(function (error: any) {
-        console.log(error);
+        //console.log(error);
       });
   }, [])
 
@@ -113,7 +113,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
   }, [courseDetailsData]);
 
   useEffect(() => {
-    console.log("theOption", theOption);
+    //console.log("theOption", theOption);
 
     if (theOption?.liveWebinarDetails?.full_date) {
       setInterval(() => {
@@ -181,6 +181,11 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
           {theOption?.liveWebinarDetails?.type == "webinar" && !isMobileView &&
             <>
+
+              <div className={styles["monthly-subscription__course-card__course-title"]}>
+                {courseDetailsData?.data?.course_details?.title}
+              </div>
+
               <div className={styles["monthly_subscription__live-details-list"]}>
                 <div>
                   {
@@ -305,7 +310,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                 </>
               }
 
-              {theOption?.liveWebinarDetails?.type == "webinar" &&
+              {/* {theOption?.liveWebinarDetails?.type == "webinar" &&
                 <>
                   <div className={styles["monthly-subscription__subscribe-btn-box"]}>
                     <Button id="monthly-subscribe-btn" className={`${styles["monthly-subscription__subscribe-btn-box__btn"]} ${theOption?.liveWebinarDetails?.type == "webinar" ? styles["monthly-subscription__secondary"] : ""}`}
@@ -322,7 +327,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
                     </span>
                   </div>
                 </>
-              }
+              } */}
 
               {/* {theOption?.liveWebinarDetails?.type !== "webinar" && <div className={styles["monthly-subscription__or-box"]}>
                 أو
@@ -332,9 +337,9 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
           {/* Price end */}
 
-          <div className={styles["monthly-subscription__course-card__course-title"]}>
+          { theOption?.liveWebinarDetails?.type !== "webinar" &&  <div className={styles["monthly-subscription__course-card__course-title"]}>
             {courseDetailsData?.data?.course_details?.title}
-          </div>
+          </div>}
 
           {!isMobileView && <div className={styles["monthly-subscription__course-card__details-list"]}>
             {theOption.liveWebinarDetails?.type !== "webinar" &&
@@ -390,14 +395,14 @@ export default function MonthlySubscriptionCard(theOption: any) {
 
           </div>}
 
-          {courseDetails?.course_details?.discounted_price !== 0 &&
+          {/* {courseDetails?.course_details?.discounted_price !== 0 &&
             <div className={styles["monthly-subscription__course-card__subscription-details"]}>
               شاهد اكثر من 1000 دورة باشتراك واحد  يبدأ
               <div>
                 من
                 <span> {" "} {subscriptionValues?.sale_label} {" "}</span>
               </div>
-            </div>}
+            </div>} */}
 
 
           {theOption?.liveWebinarDetails?.type !== "webinar" &&
@@ -442,7 +447,7 @@ export default function MonthlySubscriptionCard(theOption: any) {
             </div>
             <div className={styles["monthly-subscription__sticky-top-course-card__course-details"]}>
               <div >{courseDetails.course_details?.title}</div>
-              <div >{courseDetails.course_details?.trainer.name_ar}</div>
+              <div >{courseDetails.course_details?.trainer?.name_ar}</div>
             </div>
           </div>
 

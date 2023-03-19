@@ -3,28 +3,22 @@ import '../styles/globals.css'
 import "swiper/css/bundle";
 import type { AppProps } from 'next/app'
 import 'normalize.css';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import { store } from "configurations/redux/store";
-import { axiosInstance } from "configurations/axios/axiosConfig";
-import React, { useState, useEffect, useRef } from 'react';
-import TransactionInProgress from "./TransactionInProgress";
+import React, { useState, useEffect } from 'react';
 import Head from "next/head";
 import TagManager from 'react-gtm-module';
 import Script from "next/script";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Loader from 'common/Loader/Loader';
-import { usePreserveScroll } from 'custom hooks/usePreserveScroll';
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // const dispatch = useDispatch();
 
-  const [isChatBubbleAppeared, setisChatBubbleAppeared] = useState(false);
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
     history.scrollRestoration = 'auto';
@@ -33,33 +27,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       // console.log = function() {}
     }
   }, []);
-
-  useEffect(() => {
-
-     let myInterval = setInterval(() => {
-        let chatBubble: any = document.querySelector('[data-testid="bubble_iframe"]');
-        if(chatBubble){
-          console.log("chatBubble", chatBubble);
-          chatBubble ? chatBubble.style.cssText = `
-          background: none ;
-          border-radius: 60px ;
-          box-shadow: rgb(0 0 0 / 15%) 0px 4px 12px 0px ;
-          display: block ;
-          height: 60px ;
-          margin: 0px 12px ;
-          overflow: visible ;
-          padding: 0px ;
-          position: fixed ;
-          inset: auto auto 100px 12px !important;
-          width: 60px ;
-          z-index: 2147483644 ;
-          ` : null;
-          clearInterval(myInterval);
-        }
-      }, 50);
-  },)
-
-
 
   let canonical = "https://www.tadarab.com";
   const router = useRouter();

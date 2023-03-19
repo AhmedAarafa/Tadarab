@@ -33,7 +33,6 @@ import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents"
 import { useRouter } from 'next/router';
 import { Course } from "_models/Course";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
-import TPlayer from "common/TPlayer/TPlayer";
 import dynamic from 'next/dynamic';
 import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
@@ -41,10 +40,12 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 import NotFound from "pages/404";
 import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
+import CustomSignupPopup from "common/Custom signup popup/CustomSignupPopup";
 
 function CourseDetails(props: any) {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
+  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [courseData, setCourseData] = useState({});
   const [liveWebinar, setLiveWebinar] = useState({});
@@ -53,6 +54,7 @@ function CourseDetails(props: any) {
   const [isFound, setIsFound] = useState(true);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const themeState = useSelector((state: any) => state.themeState.theme);
+  const userStatus = useSelector((state: any) => state.userAuthentication);
   const Router = useRouter();
   const { slug } = Router.query;
   const { seoData } = props;
@@ -196,7 +198,6 @@ function CourseDetails(props: any) {
                 const webinardetails = response?.data?.data?.course_details;
                 setLiveWebinar(webinardetails);
 
-
                 setCourseId(response?.data?.data?.course_details?.id);
                 dispatch(setCourseDetailsData(data));
                 setCourseData(data);
@@ -229,6 +230,11 @@ function CourseDetails(props: any) {
 
                 FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
                 toggleLoader("hide");
+                setTimeout(() => {
+                  if (userStatus.isUserAuthenticated == false) {
+                    setIsCustomSignupModalVisible(true);
+                  }
+                }, 3000);
 
               })
               .catch(function (error) {
@@ -246,6 +252,7 @@ function CourseDetails(props: any) {
             const data = response?.data?.data;
             const webinardetails = response?.data?.data?.course_details;
             setLiveWebinar(webinardetails);
+
             setCourseId(response?.data?.data?.course_details?.id);
             dispatch(setCourseDetailsData(data));
             setCourseData(data);
@@ -278,6 +285,11 @@ function CourseDetails(props: any) {
 
             FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
             toggleLoader("hide");
+            setTimeout(() => {
+              if (userStatus.isUserAuthenticated == false) {
+                setIsCustomSignupModalVisible(true);
+              }
+            }, 3000);
           })
           .catch(function (error) {
             toggleLoader("hide");
@@ -357,7 +369,7 @@ function CourseDetails(props: any) {
                           {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType} />}
                         </Col>
                       }
-                      <PracticalProjects Cid={() => { return courseId }} />
+                      {/* <PracticalProjects Cid={() => { return courseId }} /> */}
                     </Row>
                     <Row className={styles["course-details__course-reviews"]}>
                       <CourseReview Cid={() => { return courseId }} />
@@ -376,6 +388,8 @@ function CourseDetails(props: any) {
                 {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse Cid={() => { return courseId }} />}
               </>
             }
+            <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
+
           </Container>
           :
           <NotFound />

@@ -25,6 +25,7 @@
   line-height: var(--line-height);
   overflow: hidden;
   position: relative;
+  padding-bottom: 2rem;
 }
 .course-details-section__para:has(+ .course-details-section__expand-collapse-btn:checked) {
   max-height: none;
@@ -91,6 +92,7 @@
     font-size: 2.1875rem;
     color: var(--grey) !important;
     max-height: calc(var(--max-lines) * 0.875rem * 2.5 * var(--line-height));
+    padding-bottom: 5rem;
   }
   .course-details-section__para:has(+ .course-details-section__expand-collapse-btn:not(:checked)):before {
     height: calc(5rem * var(--line-height));

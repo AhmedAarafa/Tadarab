@@ -13,13 +13,16 @@ import { useSelector } from "react-redux";
 const BookDetails = dynamic(() => import("modules/Books page/Book details/BookDetails"));
 const SimilarBooks = dynamic(() => import("modules/Books page/Similar books/SimilarBooks"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
+const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 
 export default function Books() {
+    const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
     const Router = useRouter();
     const [bookDetails, setBookDetails] = useState<any>({});
     const [isFound, setIsFound] = useState(true);
     const { slug } = Router.query;
     const themeState = useSelector((state: any) => state.themeState.theme);
+    const userStatus = useSelector((state: any) => state.userAuthentication);
 
     useEffect(() => {
         toggleLoader("show");
@@ -34,6 +37,11 @@ export default function Books() {
                     setBookDetails(response.data.data);
                     FBPixelEventsHandler(response.data.fb_tracking_events, null);
                     toggleLoader("hide");
+                    setTimeout(() => {
+                        if (userStatus.isUserAuthenticated == false) {
+                            setIsCustomSignupModalVisible(true);
+                        }
+                    }, 3000);
                 })
                 .catch(function (error) {
                     toggleLoader("hide");
@@ -56,6 +64,8 @@ export default function Books() {
                             <TadarabUnlimited />
                         </div> */}
                         <SimilarBooks data={bookDetails} />
+                        <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
+
                     </Container>
                     :
                     <NotFound />

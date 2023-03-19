@@ -29,6 +29,7 @@
     line-height: var(--line-height);
     overflow: hidden;
     position: relative;
+    padding-bottom: 2rem;
 
     &:has(+ .course-details-section__expand-collapse-btn:checked) {
         max-height: none;
@@ -110,6 +111,8 @@
         font-size: 0.875rem*2.5;
         color: var(--grey) !important;
         max-height: calc(var(--max-lines) * 0.875rem*2.5 * var(--line-height));
+        padding-bottom: 2rem*2.5;
+
 
         &:has(+ .course-details-section__expand-collapse-btn:not(:checked)) {
             &:before {

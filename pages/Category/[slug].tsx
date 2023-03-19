@@ -26,10 +26,12 @@ const ExploreOtherCategories = dynamic(() => import("modules/Category/Explore ot
 const Testimonials = dynamic(() => import("modules/Category/Testimonials/Testimonials"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const StickySignupBar = dynamic(() => import("common/Sticky signup bar/StickySignupBar"));
+const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 
 export default function Category(props: any) {
-  const router = useRouter()
+  const router = useRouter();
   const [category, setCategory] = useState<any>({});
+  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const [pagination, setPagination] = useState<any>({});
   const [categoriesList, setCategoriesList] = useState([]);
   const Router = useRouter();
@@ -37,6 +39,7 @@ export default function Category(props: any) {
   const { seoData } = props;
   const [isFound, setIsFound] = useState(true);
   const themeState = useSelector((state: any) => state.themeState.theme);
+  const userStatus = useSelector((state: any) => state.userAuthentication);
 
   useEffect(() => {
     toggleLoader("show");
@@ -48,6 +51,7 @@ export default function Category(props: any) {
         setIsFound(NotFoundRoutesHandler(response));
         setCategoriesList(response?.data?.data?.categories);
         // toggleLoader("hide");
+     
       })
       .catch(function (error) {
         toggleLoader("hide");
@@ -74,6 +78,11 @@ export default function Category(props: any) {
                 setPagination(response.data.pagination);
                 FBPixelEventsHandler(response.data.fb_tracking_events, null);
                 toggleLoader("hide");
+                setTimeout(() => {
+                  if (userStatus.isUserAuthenticated == false) {
+                    setIsCustomSignupModalVisible(true);
+                  }
+                }, 3000);
               })
               .catch(function (error) {
                 toggleLoader("hide");
@@ -90,6 +99,11 @@ export default function Category(props: any) {
             setPagination(response.data.pagination);
             FBPixelEventsHandler(response.data.fb_tracking_events, null);
             toggleLoader("hide");
+            setTimeout(() => {
+              if (userStatus.isUserAuthenticated == false) {
+                setIsCustomSignupModalVisible(true);
+              }
+            }, 3000);
           })
           .catch(function (error) {
             toggleLoader("hide");
@@ -140,6 +154,7 @@ export default function Category(props: any) {
             <SubscriptionBenefits />
             <Faq />
             <StickySignupBar />
+            <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
           </Container>
           :
           <NotFound />

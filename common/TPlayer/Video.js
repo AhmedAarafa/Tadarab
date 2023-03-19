@@ -42,7 +42,6 @@ export const VideoJS = (props) => {
         ref={videoRef}
         controls
         className="video-js vjs-big-play-centered"
-        data-setup="{playbackRates: [0.5,1,1.5,2]}"
         playsInline
       />
     </div>

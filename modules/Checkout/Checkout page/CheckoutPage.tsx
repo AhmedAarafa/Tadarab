@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Button, Form, Card, Spinner, Dropdown } from "react-bootstrap";
 import styles from "./checkout-page.module.css";
-import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
 import withAuth from "configurations/auth guard/AuthGuard";
@@ -12,9 +11,6 @@ import FailedState from "../Failed state/FailedState";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
 import { GreyVerifiedIcon, GreyGuaranteeIcon } from "common/Icons/Icons";
-import { handleFav } from "modules/_Shared/utils/handleFav";
-import { handleCart } from "modules/_Shared/utils/handleCart";
-// import { setCartItems } from "configurations/redux/actions/cartItems"; 
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import Router, { useRouter } from "next/router";
 import Head from "next/head";
@@ -22,19 +18,13 @@ import { Frames, CardNumber, ExpiryDate, Cvv } from 'frames-react';
 import { PayPalButtons } from "@paypal/react-paypal-js";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
 import { setInvoiceDetails } from 'configurations/redux/actions/invoiceDetails';
-import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
-import Link from "next/link";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { setPaymentStep } from "configurations/redux/actions/paymentStep";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
-import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
-import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthentication";
-import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
-import TadarabUnlimited from "../TadarabUnlimited/TadarabUnlimited";
 
 function CheckoutPage(props: any) {
 
@@ -55,12 +45,8 @@ function CheckoutPage(props: any) {
     const [checkoutTransactionDetails, setCheckoutTransactionDetails] = useState<any>(null);
     const [subscriptionTimer, setSubscriptionTimer] = useState(0);
     const [toDisplayValues, setToDisplayValues] = useState<any>({ values: [], visible: false });
-    const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
     const [isDiscountLinkApplied, setIsDiscountLinkApplied] = useState(false);
     const [isFinalizePaymentBtnEnabled, setIsFinalizePaymentBtnEnabled] = useState(false);
-    const [temporaryRemoval, setTemporaryRemoval] = useState<any>([]);
-    const [isCoursesInSpecialBundle, setIsCoursesInSpecialBundle] = useState(false);
-    const [threePlansSelection, setThreePlansSelection] = useState("yearly"); // monthly, yearly, midYearly
     const [subscriptionPlansBanks, setSubscriptionPlansBanks] = useState({ card_bin: 0, bank: "", subplan_id: "" }); // NBK, BOUBYAN, WARBA
     //   const [previousData, setPreviousData] = useState({step:"added-courses",localStateCartItems:[]});
     const [subPlan, setSubPlan] = useState<any>("yearly");
@@ -395,10 +381,10 @@ function CheckoutPage(props: any) {
         }
     }, [])
 
-    useEffect(() => {
-        console.log("paymentSettings", paymentSettings);
-        console.log("paypalPlanId", paypalPlanId);
-    }, [paymentSettings, paypalPlanId, threePlansSelection])
+    // useEffect(() => {
+    //     console.log("paymentSettings", paymentSettings);
+    //     console.log("paypalPlanId", paypalPlanId);
+    // }, [paymentSettings, paypalPlanId, threePlansSelection])
 
     useEffect(() => {
         if (userAuthState.isUserAuthenticated && userAuthState.isSubscribed) {
@@ -898,8 +884,8 @@ function CheckoutPage(props: any) {
 
                     Frames.isCardValid() ?
                         Frames.submitCard().then(function (data: any) {
-                            console.log("data", data);
-                            console.log("subscriptionPlansBanks", subscriptionPlansBanks);
+                            // console.log("data", data);
+                            // console.log("subscriptionPlansBanks", subscriptionPlansBanks);
 
                             const localStorageItems: any = localStorage.getItem("cart_items");
                             axiosInstance.post(`payments/payouts/?country_code=null`, {
@@ -1036,7 +1022,7 @@ function CheckoutPage(props: any) {
                                             <>
                                                 <div id="payment-method1" className={styles["checkout__payment-method-box__payment-method"]}>
                                                     <div className="d-flex align-items-center">
-                                                        <input onClick={() => { radioBtnsHandler() }} checked={paymentMethod == "VISA"} type="radio" name="payment-type" value="VISA" className="form-check-input" />
+                                                        <input onClick={() => { radioBtnsHandler() }} defaultChecked={paymentMethod == "VISA"} type="radio" name="payment-type" value="VISA" className="form-check-input" />
                                                         <label htmlFor="visa">
                                                             <div className={styles["checkout__payment-method-box__payment-method__images"]}>
                                                                 <img loading="lazy" className={styles["checkout__payment-method-box__payment-method__images__visa"]} src="/images/visa.png" alt="VISA" />
@@ -1129,8 +1115,8 @@ function CheckoutPage(props: any) {
                                                             cardBinChanged={(e: any) => {
                                                                 /** Identify the card first 6 digits is which associated with BANK  */
                                                                 let card_bin = (e.bin), card6_bin = Number(card_bin.slice(0, 6));
-                                                                console.log("card6_bin", typeof (card6_bin), card6_bin);
-                                                                console.log("paymentSettings", paymentSettings);
+                                                                // console.log("card6_bin", typeof (card6_bin), card6_bin);
+                                                                // console.log("paymentSettings", paymentSettings);
                                                                 if (paymentSettings?.NBK_bin.includes(card6_bin)) {
                                                                     // setSubscriptionPlansBanks({ card_bin: card6_bin, bank: "NBK", subplan_id: "a5Is2wQH" });
                                                                 } else if (paymentSettings?.WARBA_bin.includes(card6_bin)) {
@@ -1360,8 +1346,8 @@ function CheckoutPage(props: any) {
                                                                                     setCheckoutTransactionDetails(response.data.data);
 
                                                                                     // setPaypalPlanId(paymentSettings?.paypal.planid);
-                                                                                    console.log("paymentSettings", paymentSettings);
-                                                                                    console.log("paypalPlanId", paypalPlanId);
+                                                                                    // console.log("paymentSettings", paymentSettings);
+                                                                                    // console.log("paypalPlanId", paypalPlanId);
 
                                                                                     return actions.subscription.create({
                                                                                         plan_id: `${process.env.NEXT_PUBLIC_PAYPAL_PLAN_ID}` || paymentSettings?.subscription_plans[0]?.paypal_id,

@@ -19,6 +19,7 @@ const LiveCourses = dynamic(() => import("modules/Home page/Live courses/LiveCou
 const HowToLearnOnTadarab = dynamic(() => import("modules/Home page/How to learn on tadarab/HowToLearnOnTadarab"));
 const Books = dynamic(() => import("modules/Home page/Books/Books"));
 const Statistics = dynamic(() => import("common/Statistics/Statistics"));
+const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 const WhyTadarab = dynamic(() => import("modules/Home page/Why Tadarab/WhyTadarab"));
 const LearnFromTheBest = dynamic(() => import("modules/Home page/Learn from the best/LearnFromTheBest"));
 const JoinAsATrainer = dynamic(() => import("modules/Home page/Join as a trainer/JoinAsATrainer"));
@@ -30,10 +31,28 @@ const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season sec
 const MobileCheckoutBar = dynamic(() => import("modules/Home page/Mobile checkout bar/MobileCheckoutBar"));
 
 function HomePage(props: any) {
+  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
   const themeState = useSelector((state: any) => state.themeState.theme);
+  const userStatus = useSelector((state: any) => state.userAuthentication);
+
+
+  // useEffect(() => {
+
+  //   if(userStatus.isUserAuthenticated == false){
+  //     setTimeout(() => {
+  //       setIsCustomSignupModalVisible(true);
+  //     }, 3000);
+  //   }
+
+  //   return () => {
+  //     setIsCustomSignupModalVisible(false);
+  //   }
+
+  // }, []);
+
 
   useEffect(() => {
     toggleLoader("show");
@@ -51,6 +70,11 @@ function HomePage(props: any) {
               dispatch(setHomePageData(response.data.data));
               FBPixelEventsHandler(response.data.fb_tracking_events, null);
               toggleLoader("hide");
+              setTimeout(() => {
+                if (userStatus.isUserAuthenticated == false) {
+                  setIsCustomSignupModalVisible(true);
+                }
+              }, 3000);
             })
             .catch(function (error: any) {
               toggleLoader("hide");
@@ -68,6 +92,11 @@ function HomePage(props: any) {
           dispatch(setHomePageData(response.data.data));
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
+          setTimeout(() => {
+            if (userStatus.isUserAuthenticated == false) {
+              setIsCustomSignupModalVisible(true);
+            }
+          }, 3000);
         })
         .catch(function (error: any) {
           toggleLoader("hide");
@@ -89,7 +118,8 @@ function HomePage(props: any) {
     return () => {
       window.removeEventListener("scroll", () => {
         return;
-      })
+      });
+      setIsCustomSignupModalVisible(false);
     }
 
   }, [router]);
@@ -120,6 +150,7 @@ function HomePage(props: any) {
         <AboutTadarab />
         <JoinUs />
         <MobileCheckoutBar />
+        <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
       </Container>
 
     </>

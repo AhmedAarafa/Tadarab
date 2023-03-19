@@ -41,9 +41,11 @@ import Trainers2 from './All courses page components/Trainers/Trainers';
 import TadarabForBusiness from "common/Tadarab for business/TadarabForBusiness";
 import Testimonials2 from "common/Testimonials/Testimonials";
 import StickySignupBar2 from "./All courses page components/Sticky signup bar/StickySignupBar";
+import CustomSignupPopup from "common/Custom signup popup/CustomSignupPopup";
 
 export default function CourseListing() {
     const [courseListing, setCourseListing] = useState<any>([]);
+    const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [pagesArray, setPagesArray] = useState<any>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
@@ -184,6 +186,11 @@ export default function CourseListing() {
             .then(function (response: any) {
                 setCourseListing(response?.data);
                 toggleLoader("hide");
+                setTimeout(() => {
+                    if (userStatus.isUserAuthenticated == false) {
+                        setIsCustomSignupModalVisible(true);
+                    }
+                }, 3000);
             })
             .catch(function (error) {
                 toggleLoader("hide");
@@ -197,7 +204,7 @@ export default function CourseListing() {
                 description={courseListing?.data?.seo_metadesc}
                 img={courseListing?.data?.seo_image} />
             <Row className={styles["course-listing-row"]}>
-                { router?.query?.type == "free" &&
+                {router?.query?.type == "free" &&
                     <>
                         <CoverPhotoSection />
                         <DiscoverFreeCourses />
@@ -215,7 +222,7 @@ export default function CourseListing() {
                 }
                 {
                     // (JSON.stringify(router?.query) == "{}" || (router?.query && (router?.query?.type == "all" || router?.query?.aid)))
-                    (( router?.query?.type == "all")
+                    ((router?.query?.type == "all")
                         ||
                         (router?.query.type && router?.query?.type !== "best-seller" &&
                             router?.query?.type !== "live" &&
@@ -526,6 +533,8 @@ export default function CourseListing() {
                         </Col>
                     </>
                 }
+                <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
+
             </Row>
         </>
     )
