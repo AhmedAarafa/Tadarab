@@ -39,21 +39,6 @@ function HomePage(props: any) {
   const userStatus = useSelector((state: any) => state.userAuthentication);
 
 
-  // useEffect(() => {
-
-  //   if(userStatus.isUserAuthenticated == false){
-  //     setTimeout(() => {
-  //       setIsCustomSignupModalVisible(true);
-  //     }, 3000);
-  //   }
-
-  //   return () => {
-  //     setIsCustomSignupModalVisible(false);
-  //   }
-
-  // }, []);
-
-
   useEffect(() => {
     toggleLoader("show");
 

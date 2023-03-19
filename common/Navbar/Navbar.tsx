@@ -72,13 +72,12 @@ function Navbar(props: any) {
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
+    setIsCustomSignupModalVisible(false);
     axiosInstance
       .get(`home`, { headers: { "Authorization": `` } })
       .then(function (response: any) {
         dispatch(setHomePageData(response.data.data));
         toggleLoader("hide");
-        setIsCustomSignupModalVisible(false);
-
       })
       .catch(function (error) {
         toggleLoader("hide");
@@ -148,6 +147,7 @@ function Navbar(props: any) {
     const searchBar: any = document.getElementById("search-bar");
 
     if (userStatus.isUserAuthenticated) {
+      setIsCustomSignupModalVisible(false);
       if (searchBar) {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
@@ -218,7 +218,6 @@ function Navbar(props: any) {
       });
 
     }
-
 
 
     return () => {
