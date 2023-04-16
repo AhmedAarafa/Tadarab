@@ -38,7 +38,7 @@ function HomePage(props: any) {
   useEffect(() => {
     toggleLoader("show");
 
-    if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {
+    if (Router.query?.aid && !localStorage.getItem("affiliate_id")) {      
       axiosInstance
         .post(`coupon_link/${Router.query.aid}/${Router.query.code}`)
         .then((res: any) => {

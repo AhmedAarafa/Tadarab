@@ -234,7 +234,6 @@ function SignupPage() {
   }
 
   const responseFacebook = (response: any) => {
-    //console.log(response);
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {
