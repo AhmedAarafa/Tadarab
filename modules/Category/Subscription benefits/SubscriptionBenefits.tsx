@@ -94,7 +94,7 @@ function SubscriptionBenefits() {
 
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
-                                <UnlimitedCertificatesIcon />
+                                <UnlimitedCertificatesIcon color="#fff" />
                             </div>
                             <span>
                                 شهادات إتمام الدورات بلا حدود.
