@@ -16,7 +16,7 @@ import Image from 'next/image';
 import { popoverHandler, notificationBarHandler } from "./utils";
 import {
   TadarabLogo, NextIcon, BackIcon, DarkModeIcon, DropDownIcon, SearchIcon,
-  FavouriteIcon, CloseIcon, AccountIcon, LessonPlayIcon, LightModeIcon
+  FavouriteIcon, CartIcon, AccountIcon, LessonPlayIcon, LightModeIcon
 } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from "configurations/auth guard/AuthGuard";
@@ -32,13 +32,11 @@ import useResize from "custom hooks/useResize";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 //import { useGoogleLogout } from 'react-google-login';
 import { setTheme } from "configurations/redux/actions/themeToggler";
-import CustomSignupPopup from "common/Custom signup popup/CustomSignupPopup";
 
 function Navbar(props: any) {
 
   const [discoverSidebarShow, setDiscoverSidebarShow] = useState(false);
   const [isCoursePurchased, setIsCoursePurchased] = useState(false);
-  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [expanded, setExpanded] = useState<any>(false);
   const [dropdownOpened, setDropdownOpened] = useState({ cart: false, account: false });
@@ -72,7 +70,6 @@ function Navbar(props: any) {
     dispatch(setCartItems(null));
     setLocalStateCartItems(null);
 
-    setIsCustomSignupModalVisible(false);
     axiosInstance
       .get(`home`, { headers: { "Authorization": `` } })
       .then(function (response: any) {
@@ -118,15 +115,11 @@ function Navbar(props: any) {
         e.target.id == "Path_12841"
       ) {
         const discoverSidebar: any = document.getElementById("offcanvasNavbar2");
-        discoverSidebar ?
-
-          discoverSidebar.style.cssText = `
+        discoverSidebar.style.cssText = `
         transform: translateX(100%);
         visibility:hidden;
         transition: all 0.3s ease-in-out;
         `
-          :
-          null;
         // return setExpanded(false);
       }
 
@@ -147,7 +140,6 @@ function Navbar(props: any) {
     const searchBar: any = document.getElementById("search-bar");
 
     if (userStatus.isUserAuthenticated) {
-      setIsCustomSignupModalVisible(false);
       if (searchBar) {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 59rem)`;
@@ -155,7 +147,7 @@ function Navbar(props: any) {
             searchBar.style.cssText = `width: calc(100vw - 50.75rem)` :
             searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
         } else {
-          // searchBar.style.cssText=`width:33rem`;
+          // searchBar.style.cssText=`width:28rem`;
           // searchBar.style.cssText=`width:31.75rem`;
           userStatus.isSubscribed == true ?
             searchBar.style.cssText = `width:39rem` :
@@ -171,7 +163,7 @@ function Navbar(props: any) {
               searchBar.style.cssText = `width: calc(100vw - 50.75rem)` :
               searchBar.style.cssText = `width: calc(100vw - 54.6rem)`;
           } else {
-            // searchBar.style.cssText=`width:33rem`;
+            // searchBar.style.cssText=`width:28rem`;
             // searchBar.style.cssText=`width:31.75rem`;
             userStatus.isSubscribed == true ?
               searchBar.style.cssText = `width:39rem` :
@@ -188,13 +180,13 @@ function Navbar(props: any) {
         if (window.innerWidth > 1960) {
           // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
           userStatus.isSubscribed == true ?
-            searchBar.style.cssText = `width: calc(100vw - 48rem)` :
+            searchBar.style.cssText = `width: calc(100vw - 44rem)` :
             searchBar.style.cssText = `width: calc(100vw - 60rem)`;
         } else {
           // searchBar.style.cssText=`width:34.5rem`;
           userStatus.isSubscribed == true ?
             searchBar.style.cssText = `width:38.5rem` :
-            searchBar.style.cssText = `width:33rem`;
+            searchBar.style.cssText = `width:28rem`;
           // searchBar.style.cssText=`width:36.8rem`;
         }
       }
@@ -205,19 +197,20 @@ function Navbar(props: any) {
           if (window.innerWidth > 1960) {
             // searchBar.style.cssText=`width: calc(100vw - 54.5rem)`;
             userStatus.isSubscribed == true ?
-              searchBar.style.cssText = `width: calc(100vw - 48rem)` :
+              searchBar.style.cssText = `width: calc(100vw - 44rem)` :
               searchBar.style.cssText = `width: calc(100vw - 60rem)`;
           } else if (window.innerWidth <= 1960) {
             // searchBar.style.cssText=`width:34.5rem`;
             userStatus.isSubscribed == true ?
               searchBar.style.cssText = `width:38.5rem` :
-              searchBar.style.cssText = `width:33rem`;
+              searchBar.style.cssText = `width:28rem`;
             // searchBar.style.cssText=`width:36.8rem`;
           }
         }
       });
 
     }
+
 
 
     return () => {
@@ -233,11 +226,29 @@ function Navbar(props: any) {
 
 
   useEffect(() => {
+    let localStorageItems: any = localStorage.getItem("cart");
+
+    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined) {
+
+      axiosInstance
+        .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
+        .then(function (response: any) {
+          dispatch(setCartItems(response?.data?.data));
+          setLocalStateCartItems(cartItems?.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    } else {
+
+      setLocalStateCartItems(null);
+      // dispatch(setCartItems(null));
+    }
 
     axiosInstance
       .get(`categories`)
       .then(function (response: any) {
-        console.log('response :', response);
         setCategoriesList(response?.data?.data?.categories);
       })
       .catch(function (error) {
@@ -257,6 +268,30 @@ function Navbar(props: any) {
       }
     }
   }, [courseDetailsData, myCourseNavigator, router.asPath])
+
+
+  useEffect(() => {
+    setLocalStateCartItems(cartItems?.data);
+
+    let localStorageItems: any = localStorage.getItem("cart");
+
+    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
+      cartItems?.data !== undefined && cartItems?.data !== "undefined") {
+
+      axiosInstance
+        .get(`courses/?course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)
+        .then(function (response: any) {
+          setLocalStateCartItems(response?.data?.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+    } else {
+      setLocalStateCartItems([]);
+    }
+
+  }, [cartItems]);
 
   useResize((
     () => {
@@ -291,6 +326,7 @@ function Navbar(props: any) {
         });
         const searchBoxOverlay: any = document.getElementById("search-box-overlay");
         searchBoxOverlay.style.cssText = `display:none;`;
+
       }
     }
   }
@@ -396,15 +432,15 @@ function Navbar(props: any) {
         className={styles["navbar"]} expanded={expanded} expand="sm">
         <Link href="/">
           {/*  ${!paymentStep == false && "ms-auto ps-1"} */}
-          <a className={`d-flex`} style={{ margin: (!paymentStep == false && isMobileView) ? "0 0 0 40%" : "" }}>
+          <a className={`d-flex`} style={{margin: (!paymentStep == false && isMobileView) ? "0 0 0 40%" : "" }}>
             <NavBar.Brand className={styles["navbar__img"]} >
               <TadarabLogo />
             </NavBar.Brand>
           </a>
         </Link>
 
-        {!paymentStep && <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />}
-        {!paymentStep && <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
+        {  !paymentStep &&  <NavBar.Toggle onClick={() => { setExpanded(!expanded) }} aria-controls="offcanvasNavbar1" />}
+        { !paymentStep && <NavBar.Offcanvas data-theme={themeState} onHide={() => { handleDiscoverSidebarShow(false) }}
           id="offcanvasNavbar1"
           aria-labelledby="offcanvasNavbarLabel1"
           placement="end"
@@ -418,8 +454,8 @@ function Navbar(props: any) {
               <NextIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
             </li>
 
-            <Offcanvas data-theme={themeState} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2"
-              backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
+            <Offcanvas data-theme={themeState} id="offcanvasNavbar2" aria-labelledby="offcanvasNavbarLabel2" 
+            backdrop={false} placement="end" show={discoverSidebarShow} onHide={() => { handleDiscoverSidebarShow(false) }}>
               <Offcanvas.Header className={styles["sidebar-list__discover-sidebar"]}>
                 <Offcanvas.Title className={styles["sidebar-list__discover-sidebar__title"]}>
                   استكشف
@@ -432,7 +468,7 @@ function Navbar(props: any) {
               <ul className={styles["sidebar-list__discover-sidebar__list"]}>
                 <div><div>التخصصات</div></div>
                 {
-                  categoriesList?.map((category: any, i: number) => {
+                  categoriesList.map((category: any, i: number) => {
                     return (
                       <Link key={i} href={`/topic/${category.slug}`} passHref>
                         <a>
@@ -460,24 +496,26 @@ function Navbar(props: any) {
                     <li onClick={() => { setExpanded(false) }}>دورات مجانية</li>
                   </a>
                 </Link>
-
+                {/* <Link href="/tadarab-season">
+                  <li onClick={() => { setExpanded(false) }}>موسم تدرب </li>
+                </Link> */}
+                {/* <li>الاستشارات</li>
+                  <li>كتيبات وملخصات</li>
+                  <li>مقالات</li> */}
               </ul>
-
+              {/* <ul className={styles["sidebar-list__discover-sidebar__list"]}>
+                <div><div>أخري</div></div>
+                  <li>عروض</li>
+                  <li>المدربين</li>
+                  <li>عن تدرب</li>
+                  <li>تواصل معنا</li>
+              </ul> */}
             </Offcanvas>
             {userStatus.isSubscribed == false &&
-              <Link href="/subscription-plans">
-                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
-                  أنظمة الاشتراك
-                </li>
+              <Link href="/subscription">
+                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>تدرب بلا حدود</li>
               </Link>
             }
-            {/* {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
-              <Link href="/subscription">
-                <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>
-                  تدرب بلا حدود
-                </li>
-              </Link>
-            } */}
             <Link href="/join-as-trainer">
               <li onClick={() => { setExpanded(false) }} className={styles["sidebar-list__item"]}>انضم كمدرب</li>
             </Link>
@@ -574,7 +612,7 @@ function Navbar(props: any) {
                     </div>
                     <ul className={styles["navbar__discover-popover__list"]}>
                       {
-                        categoriesList?.map((category: any, i: number) => {
+                        categoriesList.map((category: any, i: number) => {
                           return (
                             <Link key={i} href={`/topic/${category.slug}`} passHref>
                               <a>
@@ -606,9 +644,26 @@ function Navbar(props: any) {
                           <li>دورات مجانية</li>
                         </a>
                       </Link>
+                      {/* <Link href="/tadarab-season">
+
+                        <li>موسم تدرب </li>
+                      </Link> */}
+                      {/* <li>الاستشارات</li>
+                          <li>كتيبات وملخصات</li>
+                          <li>مقالات</li> */}
                     </ul>
                   </div>
-
+                  {/* <div className={styles["navbar__discover-popover__box"]}>
+                      <div className={styles["navbar__discover-popover__caption"]}>
+                      أخري
+                      </div>
+                      <ul className={styles["navbar__discover-popover__list"]}>
+                          <li>عروض</li>
+                          <li>المدربين</li>
+                          <li>عن تدرب</li>
+                          <li>تواصل معنا</li>
+                      </ul>
+                    </div> */}
                 </div>
               </div>
 
@@ -630,18 +685,13 @@ function Navbar(props: any) {
                   className={styles["navbar__search-bar-container__search-bar"]}
                 />
               </div>
-
-              {/* {userStatus.isSubscribed == false && !userStatus.isUserAuthenticated &&
-                <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>
-                  تدرب بلا حدود
-                </Nav.Link>} */}
-
+              {userStatus.isSubscribed == false &&
+               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} className={styles["navbar__links"]}>تدرب بلا حدود</Nav.Link>}
 
               <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}join-as-trainer`) }} className={styles["navbar__links"]}>انضم كمدرب</Nav.Link>
               {userStatus.isUserAuthenticated &&
                 <Nav.Link onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`) }} className={styles["navbar__links"]}>لوحتي التعليمية</Nav.Link>
               }
-
             </>
           }
 
@@ -692,23 +742,15 @@ function Navbar(props: any) {
 
 
 
-          {/* {userStatus.isUserAuthenticated == false && !paymentStep &&
-           <Link href="/sign-up">
+          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-up">
             <Button className={styles["navbar__register-btn"]}>حساب جديد</Button>
           </Link>
-          } */}
-          {userStatus.isSubscribed == false && !paymentStep &&
-            <div onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}
-              className={styles["navbar__subscribe-now"]}>
-              <Button>
-                أنظمة الاشتراك
-              </Button>
-            </div>}
-          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-up">
-            <Button className={styles["navbar__sign-in-btn"]}>انشاء حساب</Button>
+          }
+          {userStatus.isUserAuthenticated == false && !paymentStep && <Link href="/sign-in">
+            <Button className={styles["navbar__sign-in-btn"]}>تسجيل دخول</Button>
           </Link>}
 
-          {!paymentStep && <div className={styles["navbar_responsive-search-icon"]}>
+          { !paymentStep &&  <div className={styles["navbar_responsive-search-icon"]}>
             <div onClick={() => {
               searchBoxToggler("open");
               const searchBox: any = document.getElementById("responsive-search-field");
@@ -749,6 +791,215 @@ function Navbar(props: any) {
             </div>
           </div>}
 
+          {(!isCoursePurchased || isMobileView) && !paymentStep && <OverlayTrigger show={dropdownOpened.cart}
+            trigger='click'
+            rootClose
+            placement="bottom-start"
+            overlay={
+              <div className={styles["navbar__cart-popover"]}
+                style={{ display: !cartItems?.data?.length ? "none" : "" }}
+                id="cart-popover" >
+                <div className={styles["navbar__cart-popover__cart-items-wrapper"]}>
+                  {
+
+                    localStateCartItems?.map((item: any, i: number) => {
+                      return (
+
+                        <div key={i} className={styles["navbar__cart-popover__outer-box"]}>
+                          {/* {console.log(cartItems)} */}
+                          <img loading="lazy"
+                            src={item.image}
+                            alt="course image"
+                            className={styles["navbar__cart-popover__img"]}
+                          />
+                          <div
+                            className={styles["navbar__cart-popover__course-details"]}
+                          >
+                            <div
+                              className={
+                                styles["navbar__cart-popover__course-details__title"]
+                              }
+                            >
+                              {item.title}
+                            </div>
+                            <div
+                              className={
+                                styles["navbar__cart-popover__course-details__author"]
+                              }
+                            >
+                              {" "}
+                              {item.trainer?.name_ar}{" "}
+                            </div>
+                            <div
+                              className={
+                                styles[
+                                "navbar__cart-popover__course-details__price-container"
+                                ]
+                              }
+                            >
+                              {item.discounted_price == 0 ?
+                                "مجانًا"
+                                :
+                                <>
+                                  <span
+                                    className={
+                                      styles["navbar__cart-popover__course-details__price"]
+                                    }
+                                  >
+                                    {item.discounted_price}
+                                  </span>
+                                  <span
+
+                                    className={
+                                      styles[
+                                      "navbar__cart-popover__course-details__currency"
+                                      ]
+                                    }
+                                  >
+                                    {item?.currency_symbol}
+                                  </span>
+                                </>
+                              }
+                            </div>
+                            {item.price > item.discounted_price &&
+                              <div
+                                className={
+                                  styles[
+                                  "navbar__cart-popover__course-details__old-price-container"
+                                  ]
+                                }
+                              >
+                                <span
+                                  className={
+                                    styles[
+                                    "navbar__cart-popover__course-details__old-price"
+                                    ]
+                                  }
+                                >
+                                  {item.price}
+                                </span>
+                                <span
+                                  className={
+                                    styles[
+                                    "navbar__cart-popover__course-details__old-price-currency"
+                                    ]
+                                  }
+                                >
+                                  {item?.currency_symbol}
+                                </span>
+                              </div>
+                            }
+                          </div>
+                        </div>
+
+                      )
+                    })
+                  }
+                </div>
+
+                {/* <div className={styles["navbar__cart-popover__show-more-link"]}>
+                    {localStateCartItems?.length > 2 && "اعرض المزيد"}
+                    
+                    </div> */}
+                <div className={styles["navbar__cart-popover__checkout-box"]}>
+                  <div
+                    className={
+                      styles[
+                      "navbar__cart-popover__checkout-box__total-price-box"
+                      ]
+                    }
+                  >
+                    <div
+                      className={
+                        styles["navbar__cart-popover__checkout-box__items"]
+                      }
+                    >
+                      الإجمالي ({localStateCartItems?.length} دورة)
+                    </div>
+                    <div>
+                      <span
+                        className={
+                          styles[
+                          "navbar__cart-popover__checkout-box__total-price"
+                          ]
+                        }
+                      >
+                        {
+                          localStateCartItems?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
+                        }
+                      </span>
+                      <span
+                        className={
+                          styles[
+                          "navbar__cart-popover__checkout-box__total-price-currency"
+                          ]
+                        }
+                      >
+
+                        {cartItems?.data && cartItems?.data[0]?.currency_symbol}
+                      </span>
+                    </div>
+                    {
+                      cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0)
+                      >
+                      cartItems?.data?.map((item: any) => item.discounted_price).reduce((prev: any, curr: any) => prev + curr, 0)
+                      &&
+                      <div
+                        className={
+                          styles[
+                          "navbar__cart-popover__checkout-box__old-total-price-box"
+                          ]
+                        }
+                      >
+                        <span
+                          className={
+                            styles[
+                            "navbar__cart-popover__checkout-box__old-total-price"
+                            ]
+                          }
+                        >
+                          {
+                            cartItems?.data?.map((item: any) => item.price).reduce((prev: any, curr: any) => prev + curr, 0).toFixed(2)
+                          }
+                        </span>
+                        <span
+                          className={
+                            styles[
+                            "navbar__cart-popover__checkout-box__old-total-price-currency"
+                            ]
+                          }
+                        >
+                          {cartItems?.data[0]?.currency_symbol}
+                        </span>
+                      </div>
+
+                    }
+                  </div>
+                  <div
+                    className={
+                      styles["navbar__cart-popover__checkout-box__cart-btn"]
+                    }
+                  >
+
+                    <Link href="/checkout">
+
+                      <Button onClick={() => { closeDropdown("cart"); }}>إذهب للسلة</Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            }
+          >
+            <div className={styles["navbar__cart-icon-container"]} id="carticon"
+              onClick={() => { isMobileView && Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`); closeDropdown("cart"); }}>
+              <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
+              <Badge className={styles["navbar__cart-icon__badge"]}>{cartItems?.data?.length || ""}</Badge>
+              {/* cartItems?.data?.length ||  localStateCartItems?.length || */}
+
+            </div>
+          </OverlayTrigger>
+          }
+
           {
             userStatus.isUserAuthenticated && !paymentStep &&
             <>
@@ -772,15 +1023,7 @@ function Navbar(props: any) {
           }
         </Nav>
 
-        {paymentStep &&
-          <div className={styles["navbar__return-to-plans-icon"]} onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`) }}>
-            <CloseIcon color='#777' />
-          </div>
-        }
-
-      </NavBar>
-      <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
-
+      </NavBar >
     </>
   );
 }

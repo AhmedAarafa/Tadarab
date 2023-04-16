@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styles from "./add-to-cart-popup.module.css";
 import { Row, Col, Button, Form, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import Link from 'next/link';
 import Router from 'next/router';
 
-export default function AddToCartPopup(props: any) {
+function AddToCartPopup(props: any) {
     const [show, setShow] = useState(false);
     const themeState = useSelector((state: any) => state.themeState.theme);
     const [specialBundleData, setSpecialBundleData] = useState<any>();
@@ -170,3 +170,5 @@ export default function AddToCartPopup(props: any) {
         </>
     )
 }
+
+export default memo(AddToCartPopup);

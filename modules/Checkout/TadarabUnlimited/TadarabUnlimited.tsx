@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, memo } from 'react';
 import styles from "./tadarab-unlimited.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
-export default function TadarabUnlimited() {
+function TadarabUnlimited() {
     const [isMobileView, setIsMobileView] = useState(false);
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
     const dispatch = useDispatch();
@@ -28,7 +28,14 @@ export default function TadarabUnlimited() {
 
     const handleSubscriptionBtn = () => {
         dispatch(setCheckoutType("subscription"));
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+        if (userStatus) {
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+            })
+        }
     }
 
     return (
@@ -95,3 +102,5 @@ export default function TadarabUnlimited() {
         </>
     )
 }
+
+export default memo(TadarabUnlimited);

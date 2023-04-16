@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import styles from "./testimonials.module.css";
 import { Row, Col } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +9,7 @@ import { QuoteIcon } from "common/Icons/Icons";
 import usersReviews from "./Testimonials.json";
 import { useSelector } from "react-redux";
 
-export default function Testimonials(props: any) {
+function Testimonials(props: any) {
     SwiperCore.use([Navigation]);
     SwiperCore.use([Pagination]);
     const [category, setCategory] = useState<any>({});
@@ -113,3 +113,5 @@ export default function Testimonials(props: any) {
         </>
     )
 }
+
+export default memo(Testimonials);

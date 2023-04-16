@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, memo } from 'react'
 import styles from "./my-course.module.css";
 import { Row, Col, Button, Modal, Accordion, ProgressBar } from "react-bootstrap";
 import { CheckCircleIcon, AttachmentsIcon, CongratulationsIcon, FileDownloadIcon, ShareIcon } from 'common/Icons/Icons';
@@ -14,7 +14,7 @@ import html2canvas from 'html2canvas';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import CommentsSection from "../Comments section/CommentsSection"
 
-export default function MyCourse(props: any) {
+function MyCourse(props: any) {
     const [courseDetails, setCourseDetails] = useState<any>([]);
     const [todaysDate, setTodaysDate] = useState<any>("");
     const [progressPercentage, setProgressPercentage] = useState(0);
@@ -59,9 +59,7 @@ export default function MyCourse(props: any) {
 
     useEffect(() => {
         setCourseDetails(courseDetailsData?.data);
-        setProgressPercentage((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0);
-
-        courseDetailsData?.data && toggleLoader("hide");
+        setProgressPercentage((courseDetailsData.data?.progress_percentage) ? courseDetailsData.data?.progress_percentage : 0)
         // return () => {
         //     dispatch(setMyCourseNavigator("curriculum"));
         //   }
@@ -85,7 +83,6 @@ export default function MyCourse(props: any) {
         }
 
     }, []);
-    
 
     return (
         <>
@@ -105,7 +102,6 @@ export default function MyCourse(props: any) {
                                 </div>
 
                                 { /** Course Lesions **/}
-                                {/* {console.log("my course comp.")} */}
                                 <TPlayerPaidPlayList />
                             </div>
                         </Col>
@@ -239,3 +235,5 @@ export default function MyCourse(props: any) {
         </>
     )
 }
+
+export default memo(MyCourse);

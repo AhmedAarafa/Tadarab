@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styles from "./instructor-terms-page.module.css";
 import { Row, Col } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
-export default function InstructorTerms() {
+function InstructorTerms() {
     const [instructorTerms, setInstructorTerms] = useState("");
     toggleLoader("show");
 
@@ -37,3 +37,5 @@ export default function InstructorTerms() {
         </>
     )
 }
+
+export default memo(InstructorTerms);

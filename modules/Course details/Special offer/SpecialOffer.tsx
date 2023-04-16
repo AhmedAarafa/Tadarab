@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./special-offer.module.css";
 import { Button } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
@@ -10,7 +10,7 @@ import { setCartItems } from "configurations/redux/actions/cartItems";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
-export default function SpecialOffer(props: any) {
+function SpecialOffer(props: any) {
     const [specialBundleData, setSpecialBundleData] = useState<any>();
     const [toDisplayValues, setToDisplayValues] = useState<any>([]);
     const [disabled, setDisabled] = useState(false);
@@ -20,9 +20,9 @@ export default function SpecialOffer(props: any) {
     const { slug } = Router.query;
 
     useEffect(() => {
-        if (props.Cid() !== "") {
+        if (props.Cid !== "") {
             axiosInstance
-                .get(`course/${props.Cid()}/special-bundle`)
+                .get(`course/${props.Cid}/special-bundle`)
                 .then(function (response: any) {
                     setSpecialBundleData(response?.data?.data);
                     timerImplementer();
@@ -39,7 +39,7 @@ export default function SpecialOffer(props: any) {
                 });
 
         }
-    }, [props.Cid()]);
+    }, [props.Cid]);
 
     useEffect(() => {
         let coursesIds = '';
@@ -48,7 +48,7 @@ export default function SpecialOffer(props: any) {
         specialBundleData?.courses?.forEach((c: any, i: number) => {
             coursesIds += `${c.id.toString()}|`;
         });
-        const regex = new RegExp(`/${coursesIds?.slice(0, -1)}/g`);
+        const regex = new RegExp(`/${coursesIds.slice(0, -1)}/g`);
 
         if (regex.test(localStorageItems)) {
             setDisabled(true);
@@ -96,7 +96,7 @@ export default function SpecialOffer(props: any) {
     const handleCartActionBtn = (courses: any): any => {
         dispatch(setCheckoutType("cart"));
         // console.log("handleCartResponse", courses);
-        const handleCartResponse: any = handleCart(courses, `course/${props.Cid()}/special-bundle`, true);
+        const handleCartResponse: any = handleCart(courses, `course/${props.Cid}/special-bundle`, true);
         handleCartResponse.then(function (firstresponse: any) {
             console.log("handleCartResponse", firstresponse);
             firstresponse.resp.then(function (response: any) {
@@ -347,3 +347,5 @@ export default function SpecialOffer(props: any) {
         </>
     );
 }
+
+export default memo(SpecialOffer);

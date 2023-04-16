@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, memo } from 'react';
 import styles from "./tadarab-unlimited.module.css";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap"; 
 import Link from "next/link";
 import useResize from "custom hooks/useResize";
 
-export default function TadarabUnlimited() {
+function TadarabUnlimited() {
     const [isMobileView, setIsMobileView] = useState(false);
 
     const viewportWidthDetector = () => {
@@ -42,7 +42,7 @@ export default function TadarabUnlimited() {
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
                             </div>
-                            <Link href="/subscription-plans">
+                            <Link href="/subscription">
                                 <Button>
                                     اشترك الآن
                                 </Button>
@@ -73,7 +73,7 @@ export default function TadarabUnlimited() {
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
                             </div>
-                            <Link href="/subscription-plans">
+                            <Link href="/subscription">
                                 <Button>
                                     اشترك الآن
                                 </Button>
@@ -86,3 +86,5 @@ export default function TadarabUnlimited() {
         </>
     )
 }
+
+export default memo(TadarabUnlimited);

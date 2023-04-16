@@ -1,8 +1,8 @@
-User-Agent: *
-Disallow:/404/
-Disallow:/checkout/
-Allow:/trainer/
-Allow:/course/
-Allow:/subscription-plans/
-Allow:/topic/
-sitemap:https://www.tadarab.com/main-sitemap.xml
+User-agent: *
+Disallow: 
+
+User-agent: Googlebot
+User-agent: AdsBot-Google
+Disallow: 
+
+Sitemap: https://www.tadarab.com/sitemap.xml

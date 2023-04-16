@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./testimonials.module.css";
 import { Row, Col } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,7 +8,7 @@ import "swiper/css";
 import { QuoteIcon } from "common/Icons/Icons";
 import usersReviews from "./Testimonials.json";
 
-export default function Testimonials() {
+function Testimonials() {
     SwiperCore.use([Navigation]);
     SwiperCore.use([Pagination]);
 
@@ -100,3 +100,5 @@ export default function Testimonials() {
         </>
     )
 }
+
+export default memo(Testimonials);

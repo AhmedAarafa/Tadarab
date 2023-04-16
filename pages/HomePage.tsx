@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import dynamic from 'next/dynamic';
 import { Container } from "react-bootstrap";
 import { GetServerSideProps } from 'next'
@@ -19,7 +19,6 @@ const LiveCourses = dynamic(() => import("modules/Home page/Live courses/LiveCou
 const HowToLearnOnTadarab = dynamic(() => import("modules/Home page/How to learn on tadarab/HowToLearnOnTadarab"));
 const Books = dynamic(() => import("modules/Home page/Books/Books"));
 const Statistics = dynamic(() => import("common/Statistics/Statistics"));
-const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 const WhyTadarab = dynamic(() => import("modules/Home page/Why Tadarab/WhyTadarab"));
 const LearnFromTheBest = dynamic(() => import("modules/Home page/Learn from the best/LearnFromTheBest"));
 const JoinAsATrainer = dynamic(() => import("modules/Home page/Join as a trainer/JoinAsATrainer"));
@@ -28,16 +27,13 @@ const AboutTadarab = dynamic(() => import("common/Testimonials/Testimonials"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season section/TadarabSeason"));
-const MobileCheckoutBar = dynamic(() => import("modules/Home page/Mobile checkout bar/MobileCheckoutBar"));
 
 function HomePage(props: any) {
-  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const router = useRouter();
+  const [targetedCountry, setTargetedCountry] = useState<any>("kw");
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
   const themeState = useSelector((state: any) => state.themeState.theme);
-  const userStatus = useSelector((state: any) => state.userAuthentication);
-
 
   useEffect(() => {
     toggleLoader("show");
@@ -55,11 +51,6 @@ function HomePage(props: any) {
               dispatch(setHomePageData(response.data.data));
               FBPixelEventsHandler(response.data.fb_tracking_events, null);
               toggleLoader("hide");
-              setTimeout(() => {
-                if (userStatus.isUserAuthenticated == false) {
-                  setIsCustomSignupModalVisible(true);
-                }
-              }, 3000);
             })
             .catch(function (error: any) {
               toggleLoader("hide");
@@ -77,11 +68,6 @@ function HomePage(props: any) {
           dispatch(setHomePageData(response.data.data));
           FBPixelEventsHandler(response.data.fb_tracking_events, null);
           toggleLoader("hide");
-          setTimeout(() => {
-            if (userStatus.isUserAuthenticated == false) {
-              setIsCustomSignupModalVisible(true);
-            }
-          }, 3000);
         })
         .catch(function (error: any) {
           toggleLoader("hide");
@@ -103,10 +89,14 @@ function HomePage(props: any) {
     return () => {
       window.removeEventListener("scroll", () => {
         return;
-      });
-      setIsCustomSignupModalVisible(false);
+      })
     }
 
+  }, [router]);
+
+  
+  useEffect(() => {
+    setTargetedCountry(router.asPath == "/sa" ? "sa" : "kw");
   }, [router]);
 
   return (
@@ -114,12 +104,11 @@ function HomePage(props: any) {
 
       <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
 
-        <HeroSection />
+        <HeroSection targetedCountry={targetedCountry} />
         {/* <TadarabSeason /> */}
         <LatestCourses />
-        {/* <TadarabUnlimited /> */}
+        <TadarabUnlimited />
         <CoursesDepartments />
-        <Statistics />
         <LiveCourses />
         <HowToLearnOnTadarab />
         {/* <Consultation/> */}
@@ -128,18 +117,17 @@ function HomePage(props: any) {
             </div>
              } */}
         <Books />
+        <Statistics targetedCountry={targetedCountry} />
         <WhyTadarab />
-        <LearnFromTheBest />
+        <LearnFromTheBest targetedCountry={targetedCountry} />
         <JoinAsATrainer />
         <TadarabForBusiness />
         <AboutTadarab />
         <JoinUs />
-        <MobileCheckoutBar />
-        <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
       </Container>
 
     </>
   )
 };
 
-export default withAuth(HomePage);
+export default withAuth(memo(HomePage));

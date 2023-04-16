@@ -13,11 +13,11 @@ export const toggleLoader = (status: string) => {
         document.body.style.cssText = `overflow:hidden`;
         document.body.style.cssText = `visibility:hidden`;
         nav ? nav.style.cssText = `display:none` : null;
-        // if (notificationBar) {
-        //   notificationBar.style.cssText = `opacity:0`;
-        // }
-        // footer ? (footer.style.cssText = `opacity:0`) : null;
-        loader ? loader.style.cssText = `display : flex; visibility:visible` : null;
+        if (notificationBar) {
+          notificationBar.style.cssText = `display:none`;
+        }
+        footer ? (footer.style.cssText = `display:none`) : null;
+        loader.style.cssText = `display : flex; visibility:visible`;
         break;
       case "hide":
         setTimeout(() => {
@@ -25,11 +25,11 @@ export const toggleLoader = (status: string) => {
           document.body.style.cssText = `visibility:visible`;
           nav ? nav.style.cssText = `display:flex`: null;
           if (notificationBar) {
-            // notificationBar.style.cssText = `opacity:1`;
+            notificationBar.style.cssText = `display:flex`;
             nav ? nav.style.cssText = `top:${notificationBar?.offsetHeight}px ;`: null;
           }
-          // footer ? (footer.style.cssText = `opacity:1`) : null;
-          loader ? loader.style.cssText = `display : none; visibility:hidden` : null;
+          footer ? (footer.style.cssText = `display:block`) : null;
+          loader.style.cssText = `display : none; visibility:hidden`;
         }, 500);
         // setTimeout(() => {
         //     document.body.classList.remove("loading-indicator");

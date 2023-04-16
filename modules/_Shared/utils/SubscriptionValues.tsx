@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { axiosInstance } from "configurations/axios/axiosConfig";
 
-export default function SubscriptionValues() {
+function SubscriptionValues() {
     const [values, setValues] = useState<any>({});
 
     useEffect(() => {
         let cancel: boolean = false;
 
         axiosInstance
-            .get(`subscription/plans`)
+            .get(`categories/home/?limit=20&page=1`)
             .then(function (response: any) {
-                if (JSON.stringify(response.status).startsWith("2")) {
-                    if (cancel) return;
-
-                    setValues({
-                        sale_label: response?.data?.data?.subscription_plans[0]?.sale_label
-                    });
-                }
+                if (cancel) return;
+                setValues({
+                    subscription_original_price: response?.data?.data.subscription_original_price,
+                    subscription_sale_price: response?.data?.data.subscription_sale_price,
+                    currency_symbol: response?.data?.data.currency_symbol
+                });
             })
-            .catch(function (error) {
+            .catch(function (error: any) {
                 console.log(error);
             });
 
@@ -31,12 +30,15 @@ export default function SubscriptionValues() {
     return (
         JSON.stringify(values) !== "{}" ?
             <div>
-               شاهد اكثر من 1000 دورة باشتراك واحد يبدأ من
-               <span style={{fontWeight:"800",zoom:"1.5"}}>
-                {" "} {values.sale_label} {" "}
-               </span>
+                اشترك الآن لتتابع جميع الدورات باشتراك يبدأ من
+                {` ${values.subscription_sale_price} `}
+                {` ${values.currency_symbol}`}
+                /
+                ش
             </div>
             :
             <></>
     )
 }
+
+export default memo(SubscriptionValues);

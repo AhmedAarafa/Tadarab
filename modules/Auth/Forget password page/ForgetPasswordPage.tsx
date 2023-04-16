@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./forget-password-page.module.css";
 import { EnvelopeIcon } from "common/Icons/Icons";
@@ -15,7 +15,7 @@ interface ForgetPasswordFormValues {
 };
 
 
-export default function ForgetPasswordPage() {
+function ForgetPasswordPage() {
     const [fieldBlur, setFieldBlur] = useState({ email: "" });
     const [validationAfterSubmit, setValidationAfterSubmit] = useState({ email: false });
     const [serverResponse, setServerResponse] = useState({ value: "", color: "", bgcolor: "" });
@@ -138,3 +138,5 @@ export default function ForgetPasswordPage() {
         </>
     )
 }
+
+export default memo(ForgetPasswordPage);

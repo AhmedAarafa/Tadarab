@@ -1,18 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import styles from "./course-review.module.css";
 import { Col } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { Button } from "react-bootstrap";
-// import {scrollspyHandler} from "./utils"
 import { scrollspyHandler } from "../../_Shared/utils/scrollSpy"
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { ReviewStartIcon, PlusIcon, GiftIcon, CartIcon } from "common/Icons/Icons";
-import Image from 'next/image';
+import { ReviewStartIcon } from "common/Icons/Icons";
 
-export default function CourseReview(props: any) {
+function CourseReview(props: any) {
     SwiperCore.use([Navigation]);
     const [courseReviews, setCourseReviews] = useState<any>([]);
     const [reviewsSlicer, setReviewsSlicer] = useState<any>(1);
@@ -20,11 +18,11 @@ export default function CourseReview(props: any) {
     useEffect(() => {
         let cancel: boolean = false;
 
-        if (props.Cid() !== "") {
+        if (props.Cid !== "") {
 
             scrollspyHandler("reviews-section");
             axiosInstance
-                .get(`course/${props.Cid()}/reviews`)
+                .get(`course/${props.Cid}/reviews`)
                 .then(function (response: any) {
                     if (cancel) return;
                     setCourseReviews(response.data.data);
@@ -41,7 +39,7 @@ export default function CourseReview(props: any) {
                 });
             }
         }
-    }, [props.Cid()]);
+    }, [props.Cid]);
 
     function timerHandler(date: any) {
 
@@ -390,4 +388,6 @@ export default function CourseReview(props: any) {
         </>
     )
 }
+
+export default memo(CourseReview);
 

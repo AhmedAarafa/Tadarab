@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./what-you-will-learn.module.css";
 import { TickIcon } from "common/Icons/Icons";
 
-export default function WhatYouWillLearn(props: any) {
+function WhatYouWillLearn(props: any) {
 
     return (
         <>
@@ -37,3 +37,5 @@ export default function WhatYouWillLearn(props: any) {
         </>
     );
 }
+
+export default memo(WhatYouWillLearn);

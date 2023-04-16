@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./join-us.module.css";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 
-export default function JoinUs() {
+function JoinUs() {
   const [error, setError] = useState({ status: false, msg: "" });
 
   const handleSubmit = (e: any) => {
@@ -85,3 +85,5 @@ export default function JoinUs() {
     </>
   );
 }
+
+export default memo(JoinUs);

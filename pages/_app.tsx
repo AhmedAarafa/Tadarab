@@ -3,21 +3,26 @@ import '../styles/globals.css'
 import "swiper/css/bundle";
 import type { AppProps } from 'next/app'
 import 'normalize.css';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { store } from "configurations/redux/store";
-import React, { useState, useEffect } from 'react';
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import React, { useState, useEffect, useRef } from 'react';
+import TransactionInProgress from "./TransactionInProgress";
 import Head from "next/head";
 import TagManager from 'react-gtm-module';
 import Script from "next/script";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import dynamic from 'next/dynamic';
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Loader from 'common/Loader/Loader';
+import { usePreserveScroll } from 'custom hooks/usePreserveScroll';
 
 const Navbar = dynamic(() => import("common/Navbar/Navbar"));
 const Footer = dynamic(() => import("common/Footer/Footer"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     TagManager.initialize({ gtmId: 'GTM-M2TKMK7' });
@@ -27,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       // console.log = function() {}
     }
   }, []);
+
 
   let canonical = "https://www.tadarab.com";
   const router = useRouter();

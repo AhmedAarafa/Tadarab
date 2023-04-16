@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import Image from 'next/image';
 import styles from "./footer.module.css";
@@ -11,27 +11,15 @@ import { setPaymentStep } from "configurations/redux/actions/paymentStep";
 import { useDispatch, useSelector } from "react-redux";
 import Router, { useRouter } from "next/router";
 
-export default function FooterSection() {
+function FooterSection() {
   const [error, setError] = useState({ status: false, msg: "" });
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const paymentStep = useSelector((state: any) => state.paymentStep);
   const dispatch = useDispatch();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (Router.asPath.includes("subscription-plans")) {
-  //     let FOOTER = document.getElementsByTagName("footer")[0];
-  //     console.log("FOOTER",FOOTER);
-  //     FOOTER ? FOOTER.style.cssText = `display:none` : null;
-  //   }
-
-  // }, [Router]);
-
-
-
-
   // console.log("paymentStep",paymentStep);
-
+  
   const handleSubmit = (e: any) => {
     e.preventDefault();
     if (e.target[0].value == "" || e.target[1].value == "" || e.target[2].value == "") {
@@ -77,7 +65,7 @@ export default function FooterSection() {
 
   return (
     <>
-      {!paymentStep && <footer>
+      { !paymentStep && <footer>
 
         <Row className={styles["footer"]}>
 
@@ -240,9 +228,10 @@ export default function FooterSection() {
 
               </a>
 
+
             </div>
             <div className={styles["footer__contacts-box__all-rights-reserved"]}>
-              جميع الحقوق محفوظة. منصة تدرب. © 2023
+              جميع الحقوق محفوظة. منصة تدرب. © 2022
             </div>
           </Col>
         </Row>
@@ -251,3 +240,5 @@ export default function FooterSection() {
     </>
   )
 }
+
+export default memo(FooterSection);

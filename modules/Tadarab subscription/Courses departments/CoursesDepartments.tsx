@@ -1,38 +1,22 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo} from "react";
 import styles from "./courses-departments.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
-import Link from 'next/link';
-import { axiosInstance } from "configurations/axios/axiosConfig";
 import { ChevronLeftIcon } from "common/Icons/Icons";
-import { useDispatch, useSelector } from "react-redux";
-import Image from 'next/image';
+import { useSelector } from "react-redux";
 
-export default function CoursesDepartments() {
+function CoursesDepartments() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state: any) => state.homePageData);
 
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // axiosInstance
-    // .get(`home`)
-    // .then(function (response:any) {
-    //   setCategories(response.data.data.categories);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    // setCategories(homePageData.data.categories);
-    // console.log("homePageData",homePageData);
-
-    // if(homePageData !== {}){
     setCategories(homePageData.data?.categories || []);
-    // }
   }, [homePageData]);
   return (
     <>
@@ -102,4 +86,6 @@ export default function CoursesDepartments() {
     </>
   );
 }
+
+export default memo(CoursesDepartments);
 

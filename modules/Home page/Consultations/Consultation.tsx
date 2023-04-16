@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { memo } from "react";
 import styles from "./consultations.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 
-export default function Consultation() {
+function Consultation() {
   SwiperCore.use([Navigation]);
 
   return (
@@ -520,5 +520,7 @@ export default function Consultation() {
     </>
   );
 }
+
+export default memo(Consultation);
 
  

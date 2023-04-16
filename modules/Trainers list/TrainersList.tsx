@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import styles from "./trainers-list.module.css";
 import { Row, Col, Button, Card, Pagination } from "react-bootstrap";
 import Router, { useRouter } from "next/router";
@@ -9,14 +9,10 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
-import CustomSignupPopup from "common/Custom signup popup/CustomSignupPopup";
 
-
-export default function TrainersList() {
+function TrainersList() {
   const [trainersList, setTrainersList] = useState<any>([]);
-  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState("1");
-  const userStatus = useSelector((state: any) => state.userAuthentication);
 
   useEffect(() => {
     toggleLoader("show");
@@ -27,11 +23,6 @@ export default function TrainersList() {
         setTrainersList(response?.data);
         FBPixelEventsHandler(response.data.fb_tracking_events, null);
         toggleLoader("hide");
-        setTimeout(() => {
-          if (userStatus.isUserAuthenticated == false) {
-            setIsCustomSignupModalVisible(true);
-          }
-        }, 3000);
 
       })
       .catch(function (error) {
@@ -66,17 +57,17 @@ export default function TrainersList() {
             return (
               <Link key={i} href={`/trainer/${trainer?.slug}`}>
                 <Card className={styles["trainers-list__cards-carousel__card"]}
-                  style={{ backgroundImage: `url("${trainer?.image}")` }}
+                  style={{ backgroundImage: `url("${trainer.image}")` }}
                 >
                   <div className={styles["trainers-list__cards-carousel__card__card-body"]}>
                     <div className="text-center">
                       <Link href={`/trainer/${trainer?.slug}`}>
 
-                        <div className={styles["trainers-list__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
+                        <div className={styles["trainers-list__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
                       </Link>
-                      <div className={styles["trainers-list__cards-carousel__card__job-title"]}>{trainer?.title}</div>
+                      <div className={styles["trainers-list__cards-carousel__card__job-title"]}>{trainer.title}</div>
                       <div className={styles["trainers-list__cards-carousel__card__job-history"]}
-                        dangerouslySetInnerHTML={{ __html: trainer?.bio }}></div>
+                      dangerouslySetInnerHTML={{ __html: trainer.bio}}></div>
                     </div>
                   </div>
 
@@ -132,11 +123,10 @@ export default function TrainersList() {
           </Pagination>}
 
         </Col>
-
-        <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
-
       </Row>
 
     </>
   )
 }
+
+export default memo(TrainersList);

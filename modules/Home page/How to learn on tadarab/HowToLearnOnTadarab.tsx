@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./how-to-learn-on-tadarab.module.css";
 import Link from "next/link";
 import Image from 'next/image';
 
-export default function HowToLearnOnTadarab() {
+function HowToLearnOnTadarab() {
     return (
         <>
             <Row className={styles["how-to-learn-on-tadarab"]}>
@@ -42,3 +42,5 @@ export default function HowToLearnOnTadarab() {
         </>
     )
 }
+
+export default memo(HowToLearnOnTadarab);

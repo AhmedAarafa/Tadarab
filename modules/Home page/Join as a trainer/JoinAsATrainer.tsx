@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/link-passhref */
-import React from 'react'
+import React, { memo } from 'react'
 import styles from "./join-as-a-trainer.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 
 
-export default function JoinAsATrainer() {
+function JoinAsATrainer() {
     return (
         <>
             <Row>
@@ -29,3 +29,5 @@ export default function JoinAsATrainer() {
         </>
     )
 }
+
+export default memo(JoinAsATrainer);

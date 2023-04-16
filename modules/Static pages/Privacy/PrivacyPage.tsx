@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styles from "./privacy-page.module.css";
 import { Row, Col } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 
-export default function PrivacyPage() {
+function PrivacyPage() {
     const [privacyPolicy, setPrivacyPolicy] = useState("");
     toggleLoader("show");
 
@@ -31,10 +31,12 @@ export default function PrivacyPage() {
         <>
             <Row className={styles["privacy-policy"]}>
                 <Col xs={12}>
-                    <div dangerouslySetInnerHTML={{__html: privacyPolicy }}></div>
+                    <div dangerouslySetInnerHTML={{ __html: privacyPolicy }}></div>
                 </Col>
             </Row>
 
         </>
     )
 }
+
+export default memo(PrivacyPage);

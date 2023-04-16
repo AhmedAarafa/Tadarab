@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { memo } from 'react'
 import styles from "./why-tadarab.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Image from 'next/image';
 import { CertificateIcon, UnlimitedCertificatesIcon } from 'common/Icons/Icons';
 
-export default function WhyTadarab() {
+function WhyTadarab() {
     return (
         <>
 
@@ -84,3 +84,5 @@ export default function WhyTadarab() {
         </>
     )
 }
+
+export default memo(WhyTadarab);

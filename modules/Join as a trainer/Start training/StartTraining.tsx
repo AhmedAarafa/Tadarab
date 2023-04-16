@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./start-training.module.css";
 import { Row,Col,Form,Button } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
 import Router from "next/router";
 import Image from 'next/image';
 
-export default function StartTraining() {
+function StartTraining() {
   return (
     <Row className={styles["start-training"]}>
         <Col xs={12} sm={6}>
@@ -36,3 +36,5 @@ export default function StartTraining() {
     </Row>
   )
 }
+
+export default memo(StartTraining);

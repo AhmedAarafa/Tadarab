@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, UnlimitedCourses } from 'react';
 import styles from "./unlimited-courses.module.css";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Image from 'next/image';
 
-export default function UnlimitedCourses() {
+function UnlimitedCourses() {
 
 
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function UnlimitedCourses() {
       const [name, ...value] = current.split('=');
       if (prev) {
         prev[name] = value.join('=');
-        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == "NaN") {
+        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
 
         } else {
 
@@ -107,7 +107,14 @@ export default function UnlimitedCourses() {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+    if (userStatus) {
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    } else {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+      })
+    }
   }
 
   return (
@@ -130,7 +137,43 @@ export default function UnlimitedCourses() {
 
 
         </Button>
+        {/* <div className={styles["unlimited-courses__exp-days"]}>
+              ٧ أيام تجربة مجانية ثم ٩ دك (٢٩ $) شهريًا
+              </div> */}
+
+        {/* <div className={styles["unlimited-courses__brief"]}>
+              تدرب الآن من اي مكان وفي اي وقت
+              </div>
+
+              <div className={styles["unlimited-courses__search-bar-container"]}>
+              
+              <Form.Control
+                type="text"
+                placeholder="ادخل ايميلك هنا..."
+                className={
+                  styles["unlimited-courses__search-bar-container__search-bar"]
+                }
+              />
+              <Button className={styles["unlimited-courses__search-bar__btn"]}>
+              ابدأ الآن
+              <ChevronLeftIcon color="#fff"/>
+              </Button>
+            </div>
+
+              <div className={styles["unlimited-courses__subscription-value"]}>
+              قيمة الاشتراك
+              <span>100</span>
+              دك/شهرياً
+              </div> */}
+
       </Col>
+      {/* <Col xs={12} sm={6}>
+              <div className={styles["unlimited-courses__video-container"]}>
+                  <img loading="lazy"   src="/images/VideoPlaceholder.png" alt="promo video" />
+              </div>
+          </Col> */}
     </Row>
   )
 }
+
+export default memo(UnlimitedCourses);

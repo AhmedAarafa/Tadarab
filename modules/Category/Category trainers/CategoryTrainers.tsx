@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useState, useEffect }from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Row, Col, Button, Card } from "react-bootstrap";
 import styles from "./category-trainers.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,14 +8,14 @@ import Link from 'next/link';
 import "swiper/css";
 
 
-export default function CategoryTrainers(props: any) {
+function CategoryTrainers(props: any) {
   SwiperCore.use([Navigation]);
   const [title, setTitle] = useState("");
 
   useEffect(() => {
     setTitle(props?.data?.title)
   }, [props]);
-  
+
   return (
     <>
       <Row className={styles["category-trainer"]}>
@@ -26,7 +26,7 @@ export default function CategoryTrainers(props: any) {
         </Col>
 
         <Col xs={12} className={styles["category-trainer__cards-carousel"]}>
-          <Swiper dir="rtl"   slidesPerView={3.7} navigation={true} pagination={{ "clickable": true }}
+          <Swiper dir="rtl" slidesPerView={3.7} navigation={true} pagination={{ "clickable": true }}
             breakpoints={{
               "50": {
                 slidesPerView: 1,
@@ -46,7 +46,7 @@ export default function CategoryTrainers(props: any) {
               return (
 
                 <SwiperSlide key={i}>
-                  <Link href={`/trainer/${trainer?.slug}`}> 
+                  <Link href={`/trainer/${trainer?.slug}`}>
 
                     <Card className={styles["category-trainer__cards-carousel__card"]} style={{
                       background: `transparent url(${trainer?.image}) no-repeat padding-box`,
@@ -57,8 +57,8 @@ export default function CategoryTrainers(props: any) {
                         <div className="text-center">
                           <div className={styles["category-trainer__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
                           <div className={styles["category-trainer__cards-carousel__card__job-title"]}>{trainer?.title}</div>
-                          <div className={styles["category-trainer__cards-carousel__card__job-history"]} 
-                          dangerouslySetInnerHTML={{ __html: trainer?.bio }}></div>
+                          <div className={styles["category-trainer__cards-carousel__card__job-history"]}
+                            dangerouslySetInnerHTML={{ __html: trainer?.bio }}></div>
                         </div>
                       </div>
                     </Card>
@@ -77,3 +77,5 @@ export default function CategoryTrainers(props: any) {
     </>
   )
 }
+
+export default memo(CategoryTrainers);

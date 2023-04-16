@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import styles from "./category-courses.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,7 +10,7 @@ import Link from 'next/link';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 
-export default function CategoryCourses(props: any) {
+function CategoryCourses(props: any) {
     SwiperCore.use([Navigation]);
     const [filterType, setFilterType] = useState("all");
     const [categoryCourses, setCategoryCourses] = useState([]);
@@ -291,3 +291,5 @@ export default function CategoryCourses(props: any) {
         </>
     )
 }
+
+export default memo(CategoryCourses);

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./trainer-info.module.css";
 // import {scrollspyHandler} from "./utils"
 import { scrollspyHandler } from "../../_Shared/utils/scrollSpy";
@@ -9,7 +9,7 @@ import { LearnersIcon, CoursesNumberIcon, ChevronLeftIcon } from "common/Icons/I
 import Link from "next/link";
 import Image from 'next/image';
 
-export default function TrainerInfo() {
+function TrainerInfo() {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -38,7 +38,7 @@ export default function TrainerInfo() {
             <Link href={`/trainer/${courseDetailsData.data?.course_details?.trainer?.slug}`}>
 
               <div className={styles["trainer-info-section__trainer-info__name"]}>
-                {courseDetailsData.data?.course_details?.trainer?.name_ar}
+                {courseDetailsData.data?.course_details?.trainer.name_ar}
               </div>
             </Link>
             <div
@@ -53,7 +53,7 @@ export default function TrainerInfo() {
             >
               <CoursesNumberIcon color="#b4b4b4" />
 
-              <span> {courseDetailsData.data?.course_details?.trainer?.courses_count} </span>
+              <span> {courseDetailsData.data?.course_details?.trainer.courses_count} </span>
               دورات
               <span
                 className={
@@ -67,13 +67,13 @@ export default function TrainerInfo() {
               </span>
               <LearnersIcon color="#b4b4b4" />
 
-              <span> {courseDetailsData.data?.course_details?.trainer?.buyers_count} </span>
+              <span> {courseDetailsData.data?.course_details?.trainer.buyers_count} </span>
               متعلم
             </div>
           </div>
         </div>
-        <p className={styles["trainer-info-section__para"]} 
-        dangerouslySetInnerHTML={{__html: courseDetailsData.data?.course_details?.trainer?.bio}}
+        <p className={styles["trainer-info-section__para"]}
+          dangerouslySetInnerHTML={{ __html: courseDetailsData.data?.course_details?.trainer.bio }}
         >
         </p>
 
@@ -89,3 +89,5 @@ export default function TrainerInfo() {
     </>
   );
 }
+
+export default memo(TrainerInfo);

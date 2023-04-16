@@ -2,6 +2,7 @@
 
 
 .most-popular-courses__title {
+    margin-top: 3rem;
     font-size: 2rem;
     padding: 1rem 3rem 0 3rem;
     z-index: 5;
@@ -166,7 +167,7 @@
 
         &>div:nth-child(1),
         &>div:nth-child(2) {
-            top: 45.5% !important
+            top: 48% !important
         }
 
         &>div:nth-child(3) {
@@ -186,7 +187,7 @@
 
 .most-popular-courses__cards-carousel__course-card {
     width: 15rem;
-    height: 14rem;
+    height: 17.75rem;
     box-shadow: 0 0.5rem 1.313rem #0000001A;
     border-radius: 0.75rem;
     position: relative;
@@ -202,6 +203,7 @@
         width: 100%;
         height: 5rem;
         display: inline-block;
+        background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
         background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
         border-radius: 0.75rem;
         pointer-events: none;
@@ -229,6 +231,7 @@
     padding: 0.6rem 1rem 0.6rem 1rem;
     @include flex(unset, space-between);
     flex-direction: column;
+    height: 43.5%;
     background-color: var(--tadarab-bg);
     border-radius: 0 0 0.75rem 0.75rem;
 }
@@ -237,6 +240,7 @@
     @include flex(center);
     position: relative;
     padding: 0 0 0.7813rem 0;
+    border-bottom: 0.05rem solid var(--borders-grey);
 }
 
 .most-popular-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
@@ -280,6 +284,74 @@
 
 }
 
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details {
+    @include flex(center, space-between);
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark-black);
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 0.813rem;
+    font-weight: 700;
+    color: var(--dark-black);
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -0.5rem;
+
+    span {
+        text-decoration: line-through rgba(119, 119, 119, 0.7);
+    }
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--grey);
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 0.625rem;
+    color: var(--grey);
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+    @include icon-button;
+    margin-right: 0.3rem;
+    padding: 0 !important;
+
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+
+    svg {
+        width: 1.45rem;
+        height: 1.6rem;
+    }
+
+
+}
+
+.most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+    svg {
+        width: 1.313rem;
+        height: 1.125rem;
+    }
+}
+
+// .most-popular-courses__popover-container {
+//     width: 23.438rem !important;
+//     padding: 2rem 1.3rem !important;
+//     background-color: white !important;
+//     z-index: 10 !important;
+//     box-shadow: 0 0 1.875rem #00000033 !important;
+//     border-radius: 0.75rem !important;
+//     height: fit-content !important;
+// }
 
 .most-popular-courses__popover-container__title {
     font-size: 1.1rem;
@@ -362,9 +434,11 @@
 
 .most-popular-courses__popover-container__btns__details-btn {
     @include outlined-button;
-    width: 100%;
+    width: 50%;
     height: 2.5rem;
     font-weight: 800;
+    // border: 0.063rem solid #001425 !important;
+    margin-left: 0.8rem;
 
 }
 
@@ -440,7 +514,7 @@
 
             &>div:nth-child(1),
             &>div:nth-child(2) {
-                top: 46% !important;
+                top: 47% !important;
 
                 &:after {
                     font-size: 1rem*1.27 !important;
@@ -477,7 +551,7 @@
 
     .most-popular-courses__cards-carousel__course-card {
         width: 15rem*1.27;
-        height: 18rem;
+        height: 17.75rem*1.27;
         box-shadow: 0 0.5rem*1.27 1.313rem*1.27 #0000001A;
         border-radius: 0.75rem*1.27;
         position: relative;
@@ -522,6 +596,7 @@
         padding: 0.6rem*1.27 1rem*1.27;
         @include flex(unset, space-between);
         flex-direction: column;
+        height: 43.5%;
         border-radius: 0 0 0.75rem*1.27 0.75rem*1.27;
 
     }
@@ -530,6 +605,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*1.27 0;
+        border-bottom-width: 0.05rem*1.27;
 
     }
 
@@ -569,6 +645,65 @@
 
     }
 
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details {
+        margin-top: 1rem*1.27;
+        @include flex(center, space-between);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+        font-size: 1.25rem*1.27;
+        font-weight: 800;
+        color: var(--dark-black);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+        font-size: 0.813rem*1.27;
+        font-weight: 700;
+        color: var(--dark-black);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+        margin-top: -0.5rem*1.27;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+        font-size: 0.875rem*1.27;
+        font-weight: 800;
+        color: var(--grey);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+        font-size: 0.625rem*1.27;
+        color: var(--grey);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+        @include icon-button;
+        margin-right: 0.3rem*1.27;
+        padding: 0 !important;
+        border-radius: 0.75rem*1.27;
+        width: fit-content;
+        height: fit-content;
+
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+        svg {
+
+            width: 1.45rem*1.27;
+            height: 1.6rem*1.27;
+            margin: 0.32rem 0.5rem 0.32rem 0.55rem;
+        }
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        svg {
+            width: 1.313rem*1.27;
+            height: 1.125rem*1.27;
+            margin: 0.65rem 0.575rem 0.65rem 0.575rem;
+        }
+    }
+
     .watch-subscribed-course {
         font-size: 0.9rem*1.27 !important;
         padding: 0.5rem*1.27 1rem*1.27;
@@ -596,7 +731,7 @@
 
             &>div:nth-child(1),
             &>div:nth-child(2) {
-                top: 39% !important;
+                top: 43% !important;
 
                 &:after {
                     font-size: 1rem*1.67 !important;
@@ -633,7 +768,7 @@
 
     .most-popular-courses__cards-carousel__course-card {
         width: 15rem*1.67;
-        height: 23rem;
+        height: 17.75rem*1.67;
         box-shadow: 0 0.5rem*1.67 1.313rem*1.67 #0000001A;
         border-radius: 0.75rem*1.67;
         position: relative;
@@ -678,6 +813,7 @@
         padding: 0.6rem*1.67 1rem*1.67;
         @include flex(unset, space-between);
         flex-direction: column;
+        height: 43.5%;
         border-radius: 0 0 0.75rem*1.67 0.75rem*1.67;
 
     }
@@ -686,6 +822,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*1.67 0;
+        border-bottom-width: 0.05rem*1.67;
 
     }
 
@@ -723,6 +860,64 @@
 
     }
 
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details {
+        margin-top: 1rem*1.67;
+        @include flex(center, space-between);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+        font-size: 1.25rem*1.67;
+        font-weight: 800;
+        color: var(--dark-black);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+        font-size: 0.813rem*1.67;
+        font-weight: 700;
+        color: var(--dark-black);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+        margin-top: -0.5rem*1.67;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+        font-size: 0.875rem*1.67;
+        font-weight: 800;
+        color: var(--grey);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+        font-size: 0.625rem*1.67;
+        color: var(--grey);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+        @include icon-button;
+        margin-right: 0.3rem*1.67;
+        padding: 0 !important;
+        border-radius: 0.75rem*1.67;
+        width: fit-content;
+        height: fit-content;
+
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+        svg {
+            width: 1.45rem*1.67;
+            height: 1.68rem*1.67;
+            margin: 0.42rem 0.7rem 0.42rem 0.8rem;
+        }
+
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        svg {
+            width: 1.313rem*1.67;
+            height: 1.125rem*1.67;
+            margin: 0.88rem 0.88rem 0.88rem 0.88rem;
+        }
+    }
 
     .watch-subscribed-course {
         font-size: 0.9rem*1.67 !important;
@@ -828,7 +1023,7 @@
 
     .most-popular-courses__cards-carousel__course-card {
         width: 15rem*2.92;
-        height: 41rem;
+        height: 17.75rem*2.92;
         box-shadow: 0 0.5rem*2.92 1.313rem*2.92 #0000001A;
         border-radius: 0.75rem*2.92;
         position: relative;
@@ -870,6 +1065,7 @@
         padding: 0.6rem*2.92 1rem*2.92;
         @include flex(unset, space-between);
         flex-direction: column;
+        height: 43.5%;
         border-radius: 0 0 0.75rem*2.92 0.75rem*2.92;
 
     }
@@ -878,6 +1074,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*2.92 0;
+        border-bottom-width: 0.05rem*2.92;
     }
 
     .most-popular-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
@@ -911,6 +1108,58 @@
 
     }
 
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details {
+        margin-top: 1rem*2.92;
+        @include flex(center, space-between);
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+        font-size: 1.25rem*2.92;
+        font-weight: 800;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+        font-size: 0.813rem*2.92;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+        margin-top: -0.5rem*2.92;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+        font-size: 0.875rem*2.92;
+        font-weight: 800;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+        font-size: 0.625rem*2.92;
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+        @include icon-button;
+        margin-right: 0.3rem*2.92;
+        padding: 0 !important;
+        border-radius: 0.75rem*2.5;
+        width: fit-content;
+        height: fit-content;
+
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+        svg {
+            width: 1.45rem*2.2;
+            height: 1.6rem*2.2;
+            margin: 0.85rem 1rem 0.85rem 1.05rem;
+        }
+    }
+
+    .most-popular-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        svg {
+            width: 1.313rem*2.2;
+            height: 1.125rem*2.2;
+            margin: 1.3rem 1.15rem 1.3rem 1.15rem;
+        }
+    }
 
     .most-popular-courses__see-more-btn-col {
         @include flex(center, center);

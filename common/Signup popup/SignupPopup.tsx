@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./signup-popup.module.css";
 import { Button, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,7 @@ interface SignUpFormValues {
     password: string;
 };
 
-export default function SignupPopup(props: any) {
+function SignupPopup(props: any) {
     const [show, setShow] = useState(false);
     const [countryCallingCode, setCountryCallingCode] = useState("20");
     const [countryCode, setCountryCode] = useState("EG");
@@ -125,8 +125,13 @@ export default function SignupPopup(props: any) {
                             }));
                         }
                         tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: response.data.data.email, traking_uid: response.data.data.id });
-                        setIsSignupDone(true);
-
+                        if (props.from !== 'comments-section') {
+                            setIsSignupDone(true);
+                        } else {
+                            handleModalVisibility(false);
+                            let commentsSendBtn: any = document.getElementById('comments-send-btn');
+                            commentsSendBtn.click();
+                        }
                     } else {
                         setErrorMessage(response.data.message);
                     }
@@ -191,7 +196,7 @@ export default function SignupPopup(props: any) {
                 </Modal.Header>
                 <Modal.Body>
                     {
-                        isSignupDone ?
+                        isSignupDone && props.from !== 'comments-section' ?
                             <div className={styles["signup-popup__signup-succeeded"]}>
                                 <TransactionSuccessIcon />
                                 تم انشاء الحساب بنجاح
@@ -269,7 +274,13 @@ export default function SignupPopup(props: any) {
                                                         }
 
                                                         tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: values.email, traking_uid: response.data.data.id });
-                                                        setIsSignupDone(true);
+                                                        if (props.from !== 'comments-section') {
+                                                            setIsSignupDone(true);
+                                                        } else {
+                                                            handleModalVisibility(false);
+                                                            let commentsSendBtn: any = document.getElementById('comments-send-btn');
+                                                            commentsSendBtn.click();
+                                                        }
 
                                                     } else {
                                                         setErrorMessage(response.data.message);
@@ -353,7 +364,7 @@ export default function SignupPopup(props: any) {
                                                         separateDialCode={true}
                                                         onPhoneNumberBlur={(e: any) => {
                                                             const phoneNumberField: any = document.getElementById("phone-number-field");
-                                                            
+
                                                             if (phoneNumberField.value !== ""
                                                                 &&
                                                                 phoneNumberField.value.length < 5
@@ -442,3 +453,5 @@ export default function SignupPopup(props: any) {
         </>
     )
 }
+
+export default memo(SignupPopup);

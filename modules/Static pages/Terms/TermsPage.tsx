@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styles from "./terms-page.module.css";
 import { Row, Col } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
 
-export default function TermsPage() {
+function TermsPage() {
     const [termsAndConditions, setTermsAndConditions] = useState("");
     toggleLoader("show");
 
@@ -38,3 +38,5 @@ export default function TermsPage() {
         </>
     )
 }
+
+export default memo(TermsPage);

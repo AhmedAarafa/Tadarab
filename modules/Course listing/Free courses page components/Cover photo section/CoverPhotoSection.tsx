@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import { Col, Button } from "react-bootstrap";
 import styles from "./cover-photo.module.css";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
-export default function CoverPhotoSection() {
+function CoverPhotoSection() {
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
 
     return (
@@ -31,3 +31,5 @@ export default function CoverPhotoSection() {
         </Col>
     )
 }
+
+export default memo(CoverPhotoSection);

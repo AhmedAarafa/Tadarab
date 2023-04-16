@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./trainer-accounts-card.module.css";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { FbIcon, TwitterIcon, InstagramIcon, LinkedinIcon, SnapChatIcon, YoutubeIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
-import SubscriptionValues from "modules/_Shared/utils/SubscriptionValues";
 
-export default function TrainerAccountsCard() {
+function TrainerAccountsCard() {
     const dispatch = useDispatch();
 
     const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
@@ -22,7 +21,15 @@ export default function TrainerAccountsCard() {
 
     const handleSubscriptionBtn = () => {
         dispatch(setCheckoutType("subscription"));
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+        if (userStatus.isUserAuthenticated) {
+
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+                query: { from_subscription: `checkout/payment/?checkout_type=subscription` }
+            })
+        }
     }
 
     return (
@@ -42,8 +49,7 @@ export default function TrainerAccountsCard() {
                     trainerProfile.social_link_youtube == "" &&
                     <div className={styles["trainer-accounts-card__no-accounts"]}>
                         لا يوجد حسابات  لهذا المدرب
-                    </div>
-                }
+                    </div>}
                 <div className={styles["trainer-accounts-card__accounts-btns"]}>
                     {trainerProfile.social_link_facebook !== ""
                         &&
@@ -90,10 +96,10 @@ export default function TrainerAccountsCard() {
 
                 <div className={styles["trainer-accounts-card__subscription-btn"]}>
                     <Button onClick={() => handleSubscriptionBtn()}>
-                        اشترك الاّن
+                        اشترك في تدرب بلا حدود
                     </Button>
                     <div>
-                        <SubscriptionValues />
+                        احصل على كل الدورات باشتراك واحد يبدأ من 6 دك / ش
                     </div>
                 </div>
 
@@ -111,3 +117,5 @@ export default function TrainerAccountsCard() {
         </div>
     );
 }
+
+export default memo(TrainerAccountsCard);

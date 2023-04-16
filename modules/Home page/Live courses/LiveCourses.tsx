@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import styles from "./live-courses.module.css";
 import Link from 'next/link';
 import { Row, Col, Button, Card } from "react-bootstrap";
@@ -18,7 +18,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 
 
-export default function LiveCourses() {
+function LiveCourses() {
   SwiperCore.use([Navigation]);
   const dispatch = useDispatch();
   const homePageData = useSelector((state: any) => state.homePageData);
@@ -298,4 +298,6 @@ export default function LiveCourses() {
     </>
   );
 }
+
+export default memo(LiveCourses);
 

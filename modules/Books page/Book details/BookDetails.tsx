@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./book-details.module.css";
 import { ShareIcon, FileDownloadIcon, StarIcon, DropDownIcon } from "common/Icons/Icons";
@@ -10,7 +10,7 @@ import Router from "next/router";
 const WhatYouWillLearn = dynamic(() => import("modules/Books page/What you will learn/WhatYouWillLearn"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
 
-export default function BookDetails(props: any) {
+function BookDetails(props: any) {
     const [showMore, setShowMore] = useState(true);
     const [isTooMuchContent, setIsTooMuchContent] = useState(false);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -191,3 +191,5 @@ export default function BookDetails(props: any) {
         </>
     )
 }
+
+export default memo(BookDetails);

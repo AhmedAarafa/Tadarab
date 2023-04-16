@@ -64,7 +64,6 @@
 
     &::placeholder {
         color: rgba(51, 51, 51, 0.5);
-        height: 100%;
     }
 
 }
@@ -96,24 +95,7 @@
         }
     }
 
-    button {
-        @include contained-button;
-        font-weight: 700;
-        font-size: 0.9375rem;
-        padding: 0.4rem 0.8rem;
-        margin-left: 0.8rem;
-    }
 
-
-}
-
-.navbar__subscribe-now {
-    button {
-        @include contained-button;
-        width: 9rem;
-        height: 2.6rem;
-        margin-right: 1rem;
-    }
 }
 
 .navbar__purchased-course-name {
@@ -699,7 +681,6 @@
     height: 1.4rem;
     position: relative;
     width: 3.8rem;
-    margin-right: 0.5rem;
 }
 
 .theme-switch {
@@ -750,16 +731,6 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
-.navbar__return-to-plans-icon {
-    margin: 0 auto 0 1rem;
-    cursor: pointer;
-
-    svg {
-        width: 1.3rem;
-        height: 1.3rem;
-    }
-}
-
 
 @media (max-width:575px) {
     .navbar {
@@ -773,8 +744,7 @@ input:checked+.slider:before {
 
     .navbar__cart-icon-container {
         margin: 0 1.8rem 0 0.7rem;
-        // order: 4;
-        display: none;
+        order: 4;
 
         svg {
             width: 3rem;
@@ -805,7 +775,7 @@ input:checked+.slider:before {
 
         a:first-child {
             order: 2;
-            margin-left: 4rem;
+            margin-right: 3rem;
         }
 
         button {
@@ -860,9 +830,20 @@ input:checked+.slider:before {
         @include flex(center, space-between);
     }
 
-    .navbar__subscribe-now {
-        display: none !important;
-    }
+    // .responsive-navbar__search-bar-container__icon-wrapper {
+    //     padding: 0 1rem*2.5;
+    //     height: 100%;
+    //     position: absolute;
+    //     pointer-events: none;
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+
+    //     &>svg {
+    //         width: 1.1rem*2.5;
+    //         height: 1.1rem*2.5;
+    //     }
+    // }
 
     .responsive-navbar__search-bar-container__search-bar {
         border: 0 !important;
@@ -937,7 +918,6 @@ input:checked+.slider:before {
     .theme-switch {
         height: 1.4rem*2.3;
         width: 3.8rem*2.3;
-        margin-right: 0;
     }
 
     .slider:before {
@@ -956,16 +936,6 @@ input:checked+.slider:before {
 
     .slider.round {
         border-radius: 2.125rem;
-    }
-
-    .navbar__return-to-plans-icon {
-        order: 3;
-        margin: 0 auto 0 1rem*2.5;
-
-        svg {
-            width: 1.3rem*2.5;
-            height: 1.3rem*2.5;
-        }
     }
 }
 

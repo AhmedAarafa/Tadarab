@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
 import { Container } from "react-bootstrap";
@@ -13,16 +13,13 @@ import { useSelector } from "react-redux";
 const BookDetails = dynamic(() => import("modules/Books page/Book details/BookDetails"));
 const SimilarBooks = dynamic(() => import("modules/Books page/Similar books/SimilarBooks"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
-const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 
-export default function Books() {
-    const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
+function Books() {
     const Router = useRouter();
     const [bookDetails, setBookDetails] = useState<any>({});
     const [isFound, setIsFound] = useState(true);
     const { slug } = Router.query;
     const themeState = useSelector((state: any) => state.themeState.theme);
-    const userStatus = useSelector((state: any) => state.userAuthentication);
 
     useEffect(() => {
         toggleLoader("show");
@@ -37,11 +34,6 @@ export default function Books() {
                     setBookDetails(response.data.data);
                     FBPixelEventsHandler(response.data.fb_tracking_events, null);
                     toggleLoader("hide");
-                    setTimeout(() => {
-                        if (userStatus.isUserAuthenticated == false) {
-                            setIsCustomSignupModalVisible(true);
-                        }
-                    }, 3000);
                 })
                 .catch(function (error) {
                     toggleLoader("hide");
@@ -60,12 +52,10 @@ export default function Books() {
                 isFound ?
                     <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
                         <BookDetails data={bookDetails} />
-                        {/* <div className="d-none d-sm-flex">
+                        <div className="d-none d-sm-flex">
                             <TadarabUnlimited />
-                        </div> */}
+                        </div>
                         <SimilarBooks data={bookDetails} />
-                        <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
-
                     </Container>
                     :
                     <NotFound />
@@ -73,3 +63,5 @@ export default function Books() {
         </>
     )
 }
+
+export default memo(Books);

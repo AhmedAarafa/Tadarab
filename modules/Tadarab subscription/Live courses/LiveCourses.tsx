@@ -1,13 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./live-courses.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { ChevronLeftIcon, LiveIcon, PlayIcon, CartIcon, FavouriteIcon, AddedToCartIcon, ContainedBellIcon, AddedToFavouriteIcon, BellIcon } from "common/Icons/Icons";
+import { ChevronLeftIcon, LiveIcon, PlayIcon, CartIcon, FavouriteIcon,
+   AddedToCartIcon, ContainedBellIcon, AddedToFavouriteIcon, BellIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
 import { handleFav } from "modules/_Shared/utils/handleFav";
@@ -17,7 +18,7 @@ import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck";
 import Link from 'next/link';
 
-export default function LiveCourses() {
+function LiveCourses() {
   SwiperCore.use([Navigation]);
   const dispatch = useDispatch();
 
@@ -307,4 +308,6 @@ export default function LiveCourses() {
     </>
   );
 }
+
+export default memo(LiveCourses);
 

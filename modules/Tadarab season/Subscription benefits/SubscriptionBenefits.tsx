@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./subscription-benefits.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import {
@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
-export default function SubscriptionBenefits() {
+function SubscriptionBenefits() {
     const dispatch = useDispatch();
     const Router = useRouter();
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
@@ -18,7 +18,14 @@ export default function SubscriptionBenefits() {
     const handleSubscriptionBtn = (e: any) => {
         e.preventDefault();
         dispatch(setCheckoutType("subscription"));
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+        if (userStatus) {
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+            })
+        }
     }
 
     return (
@@ -95,7 +102,7 @@ export default function SubscriptionBenefits() {
                         </div>
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
                             <div>
-                                <UnlimitedCertificatesIcon color="#fff" />
+                                <UnlimitedCertificatesIcon />
                             </div>
                             <span>
                                 عدد لا نهائي من شهادات إتمام الدورات
@@ -144,3 +151,5 @@ export default function SubscriptionBenefits() {
         </>
     )
 }
+
+export default memo(SubscriptionBenefits);

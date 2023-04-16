@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import styles from "./live-courses.module.css";
 import Link from 'next/link';
 import { Row, Col, Button, Card } from "react-bootstrap";
@@ -16,7 +16,7 @@ import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
-export default function LiveCourses() {
+function LiveCourses() {
     SwiperCore.use([Navigation]);
     const [liveCourses, setLiveCourses] = useState<any>([]);
     const themeState = useSelector((state: any) => state.themeState.theme);
@@ -302,3 +302,5 @@ export default function LiveCourses() {
         </>
     )
 }
+
+export default memo(LiveCourses);

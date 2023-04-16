@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { useRouter } from 'next/router'
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { Container } from "react-bootstrap";
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import dynamic from 'next/dynamic';
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
@@ -11,7 +10,7 @@ const SubCategoryDescription = dynamic(() => import("modules/Category/SubCategor
 const TrainingCourses = dynamic(() => import("modules/Category/Training courses/TrainingCourses"));
 
 
-export default function SubCategory() {
+function SubCategory() {
   const router = useRouter()
   const [category, setCategory] = useState<any>({});
 
@@ -50,3 +49,5 @@ export default function SubCategory() {
     </>
   )
 }
+
+export default memo(SubCategory);

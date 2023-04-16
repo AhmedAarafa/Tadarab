@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./courses-departments.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +9,7 @@ import "swiper/css";
 import { ChevronLeftIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function CoursesDepartments() {
+function CoursesDepartments() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state: any) => state.homePageData);
 
@@ -89,4 +89,6 @@ export default function CoursesDepartments() {
     </>
   );
 }
+
+export default memo(CoursesDepartments);
 

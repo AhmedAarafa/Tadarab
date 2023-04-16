@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./faq.module.css";
 import { Row, Col, Accordion } from "react-bootstrap";
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 
-export default function Faq() {
+function Faq() {
 
   return (
     <Row className={styles["faq__row"]}>
@@ -72,11 +72,11 @@ export default function Faq() {
             <Accordion.Body className={styles["faq__accordion__body"]}>
               يمكنك التواصل معنا عن طريق:
               <br />
-             - إرسال إيميل على:
+              - إرسال إيميل على:
               <br />
               info@tadarab.com
               <br />
-             - مراسلتنا على رقم الواتس آب:
+              - مراسلتنا على رقم الواتس آب:
               <br />
               0096599002199
 
@@ -93,3 +93,5 @@ export default function Faq() {
     </Row>
   )
 }
+
+export default memo(Faq);

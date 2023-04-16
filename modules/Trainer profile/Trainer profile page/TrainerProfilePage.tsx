@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, memo } from "react";
 import styles from "./trainer-profile-page.module.css";
 import TrainerInfo from "../Trainer info/TrainerInfo";
-import { Row, Col, Button, Form } from "react-bootstrap";
-import { axiosInstance } from "configurations/axios/axiosConfig";
+import { Row, Col } from "react-bootstrap";
 import TrainerAccountsCard from "../Trainer accounts card/TrainerAccountsCard";
 import TrainerCourses from "../Trainer courses/TrainerCourses";
 import useResize from "custom hooks/useResize";
 
-export default function TrainerProfilePage() {
+function TrainerProfilePage() {
   const [isMobileView, setIsMobileView] = useState(false);
   useResize((
     () => {
@@ -40,3 +39,5 @@ export default function TrainerProfilePage() {
     </>
   );
 }
+
+export default memo(TrainerProfilePage);

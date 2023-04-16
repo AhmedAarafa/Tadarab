@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Spinner, Card, Pagination } from "react-bootstrap";
 import styles from "./training-courses.module.css";
@@ -10,9 +10,9 @@ import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 
-export default function TrainingCourses(props: any) {
+function TrainingCourses(props: any) {
     const [currentPage, setCurrentPage] = useState("1");
     const [pageNumber, setPageNumber] = useState(1);
     const [disabledCartBtns, setDisabledCartBtns] = useState<any>([]);
@@ -288,12 +288,12 @@ export default function TrainingCourses(props: any) {
                                             </Card>
                                             :
                                             <SkeletonTheme width="100%" height="100%" baseColor={themeState == 'light' ? "#e3e3e3" : "#232032"} highlightColor={themeState == 'light' ? "#eee" : "#332f49"} >
-                                                    <div className={styles["training-courses__course-card--skeleton"]}>
+                                                <div className={styles["training-courses__course-card--skeleton"]}>
+                                                    <Skeleton />
+                                                    <div className={styles['training-courses__course-card__card-body--skeleton']}>
                                                         <Skeleton />
-                                                        <div className={styles['training-courses__course-card__card-body--skeleton']}>
-                                                            <Skeleton />
-                                                        </div>
                                                     </div>
+                                                </div>
                                             </SkeletonTheme>
                                     )
                                 })
@@ -350,3 +350,5 @@ export default function TrainingCourses(props: any) {
         </>
     )
 }
+
+export default memo(TrainingCourses);

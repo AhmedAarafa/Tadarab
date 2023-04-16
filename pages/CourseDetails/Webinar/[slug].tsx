@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "styles/course-details.module.css";
 import CourseCard from "modules/Course details/Course card/CourseCard";
 import CourseAdvertisement from "modules/Course details/Course Advertisement/CourseAdvertisement";
@@ -40,10 +40,13 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 import NotFound from "pages/404";
 import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
+import useResize from "custom hooks/useResize";
+import { useInView } from 'react-hook-inview';
 
 function CourseDetails() {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [liveWebinar, setLiveWebinar] = useState({});
   const [allLiveWebinar, setAllLiveWebinar] = useState({});
@@ -200,18 +203,22 @@ function CourseDetails() {
     if (Router.query.slug) {
       axiosInstance.get(`webinar/${slug}`)
         .then(function (response: any) {
-          toggleLoader("hide");
-          setIsFound(NotFoundRoutesHandler(response));
-          const data: Course = response?.data?.data?.archive_course;
-          setCourseId(response?.data?.data?.archive_course.course_details.id);
-          const webinardetails = response?.data?.data?.course_details;
-          webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
-          dispatch(setCourseDetailsData(data));
-          setCourseData(data);
-
-          setLiveWebinar(webinardetails);
-          setAllLiveWebinar(response?.data?.data);
-          FBPixelEventsHandler(response.data.fb_tracking_events, null);
+          if (response.status.toString() == "301") {
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+          } else {
+            toggleLoader("hide");
+            setIsFound(NotFoundRoutesHandler(response));
+            const data: Course = response?.data?.data?.archive_course;
+            setCourseId(response?.data?.data?.archive_course.course_details.id);
+            const webinardetails = response?.data?.data?.course_details;
+            webinardetails['streamUrl'] = response?.data?.data?.live_stream_url;
+            dispatch(setCourseDetailsData(data));
+            setCourseData(data);
+            setLiveWebinar(webinardetails);
+            setAllLiveWebinar(response?.data?.data);
+            FBPixelEventsHandler(response.data.fb_tracking_events, null);
+            toggleLoader("hide");
+          }
         }).catch(function (error) {
           toggleLoader("hide");
         });
@@ -232,6 +239,27 @@ function CourseDetails() {
     setSubscriptionInfo(info);
   }
 
+
+  const viewportWidthDetector = () => {
+    if (window.innerWidth >= 576) {
+      setIsMobileView(false);
+    } else {
+      setIsMobileView(true);
+    }
+  }
+
+  useResize(viewportWidthDetector);
+
+  const [faqsRef, isFaqsVisible] = useInView({
+    threshold: 1,
+    unobserveOnEnter: true
+  });
+
+  const [commentsRef, isCommentsVisible] = useInView({
+    threshold: 1,
+    unobserveOnEnter: true
+  });
+
   return (
     <>
       <MetaTagsGenerator title={courseDetailsData?.data?.seo_title}
@@ -251,7 +279,7 @@ function CourseDetails() {
                 <Row className={styles["course-details-row"]}>
                   <Col xs={12} sm={8} className='d-flex flex-column'>
                     <CourseAdvertisement postType='webinar' postSrc={courseDetailsData?.data?.live_stream_url} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
-                    {originalCardPlacement == false &&
+                    {originalCardPlacement == false && isMobileView &&
                       <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />
                     }
                     {courseDetailsData?.data?.course_details?.key_points !== null &&
@@ -271,8 +299,13 @@ function CourseDetails() {
                     <TrainerInfo />
                     {/* <GuaranteeCard /> */}
                     {/* <CourseCertificate /> */}
-                    <FAQ Cid={() => { return courseId }} liveWebinarDetails={liveWebinar} />
-                    {/* <SpecialOffer Cid={()=>{return courseId}}/> */}
+                    {
+                      <div ref={faqsRef} style={isMobileView ? {order:"9"} : {}}>
+                        {isFaqsVisible && <FAQ Cid={courseId} liveWebinarDetails={liveWebinar} />}
+                      </div>
+                    }
+                    {/* <FAQ Cid={courseId} liveWebinarDetails={liveWebinar} /> */}
+                    {/* <SpecialOffer Cid={courseId}/> */}
                   </Col>
                   {
                     originalCardPlacement == true &&
@@ -280,10 +313,10 @@ function CourseDetails() {
                       {originalCardPlacement == true && <MonthlySubscriptionCard subscriptionInfoHandler={subscriptionInfoHandler} liveWebinarDetails={liveWebinar} allLiveWebinar={allLiveWebinar} />}
                     </Col>
                   }
-                  <PracticalProjects Cid={() => { return courseId }} />
+                  {/* <PracticalProjects Cid={courseId} /> */}
                 </Row>
                 <Row className={styles["course-details__course-reviews"]}>
-                  <CourseReview Cid={() => { return courseId }} />
+                  <CourseReview Cid={courseId} />
                 </Row>
                 <Row className={styles["course-details__course-subscribers"]}>
                   <CourseSubscribers />
@@ -291,9 +324,17 @@ function CourseDetails() {
                 {/* <Row className={styles["course-details__tadarab-business"]}>
               <TadarabBusiness />
             </Row> */}
-                <Row className={styles["course-details__comments-section"]}>
-                  <CommentsSection Cid={() => { return courseId }} />
-                </Row>
+                {/* <Row className={styles["course-details__comments-section"]}>
+                  <CommentsSection Cid={courseId} />
+                </Row> */}
+                {
+                  <div ref={commentsRef}>
+                    {isCommentsVisible &&
+                    <Row className={styles["course-details__comments-section"]}>
+                      <CommentsSection Cid={courseId} />
+                    </Row>}
+                  </div>
+                }
               </>
             }
           </Container>
@@ -306,4 +347,4 @@ function CourseDetails() {
   );
 }
 
-export default withAuth(CourseDetails);
+export default withAuth(memo(CourseDetails));

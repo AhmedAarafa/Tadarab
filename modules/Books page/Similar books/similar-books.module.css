@@ -13,7 +13,7 @@
 .similar-books__title {
   font-size: 2rem;
   font-weight: 800;
-  padding: 3rem 3rem 3.125rem 3rem;
+  padding: 0 3rem 3.125rem 3rem;
   background-color: var(--tadarab-light-bg);
   display: flex;
   align-items: center;

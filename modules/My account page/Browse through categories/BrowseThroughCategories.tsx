@@ -1,15 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/link-passhref */
-import React from 'react';
+import React, { memo } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
-import { Row, Col, Button, Card, Pagination } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import styles from "./browse-through-categories.module.css";
 import Link from 'next/link';
 
 
-export default function BrowseThroughCategories(props:any) {
+function BrowseThroughCategories(props:any) {
     return (
         <>
 
@@ -35,22 +34,22 @@ export default function BrowseThroughCategories(props:any) {
                         return (
                             <SwiperSlide key={i} style={{ cursor: "pointer" }}>
 
-                                <Link href={`/topic/${cat?.slug}`}>
+                                <Link href={`/topic/${cat.slug}`}>
                                     <div className={styles["browse-through-categories__cards-carousel__departments-card"]}>
                                         <div>
 
                                             <div className="d-flex justify-content-center">
 
                                                 <div className={styles["browse-through-categories__cards-carousel__departments-card__img-box"]}
-                                                    style={{ backgroundColor: cat?.color }}>
-                                                    <img loading="lazy" src={`/images/${cat?.icon}.svg`} alt={cat?.icon} id={styles[cat?.icon]} />
+                                                    style={{ backgroundColor: cat.color }}>
+                                                    <img loading="lazy" src={`/images/${cat.icon}.svg`} alt={cat.icon} id={styles[cat.icon]} />
 
 
                                                 </div>
                                             </div>
                                             <div className={styles["browse-through-categories__cards-carousel__departments-card__department"]}>{cat.title}</div>
                                             <div className={styles["browse-through-categories__cards-carousel__departments-card__learners-number"]}>
-                                                {cat?.courses_count} دورة
+                                                {cat.courses_count} دورة
                                             </div>
                                         </div>
                                     </div>
@@ -69,3 +68,5 @@ export default function BrowseThroughCategories(props:any) {
         </>
     )
 }
+
+export default memo(BrowseThroughCategories);

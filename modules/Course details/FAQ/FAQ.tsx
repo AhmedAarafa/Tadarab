@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./faq.module.css";
 import { Accordion } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { openSupportConvInNewTab, contactUsHandler } from "modules/_Shared/utils/contactUs";
 
-export default function FAQ(props: any) {
+function FAQ(props: any) {
   const [faqs, setFaqs] = useState<any>([]);
 
   useEffect(() => {
     let cancel: boolean = false;
 
-    if (props.Cid() !== "") {
+    if (props.Cid !== "") {
       axiosInstance
-        .get(`course/${props.Cid()}/faqs`)
+        .get(`course/${props.Cid}/faqs`)
         .then(function (response: any) {
           if (cancel) return;
           setFaqs(response.data.data);
@@ -72,3 +72,5 @@ export default function FAQ(props: any) {
     </>
   );
 }
+
+export default memo(FAQ);

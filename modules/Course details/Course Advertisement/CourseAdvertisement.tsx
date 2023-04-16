@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import styles from "./course-advertisement.module.css";
 import { useDispatch, useSelector } from "react-redux";
 // import videojs from  "node_modules/videojs-playlist/dist/videojs-playlist.js";
@@ -9,7 +9,7 @@ import useResize from 'custom hooks/useResize';
 import "video.js/dist/video-js.css";
 import Link from "next/link";
 import {
-  DocumentIcon, DurationIcon,SupportIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon,
+  DocumentIcon, DurationIcon, DevicesIcon, CertifIcon, CalendarIcon, WatchLiveOrRecordedIcon,
   DarkModeCalendarIcon, DarkModeWatchLiveOrRecordedIcon
 } from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
@@ -18,7 +18,7 @@ import { tConvert } from "modules/_Shared/utils/dateFormatHandler";
 import { Button } from "react-bootstrap"
 import SignupPopup from "common/Signup popup/SignupPopup";
 
-export default function CourseAdvertisement(theOption: any) {
+function CourseAdvertisement(theOption: any) {
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -92,7 +92,7 @@ export default function CourseAdvertisement(theOption: any) {
         }
         <ul className={styles["course-ad__list"]}>
           {
-            courseDetailsData?.data?.course_details?.categories?.slice(0, 3).map((cat: any, i: number) => {
+            courseDetailsData?.data?.course_details?.categories.slice(0, 3).map((cat: any, i: number) => {
               return (
                 <Link key={i} href={`/topic/${cat.slug}`}>
                   <li >{cat?.title}</li>
@@ -144,16 +144,9 @@ export default function CourseAdvertisement(theOption: any) {
               <div
                 className={
                   styles["course-ad__details-list__item"]}>
-                <SupportIcon color={themeState == "light" ? "#c1121f" : "#f5f5f5"} />
-
-                <span> دعم تقني على مدار الساعة طوال الأسبوع</span>
-              </div>
-              <div
-                className={
-                  styles["course-ad__details-list__item"]}>
                 <DocumentIcon color={themeState == "light" ? "#b20016" : "#f5f5f5"} />
 
-                <span> ملخصات حصرية لأكثر الكتب مبيعًا مجانية </span>
+                <span>مرفقات حصرية جاهزة للتحميل</span>
               </div>
               <div
                 className={
@@ -258,3 +251,5 @@ export default function CourseAdvertisement(theOption: any) {
     </>
   )
 }
+
+export default memo(CourseAdvertisement);

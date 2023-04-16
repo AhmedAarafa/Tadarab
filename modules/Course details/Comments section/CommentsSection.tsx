@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import styles from "./comments-section.module.css";
 import { Col, Button, Form } from "react-bootstrap";
 import { commentsBorderHandler } from "./utils";
@@ -7,12 +7,13 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { SendIcon, LikeIcon, CommentIcon } from "common/Icons/Icons";
 import Router from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import Image from 'next/image';
+import SignupPopup from "common/Signup popup/SignupPopup";
 
 
-export default function CommentsSection(props: any) {
+function CommentsSection(props: any) {
     const [courseComments, setCourseComments] = useState<any>([]);
     const [commentContent, setCommentContent] = useState<any>("");
+    const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
     const [replyTo, setReplyTo] = useState(0);
     const [isCommentTextAreaEmpty, setIsCommentTextAreaEmpty] = useState(true);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -22,9 +23,9 @@ export default function CommentsSection(props: any) {
     useEffect(() => {
         let cancel = false;
 
-        if (props.Cid() !== "") {
+        if (props.Cid !== "") {
             axiosInstance
-                .get(`course/${props.Cid()}/comments`)
+                .get(`course/${props.Cid}/comments`)
                 .then(function (response: any) {
                     if (cancel) return;
                     setCourseComments(response.data.data);
@@ -38,7 +39,7 @@ export default function CommentsSection(props: any) {
             window.removeEventListener("resize", () => {
             })
         }
-    }, [props.Cid()])
+    }, [props.Cid]);
 
     const handleLikes = (commentId: number) => {
         if (userStatus.isUserAuthenticated == true) {
@@ -47,7 +48,7 @@ export default function CommentsSection(props: any) {
                 .post(`course/comments/${commentId}/likes`)
                 .then((response: any) => {
                     axiosInstance
-                        .get(`course/${props.Cid()}/comments`)
+                        .get(`course/${props.Cid}/comments`)
                         .then(function (response: any) {
                             setCourseComments(response.data.data);
 
@@ -71,10 +72,11 @@ export default function CommentsSection(props: any) {
                 })
 
         } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-                query: { from: "course" }
-            })
+            // Router.push({
+            //     pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+            //     query: { from: "course" }
+            // })
+            setIsSignupModalVisible(true);
         }
 
     }
@@ -88,10 +90,7 @@ export default function CommentsSection(props: any) {
     const isUserAuthorizedToWriteComment = () => {
         if (userStatus.isUserAuthenticated == true) {
         } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-                query: { from: "course" }
-            })
+            setIsSignupModalVisible(true);
         }
     }
 
@@ -99,7 +98,7 @@ export default function CommentsSection(props: any) {
         e.preventDefault();
         if (userStatus.isUserAuthenticated == true) {
             axiosInstance
-                .post(`course/${props.Cid()}/comments`, { comment: e.target['0'].value, reply_to_comment_id: replyTo })
+                .post(`course/${props.Cid}/comments`, { comment: e.target['0'].value, reply_to_comment_id: replyTo })
                 .then((response: any) => {
                     const CommentTextBox: any = document.querySelector('[name="commentTextArea"]');
                     CommentTextBox.value = "";
@@ -119,7 +118,7 @@ export default function CommentsSection(props: any) {
                     });
 
                     axiosInstance
-                        .get(`course/${props.Cid()}/comments`)
+                        .get(`course/${props.Cid}/comments`)
                         .then(function (response: any) {
                             setCourseComments(response.data.data);
                             commentsBorderHandler();
@@ -141,14 +140,8 @@ export default function CommentsSection(props: any) {
                     console.log("error", error);
                 })
         } else {
-            Router.push({
-                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-                query: { from: "course" }
-            })
-
+            setIsSignupModalVisible(true);
         }
-
-
     }
 
     const writingCommentHandler = (i: number, commentId: number) => {
@@ -197,7 +190,7 @@ export default function CommentsSection(props: any) {
                             onChange={() => { handleCommentsTextArea(event) }}
                         // onFocus={() => { isUserAuthorizedToWriteComment() }}
                         />
-                        <Button type="submit" className={`${isCommentTextAreaEmpty ?
+                        <Button id="comments-send-btn" type="submit" className={`${isCommentTextAreaEmpty ?
                             styles["comments-section__input-field-container__btn--dimmed"]
                             :
                             styles["comments-section__input-field-container__btn"]
@@ -321,7 +314,10 @@ export default function CommentsSection(props: any) {
 
                 </div>
             </Col>
+            <SignupPopup isSignupModalVisible={isSignupModalVisible} setIsSignupModalVisible={setIsSignupModalVisible} from={'comments-section'} />
 
         </>
     )
 }
+
+export default memo(CommentsSection);

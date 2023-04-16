@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./marketing-boxes.module.css";
 import { Row, Col } from "react-bootstrap";
 import LatestCourses from '../Latest courses/LatestCourses';
@@ -7,7 +7,7 @@ import LiveCourses from '../Live courses/LiveCourses';
 import CoursesDepartments from '../Courses departments/CoursesDepartments';
 import Image from 'next/image';
 
-export default function MarketingBoxes() {
+function MarketingBoxes() {
   return (
     <Row className={styles["marketing-boxes"]}>
         <Col style={{display:"none"}} xs={12} sm={6} className={styles["marketing-boxes__box"]}>
@@ -67,3 +67,5 @@ export default function MarketingBoxes() {
     </Row>
   )
 }
+
+export default memo(MarketingBoxes);

@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./tadarab-benefits.module.css";
 import { Row, Col } from "react-bootstrap";
 import { TickIcon } from "common/Icons/Icons";
 
-export default function TadarabBenefits() {
+function TadarabBenefits() {
     return (
         <>
             <Row>
@@ -27,3 +27,5 @@ export default function TadarabBenefits() {
         </>
     )
 }
+
+export default memo(TadarabBenefits);

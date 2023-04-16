@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import styles from "./unsubscribe-page.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { TickIcon } from "common/Icons/Icons";
 import UnsubscribePopup from "modules/Unsubscribe/Unsubscribe popup/UnsubscribePopup";
 
-export default function UnsubscribePage() {
+function UnsubscribePage() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -40,3 +40,5 @@ export default function UnsubscribePage() {
         </Row>
     )
 }
+
+export default memo(UnsubscribePage);

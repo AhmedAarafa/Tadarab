@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useState, useEffect } from "react";
+import React, { memo } from "react";
 import styles from "./similar-books.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import Router from "next/router";
 
-export default function SimilarBooks(props: any) {
+function SimilarBooks(props: any) {
     SwiperCore.use([Navigation]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const themeState = useSelector((state: any) => state.themeState.theme);
@@ -121,3 +121,5 @@ export default function SimilarBooks(props: any) {
         </>
     )
 }
+
+export default memo(SimilarBooks);

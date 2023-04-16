@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/link-passhref */
-import React from 'react'
+import React, { memo } from 'react'
 import { Row, Col } from "react-bootstrap";
 import styles from "./category-topics.module.css";
 import Link from 'next/link';
 
-export default function CategoryTopics(props:any) {
+function CategoryTopics(props:any) {
     
     function hexToRgbA(hex:string){
         var c;
@@ -46,3 +46,5 @@ export default function CategoryTopics(props:any) {
         </>
     )
 }
+
+export default memo(CategoryTopics);

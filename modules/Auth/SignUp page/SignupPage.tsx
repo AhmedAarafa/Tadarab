@@ -1,21 +1,26 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
-import { Row, Col, Button, Modal } from "react-bootstrap";
+import React, { useCallback, useRef, useState, useEffect, memo } from "react";
+import { Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap";
 import styles from "./sign-up-page.module.css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import Image from 'next/image';
 import Router, { useRouter } from "next/router";
 import {
   Formik,
+  FormikHelpers,
+  FormikProps,
   Form,
   Field,
+  FieldProps,
   ErrorMessage
 } from 'formik';
 import * as Yup from "yup";
 import IntlTelInput from 'react-intl-tel-input';
 import 'react-intl-tel-input/dist/main.css';
-import { EnvelopeIcon, GoogleIcon, TickIcon, LockIcon, EyeIcon, MobileIcon, NameFieldIcon, TransactionSuccessIcon } from "common/Icons/Icons";
+import { EnvelopeIcon, GoogleIcon, TwitterIcon, TickIcon, FbIcon, AppleIcon, LockIcon, EyeIcon, MobileIcon, NameFieldIcon } from "common/Icons/Icons";
+import TadarabFBPixel from "modules/_Shared/utils/fbPixel";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { signupValidationRules } from "validation rules/signup";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
@@ -23,7 +28,9 @@ import { setIsUserAuthenticated } from "configurations/redux/actions/userAuthent
 import { useDispatch, useSelector } from "react-redux";
 import GoogleLogin from 'react-google-login';
 import { setCartItems } from "configurations/redux/actions/cartItems";
-import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
+import TwitterLogin from "react-twitter-login";
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+
 
 interface SignUpFormValues {
   name: string;
@@ -32,13 +39,13 @@ interface SignUpFormValues {
   password: string;
 };
 
-export default function SignupPage() {
+function SignupPage() {
   const [countryCallingCode, setCountryCallingCode] = useState("20");
   const [countryCode, setCountryCode] = useState("EG");
   const [errorMessage, setErrorMessage] = useState("");
-  const [show, setShow] = useState(false);
   const themeState = useSelector((state: any) => state.themeState.theme);
 
+  // const [response, setResponse] = useState();
   const [isVisible, setIsVisible] = useState(false);
   const [fieldBlur, setFieldBlur] = useState({
     name: "",
@@ -60,24 +67,25 @@ export default function SignupPage() {
 
   const updateValue = (e: any) => {
     setPhoneFieldEvent(e);
+    // console.log("e",e);
   };
 
   useEffect(() => {
-    toggleLoader("hide");
 
     if (userAuthState.isUserAuthenticated) {
       if (userAuthState.isSubscribed) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}my-account`);
       } else {
         if (router.query && router.query.from_subscription) {
-          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
         }
       }
     }
   }, [userAuthState])
 
+
+
   useEffect(() => {
-    toggleLoader("hide");
 
     const phoneField: any = document.querySelector("input[type='tel']");
     phoneField.addEventListener('blur', updateValue);
@@ -87,16 +95,13 @@ export default function SignupPage() {
     setTimeout(() => {
       intlTelInput?.classList.remove("selected-dial-code");
     }, 50);
-
-    return () => {
-      setShow(false);
-    }
-
   }, []);
+
 
   function validationSchema() {
     return Yup.object().shape(signupValidationRules);
   }
+
 
   const showHidePasswordHandler = () => {
     const passwordField: any = document.getElementById("password-field");
@@ -135,7 +140,7 @@ export default function SignupPage() {
     if (fieldBlur.password == "") {
       const newValidationState = validationAfterSubmit;
       newValidationState.password = true;
-      setValidationAfterSubmit(newValidationState);
+      setValidationAfterSubmit(newValidationState); 
     }
   }
 
@@ -153,9 +158,8 @@ export default function SignupPage() {
       }
 
     } else if (router.query && router.query.from_subscription) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from_subscription=checkout/payment/?checkout_type=subscription&ps=2`);
-    } else if (router.query && router.query.from_subscription_plans) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from_subscription_plans=${router.query.from_subscription_plans}&checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
+
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from_subscription=checkout%2Fpayment%2F%3Fcheckout_type%3Dsubscription&ps=2`);
     } else {
       Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`);
     }
@@ -210,16 +214,9 @@ export default function SignupPage() {
                   Router.back();
                 }
               } else if (router.query && router.query.from_subscription) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
-              } else if (router.query && router.query.from_subscription_plans) {
-                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment?checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
               } else if (router.query && router.query.type) {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
-              } else if (router.query && router.query.f) {
-                setShow(true);
-                setTimeout(() => {
-                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
-                }, 3000);
               } else {
                 Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
               }
@@ -235,6 +232,77 @@ export default function SignupPage() {
 
     }
   }
+
+  const responseFacebook = (response: any) => {
+    //console.log(response);
+    if ("error" in response) {
+      // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
+    } else {
+      if (response?.status != "unknown" && response?.status != "") {
+        let tadarabGA = new TadarabGA();
+        let clientId = tadarabGA.tadarab_get_traking_client();
+        let customData = { email: response.email, phone: "" };
+
+        axiosInstance.post(`social-login`, {
+          "email": response.email,
+          "first_name": response.name.split(' ')[0],
+          "last_name": response.name.split(' ')[1],
+          "full_name": response.name,
+          "social_type": "facebook",
+          "social_token": response.accessToken,
+          "clientId": clientId,
+        }).then((resp: any) => {
+          //console.log(resp);
+          if (JSON.stringify(resp.status).startsWith("2")) {
+            FBPixelEventsHandler(resp.data.fb_tracking_events, customData);
+            if (resp.data.data !== null) {
+              const totalItems: any = [];
+              resp?.data?.data?.courses?.data.forEach((item: any) => {
+                totalItems.push(item.id);
+              });
+              localStorage.setItem("token", resp.data.data.token);
+              localStorage.setItem("user_id", resp.data.data.id);
+              localStorage.setItem("is_user_subscribed", resp.data.data.is_in_user_subscription);
+              localStorage.setItem("cart", JSON.stringify(totalItems));
+              localStorage.setItem("cart_items", JSON.stringify([...new Set(resp.data.data.cart_items)]));
+              dispatch(setIsUserAuthenticated({
+                ...userAuthState, isUserAuthenticated: true,
+                token: resp.data.data.token,
+                id: resp.data.data.id,
+                isSubscribed: resp.data.data.is_in_user_subscription
+              }));
+
+
+              if (router.query && router.query.from) {
+                if (router.query.from == "checkout") {
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${router.query.from}?ps=2`);
+                } else {
+                  Router.back();
+                }
+              } else if (router.query && router.query.from_subscription) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
+              } else if (router.query && router.query.type) {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.type}`);
+              } else {
+                Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
+              }
+            }
+            tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: resp.data.data.email, traking_uid: resp.data.data.id });
+
+          } else {
+            setErrorMessage(resp.data.message);
+          }
+        }).catch((error: any) => {
+          //console.log(error);
+        })
+      }
+    }
+  }
+
+  const responseTwitter = (err: any, data: any) => {
+    //console.log(err, data);
+  }
+
 
   return (
     <>
@@ -309,6 +377,8 @@ export default function SignupPage() {
                     "dial_code": `+${countryCallingCode}`,
                     "phone": values.phoneNumber,
                   }).then((response: any) => {
+                    // setResponse(response.data);
+                    //console.log("Response", response);
                     if (JSON.stringify(response.status).startsWith("2")) {
                       let customData = { email: values.email, phone: values.phoneNumber };
                       FBPixelEventsHandler(response.data.fb_tracking_events, customData);
@@ -341,16 +411,9 @@ export default function SignupPage() {
                             Router.back();
                           }
                         } else if (router.query && router.query.from_subscription) {
-                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
-                        } else if (router.query && router.query.from_subscription_plans) {
-                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment?checkout_type=subscription&splan=${router.query.from_subscription_plans}`);
+                          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}${Router.query.from_subscription}`);
                         } else if (router.query && router.query.type) {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/courses?type=${Router.query.type}`);
-                        } else if (router.query && router.query.f) {
-                          setShow(true);
-                          setTimeout(() => {
-                            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
-                          }, 3000);
                         } else {
                           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}`);
                         }
@@ -358,10 +421,16 @@ export default function SignupPage() {
 
                       tadarabGA.tadarab_fire_traking_GA_code("signup", { traking_email: values.email, traking_uid: response.data.data.id });
                     } else {
+                      //console.log(response.data.message);
+
+                      // console.log("error 4xx or 5xx");
                       setErrorMessage(response.data.message);
+                      // setTimeout(() => {
+                      // setErrorMessage("");
+                      // }, 5000);
                     }
                   }).catch((error: any) => {
-                    console.log("error", error);
+                    //console.log("errrrr", error);
                   })
               }}
             >
@@ -369,6 +438,7 @@ export default function SignupPage() {
               {({ touched, errors, isSubmitting, isValid, validateOnMount, validateOnBlur, validateOnChange, handleBlur, dirty, setFieldTouched, setFieldValue }) => (
                 <Form >
                   <div className={`${styles["register__register-box__registeration-form-box__name-field-container"]} ${(validationAfterSubmit.name && errors.name) && styles["required"]}`}>
+                    {/* {console.log("isValid",isValid, "errors.name" , errors.name , " dirty" ,dirty) } */}
                     <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                       <NameFieldIcon />
                     </div>
@@ -450,6 +520,10 @@ export default function SignupPage() {
                           setValidationAfterSubmit({ ...validationAfterSubmit, phoneNumber: false });
                         }
                         setFieldTouched("phoneNumber", true);
+                        // console.log("eeeee",e);
+                        // const phoneField:any = document.querySelector("input[type='tel']");
+                        // console.log("phoneField" , fieldBlur);
+
                         handleBlur(phoneFieldEvent);
                         // // and do something about e
                         setFieldBlur({ ...fieldBlur, phone: phoneFieldEvent?.target.value });
@@ -461,16 +535,25 @@ export default function SignupPage() {
                         const countryDialCode: any = Number(args[2].dialCode);
                         setCountryCallingCode(countryDialCode);
                         const countryCode: any = (args[2].iso2?.toUpperCase());
+                        // console.log("countryCode",countryCode);
                         setCountryCode(countryCode);
+                        // setFieldBlur({...fieldBlur, phone:args[1]});
+                        // console.log("args[1]",fieldBlur);
                       }}
                       onSelectFlag={(...args) => {
                         const countryDialCode: any = Number(args[2]);
+                        // console.log("countryDialCodeonflagselected", Number(args[2]));
                         setCountryCallingCode(countryDialCode);
                       }}
                       useMobileFullscreenDropdown={false}
+                    // customPlaceholder= {function(selectedCountryPlaceholder:any, selectedCountryData:any) {
+                    //   return "e.g: " + selectedCountryPlaceholder;
+                    // }}
                     />
                   </div>
                   {validationAfterSubmit.phoneNumber && <ErrorMessage name="phoneNumber" component="div" className={styles["error-msg"]} />}
+                  {/* {console.log("fieldBlur.phone",fieldBlur.phone,"dirty",dirty,"errors.phoneNumber",errors.phoneNumber)
+                                } */}
                   <div className={`${styles["register__register-box__registeration-form-box__password-field-container"]} ${validationAfterSubmit.password && errors.password && styles["required"]}`}>
                     <div className={styles["register__register-box__registeration-form-box__icon-wrapper"]}>
                       <LockIcon />
@@ -529,21 +612,9 @@ export default function SignupPage() {
         <Col xs={{ span: 12, order: 1 }} sm={{ span: 6, order: 2 }} className={styles["register__img"]}>
           <img loading="lazy" src="/images/signUpDiscImg.png" alt="register now" />
         </Col>
-
-        <Modal data-theme={themeState} show={show} animation={false} className={styles["register__custom-signup-success-popup"]}>
-
-          <Modal.Body>
-            <TransactionSuccessIcon />
-            <div>
-              لقد تم تسجيل بريدك الالكتروني يمكنك الان الاستمتاع بالدورات المباشرة طوال شهر رمضان
-            </div>
-            <div>
-              سيتم الان توجيهك للصفحة الرئيسية
-            </div>
-
-          </Modal.Body>
-        </Modal>
       </Row>
     </>
   );
 }
+
+export default memo(SignupPage);

@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./trainer-info.module.css";
 import { useSelector } from "react-redux";
 import { LearnersIcon, CoursesNumberIcon, DropDownIcon } from "common/Icons/Icons";
 
-export default function TrainerInfo() {
+function TrainerInfo() {
   const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
   const [trainerProfile, setTrainerProfile] = useState({});
   const [showMore, setShowMore] = useState(true);
@@ -188,3 +188,5 @@ export default function TrainerInfo() {
     </div>
   );
 }
+
+export default memo(TrainerInfo);

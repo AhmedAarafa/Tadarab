@@ -138,7 +138,7 @@
   max-height: -moz-fit-content;
   max-height: fit-content;
   width: 95%;
-  display: -webkit-inline-box;
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 1;

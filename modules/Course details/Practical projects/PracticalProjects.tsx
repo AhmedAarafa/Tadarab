@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./practical-projects.module.css";
 import { Row, Col, Button, Card, Container } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,7 +7,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 
-export default function PracticalProjects(props: any) {
+function PracticalProjects(props: any) {
   const [courseProjects, setCourseProjects] = useState<any>([]);
 
   useEffect(() => {
@@ -44,15 +44,15 @@ export default function PracticalProjects(props: any) {
               <div>المشاريع العملية</div>
               <div>للمتعلمين في الدورة</div>
             </div>
-            {/* <div className={styles["practical-projects__brief"]}>
+            <div className={styles["practical-projects__brief"]}>
               هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي
               القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة
               التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ
               طبيعياَ
-            </div> */}
+            </div>
           </Col>
 
-          {courseProjects && courseProjects?.map((project: any, i: number) => {
+          {courseProjects?.map((project: any, i: number) => {
             return (
               <Col key={i} xs={6} className={styles["practical-projects__project-card-col"]}>
                 <div className={styles["practical-projects__project-card"]}>
@@ -88,7 +88,8 @@ export default function PracticalProjects(props: any) {
                 },
 
               }} className="mySwiper">
-              { courseProjects && courseProjects?.map((project: any, i: number) => {
+              {
+                courseProjects?.map((project: any, i: number) => {
                   return (
                     <SwiperSlide key={i}>
                       <div className={styles["practical-projects__project-card"]}>
@@ -124,3 +125,5 @@ export default function PracticalProjects(props: any) {
     </>
   );
 }
+
+export default memo(PracticalProjects);

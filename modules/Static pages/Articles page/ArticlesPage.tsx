@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Row, Col } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import styles from "./articles-page.module.css";
 
 
-export default function ArticlesPage(props: any) {
+function ArticlesPage(props: any) {
   const [article, setArticle] = useState("");
   const [articleTitle, setArticleTitle] = useState("");
   toggleLoader("show");
@@ -42,3 +42,5 @@ export default function ArticlesPage(props: any) {
     </>
   )
 }
+
+export default memo(ArticlesPage);

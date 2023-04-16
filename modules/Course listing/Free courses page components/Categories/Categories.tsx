@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./categories.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,7 +10,7 @@ import { ChevronLeftIcon } from "common/Icons/Icons";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
-export default function Categories() {
+function Categories() {
     SwiperCore.use([Navigation]);
     const [categories, setCategories] = useState([]);
 
@@ -94,3 +94,5 @@ export default function Categories() {
         </>
     )
 }
+
+export default memo(Categories);

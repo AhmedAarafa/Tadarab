@@ -1,13 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./category-description.module.css";
+import { axiosInstance } from "configurations/axios/axiosConfig";
+import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { useDispatch, useSelector } from "react-redux";
 import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import CategoriesNavigator from "modules/Category/Categories navigator/CategoriesNavigator";
 
-export default function CategoryDescription(props: any) {
+function CategoryDescription(props: any) {
     const dispatch = useDispatch();
     const Router = useRouter();
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
@@ -18,7 +20,16 @@ export default function CategoryDescription(props: any) {
     const handleSubscriptionBtn = (e: any) => {
         e.preventDefault();
         dispatch(setCheckoutType("subscription"));
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription-plans`);
+        if (userStatus) {
+
+            Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        } else {
+
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+                query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+            })
+        }
     }
 
     useEffect(() => {
@@ -30,7 +41,7 @@ export default function CategoryDescription(props: any) {
             <CategoriesNavigator data={props} />
             <Row className={styles["category-description-row"]}>
                 <Col xs={12} className={styles["category-description"]}>
-                    <img className={styles["category-description__img"]} src={props?.data?.cover_img || `/images/placeholder.png`} alt={props.data?.title} />
+                <img className={styles["category-description__img"]} src={props?.data?.cover_img || `/images/placeholder.png`} alt={props.data?.title} />
                     <div className={styles["category-description__title"]}>
                         <h1> {`
                         دورات
@@ -50,24 +61,27 @@ export default function CategoryDescription(props: any) {
                             )
                         </div>
                     </div>
-                    <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["category-description__signup-btn"]}>
-                        اشترك الاّن
-                    </Button>
+                    {userSubscInfo == false && <Button onClick={() => { handleSubscriptionBtn(event) }} className={styles["category-description__signup-btn"]}>
+                       {userStatus ?
+                       "ابدأ التعلم الاّن"
+                       :
+                       "انشاء حساب جديد"
+                       }
+                    </Button>}
                     {userSubscInfo == false &&
                         <div className={styles["category-description__small-description"]}>
-                            شاهد اكثر من 1000 دورة
+                            اشترك الآن لتتابع جميع دورات
+                            {` ${props?.data?.title} `}
                             باشتراك يبدأ من
-                            <span>
-                                {` ${props?.data?.subscription_sale_price}`}
-                                {` ${props?.data?.currency_symbol}`}
-                                /
-                                ش
-                            </span>
-                            {/* بدلاً من
+                            {` ${props?.data?.subscription_sale_price}`}
+                            {` ${props?.data?.currency_symbol}`}
+                            /
+                            ش
+                            بدلاً من
                             <span style={{ textDecoration: "line-through var(--pale-red)" }}>
                                 {` ${props?.data?.subscription_original_price}`}
                                 {` ${props?.data?.currency_symbol}`}
-                            </span> */}
+                            </span>
                         </div>
                     }
                 </Col>
@@ -76,3 +90,5 @@ export default function CategoryDescription(props: any) {
         </>
     )
 }
+
+export default memo(CategoryDescription);

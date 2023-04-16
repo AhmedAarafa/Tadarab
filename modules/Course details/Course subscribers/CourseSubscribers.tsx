@@ -1,17 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./course-subscribers.module.css";
 import { Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper";
 import "swiper/css";
-import Image from 'next/image';
 import { useDispatch, useSelector } from "react-redux";
-import { axiosInstance } from "configurations/axios/axiosConfig";
-import Router from "next/router";
 import { setCartItems } from "configurations/redux/actions/cartItems";
-import { ChevronLeftIcon, LearnersIcon, TickIcon, CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";
+import { CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { handleFav } from "modules/_Shared/utils/handleFav";
 import Link from 'next/link';
@@ -20,7 +17,7 @@ import { useRouter } from 'next/router';
 import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 
 
-export default function CourseSubscribers() {
+function CourseSubscribers() {
   SwiperCore.use([Navigation]);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -33,6 +30,48 @@ export default function CourseSubscribers() {
   const dispatch = useDispatch();
   const Router = useRouter();
   const { slug } = Router.query;
+
+  const handleFavActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+      const handleFavResponse: any = handleFav(course, `courses/${slug}`);
+      handleFavResponse.then(function (response: any) {
+        setCourseDetails(response.data.data?.related_courses);
+      })
+    } else {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "course" }
+      })
+    }
+  }
+
+  const handleCartActionBtn = (course: any): any => {
+    setDisabledCartBtns([...disabledCartBtns, course?.id]);
+    setTimeout(() => {
+      setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course?.id));
+    }, 5000);
+    dispatch(setCheckoutType("cart"));
+
+    const handleCartResponse: any = handleCart([course], `courses/${slug}`, false);
+    handleCartResponse.then(function (firstresponse: any) {
+      firstresponse.resp.then(function (response: any) {
+
+        setCourseDetails(response.data.data?.related_courses);
+        dispatch(setCartItems(firstresponse.cartResponse));
+      })
+    })
+  }
+
+  const handleFreeCoursesActionBtn = (course: any): any => {
+    if (userStatus.isUserAuthenticated == true) {
+      handleFreeCourses(course);
+    } else {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "/course" }
+      })
+    }
+  }
 
   useEffect(() => {
     setCourseDetails(courseDetailsData.data?.related_courses);
@@ -51,7 +90,7 @@ export default function CourseSubscribers() {
           </Col>
 
           <Col xs={12} className={styles["course-subscribers__cards-carousel"]}>
-            <Swiper dir="rtl"   slidesPerView={3.8} navigation={true}
+            <Swiper dir="rtl" slidesPerView={3.8} navigation={true}
               breakpoints={{
                 "50": {
                   slidesPerView: 1.1,
@@ -178,6 +217,130 @@ export default function CourseSubscribers() {
                             </Link>
                           </div>
                         </div>
+
+                        <div
+                          className={
+                            styles[
+                            "course-subscribers__cards-carousel__course-card__card-body__checkout-details"
+                            ]
+                          }
+                        >
+                          <div className="d-flex flex-column">
+                            <div
+                              className={
+                                styles[
+                                "course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container"
+                                ]
+                              }
+                            >
+                              <span
+                                className={
+                                  styles[
+                                  "course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container__price"
+                                  ]
+                                }
+                              >
+                                {course?.is_purchased && !course?.is_in_user_subscription && "تم الشراء"}
+                                {
+                                  !course?.is_purchased && !course?.is_in_user_subscription && (course?.discounted_price == 0 ? "مجانًا" : course?.discounted_price)
+                                }
+                                {
+                                  course?.is_in_user_subscription &&
+                                  <Link href={`/course/${course?.slug}`}>
+                                    <span className={styles["watch-subscribed-course"]}>
+                                      شاهد الدورة
+                                    </span>
+                                  </Link>
+
+                                }
+                              </span>
+                              {course?.discounted_price !== 0 && !course?.is_purchased && <span
+                                className={
+                                  styles[
+                                  "course-subscribers__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
+                                  ]
+                                }
+                              >
+                                {!course?.is_in_user_subscription && course?.currency_symbol}
+                              </span>}
+                            </div>
+
+                            {(course?.price > course?.discounted_price) && !course?.is_purchased &&
+                              <div
+                                className={
+                                  styles[
+                                  "course-subscribers__cards-carousel__course-card__card-body__checkout-details__old-price-container"
+                                  ]
+                                }
+                              >
+                                <span
+                                  className={
+                                    styles[
+                                    "course-subscribers__cards-carousel__course-card__card-body__checkout-details__old-price-container__price"
+                                    ]
+                                  }
+                                >
+                                  {course?.price}
+                                </span>
+                                <span
+                                  className={
+                                    styles[
+                                    "course-subscribers__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency"
+                                    ]
+                                  }
+                                >
+                                  {course?.currency_symbol}
+                                </span>
+                              </div>
+                            }
+                          </div>
+
+                          <div className="d-inline-block">
+                            {!course?.is_purchased && !course?.is_in_user_subscription && <Button onClick={() =>
+                              course?.discounted_price == 0 ?
+                                handleFreeCoursesActionBtn(course)
+                                :
+                                handleCartActionBtn(course)
+                            } disabled={course?.is_in_cart || disabledCartBtns.includes(course?.id)} variant={""}
+                              className={
+                                styles[
+                                "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
+                                ]
+                              }
+                            >
+                              <div className={styles["course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
+
+                                {
+                                  course?.discounted_price == 0 ?
+                                    <TvIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
+                                    :
+                                    course?.is_in_cart || disabledCartBtns.includes(course?.id) ?
+                                      <AddedToCartIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
+                                      :
+                                      <CartIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
+                                }
+                              </div>
+
+                            </Button>}
+                            <Button onClick={() => handleFavActionBtn(course)}
+                              className={
+                                styles[
+                                "course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn"
+                                ]
+                              }
+                            >
+                              <div className={styles["course-subscribers__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
+
+                                {
+                                  course?.is_in_favorites ?
+                                    <AddedToFavouriteIcon color="#af151f" />
+                                    :
+                                    <FavouriteIcon color={themeState == "light" ? "#222" : "#f5f5f5"} />
+                                }
+                              </div>
+                            </Button>
+                          </div>
+                        </div>
                       </Card.Body>
                     </Card>
                   </SwiperSlide>
@@ -190,3 +353,5 @@ export default function CourseSubscribers() {
     </>
   );
 }
+
+export default memo(CourseSubscribers);

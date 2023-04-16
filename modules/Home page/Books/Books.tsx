@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./books.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,7 +12,7 @@ import Link from "next/link";
 import Router from "next/router";
 import { useSelector } from "react-redux";
 
-export default function Books() {
+function Books() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state: any) => state.homePageData);
   const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -126,5 +126,7 @@ export default function Books() {
     </>
   );
 }
+
+export default memo(Books);
 
 

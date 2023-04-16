@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React, { memo } from 'react'
 import styles from "./tadarab-business.module.css"
 import { Col , Button } from "react-bootstrap";
 import Image from 'next/image';
 
-export default function TadarabBusiness() {
+function TadarabBusiness() {
     return (
         <>
         <Col xs={12} className={styles["tadarab-business"]}>
@@ -17,9 +17,9 @@ export default function TadarabBusiness() {
                 <div className={styles["tadarab-business__details__major"]}>
                 دورات عالية الجودة في جميع المجالات لأفراد شركتك
                 </div>
-                {/* <div className={styles["tadarab-business__details__minor"]}>
+                <div className={styles["tadarab-business__details__minor"]}>
                 هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز
-                </div> */}
+                </div>
                 <div className={styles["tadarab-business__details__btn"]}>
                     <Button>
                        <span> تواصل معنا </span>
@@ -34,3 +34,5 @@ export default function TadarabBusiness() {
         </>
     )
 }
+
+export default memo(TadarabBusiness);

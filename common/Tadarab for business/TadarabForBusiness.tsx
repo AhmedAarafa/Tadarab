@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { memo } from "react";
 import styles from "./tadarab-for-business.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { openSupportConvInNewTab } from "modules/_Shared/utils/contactUs";
 
-export default function TadarabForBusiness() {
+function TadarabForBusiness() {
     return (
         <>
             <Row>
@@ -36,3 +36,5 @@ export default function TadarabForBusiness() {
         </>
     )
 }
+
+export default memo(TadarabForBusiness);

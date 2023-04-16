@@ -172,7 +172,7 @@
 
         &>div:nth-child(1),
         &>div:nth-child(2) {
-            top: 45.5% !important;
+            top: 48% !important;
         }
 
         &>div:nth-child(3) {
@@ -192,7 +192,7 @@
 
 .latest-courses__cards-carousel__course-card {
     width: 15rem;
-    height: 14rem;
+    height: 17.75rem;
     box-shadow: 0 0.5rem 1.313rem #0000001A;
     border-radius: 0.75rem;
     position: relative;
@@ -242,6 +242,7 @@
     @include flex(center);
     position: relative;
     padding: 0 0 0.7813rem 0;
+    border-bottom: 0.05rem solid var(--borders-grey);
 
 }
 
@@ -285,6 +286,75 @@
     cursor: pointer;
 
 }
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details {
+    @include flex(center, space-between);
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--dark-black);
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+    font-size: 0.813rem;
+    font-weight: 700;
+    color: var(--dark-black);
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+    margin-top: -0.5rem;
+
+    span {
+        text-decoration: line-through rgba(119, 119, 119, 0.7);
+    }
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+    font-size: 0.875rem;
+    font-weight: 800;
+    color: var(--grey);
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+    font-size: 0.625rem;
+    color: var(--grey);
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+    @include icon-button;
+    margin-right: 0.3rem;
+    padding: 0 !important;
+
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+
+    svg {
+        width: 1.45rem;
+        height: 1.6rem;
+    }
+
+
+}
+
+.latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+    svg {
+        width: 1.313rem;
+        height: 1.125rem;
+    }
+}
+
+// .latest-courses__popover-container {
+//     width: 23.438rem !important;
+//     padding: 2rem 1.3rem !important;
+//     background-color: white !important;
+//     z-index: 10 !important;
+//     box-shadow: 0 0 1.875rem #00000033 !important;
+//     border-radius: 0.75rem !important;
+//     height: fit-content !important;
+// }
 
 .latest-courses__popover-container__title {
     font-size: 1.1rem;
@@ -367,9 +437,11 @@
 
 .latest-courses__popover-container__btns__details-btn {
     @include outlined-button;
-    width: 100%;
+    width: 50%;
     height: 2.5rem;
     font-weight: 800;
+    // border: 0.063rem solid #001425 !important;
+    margin-left: 0.8rem;
 
 }
 
@@ -445,7 +517,7 @@
 
             &>div:nth-child(1),
             &>div:nth-child(2) {
-                top: 46% !important;
+                top: 47% !important;
 
                 &:after {
                     font-size: 1rem*1.27 !important;
@@ -482,7 +554,7 @@
 
     .latest-courses__cards-carousel__course-card {
         width: 15rem*1.27;
-        height: 18rem;
+        height: 17.75rem*1.27;
         box-shadow: 0 0.5rem*1.27 1.313rem*1.27 #0000001A;
         border-radius: 0.75rem*1.27;
         position: relative;
@@ -534,6 +606,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*1.27 0;
+        border-bottom: 0.05rem*1.27 solid var(--borders-grey);
 
     }
 
@@ -573,6 +646,65 @@
 
     }
 
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details {
+        margin-top: 1rem*1.27;
+        @include flex(center, space-between);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+        font-size: 1.25rem*1.27;
+        font-weight: 800;
+        color: var(--dark-black);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+        font-size: 0.813rem*1.27;
+        font-weight: 700;
+        color: var(--dark-black);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+        margin-top: -0.5rem*1.27;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+        font-size: 0.875rem*1.27;
+        font-weight: 800;
+        color: var(--grey);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+        font-size: 0.625rem*1.27;
+        color: var(--grey);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+        @include icon-button;
+        margin-right: 0.3rem*1.27;
+        padding: 0 !important;
+        border-radius: 0.75rem*1.27;
+        width: fit-content;
+        height: fit-content;
+
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+        svg {
+
+            width: 1.45rem*1.27;
+            height: 1.6rem*1.27;
+            margin: 0.32rem 0.5rem 0.32rem 0.55rem;
+        }
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        svg {
+            width: 1.313rem*1.27;
+            height: 1.125rem*1.27;
+            margin: 0.65rem 0.575rem 0.65rem 0.575rem;
+        }
+    }
+
     .watch-subscribed-course {
         font-size: 0.9rem*1.27 !important;
         padding: 0.5rem*1.27 1rem*1.27;
@@ -600,7 +732,7 @@
 
             &>div:nth-child(1),
             &>div:nth-child(2) {
-                top: 39% !important;
+                top: 43% !important;
 
                 &:after {
                     font-size: 1rem*1.67 !important;
@@ -637,7 +769,7 @@
 
     .latest-courses__cards-carousel__course-card {
         width: 15rem*1.67;
-        height: 23rem;
+        height: 17.75rem*1.67;
         box-shadow: 0 0.5rem*1.67 1.313rem*1.67 #0000001A;
         border-radius: 0.75rem*1.67;
         position: relative;
@@ -689,6 +821,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*1.67 0;
+        border-bottom: 0.05rem*1.67 solid var(--borders-grey);
 
     }
 
@@ -726,6 +859,65 @@
 
     }
 
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details {
+        margin-top: 1rem*1.67;
+        @include flex(center, space-between);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+        font-size: 1.25rem*1.67;
+        font-weight: 800;
+        color: var(--dark-black);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+        font-size: 0.813rem*1.67;
+        font-weight: 700;
+        color: var(--dark-black);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+        margin-top: -0.5rem*1.67;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+        font-size: 0.875rem*1.67;
+        font-weight: 800;
+        color: var(--grey);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+        font-size: 0.625rem*1.67;
+        color: var(--grey);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+        @include icon-button;
+        margin-right: 0.3rem*1.67;
+        padding: 0 !important;
+        border-radius: 0.75rem*1.67;
+        width: fit-content;
+        height: fit-content;
+
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+        svg {
+            width: 1.45rem*1.67;
+            height: 1.68rem*1.67;
+            margin: 0.42rem 0.7rem 0.42rem 0.8rem;
+        }
+
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        svg {
+            width: 1.313rem*1.67;
+            height: 1.125rem*1.67;
+            margin: 0.88rem 0.88rem 0.88rem 0.88rem;
+        }
+    }
+
     .watch-subscribed-course {
         font-size: 0.9rem*1.67 !important;
         padding: 0.5rem*1.67 1rem*1.67;
@@ -748,7 +940,7 @@
 
     .latest-courses__departments-list {
         padding: 0 3rem 0 4rem;
-        font-size: 2.1rem;
+        font-size: 2.2rem;
         list-style-type: none;
         color: var(--grey);
         @include flex(center, flex-start);
@@ -825,7 +1017,7 @@
 
     .latest-courses__cards-carousel__course-card {
         width: 15rem*2.92;
-        height: 41rem;
+        height: 17.75rem*2.92;
         box-shadow: 0 0.5rem*2.92 1.313rem*2.92 #0000001A;
         border-radius: 0.75rem*2.92;
         position: relative;
@@ -874,6 +1066,7 @@
         @include flex(center);
         position: relative;
         padding: 0 0 0.7813rem*2.92 0;
+        border-bottom: 0.05rem*2.92 solid var(--borders-grey);
     }
 
     .latest-courses__cards-carousel__course-card__card-body__card-header__trainer-img-box {
@@ -905,6 +1098,59 @@
         font-size: 0.813rem*2.92;
         width: 28.5rem;
 
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details {
+        margin-top: 1rem*2.92;
+        @include flex(center, space-between);
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__price {
+        font-size: 1.25rem*2.92;
+        font-weight: 800;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency {
+        font-size: 0.813rem*2.92;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container {
+        margin-top: -0.5rem*2.92;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__price {
+        font-size: 0.875rem*2.92;
+        font-weight: 800;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__old-price-container__currency {
+        font-size: 0.625rem*2.92;
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn {
+        @include icon-button;
+        margin-right: 0.3rem*2.92;
+        padding: 0 !important;
+        border-radius: 0.75rem*2.5;
+        width: fit-content;
+        height: fit-content;
+
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__cart-icon {
+        svg {
+            width: 1.45rem*2.2;
+            height: 1.6rem*2.2;
+            margin: 0.85rem 1rem 0.85rem 1.05rem;
+        }
+    }
+
+    .latest-courses__cards-carousel__course-card__card-body__checkout-details__icon-btn__fav-icon {
+        svg {
+            width: 1.313rem*2.2;
+            height: 1.125rem*2.2;
+            margin: 1.3rem 1.15rem 1.3rem 1.15rem;
+        }
     }
 
     .latest-courses__see-more-btn-col {

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect } from 'react'
+import React, { useEffect, memo } from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./failed-state.module.css";
 import { TransactionErrorIcon, RetryIcon } from "common/Icons/Icons";
@@ -9,9 +9,8 @@ import TadarabGA from "modules/_Shared/utils/ga";
 import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
-import { toggleLoader } from 'modules/_Shared/utils/toggleLoader';
 
-export default function FailedState() {
+function FailedState() {
     const dispatch = useDispatch();
 
     const invoiceDetails = useSelector((state: any) => state.invoiceDetails);
@@ -21,11 +20,11 @@ export default function FailedState() {
     useEffect(() => {
 
         if (invoiceDetails) {
-            tadarabGA.tadarab_fire_traking_GA_code("payment_fail", {
-                type: invoiceDetails?.data?.data?.transaction_details.payment_method,
-                reason: invoiceDetails?.data?.data?.transaction_details.status
-            });
-            toggleLoader('hide');
+            tadarabGA.tadarab_fire_traking_GA_code("payment_fail",
+                {
+                    type: invoiceDetails?.data?.data?.transaction_details.payment_method,
+                    reason: invoiceDetails?.data?.data?.transaction_details.status
+                });
         }
     }, [invoiceDetails])
 
@@ -128,3 +127,5 @@ export default function FailedState() {
         </>
     )
 }
+
+export default memo(FailedState);

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./best-seller-courses.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,7 +14,7 @@ import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import Router, { useRouter } from "next/router";
 
-export default function BestSellerCourses() {
+function BestSellerCourses() {
     SwiperCore.use([Navigation]);
     const themeState = useSelector((state: any) => state.themeState.theme);
     const [bestSellerCourses, setBestSellerCourses] = useState<any>([]);
@@ -84,7 +84,7 @@ export default function BestSellerCourses() {
                                             }>
 
                                             {
-                                                course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
+                                                course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
 
                                                 <div
                                                     className={
@@ -92,18 +92,18 @@ export default function BestSellerCourses() {
                                                         "best-seller-courses__cards-carousel__course-card__category-chip"
                                                         ]
                                                     }
-                                                    style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
+                                                    style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}
                                                 >
-                                                    {course?.categories[0] !== undefined && course?.categories[0].title}
+                                                    {course.categories[0] !== undefined && course.categories[0].title}
                                                 </div>
                                             }
 
-                                            <Link href={`/course/${course?.slug}`}>
+                                            <Link href={`/course/${course.slug}`}>
                                                 <a onClick={() => { GAProductClickEventHandler(course, i) }}>
 
                                                     <Card.Img
                                                         variant="top"
-                                                        src={course?.image}
+                                                        src={course.image}
                                                         alt="course image"
                                                         className={
                                                             styles[
@@ -121,7 +121,7 @@ export default function BestSellerCourses() {
                                                     ]
                                                 }
                                             >
-                                                <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
+                                                <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
                                                     className={
                                                         styles[
                                                         "best-seller-courses__cards-carousel__course-card__card-body__card-header"
@@ -134,9 +134,9 @@ export default function BestSellerCourses() {
                                                             ]
                                                         }
                                                     >
-                                                        <Link href={`/trainer/${course?.trainer?.slug}`}>
+                                                        <Link href={`/trainer/${course.trainer?.slug}`}>
                                                             <img loading="lazy"
-                                                                src={course?.trainer?.image}
+                                                                src={course.trainer?.image}
                                                                 alt="trainer image"
                                                             />
                                                         </Link>
@@ -148,27 +148,27 @@ export default function BestSellerCourses() {
                                                             ]
                                                         }
                                                     >
-                                                        <Link href={`/course/${course?.slug}`}>
+                                                        <Link href={`/course/${course.slug}`}>
                                                             <h3 onClick={() => { GAProductClickEventHandler(course, i) }}
-                                                                title={course?.title}
+                                                                title={course.title}
                                                                 className={
                                                                     styles[
                                                                     "best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
                                                                     ]
                                                                 }
                                                             >
-                                                                {course?.title}
+                                                                {course.title}
                                                             </h3>
                                                         </Link>
-                                                        <Link href={`/trainer/${course?.trainer?.slug}`}>
-                                                            <div title={course?.trainer?.name_ar}
+                                                        <Link href={`/trainer/${course.trainer?.slug}`}>
+                                                            <div title={course.trainer?.name_ar}
                                                                 className={
                                                                     styles[
                                                                     "best-seller-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                                                     ]
                                                                 }
                                                             >
-                                                                {course?.trainer?.name_ar}
+                                                                {course.trainer?.name_ar}
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -186,3 +186,5 @@ export default function BestSellerCourses() {
         </>
     )
 }
+
+export default memo(BestSellerCourses);

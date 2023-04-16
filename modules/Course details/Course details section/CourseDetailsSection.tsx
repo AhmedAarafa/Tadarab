@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./course-details-section.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { DropDownIcon } from "common/Icons/Icons";
 
-export default function CourseDetailsSection() {
+function CourseDetailsSection() {
     const [showMore, setShowMore] = useState(true);
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -26,3 +26,5 @@ export default function CourseDetailsSection() {
         </>
     );
 }
+
+export default memo(CourseDetailsSection);

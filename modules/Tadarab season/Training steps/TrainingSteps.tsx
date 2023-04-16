@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./training-steps.module.css";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import { LearnersOutlinedIcon, LearnIcon, InteractIcon, ApplyIcon } from "common/Icons/Icons";
 import { TadarabVideoPlayer } from "common/TPlayer/TPlayer";
 
-export default function TrainingSteps() {
+function TrainingSteps() {
     return (
         <>
             <Row>
@@ -48,10 +48,12 @@ export default function TrainingSteps() {
                             تعلم ما تريد
                         </div>
                         <TadarabVideoPlayer Poster={"/images/TadarabSeasonVideoThumbnail.png"}
-                         Source={"https://player.vimeo.com/progressive_redirect/playback/758651474/rendition/1080p/file.mp4?loc=external&signature=c20325feabed8d5eccfc84d5565f47c05733ad089ccd05d35a7cc2b753c37a35"} />
+                            Source={"https://player.vimeo.com/progressive_redirect/playback/758651474/rendition/1080p/file.mp4?loc=external&signature=c20325feabed8d5eccfc84d5565f47c05733ad089ccd05d35a7cc2b753c37a35"} />
                     </div>
                 </Col>
             </Row>
         </>
     )
 }
+
+export default memo(TrainingSteps);

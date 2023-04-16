@@ -1,8 +1,8 @@
-import React from 'react';
-import { Row, Col, Button, Card } from "react-bootstrap";
+import React, { memo } from 'react';
+import { Row, Col } from "react-bootstrap";
 import styles from "./about-free-courses.module.css";
 
-export default function AboutFreeCourses() {
+function AboutFreeCourses() {
     return (
         <Row className={styles["about-free-courses"]}>
             <Col xs={12}>
@@ -16,3 +16,5 @@ export default function AboutFreeCourses() {
         </Row>
     )
 }
+
+export default memo(AboutFreeCourses);

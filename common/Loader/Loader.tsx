@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./loader.module.css";
 
-export default function Loader() {
+function Loader() {
     return (
         <div id="overlay-loader" className={styles["overlay-loader"]}>
             <div>tadarab</div>
@@ -16,3 +16,5 @@ export default function Loader() {
         </div>
     )
 }
+
+export default memo(Loader);

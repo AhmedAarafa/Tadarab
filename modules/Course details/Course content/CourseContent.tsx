@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./course-content.module.css";
 import { Accordion, Button, ProgressBar } from "react-bootstrap";
-// import {scrollspyHandler} from "./utils"
 import { scrollspyHandler } from "../../_Shared/utils/scrollSpy"
 import { useSelector } from "react-redux";
 import { UnlockIcon, LessonPlayIcon, ClockIcon, LockIcon, AttachmentsIcon, FileDownloadIcon, CheckCircleIcon } from "common/Icons/Icons";
 import { TPlayerPlayList } from "common/TPlayer/TPlayer";
 
-export default function CourseContent() {
+function CourseContent() {
     const [courseDetails, setCourseDetails] = useState<any>([]);
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -17,8 +16,6 @@ export default function CourseContent() {
     useEffect(() => {
         setCourseDetails(courseDetailsData.data || []);
         // return () => { setCourseDetails([]) }
-        // console.log("CourseContent Comp. request",courseDetailsData.data);
-        
     }, [courseDetailsData]);
 
     useEffect(() => {
@@ -83,7 +80,6 @@ export default function CourseContent() {
                 </div>
 
                 {/* Courses lectures playlist */}
-                {/* {console.log("Course Content comp.")} */}
                 <TPlayerPlayList />
 
                 {/* Courses Attachments */}
@@ -106,7 +102,7 @@ export default function CourseContent() {
                                             <div key={i} className={styles["course-content__accordion__body__list-item"]}>
                                                 <div className={styles["course-content__accordion__body__list-item__lesson-details-box"]}>
                                                     <div className={styles["course-content__accordion__body__list-item__icon"]}>
-                                                        <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"}/>
+                                                        <AttachmentsIcon color={themeState == "light" ? "#af151f" : "#f5f5f5"} />
                                                     </div>
                                                     <div className={styles["course-content__accordion__body__list-item__lesson-name-duration"]}>
                                                         <div>{att?.title}</div>
@@ -144,3 +140,5 @@ export default function CourseContent() {
         </>
     );
 }
+
+export default memo(CourseContent);

@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { Dropdown } from 'react-bootstrap';
 import Router, { useRouter } from "next/router";
 import styles from "./categories-navigator.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 
-export default function CategoriesNavigator(props: any) {
+function CategoriesNavigator(props: any) {
     const [category, setCategory] = useState<any>("");
     const [categoriesList, setCategoriesList] = useState([]);
     const router = useRouter();
@@ -36,3 +36,5 @@ export default function CategoriesNavigator(props: any) {
         </>
     )
 }
+
+export default memo(CategoriesNavigator);

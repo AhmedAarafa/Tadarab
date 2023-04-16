@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./faqs.module.css";
 import { Row, Col, Accordion } from "react-bootstrap";
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 import faqs from "./faqs.json";
 
-export default function Faqs() {
+function Faqs() {
     return (
         <Row className={styles["faq__row"]}>
             <Col xs={12} className={styles["faq"]}>
@@ -23,7 +23,7 @@ export default function Faqs() {
                                 <Accordion.Header className={styles["faq__accordion__header"]}>
                                     {faq.q}
                                 </Accordion.Header>
-                                <Accordion.Body className={styles["faq__accordion__body"]} >
+                                <Accordion.Body className={styles["faq__accordion__body"]}>
                                     {faq.a}
                                 </Accordion.Body>
                             </Accordion.Item>
@@ -40,3 +40,5 @@ export default function Faqs() {
         </Row>
     )
 }
+
+export default memo(Faqs);

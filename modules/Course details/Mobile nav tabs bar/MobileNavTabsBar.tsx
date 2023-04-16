@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./mobile-nav-tabs-bar.module.css";
 
-export default function MobileCheckoutBar() {
+function MobileCheckoutBar() {
   const [sectionSelection, setSectionSelection] = useState("");
   const [reviewsSectionExist, setReviewsSectionExist] = useState(true);
 
@@ -30,7 +30,7 @@ export default function MobileCheckoutBar() {
 
       if (window.scrollY <= ((whatYouWillLearnSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("");
-        
+
 
       } else if (window.scrollY >= ((whatYouWillLearnSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2)) && window.scrollY <= ((courseContentSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("what-you-will-learn");
@@ -42,11 +42,11 @@ export default function MobileCheckoutBar() {
         // console.log("course-content");
 
 
-      } else if (window.scrollY >= ((trainerInfoSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2)) && window.scrollY <= ((reviewsSection?.getBoundingClientRect().top == 0 ? 999999 : reviewsSection?.getBoundingClientRect().top ) + window.scrollY - (navbar?.offsetHeight * 2))) {
+      } else if (window.scrollY >= ((trainerInfoSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2)) && window.scrollY <= ((reviewsSection?.getBoundingClientRect().top == 0 ? 999999 : reviewsSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) {
         setSectionSelection("trainer-info");
 
       } else if ((window.scrollY >= ((reviewsSection?.getBoundingClientRect().top) + window.scrollY - (navbar?.offsetHeight * 2))) &&
-      !reviewsSectionExist ) {
+        !reviewsSectionExist) {
         setSectionSelection("reviews-section");
 
       } else {
@@ -63,11 +63,11 @@ export default function MobileCheckoutBar() {
   }, []);
 
   useEffect(() => {
-    
+
     // console.log(sectionSelection);
-    
+
   }, [sectionSelection])
-  
+
 
 
   return (
@@ -82,11 +82,13 @@ export default function MobileCheckoutBar() {
         <div className={`${sectionSelection == "trainer-info" ? styles["tabs-responsive-bar__list-item--active"] : styles["tabs-responsive-bar__list-item"]}`}>
           <a href="#trainer-info" onClick={() => { setSectionSelection("trainer-info") }}>المدرب</a>
         </div>
-       { reviewsSectionExist &&  <div id="reviews-option" className={`${sectionSelection == "reviews-section" ? styles["tabs-responsive-bar__list-item--active"] : styles["tabs-responsive-bar__list-item"]}`}>
+        {reviewsSectionExist && <div id="reviews-option" className={`${sectionSelection == "reviews-section" ? styles["tabs-responsive-bar__list-item--active"] : styles["tabs-responsive-bar__list-item"]}`}>
           <a href="#reviews-section" onClick={() => { setSectionSelection("reviews-section") }}>التقييمات</a>
         </div>}
       </div>
     </>
   );
 }
+
+export default memo(MobileCheckoutBar);
 

@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import styles from "./season-trainers.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,7 +7,7 @@ import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import trainersList from './SeasonTrainers.json';
 
-export default function SeasonTrainers() {
+function SeasonTrainers() {
     SwiperCore.use([Navigation]);
     // const [trainers, setTrainers] = useState(trainersList);
 
@@ -42,11 +42,11 @@ export default function SeasonTrainers() {
                             return (
                                 <SwiperSlide key={i}>
                                     <Card className={styles["season-trainers__cards-carousel__card"]}
-                                        style={{ backgroundImage: `url("${trainer?.img_src}")` }} >
+                                        style={{ backgroundImage: `url("${trainer.img_src}")` }} >
                                         <div className={styles["season-trainers__cards-carousel__card__card-body"]}>
                                             <div className="text-center">
-                                                <div className={styles["season-trainers__cards-carousel__card__trainer-name"]}>{trainer?.name}</div>
-                                                <div className={styles["season-trainers__cards-carousel__card__trainer-title"]} title={trainer?.job_title}>{trainer?.job_title}</div>
+                                                <div className={styles["season-trainers__cards-carousel__card__trainer-name"]}>{trainer.name}</div>
+                                                <div className={styles["season-trainers__cards-carousel__card__trainer-title"]} title={trainer.job_title}>{trainer.job_title}</div>
                                             </div>
                                         </div>
                                     </Card>
@@ -61,3 +61,5 @@ export default function SeasonTrainers() {
         </>
     )
 }
+
+export default memo(SeasonTrainers);

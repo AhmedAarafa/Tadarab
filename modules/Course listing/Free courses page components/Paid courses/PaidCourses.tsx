@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./paid-courses.module.css";
 import {
     Row,
@@ -22,7 +22,7 @@ import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 
-export default function PaidCourses() {
+function PaidCourses() {
     SwiperCore.use([Navigation]);
     const [paidCourses, setPaidCourses] = useState<any>([]);
     const [isFnExecuted, setIsFnExecuted] = useState(false);
@@ -172,21 +172,21 @@ export default function PaidCourses() {
                                                 >
 
                                                     <div>
-                                                        <Link href={`/course/${course?.slug}`}>
+                                                        <Link href={`/course/${course.slug}`}>
                                                             <div
                                                                 className={
                                                                     styles["paid-courses__popover-container__title"]
                                                                 }
-                                                                title={course?.title}
+                                                                title={course.title}
                                                             >
-                                                                {course?.title}
+                                                                {course.title}
                                                             </div>
                                                         </Link>
 
-                                                        {course?.subscribers_count !== null ?
+                                                        {course.subscribers_count !== null ?
                                                             <div className={styles["paid-courses__popover-container__learners"]}>
                                                                 <LearnersIcon color="#777" />
-                                                                <span>{course?.subscribers_count}</span>
+                                                                <span>{course.subscribers_count}</span>
                                                                 <span>دورة</span>
                                                             </div>
                                                             :
@@ -196,8 +196,8 @@ export default function PaidCourses() {
                                                             className={
                                                                 styles["paid-courses__popover-container__brief"]
                                                             }
-                                                            title={course?.details}>
-                                                            {course?.details}
+                                                            title={course.details}>
+                                                            {course.details}
                                                         </div>
 
                                                     </div>
@@ -214,7 +214,7 @@ export default function PaidCourses() {
                                                         >
                                                             ماذا ستتعلم في الدورة؟
                                                         </div>
-                                                        {course?.key_points?.slice(0, 4).map((kp: string, i: number) => {
+                                                        {course.key_points?.slice(0, 4).map((kp: string, i: number) => {
                                                             return (
                                                                 <div key={i}
                                                                     className={
@@ -239,8 +239,8 @@ export default function PaidCourses() {
                                                     </div>
 
                                                     {
-                                                        course?.key_points.length > 4 ?
-                                                            <Link href={`/course/${course?.slug}`}>
+                                                        course.key_points.length > 4 ?
+                                                            <Link href={`/course/${course.slug}`}>
 
                                                                 <div className={styles["paid-courses__show-more-link"]}>
                                                                     اعرض المزيد
@@ -255,7 +255,7 @@ export default function PaidCourses() {
                                             </div>
 
                                             {
-                                                course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
+                                                course.categories[0] !== undefined && course.categories[0].title !== null && course.categories[0].title !== "" &&
 
                                                 <div
                                                     className={
@@ -263,19 +263,19 @@ export default function PaidCourses() {
                                                         "paid-courses__cards-carousel__course-card__category-chip"
                                                         ]
                                                     }
-                                                    style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}>
-                                                    {course?.categories[0] !== undefined && course?.categories[0].title}
+                                                    style={{ backgroundColor: `${course.categories[0] !== undefined && course.categories[0].color}` }}>
+                                                    {course.categories[0] !== undefined && course.categories[0].title}
                                                 </div>
 
                                             }
 
 
-                                            <Link href={`/course/${course?.slug}`}>
+                                            <Link href={`/course/${course.slug}`}>
                                                 <a onClick={() => { GAProductClickEventHandler(course, i) }}>
 
                                                     <Card.Img
                                                         variant="top"
-                                                        src={course?.image}
+                                                        src={course.image}
                                                         alt="course image"
                                                         className={
                                                             styles[
@@ -293,7 +293,7 @@ export default function PaidCourses() {
                                                     ]
                                                 }
                                             >
-                                                <div style={{ borderBottom: course?.is_in_user_subscription && "none" }}
+                                                <div style={{ borderBottom: course.is_in_user_subscription && "none" }}
                                                     className={
                                                         styles[
                                                         "paid-courses__cards-carousel__course-card__card-body__card-header"
@@ -307,10 +307,10 @@ export default function PaidCourses() {
                                                             ]
                                                         }
                                                     >
-                                                        <Link href={`/trainer/${course?.trainer?.slug}`}>
+                                                        <Link href={`/trainer/${course.trainer?.slug}`}>
 
                                                             <img loading="lazy"
-                                                                src={course?.trainer?.image}
+                                                                src={course.trainer?.image}
                                                                 alt="trainer image"
                                                             />
                                                         </Link>
@@ -322,28 +322,28 @@ export default function PaidCourses() {
                                                             ]
                                                         }
                                                     >
-                                                        <Link href={`/course/${course?.slug}`}>
+                                                        <Link href={`/course/${course.slug}`}>
                                                             <div onClick={() => { GAProductClickEventHandler(course, i) }}
-                                                                title={course?.title}
+                                                                title={course.title}
                                                                 className={
                                                                     styles[
                                                                     "paid-courses__cards-carousel__course-card__card-body__card-header__course-details__title"
                                                                     ]
                                                                 }
                                                             >
-                                                                {course?.title}
+                                                                {course.title}
                                                             </div>
                                                         </Link>
-                                                        <Link href={`/trainer/${course?.trainer?.slug}`}>
+                                                        <Link href={`/trainer/${course.trainer?.slug}`}>
 
-                                                            <div title={course?.trainer?.name_ar}
+                                                            <div title={course.trainer?.name_ar}
                                                                 className={
                                                                     styles[
                                                                     "paid-courses__cards-carousel__course-card__card-body__card-header__course-details__author"
                                                                     ]
                                                                 }
                                                             >
-                                                                {course?.trainer?.name_ar}
+                                                                {course.trainer?.name_ar}
                                                             </div>
                                                         </Link>
                                                     </div>
@@ -364,14 +364,14 @@ export default function PaidCourses() {
                                                                 ]
                                                             }
                                                         >
-                                                            {course?.discounted_price !== 0 && !course?.is_purchased && <span
+                                                            {course.discounted_price !== 0 && !course.is_purchased && <span
                                                                 className={
                                                                     styles[
                                                                     "paid-courses__cards-carousel__course-card__card-body__checkout-details__price-container__currency"
                                                                     ]
                                                                 }
                                                             >
-                                                                {!course?.is_in_user_subscription && course?.currency_symbol}
+                                                                {!course.is_in_user_subscription && course.currency_symbol}
                                                             </span>}
 
                                                             <span
@@ -381,13 +381,13 @@ export default function PaidCourses() {
                                                                     ]
                                                                 }
                                                             >
-                                                                {course?.is_purchased && !course?.is_in_user_subscription && "تم الشراء"}
+                                                                {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
                                                                 {
-                                                                    !course?.is_purchased && !course?.is_in_user_subscription && (course?.discounted_price == 0 ? "مجانًا" : course?.discounted_price)
+                                                                    !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
                                                                 }
                                                                 {
-                                                                    course?.is_in_user_subscription &&
-                                                                    <Link href={`/course/${course?.slug}`}>
+                                                                    course.is_in_user_subscription &&
+                                                                    <Link href={`/course/${course.slug}`}>
                                                                         <span className={styles["watch-subscribed-course"]}>
                                                                             شاهد الدورة
                                                                         </span>
@@ -398,7 +398,7 @@ export default function PaidCourses() {
 
                                                         </div>
                                                         {
-                                                            (course?.price > course?.discounted_price) && !course?.is_purchased &&
+                                                            (course.price > course.discounted_price) && !course.is_purchased &&
                                                             <div
                                                                 className={
                                                                     styles[
@@ -413,7 +413,7 @@ export default function PaidCourses() {
                                                                         ]
                                                                     }
                                                                 >
-                                                                    {course?.currency_symbol}
+                                                                    {course.currency_symbol}
                                                                 </span>
                                                                 <span
                                                                     className={
@@ -422,7 +422,7 @@ export default function PaidCourses() {
                                                                         ]
                                                                     }
                                                                 >
-                                                                    {course?.price}
+                                                                    {course.price}
                                                                 </span>
 
                                                             </div>
@@ -442,3 +442,5 @@ export default function PaidCourses() {
         </>
     )
 }
+
+export default memo(PaidCourses);

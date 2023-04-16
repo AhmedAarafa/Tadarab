@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { Row, Col, Button } from "react-bootstrap";
 import styles from "./reset-password-page.module.css";
 import { LockIcon, EyeIcon } from "common/Icons/Icons";
@@ -17,7 +17,7 @@ interface ResetPasswordFormValues {
   repeatedPassword: string;
 };
 
-export default function ChangePasswordPage() {
+function ChangePasswordPage() {
   const [isPwFieldVisible, setIsPwFieldVisible] = useState(false);
   const [isReEnterPwFieldVisible, setIsReEnterPwFieldVisible] = useState(false);
   const [isOldPwFieldVisible, setIsOldPwFieldVisible] = useState(false);
@@ -347,3 +347,5 @@ export default function ChangePasswordPage() {
     </>
   )
 }
+
+export default memo(ChangePasswordPage);

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./trainers.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,7 +11,7 @@ import { ChevronLeftIcon } from "common/Icons/Icons";
 import Link from 'next/link';
 import { useSelector } from "react-redux";
 
-export default function Trainers() {
+function Trainers() {
     SwiperCore.use([Navigation]);
     const [trainers, setTrainers] = useState([]);
     const themeState = useSelector((state: any) => state.themeState.theme);
@@ -69,17 +69,17 @@ export default function Trainers() {
                                 <SwiperSlide key={i}>
                                     <Link href={`/trainer/${trainer?.slug}`}>
                                         <Card className={styles["trainers__cards-carousel__card"]}
-                                            style={{ backgroundImage: `url("${trainer?.image}")` }}
+                                            style={{ backgroundImage: `url("${trainer.image}")` }}
                                         >
                                             <div className={styles["trainers__cards-carousel__card__card-body"]}>
                                                 <div className="text-center">
                                                     <Link href={`/trainer/${trainer?.slug}`}>
 
-                                                        <div className={styles["trainers__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
+                                                        <div className={styles["trainers__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
                                                     </Link>
-                                                    <div className={styles["trainers__cards-carousel__card__job-title"]}>{trainer?.title}</div>
+                                                    <div className={styles["trainers__cards-carousel__card__job-title"]}>{trainer.title}</div>
                                                     <div className={styles["trainers__cards-carousel__card__job-history"]}
-                                                        dangerouslySetInnerHTML={{ __html: trainer?.bio }}></div>
+                                                        dangerouslySetInnerHTML={{ __html: trainer.bio }}></div>
                                                 </div>
                                             </div>
 
@@ -95,3 +95,5 @@ export default function Trainers() {
         </>
     )
 }
+
+export default memo(Trainers);

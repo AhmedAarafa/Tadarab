@@ -1,17 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, memo } from "react";
 import styles from "./season-courses.module.css";
-import Link from 'next/link';
-import { Row, Col, Button, Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { ChevronLeftIcon, LiveIcon, PlayIcon, CartIcon, FavouriteIcon, AddedToCartIcon, ContainedBellIcon, AddedToFavouriteIcon, BellIcon } from "common/Icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import Router from "next/router";
-import { handleFav } from "modules/_Shared/utils/handleFav";
 import { handleCart } from "modules/_Shared/utils/handleCart";
 import { setCartItems } from "configurations/redux/actions/cartItems";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
@@ -19,7 +16,7 @@ import { tokenValidationCheck } from "modules/_Shared/utils/tokenValidationCheck
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import trainersList from './TrainersInfo.json';
 
-export default function SeasonCourses() {
+function SeasonCourses() {
     SwiperCore.use([Navigation]);
     const dispatch = useDispatch();
 
@@ -81,7 +78,21 @@ export default function SeasonCourses() {
         }
         setLiveCourses([...liveCourses]);
     }
- 
+    const handleCartActionBtn = (course: any): any => {
+        setDisabledCartBtns([...disabledCartBtns, course.id]);
+        setTimeout(() => {
+            setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
+        }, 5000);
+        dispatch(setCheckoutType("cart"));
+
+        const handleCartResponse: any = handleCart([course], `home`, false);
+        handleCartResponse.then(function (firstresponse: any) {
+            firstresponse.resp.then(function (response: any) {
+                setLiveCourses(response.data.data.live_courses);
+                dispatch(setCartItems(firstresponse.cartResponse));
+            })
+        })
+    }
     const liveCourseWatchingHandler = (slug: string, webinarType: any) => {
         if (webinarType == "soon") {
             Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}webinar/${slug}`);
@@ -194,3 +205,5 @@ export default function SeasonCourses() {
         </>
     )
 }
+
+export default memo(SeasonCourses);

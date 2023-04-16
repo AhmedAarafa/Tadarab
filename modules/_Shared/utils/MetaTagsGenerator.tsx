@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Head from "next/head";
 import Router, { useRouter } from "next/router";
-export default function MetaTagsGenerator(props:any) {
+
+function MetaTagsGenerator(props:any) {
 
     let siteurl = "https://www.tadarab.com";let canonical=siteurl;
     const allowedCanonical=['/Category/[slug]','/TrainerProfile/[slug]','/CourseDetails/[slug]'];
@@ -36,3 +37,5 @@ export default function MetaTagsGenerator(props:any) {
         </Head>
     )
 }
+
+export default memo(MetaTagsGenerator);

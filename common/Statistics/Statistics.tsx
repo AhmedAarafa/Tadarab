@@ -1,23 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./statistics.module.css";
 import { Row, Col } from "react-bootstrap";
 import { LearnersOutlinedIcon, CoursesIcon, TrainersIcon, ExperienceIcon, TrainingHoursIcon } from "common/Icons/Icons";
 import { useSelector } from "react-redux";
 
-export default function Statistics() {
-  const [startCounter, setStartCounter] = useState<any>(false);
+function Statistics(props: any) {
   const themeState = useSelector((state: any) => state.themeState.theme);
-
-  useEffect(() => {
-    const stasticsSection: any = document.getElementById("animated-stastics-section");
-
-    return () => {
-      window.removeEventListener("scroll", () => {
-        null;
-      })
-    }
-  }, [])
 
   return (
     <>
@@ -28,11 +17,19 @@ export default function Statistics() {
 
             <div className={styles["statistics__title"]}>
               <span> أرقامنا </span>
-              <span> في العالم العربي </span>
+              <span>
+                في
+                {props?.targetedCountry == "sa" ? " السعودية و" : ""}
+                {" "}
+                العالم العربي </span>
             </div>
 
             <div className={styles["statistics__breif"]}>
-              منصة تدرب الرائدة في مجال التدريب في الخليج والوطن العربي منذ أكثر
+              منصة تدرب الرائدة في مجال التدريب في
+              {" "}
+              {props?.targetedCountry == "sa" ? "المملكة العربية السعودية" : "الخليج"}
+              {" "}
+              والوطن العربي منذ أكثر
               من 10 سنوات في مجال التعلم من بعد
             </div>
 
@@ -122,3 +119,5 @@ export default function Statistics() {
     </>
   );
 }
+
+export default memo(Statistics);

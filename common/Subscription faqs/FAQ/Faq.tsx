@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./faq.module.css";
 import { Row, Col, Accordion } from "react-bootstrap";
 import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 import { useSelector } from "react-redux";
 
-export default function Faq() {
+function Faq() {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
   return (
@@ -229,17 +229,17 @@ export default function Faq() {
             <Accordion.Body className={styles["faq__accordion__body"]}>
               يمكنك التواصل مع الدعم الفني من خلال:
               <br />
-             - البريد الإلكتروني:
+              - البريد الإلكتروني:
               <br />
               support@tadarab.com
               <br />
-             - رسائل الواتس آب:
+              - رسائل الواتس آب:
               <br />
               96569932303+
               <br />
-             - دردشة المنصة
+              - دردشة المنصة
               <br />
-             - حسابات المنصة على مواقع التواصل الإجتماعي الفيس بوك و إنستغرام و تويتر.
+              - حسابات المنصة على مواقع التواصل الإجتماعي الفيس بوك و إنستغرام و تويتر.
 
             </Accordion.Body>
           </Accordion.Item>
@@ -255,3 +255,6 @@ export default function Faq() {
     </Row>
   )
 }
+
+
+export default memo(Faq);

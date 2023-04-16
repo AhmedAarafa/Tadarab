@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import Link from 'next/link';
 import styles from "./watched-courses.module.css";
 import {
@@ -17,18 +17,18 @@ import "swiper/css";
 import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { useSelector } from 'react-redux';
 
-export default function WatchedCourses(props: any) {
+function WatchedCourses(props: any) {
     const [watchedCourses, setWatchedCourses] = useState<any>([]);
     const themeState = useSelector((state: any) => state.themeState.theme);
 
     useEffect(() => {
         setWatchedCourses(props.data || []);
-      }, [props?.data]);
+    }, [props?.data]);
 
     return (
         <>
-            { watchedCourses.length !== 0 && <Row data-theme={themeState} className={styles["watched-courses"]}>
-                <Col  xs={12} className={styles["watched-courses__title"]}>
+            {watchedCourses.length !== 0 && <Row data-theme={themeState} className={styles["watched-courses"]}>
+                <Col xs={12} className={styles["watched-courses__title"]}>
                     <span>دوراتي </span>
                     <span>التدريبية</span>
                 </Col>
@@ -71,7 +71,7 @@ export default function WatchedCourses(props: any) {
                                                 styles["watched-courses__cards-carousel__course-card"]
                                             }>
                                             {
-                                               course?.categories && course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
+                                                course?.categories[0] !== undefined && course?.categories[0].title !== null && course?.categories[0].title !== "" &&
 
                                                 <div
                                                     className={
@@ -79,9 +79,9 @@ export default function WatchedCourses(props: any) {
                                                         "watched-courses__cards-carousel__course-card__category-chip"
                                                         ]
                                                     }
-                                                    style={{ backgroundColor: `${course?.categories && course?.categories[0] !== undefined && course?.categories[0].color}` }}
+                                                    style={{ backgroundColor: `${course?.categories[0] !== undefined && course?.categories[0].color}` }}
                                                 >
-                                                    {course?.categories && course?.categories[0] !== undefined && course?.categories[0].title}
+                                                    {course?.categories[0] !== undefined && course?.categories[0].title}
                                                 </div>
 
                                             }
@@ -222,3 +222,5 @@ export default function WatchedCourses(props: any) {
         </>
     )
 }
+
+export default memo(WatchedCourses);

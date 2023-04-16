@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import styles from "./sticky-signup-bar.module.css";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,7 @@ import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import Link from "next/link";
 
-export default function StickySignupBar() {
+function StickySignupBar() {
     const dispatch = useDispatch();
     const Router = useRouter();
     const userStatus = useSelector((state: any) => state.userAuthentication.isUserAuthenticated);
@@ -51,3 +51,5 @@ export default function StickySignupBar() {
         </>
     )
 }
+
+export default memo(StickySignupBar);

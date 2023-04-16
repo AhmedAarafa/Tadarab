@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "./explore-other-categories.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,7 +9,7 @@ import { ChevronLeftIcon } from "common/Icons/Icons";
 import { useRouter } from 'next/router';
 
 
-export default function ExploreOtherCategories(props:any) {
+function ExploreOtherCategories(props:any) {
     SwiperCore.use([Navigation]);
     const [categories, setCategories] = useState([]);
     const Router = useRouter();
@@ -78,3 +78,5 @@ export default function ExploreOtherCategories(props:any) {
         </>
     )
 }
+
+export default memo(ExploreOtherCategories);

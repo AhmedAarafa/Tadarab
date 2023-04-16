@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./what-you-will-learn.module.css";
 import { scrollspyHandler } from "../../_Shared/utils/scrollSpy";
 import { useSelector } from "react-redux";
 
 
-export default function WhatYouWillLearn() {
+function WhatYouWillLearn() {
     const [showMore, setShowMore] = useState(false);
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const userStatus = useSelector((state: any) => state.userAuthentication);
@@ -46,10 +46,12 @@ export default function WhatYouWillLearn() {
                             )
                         })
                     }
-                </div> 
+                </div>
 
                 <input type="checkbox" className={styles["what-you-will-learn__expand-collapse-btn"]} />
             </div>
         </>
     );
 }
+
+export default memo(WhatYouWillLearn);

@@ -1,38 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./course-card.module.css";
 import { Button } from "react-bootstrap";
 import { stickyCardHandler } from "./utils";
-import  useResize from "custom hooks/useResize";
-import { useDispatch, useSelector } from "react-redux";  
-import { CartIcon,FavouriteIcon,ShareIcon,GuaranteeIcon, TvIcon } from "common/Icons/Icons";
+import useResize from "custom hooks/useResize";
+import { useDispatch, useSelector } from "react-redux";
+import { CartIcon, FavouriteIcon, ShareIcon, GuaranteeIcon, TvIcon } from "common/Icons/Icons";
 import Image from 'next/image';
-import {handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import Router from "next/router";
 
-export default function CourseCard() {
+function CourseCard() {
 
   const [courseDetails, setCourseDetails] = useState<any>([]);
-  const courseDetailsData = useSelector((state:any) => state.courseDetailsData);
-  const userStatus = useSelector((state:any) => state.userAuthentication);
-  
+  const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
+  const userStatus = useSelector((state: any) => state.userAuthentication);
+
   useEffect(() => {
     // console.log("courseDetailsData",courseDetailsData);
     setCourseDetails(courseDetailsData.data || []);
-  
+
   }, [courseDetailsData]);
 
   const handleFreeCoursesActionBtn = (course: any): any => {
     if (userStatus.isUserAuthenticated == true) {
-        handleFreeCourses(course);
+      handleFreeCourses(course);
     } else {
-        Router.push({
-            pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
-            query: { from: "/course" }
-        })
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+        query: { from: "/course" }
+      })
     }
-}
-  
+  }
+
   useResize(stickyCardHandler);
 
   return (
@@ -61,40 +61,40 @@ export default function CourseCard() {
               {courseDetails.course_details?.currency_symbol}
             </span>
           </div>
-         { courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price  &&
-           <div className={styles["course-details__course-card__old-price-box"]}>
-            <div
-              className={
-                styles[
-                  "course-details__course-card__old-price-box--line-through"
-                ]
-              }
-            >
-              <span
+          {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
+            <div className={styles["course-details__course-card__old-price-box"]}>
+              <div
                 className={
-                  styles["course-details__course-card__old-price-box__price"]
+                  styles[
+                  "course-details__course-card__old-price-box--line-through"
+                  ]
                 }
               >
-                {courseDetails.course_details?.price}
-              </span>
+                <span
+                  className={
+                    styles["course-details__course-card__old-price-box__price"]
+                  }
+                >
+                  {courseDetails.course_details?.price}
+                </span>
+                <span
+                  className={
+                    styles["course-details__course-card__old-price-box__currency"]
+                  }
+                >
+                  {" "}
+                  {courseDetails.course_details?.currency_symbol}{" "}
+                </span>
+              </div>
               <span
                 className={
-                  styles["course-details__course-card__old-price-box__currency"]
+                  styles["course-details__course-card__old-price-box__discount"]
                 }
               >
                 {" "}
-                {courseDetails.course_details?.currency_symbol}{" "}
+                (خصم {Math.ceil(100 - ((courseDetails.course_details?.discounted_price / courseDetails.course_details?.price) * 100))}%){" "}
               </span>
-            </div>
-            <span
-              className={
-                styles["course-details__course-card__old-price-box__discount"]
-              }
-            >
-              {" "}
-              (خصم {Math.ceil(100-((courseDetails.course_details?.discounted_price/courseDetails.course_details?.price)*100))}%){" "}
-            </span>
-          </div>}
+            </div>}
         </div>
 
         <div
@@ -104,23 +104,23 @@ export default function CourseCard() {
           <Button id="add-to-cart-btn"
             className={
               styles[
-                "course-details__course-card__actions-btns__add-to-cart-btn"
+              "course-details__course-card__actions-btns__add-to-cart-btn"
               ]
             }
           >
             {
               courseDetails.course_details?.discounted_price == 0 ?
-              <div onClick={()=>{
-                handleFreeCoursesActionBtn(courseDetails?.course_details)
+                <div onClick={() => {
+                  handleFreeCoursesActionBtn(courseDetails?.course_details)
                 }}>
-              <TvIcon color="#fff" />
-               <span>ابدأ الآن مجانًا</span>
-              </div>
-              :
-              <>
-           <CartIcon color={"#fff"}/>
-            <span>أضف للسلة</span>
-              </>
+                  <TvIcon color="#fff" />
+                  <span>ابدأ الآن مجانًا</span>
+                </div>
+                :
+                <>
+                  <CartIcon color={"#fff"} />
+                  <span>أضف للسلة</span>
+                </>
             }
           </Button>
           <Button
@@ -128,14 +128,14 @@ export default function CourseCard() {
               styles["course-details__course-card__actions-btns__fav-btn"]
             }
           >
-            <FavouriteIcon color={"#222"}/>
+            <FavouriteIcon color={"#222"} />
           </Button>
           <Button
             className={
               styles["course-details__course-card__actions-btns__share-btn"]
             }
           >
-            <ShareIcon/>
+            <ShareIcon />
           </Button>
         </div>
 
@@ -148,7 +148,7 @@ export default function CourseCard() {
               styles["course-details__course-card__guarantee-box__icon"]
             }
           >
-            <GuaranteeIcon/>
+            <GuaranteeIcon />
           </div>
           <div
             className={
@@ -158,7 +158,7 @@ export default function CourseCard() {
             <div
               className={
                 styles[
-                  "course-details__course-card__guarantee-box__text-box__major"
+                "course-details__course-card__guarantee-box__text-box__major"
                 ]
               }
             >
@@ -167,7 +167,7 @@ export default function CourseCard() {
             <div
               className={
                 styles[
-                  "course-details__course-card__guarantee-box__text-box__minor"
+                "course-details__course-card__guarantee-box__text-box__minor"
                 ]
               }
             >
@@ -179,21 +179,21 @@ export default function CourseCard() {
           id="course-card__details-list"
           className={styles["course-details__course-card__details-list"]}
         >
-          {courseDetails.course_details?.key_features?.map((kf:any,i:number)=>{
+          {courseDetails.course_details?.key_features?.map((kf: any, i: number) => {
 
-            return(
+            return (
               <div key={i}
                 className={
                   styles["course-details__course-card__details-list__item"]
                 }>
-                <img loading="lazy"   src={`/images/${kf.icon}.svg`} alt={`${kf.icon} icon`} />
+                <img loading="lazy" src={`/images/${kf.icon}.svg`} alt={`${kf.icon} icon`} />
 
                 <span>{kf.text}</span>
               </div>
             )
-            
+
           })}
-        
+
         </div>
 
         <div
@@ -207,16 +207,16 @@ export default function CourseCard() {
 
 
       <div className={styles["course-details__sticky-top-course-card"]} id="sticky-top-course-card">
-      <div className={styles["course-details__sticky-top-course-card__course-details-box"]}>
+        <div className={styles["course-details__sticky-top-course-card__course-details-box"]}>
 
-      <div className={styles["course-details__sticky-top-course-card__course-img"]}>
-              <img loading="lazy"   src={courseDetails.course_details?.image} alt="course image" />
-      </div>
-      <div className={styles["course-details__sticky-top-course-card__course-details"]}>
-          <div >{courseDetails.course_details?.title}</div>
-          <div >{courseDetails.course_details?.trainer?.name_ar}</div>
-      </div>
-      </div>
+          <div className={styles["course-details__sticky-top-course-card__course-img"]}>
+            <img loading="lazy" src={courseDetails.course_details?.image} alt="course image" />
+          </div>
+          <div className={styles["course-details__sticky-top-course-card__course-details"]}>
+            <div >{courseDetails.course_details?.title}</div>
+            <div >{courseDetails.course_details?.trainer.name_ar}</div>
+          </div>
+        </div>
         <div className={styles["course-details__sticky-top-course-card__checkout-box"]}>
           <div >
             <div className={styles["course-details__course-card__price-box"]}>
@@ -235,85 +235,87 @@ export default function CourseCard() {
                 {courseDetails.course_details?.currency_symbol}
               </span>
             </div>
-          { courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price  &&
-            <div className={styles["course-details__course-card__old-price-box"]}>
-              <div
-                className={
-                  styles[
-                    "course-details__course-card__old-price-box--line-through"
-                  ]
-                }
-              >
-                <span
+            {courseDetails.course_details?.price !== courseDetails.course_details?.discounted_price &&
+              <div className={styles["course-details__course-card__old-price-box"]}>
+                <div
                   className={
-                    styles["course-details__course-card__old-price-box__price"]
+                    styles[
+                    "course-details__course-card__old-price-box--line-through"
+                    ]
                   }
                 >
-                  {courseDetails.course_details?.discounted_price}
-                </span>
+                  <span
+                    className={
+                      styles["course-details__course-card__old-price-box__price"]
+                    }
+                  >
+                    {courseDetails.course_details?.discounted_price}
+                  </span>
+                  <span
+                    className={
+                      styles["course-details__course-card__old-price-box__currency"]
+                    }
+                  >
+                    {" "}
+                    {courseDetails.course_details?.currency_symbol}{" "}
+                  </span>
+                </div>
                 <span
                   className={
-                    styles["course-details__course-card__old-price-box__currency"]
+                    styles["course-details__course-card__old-price-box__discount"]
                   }
                 >
                   {" "}
-                  {courseDetails.course_details?.currency_symbol}{" "}
+                  (خصم {Math.ceil(100 - ((courseDetails.course_details?.discounted_price / courseDetails.course_details?.price) * 100))}%){" "}
                 </span>
-              </div>
-              <span
-                className={
-                  styles["course-details__course-card__old-price-box__discount"]
-                }
-              >
-                {" "}
-                (خصم {Math.ceil(100-((courseDetails.course_details?.discounted_price/courseDetails.course_details?.price)*100))}%){" "}
-              </span>
-            </div>}
+              </div>}
           </div>
-          <div  className={styles["course-details__course-card__actions-btns"]}
+          <div className={styles["course-details__course-card__actions-btns"]}
           >
             <Button id="add-to-cart-btn"
               className={
                 styles[
-                  "course-details__course-card__actions-btns__add-to-cart-btn"
+                "course-details__course-card__actions-btns__add-to-cart-btn"
                 ]
               }
             >
-               {
-              courseDetails.course_details?.discounted_price == 0 ?
-              <div onClick={()=>{
-                handleFreeCoursesActionBtn(courseDetails?.course_details)
-                }}>
-              <TvIcon color="#fff" />
-               <span>ابدأ الآن مجانًا</span>
-              </div>
-              :
-              <>
-           <CartIcon color={"#fff"}/>
-            <span>أضف للسلة</span>
-              </>
-            }
+              {
+                courseDetails.course_details?.discounted_price == 0 ?
+                  <div onClick={() => {
+                    handleFreeCoursesActionBtn(courseDetails?.course_details)
+                  }}>
+                    <TvIcon color="#fff" />
+                    <span>ابدأ الآن مجانًا</span>
+                  </div>
+                  :
+                  <>
+                    <CartIcon color={"#fff"} />
+                    <span>أضف للسلة</span>
+                  </>
+              }
             </Button>
             <Button
               className={
                 styles["course-details__course-card__actions-btns__fav-btn"]
               }
             >
-              <FavouriteIcon color={"#222"}/>
+              <FavouriteIcon color={"#222"} />
             </Button>
             <Button
               className={
                 styles["course-details__course-card__actions-btns__share-btn"]
               }
             >
-              <ShareIcon/>
+              <ShareIcon />
 
             </Button>
           </div>
-         
+
         </div>
-       
+
       </div>
     </>
   );
 }
+
+export default memo(CourseCard);

@@ -134,14 +134,6 @@ module.exports = {
       {
         source: "/tadarab-season",
         destination: "/TadarabSeason",
-      },
-      {
-        source: "/subscription-plans",
-        destination: "/SubscriptionPlans",
-      },
-      {
-        source: "/subscription-invitations",
-        destination: "/SendInvitations",
       }
     ];
   },

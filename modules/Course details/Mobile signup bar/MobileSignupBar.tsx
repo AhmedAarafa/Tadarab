@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./mobile-signup-bar.module.css";
 import { Button } from "react-bootstrap";
 import SignupPopup from "common/Signup popup/SignupPopup";
 
-export default function MobileSignupBar(props: any) {
+function MobileSignupBar(props: any) {
     const [isSignupModalVisible, setIsSignupModalVisible] = useState(false);
 
     return (
@@ -26,3 +26,5 @@ export default function MobileSignupBar(props: any) {
         </>
     )
 }
+
+export default memo(MobileSignupBar);

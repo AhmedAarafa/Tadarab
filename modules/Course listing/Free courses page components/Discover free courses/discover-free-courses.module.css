@@ -92,7 +92,7 @@
   pointer-events: none;
 }
 .discover-free-courses__cards-carousel > div > div:nth-child(1), .discover-free-courses__cards-carousel > div > div:nth-child(2) {
-  top: 45.5% !important;
+  top: 48% !important;
 }
 .discover-free-courses__cards-carousel > div > div:nth-child(3) {
   display: none;
@@ -239,7 +239,7 @@
     box-shadow: none;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1), .discover-free-courses__cards-carousel > div > div:nth-child(2) {
-    top: 46% !important;
+    top: 47% !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1):after, .discover-free-courses__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.27rem !important;
@@ -366,7 +366,7 @@
     box-shadow: none;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1), .discover-free-courses__cards-carousel > div > div:nth-child(2) {
-    top: 39% !important;
+    top: 43% !important;
   }
   .discover-free-courses__cards-carousel > div > div:nth-child(1):after, .discover-free-courses__cards-carousel > div > div:nth-child(2):after {
     font-size: 1.67rem !important;

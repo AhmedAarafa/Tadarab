@@ -1,11 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { memo } from 'react';
 import styles from "./how-to-start.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Router from "next/router";
-import Image from 'next/image';
 
-export default function HowToStart() {
+function HowToStart() {
     return (
         <>
             <Row className={styles["how-to-start"]}>
@@ -105,3 +104,5 @@ export default function HowToStart() {
 
     )
 }
+
+export default memo(HowToStart);

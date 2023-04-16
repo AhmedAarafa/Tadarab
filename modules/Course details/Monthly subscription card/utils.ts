@@ -13,9 +13,8 @@ export const stickyCardHandler = () => {
 
       if(window.innerWidth >= 576){
         
-        if (
-        //   window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
-        // window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
+        if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
+        window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
         window.scrollY >= courseSubscribersSection?.offsetTop
         ) {
           
@@ -25,7 +24,7 @@ export const stickyCardHandler = () => {
             const stickyTopCourseCard: any = document.getElementById("sub-sticky-top-course-card");
             const notificationBar: any = document.getElementById("notification-bar");
             stickyCard ? stickyCard.style.cssText = `
-                 display:none;`:null; 
+                 display:none;`:null;
             stickyTopCourseCard ? stickyTopCourseCard.style.cssText = `
                  display:flex;
                  position:fixed;
@@ -33,11 +32,9 @@ export const stickyCardHandler = () => {
                    `:null;
     
            
-        }else if(window.scrollY < 
-          // projectsSection?.offsetTop || 
-          // window.scrollY < reviewsSection?.offsetTop || 
-          // window.scrollY < 
-          courseSubscribersSection?.offsetTop){
+        }else if(window.scrollY < projectsSection?.offsetTop || 
+          window.scrollY < reviewsSection?.offsetTop || 
+          window.scrollY < courseSubscribersSection?.offsetTop){
 
             // const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");
             const stickyCard: any = document.getElementById("sub-sticky-card");
@@ -53,9 +50,8 @@ export const stickyCardHandler = () => {
            // check if the user scroll to the "practical projects" section (the section that the card turns to full width sticky at)
            if(window.innerWidth >= 576){
 
-             if (
-              // window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
-              // window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
+             if (window.scrollY >= (projectsSection?.offsetTop ? projectsSection?.offsetTop : 999999999999999999999) || 
+              window.scrollY >= (reviewsSection?.offsetTop ? reviewsSection?.offsetTop : 999999999999999999999) || 
               window.scrollY >= courseSubscribersSection?.offsetTop
               ) {
 
@@ -68,9 +64,8 @@ export const stickyCardHandler = () => {
                    position:fixed;
                    top:${navbar?.offsetHeight + notificationBar?.offsetHeight || 0}px;
                    `:null;
-              }else if(
-                // window.scrollY < projectsSection?.offsetTop || 
-                // window.scrollY < reviewsSection?.offsetTop || 
+              }else if(window.scrollY < projectsSection?.offsetTop || 
+                window.scrollY < reviewsSection?.offsetTop || 
                 window.scrollY < courseSubscribersSection?.offsetTop){
 
                 // const cardDetailsBox:any =document.getElementById("sticky-card__course-details-box");

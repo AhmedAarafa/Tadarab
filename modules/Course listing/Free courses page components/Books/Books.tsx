@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./books.module.css";
 import { Row, Col, Button, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
-import { ChevronLeftIcon, DownloadIcon } from "common/Icons/Icons";
+import { DownloadIcon } from "common/Icons/Icons";
 import Link from "next/link";
 import Router from "next/router";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 
-export default function Books() {
+function Books() {
     SwiperCore.use([Navigation]);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [books, setBooks] = useState([]);
@@ -121,3 +121,5 @@ export default function Books() {
         </>
     )
 }
+
+export default memo(Books);

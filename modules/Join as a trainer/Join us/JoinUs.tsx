@@ -1,17 +1,16 @@
 /* eslint-disable @next/next/link-passhref */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import styles from "./join-us.module.css";
 import { Row, Col, Card, Form, Button } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import Link from 'next/link';
-// import { useSelector } from "react-redux";
 import Router from "next/router";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 
 
-export default function JoinUs() {
+function JoinUs() {
   SwiperCore.use([Navigation]);
   // const homePageData = useSelector((state: any) => state.homePageData);
 
@@ -41,7 +40,7 @@ return (
           مدربينا
         </div>
       </div>
-      {/* <div className={styles["join-us__brief"]}>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما لتدريب افراد شركتك</div> */}
+      <div className={styles["join-us__brief"]}>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما لتدريب افراد شركتك</div>
     </Col>
 
     <Col xs={12} className={styles["join-us__cards-carousel"]}>
@@ -70,13 +69,13 @@ return (
               <SwiperSlide key={i}>
                 <Link href={`/trainer/${trainer?.slug}`}>
                   <Card className={styles["join-us__cards-carousel__card"]}
-                    style={{ backgroundImage: `url("${trainer?.image}")` }}
+                    style={{ backgroundImage: `url("${trainer.image}")` }}
                   >
                     <div className={styles["join-us__cards-carousel__card__card-body"]}>
                       <div className="text-center">
-                        <div className={styles["join-us__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
-                        <div className={styles["join-us__cards-carousel__card__job-title"]}>{trainer?.title}</div>
-                        <div className={styles["join-us__cards-carousel__card__job-history"]}>{trainer?.bio}</div>
+                        <div className={styles["join-us__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
+                        <div className={styles["join-us__cards-carousel__card__job-title"]}>{trainer.title}</div>
+                        <div className={styles["join-us__cards-carousel__card__job-history"]}>{trainer.bio}</div>
                       </div>
                     </div>
 
@@ -99,3 +98,5 @@ return (
   </Row>
 )
 }
+
+export default memo(JoinUs);

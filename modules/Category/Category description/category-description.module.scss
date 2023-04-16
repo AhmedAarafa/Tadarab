@@ -7,7 +7,7 @@
 
 .category-description-row {
     margin: 4rem 0 0 0;
-    height: 24rem;
+    height: 28.125rem;
 
     * {
         color: white !important;
@@ -22,7 +22,7 @@
 
 .category-description__img {
     position: absolute;
-    top: -7rem;
+    top: 0;
     left: 0;
     width: 100%;
     height: 28.125rem;
@@ -35,33 +35,36 @@
 }
 
 .category-description__title {
-    font-size: 0.9rem;
+    font-size: 1rem;
     z-index: 2;
 
     h1 {
-        font-size: 1.875rem;
+        font-size: 3.3125rem;
         font-weight: 800;
-        margin: 5.5rem 0 0 0;
+        margin: 6.25rem 0 0 0;
     }
 }
 
 .category-description__small-description {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     margin-top: 0.8rem;
     z-index: 2;
-
-    span {
-        font-size: 1.2rem;
-        font-weight: 800;
-    }
 }
 
 .category-description__signup-btn {
-    @include contained-button;
-    height: 2.8rem;
-    width: 23%;
+    @include outlined-button;
+    border-color: white !important;
+    background-color: transparent !important;
+    color: white !important;
     margin-top: 1rem;
     z-index: 2;
+
+    &:is(&:hover, &:active) {
+        color: white !important;
+        border-color: white !important;
+        background-color: transparent !important;
+
+    }
 }
 
 @media (max-width: 575px) {
@@ -85,8 +88,7 @@
 
     .category-description__img {
         width: 100%;
-        top: 0;
-        height: 28.125rem !important;
+        height: 28.125rem;
     }
 
     .category-description__title,
@@ -99,28 +101,34 @@
         font-size: 1rem*1.8;
 
         h1 {
-            font-size: 3.2rem;
+            font-size: 3.3125rem*1.2;
             margin: auto;
         }
     }
 
     .category-description__small-description {
-        font-size: 0.7rem*1.8;
+        font-size: 0.7rem*1.5;
         margin-top: 1rem*1.2;
-
-        span {
-            font-size: 1.2rem*1.8;
-        }
 
     }
 
     .category-description__signup-btn {
-        @include contained-button;
-        font-size: 0.97rem*2 !important;
-        padding: 0.375rem*2 0.75rem*2 !important;
-        border-radius: 0.625rem*2 !important;
+        @include outlined-button;
+        border-color: white !important;
+        background-color: transparent !important;
+        color: white !important;
+        margin-top: 1rem;
+        font-size: 0.97rem*1.4;
+        padding: 0.375rem*2 0.75rem*2;
+        border-radius: 0.625rem*2;
         margin-top: 1rem*1.2;
-        height: 2.8rem*1.8 !important;
-        width: 35%;
+
+
+        &:is(&:hover, &:active) {
+            color: white !important;
+            border-color: white !important;
+            background-color: transparent !important;
+
+        }
     }
 }

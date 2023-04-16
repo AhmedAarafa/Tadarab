@@ -1,16 +1,14 @@
 /* eslint-disable @next/next/link-passhref */
-import React,{ useEffect,useState } from 'react';
+import React,{ useEffect,useState, memo } from 'react';
 import styles from "./arabic-trainers.module.css";
-import { Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from 'swiper';
 import "swiper/css";
 import Link from 'next/link';
-import { ChevronLeftIcon } from "common/Icons/Icons";
-import { useDispatch, useSelector } from "react-redux";
-import Router from "next/router";
+import { useSelector } from "react-redux";
 
-export default function ArabicTrainers() {
+function ArabicTrainers() {
   SwiperCore.use([Navigation]);
   const homePageData = useSelector((state:any) => state.homePageData);
 
@@ -60,13 +58,13 @@ export default function ArabicTrainers() {
                    <SwiperSlide key={i}> 
                   <Link href={`/trainer/${trainer?.slug}`}>
                     <Card className={styles["arabic-trainers__cards-carousel__card"]} 
-                    style={{backgroundImage: `url("${trainer?.image}")`}}
+                    style={{backgroundImage: `url("${trainer.image}")`}}
                       >
                           <div className={styles["arabic-trainers__cards-carousel__card__card-body"]}>
                               <div className="text-center">
-                                  <div className={styles["arabic-trainers__cards-carousel__card__trainer"]}>{trainer?.name_ar}</div>
-                                  <div className={styles["arabic-trainers__cards-carousel__card__job-title"]}>{trainer?.title}</div>
-                                  <div className={styles["arabic-trainers__cards-carousel__card__job-history"]}>{trainer?.bio}</div>
+                                  <div className={styles["arabic-trainers__cards-carousel__card__trainer"]}>{trainer.name_ar}</div>
+                                  <div className={styles["arabic-trainers__cards-carousel__card__job-title"]}>{trainer.title}</div>
+                                  <div className={styles["arabic-trainers__cards-carousel__card__job-history"]}>{trainer.bio}</div>
                               </div>
                           </div>
                       
@@ -102,3 +100,5 @@ export default function ArabicTrainers() {
     </Row>
   )
 }
+
+export default memo(ArabicTrainers);

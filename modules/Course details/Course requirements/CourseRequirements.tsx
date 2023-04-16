@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import styles from "./course-requirements.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { LevelIcon } from "common/Icons/Icons";
 
-export default function CourseRequirements() {
+function CourseRequirements() {
     const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
     const userStatus = useSelector((state: any) => state.userAuthentication);
     const [courseDetails, setCourseDetails] = useState<any>([]);
@@ -50,3 +50,5 @@ export default function CourseRequirements() {
         </>
     )
 }
+
+export default memo(CourseRequirements);

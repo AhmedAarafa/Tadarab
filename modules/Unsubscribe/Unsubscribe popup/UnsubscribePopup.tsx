@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styles from "./unsubscribe-popup.module.css";
 import { Button, Modal, Form } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,7 +12,7 @@ import Router from "next/router";
 import TadarabGA from "modules/_Shared/utils/ga";
 import { useSelector } from 'react-redux';
 
-export default function UnsubscribePopup(props: any) {
+function UnsubscribePopup(props: any) {
     const [categories, setCategories] = useState([]);
     SwiperCore.use([Navigation]);
     const [step, setStep] = useState(1);
@@ -302,3 +302,5 @@ export default function UnsubscribePopup(props: any) {
         </>
     )
 }
+
+export default memo(UnsubscribePopup);

@@ -1,12 +1,12 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import styles from "./tadarab-season.module.css";
 import { Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
-export default function TadarabSeason() {
+function TadarabSeason() {
     const themeState = useSelector((state: any) => state.themeState.theme);
 
     return (
@@ -37,3 +37,5 @@ export default function TadarabSeason() {
         </>
     )
 }
+
+export default memo(TadarabSeason);

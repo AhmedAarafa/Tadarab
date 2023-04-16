@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { Container } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,13 +15,13 @@ import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/Mobile
 import useResize from "custom hooks/useResize";
 import NotFound from "pages/404";
 import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
+import { useInView } from 'react-hook-inview';
 
 const TrainerProfilePage = dynamic(() => import("modules/Trainer profile/Trainer profile page/TrainerProfilePage"));
 const NotificationBar = dynamic(() => import("common/Notification bar/NotificationBar"));
 const StickySignupBar = dynamic(() => import("common/Sticky signup bar/StickySignupBar"));
-const CustomSignupPopup = dynamic(() => import("common/Custom signup popup/CustomSignupPopup"));
 
-export default function TrainerProfile(props: any) {
+function TrainerProfile(props: any) {
   const dispatch = useDispatch();
   const router = useRouter();
   const trainerProfileData = useSelector((state: any) => state.trainerProfileData);
@@ -30,8 +30,7 @@ export default function TrainerProfile(props: any) {
   const [isFound, setIsFound] = useState(true);
   const [isCheckoutBarVisible, setIsCheckoutBarVisible] = useState(false);
   const themeState = useSelector((state: any) => state.themeState.theme);
-  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
-  const userStatus = useSelector((state: any) => state.userAuthentication);
+
 
   useEffect(() => {
     toggleLoader("show");
@@ -70,11 +69,6 @@ export default function TrainerProfile(props: any) {
                 setTrainerData(response?.data?.data);
                 FBPixelEventsHandler(response.data.fb_tracking_events, null);
                 toggleLoader("hide");
-                setTimeout(() => {
-                  if (userStatus.isUserAuthenticated == false) {
-                    setIsCustomSignupModalVisible(true);
-                  }
-                }, 3000);
 
               })
               .catch(function (error) {
@@ -95,11 +89,6 @@ export default function TrainerProfile(props: any) {
             setTrainerData(response?.data?.data);
             FBPixelEventsHandler(response.data.fb_tracking_events, null);
             toggleLoader("hide");
-            setTimeout(() => {
-              if (userStatus.isUserAuthenticated == false) {
-                setIsCustomSignupModalVisible(true);
-              }
-            }, 3000);
 
           })
           .catch(function (error) {
@@ -133,7 +122,9 @@ export default function TrainerProfile(props: any) {
   useResize(viewportWidthDetector);
 
 
-
+  const [subscriptionCardRef, isSubscriptionCardVisible] = useInView({
+    threshold: 1
+  });
 
   return (
     <>
@@ -145,8 +136,6 @@ export default function TrainerProfile(props: any) {
           <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
             {isCheckoutBarVisible && <StickySignupBar />}
             <TrainerProfilePage />
-            <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
-
           </Container>
           :
           <NotFound />
@@ -154,6 +143,8 @@ export default function TrainerProfile(props: any) {
     </>
   );
 }
+
+export default memo(TrainerProfile);
 
 export async function getServerSideProps(context: any) {
   try {

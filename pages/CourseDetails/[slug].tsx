@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import styles from "styles/course-details.module.css";
 import CourseCard from "modules/Course details/Course card/CourseCard";
 import CourseAdvertisement from "modules/Course details/Course Advertisement/CourseAdvertisement";
@@ -12,10 +12,8 @@ import GuaranteeCard from "modules/Course details/Guarantee card/GuaranteeCard";
 import CourseCertificate from "modules/Course details/Course certificate/CourseCertificate";
 import FAQ from "modules/Course details/FAQ/FAQ";
 import SpecialOffer from "modules/Course details/Special offer/SpecialOffer";
-import PracticalProjects from "modules/Course details/Practical projects/PracticalProjects";
 import CourseReview from "modules/Course details/Course review/CourseReview";
 import CourseSubscribers from "modules/Course details/Course subscribers/CourseSubscribers";
-import TadarabBusiness from "modules/Course details/Tadarab business/TadarabBusiness";
 import CommentsSection from "modules/Course details/Comments section/CommentsSection";
 import MobileNavTabsBar from "modules/Course details/Mobile nav tabs bar/MobileNavTabsBar";
 import MobileCheckoutBar from "modules/Course details/Mobile checkout bar/MobileCheckoutBar";
@@ -33,6 +31,7 @@ import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents"
 import { useRouter } from 'next/router';
 import { Course } from "_models/Course";
 import { FBPixelEventsHandler } from "modules/_Shared/utils/FBPixelEvents";
+import TPlayer from "common/TPlayer/TPlayer";
 import dynamic from 'next/dynamic';
 import Head from "next/head";
 import MetaTagsGenerator from "modules/_Shared/utils/MetaTagsGenerator";
@@ -40,12 +39,11 @@ import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import { subscriptionCounter } from "modules/_Shared/utils/subscriptionCounter";
 import NotFound from "pages/404";
 import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
-import CustomSignupPopup from "common/Custom signup popup/CustomSignupPopup";
+import { useInView } from 'react-hook-inview';
 
 function CourseDetails(props: any) {
   const [colFullWidth, setColFullWidth] = useState(false);
   const [originalCardPlacement, setOriginalCardPlacement] = useState(false);
-  const [isCustomSignupModalVisible, setIsCustomSignupModalVisible] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [courseData, setCourseData] = useState({});
   const [liveWebinar, setLiveWebinar] = useState({});
@@ -54,17 +52,17 @@ function CourseDetails(props: any) {
   const [isFound, setIsFound] = useState(true);
   const courseDetailsData = useSelector((state: any) => state.courseDetailsData);
   const themeState = useSelector((state: any) => state.themeState.theme);
-  const userStatus = useSelector((state: any) => state.userAuthentication);
   const Router = useRouter();
   const { slug } = Router.query;
   const { seoData } = props;
+
 
   useEffect(() => {
     toggleLoader("show");
     subscriptionCounter();
     window.addEventListener("scroll", () => {
       GAProductimpressionEventHandler("course-subscribers__course-card");
-    });
+    })
 
     return () => {
       window.removeEventListener("scroll", () => {
@@ -75,16 +73,23 @@ function CourseDetails(props: any) {
 
   useEffect(() => {
 
+    const rootFontSize = parseFloat(
+      window
+        .getComputedStyle(document.getElementsByTagName("html")[0])
+        .getPropertyValue("font-size")
+    );
     const tabsResponsiveBar: any = document.getElementById("tabs-responsive-bar");
+    // const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
     const navbar: any = document.getElementById("nav");
     let addToCartBtn: any = null;
     if (document.documentElement.clientWidth >= 576) {
-      // const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
       let addToCartBtn: any = null;
       setOriginalCardPlacement(true);
       tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+      // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
       window.addEventListener("scroll", function () {
         tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+        // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
         const projectsSection: any = document.getElementById("practical-projects-section");
         const reviewsSection: any = document.getElementById("reviews-section");
         const courseSubscribersSection: any = document.getElementById("course-subscribers-section");
@@ -104,13 +109,14 @@ function CourseDetails(props: any) {
         }
       });
     } else {
-      setOriginalCardPlacement(false);
 
+      setOriginalCardPlacement(false);
       window.addEventListener("scroll", function () {
         let addToCartBtn: any = null;
         addToCartBtn = document.getElementById("monthly-subscribe-btn");
 
         if (addToCartBtn) {
+          // const MOBILECHECKOUTBAR: any = document.getElementById("mobile-checkout-bar");
           if (window.scrollY >= addToCartBtn.offsetTop) {
             tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `
          display:flex;
@@ -118,9 +124,16 @@ function CourseDetails(props: any) {
          justify-content:space-around;
          top:${navbar?.offsetHeight}px;
          ` : null;
+        //     MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+        //  display:flex;
+        //  align-items:center;
+        //  justify-content:space-evenly;
+        //  bottom:0;
+        //  `: null;
 
           } else if (window.scrollY < addToCartBtn.offsetTop) {
             tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+            // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
           }
         }
 
@@ -132,8 +145,10 @@ function CourseDetails(props: any) {
         let addToCartBtn: any = null;
         setOriginalCardPlacement(true);
         tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+        // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
         window.addEventListener("scroll", function () {
           tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+          // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
 
           const projectsSection: any = document.getElementById("practical-projects-section");
           const reviewsSection: any = document.getElementById("reviews-section");
@@ -152,13 +167,13 @@ function CourseDetails(props: any) {
             setColFullWidth(false);
           }
         });
-      } else {
-        setOriginalCardPlacement(false);
+      }
+      else {
 
+        setOriginalCardPlacement(false);
         window.addEventListener("scroll", function () {
           let addToCartBtn: any = null;
           addToCartBtn = document.getElementById("monthly-subscribe-btn");
-
 
           if (addToCartBtn) {
 
@@ -169,15 +184,23 @@ function CourseDetails(props: any) {
             justify-content:space-around;
             top:${navbar?.offsetHeight}px;
             ` : null;
-
+            //   MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `
+            // display:flex;
+            // align-items:center;
+            // justify-content:space-evenly;
+            // bottom:0;
+            // ` : null;
             } else if (window.scrollY < addToCartBtn?.offsetTop) {
               tabsResponsiveBar ? tabsResponsiveBar.style.cssText = `display:none` : null;
+              // MOBILECHECKOUTBAR ? MOBILECHECKOUTBAR.style.cssText = `display:none` : null;
             }
           }
 
         });
       }
     });
+
+
 
     if (Router.query.slug) {
 
@@ -197,6 +220,7 @@ function CourseDetails(props: any) {
                 const data = response?.data?.data;
                 const webinardetails = response?.data?.data?.course_details;
                 setLiveWebinar(webinardetails);
+
 
                 setCourseId(response?.data?.data?.course_details?.id);
                 dispatch(setCourseDetailsData(data));
@@ -230,11 +254,6 @@ function CourseDetails(props: any) {
 
                 FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
                 toggleLoader("hide");
-                setTimeout(() => {
-                  if (userStatus.isUserAuthenticated == false) {
-                    setIsCustomSignupModalVisible(true);
-                  }
-                }, 3000);
 
               })
               .catch(function (error) {
@@ -252,7 +271,6 @@ function CourseDetails(props: any) {
             const data = response?.data?.data;
             const webinardetails = response?.data?.data?.course_details;
             setLiveWebinar(webinardetails);
-
             setCourseId(response?.data?.data?.course_details?.id);
             dispatch(setCourseDetailsData(data));
             setCourseData(data);
@@ -285,11 +303,6 @@ function CourseDetails(props: any) {
 
             FBPixelEventsHandler(response?.data?.fb_tracking_events, null);
             toggleLoader("hide");
-            setTimeout(() => {
-              if (userStatus.isUserAuthenticated == false) {
-                setIsCustomSignupModalVisible(true);
-              }
-            }, 3000);
           })
           .catch(function (error) {
             toggleLoader("hide");
@@ -308,6 +321,7 @@ function CourseDetails(props: any) {
     }
 
 
+
     return () => {
       window.removeEventListener("resize", () => {
         return;
@@ -319,6 +333,25 @@ function CourseDetails(props: any) {
 
 
   }, [Router.query]);
+
+  const [faqsRef, isFaqsVisible] = useInView({
+    threshold: 1,
+    unobserveOnEnter: true
+  });
+
+  const [commentsRef, isCommentsVisible] = useInView({
+    threshold: 1,
+    unobserveOnEnter: true
+  });
+
+  const [reviewsRef, isReviewsVisible] = useInView({
+    threshold: 1,
+    unobserveOnEnter: true
+  });
+
+  const [subscriptionCardRef, isSubscriptionCardVisible] = useInView({
+    threshold: 1
+  });
 
   return (
     <>
@@ -336,12 +369,17 @@ function CourseDetails(props: any) {
                 {((JSON.stringify(courseDetailsData?.data) !== "[]") && (!courseDetailsData?.data?.course_details?.is_purchased)) &&
                   <>
                     <MobileNavTabsBar />
-                    <MobileCheckoutBar data={courseData} paymentType={paymentType} />
+                    {
+                      !isSubscriptionCardVisible && <MobileCheckoutBar data={courseData} paymentType={paymentType} />
+                    }
+
                     <Row className={styles["course-details-row"]}>
                       <Col xs={12} sm={8}>
                         <CourseAdvertisement />
                         {originalCardPlacement == false &&
-                          <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType} />
+                          <div ref={subscriptionCardRef}>
+                            <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType} />
+                          </div>
                         }
                         {courseDetailsData?.data?.course_details?.key_points !== null &&
                           JSON.stringify(courseDetailsData?.data?.course_details?.key_points) !== "[]" &&
@@ -360,8 +398,12 @@ function CourseDetails(props: any) {
                         <TrainerInfo />
                         <GuaranteeCard />
                         <CourseCertificate />
-                        <FAQ Cid={() => { return courseId }} />
-                        {/* <SpecialOffer Cid={() => { return courseId }} /> */}
+                        {
+                          <div ref={faqsRef}>
+                            {isFaqsVisible && <FAQ Cid={courseId} />}
+                          </div>
+                        }
+                        <SpecialOffer Cid={courseId} />
                       </Col>
                       {
                         originalCardPlacement == true &&
@@ -369,27 +411,32 @@ function CourseDetails(props: any) {
                           {originalCardPlacement == true && <MonthlySubscriptionCard liveWebinarDetails={liveWebinar} setPaymentType={setPaymentType} />}
                         </Col>
                       }
-                      {/* <PracticalProjects Cid={() => { return courseId }} /> */}
                     </Row>
-                    <Row className={styles["course-details__course-reviews"]}>
-                      <CourseReview Cid={() => { return courseId }} />
-                    </Row>
+                    {
+                      <div ref={reviewsRef}>
+                        {isReviewsVisible &&
+                          <Row className={styles["course-details__course-reviews"]}>
+                            <CourseReview Cid={courseId} />
+                          </Row>}
+                      </div>
+                    }
                     <Row className={styles["course-details__course-subscribers"]}>
                       <CourseSubscribers />
                     </Row>
-                    {/* <Row className={styles["course-details__tadarab-business"]}>
-                  <TadarabBusiness />
-                </Row> */}
-                    <Row className={styles["course-details__comments-section"]}>
-                      <CommentsSection Cid={() => { return courseId }} />
-                    </Row>
+
+                    {
+                      <div ref={commentsRef}>
+                        {isCommentsVisible &&
+                          <Row className={styles["course-details__comments-section"]}>
+                            <CommentsSection Cid={courseId} />
+                          </Row>}
+                      </div>
+                    }
                   </>
                 }
-                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse Cid={() => { return courseId }} />}
+                {(courseDetailsData?.data?.course_details?.is_purchased) && <MyCourse Cid={courseId} />}
               </>
             }
-            <CustomSignupPopup setIsCustomSignupModalVisible={setIsCustomSignupModalVisible} isCustomSignupModalVisible={isCustomSignupModalVisible} />
-
           </Container>
           :
           <NotFound />
@@ -410,4 +457,4 @@ export async function getServerSideProps(context: any) {
   }
 }
 
-export default withAuth(CourseDetails);
+export default withAuth(memo(CourseDetails));
