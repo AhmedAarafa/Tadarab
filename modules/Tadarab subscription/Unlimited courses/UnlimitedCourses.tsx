@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect, UnlimitedCourses } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import styles from "./unlimited-courses.module.css";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { SearchIcon, ChevronLeftIcon } from "common/Icons/Icons";
@@ -24,7 +24,7 @@ function UnlimitedCourses() {
       const [name, ...value] = current.split('=');
       if (prev) {
         prev[name] = value.join('=');
-        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == NaN || prev.timer == "NaN") {
+        if ((prev.timer < (Math.floor(Date.now() / 1000))) || prev.timer == "NaN") {
 
         } else {
 
