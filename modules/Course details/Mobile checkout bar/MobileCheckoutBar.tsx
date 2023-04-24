@@ -214,7 +214,7 @@ function MobileCheckoutBar(props: any) {
             {` ${props?.data?.course_details?.currency_symbol} `}
             {/* ) */}
 
-            {props?.data?.course_details?.price == props?.data?.course_details?.discounted_price &&
+            {props?.data?.course_details?.price != props?.data?.course_details?.discounted_price &&
               <div>
                 {/* بدلا من */}
                 {` ${props?.data?.course_details?.price} `}
