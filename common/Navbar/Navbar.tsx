@@ -228,7 +228,7 @@ function Navbar(props: any) {
   useEffect(() => {
     let localStorageItems: any = localStorage.getItem("cart");
 
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" && localStorageItems !== undefined) {
+    if (localStorageItems !== "[]" && localStorageItems !== null && localStorageItems !== "undefined" && localStorageItems !== undefined) {
 
       axiosInstance
         .get(`courses/?course_ids=${localStorageItems?.replace(/[\[\]']+/g, '')}`)
@@ -275,8 +275,8 @@ function Navbar(props: any) {
 
     let localStorageItems: any = localStorage.getItem("cart");
 
-    if (localStorageItems !== "[]" && localStorageItems !== "null" && localStorageItems !== "undefined" &&
-      cartItems?.data !== undefined && cartItems?.data !== "undefined") {
+    if (localStorageItems !== "[]" && localStorageItems !== null && localStorageItems !== "undefined" &&
+      cartItems?.data !== undefined && cartItems?.data !== "undefined" && cartItems?.data !== null && cartItems?.data !== "null") {
 
       axiosInstance
         .get(`courses/?course_ids=${JSON.stringify(cartItems?.data?.map((c: any) => c.id))?.replace(/[\[\]']+/g, '')}`)

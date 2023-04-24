@@ -1,6 +1,6 @@
 .mobile-checkout-bar {
   background-color: var(--tadarab-bg);
-  padding: 10px 0px;
+  padding: 1.3rem;
   box-shadow: 0 -0.781rem 3.281rem rgba(0, 0, 0, 0.0784313725);
   display: flex;
   align-items: center;
@@ -10,6 +10,13 @@
   width: 100%;
   z-index: 8;
   background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
+}
+.mobile-checkout-bar > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.8rem;
 }
 
 .monthly-subscription__subscription-value span.amount-strike {
@@ -25,56 +32,6 @@
 }
 .monthly-subscription__subscription-timer span {
   color: red;
-}
-
-.mobile-checkout-bar__subscribe-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: none !important;
-  text-transform: none;
-  font-size: 0.97rem;
-  font-weight: 700;
-  padding: 0.375rem 0.75rem;
-  border-radius: 0.625rem;
-  font-family: "Almarai", sans-serif;
-  border: 0 !important;
-  background-color: var(--primary-red) !important;
-  border: 0.125rem solid var(--primary-red) !important;
-  padding: 0.9375rem 1.875rem;
-  border-radius: 1.5625rem;
-  width: 50rem;
-  height: 6.5rem;
-  margin-top: 0.4rem;
-  flex-direction: column;
-}
-.mobile-checkout-bar__subscribe-btn:hover {
-  box-shadow: none;
-}
-.mobile-checkout-bar__subscribe-btn:active {
-  box-shadow: none;
-}
-.mobile-checkout-bar__subscribe-btn:is(.mobile-checkout-bar__subscribe-btn:hover, .mobile-checkout-bar__subscribe-btn:active) {
-  background-color: #9d151e !important;
-  border: 0.125rem solid #9d151e !important;
-}
-.mobile-checkout-bar__subscribe-btn div:nth-of-type(2) {
-  font-size: 1.59375rem;
-}
-.mobile-checkout-bar__subscribe-btn svg {
-  width: 3.281rem;
-  height: 2.8rem;
-  margin-left: 0.3rem;
-}
-.mobile-checkout-bar__subscribe-btn span {
-  font-size: 2.188rem;
-  font-weight: 700;
-}
-.mobile-checkout-bar__subscribe-btn + div {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-top: 0.2rem;
-  color: var(--dark-black);
 }
 
 .mobile-checkout-bar__course-card__price-box {
@@ -130,7 +87,7 @@
   border: 0.125rem solid var(--primary-red) !important;
   padding: 0.9375rem 1.875rem;
   border-radius: 1.5625rem;
-  width: 50rem;
+  width: 80%;
   height: 6.5rem;
   margin-top: 0.4rem;
 }
@@ -160,8 +117,14 @@
   font-weight: 700;
 }
 .mobile-checkout-bar__actions-btns__add-to-cart-btn + div {
-  font-size: 1.8rem;
-  text-align: center;
+  text-align: right;
   margin-top: 0.2rem;
+  font-size: 2.5rem;
   color: var(--dark-black);
+}
+.mobile-checkout-bar__actions-btns__add-to-cart-btn + div > div {
+  font-size: 1.8rem;
+  color: var(--grey);
+  -webkit-text-decoration: line-through var(--grey);
+          text-decoration: line-through var(--grey);
 }/*# sourceMappingURL=mobile-checkout-bar.module.css.map */

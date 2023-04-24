@@ -315,9 +315,9 @@ function CourseDetails() {
                   }
                   {/* <PracticalProjects Cid={courseId} /> */}
                 </Row>
-                <Row className={styles["course-details__course-reviews"]}>
+                {/* <Row className={styles["course-details__course-reviews"]}>
                   <CourseReview Cid={courseId} />
-                </Row>
+                </Row> */}
                 <Row className={styles["course-details__course-subscribers"]}>
                   <CourseSubscribers />
                 </Row>
@@ -327,7 +327,7 @@ function CourseDetails() {
                 {/* <Row className={styles["course-details__comments-section"]}>
                   <CommentsSection Cid={courseId} />
                 </Row> */}
-                {
+                 {
                   <div ref={commentsRef}>
                     {isCommentsVisible &&
                     <Row className={styles["course-details__comments-section"]}>

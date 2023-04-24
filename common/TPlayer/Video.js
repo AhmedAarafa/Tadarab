@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 
@@ -42,11 +42,10 @@ export const VideoJS = (props) => {
         ref={videoRef}
         controls
         className="video-js vjs-big-play-centered"
-        data-setup="{playbackRates: [0.5,1,1.5,2]}"
         playsInline
       />
     </div>
   );
 };
 
-export default VideoJS;
+export default memo(VideoJS);

@@ -78,6 +78,8 @@ function SignupPage() {
       } else {
         if (router.query && router.query.from_subscription) {
           Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+        } else if (router.query && router.query.from == "checkout") {
+          Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment`);
         }
       }
     }
@@ -148,7 +150,7 @@ function SignupPage() {
     if (router.query && router.query.from) {
       // router.push(router.back());
       if (router.query.from == "checkout") {
-        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?${router.query.from}&ps=2`);
+        Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}&ps=2`);
       } else if (router.query.from.startsWith("webinar")) {
         Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in/?from=${router.query.from}`);
       } else if (router.query.from.startsWith("course")) {
@@ -234,6 +236,7 @@ function SignupPage() {
   }
 
   const responseFacebook = (response: any) => {
+    //console.log(response);
     if ("error" in response) {
       // setErrorMessage("حدث خطأ برجاء المحاولة مرة اخري");
     } else {

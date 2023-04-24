@@ -2,7 +2,7 @@ import React, { useEffect, useState, memo } from "react";
 import styles from "./faq.module.css";
 import { Accordion } from "react-bootstrap";
 import { axiosInstance } from "configurations/axios/axiosConfig";
-import { openSupportConvInNewTab, contactUsHandler } from "modules/_Shared/utils/contactUs";
+import { contactUsHandler } from "modules/_Shared/utils/contactUs";
 
 function FAQ(props: any) {
   const [faqs, setFaqs] = useState<any>([]);
@@ -25,12 +25,12 @@ function FAQ(props: any) {
       cancel = true;
     }
 
-  }, [props]);
+  }, [props.Cid]);
 
   return (
     <>
       {
-        faqs && faqs.length !== 0 &&
+        faqs && faqs?.length !== 0 &&
         <div className={styles["faq"]}>
           <div className={styles["faq__title"]}>الأسئلة الشائعة عن الدورة</div>
           <Accordion defaultActiveKey="" className={styles["faq__accordion"]}>

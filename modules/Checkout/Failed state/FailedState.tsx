@@ -9,6 +9,7 @@ import TadarabGA from "modules/_Shared/utils/ga";
 import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 import { setTransactionStatus } from "configurations/redux/actions/transactionStatus";
+import { toggleLoader } from 'modules/_Shared/utils/toggleLoader';
 
 function FailedState() {
     const dispatch = useDispatch();
@@ -20,11 +21,11 @@ function FailedState() {
     useEffect(() => {
 
         if (invoiceDetails) {
-            tadarabGA.tadarab_fire_traking_GA_code("payment_fail",
-                {
-                    type: invoiceDetails?.data?.data?.transaction_details.payment_method,
-                    reason: invoiceDetails?.data?.data?.transaction_details.status
-                });
+            tadarabGA.tadarab_fire_traking_GA_code("payment_fail", {
+                type: invoiceDetails?.data?.data?.transaction_details.payment_method,
+                reason: invoiceDetails?.data?.data?.transaction_details.status
+            });
+            toggleLoader('hide');
         }
     }, [invoiceDetails])
 

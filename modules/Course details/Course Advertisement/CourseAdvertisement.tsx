@@ -229,7 +229,7 @@ function CourseAdvertisement(theOption: any) {
                   تابع الدورة من اي لابتوب او موبايل
                 </div>
 
-                {
+                {/* {
                   userStatus.isUserAuthenticated == false &&
                   <>
                     <Button className={styles["live-webinar__signup-free"]} onClick={() => { setIsSignupModalVisible(true) }}>
@@ -239,7 +239,7 @@ function CourseAdvertisement(theOption: any) {
                       سجل الآن لمشاهدة البث المباشر مجاناً
                     </div>
                   </>
-                }
+                } */}
               </>
             }
           </>

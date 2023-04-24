@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Router, { useRouter } from "next/router";
 import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import SubscriptionValues from "modules/_Shared/utils/SubscriptionValues";
 
 function StickySignupBar() {
     const dispatch = useDispatch();
@@ -28,13 +29,13 @@ function StickySignupBar() {
         const stickyBar: any = document.getElementById("sticky-signup-bar");
         if (window.scrollY > 400) {
             if (window.innerWidth > 576) {
-                stickyBar ? stickyBar.style.display = "none" : null;
+                stickyBar ? stickyBar.style.visibility = "hidden" : null;
             } else {
-                stickyBar ? stickyBar.style.display = "flex" : null;
+                stickyBar ? stickyBar.style.visibility = "visible" : null;
             }
         }
         else {
-            stickyBar ? stickyBar.style.display = "none" : null;
+            stickyBar ? stickyBar.style.visibility = "hidden" : null;
         }
     }
 
@@ -51,14 +52,13 @@ function StickySignupBar() {
     }, []);
 
 
-
     return (
         <>
             <div id="sticky-signup-bar" className={styles["sticky-signup-bar"]}>
                 <Button id="sticky-signup-bar-btn" onClick={() => { handleSubscriptionBtn(event) }}>
-                    انشاء حساب جديد
+                    اشترك الآن
                 </Button>
-                <div>احصل على كل الدورات باشتراك يبدأ من ٦ دك/ش </div>
+                <SubscriptionValues />
             </div>
         </>
     )

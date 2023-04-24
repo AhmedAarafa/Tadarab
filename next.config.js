@@ -16,6 +16,10 @@ module.exports = {
         destination: "/HomePage",
       },
       {
+        source: "/sa",
+        destination: "/HomePage",
+      },
+      {
         source: "/sign-up",
         destination: "/SignUp",
       },

@@ -28,9 +28,8 @@
 @media (max-width:575px) {
     .sticky-signup-bar {
         @include flex(center, space-around);
-        flex-direction: column;
         height: fit-content;
-        padding: 1.5rem 0;
+        padding: 1.5rem;
 
         div {
             font-size: 1.2rem*1.8;

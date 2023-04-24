@@ -2,7 +2,7 @@
 
 .mobile-checkout-bar {
     background-color: var(--tadarab-bg);
-    padding: 10px 0px;
+    padding: 1.3rem;
     box-shadow: 0 -0.781rem 3.281rem #00000014;
     @include flex(center, center);
     position: fixed;
@@ -11,6 +11,13 @@
     z-index: 8;
     // display: none;
     background: linear-gradient(transparent 0%, var(--tadarab-bg) 5%, var(--tadarab-bg) 90%, var(--tadarab-bg) 100%);
+
+    &>div {
+        width: 100%;
+        @include flex(center, flex-start);
+        gap: 1.8rem;
+
+    }
 }
 
 .monthly-subscription__subscription-value {
@@ -30,39 +37,39 @@
     }
 }
 
-.mobile-checkout-bar__subscribe-btn {
-    @include flex(center, center);
-    @include contained-button;
-    padding: 0.9375rem 1.875rem;
-    border-radius: 1.5625rem;
-    width: 50rem;
-    height: 6.5rem;
-    margin-top: 0.4rem;
-    flex-direction: column;
+// .mobile-checkout-bar__subscribe-btn {
+//     @include flex(center, center);
+//     @include contained-button;
+//     padding: 0.9375rem 1.875rem;
+//     border-radius: 1.5625rem;
+//     width: 100%;
+//     height: 6.5rem;
+//     margin-top: 0.4rem;
+//     flex-direction: column;
 
-    div:nth-of-type(2) {
-        font-size: 0.9375rem*1.7;
-    }
+//     div:nth-of-type(2) {
+//         font-size: 0.9375rem*1.7;
+//     }
 
-    svg {
-        width: 3.281rem;
-        height: 2.8rem;
-        margin-left: 0.3rem;
-    }
+//     svg {
+//         width: 3.281rem;
+//         height: 2.8rem;
+//         margin-left: 0.3rem;
+//     }
 
-    span {
-        font-size: 2.188rem;
-        font-weight: 700;
-    }
+//     span {
+//         font-size: 2.188rem;
+//         font-weight: 700;
+//     }
 
-    &+div {
-        font-size: 1.8rem;
-        text-align: center;
-        margin-top: 0.2rem;
-        color: var(--dark-black);
-    }
+//     &+div {
+//         font-size: 1.8rem;
+//         text-align: center;
+//         margin-top: 0.2rem;
+//         color: var(--dark-black);
+//     }
 
-}
+// }
 
 .mobile-checkout-bar__course-card__price-box {
     color: var(--dark-black);
@@ -104,7 +111,7 @@
     @include contained-button;
     padding: 0.9375rem 1.875rem;
     border-radius: 1.5625rem;
-    width: 50rem;
+    width: 80%;
     height: 6.5rem;
     margin-top: 0.4rem;
 
@@ -127,9 +134,15 @@
     }
 
     &+div {
-        font-size: 1.8rem;
-        text-align: center;
+        text-align: right;
         margin-top: 0.2rem;
+        font-size: 2.5rem;
         color: var(--dark-black);
+
+        &>div {
+            font-size: 1.8rem;
+            color: var(--grey);
+            text-decoration: line-through var(--grey);
+        }
     }
 }

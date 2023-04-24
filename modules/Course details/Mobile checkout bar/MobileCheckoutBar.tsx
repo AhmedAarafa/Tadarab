@@ -114,14 +114,14 @@ function MobileCheckoutBar(props: any) {
 
   const handleSubscriptionBtn = () => {
     dispatch(setCheckoutType("subscription"));
-    if (userStatus) {
-      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
-    } else {
-      Router.push({
-        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
-        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
-      })
-    }
+    // if (userStatus) {
+    //   Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    // } else {
+    Router.push({
+      pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+      query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+    })
+    // }
   }
 
   const handleFreeCoursesActionBtn = (course: any): any => {
@@ -168,90 +168,61 @@ function MobileCheckoutBar(props: any) {
   return (
     <>
       <div className={styles["mobile-checkout-bar"]} id="mobile-checkout-bar">
-        {props?.paymentType == "subscription" &&
-          <div>
-            {/* {toDisplayValues.visible && toDisplayValues.values[1] !== 'NaN' &&
-              <div className={styles["monthly-subscription__subscription-timer"]}>
-                ستوفر ٤٠٪ العرض سينتهي خلال
-                <span> {`${toDisplayValues.values[1]}:${toDisplayValues.values[2]}:${toDisplayValues.values[3]}`} </span>
-              </div>} */}
-            <Button onClick={() => handleSubscriptionBtn()} className={styles["mobile-checkout-bar__subscribe-btn"]}>
+
+        <div>
+          {courseDetails?.course_details?.type !== "webinar" &&
+            <Button onClick={() => {
+              courseDetails?.course_details?.discounted_price == 0 ?
+                handleFreeCoursesActionBtn(courseDetails?.course_details)
+                :
+                courseDetails?.course_details?.is_in_cart ?
+                  Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
+                  :
+                  handleCartActionBtn(courseDetails?.course_details);
+            }} disabled={isAddingToCartInProgress}
+              className={styles["mobile-checkout-bar__actions-btns__add-to-cart-btn"]}
+            >
+              {isAddingToCartInProgress == true ?
+                <Spinner animation='border' />
+                :
+                courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                  <></>
+                  :
+                  courseDetails?.course_details?.discounted_price == 0 ?
+                    <TvIcon color="#f5f5f5" />
+                    :
+                    <CartIcon color="#f5f5f5" />
+              }
               {
-                Router.asPath.includes("subscription") ?
-                  <span> ابدأ التعلم الآن</span>
+                courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
+                  <span>سجل لمشاهدة البث المباشر مجاناَ</span>
                   :
-                  <>
-                    <div>
-                      <span>اشترك لمشاهدة الدورة </span>
-                    </div>
-                  </>
+                  courseDetails?.course_details?.discounted_price == 0 ?
+                    <span> ابدأ الآن مجانًا </span>
+                    :
+                    courseDetails?.course_details?.is_in_cart ?
+                      <span> اذهب إلى السلة</span>
+                      :
+                      <span> امتلك هذه الدورة </span>
               }
-            </Button>
-            <div>
-              <div className={styles["monthly-subscription__subscription-value"]} >
-                <span>
-                  احصل على كل الدورات باشتراك واحد يبدأ من {` ${props?.data?.subscription_sale_price && props?.data?.subscription_sale_price} `}
-                  {props?.data?.currency_symbol && props?.data?.currency_symbol} / ش
-                </span>
-              </div>
-            </div>
-          </div>}
-
-        {props?.paymentType == "normalPayment" &&
+            </Button>}
           <div>
-            {courseDetails?.course_details?.type !== "webinar" &&
-              <Button onClick={() => {
-                courseDetails?.course_details?.discounted_price == 0 ?
-                  handleFreeCoursesActionBtn(courseDetails?.course_details)
-                  :
-                  courseDetails?.course_details?.is_in_cart ?
-                    Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout`)
-                    :
-                    handleCartActionBtn(courseDetails?.course_details);
-              }} disabled={isAddingToCartInProgress}
-                className={styles["mobile-checkout-bar__actions-btns__add-to-cart-btn"]}
-              >
-                {isAddingToCartInProgress == true ?
-                  <Spinner animation='border' />
-                  :
-                  courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                    <></>
-                    :
-                    courseDetails?.course_details?.discounted_price == 0 ?
-                      <TvIcon color="#f5f5f5" />
-                      :
-                      <CartIcon color="#f5f5f5" />
-                }
-                {
-                  courseDetails?.course_details?.type == "webinar" && !userStatus.isUserAuthenticated ?
-                    <span>سجل لمشاهدة البث المباشر مجاناَ</span>
-                    :
-                    courseDetails?.course_details?.discounted_price == 0 ?
-                      <span> ابدأ الآن مجانًا </span>
-                      :
-                      courseDetails?.course_details?.is_in_cart ?
-                        <span> اذهب إلى السلة</span>
-                        :
-                        <span> امتلك هذه الدورة </span>
-                }
-              </Button>}
-            <div>
-              امتلك الدورة
-              (
-              سعر الدورة
-              {` ${props?.data?.course_details?.discounted_price} `}
-              {` ${props?.data?.course_details?.currency_symbol} `}
-              )
+            {/* امتلك الدورة */}
+            {/* ( */}
+            {/* سعر الدورة */}
+            {` ${props?.data?.course_details?.discounted_price} `}
+            {` ${props?.data?.course_details?.currency_symbol} `}
+            {/* ) */}
 
-              {props?.data?.course_details?.price != props?.data?.course_details?.discounted_price &&
-                <span>
-                  بدلا من
-                  {` ${props?.data?.course_details?.price} `}
-                  {` ${props?.data?.course_details?.currency_symbol} `}
-                </span>
-              }
-            </div>
-          </div>}
+            {props?.data?.course_details?.price == props?.data?.course_details?.discounted_price &&
+              <div>
+                {/* بدلا من */}
+                {` ${props?.data?.course_details?.price} `}
+                {` ${props?.data?.course_details?.currency_symbol} `}
+              </div>
+            }
+          </div>
+        </div>
 
       </div>
 

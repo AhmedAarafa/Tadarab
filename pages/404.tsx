@@ -1,12 +1,18 @@
 /* eslint-disable @next/next/link-passhref */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Link from "next/link";
 import { useSelector } from 'react-redux';
 import withAuth from 'configurations/auth guard/AuthGuard';
+import { toggleLoader } from 'modules/_Shared/utils/toggleLoader';
 
 function NotFound() {
-  const themeState = useSelector((state: any) => state.themeState.theme);
+    const themeState = useSelector((state: any) => state.themeState.theme);
+
+    useEffect(() => {
+        toggleLoader('hide');
+    }, []);
+
 
     return (
         <>
@@ -75,7 +81,7 @@ function NotFound() {
                     }
             `}
             </style>
-            <Container data-theme={themeState} fluid="xxl" style={{backgroundColor:"var(--tadarab-light-bg)"}}>
+            <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
                 <Row >
                     <Col xs={12} className='page-not-found-row'>
                         <div className='page-not-found-col'>

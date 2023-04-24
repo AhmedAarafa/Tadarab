@@ -10,6 +10,7 @@ import { axiosInstance } from "configurations/axios/axiosConfig";
 import  {ChevronLeftIcon}  from "common/Icons/Icons";
 import Link from 'next/link';
 import { useSelector } from "react-redux";
+import saTrainers from "./saTrainers.json";
 
 function LearnFromTheBest(props: any) {
   SwiperCore.use([Navigation]);
@@ -61,7 +62,10 @@ function LearnFromTheBest(props: any) {
 
         }} className="mySwiper">
            
-            { trainers?.map((trainer:any, i:number)=>{
+            {(props?.targetedCountry == "sa" ?
+              saTrainers.concat(trainers?.filter((tr: any) => (tr?.id !== 207998 && tr?.id !== 110230 && tr?.id !== 3126)))
+              : trainers
+            )?.map((trainer:any, i:number)=>{
               return(
                   <SwiperSlide key={i}> 
                  <Link href={`/trainer/${trainer?.slug}`}>
