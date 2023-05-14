@@ -14,15 +14,15 @@ function Terms(props: any) {
   const themeState = useSelector((state: any) => state.themeState.theme);
 
   return (
-      <>
-        {seoData &&
-          <MetaTagsGenerator title={seoData?.seo_title}
-            description={seoData?.seo_metadesc}
-            img={seoData?.seo_image} />}
-        <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
-          <TermsPage />
-        </Container>
-      </>
+    <>
+      {seoData &&
+        <MetaTagsGenerator title={seoData?.seo_title}
+          description={seoData?.seo_metadesc}
+          img={seoData?.seo_image} />}
+      <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
+        <TermsPage />
+      </Container>
+    </>
   )
 }
 

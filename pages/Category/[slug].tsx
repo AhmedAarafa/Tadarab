@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
@@ -12,6 +13,7 @@ import Faq from "common/Subscription faqs/FAQ/Faq";
 import NotFound from "pages/404";
 import { NotFoundRoutesHandler } from "modules/_Shared/utils/notFoundRoutesHandler";
 import { useSelector } from 'react-redux';
+import { log } from 'console';
 
 const CategoryDescription = dynamic(() => import("modules/Category/Category description/CategoryDescription"));
 const CategoryCourses = dynamic(() => import("modules/Category/Category courses/CategoryCourses"));
@@ -54,6 +56,14 @@ function Category(props: any) {
         console.log(error);
       });
   }, []);
+
+  useEffect(() => {
+    console.log("category",category);
+    console.log("categoriesList",categoriesList);
+    console.log("router",router);
+    
+  }, [category,categoriesList])
+  
 
   useEffect(() => {
     if (Router.query.slug) {
@@ -123,6 +133,34 @@ function Category(props: any) {
       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              {
+                "@context": "http://schema.org",
+                "@type": "Product",
+                "name": `دورات ${category?.title}`,
+                "description": category?.seo_metadesc,
+                "image": category?.cover_img,
+                "url": `https://www.tadarab.com${router?.asPath}`,
+                "brand": {
+                  "@type": "Brand",
+                  "name": "تدرب",
+                  "logo": "https://www.tadarab.com/images/logo.svg"
+                },
+                "offers": {
+                  "@type": "Offer",
+                  "price": 24.00,
+                  "priceCurrency": "USD",
+                  "availability": "https://schema.org/InStock"
+                }
+              }
+            )
+          }}
+        />
+      </Head>
       {
         isFound ?
           <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>

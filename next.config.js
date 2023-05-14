@@ -36,6 +36,10 @@ module.exports = {
         destination: "/CourseDetails/:path*",
       },
       {
+        source: "/bundle/:path*",
+        destination: "/BundleCoursePage/:path*",
+      },
+      {
         source: "/ebook/:path*",
         destination: "/Books/:path*",
       },

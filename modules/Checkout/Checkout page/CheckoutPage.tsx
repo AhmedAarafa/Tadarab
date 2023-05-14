@@ -1602,11 +1602,7 @@ function CheckoutPage(props: any) {
                                         <TickIcon />
                                     </span>
                                     <span>
-                                        مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
-                                        <span className={styles["checkout__subscription-benefits__title--important"]}>
-                                            1000
-                                        </span>
-                                        دورة تدريبية).
+                                        مشاهدة بلا حدود لأكثر من 1000 دورة تدريبية بالمنصة.
                                     </span></div>
                                 <div
                                     className={

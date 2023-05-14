@@ -70,7 +70,7 @@ function CategoryDescription(props: any) {
                     </Button>}
                     {userSubscInfo == false &&
                         <div className={styles["category-description__small-description"]}>
-                            اشترك الآن لتتابع جميع دورات
+                            اشترك الآن لتتابع دورات
                             {` ${props?.data?.title} `}
                             باشتراك يبدأ من
                             {` ${props?.data?.subscription_sale_price}`}

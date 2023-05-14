@@ -35,11 +35,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   let canonical = "https://www.tadarab.com";
-  const router = useRouter();
+  // const router = useRouter();
   /*const allowedCanonical=['/','/TadarabSubscription','/AllCourses'];
   let is_allow=allowedCanonical.includes((router.route));
   if(is_allow){canonical+=((router.asPath=="/AllCourses")?"/courses":((router.asPath)?"/subscription":router.asPath));}*/
-  canonical += (router.asPath);
+  // canonical += (router.asPath);
 
   return (
     <>

@@ -39,7 +39,7 @@ function SubscriptionValues() {
 
     return (
         <div ref={subValuesRef}>
-            اشترك الآن لتتابع جميع الدورات باشتراك يبدأ من
+            اشترك الآن لتتابع أكثر من 1000 دورة تدريبية باشتراك يبدأ من
             {
                 JSON.stringify(values) !== "{}" &&
                 <>

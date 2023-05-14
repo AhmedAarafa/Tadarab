@@ -37,7 +37,7 @@ function TadarabUnlimited() {
                                 </span>
                             </h3>
                             <div className={styles["tadarab-unlimited__subscription-points"]}>
-                                <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 1000 دورة تدريبية).</div>
+                                <div>مشاهدة أكثر من 1000 دورة تدريبية بالمنصة.</div>
                                 <div>دورات جديدة تضاف شهريًا.</div>
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>
@@ -68,7 +68,7 @@ function TadarabUnlimited() {
                                 </span>
                             </div>
                             <div className={styles["tadarab-unlimited__subscription-points"]}>
-                                <div>مشاهدة لجميع الدورات بالمنصة (أكثر من 1000 دورة تدريبية).</div>
+                                <div>مشاهدة أكثر من 1000 دورة تدريبية بالمنصة.</div>
                                 <div>دورات جديدة تضاف شهريًا.</div>
                                 <div>عدد لا نهائي من شهادات إتمام الدورات.</div>
                                 <div>لا يوجد التزام، يمكنك إلغاء الاشتراك في أي وقت.</div>

@@ -21,7 +21,7 @@ function WhatYouWillLearn() {
 
     return (
         <>
-            <div id="what-you-will-learn-list" className={styles["what-you-will-learn"]}>
+            <div className={styles["what-you-will-learn"]}>
                 <div id="what-you-will-learn" className={styles["what-you-will-learn__scrollspy-helper"]}></div>
 
                 <h2 className={styles["what-you-will-learn__title"]}>

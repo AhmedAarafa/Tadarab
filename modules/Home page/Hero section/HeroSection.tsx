@@ -3,17 +3,17 @@
 import React, { useState, useEffect, memo } from "react";
 import { Row, Col, Button, Form } from "react-bootstrap";
 import styles from "./hero-section.module.css";
-import { SearchIcon } from "common/Icons/Icons";
 import Router from "next/router";
-import { useSelector } from "react-redux";
-import Link from "next/link";
-import { TickIcon, ChevronLeftIcon } from "common/Icons/Icons";
+import {  ChevronLeftIcon } from "common/Icons/Icons";
 import { axiosInstance } from "configurations/axios/axiosConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
 
 function HeroSection(props: any) { 
   const themeState = useSelector((state: any) => state.themeState.theme);
   const userStatus = useSelector((state: any) => state.userAuthentication);
   const [subValues, setSubValues] = useState<any>({});
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axiosInstance
@@ -28,8 +28,19 @@ function HeroSection(props: any) {
       .catch(function (error) {
         console.log(error);
       });
-  }, [])
+  }, []);
 
+  const handleSubscriptionBtn = () => {
+    dispatch(setCheckoutType("subscription"));
+    if (userStatus.isUserAuthenticated) {
+      Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}checkout/payment/?checkout_type=subscription`);
+    } else {
+      Router.push({
+        pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-up`,
+        query: { from_subscription: "checkout/payment/?checkout_type=subscription" }
+      })
+    }
+  }
 
   return (
     <>
@@ -57,7 +68,7 @@ function HeroSection(props: any) {
                     {" "} {subValues?.sale_label}{" "}
                   </span>
                 </div>
-                <Button onClick={() => { Router.push(`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}subscription`) }} id="homepage-sticky-checkout-bar">
+                <Button onClick={() => { handleSubscriptionBtn() }} id="homepage-sticky-checkout-bar">
                   أبدا التعلم
                   الآن
                   <ChevronLeftIcon color="#f5f5f5" />

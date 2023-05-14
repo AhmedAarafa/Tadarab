@@ -1,4 +1,5 @@
 .course-details-row,
+.bundle-course-details-row,
 .course-details__tadarab-business,
 .course-details__comments-section {
     padding: 0 8.5rem 5rem 8.5rem;
@@ -12,8 +13,14 @@
 
 
 @media (max-width: 575px) {
-    .course-details-row {
+
+    .course-details-row,
+    .bundle-course-details-row {
         padding: 0 3rem;
+    }
+
+    .bundle-course-details-row {
+        margin-bottom: -12.5rem;
     }
 
     .course-details__course-reviews,

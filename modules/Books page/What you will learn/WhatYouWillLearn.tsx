@@ -6,7 +6,7 @@ function WhatYouWillLearn(props: any) {
 
     return (
         <>
-            <div id="what-you-will-learn-list" className={styles["what-you-will-learn"]}>
+            <div className={styles["what-you-will-learn"]}>
                 <div id="what-you-will-learn" className={styles["what-you-will-learn__scrollspy-helper"]}></div>
 
                 <div className={styles["what-you-will-learn__title"]}>

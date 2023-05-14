@@ -148,7 +148,7 @@ function BookDetails(props: any) {
 
                         </div>
 
-                        <WhatYouWillLearn data={props?.data} />my head is about to explo
+                        <WhatYouWillLearn data={props?.data} />
 
                         <div id="brief-about-book" className={styles["book-details__book-info__book-brief"]}>
                             <div className={styles["book-details__book-info__book-brief__title"]}>نبذة عن الكتيب</div>

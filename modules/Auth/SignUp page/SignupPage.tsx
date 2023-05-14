@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
-import React, { useCallback, useRef, useState, useEffect, memo } from "react";
-import { Row, Col, Button, Dropdown, DropdownButton } from "react-bootstrap";
+import React, { useState, useEffect, memo } from "react";
+import { Row, Col, Button } from "react-bootstrap";
 import styles from "./sign-up-page.module.css";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import Image from 'next/image';
@@ -88,7 +88,7 @@ function SignupPage() {
 
 
   useEffect(() => {
-
+    
     const phoneField: any = document.querySelector("input[type='tel']");
     phoneField.addEventListener('blur', updateValue);
     phoneField.addEventListener('change', updateValue);

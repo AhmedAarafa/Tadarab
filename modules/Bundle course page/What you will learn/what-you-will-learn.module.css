@@ -1,0 +1,161 @@
+@charset "UTF-8";
+.what-you-will-learn {
+  margin-top: 1.875rem;
+  width: 100%;
+  border-radius: 1.25rem;
+  border: 0.063rem solid var(--borders-grey);
+  padding: 1.875rem 1.875rem 0;
+  padding-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.what-you-will-learn__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dark-black);
+  margin-bottom: 1.5rem;
+}
+
+.what-you-will-learn__list {
+  list-style-image: url("/images/Check.svg");
+  padding-right: 2rem;
+}
+.what-you-will-learn__list li {
+  font-size: 1rem;
+  color: var(--grey);
+  margin-bottom: 1rem;
+}
+.what-you-will-learn__list li::marker {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.what-you-will-learn__list-box {
+  --max-lines: 5;
+  margin-bottom: 0;
+  max-height: calc(var(--max-lines) * 1rem * 1.4);
+  line-height: 1.4;
+  overflow: hidden;
+  position: relative;
+}
+.what-you-will-learn__list-box:has(+ .what-you-will-learn__expand-collapse-btn:checked) {
+  max-height: none;
+}
+.what-you-will-learn__list-box:has(+ .what-you-will-learn__expand-collapse-btn:not(:checked)) {
+  --max-lines: 8;
+}
+.what-you-will-learn__list-box:has(+ .what-you-will-learn__expand-collapse-btn:not(:checked)):before {
+  content: "";
+  position: absolute;
+  height: 2.8rem;
+  width: 100%;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--tadarab-light-bg));
+}
+
+.what-you-will-learn__expand-collapse-btn {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  font-size: 1.125rem;
+  font-weight: 800;
+  background-color: white;
+  color: #AF151F;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.8rem 2.5rem 1rem 0;
+  cursor: pointer;
+  z-index: 4;
+  display: flex;
+  align-items: unset;
+  justify-content: unset;
+  background-color: var(--tadarab-light-bg);
+}
+.what-you-will-learn__expand-collapse-btn:before {
+  content: "أقرأ المزيد";
+  margin-left: 0.5rem;
+}
+.what-you-will-learn__expand-collapse-btn:after {
+  content: url("/images/dropdown3.svg");
+  transition: all 0.4s ease;
+}
+.what-you-will-learn__expand-collapse-btn:checked:after {
+  content: url("/images/dropdown3.svg");
+  transform: rotate(180deg);
+  transition: all 0.4s ease;
+}
+.what-you-will-learn__expand-collapse-btn:checked:before {
+  content: "أقرأ أقل";
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 575px) {
+  .what-you-will-learn {
+    margin-top: 4rem;
+    width: 100%;
+    border-radius: 3.125rem;
+    border: 0.1575rem solid var(--borders-grey);
+    padding: 1.875rem 2.8125rem 7.5rem 2.8125rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    order: 2;
+  }
+  .what-you-will-learn__title {
+    font-size: 3.15rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin-bottom: 3.75rem;
+  }
+  .what-you-will-learn__list {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+    padding-right: 2.8rem;
+    padding-left: 0;
+  }
+  .what-you-will-learn__list li {
+    font-size: 2.2rem;
+  }
+  .what-you-will-learn__list li::marker {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+  .what-you-will-learn__list-box {
+    --max-lines: 8;
+    max-height: calc(var(--max-lines) * 0.875rem * 2.5 * 1.4);
+  }
+  .what-you-will-learn__list-box:has(+ .what-you-will-learn__expand-collapse-btn:not(:checked)):before {
+    height: 10rem;
+  }
+  .what-you-will-learn__expand-collapse-btn {
+    font-size: 2.8125rem;
+    padding: 2rem 2.8125rem 2.5rem 0;
+  }
+  .what-you-will-learn__expand-collapse-btn:before {
+    margin-left: 1.25rem;
+  }
+  .what-you-will-learn__expand-collapse-btn:checked:before {
+    margin-left: 1.25rem;
+  }
+  .what-you-will-learn__expand-collapse-btn:after {
+    content: url("/images/dropdown4.svg");
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .what-you-will-learn__expand-collapse-btn:checked:after {
+    content: url("/images/dropdown4.svg");
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+}/*# sourceMappingURL=what-you-will-learn.module.css.map */

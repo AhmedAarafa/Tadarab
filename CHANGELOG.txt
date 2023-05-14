@@ -1,3 +1,7 @@
+Version 2.8.1 (01st May 2023)
+1) Single course page and hero section changes.
+2) Change subscription text.
+
 Version 2.8.0 (20th Apr 2023)
 1) Revoke normal(cart) system.
 2) Merged the latest with normal system.

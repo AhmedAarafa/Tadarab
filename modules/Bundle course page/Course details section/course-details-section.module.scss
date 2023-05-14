@@ -1,0 +1,160 @@
+@import "../../../styles/mixins";
+
+
+.course-details-section {
+    margin-top: 3.2rem;
+    width: 43rem;
+    position: relative;
+    overflow: hidden;
+    transition: none;
+    
+    &:has( .course-details-section__expand-collapse-btn:checked) {
+        padding-bottom: 1rem;
+    }
+
+    &:has( .course-details-section__expand-collapse-btn:not(:checked)) {
+        padding-bottom: 2rem;
+    }
+}
+
+.course-details-section__title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--dark-black);
+    margin-bottom: 1rem;
+}
+
+.course-details-section__para {
+    font-size: 1rem;
+    color: var(--grey) !important;
+    --max-lines: 5;
+    --line-height: 1.4;
+    margin-bottom: 0;
+
+    max-height: calc(var(--max-lines) * 1rem * var(--line-height));
+    line-height: var(--line-height);
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 2rem;
+
+    &:has(+ .course-details-section__expand-collapse-btn:checked) {
+        max-height: none;
+    }
+
+    &:has(+ .course-details-section__expand-collapse-btn:not(:checked)) {
+        &:before {
+            content: "";
+            position: absolute;
+            height: calc(2rem * var(--line-height));
+            width: 100%;
+            bottom: 0;
+            pointer-events: none;
+            background: linear-gradient(to bottom, transparent, var(--tadarab-light-bg));
+        }
+    }
+
+}
+
+.course-details-section__expand-collapse-btn {
+    appearance: none;
+    font-size: 1.125rem;
+    font-weight: 800;
+    // width: 100%;
+    background-color: white;
+    color: #AF151F;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.8rem 0rem 0rem 0;
+    cursor: pointer;
+    z-index: 4;
+    @include flex;
+    background-color: var(--tadarab-light-bg);
+
+    &:before {
+        content: 'أقرأ المزيد';
+        margin-left: 0.5rem;
+    }
+
+    &:after {
+        content: url('/images/dropdown3.svg');
+        transition: all 0.4s ease;
+    }
+
+    &:checked {
+        &:after {
+            content: url('/images/dropdown3.svg');
+            transform: rotate(180deg);
+            transition: all 0.4s ease;
+        }
+    }
+
+    &:checked {
+        &:before {
+            content: 'أقرأ أقل';
+            margin-left: 0.5rem;
+        }
+    }
+}
+
+@media (max-width: 575px) {
+
+    .course-details-section {
+        margin-top: 7rem;
+        width: 100%;
+        order: 4;
+
+        &:has( .course-details-section__expand-collapse-btn:not(:checked)) {
+            padding-bottom: 2rem*2.5;
+        }
+    }
+
+    .course-details-section__title {
+        font-size: 1.5rem*2.1;
+        margin-bottom: 1rem*2.5;
+    }
+
+    .course-details-section__para {
+        font-size: 0.875rem*2.5;
+        color: var(--grey) !important;
+        max-height: calc(var(--max-lines) * 0.875rem*2.5 * var(--line-height));
+        padding-bottom: 2rem*2.5;
+
+
+        &:has(+ .course-details-section__expand-collapse-btn:not(:checked)) {
+            &:before {
+                height: calc(2rem*2.5 * var(--line-height));
+            }
+        }
+
+    }
+
+    .course-details-section__expand-collapse-btn {
+        font-size: 1.125rem*2.5;
+
+
+        &:before {
+            margin-left: 0.5rem*2.5;
+        }
+
+        &:checked {
+            &:before {
+                margin-left: 0.5rem*2.5;
+            }
+        }
+
+        &:after {
+            content: url('/images/dropdown4.svg');
+            width: fit-content;
+            height: fit-content;
+        }
+
+        &:checked {
+            &:after {
+                content: url('/images/dropdown4.svg');
+                width: fit-content;
+                height: fit-content;
+            }
+        }
+    }
+}

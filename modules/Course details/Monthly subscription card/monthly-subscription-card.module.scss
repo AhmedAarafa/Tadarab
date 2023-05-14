@@ -1,7 +1,7 @@
 @import "../../../styles/mixins";
 
 .course-price {
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: unset;
     color: var(--grey);
@@ -9,17 +9,18 @@
     text-align: center;
     flex-direction: column;
 
-    
+
     .original-price {
         text-decoration: line-through rgba(175, 21, 31, 0.5);
     }
+
     .sale-price {
-        font-size: .9rem;
-        color: var(--dark-black);
+        font-size: .85rem;
+        color: var(--grey);
     }
 
     span {
-        margin: 0 0.1rem 0 0;    
+        margin: 0 0.1rem 0 0;
     }
 }
 
@@ -31,7 +32,7 @@
     box-shadow: 0 0 1.25rem #0000001A;
     border-radius: 1.25rem;
     position: sticky;
-    top: 5.5rem;
+    top: 8.7rem;
     background-color: var(--tadarab-bg);
 }
 
@@ -145,15 +146,33 @@
     margin: 0.8rem 0.2rem 0 0.2rem;
 }
 
+.monthly-subscription__subscription-benefits-box{
+    padding-bottom: 1rem;
+}
+
 .monthly-subscription__subscription-benefits {
     @include flex(center, flex-start);
     gap: 0.3rem;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+    color: var(--dark-black);
+    margin-bottom: 0.2rem;
 
     div {
         svg {
             width: 0.75rem;
             height: 0.75rem;
+        }
+    }
+}
+
+.monthly-subscription__subscription-benefits__learn-more {
+    a {
+        color: var(--primary-red);
+        font-weight: 700;
+        font-size: 0.8rem;
+
+        &:hover {
+            color: var(--primary-red);
         }
     }
 }
@@ -290,7 +309,7 @@
     font-size: 1.1rem;
     font-weight: 800;
     color: var(--dark-black);
-    margin: 0 0 1rem 0;
+    margin: 0 0 0.6rem 0;
 }
 
 .monthly-subscription__course-card__price-box {
@@ -333,7 +352,7 @@
 }
 
 .monthly-subscription__course-card__actions-btns {
-    margin-top: 0.7rem;
+    margin-top: 0.3rem;
     @include flex(center, flex-start);
     padding-left: 0.2rem;
 }
@@ -443,7 +462,7 @@
 }
 
 .monthly-subscription__subscribe-btn-box {
-    margin-top: 0.8rem;
+    margin-top: 0.6rem;
 }
 
 .monthly-subscription__subscription-timer {
@@ -515,7 +534,7 @@
 }
 
 .monthly-subscription__or-box {
-    margin-top: 0.75rem;
+    margin-top: 0.4rem;
     position: relative;
 
     &:before {
@@ -541,8 +560,8 @@
 }
 
 .monthly-subscription__course-card__details-list {
-    margin-top: 1rem;
-    padding-bottom: 0.8rem;
+    margin-top: 0.5rem;
+    padding-bottom: 0.2rem;
     // border-bottom: 0.05rem solid rgba(34, 34, 34, 0.1);
     flex-direction: column;
 
@@ -634,10 +653,11 @@
 }
 
 .monthly-subscription__subscription-value {
-    font-size: 0.75rem;
-    // text-align: center;
+    font-size: 0.85rem;
     color: var(--grey);
     margin-top: 0.3rem;
+    padding-bottom: 1rem;
+    // text-align: center;
     // margin-right: 1.8rem;
     font-weight: 400;
 
@@ -782,9 +802,9 @@
 
             span:nth-of-type(1) {
                 line-height: 2.8rem !important;
-                font-size: 0.82rem*2.5;
-                margin-bottom: 1.5rem;
-                display: inline-block;
+                font-size: 0.82rem*2.5 !important;
+                margin-bottom: 1.5rem !important;
+                display: inline-block !important;
 
             }
 

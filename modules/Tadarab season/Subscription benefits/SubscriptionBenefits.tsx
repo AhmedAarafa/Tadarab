@@ -63,9 +63,7 @@ function SubscriptionBenefits() {
                                 <InfiniteWatchingIcon />
                             </div>
                             <span>
-                                مشاهدة بلا حدود لجميع الدورات بالمنصة (أكثر من
-                                1000
-                                دورة تدريبية).
+                                مشاهدة بلا حدود لأكثر من 1000 دورة تدريبية بالمنصة.
                             </span>
                         </div>
                         <div className={styles["subscription-benefits__benefits__list-item"]}>
