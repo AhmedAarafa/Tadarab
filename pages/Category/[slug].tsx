@@ -134,7 +134,7 @@ function Category(props: any) {
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
       <Head>
-        <script
+        { category && router && <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(
@@ -159,7 +159,7 @@ function Category(props: any) {
               }
             )
           }}
-        />
+        />}
       </Head>
       {
         isFound ?

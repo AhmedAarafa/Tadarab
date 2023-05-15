@@ -2,7 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useState, useEffect, memo } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Spinner, Card, Pagination } from "react-bootstrap";
+import { Row, Col, Button, Card, Pagination } from "react-bootstrap";
+import { CartIcon, FavouriteIcon, AddedToCartIcon, AddedToFavouriteIcon, TvIcon } from "common/Icons/Icons";
 import styles from "./training-courses.module.css";
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -10,7 +11,12 @@ import { GAProductClickEventHandler } from "modules/_Shared/utils/GAEvents";
 import { axiosInstance } from "configurations/axios/axiosConfig";
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { handleFreeCourses } from "modules/_Shared/utils/handleFreeCourses";
 import 'react-loading-skeleton/dist/skeleton.css';
+import { handleFav } from "modules/_Shared/utils/handleFav";
+import { handleCart } from "modules/_Shared/utils/handleCart";
+import { setCheckoutType } from "configurations/redux/actions/checkoutType";
+import { setCartItems } from "configurations/redux/actions/cartItems";
 
 function TrainingCourses(props: any) {
     const [currentPage, setCurrentPage] = useState("1");
@@ -125,6 +131,49 @@ function TrainingCourses(props: any) {
         topics: "إختر الموضوع",
         price: "الكل"
     });
+
+
+    const handleFavActionBtn = (course: any): any => {
+        if (userStatus.isUserAuthenticated == true) {
+            const handleFavResponse: any = handleFav(course, `categories/${slug}/?page=${pageNumber}&limit=12`);
+            handleFavResponse.then(function (response: any) {
+                setFilteredCourses(response.data);
+            })
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}signin`,
+                query: { from: `/topic/${slug}` }
+            })
+        }
+    }
+
+    const handleCartActionBtn = (course: any): any => {
+        setDisabledCartBtns([...disabledCartBtns, course.id]);
+        setTimeout(() => {
+            setDisabledCartBtns(disabledCartBtns.filter((b: any) => b !== course.id));
+        }, 5000);
+        dispatch(setCheckoutType("cart"));
+
+        const handleCartResponse: any = handleCart([course], `categories/${slug}/?page=${pageNumber}&limit=12`, false);
+        handleCartResponse.then(function (firstresponse: any) {
+            firstresponse.resp.then(function (response: any) {
+                setFilteredCourses(response.data);
+                dispatch(setCartItems(firstresponse.cartResponse));
+            })
+        })
+
+    }
+
+    const handleFreeCoursesActionBtn = (course: any): any => {
+        if (userStatus.isUserAuthenticated == true) {
+            handleFreeCourses(course);
+        } else {
+            Router.push({
+                pathname: `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}sign-in`,
+                query: { from: "/topic" }
+            })
+        }
+    }
 
     const handlePageClick = (pgNo: any) => {
         // toggleLoader("show");
@@ -282,6 +331,138 @@ function TrainingCourses(props: any) {
                                                                     {course?.trainer?.name_ar}
                                                                 </div>
                                                             </Link>
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        className={
+                                                            styles[
+                                                            "training-courses__course-card__card-body__checkout-details"
+                                                            ]
+                                                        }
+                                                    >
+                                                        <div className="d-flex flex-column">
+                                                            <div
+                                                                className={
+                                                                    styles[
+                                                                    "training-courses__course-card__card-body__checkout-details__price-container"
+                                                                    ]
+                                                                }
+                                                            >
+                                                                <span
+                                                                    className={
+                                                                        styles[
+                                                                        "training-courses__course-card__card-body__checkout-details__price-container__price"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    {course.is_purchased && !course.is_in_user_subscription && "تم الشراء"}
+                                                                    {
+                                                                        !course.is_purchased && !course.is_in_user_subscription && (course.discounted_price == 0 ? "مجانًا" : course.discounted_price)
+                                                                    }
+                                                                    {
+                                                                        course.is_in_user_subscription &&
+                                                                        <Link href={`/course/${course.slug}`}>
+                                                                            <span className={styles["watch-subscribed-course"]}>
+                                                                                شاهد الدورة
+                                                                            </span>
+                                                                        </Link>
+
+                                                                    }
+                                                                </span>
+                                                                {course.price !== 0 &&
+                                                                    <span
+                                                                        className={
+                                                                            styles[
+                                                                            "training-courses__course-card__card-body__checkout-details__price-container__currency"
+                                                                            ]
+                                                                        }
+                                                                    >
+                                                                        {!course.is_in_user_subscription && course.currency_symbol}
+                                                                    </span>
+                                                                }
+                                                            </div>
+                                                            {
+                                                                !course.is_purchased && !course.is_in_user_subscription && (course.price > course.discounted_price) &&
+                                                                <div
+                                                                    className={
+                                                                        styles[
+                                                                        "training-courses__course-card__card-body__checkout-details__old-price-container"
+                                                                        ]
+                                                                    }
+                                                                >
+                                                                    <span
+                                                                        className={
+                                                                            styles[
+                                                                            "training-courses__course-card__card-body__checkout-details__old-price-container__price"
+                                                                            ]
+                                                                        }
+                                                                    >
+                                                                        {course.price}
+                                                                    </span>
+                                                                    <span
+                                                                        className={
+                                                                            styles[
+                                                                            "training-courses__course-card__card-body__checkout-details__old-price-container__currency"
+                                                                            ]
+                                                                        }
+                                                                    >
+                                                                        {course.currency_symbol}
+                                                                    </span>
+                                                                </div>
+                                                            }
+                                                        </div>
+
+                                                        <div className="d-inline-block">
+                                                            {!course.is_purchased && !course.is_in_user_subscription && <Button disabled={course.is_in_cart || disabledCartBtns.includes(course.id)} variant={""}
+                                                                className={
+                                                                    styles[
+                                                                    "training-courses__course-card__card-body__checkout-details__icon-btn"
+                                                                    ]
+                                                                }
+                                                            >
+                                                                <div onClick={() =>
+                                                                    course.discounted_price == 0 ?
+                                                                        handleFreeCoursesActionBtn(course)
+                                                                        :
+                                                                        handleCartActionBtn(course)
+                                                                }
+                                                                    className={styles["training-courses__course-card__card-body__checkout-details__icon-btn__cart-icon"]}>
+                                                                    {
+                                                                        course.discounted_price == 0 ?
+                                                                            <TvIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
+                                                                            :
+                                                                            course.is_in_cart || disabledCartBtns.includes(course.id) ?
+                                                                                <AddedToCartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
+                                                                                :
+                                                                                <CartIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
+                                                                    }
+                                                                </div>
+                                                            </Button>}
+                                                            <Button
+                                                                className={
+                                                                    styles[
+                                                                    "training-courses__course-card__card-body__checkout-details__icon-btn"
+                                                                    ]
+                                                                }
+                                                            >
+                                                                <div onClick={() => {
+
+                                                                    handleFavActionBtn(course)
+                                                                }
+                                                                }
+                                                                    className={styles["training-courses__course-card__card-body__checkout-details__icon-btn__fav-icon"]}>
+
+                                                                    {
+                                                                        course.is_in_favorites ?
+                                                                            <AddedToFavouriteIcon color="#af151f" />
+                                                                            :
+                                                                            <FavouriteIcon color={themeState == 'light' ? "#222" : "#f5f5f5"} />
+                                                                    }
+                                                                </div>
+
+                                                            </Button>
+
                                                         </div>
                                                     </div>
                                                 </Card.Body>

@@ -35,7 +35,7 @@ function BundleIncludedCourses() {
                                 </div>
                                 <div className={styles["bundle-included-courses__courses-container__course-card__trainer-info-box__info"]}>
                                     <h3 className={styles["bundle-included-courses__courses-container__course-card__trainer-info-box__course-name"]} title="تعلم كيفية تداول الأسهم للمبتدئين من الصفر">
-                                        تعلم كيفية تداول الأسهم للمبتدئين من الصفر
+                                        تعلم كيفية تداول الأسهم للمبتدئين من الصفر الى الاحتراففففف
                                     </h3>
                                     <div className={styles["bundle-included-courses__courses-container__course-card__trainer-info-box__trainer-name"]}>
                                         فيصل كركري

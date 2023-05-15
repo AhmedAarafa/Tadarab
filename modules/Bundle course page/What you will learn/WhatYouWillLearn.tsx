@@ -9,7 +9,7 @@ function WhatYouWillLearn() {
             <div id="what-you-will-learn" className={styles["what-you-will-learn__scrollspy-helper"]}></div>
 
             <h2 className={styles["what-you-will-learn__title"]}>
-                ماذا سوف تتعلم في الدورة؟
+                ماذا سوف تتعلم في الباقة؟
             </h2>
             <div className={styles["what-you-will-learn__list-box"]}>
 

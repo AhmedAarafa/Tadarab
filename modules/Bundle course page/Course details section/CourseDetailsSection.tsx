@@ -4,7 +4,7 @@ import styles from "./course-details-section.module.css";
 function CourseDetailsSection() {
     return (
         <div className={styles["course-details-section"]}>
-            <h2 className={styles["course-details-section__title"]}>تفاصيل الدورة</h2>
+            <h2 className={styles["course-details-section__title"]}>تفاصيل الباقة</h2>
             <p className={styles["course-details-section__para"]}
             // dangerouslySetInnerHTML={{ __html: courseDetailsData.data?.course_details?.description }}
             >

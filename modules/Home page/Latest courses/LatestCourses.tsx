@@ -165,7 +165,7 @@ function LatestCourses() {
           <h2>
             <span>الدورات </span>
             <span>التدريبية</span>
-          </h2>
+          </h2> 
         </Col>
         <Col xs={{ span: 12, order: 1 }} sm={9}
           className="d-flex align-items-center justify-content-start">

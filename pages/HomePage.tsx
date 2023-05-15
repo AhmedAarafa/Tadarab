@@ -11,6 +11,7 @@ import { GAProductimpressionEventHandler } from "modules/_Shared/utils/GAEvents"
 import { FBPixelEventsHandler } from 'modules/_Shared/utils/FBPixelEvents';
 import { toggleLoader } from "modules/_Shared/utils/toggleLoader";
 import Router, { useRouter } from "next/router";
+import Head from 'next/head';
 
 const HeroSection = dynamic(() => import("modules/Home page/Hero section/HeroSection"));
 const LatestCourses = dynamic(() => import("modules/Home page/Latest courses/LatestCourses"));
@@ -26,7 +27,7 @@ const TadarabForBusiness = dynamic(() => import("common/Tadarab for business/Tad
 const AboutTadarab = dynamic(() => import("common/Testimonials/Testimonials"));
 const JoinUs = dynamic(() => import("modules/Home page/Join us/JoinUs"));
 const TadarabUnlimited = dynamic(() => import("common/Tadarab unlimited/TadarabUnlimited"));
-const TadarabSeason = dynamic(() => import("modules/Home page/Tadarab season section/TadarabSeason"));
+const BundleCourses = dynamic(() => import("modules/Home page/Bundle courses/BundleCourses"));
 
 function HomePage(props: any) {
   const router = useRouter();
@@ -94,7 +95,7 @@ function HomePage(props: any) {
 
   }, [router]);
 
-  
+
   useEffect(() => {
     setTargetedCountry(router.asPath == "/sa" ? "sa" : "kw");
   }, [router]);
@@ -103,6 +104,27 @@ function HomePage(props: any) {
     <>
 
       <Container data-theme={themeState} fluid="xxl" style={{ backgroundColor: "var(--tadarab-light-bg)" }}>
+        <Head>
+          {<script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(
+                {
+                  "@context": "http://schema.org",
+                  "@type": "WebSite",
+                  "url": "https://www.tadarab.com",
+                  "potentialAction":
+                  {
+                    "@type": "SearchAction",
+                    "target": "https://www.tadarab.com/search?q={search_term_string}",
+                    "query": "required",
+                    "query-input": "required name=search_term_string"
+                  }
+                }
+              )
+            }}
+          />}
+        </Head>
 
         <HeroSection targetedCountry={targetedCountry} />
         {/* <TadarabSeason /> */}
@@ -119,6 +141,7 @@ function HomePage(props: any) {
         <Books />
         <Statistics targetedCountry={targetedCountry} />
         <WhyTadarab />
+        <BundleCourses />
         <LearnFromTheBest targetedCountry={targetedCountry} />
         <JoinAsATrainer />
         <TadarabForBusiness />

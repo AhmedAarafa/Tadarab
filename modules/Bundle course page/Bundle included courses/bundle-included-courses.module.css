@@ -59,7 +59,6 @@
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -71,8 +70,6 @@
   display: flex;
   align-items: unset;
   justify-content: unset;
-  height: -moz-fit-content;
-  height: fit-content;
   border-bottom: none;
   width: 100%;
 }
@@ -175,24 +172,20 @@
     margin-bottom: 3rem;
   }
   .bundle-included-courses__courses-container__course {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     margin: 2rem 0;
   }
   .bundle-included-courses__courses-container__course-index {
-    font-size: 2.3375rem;
-    width: 4.125rem;
-    height: 4.125rem;
+    font-size: 1.9125rem;
+    width: 3.375rem;
+    height: 3.375rem;
   }
   .bundle-included-courses__courses-container__course-card {
     width: 100%;
     margin: 1.25rem 0;
   }
   .bundle-included-courses__courses-container__course-card__course-img img {
-    width: 18.75rem;
-    height: 11.25rem;
+    width: 16.25rem;
+    height: 9.75rem;
     border-radius: 1.65rem;
     box-shadow: 0 0 2.75rem rgba(0, 0, 0, 0.1019607843);
   }
@@ -209,12 +202,19 @@
     height: 5rem;
   }
   .bundle-included-courses__courses-container__course-card__trainer-info-box__course-name {
-    font-size: 2rem;
-    width: calc(100% - 3.5rem);
+    font-size: 1.6rem;
+    width: 100%;
     margin: 0;
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 5rem;
   }
   .bundle-included-courses__courses-container__course-card__trainer-info-box__trainer-name {
-    font-size: 1.626rem;
+    font-size: 1.3821rem;
     width: calc(100% - 3.5rem);
   }
   .bundle-included-courses__courses-container__course-card__rating-box {
