@@ -9,10 +9,10 @@ const Home: NextPage = (props: any) => {
 
   return (
     <>
-      {seoData && <MetaTagsGenerator title={seoData?.seo_title}
+{/*       {seoData && <MetaTagsGenerator title={seoData?.seo_title}
         description={seoData?.seo_metadesc}
         img={seoData?.seo_image} />}
-      <HomePage />
+      <HomePage /> */}
     </>
   );
 };
